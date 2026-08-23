@@ -417,10 +417,16 @@ sub init_chroot {
     mkpath($Magus::Config{SlaveMportsDir});
   }
   
-  Magus::Chroot->new(
-    workerid => 1,
-    tarball  => $Magus::Config{ChrootTarBall},
-  );
+  my $worker_count = $Magus::Config{ZfsChrootEnabled} ? $opts{j} : 1;
+  $Logger->info("Refreshing ZFS chroot baselines for $worker_count workers")
+    if $Magus::Config{ZfsChrootEnabled};
+  for my $worker_id (1 .. $worker_count) {
+    Magus::Chroot->new(
+      workerid         => $worker_id,
+      tarball          => $Magus::Config{ChrootTarBall},
+      refresh_snapshot => $Magus::Config{ZfsChrootEnabled} ? 1 : 0,
+    );
+  }
 }
 
   

@@ -75,6 +75,8 @@ sub load_config {
         SlavePidFile   => '/var/run/magus.pid',
         MemoryDiskSize  => '32G',
         MemoryDiskEnabled => 0,
+        ZfsChrootEnabled => 0,
+        ZfsChrootDataset => '',
 
         # file values override defaults
         %filecfg,

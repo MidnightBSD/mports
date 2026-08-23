@@ -119,6 +119,10 @@ sub prep_chroot {
     workerid => $self->{worker_id},
     tarball  => $Magus::Config{ChrootTarBall},
   );
+
+  # Mark the chroot before dependencies or distfiles are injected so an
+  # interruption cannot leave modified state advertised as clean.
+  $self->{chroot}->mark_dirty;
 }
 
 sub inject_fetch_depends {

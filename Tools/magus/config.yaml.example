@@ -7,6 +7,13 @@ DBPass: changeme
 Machine: vm-current
 DoneWaitPeriod: 600
 ChrootTarBall: /usr/magus/0.2-CURRENT-20070901.tar
+# Set ZfsChrootEnabled to 1 to use per-worker ZFS datasets and snapshot
+# rollback instead of cpdup for cleanup.  ZfsChrootDataset must name an
+# existing parent dataset; Magus creates only its release and worker children.
+# Do not enable this together with MemoryDiskEnabled.
+# Existing numbered chroot directories must be empty before enabling ZFS.
+ZfsChrootEnabled: 0
+ZfsChrootDataset: magus/chroots
 PkgfilesRoot: /usr/magus/packages
 DistfilesRoot: /usr/magus/distfiles
 PkgExtension: mport
