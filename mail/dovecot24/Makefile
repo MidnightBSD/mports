@@ -1,6 +1,6 @@
 PORTNAME=	dovecot24
 PORTVERSION=	2.4.4
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	mail
 MASTER_SITES=	https://dovecot.org/releases/2.4/
 DISTNAME=	dovecot-${PORTVERSION}
@@ -28,7 +28,7 @@ pgsql_PKGNAMESUFFIX=	-pgsql
 
 LIB_DEPENDS=	libzstd.so:archivers/zstd
 
-USES=		cpe iconv libtool pkgconfig shebangfix ssl
+USES=		cpe iconv libtool pkgconfig python:run shebangfix ssl
 CPE_PRODUCT=	dovecot
 SHEBANG_FILES=	src/lib-settings/settings-history.py
 USE_RC_SUBR=	dovecot
