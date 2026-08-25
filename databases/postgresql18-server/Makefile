@@ -222,28 +222,28 @@ post-patch:
 do-install:
 	for dir in ${INSTALL_DIRS}; do \
 	    cd ${WRKSRC}/$${dir} && \
-		${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} ${INSTALL_TARGET}; \
+		${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} ${FAKE_MAKEARGS} ${INSTALL_TARGET}; \
 	done
 .  if defined(SERVER_ONLY)
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/postgresql/*.so
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/postgresql
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/periodic/daily
+	${STRIP_CMD} ${PREFIX}/lib/postgresql/*.so
+	${MKDIR} ${PREFIX}/share/postgresql
+	${MKDIR} ${PREFIX}/etc/periodic/daily
 	${INSTALL_SCRIPT} ${WRKDIR}/502.pgsql \
-			${STAGEDIR}${PREFIX}/etc/periodic/daily
+			${PREFIX}/etc/periodic/daily
 .  endif # SERVER_ONLY
 .  if defined(CLIENT_ONLY)
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/* ${STAGEDIR}${PREFIX}/lib/lib*.so
-	cd ${WRKSRC}/src && ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} install-local
+	${STRIP_CMD} ${PREFIX}/bin/* ${PREFIX}/lib/lib*.so
+	cd ${WRKSRC}/src && ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} ${FAKE_MAKEARGS} install-local
 .    if ${DISTVERSION:C/([0-9][0-9]).*/\1/g} >= 17
-	cd ${WRKSRC}/doc/src/sgml && ${COPYTREE_SHARE} "man1 man3 man7" ${STAGEDIR}${PREFIX}/share/man
+	cd ${WRKSRC}/doc/src/sgml && ${COPYTREE_SHARE} "man1 man3 man7" ${PREFIX}/share/man
 .    endif
 .  endif
 .  if defined(SLAVE_ONLY)
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/postgresql/*.so
+	${STRIP_CMD} ${PREFIX}/lib/postgresql/*.so
 .  endif
 	if [ -r ${PKGMESSAGE} ]; then \
-		${MKDIR} ${STAGEDIR}${DOCSDIR} ;\
-		${INSTALL_DATA} ${PKGMESSAGE} ${STAGEDIR}${DOCSDIR}/README${COMPONENT} ;\
+		${MKDIR} ${DOCSDIR} ;\
+		${INSTALL_DATA} ${PKGMESSAGE} ${DOCSDIR}/README${COMPONENT} ;\
 	fi
 .endif # !NO_BUILD
 
