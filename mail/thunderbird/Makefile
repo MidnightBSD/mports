@@ -1,5 +1,5 @@
 PORTNAME=	thunderbird
-DISTVERSION=	153.0.2
+DISTVERSION=	154.0
 PORTREVISION=	0
 CATEGORIES=	mail news net-im wayland
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}${DISTVERSIONSUFFIX}/source \
@@ -15,7 +15,7 @@ LICENSE=	MPL20
 CONFLICTS_INSTALL=	thunderbird-esr
 
 BUILD_DEPENDS=	nspr>=4.32:devel/nspr \
-		nss>=3.125:security/nss \
+		nss>=3.126:security/nss \
 		libevent>=2.1.8:devel/libevent \
 		harfbuzz>=10.1.0:print/harfbuzz \
 		graphite2>=1.3.14:graphics/graphite2 \
