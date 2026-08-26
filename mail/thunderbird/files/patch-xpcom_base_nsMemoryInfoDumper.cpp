@@ -14,6 +14,6 @@ index 480e7de2f701..eabb85218130 100644
 +#if defined(__FreeBSD__)
 +#  include <signal.h>
 +#endif
- #  include <sys/types.h>
  #  include <sys/stat.h>
+ #  include <sys/types.h>
  #endif
