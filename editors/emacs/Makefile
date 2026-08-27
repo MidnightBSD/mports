@@ -1,13 +1,12 @@
 PORTNAME=	emacs
-DISTVERSION=	30.2
-PORTREVISION=	6
+DISTVERSION=	31.1
 PORTEPOCH=	3
 CATEGORIES=	editors
 MASTER_SITES=	GNU
 
 .if ${FLAVOR:U} == canna
-PATCH_SITES+=	https://www.gentei.org/~yuuji/software/emacs30canna/:canna
-PATCHFILES+=	emacs30.1-canna-20250224.diff.gz:-p1:canna
+PATCH_SITES+=	https://www.gentei.org/~yuuji/software/emacs31canna/:canna
+PATCHFILES+=	emacs31.1canna-20260824.diff.gz:-p1:canna
 .endif
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -45,6 +44,10 @@ CONFIGURE_ARGS=		--disable-build-details \
 			--without-selinux
 .if ${FLAVOR:U} == canna
 CONFIGURE_ARGS+=	--with-canna
+# isearch-ext.el is a file that comes with the canna patch.  Native compiling it
+# during bootstrap creates the native-lisp directory early on in the build, and
+# that causes AOT to be silently skipped.
+MAKE_ARGS+=		BYTE_COMPILE_EXTRA_FLAGS="--eval '(setq native-comp-bootstrap-deny-list (list \"isearch-ext\"))'"
 .elif ${FLAVOR:U} == nox
 CONFIGURE_ARGS+=	--with-sound=no \
 			--with-x-toolkit=no \
@@ -91,7 +94,7 @@ INFO=		auth autotype bovine calc ccmode cl dbus dired-x ebrowse ede \
 		modus-themes newsticker nxml-mode octave-mode org pcl-cvs pgg \
 		rcirc reftex remember sasl sc semantic ses sieve smtpmail \
 		speedbar srecode todo-mode tramp transient url use-package \
-		vhdl-mode vip viper vtable widget wisent woman
+		vhdl-mode viper vtable widget wisent woman
 INFO_PATH=	${DATADIR_REL}/info
 .if ${FLAVOR:U} == canna
 PLIST_FILES+=	${DATADIR}/${DISTVERSION}/lisp/canna.el.gz \
@@ -221,7 +224,7 @@ SCROLLBARS_CONFIGURE_WITH=	toolkit-scroll-bars
 .if ${FLAVOR:U} == canna
 SOURCES_PLIST_FILES=		${DATADIR}/${DISTVERSION}/src/canna.c
 .endif
-SQLITE3_USES=			sqlite:3
+SQLITE3_USES=			sqlite:port
 SQLITE3_CONFIGURE_WITH=		sqlite3
 SVG_IMPLIES=			PNG
 SVG_USE=			GNOME=cairo,librsvg2
