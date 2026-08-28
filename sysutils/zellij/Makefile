@@ -13,8 +13,6 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.md
 ONLY_FOR_ARCHS=	aarch64 amd64
 ONLY_FOR_ARCHS_REASON=	wasmer-vm crate currently only supports aarch64 and amd64
 
-SKIP_FAKE_ALL=  yes
-
 LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libzstd.so:archivers/zstd
 
@@ -526,5 +524,9 @@ CARGO_CRATES=	addr2line-0.17.0 \
 		zstd-0.13.1 \
 		zstd-safe-7.1.0 \
 		zstd-sys-2.0.10+zstd.1.5.6
+
+do-install:
+	${INSTALL_PROGRAM} ${CARGO_TARGET_DIR}/${CARGO_BUILD_TARGET}/release/zellij \
+		${PREFIX}/bin/zellij
 
 .include <bsd.port.mk>
