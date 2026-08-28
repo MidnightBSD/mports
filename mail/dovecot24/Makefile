@@ -26,7 +26,8 @@ FLAVOR?=	${FLAVORS[1]}
 mysql_PKGNAMESUFFIX=	-mysql
 pgsql_PKGNAMESUFFIX=	-pgsql
 
-LIB_DEPENDS=	libzstd.so:archivers/zstd
+LIB_DEPENDS=	libstemmer.so:textproc/snowballstemmer \
+		libzstd.so:archivers/zstd
 
 USES=		cpe iconv libtool pkgconfig python:run shebangfix ssl
 CPE_PRODUCT=	dovecot
