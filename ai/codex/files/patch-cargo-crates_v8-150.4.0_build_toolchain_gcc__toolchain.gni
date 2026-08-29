@@ -1,0 +1,25 @@
+--- cargo-crates/v8-150.4.0/build/toolchain/gcc_toolchain.gni.orig	2006-07-24 01:21:28 UTC
++++ cargo-crates/v8-150.4.0/build/toolchain/gcc_toolchain.gni
+@@ -46,6 +46,13 @@ if (enable_resource_allowlist_generation) {
+       "enable_resource_allowlist_generation=true does not work for target_os=$target_os")
+ }
+
++declare_args() {
++  extra_cflags = ""
++  extra_cppflags = ""
++  extra_cxxflags = ""
++  extra_ldflags = ""
++}
++
+ # This template defines a toolchain for something that works like gcc
+ # (including clang).
+ #
+@@ -409,8 +416,6 @@ template("single_gcc_toolchain") {
+         command = "cmd /s /c \"\"$python_path\" $tool_wrapper_path delete-file {{output}} && $command\""
+       } else {
+         command = "rm -f {{output}} && $command"
+-        inputs =
+-            [ get_path_info(rebase_path(ar, ".", root_out_dir), "abspath") ]
+       }
+
+       # Almost all targets build with //build/config/compiler:thin_archive which
