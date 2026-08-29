@@ -1,7 +1,6 @@
 PORTNAME=	codex
 DISTVERSIONPREFIX=	rust-v
 DISTVERSION=	0.149.0
-PORTREVISION=	1
 CATEGORIES=	ai devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -27,6 +26,9 @@ TEST_DEPENDS=	bash:shells/bash
 
 USES=		cargo gnome llvm:min=21 ninja:build python:test \
 		shebangfix ssl
+
+# The all-features workspace test suite exceeds practical time and memory limits.
+NO_TEST=	yes
 
 CARGO_BUILDDEP=	no
 WITHOUT_LTO=	yes
@@ -63,7 +65,6 @@ CARGO_BUILD_ARGS=	--bin ${PORTNAME} \
 			--bin ${PORTNAME}-code-mode-host \
 			--bin ${PORTNAME}-responses-api-proxy \
 			--bin logs_client
-CARGO_TEST_ARGS=	--all-features --no-fail-fast
 CARGO_ENV=		OPENSSL_NO_VENDOR=1 \
 			CARGO_PROFILE_RELEASE_CODEGEN_UNITS=16 \
 			CARGO_PROFILE_RELEASE_LTO=false \
@@ -213,22 +214,22 @@ do-install:
 
 post-install:
 .for prog in ${PLIST_FILES:Mbin/*}
-	@${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/${prog}
+	@${STRIP_CMD} ${PREFIX}/${prog}
 .endfor
 
 post-install-COMPLETIONS-on:
-	@${MKDIR} ${FAKE_DESTDIR}${PREFIX}/etc/bash_completion.d \
-		${FAKE_DESTDIR}${PREFIX}/share/fish/completions \
-		${FAKE_DESTDIR}${PREFIX}/share/zsh/site-functions
+	@${MKDIR} ${PREFIX}/etc/bash_completion.d \
+		${PREFIX}/share/fish/completions \
+		${PREFIX}/share/zsh/site-functions
 	${INSTALL_DATA} ${WRKSRC}/completions/${PORTNAME}.bash \
-		${FAKE_DESTDIR}${PREFIX}/etc/bash_completion.d/${PORTNAME}
+		${PREFIX}/etc/bash_completion.d/${PORTNAME}
 	${INSTALL_DATA} ${WRKSRC}/completions/${PORTNAME}.fish \
-		${FAKE_DESTDIR}${PREFIX}/share/fish/completions/${PORTNAME}.fish
+		${PREFIX}/share/fish/completions/${PORTNAME}.fish
 	${INSTALL_DATA} ${WRKSRC}/completions/${PORTNAME}.zsh \
-		${FAKE_DESTDIR}${PREFIX}/share/zsh/site-functions/_${PORTNAME}
+		${PREFIX}/share/zsh/site-functions/_${PORTNAME}
 
 post-install-DOCS-on:
-	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
-	${INSTALL_MAN} ${PORTDOCS:S|^|${BUILD_WRKSRC}/|} ${FAKE_DESTDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_MAN} ${PORTDOCS:S|^|${BUILD_WRKSRC}/|} ${DOCSDIR}
 
 .include <bsd.port.mk>

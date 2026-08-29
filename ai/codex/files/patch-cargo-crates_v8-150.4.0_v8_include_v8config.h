@@ -28,7 +28,7 @@
 +#endif
 +
 +#ifdef V8_OS_FREEBSD
-+# define V8_TARGET_OS_OPENBSD
++# define V8_TARGET_OS_FREEBSD
 +# define V8_TARGET_OS_BSD
 +#endif
 +
