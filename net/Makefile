@@ -510,8 +510,8 @@
     SUBDIR += rubygem-whois
     SUBDIR += rubygem-x
     SUBDIR += rubygem-xmlrpc
-    SUBDIR += samba416
     SUBDIR += samba419
+    SUBDIR += samba423
     SUBDIR += sdl_net
     SUBDIR += seaweedfs
     SUBDIR += smbldap-tools

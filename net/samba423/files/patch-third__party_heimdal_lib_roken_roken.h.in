@@ -1,0 +1,12 @@
+--- third_party/heimdal/lib/roken/roken.h.in.orig
++++ third_party/heimdal/lib/roken/roken.h.in
+@@ -42,6 +42,10 @@
+ # endif
+ 
++#if defined(__MidnightBSD__)
++#include <libutil.h>
++#endif
++
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <stdarg.h>
