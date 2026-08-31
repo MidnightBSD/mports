@@ -32,14 +32,18 @@ USE_PERL5=	build
 USE_GNOME=	glib20 libxml2
 USE_LDCONFIG=	yes
 
-LIB_DEPENDS+=	libgpg-error.so:security/libgpg-error \
+LIB_DEPENDS+=	libbrotlidec.so:archivers/brotli \
+		libgpg-error.so:security/libgpg-error \
 		libgcrypt.so:security/libgcrypt \
 		liblz4.so:archivers/liblz4 \
+		libminizip.so:archivers/minizip \
 		libnghttp2.so:www/libnghttp2 \
+		libpcap.so:net/libpcap \
 		libsnappy.so:archivers/snappy \
+		libspeexdsp.so:audio/speexdsp \
 		libcares.so:dns/c-ares
 
-#CFLAGS+=	-funit-at-a-time
+CXXFLAGS+=	-isystem ${LOCALBASE}/include/glib-2.0 -isystem ${LOCALBASE}/lib/glib-2.0/include -include glib.h
 PLIST_SUB+=	PORTVERSION=${PORTVERSION}
 
 .for x in capinfos editcap mergecap rawshark text2pcap dftest randpkt \

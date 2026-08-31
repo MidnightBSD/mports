@@ -106,7 +106,7 @@ PYTHON2_DEFAULT?=	2.7
 RUBY_DEFAULT?=		3.3
 RUST_DEFAULT?=		rust
 # Possible values: 4.16, 4.19, ... 
-SAMBA_DEFAULT?=		4.16
+SAMBA_DEFAULT?=		4.19
 # Possible values: base, openssl, openssl111, openssl31, libressl, libressl-devel
 .if !defined(SSL_DEFAULT)
 #	If no preference was set, check for an installed base version

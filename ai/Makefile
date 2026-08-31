@@ -1,5 +1,6 @@
     COMMENT = Artificial intelligence and machine learning
 
+    SUBDIR += antigravity
     SUBDIR += chatgpt-shell-cli
     SUBDIR += claude-code
     SUBDIR += claude-code-legacy

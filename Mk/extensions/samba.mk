@@ -19,7 +19,7 @@ samba_ARGS=	build run
 IGNORE=		USES=samba has invalid arguments: ${samba_ARGS:Nbuild:Nenv:Nlib:Nself:Nrun}
 .  endif
 
-_SAMBA_VALID_VERSIONS=	4.16 4.19 4.20 4.22 4.23
+_SAMBA_VALID_VERSIONS=	4.19 4.20 4.22 4.23
 
 .  if ${_SAMBA_VALID_VERSIONS:M${SAMBA_DEFAULT}} == ""
 IGNORE=		Invalid version of samba: ${SAMBA_DEFAULT}
@@ -42,11 +42,6 @@ SAMBA_IDMAP_MODULESDIR=	${SAMBA_MODULESDIR}/idmap
 SAMBA_LDB_MODULESDIR=	${_SAMBA_BASE}/lib/shared-modules/ldb
 
 ### Port names
-SAMBA_PORT_416=		net/samba416
-SAMBA_LDB_PORT_416=	databases/ldb25
-SAMBA_TALLOC_PORT_416=	devel/talloc
-SAMBA_TDB_PORT_416=	databases/tdb
-SAMBA_TEVENT_PORT_416=	devel/tevent
 SAMBA_PORT_419=		net/samba419
 SAMBA_LDB_PORT_419=	databases/ldb28
 SAMBA_TALLOC_PORT_419=	devel/talloc

@@ -29,7 +29,6 @@ USE_PYTHON=	allflavors autoplist concurrent pep517
 NO_TEST=	yes
 
 CARGO_BUILD=	no
-CARGO_CARGOLOCK=${WRKSRC}/src/rust/Cargo.lock
 CARGO_CARGOTOML=${WRKSRC}/src/rust/Cargo.toml
 CARGO_INSTALL=	no
 CARGO_TEST=	no
