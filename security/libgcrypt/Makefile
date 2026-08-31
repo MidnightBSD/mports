@@ -1,5 +1,5 @@
 PORTNAME=	libgcrypt
-DISTVERSION=	1.12.2
+DISTVERSION=	1.12.3
 CATEGORIES=	security
 MASTER_SITES=	GNUPG
 
@@ -21,9 +21,7 @@ CONFIGURE_ARGS=	--disable-drng-support
 CONFIGURE_ENV=	MAKEINFO="makeinfo --no-split"
 CONFIGURE_TARGET=${ARCH:S/amd64/x86_64/}-portbld-freebsd13.4
 USE_LDCONFIG=	yes
-#TEST_TARGET=	check
-# magus issues
-NO_TEST=	yes
+TEST_TARGET=	check
 
 DOCS=		AUTHORS ChangeLog ChangeLog-2011 INSTALL NEWS THANKS TODO \
 		doc/HACKING doc/README.apichanges
@@ -44,6 +42,10 @@ STATIC_CONFIGURE_ENABLE=	static
 
 .if ${ARCH} == "armv6" || ${ARCH} == "armv7"
 CONFIGURE_ARGS+=	--disable-jent-support
+.endif
+
+.if ${ARCH} == "amd64"
+CONFIGURE_ARGS+=	--disable-avx512-support
 .endif
 
 .if defined(WITH_DEBUG)
