@@ -19,13 +19,13 @@ samba_ARGS=	build run
 IGNORE=		USES=samba has invalid arguments: ${samba_ARGS:Nbuild:Nenv:Nlib:Nself:Nrun}
 .  endif
 
-_SAMBA_VALID_VERSIONS=	4.19 4.20 4.22 4.23
+_SAMBA_VALID_VERSIONS=	4.19 4.23
 
 .  if ${_SAMBA_VALID_VERSIONS:M${SAMBA_DEFAULT}} == ""
 IGNORE=		Invalid version of samba: ${SAMBA_DEFAULT}
 .  endif
 
-# E.g., "422".
+# E.g., "419".
 SAMBA_SUFFIX=	${SAMBA_DEFAULT:S/.//}
 # _SAMBA_BASE is the directory where Samba is installed. For Samba
 # consumers that is LOCALBASE, while it is PREFIX for Samba itself.
@@ -47,15 +47,6 @@ SAMBA_LDB_PORT_419=	databases/ldb28
 SAMBA_TALLOC_PORT_419=	devel/talloc
 SAMBA_TDB_PORT_419=	databases/tdb
 SAMBA_TEVENT_PORT_419=	devel/tevent
-SAMBA_PORT_420=		net/samba420
-SAMBA_LDB_PORT_420=	databases/ldb29
-SAMBA_TALLOC_PORT_420=	devel/talloc242
-SAMBA_TDB_PORT_420=	databases/tdb1410
-SAMBA_TEVENT_PORT_420=	devel/tevent016
-SAMBA_PORT_422=		net/samba422
-SAMBA_TALLOC_PORT_422=	devel/talloc243
-SAMBA_TDB_PORT_422=	databases/tdb1413
-SAMBA_TEVENT_PORT_422=	devel/tevent017
 SAMBA_PORT_423=		net/samba423
 SAMBA_TALLOC_PORT_423=	devel/talloc243
 SAMBA_TDB_PORT_423=	databases/tdb1
