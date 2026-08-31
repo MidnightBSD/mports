@@ -1,6 +1,6 @@
 PORTNAME=	dovecot24
-PORTVERSION=	2.4.4
-PORTREVISION=	3
+PORTVERSION=	2.4.5
+PORTREVISION=	0
 CATEGORIES=	mail
 MASTER_SITES=	https://dovecot.org/releases/2.4/
 DISTNAME=	dovecot-${PORTVERSION}
@@ -26,7 +26,8 @@ FLAVOR?=	${FLAVORS[1]}
 mysql_PKGNAMESUFFIX=	-mysql
 pgsql_PKGNAMESUFFIX=	-pgsql
 
-LIB_DEPENDS=	libzstd.so:archivers/zstd
+LIB_DEPENDS=	libstemmer.so:textproc/snowballstemmer \
+		libzstd.so:archivers/zstd
 
 USES=		cpe iconv libtool pkgconfig python:run shebangfix ssl
 CPE_PRODUCT=	dovecot

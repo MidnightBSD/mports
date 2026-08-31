@@ -97,6 +97,7 @@ include/dovecot/config-parser-private.h
 include/dovecot/config-parser.h
 include/dovecot/config-request.h
 include/dovecot/config.h
+include/dovecot/abnf.h
 include/dovecot/acl-rights.h
 include/dovecot/acl-settings.h
 include/dovecot/auth-digest.h
@@ -111,6 +112,7 @@ include/dovecot/auth-scram-client.h
 include/dovecot/auth-scram-server.h
 include/dovecot/auth-scram.h
 include/dovecot/auth-worker-connection.h
+include/dovecot/bitmap.h
 include/dovecot/cpu-count.h
 include/dovecot/db-ldap-sasl.h
 include/dovecot/db-ldap-settings.h
@@ -121,7 +123,10 @@ include/dovecot/doveadm-cmd-parse.h
 include/dovecot/doveadm-protocol.h
 include/dovecot/dregex.h
 include/dovecot/fts-settings.h
+include/dovecot/idna-punycode.h
+include/dovecot/idna.h
 include/dovecot/imap-progress.h
+include/dovecot/imap-state-private.h
 include/dovecot/imap-stats.h
 include/dovecot/imap-storage-callbacks.h
 include/dovecot/imapc-attribute.h
@@ -155,11 +160,11 @@ include/dovecot/log-error-buffer.h
 include/dovecot/maildir-mail.h
 include/dovecot/master-admin-client.h
 include/dovecot/pop3-protocol.h
-include/dovecot/punycode.h
 include/dovecot/push-notification-settings.h
 include/dovecot/quota-settings.h
 include/dovecot/sasl-common.h
 include/dovecot/sasl-oauth2.h
+include/dovecot/sasl-proxy.h
 include/dovecot/sasl-server-gssapi.h
 include/dovecot/sasl-server-mech-scram.h
 include/dovecot/sasl-server-oauth2.h
@@ -168,6 +173,7 @@ include/dovecot/sasl-server-protected.h
 include/dovecot/settings-consts.h
 include/dovecot/settings-history.h
 include/dovecot/sdbox-settings.h
+include/dovecot/storage-version.h
 include/dovecot/ssl-settings.h
 include/dovecot/str-parse.h
 include/dovecot/test-dir.h
@@ -178,6 +184,7 @@ include/dovecot/unicode-data-tables.h
 include/dovecot/unicode-data-types.h
 include/dovecot/unicode-data.h
 include/dovecot/unicode-transform.h
+include/dovecot/xxh64.h
 include/dovecot/var-expand-split.h
 include/dovecot/version.h
 libexec/dovecot/settings-history.py
@@ -790,6 +797,7 @@ libexec/dovecot/dovecot-lda
 libexec/dovecot/gdbhelper
 libexec/dovecot/health-check.sh
 libexec/dovecot/imap
+libexec/dovecot/imap-hibernate
 libexec/dovecot/imap-login
 libexec/dovecot/imap-urlauth
 libexec/dovecot/imap-urlauth-login
