@@ -191,7 +191,12 @@ sub _create_reference_dir {
   }
     
   if (-e $self->{refdir}) {
-    rmtree($self->{refdir}) || die "Couldn't delete $self->{refdir} $!\n";
+    # The bootstrap tarball carries schg/uchg files (libc, ld-elf.so, init,
+    # su, ...).  Without clearing the flags first rmtree() and the following
+    # tar both fail with EPERM and we end up extracting over a stale tree.
+    $self->_clear_flags_path($self->{refdir});
+    rmtree($self->{refdir});
+    die "Couldn't delete $self->{refdir}: $!\n" if -e $self->{refdir};
   }
   
   mkpath($self->{refdir});
@@ -610,9 +615,11 @@ sub _clean {
   return $self->_clean_zfs if $self->{zfs};
 
   $self->_unmount_loopbacks;
-  
-  #$self->_clear_flags("/");
-  
+
+  # cpdup cannot replace schg/uchg files left behind by a build, so drop the
+  # flags before re-syncing the reference dir over this chroot.
+  $self->_clear_flags("/");
+
   $self->_sync_reference_dir;
   $self->_mount_loopbacks;
 }
@@ -621,7 +628,16 @@ sub _clean {
 sub _clear_flags {
   my ($self, $dir) = @_;
 
-  $self->_run_command('/bin/chflags', '-R', '0', "$self->{root}$dir")
+  $self->_clear_flags_path("$self->{root}$dir");
+}
+
+
+sub _clear_flags_path {
+  my ($self, $path) = @_;
+
+  return unless -e $path;
+
+  $self->_run_command('/bin/chflags', '-R', '0', $path)
     or die "/bin/chflags returned non-zero: $?\n";
 }
   
