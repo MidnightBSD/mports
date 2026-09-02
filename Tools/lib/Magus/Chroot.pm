@@ -614,7 +614,9 @@ sub _clean {
 
   return $self->_clean_zfs if $self->{zfs};
 
-  $self->_unmount_loopbacks;
+  # Strict: the recursive chflags below must not descend into a loopback that
+  # failed to unmount, and cpdup must not sync over one either.
+  $self->_unmount_loopbacks(1);
 
   # cpdup cannot replace schg/uchg files left behind by a build, so drop the
   # flags before re-syncing the reference dir over this chroot.
