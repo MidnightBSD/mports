@@ -602,7 +602,7 @@ __metadata:
     "@types/semver": "npm:^7.5.8"
     "@types/stream-json": "npm:^1.7.8"
     "@types/temp": "npm:^0.9.4"
-    "@xmldom/xmldom": "npm:^0.8.15"
+    "@xmldom/xmldom": "npm:^0.8.11"
     buffer: "npm:^6.0.3"
     chalk: "npm:^4.1.0"
     check-for-leaks: "npm:^1.2.1"
@@ -2818,10 +2818,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@xmldom/xmldom@npm:^0.8.15, @xmldom/xmldom@npm:^0.8.8":
-  version: 0.8.15
-  resolution: "@xmldom/xmldom@npm:0.8.15"
-  checksum: 10c0/59d09b85824b684fba5a0a224d5b43abea1a0d745e8d8b8136a7013e996eb6da122fdbb3deb32ed1621923a10e1937b1f7917cea43481d9d5b976e8c1ff836c1
+"@xmldom/xmldom@npm:^0.8.11, @xmldom/xmldom@npm:^0.8.8":
+  version: 0.8.11
+  resolution: "@xmldom/xmldom@npm:0.8.11"
+  checksum: 10c0/e768623de72c95d3dae6b5da8e33dda0d81665047811b5498d23a328d45b13feb5536fe921d0308b96a4a8dd8addf80b1f6ef466508051c0b581e63e0dc74ed5
   languageName: node
   linkType: hard
 
@@ -5586,9 +5586,9 @@ __metadata:
   linkType: hard
 
 "fast-uri@npm:^3.0.1":
-  version: 3.1.7
-  resolution: "fast-uri@npm:3.1.7"
-  checksum: 10c0/ca2baa4bde48fc7322bdc692c6636975943ebe4f6dd97e07d70b14e0ab85af2ff30de90f550f5ec2956684fe208e150d85d6cb5f3c74438c8ac1bf86bd435c13
+  version: 3.0.1
+  resolution: "fast-uri@npm:3.0.1"
+  checksum: 10c0/3cd46d6006083b14ca61ffe9a05b8eef75ef87e9574b6f68f2e17ecf4daa7aaadeff44e3f0f7a0ef4e0f7e7c20fc07beec49ff14dc72d0b500f00386592f2d10
   languageName: node
   linkType: hard
 
@@ -7595,11 +7595,11 @@ __metadata:
   linkType: hard
 
 "linkify-it@npm:^5.0.0":
-  version: 5.0.2
-  resolution: "linkify-it@npm:5.0.2"
+  version: 5.0.0
+  resolution: "linkify-it@npm:5.0.0"
   dependencies:
     uc.micro: "npm:^2.0.0"
-  checksum: 10c0/dd70b1735a13d41a2cff0a058ac3771166038f23f6aff004dd53873cf985c64b107902fe0b544a5b3d1ff6e63249cf9c648fb3ae9f285481db48f56887adb0d6
+  checksum: 10c0/ff4abbcdfa2003472fc3eb4b8e60905ec97718e11e33cca52059919a4c80cc0e0c2a14d23e23d8c00e5402bc5a885cdba8ca053a11483ab3cc8b3c7a52f88e2d
   languageName: node
   linkType: hard
 
