@@ -1,5 +1,5 @@
 PORTNAME=	thunderbird
-DISTVERSION=	154.0
+DISTVERSION=	155.0
 PORTREVISION=	0
 CATEGORIES=	mail news net-im wayland
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}${DISTVERSIONSUFFIX}/source \
@@ -15,7 +15,7 @@ LICENSE=	MPL20
 CONFLICTS_INSTALL=	thunderbird-esr
 
 BUILD_DEPENDS=	nspr>=4.32:devel/nspr \
-		nss>=3.126:security/nss \
+		nss>=3.127:security/nss \
 		libevent>=2.1.8:devel/libevent \
 		harfbuzz>=10.1.0:print/harfbuzz \
 		graphite2>=1.3.14:graphics/graphite2 \
@@ -29,7 +29,7 @@ BUILD_DEPENDS=	nspr>=4.32:devel/nspr \
 		zip:archivers/zip \
 		clang19:devel/llvm19 \
 		cargo:lang/rust \
-		rust-cbindgen>=0.29.1:devel/rust-cbindgen
+		rust-cbindgen>=0.29.4:devel/rust-cbindgen
 
 LIB_DEPENDS+=	libvpx.so:multimedia/libvpx \
 		libevent.so:devel/libevent \
