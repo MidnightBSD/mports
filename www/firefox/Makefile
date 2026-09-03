@@ -1,5 +1,5 @@
 PORTNAME=     firefox
-DISTVERSION=  153.0.4
+DISTVERSION=  155.0
 PORTEPOCH=    2
 CATEGORIES=   www wayland
 MASTER_SITES= MOZILLA/${PORTNAME}/releases/${DISTVERSION}${DISTVERSIONSUFFIX}/source \
@@ -14,7 +14,7 @@ LICENSE=	MPL20 gpl2
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	nspr>=4.32:devel/nspr \
-		nss>=3.124:security/nss \
+		nss>=3.127:security/nss \
 		libevent>=2.1.8:devel/libevent \
 		harfbuzz>=10.1.0:print/harfbuzz \
 		graphite2>=1.3.14:graphics/graphite2 \
@@ -125,7 +125,7 @@ post-extract:
 post-patch:
 	${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
 		${WRKSRC}/browser/app/nsBrowserApp.cpp
-	(cd ${WRKSRC}/gfx/angle/checkout/src/compiler/translator && \
+	(cd ${WRKSRC}/third_party/angle/src/compiler/translator && \
 		${REINPLACE_CMD} -e 's|<math.h>|<cmath>|' \
 		InfoSink.h IntermNode.cpp)
 	# disable SCTP
