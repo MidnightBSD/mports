@@ -69,6 +69,7 @@ share/applications/drawio.desktop
 %%DATADIR%%/locales/zh-CN.pak
 %%DATADIR%%/locales/zh-TW.pak
 %%DATADIR%%/resources.pak
+%%DATADIR%%/resources/apparmor-profile
 %%DATADIR%%/resources/app-update.yml
 %%DATADIR%%/resources/app.asar
 %%DATADIR%%/resources/package-type

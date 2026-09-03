@@ -669,3 +669,4 @@ databases/postgresql13-pltcl|databases/postgresql14-pltcl|2026-07-15|PostgreSQL 
 databases/postgresql13-server|databases/postgresql14-server|2026-07-15|PostgreSQL 13 is no longer supported; use PostgreSQL 14.
 mail/thunderbird-freebsd|mail/thunderbird|2026-07-30|Use native thunderbird
 net/samba416|net/samba419|2026-08-31|Samba 4.16 is obsolete; use samba419 or samba423.
+devel/electron28|devel/electron42|2026-09-03|Electron 28 has been EOL since 2024-06-11 and was a prebuilt FreeBSD 12 binary; use electron42.

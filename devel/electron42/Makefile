@@ -1,0 +1,659 @@
+PORTNAME=	electron
+DISTVERSIONPREFIX=	v
+DISTVERSION=	${ELECTRON_VER}
+PULSEMV=	16
+PULSEV=		${PULSEMV}.1
+CATEGORIES=	devel
+MASTER_SITES=	https://github.com/tagattie/FreeBSD-Electron/releases/download/v42.6.0/:chromium \
+		https://freedesktop.org/software/pulseaudio/releases/:pulseaudio
+PKGNAMESUFFIX=	${ELECTRON_VER_MAJOR}
+DISTFILES=	chromium-${CHROMIUM_VER}${EXTRACT_SUFX}.0:chromium \
+		chromium-${CHROMIUM_VER}${EXTRACT_SUFX}.1:chromium \
+		chromium-${CHROMIUM_VER}${EXTRACT_SUFX}.2:chromium \
+		pulseaudio-${PULSEV}.tar.gz:pulseaudio
+DIST_SUBDIR=	${PORTNAME}
+EXTRACT_ONLY=	${DISTFILES:C/:[^:]+$//:C/chromium-${CHROMIUM_VER}${EXTRACT_SUFX}\.[0-9]//}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Build cross-platform desktop apps with JavaScript, HTML, and CSS
+WWW=		https://electronjs.org/
+
+LICENSE=	bsd3 lgpl2.1 mit MPL11
+LICENSE_COMB=	multi
+LICENSE_FILE=	${WRKSRC}/electron/LICENSE
+
+BROKEN_i386=	fetch fails: node process stalls during fetch phase and eats up all CPUs
+ONLY_FOR_ARCHS=	aarch64 amd64 i386
+
+# mports has no www/npm${NODEJS_SUFFIX} and no Mk/extensions/npm.mk, so yarn is
+# driven through corepack from www/node instead. node is needed at fetch time
+# because pre-fetch runs corepack, not just at build time.
+FETCH_DEPENDS=	git:devel/git \
+		node:www/node${NODEJS_VERSION}
+PATCH_DEPENDS=	git:devel/git \
+		jq:textproc/jq
+BUILD_DEPENDS=	esbuild:devel/esbuild \
+		gperf:devel/gperf \
+		bindgen:devel/rust-bindgen-cli \
+		yasm:devel/yasm \
+		${LOCALBASE}/libdata/pkgconfig/dri.pc:graphics/mesa-dri \
+		${LOCALBASE}/include/linux/videodev2.h:multimedia/v4l_compat \
+		node:www/node${NODEJS_VERSION}
+LIB_DEPENDS=	libatk-bridge-2.0.so:accessibility/at-spi2-core \
+		libatspi.so:accessibility/at-spi2-core \
+		libFLAC.so:audio/flac \
+		libopus.so:audio/opus \
+		libdbus-1.so:devel/dbus \
+		libepoll-shim.so:devel/libepoll-shim \
+		libevent.so:devel/libevent \
+		libffi.so:devel/libffi \
+		libnotify.so:devel/libnotify \
+		libpci.so:devel/libpci \
+		libnspr4.so:devel/nspr \
+		libre2.so:devel/re2 \
+		libdrm.so:graphics/libdrm \
+		libpng.so:graphics/png \
+		libwayland-client.so:graphics/wayland \
+		libwebp.so:graphics/webp \
+		libdav1d.so:multimedia/dav1d \
+		libva.so:multimedia/libva \
+		libopenh264.so:multimedia/openh264 \
+		libfreetype.so:print/freetype2 \
+		libharfbuzz.so:print/harfbuzz \
+		libsecret-1.so:security/libsecret \
+		libnss3.so:security/nss \
+		libexpat.so:textproc/expat2 \
+		libxkbcommon.so:x11/libxkbcommon \
+		libxshmfence.so:x11/libxshmfence \
+		libfontconfig.so:x11-fonts/fontconfig
+RUN_DEPENDS=	xdg-open:devel/xdg-utils
+TEST_DEPENDS=	git:devel/git \
+		${PYTHON_PKGNAMEPREFIX}python-dbusmock>0:devel/py-python-dbusmock@${PY_FLAVOR}
+
+USES=		bison cargo compiler:c++17-lang cpe display:test gettext-tools \
+		gl gmake gnome iconv:wchar_t jpeg localbase:ldflags ninja \
+		nodejs:24,build pkgconfig python:build,test qt:5 \
+		shebangfix tar:xz xorg
+
+CPE_VENDOR=	electronjs
+USE_GITHUB=	nodefault
+GH_TUPLE=	electron:electron:${DISTVERSIONFULL}:electron \
+		nodejs:node:v${NODE_VER}:node \
+		nodejs:nan:${NAN_VER}:nan \
+		Squirrel:Squirrel.Mac:${SQUIRREL_MAC_VER}:squirrel_mac \
+		ReactiveCocoa:ReactiveObjC:${REACTIVEOBJC_VER}:reactiveobjc \
+		Mantle:Mantle:${MANTLE_VER}:mantle \
+		EngFlow:reclient-configs:${ENGFLOW_RECLIENT_CONFIGS_VER}:reclient_configs \
+		rollup:rollup:v${ROLLUP_VER}:rollup \
+		evanw:esbuild:v${ESBUILD_VER}:esbuild
+USE_GL=		gbm gl glesv2
+USE_GNOME=	atk cairo gdkpixbuf gtk30 libxml2 libxslt pango
+USE_XORG=	x11 xcb xcomposite xcursor xdamage xext xfixes xi xrandr \
+		xrender xscrnsaver xtst
+USE_QT=		buildtools:build core:build widgets:build
+# Scratch tree used only by the pre-fetch node-modules resolution. It must not
+# be ${WRKDIR}/${PORTNAME}-${ELECTRON_VER}: that is where the real Electron
+# source lands during extract, and post-extract moves it to ${WRKSRC}/electron.
+NPM_PREFETCH_WRKSRC=	${WRKDIR}/.npm-prefetch/${PORTNAME}-${ELECTRON_VER}
+
+# Replacement for FreeBSD's USES=npm:yarn4, which mports does not have. Yarn is
+# run through corepack (shipped with www/node) and the resolved packages are
+# archived into a distfile so that the build itself needs no network access.
+NPM_CMDNAME=	yarn
+NPM_VER=	4.12.0
+PKGJSONSDIR=	${FILESDIR}/packagejsons
+NPM_PKGFILE=	package.json
+NPM_LOCKFILE=	yarn.lock
+NPM_MODULE_CACHE=	yarn-offline-cache
+NPM_CACHE_SETUP_CMD=	${SH} -c "${NPM_CMDNAME} config set enableGlobalCache false; \
+			${NPM_CMDNAME} config set cacheFolder \"./${NPM_MODULE_CACHE}\""
+NPM_FETCH_CMD=		${NPM_CMDNAME} install
+NPM_FETCH_FLAGS=	--immutable --mode=skip-build --silent
+NPM_EXTRACT_SETUP_CMD=	${SH} -c "${NPM_CMDNAME} config set enableNetwork false; \
+			${NPM_CMDNAME} config set enableInlineBuilds true"
+NPM_EXTRACT_CMD=	${NPM_FETCH_CMD}
+NPM_EXTRACT_FLAGS=	${NPM_FETCH_FLAGS} --immutable-cache
+
+_DISTFILE_NODE_MODULES=	${PORTNAME}${ELECTRON_VER_MAJOR}-${ELECTRON_VER}-node-modules${EXTRACT_SUFX}
+DISTFILES+=		${NPM_CMDNAME}-${NPM_VER}.tgz \
+			${_DISTFILE_NODE_MODULES}
+
+# `corepack` places shims in PATH; keep those private to the port.
+NPM_BINDIR=		${WRKDIR}/.bin
+YARN_COREPACK_HOME=	${WRKDIR}/.corepack-home
+
+YARN_TGZ=	${DISTDIR}/${DIST_SUBDIR}/${NPM_CMDNAME}-${NPM_VER}.tgz
+NODE_MODULES_TARBALL=	${DISTDIR}/${DIST_SUBDIR}/${_DISTFILE_NODE_MODULES}
+
+YARN_NPM_URL=	https://registry.npmjs.org/@yarnpkg/cli-dist/-/cli-dist-${NPM_VER}.tgz
+
+# The Electron source tarball as USE_GITHUB names it. electron-fetch-node-modules
+# needs it to read package.json/yarn.lock, but pre-fetch runs before do-fetch, so
+# it has to be fetched explicitly here rather than assumed present.
+ELECTRON_SRC_TGZ=	${DISTDIR}/${DIST_SUBDIR}/${PORTNAME}-${PORTNAME}-${DISTVERSIONFULL}_GH0.tar.gz
+ELECTRON_SRC_URL=	https://codeload.github.com/${PORTNAME}/${PORTNAME}/tar.gz/${DISTVERSIONFULL}?dummy=/${PORTNAME}-${PORTNAME}-${DISTVERSIONFULL}_GH0.tar.gz
+
+pre-fetch: electron-fetch-node-package-manager electron-fetch-source \
+	electron-fetch-node-modules electron-archive-node-modules
+
+electron-fetch-source:
+	@if [ -f ${ELECTRON_SRC_TGZ} ]; then \
+		${ECHO_MSG} "===>  Using prefetched ${ELECTRON_SRC_TGZ:T}"; \
+	else \
+		${ECHO_MSG} "===>  Fetching ${ELECTRON_SRC_TGZ:T}"; \
+		${MKDIR} ${DISTDIR}/${DIST_SUBDIR}; \
+		${SETENV} ${FETCH_ENV} ${FETCH_CMD} ${FETCH_BEFORE_ARGS} \
+			-o ${ELECTRON_SRC_TGZ} "${ELECTRON_SRC_URL}" \
+			${FETCH_AFTER_ARGS}; \
+	fi
+
+electron-fetch-node-package-manager:
+	@if [ -f ${YARN_TGZ} ]; then \
+		${ECHO_MSG} "===>  Using prefetched ${NPM_CMDNAME} ${NPM_VER}"; \
+	else \
+		${ECHO_MSG} "===>  Fetching ${NPM_CMDNAME} ${NPM_VER}"; \
+		${MKDIR} ${DISTDIR}/${DIST_SUBDIR}; \
+		${FETCH_CMD} -o ${YARN_TGZ} ${YARN_NPM_URL}; \
+	fi
+	${MKDIR} ${YARN_COREPACK_HOME}/v1/yarn/${NPM_VER}
+	${TAR} -xzOf ${YARN_TGZ} package/bin/yarn.js > \
+		${YARN_COREPACK_HOME}/v1/yarn/${NPM_VER}/yarn.js
+	${CHMOD} 755 ${YARN_COREPACK_HOME}/v1/yarn/${NPM_VER}/yarn.js
+	hash=$$(sha512 -q ${YARN_COREPACK_HOME}/v1/yarn/${NPM_VER}/yarn.js); \
+	printf '{"locator":{"name":"yarn","reference":"${NPM_VER}"},"bin":["yarn","yarnpkg"],"hash":"sha512.%s"}\n' "$${hash}" > \
+		${YARN_COREPACK_HOME}/v1/yarn/${NPM_VER}/.corepack; \
+	printf '{"yarn":"%s+sha512.%s"}\n' "${NPM_VER}" "$${hash}" > \
+		${YARN_COREPACK_HOME}/lastKnownGood.json
+
+electron-fetch-node-modules:
+	@set -e; \
+	if [ -f ${NODE_MODULES_TARBALL} ]; then \
+		${ECHO_MSG} "===>  Using prefetched node modules tarball"; \
+		exit 0; \
+	fi; \
+	${ECHO_MSG} "===>  Prefetching node modules (offline cache)"; \
+	${RM} -rf ${WRKDIR}/.npm-prefetch; \
+	${MKDIR} ${WRKDIR}/.npm-prefetch; \
+	cd ${WRKDIR}/.npm-prefetch && ${TAR} -xf ${ELECTRON_SRC_TGZ}; \
+	pkgdir=`cd ${WRKDIR}/.npm-prefetch && ${FIND} . -maxdepth 1 -type d -name '${PORTNAME}-*' -print | ${HEAD} -n 1 | ${SED} -e 's|^\\./||'`; \
+	${TEST} -n "$${pkgdir}"; \
+	if [ "${WRKDIR}/.npm-prefetch/$${pkgdir}" != "${NPM_PREFETCH_WRKSRC}" ]; then \
+		${MV} ${WRKDIR}/.npm-prefetch/$${pkgdir} ${NPM_PREFETCH_WRKSRC}; \
+	fi; \
+	${MKDIR} ${NPM_BINDIR}; \
+	${SETENV} ${MAKE_ENV} corepack enable --install-directory ${NPM_BINDIR}; \
+	${ECHO_MSG} "===>  Copying ${NPM_PKGFILE} and ${NPM_LOCKFILE} to ${NPM_PREFETCH_WRKSRC}"; \
+	for f in `${FIND} ${PKGJSONSDIR} -type f \\( -name ${NPM_PKGFILE} -o -name ${NPM_LOCKFILE} \\) -print | ${SED} -e 's|${PKGJSONSDIR}/||'`; do \
+		${MKDIR} -p `${DIRNAME} ${NPM_PREFETCH_WRKSRC}/$${f}`; \
+		${CP} ${PKGJSONSDIR}/$${f} ${NPM_PREFETCH_WRKSRC}/$${f}; \
+	done; \
+	${ECHO_MSG} "===>  Installing node modules into offline cache"; \
+	cd ${NPM_PREFETCH_WRKSRC} && ${SETENV} ${MAKE_ENV} PATH=${NPM_BINDIR}:$$PATH ${NPM_CACHE_SETUP_CMD}; \
+	cd ${NPM_PREFETCH_WRKSRC} && ${SETENV} ${MAKE_ENV} PATH=${NPM_BINDIR}:$$PATH ${NPM_FETCH_CMD} ${NPM_FETCH_FLAGS}
+
+# The archive must be reproducible or its recorded checksum can never match on
+# another machine: sort the entries and zero timestamps/uid/gid.
+electron-archive-node-modules:
+	@set -e; \
+	if [ -f ${NODE_MODULES_TARBALL} ]; then \
+		exit 0; \
+	fi; \
+	${ECHO_MSG} "===>  Archiving node modules offline cache"; \
+	cd ${NPM_PREFETCH_WRKSRC} && \
+		${FIND} ${NPM_MODULE_CACHE} -exec ${TOUCH} -h -d 1970-01-01T00:00:00Z {} + && \
+		${FIND} ${NPM_MODULE_CACHE} -print0 | LC_ALL=C ${SORT} -z | \
+		${TAR} -cJf ${NODE_MODULES_TARBALL} --format=bsdtar --gid 0 --uid 0 \
+			--no-recursion --null -T -
+
+SHEBANG_FILES=	chrome/tools/build/linux/chrome-wrapper buildtools/linux64/clang-format
+
+# rollup
+CARGO_CARGOTOML=	${WRKSRC}/rollup/rust/Cargo.toml
+CARGO_CARGOLOCK=	${WRKSRC}/rollup/rust/Cargo.lock
+CARGO_BUILD=		no
+CARGO_INSTALL=		no
+CARGO_TEST=		no
+CARGO_TARGET_DIR=	${WRKSRC}/rollup/rust/target
+
+MAKE_ARGS=	-C out/${BUILDTYPE}
+MAKE_ENV+=	C_INCLUDE_PATH=${LOCALBASE}/include \
+		CPLUS_INCLUDE_PATH=${LOCALBASE}/include
+ALL_TARGET=	electron electron:node_headers
+POST_BUILD_TARGETS=	licenses version
+POST_BUILD_DIST_TARGETS=electron_dist_zip electron_chromedriver_zip \
+			electron_mksnapshot_zip
+
+DATADIR=	${PREFIX}/share/${PORTNAME}${PKGNAMESUFFIX}
+BINARY_ALIAS=	python3=${PYTHON_CMD}
+BUNDLE_LIBS=	yes
+TARGET_ORDER_OVERRIDE=	750:cargo-extract
+
+WRKSRC=		${WRKDIR}/src
+
+GN_ARGS+=	clang_use_chrome_plugins=false \
+		enable_backup_ref_ptr_support=false \
+		enable_hangout_services_extension=true \
+		enable_remoting=false \
+		fatal_linker_warnings=false \
+		icu_use_data_file=false \
+		is_clang=true \
+		moc_qt5_path="${QT_TOOLDIR}/moc" \
+		optimize_webui=true \
+		toolkit_views=true \
+		treat_warnings_as_errors=false \
+		use_allocator_shim=false \
+		use_aura=true \
+		use_custom_libcxx=true \
+		use_custom_libunwind=true \
+		use_lld=true \
+		use_partition_alloc=true \
+		use_partition_alloc_as_malloc=false \
+		use_qt5=true \
+		use_sysroot=false \
+		use_system_freetype=false \
+		use_system_harfbuzz=true \
+		use_system_libffi=true \
+		use_system_libjpeg=true \
+		use_udev=false \
+		chrome_pgo_phase=0 \
+		extra_cflags="${CFLAGS}" \
+		extra_cxxflags="${CXXFLAGS} -I${LOCALBASE}/include/libepoll-shim ${PINCLUDES}" \
+		extra_ldflags="${LDFLAGS}" \
+		ffmpeg_branding="${FFMPEG_BRAND}" \
+		override_electron_version="${ELECTRON_VER}" \
+		v8_builtins_profiling_log_file=""
+
+# TODO: investigate building with these options:
+# use_system_minigbm
+GN_BOOTSTRAP_FLAGS=	--no-clean --no-rebuild --skip-generate-buildfiles
+
+PLIST_SUB=	ELECTRON_VER=${ELECTRON_VER} \
+		ELECTRON_VER_MAJOR=${ELECTRON_VER_MAJOR}
+
+OPTIONS_DEFINE=		CODECS CUPS DEBUG DIST DRIVER KERBEROS LTO PIPEWIRE
+# DRIVER is off by default here, matching devel/electron40 in mports
+OPTIONS_DEFAULT=	CODECS CUPS KERBEROS PIPEWIRE ALSA PULSEAUDIO SNDIO
+OPTIONS_EXCLUDE_aarch64=LTO
+OPTIONS_GROUP=		AUDIO
+OPTIONS_GROUP_AUDIO=	ALSA PULSEAUDIO SNDIO
+OPTIONS_RADIO=		KERBEROS
+OPTIONS_RADIO_KERBEROS=	HEIMDAL HEIMDAL_BASE MIT
+OPTIONS_SUB=		yes
+CODECS_DESC=		Compile and enable patented codecs like H.264
+DIST_DESC=		Build distribution zip files
+DRIVER_DESC=		Install chromedriver
+HEIMDAL_BASE_DESC=	Heimdal Kerberos (base)
+HEIMDAL_DESC=		Heimdal Kerberos (security/heimdal)
+MIT_DESC=		MIT Kerberos (security/krb5)
+PIPEWIRE_DESC=		Screen capture via PipeWire
+
+ALSA_LIB_DEPENDS=	libasound.so:audio/alsa-lib
+ALSA_RUN_DEPENDS=	${LOCALBASE}/lib/alsa-lib/libasound_module_pcm_oss.so:audio/alsa-plugins \
+			alsa-lib>=1.1.1_1:audio/alsa-lib
+ALSA_VARS=		GN_ARGS+=use_alsa=true
+ALSA_VARS_OFF=		GN_ARGS+=use_alsa=false
+CODECS_VARS=		GN_ARGS+=proprietary_codecs=true \
+			FFMPEG_BRAND="Chrome"
+CODECS_VARS_OFF=	GN_ARGS+=proprietary_codecs=false \
+			FFMPEG_BRAND="Chromium"
+CUPS_LIB_DEPENDS=	libcups.so:print/cups
+CUPS_VARS=		GN_ARGS+=use_cups=true
+CUPS_VARS_OFF=		GN_ARGS+=use_cups=false
+DEBUG_MAKE_ENV=		ELECTRON_OUT_DIR=Debug
+DEBUG_MAKE_ENV_OFF=	ELECTRON_OUT_DIR=Release
+DEBUG_VARS=		BUILDTYPE=Debug \
+			GN_FILE=testing.gn \
+			GN_ARGS+=is_debug=true \
+			GN_ARGS+=is_component_build=false \
+			GN_ARGS+=symbol_level=1 \
+			GN_BOOTSTRAP_FLAGS+=--debug \
+			WANTSPACE="21 GB"
+DEBUG_VARS_OFF=		BUILDTYPE=Release \
+			GN_FILE=release.gn \
+			GN_ARGS+=blink_symbol_level=0 \
+			GN_ARGS+=is_debug=false \
+			GN_ARGS+=is_official_build=true \
+			GN_ARGS+=symbol_level=0 \
+			WANTSPACE="14 GB"
+DIST_IMPLIES=		DRIVER
+DRIVER_MAKE_ARGS=	chromedriver
+HEIMDAL_USES=		gssapi:heimdal
+HEIMDAL_BASE_USES=	gssapi:base
+KERBEROS_VARS=		GN_ARGS+=use_kerberos=true
+KERBEROS_VARS_OFF=	GN_ARGS+=use_kerberos=false
+LTO_VARS=		GN_ARGS+=use_thin_lto=true \
+			GN_ARGS+=thin_lto_enable_optimizations=true \
+			WANTSPACE="14 GB"
+LTO_VARS_OFF=		GN_ARGS+=use_thin_lto=false
+MIT_USES=		gssapi:mit
+PIPEWIRE_LIB_DEPENDS=	libpipewire-0.3.so:multimedia/pipewire
+PIPEWIRE_VARS=		GN_ARGS+=rtc_use_pipewire=true \
+			GN_ARGS+=rtc_link_pipewire=true
+PIPEWIRE_VARS_OFF=	GN_ARGS+=rtc_use_pipewire=false \
+			GN_ARGS+=rtc_link_pipewire=false
+PULSEAUDIO_VARS=	GN_ARGS+=use_pulseaudio=true \
+			PINCLUDES="-I${WRKDIR}/pulseaudio-${PULSEV}/src -DPA_MAJOR=${PULSEMV}"
+PULSEAUDIO_VARS_OFF=	GN_ARGS+=use_pulseaudio=false
+SNDIO_LIB_DEPENDS=	libsndio.so:audio/sndio
+SNDIO_VARS=		GN_ARGS+=use_sndio=true
+SNDIO_VARS_OFF=		GN_ARGS+=use_sndio=false
+
+# See ${WRKSRC}/electron/DEPS for CHROMIUM_VER
+CHROMIUM_VER=			148.0.7778.280
+# See ${WRKSRC}/electron/DEPS for NODE_VER
+NODE_VER=			24.19.0
+# See ${WRKSRC}/electron/DEPS for NAN_VER
+NAN_VER=			675cefebca42410733da8a454c8d9391fcebfbc2
+# See ${WRKSRC}/electron/DEPS for SQUIRREL_MAC_VER
+SQUIRREL_MAC_VER=		0e5d146ba13101a1302d59ea6e6e0b3cace4ae38
+# See ${WRKSRC}/electron/DEPS for REACTIVEOBJC_VER
+REACTIVEOBJC_VER=		74ab5baccc6f7202c8ac69a8d1e152c29dc1ea76
+# See ${WRKSRC}/electron/DEPS for MANTLE_VER
+MANTLE_VER=			2a8e2123a3931038179ee06105c9e6ec336b12ea
+# See ${WRKSRC}/electron/DEPS for ENGFLOW_RECLIENT_CONFIGS_VER
+ENGFLOW_RECLIENT_CONFIGS_VER=	955335c30a752e9ef7bff375baab5e0819b6c00d
+# See ${WRKSRC}/third_party/devtools-frontend/src/node_modules/rollup/package.json
+ROLLUP_VER=			4.22.4
+# Keep in sync with devel/esbuild
+ESBUILD_VER=			0.28.1
+
+.include "Makefile.version"
+.include <bsd.port.pre.mk>
+
+.if ${PORT_OPTIONS:MHEIMDAL_BASE} && !exists(/usr/lib/libkrb5.so)
+IGNORE=		you have selected HEIMDAL_BASE but do not have Heimdal installed in base
+.endif
+
+LLVM_DEFAULT=		22
+BUILD_DEPENDS+=		clang${LLVM_DEFAULT}:devel/llvm${LLVM_DEFAULT}
+BINARY_ALIAS+=		cpp=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/clang-cpp \
+			cc=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/clang \
+			c++=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/clang++ \
+			ar=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/llvm-ar \
+			nm=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/llvm-nm \
+			ld=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/ld.lld
+
+# GN's clang_toolchain template hardcodes cc/c++ from PATH and ignores
+# clang_base_path, so BINARY_ALIAS is the only way to select the compiler.
+# Without it the build silently uses base clang, which is too old for
+# Chromium 148 (its bundled libc++ requires clang 20+, and clang 19 crashes
+# in Sema on the C++20 defaulted comparison operators).
+#
+# Chromium compiles with -no-canonical-prefixes, which makes clang derive its
+# resource directory from argv[0]; through the BINARY_ALIAS symlink in
+# ${WRKDIR}/.bin that resolves to a path which does not exist, so intrinsics
+# headers like xmmintrin.h go missing. Pass the real directory explicitly.
+CLANG_RESOURCE_DIR=	${LOCALBASE}/llvm${LLVM_DEFAULT}/lib/clang/${LLVM_DEFAULT}
+CC=			${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/clang
+CXX=			${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/clang++
+CPP=			${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/clang-cpp
+CFLAGS+=		-Wno-error=implicit-function-declaration \
+			-resource-dir=${CLANG_RESOURCE_DIR}
+CXXFLAGS+=		-resource-dir=${CLANG_RESOURCE_DIR}
+
+.if ${ARCH} == "aarch64"
+PLIST_SUB+=	AARCH64="" \
+		AMD64="@comment " \
+		I386="@comment " \
+		NOT_AARCH64="@comment "
+FFMPEG_TARGET=	arm64
+.elif ${ARCH} == "amd64"
+BUILD_DEPENDS+=	nasm:devel/nasm
+PLIST_SUB+=	AARCH64="@comment " \
+		AMD64="" \
+		I386="@comment " \
+		NOT_AARCH64=""
+FFMPEG_TARGET=	x64
+.elif ${ARCH} == "i386"
+BUILD_DEPENDS+=	nasm:devel/nasm
+PLIST_SUB+=	AARCH64="@comment " \
+		AMD64="@comment " \
+		I386="" \
+		NOT_AARCH64=""
+FFMPEG_TARGET=	ia32
+.endif
+
+FFMPEG_BDIR=	${WRKSRC}/third_party/ffmpeg/build.${FFMPEG_TARGET}.freebsd/${FFMPEG_BRAND}
+FFMPEG_CDIR=	${WRKSRC}/third_party/ffmpeg/chromium/config/${FFMPEG_BRAND}/freebsd/${FFMPEG_TARGET}
+
+# Allow relocations against read-only segments (override lld default)
+LDFLAGS_i386=	-Wl,-znotext
+
+# TODO: -isystem, would be just as ugly as this approach, but more reliably
+# build would fail without C_INCLUDE_PATH/CPLUS_INCLUDE_PATH env var set.
+MAKE_ENV+=	C_INCLUDE_PATH=${LOCALBASE}/include \
+		CPLUS_INCLUDE_PATH=${LOCALBASE}/include
+
+# corepack: use the pre-seeded home, and never reach the network
+MAKE_ENV+=	COREPACK_HOME=${YARN_COREPACK_HOME} \
+		COREPACK_ENABLE_NETWORK=0
+
+# rust
+MAKE_ENV+=	RUSTC_BOOTSTRAP=1
+GN_ARGS+=	enable_rust=true \
+		rust_sysroot_absolute="${LOCALBASE}"
+
+TEST_ENV+=	${MAKE_ENV} \
+		ELECTRON_OUT_DIR=${BUILDTYPE} \
+		LOCAL_GIT_DIRECTORY=${LOCALBASE} \
+		DISABLE_CRASH_REPORTER_TESTS=1 \
+		SENTRYCLI_SKIP_DOWNLOAD=1
+
+pre-everything::
+	@${ECHO_MSG}
+	@${ECHO_MSG} "To build electron, you should have around 2GB of memory"
+	@${ECHO_MSG} "and around ${WANTSPACE} of free disk space."
+	@${ECHO_MSG}
+
+pre-extract:
+# Chromium source tarball is splitted into multiple fragments. Concatenate them
+# into a single one and manually extract it into WRKDIR.
+	@${CAT} ${DISTDIR}/${DIST_SUBDIR}/chromium-${CHROMIUM_VER}${EXTRACT_SUFX}.? > \
+		${WRKDIR}/chromium-${CHROMIUM_VER}${EXTRACT_SUFX}
+	@cd ${WRKDIR} && \
+	${SETENV} ${EXTRACT_ENV} ${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} \
+		chromium-${CHROMIUM_VER}${EXTRACT_SUFX} ${EXTRACT_AFTER_ARGS}
+
+post-extract:
+	# Move extracted sources to appropriate locations
+	${MV} ${WRKDIR}/chromium-${CHROMIUM_VER} \
+		${WRKSRC}
+	${MV} ${WRKDIR}/${PORTNAME}-${ELECTRON_VER} \
+		${WRKSRC}/electron
+	${MV} ${WRKDIR}/${GH_PROJECT_nan}-${NAN_VER} \
+		${WRKSRC}/third_party/nan
+	${MV} ${WRKDIR}/${GH_PROJECT_node}-${NODE_VER} \
+		${WRKSRC}/third_party/electron_node
+	${MV} ${WRKDIR}/${GH_PROJECT_squirrel_mac}-${SQUIRREL_MAC_VER} \
+		${WRKSRC}/third_party/squirrel.mac
+	@${MKDIR} ${WRKSRC}/third_party/squirrel.mac/vendor
+	${MV} ${WRKDIR}/${GH_PROJECT_reactiveobjc}-${REACTIVEOBJC_VER} \
+		${WRKSRC}/third_party/squirrel.mac/vendor/ReactiveObjC
+	${MV} ${WRKDIR}/${GH_PROJECT_mantle}-${MANTLE_VER} \
+		${WRKSRC}/third_party/squirrel.mac/vendor/Mantle
+	${MV} ${WRKDIR}/${GH_PROJECT_reclient_configs}-${ENGFLOW_RECLIENT_CONFIGS_VER} \
+		${WRKSRC}/third_party/engflow-reclient-configs
+	${MV} ${WRKDIR}/${GH_PROJECT_rollup}-${ROLLUP_VER} \
+		${WRKSRC}/rollup
+	${MV} ${WRKDIR}/${GH_PROJECT_esbuild}-${ESBUILD_VER} \
+		${WRKSRC}/esbuild
+	# third_party/test_fonts is not fetched; Ahem.ttf is all the build needs
+	@${MKDIR} ${WRKSRC}/third_party/test_fonts/test_fonts
+	@if [ ! -f ${WRKSRC}/third_party/test_fonts/test_fonts/Ahem.ttf ]; then \
+		${CP} ${WRKSRC}/third_party/blink/renderer/core/testing/data/Ahem.ttf \
+			${WRKSRC}/third_party/test_fonts/test_fonts/Ahem.ttf; \
+	fi
+
+pre-patch:
+	${SH} ${FILESDIR}/apply-electron-patches.sh ${WRKSRC}
+.ifdef MAINTAINER_MODE
+	${FIND} ${WRKSRC} -type f -name '*.orig' -print -delete
+	${FIND} ${WRKSRC} -type f -name '*~' -print -delete
+.endif
+
+.ifndef MAINTAINER_MODE
+post-patch:
+	@${REINPLACE_CMD} -e 's|/usr/bin/dbus-daemon|${LOCALBASE}/bin/dbus-daemon|' \
+		${WRKSRC}/electron/spec/api-app-spec.ts
+.endif
+
+pre-configure:
+	# Install Electron's node_modules from the prefetched Yarn cache.
+	# (The node-modules distfile is an offline Yarn cache, not a node_modules tree.)
+	@${MKDIR} ${NPM_BINDIR} ${YARN_COREPACK_HOME}/v1/yarn/${NPM_VER}
+	${SETENV} ${MAKE_ENV} corepack enable --install-directory ${NPM_BINDIR}
+	${TAR} -xzOf ${YARN_TGZ} package/bin/yarn.js > \
+		${YARN_COREPACK_HOME}/v1/yarn/${NPM_VER}/yarn.js
+	${CHMOD} 755 ${YARN_COREPACK_HOME}/v1/yarn/${NPM_VER}/yarn.js
+	hash=$$(sha512 -q ${YARN_COREPACK_HOME}/v1/yarn/${NPM_VER}/yarn.js); \
+	printf '{"locator":{"name":"yarn","reference":"${NPM_VER}"},"bin":["yarn","yarnpkg"],"hash":"sha512.%s"}\n' "$${hash}" > \
+		${YARN_COREPACK_HOME}/v1/yarn/${NPM_VER}/.corepack; \
+	printf '{"yarn":"%s+sha512.%s"}\n' "${NPM_VER}" "$${hash}" > \
+		${YARN_COREPACK_HOME}/lastKnownGood.json
+	${RM} -rf ${WRKSRC}/electron/${NPM_MODULE_CACHE}
+	cd ${WRKSRC}/electron && ${TAR} -xf ${NODE_MODULES_TARBALL}
+	cd ${WRKSRC}/electron && ${SETENV} ${MAKE_ENV} PATH=${NPM_BINDIR}:$$PATH ${NPM_CACHE_SETUP_CMD}
+	cd ${WRKSRC}/electron && ${SETENV} ${MAKE_ENV} PATH=${NPM_BINDIR}:$$PATH ${NPM_EXTRACT_SETUP_CMD}
+	cd ${WRKSRC}/electron && ${SETENV} ${MAKE_ENV} PATH=${NPM_BINDIR}:$$PATH ${NPM_EXTRACT_CMD} ${NPM_EXTRACT_FLAGS}
+
+	# We used to remove bundled libraries to be sure that chromium uses
+	# system libraries and not shipped ones.
+	# cd ${WRKSRC} && ${PYTHON_CMD} \
+	#./build/linux/unbundle/remove_bundled_libraries.py [list of preserved]
+	cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} ${PYTHON_CMD} \
+		./build/linux/unbundle/replace_gn_files.py --system-libraries \
+		dav1d flac fontconfig harfbuzz libdrm libpng \
+		libusb libwebp libxml libxslt openh264 opus || ${FALSE}
+	# Chromium uses an unreleased version of FFmpeg, so configure it
+	cd ${WRKSRC}/media/ffmpeg && \
+		${PYTHON_CMD} scripts/build_ffmpeg.py freebsd ${FFMPEG_TARGET} \
+		--config-only --branding=${FFMPEG_BRAND}
+	cd ${FFMPEG_BDIR} && ${GMAKE} ffversion.h
+	${MKDIR} ${FFMPEG_CDIR}
+.for _e in config.h config.asm config_components.asm config_components.h libavcodec libavformat libavutil
+	-${CP} -pR ${FFMPEG_BDIR}/${_e} ${FFMPEG_CDIR}
+.endfor
+	touch ${WRKDIR}/pulseaudio-${PULSEV}/src/pulse/version.h
+	@${REINPLACE_CMD} -e 's|$${LOCALBASE}|${LOCALBASE}|;s|$${MODCLANG_VERSION}|${LLVM_DEFAULT}|' \
+		${WRKSRC}/build/config/rust.gni \
+		${WRKSRC}/build/linux/strip_binary.gni \
+		${WRKSRC}/build/rust/rust_bindgen.gni \
+		${WRKSRC}/build/rust/rust_bindgen_generator.gni
+
+do-configure:
+	@( \
+		echo "#ifndef GPU_WEBGPU_DAWN_COMMIT_HASH_H_" ;\
+		echo "#define GPU_WEBGPU_DAWN_COMMIT_HASH_H_" ;\
+		echo "#define DAWN_COMMIT_HASH \"$$(cat ${WRKSRC}/gpu/webgpu/DAWN_VERSION)\"" ;\
+		echo "#endif  // GPU_WEBGPU_DAWN_COMMIT_HASH_H_" \
+	) > ${WRKSRC}/gpu/webgpu/dawn_commit_hash.h
+	# Build esbuild and wire it into the devtools-frontend tree
+	cd ${WRKSRC}/esbuild && \
+		${LOCALBASE}/bin/node scripts/esbuild.js \
+			${LOCALBASE}/bin/esbuild --neutral && \
+		${RM} -r ${WRKSRC}/third_party/devtools-frontend/src/node_modules/esbuild && \
+		${LN} -sf ${WRKSRC}/esbuild/npm/esbuild \
+			${WRKSRC}/third_party/devtools-frontend/src/node_modules/esbuild
+	# GN generator bootstrapping and generating ninja files
+	cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} CC=${CC} CXX=${CXX} LD=${CXX} \
+		READELF=${READELF} AR=${AR} NM=${NM} ${PYTHON_CMD} \
+		./tools/gn/bootstrap/bootstrap.py ${GN_BOOTSTRAP_FLAGS}
+	cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} ./out/${BUILDTYPE}/gn gen out/${BUILDTYPE} \
+		--args='import("//electron/build/args/${GN_FILE}") ${GN_ARGS}'
+
+	# Make GN available to python scripts called during build
+	${LN} -sf ${WRKSRC}/out/${BUILDTYPE}/gn ${WRKDIR}/.bin
+
+	# Setup nodejs dependency
+	@${MKDIR} ${WRKSRC}/third_party/node/freebsd/node-freebsd/bin
+	${LN} -sf ${LOCALBASE}/bin/node ${WRKSRC}/third_party/node/freebsd/node-freebsd/bin/node
+
+	# Setup rustc dependency
+	@${MKDIR} ${WRKSRC}/third_party/rust-toolchain/bin
+	${LN} -sf ${LOCALBASE}/bin/rustc ${WRKSRC}/third_party/rust-toolchain/bin/rustc
+
+	# Setup esbuild dependency
+	${LN} -sf ${LOCALBASE}/bin/esbuild ${WRKSRC}/third_party/devtools-frontend/src/third_party/esbuild/esbuild
+
+	# Setup gperf dependency
+	${LN} -sf ${LOCALBASE}/bin/gperf ${WRKSRC}/third_party/gperf/cipd/bin/gperf
+
+	# Setup buildtools/freebsd
+	@${MKDIR} ${WRKSRC}/buildtools/freebsd
+	${LN} -sf ${WRKSRC}/buildtools/linux64/clang-format ${WRKSRC}/buildtools/freebsd
+	${LN} -sf ${WRKSRC}/out/${BUILDTYPE}/gn ${WRKSRC}/buildtools/freebsd
+	${LN} -sf /usr/bin/strip ${WRKSRC}/buildtools/freebsd/strip
+
+pre-build:
+	@${CARGO_CARGO_RUN} build \
+		--manifest-path ${CARGO_CARGOTOML} \
+		--verbose \
+		--verbose \
+		${CARGO_BUILD_ARGS}
+	# mports' cargo.mk always sets CARGO_BUILD_TARGET, so artifacts land in
+	# ${CARGO_TARGET_DIR}/${CARGO_BUILD_TARGET}/<profile>/ rather than the
+	# ${CARGO_TARGET_DIR}/<profile>/ that FreeBSD's glob assumes.
+	(cd ${WRKSRC}/third_party/devtools-frontend/src/node_modules/@rollup && \
+		${MKDIR} rollup-freebsd && \
+		${CP} ${CARGO_TARGET_DIR}/${CARGO_BUILD_TARGET}/*/libbindings_napi.so \
+			rollup-freebsd/rollup.freebsd.node && \
+		${ECHO_CMD} '{ "main": "./rollup.freebsd.node" }' \
+			> rollup-freebsd/package.json)
+
+post-build:
+	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} \
+		${MAKE_CMD} ${MAKE_ARGS} ${POST_BUILD_TARGETS}
+
+post-build-DIST-on:
+	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} \
+		${MAKE_CMD} ${MAKE_ARGS} ${POST_BUILD_DIST_TARGETS}
+	cd ${WRKSRC}/out/${BUILDTYPE} && \
+		${CP} chromedriver.zip chromedriver-v${ELECTRON_VER}-freebsd-${ARCH:S/amd64/x64/:S/i386/ia32/}.zip && \
+		${CP} dist.zip electron-v${ELECTRON_VER}-freebsd-${ARCH:S/amd64/x64/:S/i386/ia32/}.zip && \
+		${CP} mksnapshot.zip mksnapshot-v${ELECTRON_VER}-freebsd-${ARCH:S/amd64/x64/:S/i386/ia32/}.zip && \
+		${SHA256} -r *-v${ELECTRON_VER}-freebsd-*.zip | ${SED} -e 's/ / */' > SHASUMS256.txt
+
+do-install:
+	${MKDIR} ${DATADIR}
+.for f in electron mksnapshot v8_context_snapshot_generator
+	${INSTALL_PROGRAM} ${WRKSRC}/out/${BUILDTYPE}/${f} ${DATADIR}
+.endfor
+.for f in libEGL.so libGLESv2.so libffmpeg.so libvk_swiftshader.so
+	${INSTALL_LIB} ${WRKSRC}/out/${BUILDTYPE}/${f} ${DATADIR}
+.endfor
+	${INSTALL_LIB} ${WRKSRC}/out/${BUILDTYPE}/libvulkan.so.1 ${DATADIR}/libvulkan.so
+.for f in LICENSE LICENSES.chromium.html snapshot_blob.bin v8_context_snapshot.bin version vk_swiftshader_icd.json
+	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/${f} ${DATADIR}
+.endfor
+.for f in chrome_100_percent.pak chrome_200_percent.pak resources.pak
+	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/${f} ${DATADIR}
+.endfor
+	${MKDIR} ${DATADIR}/locales
+	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/locales/*.pak ${DATADIR}/locales
+	${MKDIR} ${DATADIR}/resources
+.for f in default_app.asar
+	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/resources/${f} ${DATADIR}/resources
+.endfor
+	cd ${WRKSRC}/out/${BUILDTYPE}/gen && ${COPYTREE_SHARE} node_headers ${DATADIR}
+	cd ${WRKSRC}/out/${BUILDTYPE} && ${COPYTREE_SHARE} gen/electron/buildflags ${DATADIR}
+	cd ${WRKSRC}/out/${BUILDTYPE} && ${COPYTREE_SHARE} gen/v8/embedded.S ${DATADIR}
+	${RLN} ${DATADIR}/electron ${PREFIX}/bin/electron${PKGNAMESUFFIX}
+
+post-install-DIST-on:
+	${MKDIR} ${DATADIR}/releases
+	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/SHASUMS256.txt ${DATADIR}/releases
+	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/*-v${ELECTRON_VER}-freebsd-*.zip ${DATADIR}/releases
+
+post-install-DRIVER-on:
+	${INSTALL_PROGRAM} ${WRKSRC}/out/${BUILDTYPE}/chromedriver.unstripped \
+		${DATADIR}/chromedriver
+
+# FreeBSD stages ${LOCALBASE}/bin/sentry-cli into the test tree here. mports has
+# no devel/sentry-cli; TEST_ENV sets SENTRYCLI_SKIP_DOWNLOAD=1, so the test run
+# does not fetch it either.
+
+do-test:
+	cd ${WRKSRC}/electron && \
+	${SETENV} ${TEST_ENV} PATH=${NPM_BINDIR}:$$PATH yarn run test -- --ci
+
+.include <bsd.port.post.mk>
