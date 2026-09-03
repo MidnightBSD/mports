@@ -2,7 +2,7 @@ bin/thunderbird
 share/pixmaps/thunderbird.png
 share/applications/thunderbird.desktop
 lib/thunderbird/rnp-cli
-lib/thunderbird/vaapitest
+lib/thunderbird/gfxtest
 lib/thunderbird/librnp.so
 lib/thunderbird/dependentlibs.list
 lib/thunderbird/defaults/messenger/mailViews.dat
@@ -19,7 +19,6 @@ lib/thunderbird/isp/SpamAssassin.sfd
 lib/thunderbird/isp/SpamPal.sfd
 lib/thunderbird/isp/Bogofilter.sfd
 lib/thunderbird/isp/POPFile.sfd
-lib/thunderbird/glxtest
 lib/thunderbird/libmozwayland.so
 lib/thunderbird/chrome/icons/default/msgcomposeWindow16.png
 lib/thunderbird/chrome/icons/default/default32.png
