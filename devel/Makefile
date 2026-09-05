@@ -1779,6 +1779,7 @@
     SUBDIR += py-responses
     SUBDIR += py-retry2
     SUBDIR += py-rfc3339-validator
+    SUBDIR += py-rfc8785
     SUBDIR += py-rpds-py
     SUBDIR += py-rstr
     SUBDIR += py-rtree
