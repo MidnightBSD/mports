@@ -34,7 +34,7 @@ post-install:
 	# The generated .pc file refers to a nonexistent other .pc file
 	${REINPLACE_CMD} -e '/^Requires/s/Qt5UiPlugin//' \
 		${PREFIX}/libdata/pkgconfig/Qt5Designer.pc
-	${REINPLACE_CMD} 's|/../../../../|/../../../|g' \
+	${SED} -i '' 's|/../../../../|/../../../|g' \
 		${PREFIX}/lib/cmake/Qt5Designer/Qt5DesignerConfig.cmake
 
 .include <bsd.port.mk>
