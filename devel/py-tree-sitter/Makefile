@@ -1,9 +1,9 @@
 PORTNAME=	tree-sitter
-PORTVERSION=	0.25.2
-PORTREVISION=	1
+PORTVERSION=	0.26.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTNAME=	tree_sitter-${PORTVERSION}
 
 MAINTAINER=	pat@patmaddox.com
 COMMENT=	Python bindings to the Tree-sitter parsing library

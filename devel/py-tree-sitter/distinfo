@@ -1,3 +1,3 @@
-TIMESTAMP = 1782220686
-SHA256 (tree-sitter-0.25.2.tar.gz) = fe43c158555da46723b28b52e058ad444195afd1db3ca7720c59a254544e9c20
-SIZE (tree-sitter-0.25.2.tar.gz) = 177961
+TIMESTAMP = 1788591797
+SHA256 (tree_sitter-0.26.0.tar.gz) = b40c219edccc4564530c96f8f1556f6202b37cda964d1cbd7bd2b7e68b40a245
+SIZE (tree_sitter-0.26.0.tar.gz) = 191423
