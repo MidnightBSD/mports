@@ -1,5 +1,5 @@
 PORTNAME=	mistral-vibe
-PORTVERSION=	2.16.1
+PORTVERSION=	2.25.0
 CATEGORIES=	ai python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -15,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}editables>=0:devel/py-editables@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}hatch-vcs>=0:devel/py-hatch-vcs@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}hatchling>=0:devel/py-hatchling@${PY_FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}agent-client-protocol>=0.10.1:devel/py-agent-client-protocol@${PY_FLAVOR} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}agent-client-protocol>=0.11.0:devel/py-agent-client-protocol@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}annotated-types>=0.7.0:devel/py-annotated-types@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}anyio>=4.5:devel/py-anyio@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}attrs>=0:devel/py-attrs@${PY_FLAVOR} \
@@ -29,7 +29,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}agent-client-protocol>=0.10.1:devel/py-agent
 		${PYTHON_PKGNAMEPREFIX}eval-type-backport>=0.3.1:devel/py-eval-type-backport@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}gitdb>=0:devel/py-gitdb@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}GitPython>=0:devel/py-gitpython@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}giturlparse>=0.14.0:devel/py-giturlparse@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}giturlparse>=0.15.0:devel/py-giturlparse@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}google-auth>=0:security/py-google-auth@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}googleapis-common-protos>=0:devel/py-googleapis-common-protos@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}h11>=0:net/py-h11@${PY_FLAVOR} \
@@ -51,10 +51,10 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}agent-client-protocol>=0.10.1:devel/py-agent
 		${PYTHON_PKGNAMEPREFIX}linkify-it-py>=0:textproc/py-linkify-it-py@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}markdown-it-py>=0:textproc/py-markdown-it-py@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}markdownify>=0:textproc/py-markdownify@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}mcp>=1.27.1:misc/py-mcp@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}mcp>=1.28.1:misc/py-mcp@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}mdit-py-plugins>=0:textproc/py-mdit-py-plugins@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}mdurl>=0:textproc/py-mdurl@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}mistralai>=2.4.4:devel/py-mistralai@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}mistralai>=2.6.0:devel/py-mistralai@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}more-itertools>=0:devel/py-more-itertools@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}opentelemetry-api>=0:devel/py-opentelemetry-api@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}opentelemetry-exporter-otlp-proto-common>=0:devel/py-opentelemetry-exporter-otlp-proto-common@${PY_FLAVOR} \
@@ -82,18 +82,21 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}agent-client-protocol>=0.10.1:devel/py-agent
 		${PYTHON_PKGNAMEPREFIX}pyyaml>=0:devel/py-pyyaml@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}referencing>=0:devel/py-referencing@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}requests>=0:www/py-requests@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}rfc8785>=0:devel/py-rfc8785@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}rich>=0:textproc/py-rich@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}rpds-py>=0:devel/py-rpds-py@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}sentry-sdk>=0:devel/py-sentry-sdk@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}setproctitle>=0:devel/py-setproctitle@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}six>=0:devel/py-six@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}smmap>=0:devel/py-smmap@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sounddevice>=0:audio/py-sounddevice@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}soupsieve>=0:www/py-soupsieve@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sse-starlette>=0:www/py-sse-starlette@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}starlette>=0:www/py-starlette@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}textual>=0:textproc/py-textual@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}textual>=8.2.8:textproc/py-textual@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}textual-speedups>=0:textproc/py-textual-speedups@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}tomli-w>=0:textproc/py-tomli-w@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}tree-sitter>=0.25.2:devel/py-tree-sitter@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}tree-sitter>=0.26.0:devel/py-tree-sitter@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}tree-sitter-bash>=0.25.1:devel/py-tree-sitter-bash@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}truststore>=0:security/py-truststore@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}typing-extensions>=0:devel/py-typing-extensions@${PY_FLAVOR} \
@@ -111,20 +114,11 @@ USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
 
-_USES_fake+=	774:fix-vibe-scripts
-
+# Upstream pins its build backend to exact versions; relax them so the port
+# builds against the hatchling and editables versions in the tree.
 post-patch:
-	@${FIND} ${WRKSRC} -name '*.orig' -exec ${RM} {} +
-
-fix-vibe-scripts:
-	@for script in vibe vibe-acp; do \
-		for suffix in ${PYTHON_VER} ${PYTHON_DEFAULT}; do \
-			if [ -e ${FAKE_DESTDIR}${PREFIX}/bin/$${script}-$${suffix} ]; then \
-				${MV} ${FAKE_DESTDIR}${PREFIX}/bin/$${script}-$${suffix} \
-					${FAKE_DESTDIR}${PREFIX}/bin/$${script}; \
-				break; \
-			fi; \
-		done; \
-	done
+	@${REINPLACE_CMD} -e 's,hatchling==[0-9.]*,hatchling,' \
+		-e 's,hatch-vcs==[0-9.]*,hatch-vcs,' \
+		-e 's,editables==[0-9.]*,editables,' ${WRKSRC}/pyproject.toml
 
 .include <bsd.port.mk>
