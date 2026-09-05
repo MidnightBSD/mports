@@ -21,6 +21,7 @@
     SUBDIR += eterm
     SUBDIR += evilvte
     SUBDIR += foot
+    SUBDIR += framework-autorotate
     SUBDIR += fstobdf
     SUBDIR += fuzzel
     SUBDIR += gdm

@@ -4,3 +4,5 @@ libexec/framework_autorotate/xlogin_recenter
 share/man/man8/framework_autorotate.8.gz
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/dot.framework_autorotate.bvwm
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/dot.framework_autorotate.fvwm
+@dir libexec/framework_autorotate
+%%PORTEXAMPLES%%@dir %%EXAMPLESDIR%%
