@@ -30,7 +30,7 @@ post-patch:
 		${WRKSRC}/src/3rdparty/masm/masm.pri
 
 post-install:
-	${REINPLACE_CMD} 's|/../../../../|/../../../|g' \
+	${SED} -i '' 's|/../../../../|/../../../|g' \
 		${PREFIX}/lib/cmake/Qt5*/Qt5*Config.cmake
 
 .include <bsd.port.mk>

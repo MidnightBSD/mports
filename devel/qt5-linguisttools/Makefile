@@ -19,7 +19,7 @@ post-patch:
 		${WRKSRC}/src/linguist/linguist.pro
 
 post-install:
-	${REINPLACE_CMD} 's|/../../../../|/../../../|g' \
+	${SED} -i '' 's|/../../../../|/../../../|g' \
                 ${PREFIX}/lib/cmake/Qt5*/Qt5*Config.cmake
 .for f in lrelease lupdate
 	${INSTALL_MAN} ${WRKSRC}/src/linguist/${f}/${f}.1 \

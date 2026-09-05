@@ -69,7 +69,7 @@ post-install:
 	${INSTALL_DATA} ${BUILD_WRKSRC}/dialogs/images/qtlogo-64.png \
 		${PREFIX}/share/pixmaps/qt5logo.png
 	${RLN} ${QT_BINDIR}/uic ${PREFIX}/bin/uic-qt5
-	${REINPLACE_CMD} 's|/../../../../|/../../../|g' \
+	${SED} -i '' 's|/../../../../|/../../../|g' \
 		${PREFIX}/lib/cmake/Qt5*/Qt5*Config.cmake
 
 .include <bsd.port.mk>
