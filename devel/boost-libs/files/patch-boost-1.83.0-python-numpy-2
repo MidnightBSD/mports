@@ -1,0 +1,11 @@
+--- libs/python/src/numpy/dtype.cpp.orig
++++ libs/python/src/numpy/dtype.cpp
+@@ -101 +101,7 @@
+-int dtype::get_itemsize() const { return reinterpret_cast<PyArray_Descr*>(ptr())->elsize;}
++int dtype::get_itemsize() const {
++#if NPY_ABI_VERSION < 0x02000000
++  return reinterpret_cast<PyArray_Descr*>(ptr())->elsize;
++#else
++  return PyDataType_ELSIZE(reinterpret_cast<PyArray_Descr*>(ptr()));
++#endif
++}

@@ -58,8 +58,8 @@ do-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/bin
 .for p in ${PROGS}
 	${INSTALL_PROGRAM} \
-		${WRKDIR}/target/release/${p} \
-		${STAGEDIR}${PREFIX}/bin
+		${CARGO_TARGET_DIR}/${CARGO_BUILD_TARGET}/release/${p} \
+		${PREFIX}/bin
 .endfor
 
 .include <bsd.port.post.mk>

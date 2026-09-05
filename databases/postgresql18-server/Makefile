@@ -232,7 +232,7 @@ do-install:
 			${PREFIX}/etc/periodic/daily
 .  endif # SERVER_ONLY
 .  if defined(CLIENT_ONLY)
-	${STRIP_CMD} ${PREFIX}/bin/* ${PREFIX}/lib/lib*.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/bin/* ${FAKE_DESTDIR}${PREFIX}/lib/lib*.so
 	cd ${WRKSRC}/src && ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} ${FAKE_MAKEARGS} install-local
 .    if ${DISTVERSION:C/([0-9][0-9]).*/\1/g} >= 17
 	cd ${WRKSRC}/doc/src/sgml && ${COPYTREE_SHARE} "man1 man3 man7" ${PREFIX}/share/man
