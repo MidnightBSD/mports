@@ -1,4 +1,4 @@
---- net/http/http_network_session.cc.orig	2022-02-07 13:39:41 UTC
+--- net/http/http_network_session.cc.orig	2026-02-11 09:05:39 UTC
 +++ net/http/http_network_session.cc
 @@ -20,7 +20,9 @@
  #include "build/build_config.h"
@@ -9,4 +9,4 @@
 +#endif
  #include "net/http/http_response_body_drainer.h"
  #include "net/http/http_stream_factory.h"
- #include "net/http/url_security_manager.h"
+ #include "net/http/http_stream_pool.h"

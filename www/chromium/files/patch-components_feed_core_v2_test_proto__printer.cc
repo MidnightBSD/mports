@@ -1,6 +1,6 @@
---- components/feed/core/v2/test/proto_printer.cc.orig	2022-05-19 14:06:27 UTC
+--- components/feed/core/v2/test/proto_printer.cc.orig	2025-10-02 04:28:32 UTC
 +++ components/feed/core/v2/test/proto_printer.cc
-@@ -157,8 +157,8 @@ class TextProtoPrinter {
+@@ -159,8 +159,8 @@ class TextProtoPrinter {
    }
    TextProtoPrinter& operator<<(const feedwire::Version& v) {
      BeginMessage();

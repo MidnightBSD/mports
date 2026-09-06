@@ -1,4 +1,4 @@
---- chrome/browser/enterprise/signals/device_info_fetcher.cc.orig	2022-02-28 16:54:41 UTC
+--- chrome/browser/enterprise/signals/device_info_fetcher.cc.orig	2025-05-05 10:57:53 UTC
 +++ chrome/browser/enterprise/signals/device_info_fetcher.cc
 @@ -10,7 +10,7 @@
  #include "chrome/browser/enterprise/signals/device_info_fetcher_mac.h"
@@ -9,12 +9,12 @@
  #include "chrome/browser/enterprise/signals/device_info_fetcher_linux.h"
  #endif
  
-@@ -70,7 +70,7 @@ std::unique_ptr<DeviceInfoFetcher> DeviceInfoFetcher::
-   return std::make_unique<DeviceInfoFetcherMac>();
- #elif BUILDFLAG(IS_WIN)
-   return std::make_unique<DeviceInfoFetcherWin>();
--#elif BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
-+#elif BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
-   return std::make_unique<DeviceInfoFetcherLinux>();
- #else
-   return std::make_unique<StubDeviceFetcher>();
+@@ -76,7 +76,7 @@ std::unique_ptr<DeviceInfoFetcher> DeviceInfoFetcher::
+   return CreateInstanceInternal();
+ }
+ 
+-#if !BUILDFLAG(IS_MAC) && !BUILDFLAG(IS_WIN) && \
++#if !BUILDFLAG(IS_MAC) && !BUILDFLAG(IS_WIN) && !BUILDFLAG(IS_BSD) && \
+     !(BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS))
+ // static
+ std::unique_ptr<DeviceInfoFetcher> DeviceInfoFetcher::CreateInstanceInternal() {

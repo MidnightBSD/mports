@@ -1,7 +1,7 @@
---- third_party/blink/renderer/controller/blink_initializer.cc.orig	2022-08-31 12:19:35 UTC
+--- third_party/blink/renderer/controller/blink_initializer.cc.orig	2026-08-31 10:59:09 UTC
 +++ third_party/blink/renderer/controller/blink_initializer.cc
-@@ -74,12 +74,12 @@
- #include "third_party/blink/renderer/controller/oom_intervention_impl.h"
+@@ -87,12 +87,12 @@
+ #include "third_party/blink/renderer/platform/fonts/font_cache.h"
  #endif
  
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
@@ -10,22 +10,13 @@
  #endif
  
  #if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID) || \
--    BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN)
-+    BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
+-    BUILDFLAG(IS_APPLE) || BUILDFLAG(IS_WIN)
++    BUILDFLAG(IS_APPLE) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
  #include "third_party/blink/renderer/controller/highest_pmf_reporter.h"
- #include "third_party/blink/renderer/controller/user_level_memory_pressure_signal_generator.h"
- #endif
-@@ -172,7 +172,7 @@ void InitializeCommon(Platform* platform, mojo::Binder
  #endif
  
- #if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID) || \
--    BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN)
-+    BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
-   // Initialize UserLevelMemoryPressureSignalGenerator so it starts monitoring.
-   if (UserLevelMemoryPressureSignalGenerator::Enabled())
-     UserLevelMemoryPressureSignalGenerator::Instance();
-@@ -251,7 +251,7 @@ void BlinkInitializer::RegisterInterfaces(mojo::Binder
-       main_thread->GetTaskRunner());
+@@ -267,7 +267,7 @@ void BlinkInitializer::RegisterInterfaces(mojo::Binder
+       main_thread_task_runner);
  #endif
  
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
@@ -33,3 +24,12 @@
    binders.Add<mojom::blink::MemoryUsageMonitorLinux>(
        ConvertToBaseRepeatingCallback(
            CrossThreadBindRepeating(&MemoryUsageMonitorPosix::Bind)),
+@@ -320,7 +320,7 @@ void BlinkInitializer::RegisterMemoryWatchers(Platform
+   MemorySaverController::Initialize();
+ 
+ #if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID) || \
+-    BUILDFLAG(IS_APPLE) || BUILDFLAG(IS_WIN)
++    BUILDFLAG(IS_APPLE) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
+   // Start reporting the highest private memory footprint after the first
+   // navigation.
+   HighestPmfReporter::Initialize(main_thread_task_runner);

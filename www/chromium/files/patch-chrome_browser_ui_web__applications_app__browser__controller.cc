@@ -1,11 +1,11 @@
---- chrome/browser/ui/web_applications/app_browser_controller.cc.orig	2022-08-31 12:19:35 UTC
+--- chrome/browser/ui/web_applications/app_browser_controller.cc.orig	2026-08-31 10:59:09 UTC
 +++ chrome/browser/ui/web_applications/app_browser_controller.cc
-@@ -408,7 +408,7 @@ CustomThemeSupplier* AppBrowserController::GetThemeSup
- }
- 
- bool AppBrowserController::ShouldUseSystemTheme() const {
--#if BUILDFLAG(IS_LINUX)
-+#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
-   return browser_->profile()->GetPrefs()->GetBoolean(prefs::kUsesSystemTheme);
- #else
-   return false;
+@@ -577,7 +577,7 @@ std::u16string AppBrowserController::GetLaunchFlashTex
+   // web bundle. The flash text is not needed on platforms that already display
+   // the app name in the title bar (e.g. Mac, Windows, and Linux).
+   if (IsIsolatedWebApp()) {
+-#if BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+     return std::u16string();
+ #else   // !(BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX))
+     return GetAppShortName();

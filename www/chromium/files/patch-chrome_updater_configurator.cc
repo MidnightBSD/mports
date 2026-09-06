@@ -1,11 +1,11 @@
---- chrome/updater/configurator.cc.orig	2022-06-17 14:20:10 UTC
+--- chrome/updater/configurator.cc.orig	2026-05-07 17:02:56 UTC
 +++ chrome/updater/configurator.cc
-@@ -40,7 +40,7 @@
- #include "chrome/updater/win/net/network.h"
- #elif BUILDFLAG(IS_MAC)
- #include "chrome/updater/mac/net/network.h"
--#elif BUILDFLAG(IS_LINUX)
-+#elif BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
- #include "chrome/updater/linux/net/network.h"
- #endif
- 
+@@ -94,7 +94,7 @@ Configurator::Configurator(scoped_refptr<UpdaterPrefs>
+         return std::nullopt;
+ #endif  // BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC)
+       }()) {
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+   // On Linux creating the NetworkFetcherFactory requires performing blocking IO
+   // to load an external library. This should be done when the configurator is
+   // created.

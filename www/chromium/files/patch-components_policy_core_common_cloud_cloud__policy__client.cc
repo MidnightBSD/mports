@@ -1,11 +1,16 @@
---- components/policy/core/common/cloud/cloud_policy_client.cc.orig	2022-06-17 14:20:10 UTC
+--- components/policy/core/common/cloud/cloud_policy_client.cc.orig	2026-08-31 10:59:09 UTC
 +++ components/policy/core/common/cloud/cloud_policy_client.cc
-@@ -447,7 +447,7 @@ void CloudPolicyClient::FetchPolicy() {
-         fetch_request->set_invalidation_payload(invalidation_payload_);
-       }
-     }
+@@ -851,11 +851,11 @@ void CloudPolicyClient::FetchPolicyInternal(
+ 
+   // Build policy fetch requests.
+   em::DevicePolicyRequest* policy_request = request->mutable_policy_request();
 -#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
 +#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+   em::PolicyFetchRequest* fetch_request = nullptr;
+ #endif
+   for (const auto& type_to_fetch : types_to_fetch) {
+-#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+     fetch_request = AddPolicyFetchRequest(policy_request, type_to_fetch);
      // Only set browser device identifier for CBCM Chrome cloud policy on
      // desktop.
-     if (type_to_fetch.first ==

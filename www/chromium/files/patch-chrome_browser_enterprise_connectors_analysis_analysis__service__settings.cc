@@ -1,6 +1,6 @@
---- chrome/browser/enterprise/connectors/analysis/analysis_service_settings.cc.orig	2022-08-31 12:19:35 UTC
+--- chrome/browser/enterprise/connectors/analysis/analysis_service_settings.cc.orig	2026-02-11 09:05:39 UTC
 +++ chrome/browser/enterprise/connectors/analysis/analysis_service_settings.cc
-@@ -117,11 +117,11 @@ AnalysisServiceSettings::AnalysisServiceSettings(
+@@ -54,7 +54,7 @@ void AnalysisServiceSettings::ParseVerificationSignatu
    const char* verification_key = kKeyWindowsVerification;
  #elif BUILDFLAG(IS_MAC)
    const char* verification_key = kKeyMacVerification;
@@ -9,8 +9,3 @@
    const char* verification_key = kKeyLinuxVerification;
  #endif
  
--#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
-+#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
-   const base::Value::Dict& dict = settings_value.GetDict();
-   const base::Value::List* signatures =
-       dict.FindListByDottedPath(verification_key);

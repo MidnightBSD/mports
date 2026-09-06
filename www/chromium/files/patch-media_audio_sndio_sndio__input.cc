@@ -1,12 +1,13 @@
---- media/audio/sndio/sndio_input.cc.orig	2022-02-28 16:54:41 UTC
+--- media/audio/sndio/sndio_input.cc.orig	2026-01-14 08:33:23 UTC
 +++ media/audio/sndio/sndio_input.cc
-@@ -0,0 +1,201 @@
+@@ -0,0 +1,202 @@
 +// Copyright 2013 The Chromium Authors. All rights reserved.
 +// Use of this source code is governed by a BSD-style license that can be
 +// found in the LICENSE file.
 +
-+#include "base/bind.h"
 +#include "base/logging.h"
++#include "media/base/audio_bus.h"
++#include "media/base/audio_sample_types.h"
 +#include "media/base/audio_timestamp_helper.h"
 +#include "media/audio/sndio/audio_manager_sndio.h"
 +#include "media/audio/audio_manager.h"
@@ -197,7 +198,7 @@
 +
 +
 +    // invoke callback
-+    callback->OnData(audio_bus.get(), base::TimeTicks::Now() - delay, 1.);
++    callback->OnData(audio_bus.get(), base::TimeTicks::Now() - delay, 1., {});
 +  }
 +}
 +

@@ -1,6 +1,24 @@
---- build/config/compiler/BUILD.gn.orig	2022-08-31 12:19:35 UTC
+--- build/config/compiler/BUILD.gn.orig	2026-08-31 10:59:09 UTC
 +++ build/config/compiler/BUILD.gn
-@@ -231,13 +231,16 @@ config("default_include_dirs") {
+@@ -203,7 +203,7 @@ declare_args() {
+   # This greatly reduces the size of debug builds, at the cost of
+   # debugging information which is required by some specialized
+   # debugging tools.
+-  simple_template_names = is_clang && !is_win && !is_apple
++  simple_template_names = is_clang && !is_win && !is_apple && !is_bsd
+ 
+   # This switch is used to enable -Wexit-time-destructors by default. This
+   # warning serves as a flip switch to allow a gradual migration of targets
+@@ -284,7 +284,7 @@ assert(is_bot ||
+ #
+ # Since this is referenced both when passing the file and when deciding which
+ # warnings to enable, store it in a separate variable here.
+-use_clang_warning_suppression_file =
++use_clang_warning_suppression_file = !is_bsd &&
+     is_clang && clang_warning_suppression_file != ""
+ 
+ # default_include_dirs ---------------------------------------------------------
+@@ -302,13 +302,16 @@ config("default_include_dirs") {
  # Compiler instrumentation can introduce dependencies in DSOs to symbols in
  # the executable they are loaded into, so they are unresolved at link-time.
  config("no_unresolved_symbols") {
@@ -13,12 +31,12 @@
      ]
    }
 +  if (current_cpu == "x86" && is_openbsd) {
-+    ldflags = [ "-Wl,-z,notext" ]
++    ldflags = [ "-Wl,-z,notext", "-Wl,--strip-all" ]
 +  }
  }
  
  # compiler ---------------------------------------------------------------------
-@@ -461,6 +464,10 @@ config("compiler") {
+@@ -541,6 +544,10 @@ config("compiler") {
      }
    }
  
@@ -28,62 +46,65 @@
 +
    # Linux-specific compiler flags setup.
    # ------------------------------------
-   if (use_gold) {
-@@ -536,7 +543,7 @@ config("compiler") {
-     ldflags += [ "-Wl,-z,keep-text-section-prefix" ]
+   if (is_linux || is_chromeos) {
+@@ -579,9 +586,9 @@ config("compiler") {
+     # Flags for diagnostics.
+     cflags += [ "-fcolor-diagnostics" ]
+     if (!is_wasm) {
+-      if (!is_win) {
++      if (!is_win && !is_bsd) {
+         cflags += [ "-fdiagnostics-show-inlining-chain" ]
+-      } else {
++      } else if (!is_bsd) {
+         # Combine after https://github.com/llvm/llvm-project/pull/192241
+         cflags += [ "/clang:-fdiagnostics-show-inlining-chain" ]
+       }
+@@ -607,7 +614,7 @@ config("compiler") {
+     }
    }
  
--  if (is_clang && !is_nacl && current_os != "zos") {
-+  if (is_clang && !is_nacl && current_os != "zos" && !is_bsd) {
+-  if (is_clang) {
++  if (is_clang && !is_bsd) {
      cflags += [ "-fcrash-diagnostics-dir=" + clang_diagnostic_dir ]
+     if (save_reproducers_on_lld_crash && use_lld) {
+       ldflags += [
+@@ -1466,7 +1473,7 @@ config("compiler_deterministic") {
+ }
  
-     # TODO(hans): Remove this once Clang generates better optimized debug info
-@@ -900,7 +907,7 @@ config("compiler_cpu_abi") {
-         ]
-       }
-     } else if (current_cpu == "arm") {
--      if (is_clang && !is_android && !is_nacl &&
-+      if (is_clang && !is_android && !is_nacl && !is_bsd &&
-           !(is_chromeos_lacros && is_chromeos_device)) {
-         cflags += [ "--target=arm-linux-gnueabihf" ]
-         ldflags += [ "--target=arm-linux-gnueabihf" ]
-@@ -915,7 +922,7 @@ config("compiler_cpu_abi") {
-         cflags += [ "-mtune=$arm_tune" ]
-       }
-     } else if (current_cpu == "arm64") {
--      if (is_clang && !is_android && !is_nacl && !is_fuchsia &&
-+      if (is_clang && !is_android && !is_nacl && !is_fuchsia && !is_bsd &&
-           !(is_chromeos_lacros && is_chromeos_device)) {
-         cflags += [ "--target=aarch64-linux-gnu" ]
-         ldflags += [ "--target=aarch64-linux-gnu" ]
-@@ -1243,7 +1250,7 @@ config("compiler_deterministic") {
-     # different build directory like "out/feature_a" and "out/feature_b" if
-     # we build same files with same compile flag.
-     # Other paths are already given in relative, no need to normalize them.
--    if (is_nacl) {
-+    if (is_nacl || is_bsd) {
-       # TODO(https://crbug.com/1231236): Use -ffile-compilation-dir= here.
-       cflags += [
-         "-Xclang",
-@@ -1534,7 +1541,7 @@ config("default_warnings") {
-         "-Wno-ignored-pragma-optimize",
-       ]
+ config("clang_revision") {
+-  if (is_clang && clang_base_path == default_clang_base_path &&
++  if (is_clang && !is_bsd && clang_base_path == default_clang_base_path &&
+       current_os != "zos") {
+     _perform_consistency_checks = current_toolchain == default_toolchain
+     if (llvm_force_head_revision) {
+@@ -1580,7 +1587,7 @@ config("clang_warning_suppression") {
+ # See also: https://crbug.com/40891132#comment10
+ ubsan_hardening("c_array_bounds") {
+   sanitizer = "array-bounds"
+-  condition = !(is_asan && target_cpu == "x86") && !is_wasm
++  condition = !(is_asan && target_cpu == "x86") && !is_wasm && !is_bsd
  
--      if (!is_nacl) {
-+      if (!is_nacl && !is_bsd) {
-         # TODO(https://crbug.com/1300731) Clean up and enable.
-         cflags += [ "-Wno-unqualified-std-cast-call" ]
+   # Because we've enabled array-bounds sanitizing we also want to suppress
+   # the related warning about "unsafe-buffer-usage-in-static-sized-array",
+@@ -1594,7 +1601,7 @@ ubsan_hardening("c_array_bounds") {
+ # `NOTREACHED()` at the end of such functions.
+ ubsan_hardening("return") {
+   sanitizer = "return"
+-  condition = !is_wasm
++  condition = !is_wasm && !is_bsd
+ }
  
-@@ -1727,7 +1734,7 @@ config("no_chromium_code") {
-       # third-party libraries.
-       "-Wno-c++11-narrowing",
+ config("rustc_revision") {
+@@ -1931,7 +1938,7 @@ config("default_warnings") {
+       "-Wno-nontrivial-memcall",
      ]
--    if (!is_nacl) {
-+    if (!is_nacl && !is_freebsd) {
+ 
+-    if (!is_wasm) {
++    if (!is_wasm && !is_bsd) {
        cflags += [
-         # Disabled for similar reasons as -Wunused-variable.
-         "-Wno-unused-but-set-variable",
-@@ -2241,7 +2248,7 @@ config("afdo_optimize_size") {
+         # TODO(crbug.com/432275627): Fix and re-enable.
+         "-Wno-uninitialized-const-pointer",
+@@ -2762,7 +2769,7 @@ config("afdo_optimize_size") {
  # There are some targeted places that AFDO regresses, so we provide a separate
  # config to allow AFDO to be disabled per-target.
  config("afdo") {
@@ -92,8 +113,8 @@
      cflags = []
      if (clang_emit_debug_info_for_profiling) {
        # Add the following flags to generate debug info for profiling.
-@@ -2257,7 +2264,7 @@ config("afdo") {
-       cflags += [ "-fprofile-sample-use=${rebased_clang_sample_profile}" ]
+@@ -2789,7 +2796,7 @@ config("afdo") {
+       cflags += [ "-Wno-backend-plugin" ]
        inputs = [ _clang_sample_profile ]
      }
 -  } else if (auto_profile_path != "" && is_a_target_toolchain) {
@@ -101,13 +122,3 @@
      cflags = [ "-fauto-profile=${auto_profile_path}" ]
      inputs = [ auto_profile_path ]
    }
-@@ -2397,7 +2404,8 @@ config("symbols") {
-     }
-   }
- 
--  if (is_clang && (!is_nacl || is_nacl_saigo) && current_os != "zos") {
-+  if (is_clang && (!is_nacl || is_nacl_saigo) && current_os != "zos" &&
-+      !is_bsd) {
-     if (is_apple) {
-       # TODO(https://crbug.com/1050118): Investigate missing debug info on mac.
-       # Make sure we don't use constructor homing on mac.

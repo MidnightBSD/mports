@@ -1,11 +1,47 @@
---- remoting/host/ipc_constants.cc.orig	2022-02-28 16:54:41 UTC
+--- remoting/host/ipc_constants.cc.orig	2026-05-07 17:02:56 UTC
 +++ remoting/host/ipc_constants.cc
-@@ -16,7 +16,7 @@ namespace remoting {
+@@ -13,7 +13,7 @@
+ #include "mojo/public/cpp/platform/named_platform_channel.h"
+ #include "remoting/base/username.h"
  
- namespace {
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ #include "base/nix/xdg_util.h"
+ #include "remoting/base/file_path_util_linux.h"
+ #endif
+@@ -46,7 +46,7 @@ constexpr char kAgentProcessBrokerIpcName[] =
  
--#if !defined(NDEBUG) && BUILDFLAG(IS_LINUX)
-+#if !defined(NDEBUG) && (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD))
- // Use a different IPC name for Linux debug builds so that we can run the host
- // directly from out/Debug without interfering with the production host that
- // might also be running.
+ #endif
+ 
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ 
+ #if !defined(NDEBUG)
+ constexpr char kLoginSessionReporterIpcName[] =
+@@ -63,7 +63,7 @@ constexpr char kLoginSessionServerIpcName[] =
+ #endif
+ 
+ mojo::NamedPlatformChannel::ServerName GetServerName(std::string_view name) {
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+   return GetVarLibDir().Append(name).value();
+ #else
+   return mojo::NamedPlatformChannel::ServerNameFromUTF8(name);
+@@ -105,7 +105,7 @@ GetChromotingHostServicesServerName() {
+   return *server_name;
+ }
+ 
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ const mojo::NamedPlatformChannel::ServerName&
+ GetLegacyChromotingHostServicesServerName() {
+   static const base::NoDestructor<mojo::NamedPlatformChannel::ServerName>
+@@ -137,7 +137,7 @@ GetAgentProcessBrokerServerName() {
+ 
+ #endif
+ 
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ 
+ const char kLoginSessionReporterMessagePipeId[] = "login-session-reporter";
+ 

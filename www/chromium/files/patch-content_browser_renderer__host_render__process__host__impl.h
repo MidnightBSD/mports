@@ -1,38 +1,29 @@
---- content/browser/renderer_host/render_process_host_impl.h.orig	2022-08-31 12:19:35 UTC
+--- content/browser/renderer_host/render_process_host_impl.h.orig	2026-08-31 10:59:09 UTC
 +++ content/browser/renderer_host/render_process_host_impl.h
-@@ -85,7 +85,7 @@
- #include "third_party/blink/public/mojom/hid/hid.mojom-forward.h"
+@@ -107,7 +107,7 @@
+ #include "media/fuchsia_media_codec_provider_impl.h"
  #endif
  
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
- #include "media/mojo/mojom/stable/stable_video_decoder.mojom.h"
- #endif  // BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
- 
-@@ -474,7 +474,7 @@ class CONTENT_EXPORT RenderProcessHostImpl
-   // Sets this RenderProcessHost to be guest only. For Testing only.
-   void SetForGuestsOnlyForTesting();
- 
--#if BUILDFLAG(IS_POSIX) && !BUILDFLAG(IS_ANDROID) && !BUILDFLAG(IS_MAC)
-+#if BUILDFLAG(IS_POSIX) && !BUILDFLAG(IS_ANDROID) && !BUILDFLAG(IS_MAC) && !BUILDFLAG(IS_BSD)
-   // Launch the zygote early in the browser startup.
-   static void EarlyZygoteLaunch();
- #endif  // BUILDFLAG(IS_POSIX) && !BUILDFLAG(IS_ANDROID) && !BUILDFLAG(IS_MAC)
-@@ -673,7 +673,7 @@ class CONTENT_EXPORT RenderProcessHostImpl
-       mojo::PendingReceiver<blink::mojom::WebSocketConnector> receiver)
-       override;
+ #include "content/browser/child_thread_type_switcher_linux.h"
+ #include "media/mojo/mojom/video_encode_accelerator.mojom.h"
+ #endif
+@@ -1042,7 +1042,7 @@ class CONTENT_EXPORT RenderProcessHostImpl
+     mojo::Remote<media::mojom::VideoEncodeAcceleratorProviderFactory>
+         video_encode_accelerator_factory_remote_;
+ #endif
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+     ChildThreadTypeSwitcher child_thread_type_switcher_;
+ #endif
+   };
+@@ -1306,7 +1306,7 @@ class CONTENT_EXPORT RenderProcessHostImpl
+   // if the request isn't handled on the IO thread.
+   void OnBindHostReceiver(mojo::GenericPendingReceiver receiver);
  
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
-   void CreateStableVideoDecoder(
-       mojo::PendingReceiver<media::stable::mojom::StableVideoDecoder> receiver)
-       override;
-@@ -1128,7 +1128,7 @@ class CONTENT_EXPORT RenderProcessHostImpl
-   // RenderProcessHost. This is destroyed early in ResetIPC() method.
-   std::unique_ptr<PermissionServiceContext> permission_service_context_;
- 
--#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
-+#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
-   // Connection to the StableVideoDecoderFactory that lives in a utility
-   // process. This is only used for out-of-process video decoding.
-   mojo::Remote<media::stable::mojom::StableVideoDecoderFactory>
+   // Provides /proc/{renderer pid}/status and statm files for the renderer,
+   // because the files are required to calculate the renderer's private
+   // footprint on Chromium Linux. Regarding MacOS X and Windows, we have

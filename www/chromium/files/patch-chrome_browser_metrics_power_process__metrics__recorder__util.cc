@@ -1,6 +1,6 @@
---- chrome/browser/metrics/power/process_metrics_recorder_util.cc.orig	2022-07-22 17:30:31 UTC
+--- chrome/browser/metrics/power/process_metrics_recorder_util.cc.orig	2026-04-09 06:05:42 UTC
 +++ chrome/browser/metrics/power/process_metrics_recorder_util.cc
-@@ -59,7 +59,7 @@ void RecordProcessHistograms(const char* histogram_suf
+@@ -65,7 +65,7 @@ void RecordProcessHistograms(const std::string_view hi
                               const ProcessMonitor::Metrics& metrics) {
    RecordAverageCPUUsage(histogram_suffix, metrics.cpu_usage);
  #if BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || \

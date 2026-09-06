@@ -1,20 +1,57 @@
---- media/base/media_switches.h.orig	2022-08-31 12:19:35 UTC
+--- media/base/media_switches.h.orig	2026-08-31 10:59:09 UTC
 +++ media/base/media_switches.h
-@@ -203,7 +203,7 @@ MEDIA_EXPORT extern const base::Feature kUseDecoderStr
- MEDIA_EXPORT extern const base::Feature kUseFakeDeviceForMediaStream;
- MEDIA_EXPORT extern const base::Feature kUseMediaHistoryStore;
- MEDIA_EXPORT extern const base::Feature kUseR16Texture;
+@@ -333,13 +333,25 @@ MEDIA_EXPORT BASE_DECLARE_FEATURE(kMediaRecorderHEVCSu
+ MEDIA_EXPORT BASE_DECLARE_FEATURE(kPlaybackSpeedButton);
+ MEDIA_EXPORT BASE_DECLARE_FEATURE(kPreloadMediaEngagementData);
+ MEDIA_EXPORT BASE_DECLARE_FEATURE(kPreloadMetadataSuspend);
 -#if BUILDFLAG(IS_LINUX)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
- MEDIA_EXPORT extern const base::Feature kVaapiVideoDecodeLinux;
- MEDIA_EXPORT extern const base::Feature kVaapiVideoEncodeLinux;
- MEDIA_EXPORT extern const base::Feature kVaapiIgnoreDriverChecks;
-@@ -310,7 +310,7 @@ MEDIA_EXPORT extern const base::FeatureParam<
- MEDIA_EXPORT extern const base::Feature kDeprecateLowUsageCodecs;
- #endif
+ MEDIA_EXPORT BASE_DECLARE_FEATURE(kPulseaudioLoopbackForCast);
+ MEDIA_EXPORT BASE_DECLARE_FEATURE(kPulseaudioLoopbackForScreenShare);
++
++enum class AudioBackend {
++  kAuto,
++  kPulseAudio,
++  kSndio,
++  kAlsa
++};
++
++MEDIA_EXPORT BASE_DECLARE_FEATURE(kAudioBackend);
++MEDIA_EXPORT extern const base::FeatureParam<
++    AudioBackend>
++    kAudioBackendParam;
+ #endif  // BUILDFLAG(IS_LINUX)
+ MEDIA_EXPORT BASE_DECLARE_FEATURE(kRecordMediaEngagementScores);
+ MEDIA_EXPORT BASE_DECLARE_FEATURE(kRecordWebAudioEngagement);
+-#if BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ MEDIA_EXPORT BASE_DECLARE_FEATURE(kReduceHardwareVideoDecoderBuffers);
+ #endif  // BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX)
+ MEDIA_EXPORT BASE_DECLARE_FEATURE(kResumeBackgroundVideo);
+@@ -361,7 +373,7 @@ MEDIA_EXPORT BASE_DECLARE_FEATURE(kUnifiedAutoplay);
+ MEDIA_EXPORT BASE_DECLARE_FEATURE(kUseAndroidOverlayForSecureOnly);
+ MEDIA_EXPORT BASE_DECLARE_FEATURE(kUseFakeDeviceForMediaStream);
+ MEDIA_EXPORT BASE_DECLARE_FEATURE(kMediaStreamAccurateDroppedFrameCount);
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ MEDIA_EXPORT BASE_DECLARE_FEATURE(kAcceleratedVideoDecodeLinux);
+ MEDIA_EXPORT BASE_DECLARE_FEATURE(kAcceleratedVideoDecodeLinuxGL);
+ MEDIA_EXPORT BASE_DECLARE_FEATURE(kAcceleratedVideoEncodeLinux);
+@@ -385,7 +397,7 @@ MEDIA_EXPORT BASE_DECLARE_FEATURE(kVaapiAV1TemporalLay
+ MEDIA_EXPORT BASE_DECLARE_FEATURE(kVaapiVp9SModeHWEncoding);
+ MEDIA_EXPORT BASE_DECLARE_FEATURE(kVSyncMjpegDecoding);
+ #endif  // defined(ARCH_CPU_X86_FAMILY) && BUILDFLAG(IS_CHROMEOS)
+-#if BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ MEDIA_EXPORT BASE_DECLARE_FEATURE(kV4L2H264TemporalLayerHWEncoding);
+ #endif  // BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX)
+ MEDIA_EXPORT BASE_DECLARE_FEATURE(kVideoBlitColorAccuracy);
+@@ -496,7 +508,7 @@ MEDIA_EXPORT BASE_DECLARE_FEATURE(kUseOutOfProcessVide
+ MEDIA_EXPORT BASE_DECLARE_FEATURE(kUseSharedImageInOOPVDProcess);
+ #endif  // BUILDFLAG(ALLOW_OOP_VIDEO_DECODER)
  
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
- MEDIA_EXPORT extern const base::Feature kUseOutOfProcessVideoDecoding;
+ MEDIA_EXPORT BASE_DECLARE_FEATURE(kUseOutOfProcessVideoEncoding);
  #endif  // BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
  

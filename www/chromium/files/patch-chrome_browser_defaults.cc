@@ -1,7 +1,7 @@
---- chrome/browser/defaults.cc.orig	2022-07-22 17:30:31 UTC
+--- chrome/browser/defaults.cc.orig	2026-04-09 06:05:42 UTC
 +++ chrome/browser/defaults.cc
-@@ -52,7 +52,7 @@ const bool kSyncAutoStarts = true;
- const bool kSyncAutoStarts = false;
+@@ -30,7 +30,7 @@ const bool kAlwaysCreateTabbedBrowserOnSessionRestore 
+ const bool kShowHelpMenuItemIcon = false;
  #endif
  
 -#if BUILDFLAG(IS_LINUX)

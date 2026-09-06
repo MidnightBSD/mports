@@ -1,16 +1,11 @@
---- services/device/serial/BUILD.gn.orig	2022-02-07 13:39:41 UTC
+--- services/device/serial/BUILD.gn.orig	2026-03-13 06:02:14 UTC
 +++ services/device/serial/BUILD.gn
-@@ -83,6 +83,13 @@ if (is_win || ((is_linux || is_chromeos) && use_udev) 
-       ]
-     }
+@@ -8,7 +8,7 @@ if (is_android) {
+   import("//third_party/jni_zero/jni_zero.gni")
+ }
  
-+    if (is_bsd) {
-+      sources -= [
-+        "serial_device_enumerator_linux.cc",
-+        "serial_device_enumerator_linux.h"
-+      ]
-+    }
-+
-     if (use_udev) {
-       deps += [ "//device/udev_linux" ]
-     }
+-if (is_win || ((is_linux || is_chromeos) && use_udev) || is_mac || is_android) {
++if (is_win || ((!is_bsd && is_linux || is_chromeos) && use_udev) || is_mac || is_android) {
+   config("platform_support") {
+     visibility = [ ":serial" ]
+     if (is_win) {

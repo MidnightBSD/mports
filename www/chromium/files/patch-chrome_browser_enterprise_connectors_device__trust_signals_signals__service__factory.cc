@@ -1,20 +1,20 @@
---- chrome/browser/enterprise/connectors/device_trust/signals/signals_service_factory.cc.orig	2022-04-21 18:48:31 UTC
+--- chrome/browser/enterprise/connectors/device_trust/signals/signals_service_factory.cc.orig	2025-04-04 08:52:13 UTC
 +++ chrome/browser/enterprise/connectors/device_trust/signals/signals_service_factory.cc
-@@ -15,7 +15,7 @@
- #include "chrome/browser/profiles/profile.h"
- #include "components/policy/core/common/management/management_service.h"
+@@ -23,7 +23,7 @@
+ #include "chrome/browser/enterprise/connectors/connectors_service.h"
+ #endif  // BUILDFLAG(ENTERPRISE_CLOUD_CONTENT_ANALYSIS)
  
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_BSD)
  #include "base/check.h"
  #include "chrome/browser/enterprise/connectors/device_trust/signals/decorators/browser/browser_signals_decorator.h"
- #include "chrome/browser/policy/chrome_browser_policy_connector.h"
-@@ -52,7 +52,7 @@ std::unique_ptr<SignalsService> CreateSignalsService(
-   decorators.push_back(
-       std::make_unique<ContentSignalsDecorator>(policy_blocklist_service));
+ #include "chrome/browser/enterprise/core/dependency_factory_impl.h"
+@@ -63,7 +63,7 @@ std::unique_ptr<SignalsService> CreateSignalsService(P
+           profile, ConnectorsServiceFactory::GetForBrowserContext(profile))));
+ #endif  // BUILDFLAG(ENTERPRISE_CLOUD_CONTENT_ANALYSIS)
  
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_BSD)
-   policy::CloudPolicyStore* store = nullptr;
  
-   // Managed device.
+   policy::CloudPolicyManager* browser_policy_manager = nullptr;
+   if (management_service->HasManagementAuthority(

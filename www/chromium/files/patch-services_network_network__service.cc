@@ -1,11 +1,29 @@
---- services/network/network_service.cc.orig	2022-08-31 12:19:35 UTC
+--- services/network/network_service.cc.orig	2026-08-31 10:59:09 UTC
 +++ services/network/network_service.cc
-@@ -82,7 +82,7 @@
+@@ -107,7 +107,7 @@
  #include "third_party/boringssl/src/include/openssl/cpu.h"
  #endif
  
--#if (BUILDFLAG(IS_LINUX) && !BUILDFLAG(IS_CASTOS)) || \
-+#if ((BUILDFLAG(IS_LINUX) && !BUILDFLAG(IS_CASTOS)) || BUILDFLAG(IS_BSD)) || \
-     BUILDFLAG(IS_CHROMEOS_LACROS)
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ #include "services/network/network_change_notifier_passive_factory.h"
+ #endif
  
- #include "components/os_crypt/key_storage_config_linux.h"
+@@ -1080,7 +1080,7 @@ void NetworkService::SetExplicitlyAllowedPorts(
+   net::SetExplicitlyAllowedPorts(ports);
+ }
+ 
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ void NetworkService::SetGssapiLibraryLoadObserver(
+     mojo::PendingRemote<mojom::GssapiLibraryLoadObserver>
+         gssapi_library_load_observer) {
+@@ -1223,7 +1223,7 @@ NetworkService::CreateHttpAuthHandlerFactory(NetworkCo
+   );
+ }
+ 
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ void NetworkService::OnBeforeGssapiLibraryLoad() {
+   if (gssapi_library_load_observer_.is_bound()) {
+     gssapi_library_load_observer_->OnBeforeGssapiLibraryLoad();

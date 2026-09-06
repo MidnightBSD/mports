@@ -1,6 +1,6 @@
---- sandbox/policy/openbsd/sandbox_openbsd.cc.orig	2022-09-02 10:45:05 UTC
+--- sandbox/policy/openbsd/sandbox_openbsd.cc.orig	2026-08-12 09:02:10 UTC
 +++ sandbox/policy/openbsd/sandbox_openbsd.cc
-@@ -0,0 +1,413 @@
+@@ -0,0 +1,445 @@
 +// Copyright (c) 2012 The Chromium Authors. All rights reserved.
 +// Use of this source code is governed by a BSD-style license that can be
 +// found in the LICENSE file.
@@ -22,8 +22,6 @@
 +#include <string>
 +#include <vector>
 +
-+#include "base/bind.h"
-+#include "base/callback_helpers.h"
 +#include "base/command_line.h"
 +#include "base/debug/stack_trace.h"
 +#include "base/feature_list.h"
@@ -39,6 +37,7 @@
 +#include "base/threading/thread.h"
 +#include "base/time/time.h"
 +#include "build/build_config.h"
++#include "crypto/crypto_buildflags.h"
 +#include "sandbox/constants.h"
 +#include "sandbox/linux/services/credentials.h"
 +#include "sandbox/linux/services/namespace_sandbox.h"
@@ -47,6 +46,7 @@
 +#include "sandbox/linux/services/thread_helpers.h"
 +#include "sandbox/linux/syscall_broker/broker_command.h"
 +#include "sandbox/linux/syscall_broker/broker_process.h"
++#include "sandbox/policy/features.h"
 +#include "sandbox/policy/sandbox.h"
 +#include "sandbox/policy/sandbox_type.h"
 +#include "sandbox/policy/mojom/sandbox.mojom.h"
@@ -57,27 +57,24 @@
 +#include <sanitizer/common_interface_defs.h>
 +#endif
 +
-+#if defined(USE_NSS_CERTS)
++#if BUILDFLAG(USE_NSS_CERTS)
 +#include "crypto/nss_util.h"
 +#endif
 +
 +#include "third_party/boringssl/src/include/openssl/crypto.h"
++#include "third_party/skia/rust/png/FFI.rs.h"
 +
-+#include "ui/gfx/x/connection.h"
-+#include "ui/gfx/font_util.h"
-+
-+#include <X11/Xlib.h>
++#include <fontconfig/fontconfig.h>
++#include "ui/gfx/linux/fontconfig_util.h"
 +
 +#define MAXTOKENS	3
 +
 +#define _UNVEIL_MAIN		"/etc/chromium/unveil.main";
-+#define _UNVEIL_RENDERER	"/etc/chromium/unveil.renderer";
 +#define _UNVEIL_GPU		"/etc/chromium/unveil.gpu";
-+#define _UNVEIL_PLUGIN		"/etc/chromium/unveil.plugin";
-+#define _UNVEIL_UTILITY		"/etc/chromium/unveil.utility";
 +#define _UNVEIL_UTILITY_NETWORK	"/etc/chromium/unveil.utility_network";
 +#define _UNVEIL_UTILITY_AUDIO	"/etc/chromium/unveil.utility_audio";
 +#define _UNVEIL_UTILITY_VIDEO	"/etc/chromium/unveil.utility_video";
++#define _UNVEIL_CDM		"/etc/chromium/unveil.cdm";
 +
 +namespace sandbox {
 +namespace policy {
@@ -119,52 +116,49 @@
 +  const std::string process_type =
 +      command_line->GetSwitchValueASCII(switches::kProcessType);
 +
-+  base::SysInfo::AmountOfPhysicalMemory();
++  base::SysInfo::AmountOfTotalPhysicalMemory();
 +  base::SysInfo::NumberOfProcessors();
 +  base::SysInfo::CPUModelName();
 +
-+#if defined(USE_NSS_CERTS)
-+  // The main process has to initialize the ~/.pki dir which won't work
-+  // after unveil(2).
-+  if (process_type.empty())
-+    crypto::EnsureNSSInit();
++  switch (sandbox_type) {
++    case sandbox::mojom::Sandbox::kNoSandbox:
++    {
++#if BUILDFLAG(USE_NSS_CERTS)
++      // The main process has to initialize the ~/.pki dir which won't work
++      // after unveil(2).
++      crypto::EnsureNSSInit();
 +#endif
++      CRYPTO_pre_sandbox_init();
 +
-+  if (process_type.empty())
-+    CRYPTO_pre_sandbox_init();
++      rust_png::initialize_cpudetect();
 +
-+  // cache the XErrorDB by forcing a read on it
-+  {
-+    auto* connection = x11::Connection::Get();
-+    auto* display = connection->GetXlibDisplay().display();
++      base::FilePath cache_directory, local_directory;
 +
-+    char buf[1];
-+    XGetErrorDatabaseText(display, "XProtoError", "0", "",  buf, std::size(buf));
-+  }
++      base::PathService::Get(base::DIR_CACHE, &cache_directory);
++      base::PathService::Get(base::DIR_HOME, &local_directory);   
 +
-+  if (process_type.empty()) {
-+    base::FilePath cache_directory, local_directory;
++      cache_directory = cache_directory.AppendASCII("chromium");
++      local_directory = local_directory.AppendASCII(".local").AppendASCII("share").AppendASCII("applications");
 +
-+    base::PathService::Get(base::DIR_CACHE, &cache_directory);
-+    base::PathService::Get(base::DIR_HOME, &local_directory);   
++      if (!base::CreateDirectory(cache_directory)) {
++        LOG(ERROR) << "Failed to create " << cache_directory.value() << " directory.";
++      }
 +
-+    cache_directory = cache_directory.AppendASCII("chromium");
-+    local_directory = local_directory.AppendASCII(".local").AppendASCII("share").AppendASCII("applications");
++      if (!base::CreateDirectory(local_directory)) {
++        LOG(ERROR) << "Failed to create " << local_directory.value() << " directory.";
++      }
 +
-+    if (!base::CreateDirectory(cache_directory)) {
-+      LOG(ERROR) << "Failed to create " << cache_directory.value() << " directory.";
++      break;
 +    }
-+
-+    if (!base::CreateDirectory(local_directory)) {
-+      LOG(ERROR) << "Failed to create " << local_directory.value() << " directory.";
++    case sandbox::mojom::Sandbox::kRenderer:
++    {
++      FcConfig* config = gfx::GetGlobalFontConfig();
++      DCHECK(config);
++      break;
 +    }
++    default:
++      break;
 +  }
-+
-+  if (process_type == switches::kRendererProcess)
-+    gfx::InitializeFonts();
-+
-+  if (!command_line->HasSwitch(switches::kDisableUnveil))
-+    SetUnveil(process_type, sandbox_type);
 +
 +  pre_initialized_ = true;
 +}
@@ -178,6 +172,7 @@
 +  if (pstring != NULL) {
 +    if (pledge(pstring, NULL) == -1)
 +      goto err;
++    VLOG(5) << "pledge " << pstring;
 +  } else if (ppath != NULL) {
 +    fp = fopen(ppath, "r");
 +    if (fp != NULL) {
@@ -186,10 +181,11 @@
 +          s[strlen(s)-1] = '\0';
 +        if (pledge(s, NULL) == -1)
 +  	  goto err;
++        VLOG(5) << "pledge " << s;
 +      }
 +      fclose(fp);
 +    } else {
-+      LOG(ERROR) << "fopen() failed, errno: " << errno;
++      LOG(ERROR) << "fopen(" << ppath << ") failed, errno: " << errno;
 +      return false;
 +    }
 +  }
@@ -202,28 +198,34 @@
 +bool SandboxLinux::SetUnveil(const std::string process_type, sandbox::mojom::Sandbox sandbox_type) {
 +  FILE *fp;
 +  char *s = NULL, *cp = NULL, *home = NULL, **ap, *tokens[MAXTOKENS];
++  char *xdg_var = NULL;
 +  char path[PATH_MAX];
 +  const char *ufile;
 +  size_t len = 0, lineno = 0;
 +
-+  if (process_type.empty()) {
-+    ufile = _UNVEIL_MAIN;
-+  } else if (process_type == switches::kRendererProcess) {
-+    ufile = _UNVEIL_RENDERER;
-+  } else if (process_type == switches::kGpuProcess) {
-+    ufile = _UNVEIL_GPU;
-+  } else if (process_type == switches::kPpapiPluginProcess) {
-+    ufile = _UNVEIL_PLUGIN;
-+  } else if (process_type == switches::kUtilityProcess) {
-+    if (sandbox_type == sandbox::mojom::Sandbox::kNetwork) {
++  switch (sandbox_type) {
++    case sandbox::mojom::Sandbox::kNoSandbox:
++      ufile = _UNVEIL_MAIN;
++      break;
++    case sandbox::mojom::Sandbox::kGpu:
++    case sandbox::mojom::Sandbox::kOnDeviceModelExecution:
++      ufile = _UNVEIL_GPU;
++      break;
++    case sandbox::mojom::Sandbox::kNetwork:
 +      ufile = _UNVEIL_UTILITY_NETWORK;
-+    } else if (sandbox_type == sandbox::mojom::Sandbox::kAudio) {
++      break;
++    case sandbox::mojom::Sandbox::kAudio:
 +      ufile = _UNVEIL_UTILITY_AUDIO;
-+    } else if (sandbox_type == sandbox::mojom::Sandbox::kVideoCapture) {
++      break;
++    case sandbox::mojom::Sandbox::kVideoCapture:
 +      ufile = _UNVEIL_UTILITY_VIDEO;
-+    } else {
-+      ufile = _UNVEIL_UTILITY;
-+    }
++      break;
++    case sandbox::mojom::Sandbox::kCdm:
++      ufile = _UNVEIL_CDM;
++      break;
++    default:
++      unveil("/dev/null", "rw");
++      goto done;
 +  }
 +
 +  fp = fopen(ufile, "r");
@@ -264,6 +266,13 @@
 +        strncpy(path, home, sizeof(path) - 1);
 +        path[sizeof(path) - 1] = '\0';
 +        strncat(path, tokens[0], sizeof(path) - 1 - strlen(path));
++      } else if (strncmp(tokens[0], "XDG_", 4) == 0) {
++        if ((xdg_var = getenv(tokens[0])) == NULL || *xdg_var == '\0') {
++          LOG(ERROR) << "failed to get " << tokens[0];
++          continue;
++	}
++        strncpy(path, xdg_var, sizeof(path) - 1);
++        path[sizeof(path) - 1] = '\0';
 +      } else {
 +        strncpy(path, tokens[0], sizeof(path) - 1);
 +        path[sizeof(path) - 1] = '\0';
@@ -273,7 +282,7 @@
 +        LOG(ERROR) << "failed unveiling " << path << " with permissions " << tokens[1];
 +        _exit(1);
 +      } else {
-+        VLOG(1) << "unveiling " << path << " with permissions " << tokens[1];
++        VLOG(5) << "unveiling " << path << " with permissions " << tokens[1];
 +      }
 +    }
 +    fclose(fp);
@@ -282,6 +291,7 @@
 +        _exit(1);
 +  }
 +
++done:
 +  unveil_initialized_ = true;
 +
 +  return true;
@@ -305,7 +315,7 @@
 +    return true;
 +
 +  VLOG(1) << "SandboxLinux::InitializeSandbox: process_type="
-+      << process_type << " sandbox_type=" << GetSandboxTypeInEnglish(sandbox_type);
++      << process_type << " sandbox_type=" << sandbox_type;
 +
 +  // Only one thread is running, pre-initialize if not already done.
 +  if (!pre_initialized_)
@@ -321,41 +331,95 @@
 +    PCHECK(limited_as);
 +  }
 +
-+  if (process_type.empty()) {
-+    // XXX use a file for listing pledges of the main process for now
-+    // XXX not having the file is not a fatal error
-+    SetPledge(NULL, "/etc/chromium/pledge.main");
-+  } else if (process_type == switches::kRendererProcess) {
-+    // prot_exec needed by v8
-+    // flock needed by sqlite3 locking
-+    SetPledge("stdio rpath flock prot_exec recvfd sendfd ps", NULL);
-+  } else if (process_type == switches::kGpuProcess) {
-+    SetPledge("stdio rpath cpath wpath getpw drm prot_exec recvfd sendfd tmppath", NULL);
-+  } else if (process_type == switches::kPpapiPluginProcess) {
-+    // prot_exec needed by v8
-+    SetPledge("stdio rpath prot_exec recvfd sendfd", NULL);
-+  } else if (process_type == switches::kUtilityProcess) {
-+    if (sandbox_type == sandbox::mojom::Sandbox::kAudio)
++  if (hook)
++    CHECK(std::move(hook).Run(options));
++
++  if (!command_line->HasSwitch(switches::kDisableUnveil))
++    SetUnveil(process_type, sandbox_type);
++
++  switch(sandbox_type) {
++    case sandbox::mojom::Sandbox::kNoSandbox:
++      SetPledge(NULL, "/etc/chromium/pledge.main");
++      break;
++    case sandbox::mojom::Sandbox::kRenderer:
++      // prot_exec needed by v8
++      // flock needed by sqlite3 locking
++      SetPledge("stdio rpath flock prot_exec recvfd sendfd ps", NULL);
++      break;
++    case sandbox::mojom::Sandbox::kGpu:
++    case sandbox::mojom::Sandbox::kOnDeviceModelExecution:
++      SetPledge("stdio drm inet rpath flock cpath wpath prot_exec recvfd sendfd unix", NULL);
++      break;
++    case sandbox::mojom::Sandbox::kAudio:
 +      SetPledge(NULL, "/etc/chromium/pledge.utility_audio");
-+    else if (sandbox_type == sandbox::mojom::Sandbox::kNetwork)
++      break;
++    case sandbox::mojom::Sandbox::kNetwork:
 +      SetPledge(NULL, "/etc/chromium/pledge.utility_network");
-+    else if (sandbox_type == sandbox::mojom::Sandbox::kVideoCapture)
++      break;
++    case sandbox::mojom::Sandbox::kVideoCapture:
 +      SetPledge(NULL, "/etc/chromium/pledge.utility_video");
-+    else
++      break;
++    case sandbox::mojom::Sandbox::kCdm:
++      SetPledge("stdio rpath flock recvfd sendfd", NULL);
++      break;
++    case sandbox::mojom::Sandbox::kUtility:
++    case sandbox::mojom::Sandbox::kService:
 +      SetPledge("stdio rpath cpath wpath fattr flock sendfd recvfd prot_exec", NULL);
-+  } else {
-+    LOG(ERROR) << "non-pledge()'d process: " << process_type;
-+    return false;
++      break;
++    default:
++      LOG(ERROR) << "non-pledge()'d process: " << sandbox_type;
++      break;
 +  }
 +
 +  return true;
++}
++
++rlim_t GetProcessDataSizeLimit(sandbox::mojom::Sandbox sandbox_type) {
++#if defined(ARCH_CPU_64_BITS)
++  if (sandbox_type == sandbox::mojom::Sandbox::kGpu ||
++      sandbox_type == sandbox::mojom::Sandbox::kOnDeviceModelExecution ||
++      sandbox_type == sandbox::mojom::Sandbox::kRenderer) {
++    // Allow the GPU/ODML/RENDERER process's sandbox to access more physical
++    // memory if it's available on the system.
++    //
++    // Renderer processes are allowed to access 32 GB; the GPU/ODML processes,
++    // up to 64 GB.
++    constexpr rlim_t GB = 1024 * 1024 * 1024;
++    const rlim_t physical_memory =
++        base::SysInfo::AmountOfTotalPhysicalMemory().InBytes();
++    rlim_t limit;
++    if ((sandbox_type == sandbox::mojom::Sandbox::kGpu ||
++         sandbox_type == sandbox::mojom::Sandbox::kOnDeviceModelExecution) &&  
++        physical_memory > 64 * GB) {
++      limit = 64 * GB;
++    } else if (physical_memory > 32 * GB) {
++      limit = 32 * GB;
++    } else if (physical_memory > 16 * GB) {
++      limit = 16 * GB;
++    } else {
++      limit = 8 * GB;
++    }
++
++    if (sandbox_type == sandbox::mojom::Sandbox::kRenderer &&
++        base::FeatureList::IsEnabled(
++            sandbox::policy::features::kHigherRendererMemoryLimit)) {   
++      limit *= 2; 
++    }
++
++    return limit;
++  }
++#endif
++
++  return static_cast<rlim_t>(kDataSizeLimit);
 +}
 +
 +bool SandboxLinux::LimitAddressSpace(int* error) {
 +#if !defined(ADDRESS_SANITIZER) && !defined(MEMORY_SANITIZER) && \
 +    !defined(THREAD_SANITIZER) && !defined(LEAK_SANITIZER)
 +  base::CommandLine* command_line = base::CommandLine::ForCurrentProcess();
-+  if (SandboxTypeFromCommandLine(*command_line) == sandbox::mojom::Sandbox::kNoSandbox) {
++  sandbox::mojom::Sandbox sandbox_type =
++      SandboxTypeFromCommandLine(*command_line);
++  if (sandbox_type == sandbox::mojom::Sandbox::kNoSandbox) {
 +    return false;
 +  }
 +
@@ -365,8 +429,8 @@
 +  // using integer overflows that require large allocations, heap spray, or
 +  // other memory-hungry attack modes.
 +
-+  *error = sandbox::ResourceLimits::Lower(
-+      RLIMIT_DATA, static_cast<rlim_t>(sandbox::kDataSizeLimit));
++  rlim_t process_data_size_limit = GetProcessDataSizeLimit(sandbox_type);
++  *error = ResourceLimits::Lower(RLIMIT_DATA, process_data_size_limit);
 +
 +  // Cache the resource limit before turning on the sandbox.
 +  base::SysInfo::AmountOfVirtualMemory();
@@ -378,38 +442,6 @@
 +  return false;
 +#endif  // !defined(ADDRESS_SANITIZER) && !defined(MEMORY_SANITIZER) &&
 +        // !defined(THREAD_SANITIZER) && !defined(LEAK_SANITIZER)
-+}
-+
-+// static
-+std::string SandboxLinux::GetSandboxTypeInEnglish(sandbox::mojom::Sandbox sandbox_type) {
-+  switch (sandbox_type) {
-+    case sandbox::mojom::Sandbox::kNoSandbox:
-+      return "Unsandboxed";
-+    case sandbox::mojom::Sandbox::kRenderer:
-+      return "Renderer";
-+    case sandbox::mojom::Sandbox::kUtility:
-+      return "Utility";
-+    case sandbox::mojom::Sandbox::kGpu:
-+      return "GPU";
-+    case sandbox::mojom::Sandbox::kPpapi:
-+      return "PPAPI";
-+    case sandbox::mojom::Sandbox::kNetwork:
-+      return "Network";
-+    case sandbox::mojom::Sandbox::kCdm:
-+      return "CDM";
-+    case sandbox::mojom::Sandbox::kPrintCompositor:
-+      return "Print Compositor";
-+    case sandbox::mojom::Sandbox::kAudio:
-+      return "Audio";
-+    case sandbox::mojom::Sandbox::kSpeechRecognition:
-+      return "Speech Recognition";
-+    case sandbox::mojom::Sandbox::kService:
-+      return "Service";
-+    case sandbox::mojom::Sandbox::kVideoCapture:
-+      return "Video Capture";
-+    default:
-+      return "Unknown";
-+  }
 +}
 +
 +}  // namespace policy

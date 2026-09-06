@@ -1,11 +1,11 @@
---- sandbox/policy/freebsd/sandbox_freebsd.cc.orig	2022-09-02 10:45:05 UTC
+--- sandbox/policy/freebsd/sandbox_freebsd.cc.orig	2026-08-12 09:02:10 UTC
 +++ sandbox/policy/freebsd/sandbox_freebsd.cc
-@@ -0,0 +1,253 @@
+@@ -0,0 +1,210 @@
 +// Copyright (c) 2012 The Chromium Authors. All rights reserved.
 +// Use of this source code is governed by a BSD-style license that can be
 +// found in the LICENSE file.
 +
-+#include "sandbox/policy/openbsd/sandbox_openbsd.h"
++#include "sandbox/policy/freebsd/sandbox_freebsd.h"
 +
 +#include <dirent.h>
 +#include <fcntl.h>
@@ -21,8 +21,6 @@
 +#include <string>
 +#include <vector>
 +
-+#include "base/bind.h"
-+#include "base/callback_helpers.h"
 +#include "base/command_line.h"
 +#include "base/debug/stack_trace.h"
 +#include "base/feature_list.h"
@@ -38,6 +36,7 @@
 +#include "base/threading/thread.h"
 +#include "base/time/time.h"
 +#include "build/build_config.h"
++#include "crypto/crypto_buildflags.h"
 +#include "sandbox/constants.h"
 +#include "sandbox/linux/services/credentials.h"
 +#include "sandbox/linux/services/namespace_sandbox.h"
@@ -56,25 +55,13 @@
 +#include <sanitizer/common_interface_defs.h>
 +#endif
 +
-+#if defined(USE_NSS_CERTS)
++#if BUILDFLAG(USE_NSS_CERTS)
 +#include "crypto/nss_util.h"
 +#endif
 +
-+#include "ui/gfx/x/connection.h"
++#include "third_party/boringssl/src/include/openssl/crypto.h"
++
 +#include "ui/gfx/font_util.h"
-+
-+#include <X11/Xlib.h>
-+
-+#define MAXTOKENS	3
-+
-+#define _UNVEIL_MAIN		"/etc/chromium/unveil.main";
-+#define _UNVEIL_RENDERER	"/etc/chromium/unveil.renderer";
-+#define _UNVEIL_GPU		"/etc/chromium/unveil.gpu";
-+#define _UNVEIL_PLUGIN		"/etc/chromium/unveil.plugin";
-+#define _UNVEIL_UTILITY		"/etc/chromium/unveil.utility";
-+#define _UNVEIL_UTILITY_NETWORK	"/etc/chromium/unveil.utility_network";
-+#define _UNVEIL_UTILITY_AUDIO	"/etc/chromium/unveil.utility_audio";
-+#define _UNVEIL_UTILITY_VIDEO	"/etc/chromium/unveil.utility_video";
 +
 +namespace sandbox {
 +namespace policy {
@@ -115,45 +102,44 @@
 +  const std::string process_type =
 +      command_line->GetSwitchValueASCII(switches::kProcessType);
 +
-+  base::SysInfo::AmountOfPhysicalMemory();
++  base::SysInfo::AmountOfTotalPhysicalMemory();
 +  base::SysInfo::NumberOfProcessors();
++  base::SysInfo::CPUModelName();
 +
-+#if defined(USE_NSS_CERTS)
-+  // The main process has to initialize the ~/.pki dir which won't work
-+  // after unveil(2).
-+  if (process_type.empty())
-+    crypto::EnsureNSSInit();
++  switch (sandbox_type) {
++    case sandbox::mojom::Sandbox::kNoSandbox:
++    {
++#if BUILDFLAG(USE_NSS_CERTS)
++      // The main process has to initialize the ~/.pki dir which won't work
++      // after unveil(2).
++      crypto::EnsureNSSInit();
 +#endif
++      CRYPTO_pre_sandbox_init();
 +
-+  // cache the XErrorDB by forcing a read on it
-+  {
-+    auto* connection = x11::Connection::Get();
-+    auto* display = connection->GetXlibDisplay().display();
++      base::FilePath cache_directory, local_directory;
 +
-+    char buf[1];
-+    XGetErrorDatabaseText(display, "XProtoError", "0", "",  buf, std::size(buf));
-+  }
++      base::PathService::Get(base::DIR_CACHE, &cache_directory);
++      base::PathService::Get(base::DIR_HOME, &local_directory);   
 +
-+  if (process_type.empty()) {
-+    base::FilePath cache_directory, local_directory;
++      cache_directory = cache_directory.AppendASCII("chromium");
++      local_directory = local_directory.AppendASCII(".local").AppendASCII("share").AppendASCII("applications");
 +
-+    base::PathService::Get(base::DIR_CACHE, &cache_directory);
-+    base::PathService::Get(base::DIR_HOME, &local_directory);   
++      if (!base::CreateDirectory(cache_directory)) {
++        LOG(ERROR) << "Failed to create " << cache_directory.value() << " directory.";
++      }
 +
-+    cache_directory = cache_directory.AppendASCII("chromium");
-+    local_directory = local_directory.AppendASCII(".local").AppendASCII("share").AppendASCII("applications");
++      if (!base::CreateDirectory(local_directory)) {
++        LOG(ERROR) << "Failed to create " << local_directory.value() << " directory.";
++      }
 +
-+    if (!base::CreateDirectory(cache_directory)) {
-+      LOG(ERROR) << "Failed to create " << cache_directory.value() << " directory.";
++      break;
 +    }
-+
-+    if (!base::CreateDirectory(local_directory)) {
-+      LOG(ERROR) << "Failed to create " << local_directory.value() << " directory.";
-+    }
++    case sandbox::mojom::Sandbox::kRenderer:
++      gfx::InitializeFonts();
++      break;
++    default:
++      break;
 +  }
-+
-+  if (process_type == switches::kRendererProcess)
-+    gfx::InitializeFonts();
 +
 +  pre_initialized_ = true;
 +}
@@ -172,7 +158,7 @@
 +    return true;
 +
 +  VLOG(1) << "SandboxLinux::InitializeSandbox: process_type="
-+      << process_type << " sandbox_type=" << GetSandboxTypeInEnglish(sandbox_type);
++      << process_type << " sandbox_type=" << sandbox_type;
 +
 +  // Only one thread is running, pre-initialize if not already done.
 +  if (!pre_initialized_)
@@ -187,6 +173,9 @@
 +    errno = error;
 +    PCHECK(limited_as);
 +  }
++
++  if (hook)
++    CHECK(std::move(hook).Run(options));
 +
 +  return true;
 +}
@@ -218,38 +207,6 @@
 +  return false;
 +#endif  // !defined(ADDRESS_SANITIZER) && !defined(MEMORY_SANITIZER) &&
 +        // !defined(THREAD_SANITIZER) && !defined(LEAK_SANITIZER)
-+}
-+
-+// static
-+std::string SandboxLinux::GetSandboxTypeInEnglish(sandbox::mojom::Sandbox sandbox_type) {
-+  switch (sandbox_type) {
-+    case sandbox::mojom::Sandbox::kNoSandbox:
-+      return "Unsandboxed";
-+    case sandbox::mojom::Sandbox::kRenderer:
-+      return "Renderer";
-+    case sandbox::mojom::Sandbox::kUtility:
-+      return "Utility";
-+    case sandbox::mojom::Sandbox::kGpu:
-+      return "GPU";
-+    case sandbox::mojom::Sandbox::kPpapi:
-+      return "PPAPI";
-+    case sandbox::mojom::Sandbox::kNetwork:
-+      return "Network";
-+    case sandbox::mojom::Sandbox::kCdm:
-+      return "CDM";
-+    case sandbox::mojom::Sandbox::kPrintCompositor:
-+      return "Print Compositor";
-+    case sandbox::mojom::Sandbox::kAudio:
-+      return "Audio";
-+    case sandbox::mojom::Sandbox::kSpeechRecognition:
-+      return "Speech Recognition";
-+    case sandbox::mojom::Sandbox::kService:
-+      return "Service";
-+    case sandbox::mojom::Sandbox::kVideoCapture:
-+      return "Video Capture";
-+    default:
-+      return "Unknown";
-+  }
 +}
 +
 +}  // namespace policy

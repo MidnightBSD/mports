@@ -1,71 +1,29 @@
---- chrome/browser/chrome_browser_interface_binders.cc.orig	2022-08-31 12:19:35 UTC
+--- chrome/browser/chrome_browser_interface_binders.cc.orig	2026-08-31 10:59:09 UTC
 +++ chrome/browser/chrome_browser_interface_binders.cc
-@@ -112,13 +112,13 @@
- #endif  // BUILDFLAG(FULL_SAFE_BROWSING)
- 
- #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
--    BUILDFLAG(IS_CHROMEOS_ASH)
-+    BUILDFLAG(IS_CHROMEOS_ASH) || BUILDFLAG(IS_BSD)
- #include "chrome/browser/ui/webui/connectors_internals/connectors_internals.mojom.h"
- #include "chrome/browser/ui/webui/connectors_internals/connectors_internals_ui.h"
- #endif
- 
- #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
--    BUILDFLAG(IS_FUCHSIA)
-+    BUILDFLAG(IS_FUCHSIA) || BUILDFLAG(IS_BSD)
- #include "chrome/browser/ui/webui/app_settings/web_app_settings_ui.h"
- #include "ui/webui/resources/cr_components/app_management/app_management.mojom.h"
- #endif
-@@ -184,7 +184,7 @@
- #endif  // BUILDFLAG(IS_ANDROID)
+@@ -84,7 +84,7 @@
+ #endif  // BUILDFLAG(ENABLE_UNHANDLED_TAP)
  
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
 -    BUILDFLAG(IS_CHROMEOS)
 +    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
- #include "chrome/browser/ui/webui/discards/discards.mojom.h"
- #include "chrome/browser/ui/webui/discards/discards_ui.h"
- #include "chrome/browser/ui/webui/discards/site_data.mojom.h"
-@@ -766,7 +766,7 @@ void PopulateChromeFrameBinders(
+ #include "chrome/browser/screen_ai/screen_ai_service_router.h"
+ #include "chrome/browser/screen_ai/screen_ai_service_router_factory.h"
+ #include "chrome/browser/web_applications/sub_apps/sub_apps_service_impl.h"
+@@ -387,7 +387,7 @@ void BindMediaFoundationPreferences(
+ #endif  // BUILDFLAG(IS_WIN)
+ 
+ #if BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || \
+-    BUILDFLAG(IS_WIN)
++    BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
+ void BindScreenAIAnnotator(
+     content::RenderFrameHost* frame_host,
+     mojo::PendingReceiver<screen_ai::mojom::ScreenAIAnnotator> receiver) {
+@@ -561,7 +561,7 @@ void PopulateChromeFrameBinders(
  #endif  // BUILDFLAG(ENABLE_SPEECH_SERVICE)
  
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
 -    BUILDFLAG(IS_CHROMEOS)
 +    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
-   if (!render_frame_host->GetParent()) {
-     map->Add<chrome::mojom::DraggableRegions>(
-         base::BindRepeating(&DraggableRegionsHostImpl::CreateIfAllowed));
-@@ -774,7 +774,7 @@ void PopulateChromeFrameBinders(
- #endif
- 
- #if BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || \
--    BUILDFLAG(IS_WIN)
-+    BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
-   if (base::FeatureList::IsEnabled(blink::features::kDesktopPWAsSubApps) &&
-       render_frame_host->IsInPrimaryMainFrame()) {
-     map->Add<blink::mojom::SubAppsService>(
-@@ -829,14 +829,14 @@ void PopulateChromeWebUIFrameBinders(
-       SegmentationInternalsUI>(map);
- 
- #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
--    BUILDFLAG(IS_CHROMEOS_ASH)
-+    BUILDFLAG(IS_CHROMEOS_ASH) || BUILDFLAG(IS_BSD)
-   RegisterWebUIControllerInterfaceBinder<
-       connectors_internals::mojom::PageHandler,
-       enterprise_connectors::ConnectorsInternalsUI>(map);
- #endif
- 
- #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
--    BUILDFLAG(IS_FUCHSIA)
-+    BUILDFLAG(IS_FUCHSIA) || BUILDFLAG(IS_BSD)
-   RegisterWebUIControllerInterfaceBinder<
-       app_management::mojom::PageHandlerFactory, WebAppSettingsUI>(map);
- #endif
-@@ -1196,7 +1196,7 @@ void PopulateChromeWebUIFrameBinders(
- #endif  // BUILDFLAG(IS_CHROMEOS_ASH)
- 
- #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
--    BUILDFLAG(IS_CHROMEOS)
-+    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
-   RegisterWebUIControllerInterfaceBinder<discards::mojom::DetailsProvider,
-                                          DiscardsUI>(map);
- 
+   if (base::FeatureList::IsEnabled(blink::features::kSubApps) &&
+       !render_frame_host->GetParentOrOuterDocument()) {
+     // The service binder will reject non-primary main frames, but we still need

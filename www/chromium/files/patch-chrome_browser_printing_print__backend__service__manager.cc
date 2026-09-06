@@ -1,29 +1,29 @@
---- chrome/browser/printing/print_backend_service_manager.cc.orig	2022-06-17 14:20:10 UTC
+--- chrome/browser/printing/print_backend_service_manager.cc.orig	2026-07-01 06:24:19 UTC
 +++ chrome/browser/printing/print_backend_service_manager.cc
-@@ -481,7 +481,7 @@ absl::optional<uint32_t> PrintBackendServiceManager::R
-       query_clients_.insert(client_id);
-       break;
-     case ClientType::kQueryWithUi:
--#if !BUILDFLAG(IS_LINUX)
-+#if !BUILDFLAG(IS_LINUX) && !BUILDFLAG(IS_BSD)
-       if (!query_with_ui_clients_.empty())
-         return absl::nullopt;
- #endif
-@@ -706,7 +706,7 @@ PrintBackendServiceManager::DetermineIdleTimeoutUpdate
-       break;
+@@ -35,7 +35,7 @@
+ #include "printing/printing_context.h"
+ #include "printing/printing_features.h"
  
-     case ClientType::kQueryWithUi:
 -#if BUILDFLAG(IS_LINUX)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
-       // No need to update if there were other query with UI clients.
-       if (query_with_ui_clients_.size() > 1)
-         return absl::nullopt;
-@@ -763,7 +763,7 @@ PrintBackendServiceManager::DetermineIdleTimeoutUpdate
+ #include "content/public/common/content_switches.h"
+ #include "ui/linux/linux_ui.h"
+ #endif
+@@ -871,7 +871,7 @@ PrintBackendServiceManager::GetServiceFromBundle(
+             << remote_id << "`";
+ 
+     std::vector<std::string> extra_switches;
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+     if (auto* linux_ui = ui::LinuxUi::instance()) {
+       extra_switches = linux_ui->GetCmdLineFlagsForCopy();
+     }
+@@ -1043,7 +1043,7 @@ PrintBackendServiceManager::DetermineIdleTimeoutUpdate
        return kNoClientsRegisteredResetOnIdleTimeout;
  
      case ClientType::kQueryWithUi:
 -#if BUILDFLAG(IS_LINUX)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
        // No need to update if there were other query with UI clients.
-       if (!query_with_ui_clients_.empty())
-         return absl::nullopt;
+       if (HasQueryWithUiClientForRemoteId(remote_id)) {
+         return std::nullopt;
