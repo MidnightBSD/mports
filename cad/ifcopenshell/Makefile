@@ -1,7 +1,7 @@
 PORTNAME=	ifcopenshell
 PORTVERSION=	0.7.0.231127
 DISTVERSIONPREFIX=	v
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	cad
 
 PATCH_SITES=	https://github.com/IfcOpenShell/IfcOpenShell/commit/

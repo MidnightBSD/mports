@@ -1,6 +1,6 @@
 PORTNAME=	growl-for-linux
 PORTVERSION=	0.8.5
-PORTREVISION=	10
+PORTREVISION=	11
 CATEGORIES=	deskutils
 
 MAINTAINER=	ports@MidnightBSD.org

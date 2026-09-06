@@ -1,5 +1,6 @@
 PORTNAME=	cairomm
 PORTVERSION=	1.18.0
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	https://cairographics.org/releases/
 PKGNAMESUFFIX=	11

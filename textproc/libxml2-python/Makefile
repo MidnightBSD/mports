@@ -1,4 +1,5 @@
 PORTNAME=	libxml2-python
+PORTREVISION=	1
 CATEGORIES=	textproc gnome python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 

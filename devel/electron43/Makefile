@@ -3,6 +3,7 @@ DISTVERSIONPREFIX=	v
 DISTVERSION=	${ELECTRON_VER}
 PULSEMV=	16
 PULSEV=		${PULSEMV}.1
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	https://github.com/tagattie/FreeBSD-Electron/releases/download/v43.5.0/:chromium \
 		https://freedesktop.org/software/pulseaudio/releases/:pulseaudio

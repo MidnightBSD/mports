@@ -1,6 +1,6 @@
 PORTNAME=	accountsservice
 PORTVERSION=	23.13.9
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	sysutils devel
 MASTER_SITES=	https://www.freedesktop.org/software/${PORTNAME}/
 

@@ -1,6 +1,6 @@
 PORTNAME=	osinfo-db-tools
 DISTVERSION=	1.12.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	sysutils
 MASTER_SITES=	https://releases.pagure.org/libosinfo/
 

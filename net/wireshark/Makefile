@@ -1,6 +1,6 @@
 PORTNAME?=	wireshark
 PORTVERSION=	3.4.3
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	net
 MASTER_SITES=	http://www.wireshark.org/download/src/ \
 		http://ftp.uni-kl.de/pub/wireshark/src/ \
