@@ -42,6 +42,7 @@
     SUBDIR += firefox
     SUBDIR += firefox-esr
     SUBDIR += firefox-freebsd
+    SUBDIR += foreign-cdm
     SUBDIR += furl
     SUBDIR += gitea
     SUBDIR += gitlab
