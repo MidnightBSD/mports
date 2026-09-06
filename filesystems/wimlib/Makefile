@@ -1,5 +1,6 @@
 PORTNAME=	wimlib
 PORTVERSION=	1.13.0
+PORTREVISION=	1
 CATEGORIES=	filesystems sysutils
 MASTER_SITES=	https://wimlib.net/downloads/
 

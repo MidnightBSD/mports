@@ -1,6 +1,6 @@
 PORTNAME=	xpad
 PORTVERSION=	5.8.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	deskutils
 MASTER_SITES=	https://launchpad.net/${PORTNAME}/trunk/${PORTVERSION}/+download/
 

@@ -1,5 +1,6 @@
 PORTNAME=	labwc
 DISTVERSION=	0.9.7
+PORTREVISION=	1
 CATEGORIES=	x11-wm wayland
 
 MAINTAINER=	ports@MidnightBSD.org

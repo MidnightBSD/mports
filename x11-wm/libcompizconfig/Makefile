@@ -1,5 +1,6 @@
 PORTNAME=	libcompizconfig
 PORTVERSION=	0.8.8
+PORTREVISION=	1
 CATEGORIES=	x11-wm
 MASTER_SITES=	http://releases.compiz.org/${PORTVERSION}/
 

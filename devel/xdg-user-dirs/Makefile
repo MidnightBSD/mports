@@ -1,6 +1,6 @@
 PORTNAME=	xdg-user-dirs
 DISTVERSION=	0.19
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	https://user-dirs.freedesktop.org/releases/
 

@@ -4,11 +4,11 @@ PORTNAME=	bind
 DISTVERSION=	9.21.24
 .if defined(BIND_TOOLS_SLAVE)
 # dns/bind-tools here
-PORTREVISION=	1
+PORTREVISION=	2
 .else
 # XXX: correct version
 # dns/bind9xx here
-PORTREVISION=	0
+PORTREVISION=	1
 .endif
 CATEGORIES=	dns net
 MASTER_SITES=	ISC/bind9/${DISTVERSION}

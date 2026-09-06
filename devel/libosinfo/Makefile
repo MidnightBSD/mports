@@ -1,6 +1,6 @@
 PORTNAME=	libosinfo
 DISTVERSION=	1.12.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	devel
 MASTER_SITES=	https://releases.pagure.org/${PORTNAME}/
 
