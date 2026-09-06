@@ -17,6 +17,7 @@
 %%QT_CMAKEDIR%%/Qt5Gamepad/Qt5GamepadConfig.cmake
 %%QT_CMAKEDIR%%/Qt5Gamepad/Qt5GamepadConfigVersion.cmake
 %%QT_CMAKEDIR%%/Qt5Gamepad/Qt5Gamepad_QEvdevGamepadBackendPlugin.cmake
+%%SDL2%%%%QT_CMAKEDIR%%/Qt5Gamepad/Qt5Gamepad_QSdl2GamepadBackendPlugin.cmake
 %%QT_LIBDIR%%/libQt5Gamepad.prl
 %%QT_LIBDIR%%/libQt5Gamepad.so
 %%QT_LIBDIR%%/libQt5Gamepad.so.5
@@ -27,6 +28,8 @@
 %%QT_MKSPECDIR%%/modules/qt_lib_gamepad_private.pri
 %%QT_PLUGINDIR%%/gamepads/libevdevgamepad.so
 %%DEBUG%%%%QT_PLUGINDIR%%/gamepads/libevdevgamepad.so.debug
+%%SDL2%%%%QT_PLUGINDIR%%/gamepads/libsdl2gamepad.so
+%%SDL2%%%%DEBUG%%%%QT_PLUGINDIR%%/gamepads/libsdl2gamepad.so.debug
 %%QT_QMLDIR%%/QtGamepad/libdeclarative_gamepad.so
 %%DEBUG%%%%QT_QMLDIR%%/QtGamepad/libdeclarative_gamepad.so.debug
 %%QT_QMLDIR%%/QtGamepad/plugins.qmltypes

@@ -14,7 +14,7 @@ BUILD_WRKSRC=	${WRKSRC}/src/designer/src/${PORTNAME}
 INSTALL_WRKSRC=	${WRKSRC}/src/designer/src/${PORTNAME}
 
 post-install:
-	${REINPLACE_CMD} 's|/../../../../|/../../../|g' \
+	${SED} -i '' 's|/../../../../|/../../../|g' \
 		${PREFIX}/lib/cmake/Qt5UiTools/Qt5UiToolsConfig.cmake
 
 .include <bsd.port.mk>

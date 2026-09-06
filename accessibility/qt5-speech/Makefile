@@ -38,7 +38,7 @@ ALSA_VARS=		QMAKE_CONFIGURE_ARGS+=--feature-flite_alsa
 ALSA_VARS_OFF=		QMAKE_CONFIGURE_ARGS+=--no-feature-flite_alsa
 
 post-install:
-	${REINPLACE_CMD} 's|/../../../../|/../../../|g' \
+	${SED} -i '' 's|/../../../../|/../../../|g' \
                 ${PREFIX}/lib/cmake/Qt5*/Qt5*Config.cmake
 
 .include <bsd.port.mk>
