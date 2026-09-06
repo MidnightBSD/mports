@@ -42,6 +42,7 @@
     SUBDIR += firefox
     SUBDIR += firefox-esr
     SUBDIR += firefox-freebsd
+    SUBDIR += foreign-cdm
     SUBDIR += furl
     SUBDIR += gitea
     SUBDIR += gitlab
@@ -88,6 +89,7 @@
     SUBDIR += linux-rl9-libnghttp2
     SUBDIR += linux-rl9-qt5-qtwebchannel
     SUBDIR += linux-rl9-qt5-qtwebsockets
+    SUBDIR += linux-widevine-cdm
     SUBDIR += llhttp
     SUBDIR += lynx
     SUBDIR += man2web

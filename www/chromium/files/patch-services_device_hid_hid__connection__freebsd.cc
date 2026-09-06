@@ -1,6 +1,6 @@
---- services/device/hid/hid_connection_freebsd.cc.orig	2022-06-17 14:20:10 UTC
+--- services/device/hid/hid_connection_freebsd.cc.orig	2025-01-19 19:00:05 UTC
 +++ services/device/hid/hid_connection_freebsd.cc
-@@ -0,0 +1,242 @@
+@@ -0,0 +1,240 @@
 +// Copyright (c) 2014 The Chromium Authors. All rights reserved.
 +// Use of this source code is governed by a BSD-style license that can be
 +// found in the LICENSE file.
@@ -10,7 +10,6 @@
 +#include <dev/usb/usbhid.h>
 +#include <dev/usb/usb_ioctl.h>
 +
-+#include "base/bind.h"
 +#include "base/files/file_descriptor_watcher_posix.h"
 +#include "base/location.h"
 +#include "base/numerics/safe_math.h"
@@ -19,7 +18,6 @@
 +#include "base/task/single_thread_task_runner.h"
 +#include "base/threading/scoped_blocking_call.h"
 +#include "base/threading/thread_restrictions.h"
-+#include "base/threading/thread_task_runner_handle.h"
 +#include "components/device_event_log/device_event_log.h"
 +#include "services/device/hid/hid_service.h"
 +
@@ -32,7 +30,7 @@
 +                     base::WeakPtr<HidConnectionFreeBSD> connection)
 +      : fd_(std::move(fd)),
 +        connection_(connection),
-+        origin_task_runner_(base::ThreadTaskRunnerHandle::Get()) {
++	origin_task_runner_(base::SequencedTaskRunner::GetCurrentDefault()) {
 +    DETACH_FROM_SEQUENCE(sequence_checker_);
 +    // Report buffers must always have room for the report ID.
 +    report_buffer_size_ = device_info->max_input_report_size() + 1;
@@ -48,7 +46,7 @@
 +  // Must be called on a thread that has a base::MessageLoopForIO.
 +  void Start() {
 +    DCHECK_CALLED_ON_VALID_SEQUENCE(sequence_checker_);
-+    base::internal::AssertBlockingAllowed();
++    base::AssertBlockingAllowed();
 +
 +    file_watcher_ = base::FileDescriptorWatcher::WatchReadable(
 +        fd_.get(), base::BindRepeating(&BlockingTaskRunnerHelper::OnFileCanReadWithoutBlocking,
@@ -61,7 +59,7 @@
 +    base::ScopedBlockingCall scoped_blocking_call(
 +        FROM_HERE, base::BlockingType::MAY_BLOCK);
 +
-+    auto data = buffer->front();
++    auto data = buffer->as_vector().data();
 +    size_t size = buffer->size();
 +    // if report id is 0, it shouldn't be included
 +    if (data[0] == 0) {
@@ -88,7 +86,7 @@
 +        FROM_HERE, base::BlockingType::MAY_BLOCK);
 +    struct usb_gen_descriptor ugd;
 +    ugd.ugd_report_type = UHID_FEATURE_REPORT;
-+    ugd.ugd_data = buffer->front();
++    ugd.ugd_data = buffer->as_vector().data();
 +    ugd.ugd_maxlen = buffer->size();
 +    int result = HANDLE_EINTR(
 +        ioctl(fd_.get(), USB_GET_REPORT, &ugd));
@@ -111,14 +109,14 @@
 +    DCHECK_CALLED_ON_VALID_SEQUENCE(sequence_checker_);
 +    struct usb_gen_descriptor ugd;
 +    ugd.ugd_report_type = UHID_FEATURE_REPORT;
-+    ugd.ugd_data = buffer->front();
++    ugd.ugd_data = buffer->as_vector().data();
 +    ugd.ugd_maxlen = buffer->size();
 +    // FreeBSD does not require report id if it's not used
-+    if (buffer->front()[0] == 0) {
-+      ugd.ugd_data = buffer->front() + 1;
++    if (buffer->data()[0] == 0) {
++      ugd.ugd_data = buffer->as_vector().data() + 1;
 +      ugd.ugd_maxlen = buffer->size() - 1;
 +    } else {
-+      ugd.ugd_data = buffer->front();
++      ugd.ugd_data = buffer->as_vector().data();
 +      ugd.ugd_maxlen = buffer->size();
 +    }
 +    int result = HANDLE_EINTR(
@@ -138,7 +136,7 @@
 +    DCHECK_CALLED_ON_VALID_SEQUENCE(sequence_checker_);
 +
 +    scoped_refptr<base::RefCountedBytes> buffer(new base::RefCountedBytes(report_buffer_size_));
-+    unsigned char* data = buffer->front();
++    unsigned char* data = buffer->as_vector().data();
 +    size_t length = report_buffer_size_;
 +    if (!has_report_id_) {
 +      // FreeBSD will not prefix the buffer with a report ID if report IDs are not
@@ -222,7 +220,7 @@
 +  scoped_refptr<base::RefCountedBytes> buffer(
 +      new base::RefCountedBytes(device_info()->max_feature_report_size() + 1));
 +  if (report_id != 0)
-+    buffer->data()[0] = report_id;
++    buffer->as_vector().data()[0] = report_id;
 +
 +  blocking_task_runner_->PostTask(
 +      FROM_HERE,

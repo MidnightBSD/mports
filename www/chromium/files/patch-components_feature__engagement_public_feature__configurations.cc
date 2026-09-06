@@ -1,21 +1,20 @@
---- components/feature_engagement/public/feature_configurations.cc.orig	2022-08-31 12:19:35 UTC
+--- components/feature_engagement/public/feature_configurations.cc.orig	2026-08-31 10:59:09 UTC
 +++ components/feature_engagement/public/feature_configurations.cc
-@@ -35,7 +35,7 @@ FeatureConfig CreateAlwaysTriggerConfig(const base::Fe
- absl::optional<FeatureConfig> GetClientSideFeatureConfig(
+@@ -102,7 +102,7 @@ std::optional<FeatureConfig> CreateNewUserGestureInPro
+ std::optional<FeatureConfig> GetClientSideFeatureConfig(
      const base::Feature* feature) {
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_APPLE) || BUILDFLAG(IS_LINUX) || \
 -    BUILDFLAG(IS_CHROMEOS)
 +    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
-   if (kIPHPasswordsAccountStorageFeature.name == feature->name) {
-     absl::optional<FeatureConfig> config = FeatureConfig();
-     config->valid = true;
-@@ -868,7 +868,8 @@ absl::optional<FeatureConfig> GetClientSideFeatureConf
+   if (kIPHPasswordsManagementBubbleAfterSaveFeature.name == feature->name) {
+     FeatureConfig config;
+     config.valid = true;
+@@ -2397,7 +2397,7 @@ std::optional<FeatureConfig> GetClientSideFeatureConfi
  #endif  // BUILDFLAG(IS_ANDROID)
  
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_APPLE) || BUILDFLAG(IS_LINUX) || \
 -    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_FUCHSIA)
-+    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_FUCHSIA) || \
-+    BUILDFLAG(IS_BSD)
-   if (kIPHAutofillVirtualCardSuggestionFeature.name == feature->name) {
-     // A config that allows the virtual card credit card suggestion IPH to be
-     // shown when:
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_FUCHSIA) || BUILDFLAG(IS_BSD)
+ 
+   if (kIPHAutofillCreditCardBenefitFeature.name == feature->name) {
+     // The credit card benefit IPH appears up to three times over 10 years and

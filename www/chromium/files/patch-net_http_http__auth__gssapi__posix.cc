@@ -1,14 +1,13 @@
---- net/http/http_auth_gssapi_posix.cc.orig	2022-08-31 12:19:35 UTC
+--- net/http/http_auth_gssapi_posix.cc.orig	2026-04-09 06:05:42 UTC
 +++ net/http/http_auth_gssapi_posix.cc
-@@ -368,8 +368,9 @@ base::NativeLibrary GSSAPISharedLibrary::LoadSharedLib
-     static const char* const kDefaultLibraryNames[] = {
+@@ -364,7 +364,9 @@ base::NativeLibrary GSSAPISharedLibrary::LoadSharedLib
+   } else {
  #if BUILDFLAG(IS_APPLE)
-       "/System/Library/Frameworks/GSS.framework/GSS"
+     library_names.emplace_back("/System/Library/Frameworks/GSS.framework/GSS");
 -#elif BUILDFLAG(IS_OPENBSD)
--      "libgssapi.so"  // Heimdal - OpenBSD
 +#elif BUILDFLAG(IS_BSD)
-+      "libgssapi_krb5.so.2",  // MIT Kerberos - FreeBSD
-+      "libgssapi.so"          // Heimdal - OpenBSD, FreeBSD
++    // MIT Kerberos - FreeBSD
++    library_names.emplace_back("libgssapi_krb5.so.2");
+     // Heimdal - OpenBSD
+     library_names.emplace_back("libgssapi.so");
  #else
-       "libgssapi_krb5.so.2",  // MIT Kerberos - FC, Suse10, Debian
-       "libgssapi.so.4",       // Heimdal - Suse10, MDK

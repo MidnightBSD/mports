@@ -1,57 +1,31 @@
---- chrome/common/webui_url_constants.h.orig	2022-08-31 12:19:35 UTC
+--- chrome/common/webui_url_constants.h.orig	2026-08-31 10:59:09 UTC
 +++ chrome/common/webui_url_constants.h
-@@ -403,24 +403,24 @@ extern const char kOsUIScanningAppURL[];
- extern const char kOsUIVersionURL[];
- #endif
- 
--#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
-+#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
- extern const char kChromeUIWebUIJsErrorHost[];
- extern const char kChromeUIWebUIJsErrorURL[];
- #endif
+@@ -438,12 +438,12 @@ bool IsSystemWebUIHost(std::string_view host);
+ #endif  // BUILDFLAG(IS_CHROMEOS)
  
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
--    BUILDFLAG(IS_CHROMEOS_ASH)
-+    BUILDFLAG(IS_CHROMEOS_ASH) || BUILDFLAG(IS_BSD)
- extern const char kChromeUIConnectorsInternalsHost[];
+-    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_DESKTOP_ANDROID)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_DESKTOP_ANDROID) || BUILDFLAG(IS_BSD)
+ inline constexpr char kChromeUIDiscardsHost[] = "discards";
+ inline constexpr char kChromeUIDiscardsURL[] = "chrome://discards/";
  #endif
  
- #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
--    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FUCHSIA)
-+    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FUCHSIA) || BUILDFLAG(IS_BSD)
- extern const char kChromeUIDiscardsHost[];
- extern const char kChromeUIDiscardsURL[];
- #endif
- 
- #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
--    BUILDFLAG(IS_FUCHSIA)
-+    BUILDFLAG(IS_FUCHSIA) || BUILDFLAG(IS_BSD)
- extern const char kChromeUIWebAppSettingsURL[];
- extern const char kChromeUIWebAppSettingsHost[];
- #endif
-@@ -435,14 +435,14 @@ extern const char kChromeUILinuxProxyConfigHost[];
+-#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ inline constexpr char kChromeUIDefaultBrowserModalURL[] =
+     "chrome://default-browser-modal/";
+ inline constexpr char kChromeUIDefaultBrowserModalHost[] =
+@@ -466,11 +466,11 @@ inline constexpr char kChromeUILinuxProxyConfigHost[] 
  #endif
  
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || \
 -    BUILDFLAG(IS_ANDROID)
 +    BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_BSD)
- extern const char kChromeUISandboxHost[];
+ inline constexpr char kChromeUISandboxHost[] = "sandbox";
  #endif
  
- // TODO(crbug.com/1052397): Revisit the macro expression once build flag switch
- // of lacros-chrome is complete.
- #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_FUCHSIA) || \
--    (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS))
-+    (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS) || BUILDFLAG(IS_BSD))
- extern const char kChromeUIBrowserSwitchHost[];
- extern const char kChromeUIBrowserSwitchURL[];
- extern const char kChromeUIEnterpriseProfileWelcomeHost[];
-@@ -454,7 +454,7 @@ extern const char kChromeUIProfilePickerUrl[];
- extern const char kChromeUIProfilePickerStartupQuery[];
- #endif
- 
--#if ((BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)) && \
-+#if ((BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)) && \
-      defined(TOOLKIT_VIEWS)) ||                         \
-     defined(USE_AURA)
- extern const char kChromeUITabModalConfirmDialogHost[];
+-#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ inline constexpr char kChromeUIBrowserSwitchHost[] = "browser-switch";
+ inline constexpr char kChromeUIBrowserSwitchURL[] = "chrome://browser-switch/";
+ inline constexpr char kChromeUIIntroDefaultBrowserSubPage[] = "default-browser";

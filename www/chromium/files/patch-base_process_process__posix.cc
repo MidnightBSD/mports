@@ -1,15 +1,15 @@
---- base/process/process_posix.cc.orig	2022-08-31 12:19:35 UTC
+--- base/process/process_posix.cc.orig	2026-03-13 06:02:14 UTC
 +++ base/process/process_posix.cc
 @@ -25,10 +25,15 @@
+ #include "base/trace_event/trace_event.h"
  #include "build/build_config.h"
- #include "third_party/abseil-cpp/absl/types/optional.h"
  
 -#if BUILDFLAG(IS_MAC)
 +#if BUILDFLAG(IS_MAC) || BUILDFLAG(IS_BSD)
  #include <sys/event.h>
  #endif
  
-+#if defined(OS_BSD)
++#if BUILDFLAG(IS_BSD)
 +#include <sys/types.h>
 +#include <sys/sysctl.h> 
 +#endif
@@ -17,16 +17,16 @@
  #if BUILDFLAG(CLANG_PROFILING)
  #include "base/test/clang_profiling.h"
  #endif
-@@ -95,7 +100,7 @@ bool WaitpidWithTimeout(base::ProcessHandle handle,
-   return ret_pid > 0;
+@@ -104,7 +109,7 @@ bool WaitpidWithTimeout(base::ProcessHandle handle,
  }
+ #endif
  
 -#if BUILDFLAG(IS_MAC)
 +#if BUILDFLAG(IS_MAC) || BUILDFLAG(IS_BSD)
  // Using kqueue on Mac so that we can wait on non-child processes.
  // We can't use kqueues on child processes because we need to reap
  // our own children using wait.
-@@ -200,7 +205,7 @@ bool WaitForExitWithTimeoutImpl(base::ProcessHandle ha
+@@ -370,7 +375,7 @@ bool Process::WaitForExitWithTimeoutImpl(base::Process
    const bool exited = (parent_pid < 0);
  
    if (!exited && parent_pid != our_pid) {
@@ -35,21 +35,21 @@
      // On Mac we can wait on non child processes.
      return WaitForSingleNonChildProcess(handle, timeout);
  #else
-@@ -392,7 +397,55 @@ void Process::Exited(int exit_code) const {
+@@ -403,7 +408,56 @@ void Process::Exited(int exit_code) const {}
  
- int Process::GetPriority() const {
+ int Process::GetOSPriority() const {
    DCHECK(IsValid());
 +// avoid pledge(2) violation
-+#if defined(OS_BSD)
++#if BUILDFLAG(IS_BSD)
 +  return 0;
 +#else
    return getpriority(PRIO_PROCESS, static_cast<id_t>(process_));
 +#endif
-+}
+ }
 +
 +Time Process::CreationTime() const {
 +// avoid ps pledge in the network process
-+#if !defined(OS_BSD)
++#if !BUILDFLAG(IS_BSD)
 +  int mib[] = { CTL_KERN, KERN_PROC, KERN_PROC_PID, getpid(),
 +               sizeof(struct kinfo_proc), 0 };
 +  struct kinfo_proc *info = nullptr;
@@ -57,7 +57,7 @@
 +#endif
 +  Time ct = Time();
 +
-+#if !defined(OS_BSD)
++#if !BUILDFLAG(IS_BSD)
 +  if (sysctl(mib, std::size(mib), NULL, &info_size, NULL, 0) < 0)
 +    goto out;
 +
@@ -77,17 +77,18 @@
 +  return ct;
 +}
 +
-+bool Process::IsProcessBackgrounded() const {
++#if BUILDFLAG(IS_BSD)
++Process::Priority Process::GetPriority() const {
++  return Priority::kUserBlocking;
++}
++
++bool Process::SetPriority(Priority priority) {
 +  return false;
 +}
-+ 
-+bool Process::SetProcessBackgrounded(bool value) {
++
++bool Process::CanSetPriority() {
 +  return false;
 +}
-+ 
-+// static
-+bool Process::CanBackgroundProcesses() {
-+  return false;
- }
++#endif
  
  }  // namespace base

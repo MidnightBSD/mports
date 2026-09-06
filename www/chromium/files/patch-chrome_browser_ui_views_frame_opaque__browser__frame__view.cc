@@ -1,6 +1,6 @@
---- chrome/browser/ui/views/frame/opaque_browser_frame_view.cc.orig	2022-08-31 12:19:35 UTC
+--- chrome/browser/ui/views/frame/opaque_browser_frame_view.cc.orig	2026-08-31 10:59:09 UTC
 +++ chrome/browser/ui/views/frame/opaque_browser_frame_view.cc
-@@ -55,7 +55,7 @@
+@@ -57,7 +57,7 @@
  #include "ui/views/window/vector_icons/vector_icons.h"
  #include "ui/views/window/window_shape.h"
  
@@ -9,16 +9,25 @@
  #include "ui/views/controls/menu/menu_runner.h"
  #endif
  
-@@ -552,7 +552,7 @@ OpaqueBrowserFrameView::FrameButtonStyle
+@@ -596,7 +596,7 @@ bool OpaqueBrowserFrameView::IsFrameCondensed() const 
+ 
+ OpaqueBrowserFrameView::FrameButtonStyle
  OpaqueBrowserFrameView::GetFrameButtonStyle() const {
- // TODO(crbug.com/1052397): Revisit the macro expression once build flag switch
- // of lacros-chrome is complete.
--#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS)
-+#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS) || BUILDFLAG(IS_BSD)
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
    return FrameButtonStyle::kMdButton;
  #else
    return FrameButtonStyle::kImageButton;
-@@ -762,7 +762,7 @@ gfx::Rect OpaqueBrowserFrameView::GetIconBounds() cons
+@@ -615,7 +615,7 @@ bool OpaqueBrowserFrameView::ShouldDrawRestoredFrameSh
+   return false;
+ }
+ 
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ bool OpaqueBrowserFrameView::IsTiled() const {
+   return browser_widget()->tiled();
+ }
+@@ -859,7 +859,7 @@ gfx::Rect OpaqueBrowserFrameView::GetIconBounds() cons
  }
  
  void OpaqueBrowserFrameView::WindowIconPressed() {

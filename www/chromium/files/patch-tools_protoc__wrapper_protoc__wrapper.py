@@ -1,6 +1,6 @@
---- tools/protoc_wrapper/protoc_wrapper.py.orig	2022-07-28 04:37:35 UTC
+--- tools/protoc_wrapper/protoc_wrapper.py.orig	2025-09-06 10:01:20 UTC
 +++ tools/protoc_wrapper/protoc_wrapper.py
-@@ -182,15 +182,19 @@ def main(argv):
+@@ -227,15 +227,19 @@ def main(argv):
      if not options.exclude_imports:
        protoc_cmd += ["--include_imports"]
  

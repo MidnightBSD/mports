@@ -1,22 +1,14 @@
---- chrome/browser/ui/webui/chrome_web_ui_controller_factory.cc.orig	2022-09-14 21:13:04 UTC
+--- chrome/browser/ui/webui/chrome_web_ui_controller_factory.cc.orig	2026-07-01 06:24:19 UTC
 +++ chrome/browser/ui/webui/chrome_web_ui_controller_factory.cc
-@@ -308,7 +308,7 @@
- #include "chrome/browser/ui/webui/app_launcher_page_ui.h"
- #endif
- 
--#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
-+#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
- #include "chrome/browser/ui/webui/webui_js_error/webui_js_error_ui.h"
- #endif
- 
-@@ -333,17 +333,17 @@
+@@ -117,17 +117,17 @@
  #endif
  
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
 -    BUILDFLAG(IS_CHROMEOS)
 +    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
- #include "chrome/browser/ui/webui/discards/discards_ui.h"
- #endif
+ #include "components/webapps/isolated_web_apps/scheme.h"
+ #endif  // BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) ||
+         // BUILDFLAG(IS_CHROMEOS)
  
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || \
 -    BUILDFLAG(IS_ANDROID)
@@ -24,69 +16,35 @@
  #include "chrome/browser/ui/webui/sandbox/sandbox_internals_ui.h"
  #endif
  
- #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
--    BUILDFLAG(IS_CHROMEOS_ASH)
-+    BUILDFLAG(IS_CHROMEOS_ASH) || BUILDFLAG(IS_BSD)
- #include "chrome/browser/ui/webui/connectors_internals/connectors_internals_ui.h"
+-#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ #include "chrome/browser/ui/webui/whats_new/whats_new_ui.h"
  #endif
  
-@@ -696,7 +696,7 @@ bool IsAboutUI(const GURL& url) {
- #if !BUILDFLAG(IS_ANDROID)
-           || url.host_piece() == chrome::kChromeUITermsHost
- #endif
--#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_OPENBSD)
-+#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
-           || url.host_piece() == chrome::kChromeUILinuxProxyConfigHost
- #endif
- #if BUILDFLAG(IS_CHROMEOS_ASH)
-@@ -1132,7 +1132,7 @@ WebUIFactoryFunction GetWebUIFactoryFunction(WebUI* we
- #endif  // !defined(USE_REAL_DBUS_CLIENTS)
- #endif  // !defined(OFFICIAL_BUILD)
- #endif  // BUILDFLAG(IS_CHROMEOS_ASH)
--#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
-+#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
-   if (url.host_piece() == chrome::kChromeUIWebUIJsErrorHost)
-     return &NewWebUI<WebUIJsErrorUI>;
- #endif
-@@ -1190,7 +1190,7 @@ WebUIFactoryFunction GetWebUIFactoryFunction(WebUI* we
-   if (url.host_piece() == chrome::kChromeUINaClHost)
-     return &NewWebUI<NaClUI>;
- #endif
--#if ((BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)) && \
-+#if ((BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)) && \
-      defined(TOOLKIT_VIEWS)) ||                         \
-     defined(USE_AURA)
-   if (url.host_piece() == chrome::kChromeUITabModalConfirmDialogHost)
-@@ -1250,27 +1250,27 @@ WebUIFactoryFunction GetWebUIFactoryFunction(WebUI* we
-   }
- #endif
- #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || \
--    BUILDFLAG(IS_ANDROID)
-+    BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_BSD)
-   if (url.host_piece() == chrome::kChromeUISandboxHost) {
-     return &NewWebUI<SandboxInternalsUI>;
-   }
- #endif
- #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
--    BUILDFLAG(IS_CHROMEOS_ASH)
-+    BUILDFLAG(IS_CHROMEOS_ASH) || BUILDFLAG(IS_BSD)
-   if (url.host_piece() == chrome::kChromeUIConnectorsInternalsHost)
-     return &NewWebUI<enterprise_connectors::ConnectorsInternalsUI>;
- #endif
+@@ -268,7 +268,7 @@ void ChromeWebUIControllerFactory::GetFaviconForURL(
+     const std::vector<int>& desired_sizes_in_pixel,
+     favicon_base::FaviconResultsCallback callback) const {
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
 -    BUILDFLAG(IS_CHROMEOS)
 +    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
-   if (url.host_piece() == chrome::kChromeUIDiscardsHost)
-     return &NewWebUI<DiscardsUI>;
- #endif
+   if (page_url.SchemeIs(webapps::kIsolatedAppScheme)) {
+     ReadIsolatedWebAppFaviconsFromDisk(profile, page_url, std::move(callback));
+     return;
+@@ -427,7 +427,7 @@ base::RefCountedMemory* ChromeWebUIControllerFactory::
+     return NewTabPageUI::GetFaviconResourceBytes(scale_factor);
+   }
+ 
 -#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
 +#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
-   if (url.host_piece() == chrome::kChromeUIBrowserSwitchHost)
-     return &NewWebUI<BrowserSwitchUI>;
- #endif
+   if (page_url.host() == chrome::kChromeUIWhatsNewHost) {
+     return WhatsNewUI::GetFaviconResourceBytes(scale_factor);
+   }
+@@ -457,7 +457,7 @@ base::RefCountedMemory* ChromeWebUIControllerFactory::
+   }
+ 
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
--    BUILDFLAG(IS_FUCHSIA)
-+    BUILDFLAG(IS_FUCHSIA) || BUILDFLAG(IS_BSD)
-   if (url.host_piece() == chrome::kChromeUIWebAppSettingsHost)
-     return &NewWebUI<WebAppSettingsUI>;
- #endif
+-    BUILDFLAG(IS_CHROMEOS)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+   if (page_url.host() == chrome::kChromeUIContextualTasksHost) {
+     return ContextualTasksUI::GetFaviconResourceBytes(scale_factor);
+   }

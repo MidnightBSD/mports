@@ -1,15 +1,15 @@
---- remoting/host/chromoting_host_services_client.cc.orig	2022-02-28 16:54:41 UTC
+--- remoting/host/chromoting_host_services_client.cc.orig	2026-07-01 06:24:19 UTC
 +++ remoting/host/chromoting_host_services_client.cc
-@@ -28,7 +28,7 @@ bool g_initialized = false;
+@@ -78,7 +78,7 @@ mojo::PendingRemote<mojom::ChromotingHostServices> Con
  
- }  // namespace
- 
+ ChromotingHostServicesClient::ChromotingHostServicesClient()
+     : ChromotingHostServicesClient(
 -#if BUILDFLAG(IS_LINUX)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
- 
- // static
- constexpr char
-@@ -112,7 +112,7 @@ bool ChromotingHostServicesClient::EnsureSessionServic
+           std::vector{GetChromotingHostServicesServerName(),
+                       GetLegacyChromotingHostServicesServerName()}
+ #else
+@@ -147,7 +147,7 @@ bool ChromotingHostServicesClient::EnsureSessionServic
    if (session_services_remote_.is_bound()) {
      return true;
    }

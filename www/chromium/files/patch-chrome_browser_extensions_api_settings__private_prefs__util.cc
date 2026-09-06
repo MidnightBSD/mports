@@ -1,20 +1,29 @@
---- chrome/browser/extensions/api/settings_private/prefs_util.cc.orig	2022-08-31 12:19:35 UTC
+--- chrome/browser/extensions/api/settings_private/prefs_util.cc.orig	2026-08-31 10:59:09 UTC
 +++ chrome/browser/extensions/api/settings_private/prefs_util.cc
-@@ -187,7 +187,7 @@ const PrefsUtil::TypedPrefMap& PrefsUtil::GetAllowlist
+@@ -242,7 +242,7 @@ const PrefsUtil::TypedPrefMap& PrefsUtil::GetAllowlist
+   (*s_allowlist)[autofill::prefs::kAutofillPaymentCardBenefits] =
+       settings_api::PrefType::kBoolean;
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_CHROMEOS)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+   (*s_allowlist)[autofill::prefs::kAutofillBnplEnabled] =
+       settings_api::PrefType::kBoolean;
+   (*s_allowlist)[autofill::prefs::kAutofillAtMemoryTriggerInfo] =
+@@ -294,7 +294,7 @@ const PrefsUtil::TypedPrefMap& PrefsUtil::GetAllowlist
+   (*s_allowlist)[tab_groups::prefs::kAutoPinNewTabGroups] =
+       settings_api::PrefType::kBoolean;
  
- // TODO(crbug.com/1052397): Revisit the macro expression once build flag switch
- // of lacros-chrome is complete.
--#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS)
-+#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS) || BUILDFLAG(IS_BSD)
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
    (*s_allowlist)[::prefs::kUseCustomChromeFrame] =
-       settings_api::PrefType::PREF_TYPE_BOOLEAN;
+       settings_api::PrefType::kBoolean;
  #endif
-@@ -201,7 +201,7 @@ const PrefsUtil::TypedPrefMap& PrefsUtil::GetAllowlist
-       settings_api::PrefType::PREF_TYPE_NUMBER;
- // TODO(crbug.com/1052397): Revisit the macro expression once build flag switch
- // of lacros-chrome is complete.
--#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS)
-+#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS) || BUILDFLAG(IS_BSD)
-   (*s_allowlist)[::prefs::kUsesSystemTheme] =
-       settings_api::PrefType::PREF_TYPE_BOOLEAN;
+@@ -316,7 +316,7 @@ const PrefsUtil::TypedPrefMap& PrefsUtil::GetAllowlist
+   (*s_allowlist)[::prefs::kPinnedActions] = settings_api::PrefType::kList;
+   (*s_allowlist)[themes::prefs::kPolicyThemeColor] =
+       settings_api::PrefType::kNumber;
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+   (*s_allowlist)[::prefs::kSystemTheme] = settings_api::PrefType::kNumber;
  #endif
+   (*s_allowlist)[::prefs::kHomePage] = settings_api::PrefType::kUrl;

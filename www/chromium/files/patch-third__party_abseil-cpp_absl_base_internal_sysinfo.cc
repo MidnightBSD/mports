@@ -1,4 +1,4 @@
---- third_party/abseil-cpp/absl/base/internal/sysinfo.cc.orig	2022-06-17 14:20:10 UTC
+--- third_party/abseil-cpp/absl/base/internal/sysinfo.cc.orig	2026-06-04 10:12:25 UTC
 +++ third_party/abseil-cpp/absl/base/internal/sysinfo.cc
 @@ -30,7 +30,7 @@
  #include <sys/syscall.h>
@@ -9,7 +9,23 @@
  #include <sys/sysctl.h>
  #endif
  
-@@ -307,9 +307,11 @@ static double GetNominalCPUFrequency() {
+@@ -198,6 +198,7 @@ static double GetNominalCPUFrequency() {
+ 
+ #else
+ 
++#if !defined(__OpenBSD__) && !defined(__FreeBSD__)
+ // Helper function for reading a long from a file. Returns true if successful
+ // and the memory location pointed to by value is set to the value read.
+ static bool ReadLongFromFile(const char *file, long *value) {
+@@ -230,6 +231,7 @@ static bool ReadLongFromFile(const char *file, long *v
+   }
+   return ret;
+ }
++#endif
+ 
+ #if defined(ABSL_INTERNAL_UNSCALED_CYCLECLOCK_FREQUENCY_IS_CPU_FREQUENCY)
+ 
+@@ -328,9 +330,11 @@ static double GetNominalCPUFrequency() {
    // a new mode (turbo mode). Essentially, those frequencies cannot
    // always be relied upon. The same reasons apply to /proc/cpuinfo as
    // well.
@@ -21,3 +37,16 @@
  
  #if defined(ABSL_INTERNAL_UNSCALED_CYCLECLOCK_FREQUENCY_IS_CPU_FREQUENCY)
    // On these platforms, the TSC frequency is the nominal CPU
+@@ -349,10 +353,12 @@ static double GetNominalCPUFrequency() {
+   // If CPU scaling is in effect, we want to use the *maximum*
+   // frequency, not whatever CPU speed some random processor happens
+   // to be using now.
++#if !defined(__OpenBSD__) && !defined(__FreeBSD__) // pledge violation
+   if (ReadLongFromFile("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq",
+                        &freq)) {
+     return freq * 1e3;  // Value is kHz.
+   }
++#endif
+ 
+   return 1.0;
+ #endif  // !ABSL_INTERNAL_UNSCALED_CYCLECLOCK_FREQUENCY_IS_CPU_FREQUENCY

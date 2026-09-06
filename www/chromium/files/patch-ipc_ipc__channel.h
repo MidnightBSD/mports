@@ -1,8 +1,8 @@
---- ipc/ipc_channel.h.orig	2022-06-17 14:20:10 UTC
+--- ipc/ipc_channel.h.orig	2026-02-11 09:05:39 UTC
 +++ ipc/ipc_channel.h
-@@ -234,7 +234,7 @@ class COMPONENT_EXPORT(IPC) Channel : public Sender {
+@@ -168,7 +168,7 @@ class COMPONENT_EXPORT(IPC) Channel final
+   // Generates a channel ID that's non-predictable and unique.
    static std::string GenerateUniqueRandomChannelID();
- #endif
  
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)

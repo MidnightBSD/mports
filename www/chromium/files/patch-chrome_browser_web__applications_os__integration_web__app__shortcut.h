@@ -1,6 +1,6 @@
---- chrome/browser/web_applications/os_integration/web_app_shortcut.h.orig	2022-05-19 14:06:27 UTC
+--- chrome/browser/web_applications/os_integration/web_app_shortcut.h.orig	2026-01-14 08:33:23 UTC
 +++ chrome/browser/web_applications/os_integration/web_app_shortcut.h
-@@ -19,7 +19,7 @@
+@@ -22,7 +22,7 @@
  #include "ui/gfx/image/image_family.h"
  #include "url/gurl.h"
  
@@ -9,19 +9,10 @@
  #include "chrome/browser/web_applications/os_integration/web_app_shortcut_linux.h"
  #endif  // BUILDFLAG(IS_LINUX)
  
-@@ -48,7 +48,7 @@ struct ScopedShortcutOverrideForTesting {
- #elif BUILDFLAG(IS_MAC)
-   base::ScopedTempDir chrome_apps_folder;
-   std::map<base::FilePath, bool> startup_enabled;
--#elif BUILDFLAG(IS_LINUX)
-+#elif BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
-   base::ScopedTempDir desktop;
-   base::ScopedTempDir startup;
- #endif
-@@ -91,7 +91,7 @@ struct ShortcutInfo {
-   std::set<std::string> file_handler_extensions;
-   std::set<std::string> file_handler_mime_types;
-   std::set<std::string> protocol_handlers;
+@@ -77,7 +77,7 @@ struct ShortcutInfo {
+   // the installed PWA experience and thus the icons are not designed to be
+   // displayed on an OS dock.
+   bool is_diy_app = false;
 -#if BUILDFLAG(IS_LINUX)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
    std::set<DesktopActionInfo> actions;

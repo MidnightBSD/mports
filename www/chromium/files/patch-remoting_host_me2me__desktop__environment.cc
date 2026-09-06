@@ -1,6 +1,24 @@
---- remoting/host/me2me_desktop_environment.cc.orig	2022-08-31 12:19:35 UTC
+--- remoting/host/me2me_desktop_environment.cc.orig	2026-06-04 10:12:25 UTC
 +++ remoting/host/me2me_desktop_environment.cc
-@@ -148,7 +148,7 @@ bool Me2MeDesktopEnvironment::InitializeSecurity(
+@@ -125,7 +125,7 @@ std::string Me2MeDesktopEnvironment::GetCapabilities()
+     capabilities += protocol::kMicrophoneRemotingCapability;
+   }
+ 
+-#if BUILDFLAG(IS_LINUX) && defined(REMOTING_USE_X11)
++#if (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)) && defined(REMOTING_USE_X11)
+   capabilities += " ";
+   capabilities += protocol::kMultiStreamCapability;
+   capabilities += " ";
+@@ -174,7 +174,7 @@ Me2MeDesktopEnvironment::Me2MeDesktopEnvironment(
+   // properly under Xvfb.
+   mutable_desktop_capture_options()->set_use_update_notifications(true);
+ 
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+   // Setting this option to false means that the capture differ wrapper will not
+   // be used when the X11 capturer is selected. This reduces the X11 capture
+   // time by a few milliseconds per frame and is safe because we can rely on
+@@ -201,7 +201,7 @@ bool Me2MeDesktopEnvironment::InitializeSecurity(
  
    // Otherwise, if the session is shared with the local user start monitoring
    // the local input and create the in-session UI.

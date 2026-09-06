@@ -1,6 +1,6 @@
---- net/dns/BUILD.gn.orig	2022-05-19 14:06:27 UTC
+--- net/dns/BUILD.gn.orig	2026-07-01 06:24:19 UTC
 +++ net/dns/BUILD.gn
-@@ -112,7 +112,7 @@ source_set("dns") {
+@@ -167,7 +167,7 @@ source_set("dns") {
        "dns_config_service_android.cc",
        "dns_config_service_android.h",
      ]
@@ -9,18 +9,26 @@
      sources += [
        "dns_config_service_linux.cc",
        "dns_config_service_linux.h",
-@@ -153,6 +153,7 @@ source_set("dns") {
-     ":host_resolver_manager",
-     ":mdns_client",
-     "//net:net_public_deps",
+@@ -201,6 +201,7 @@ source_set("dns") {
+   }
+ 
+   deps = [ "//net:net_deps" ]
++  deps += [ "//services/screen_ai/buildflags" ]
+ 
+   public_deps = [
+     ":dns_client",
+@@ -279,6 +280,7 @@ source_set("host_resolver") {
+   deps = [
+     "//net:net_deps",
+     "//net/dns/public",
 +    "//printing/buildflags",
    ]
+   public_deps = [ "//net:net_public_deps" ]
  
-   allow_circular_includes_from = [
-@@ -413,9 +414,9 @@ source_set("tests") {
- 
-   if (is_android) {
-     sources += [ "dns_config_service_android_unittest.cc" ]
+@@ -481,9 +483,9 @@ source_set("tests") {
+       "mock_dns_platform_android_attempt_delegate.cc",
+       "mock_dns_platform_android_attempt_delegate.h",
+     ]
 -  } else if (is_linux) {
 +  } else if (is_linux && !is_bsd) {
      sources += [ "dns_config_service_linux_unittest.cc" ]

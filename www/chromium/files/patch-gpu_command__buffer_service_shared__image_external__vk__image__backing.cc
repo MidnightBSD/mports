@@ -1,20 +1,20 @@
---- gpu/command_buffer/service/shared_image/external_vk_image_backing.cc.orig	2022-08-31 12:19:35 UTC
+--- gpu/command_buffer/service/shared_image/external_vk_image_backing.cc.orig	2026-07-01 06:24:19 UTC
 +++ gpu/command_buffer/service/shared_image/external_vk_image_backing.cc
-@@ -31,7 +31,7 @@
+@@ -56,7 +56,7 @@
  #include "ui/gl/gl_version_info.h"
  #include "ui/gl/scoped_binders.h"
  
--#if (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)) && BUILDFLAG(USE_DAWN)
-+#if (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)) && BUILDFLAG(USE_DAWN)
+-#if BUILDFLAG(IS_LINUX) && BUILDFLAG(USE_DAWN)
++#if (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)) && BUILDFLAG(USE_DAWN)
  #include "gpu/command_buffer/service/shared_image/external_vk_image_dawn_representation.h"
- #endif
+ #if BUILDFLAG(DAWN_ENABLE_BACKEND_OPENGLES)
+ #include "gpu/command_buffer/service/shared_image/dawn_gl_texture_representation.h"
+@@ -742,7 +742,7 @@ std::unique_ptr<DawnImageRepresentation> ExternalVkIma
+     wgpu::BackendType backend_type,
+     std::vector<wgpu::TextureFormat> view_formats,
+     scoped_refptr<SharedContextState> context_state) {
+-#if BUILDFLAG(IS_LINUX) && BUILDFLAG(USE_DAWN)
++#if (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)) && BUILDFLAG(USE_DAWN)
+   auto wgpu_format = ToDawnFormat(format());
  
-@@ -576,7 +576,7 @@ std::unique_ptr<DawnImageRepresentation> ExternalVkIma
-     MemoryTypeTracker* tracker,
-     WGPUDevice wgpuDevice,
-     WGPUBackendType backend_type) {
--#if (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)) && BUILDFLAG(USE_DAWN)
-+#if (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)) && BUILDFLAG(USE_DAWN)
-   auto wgpu_format = viz::ToWGPUFormat(format());
- 
-   if (wgpu_format == WGPUTextureFormat_Undefined) {
+   if (wgpu_format == wgpu::TextureFormat::Undefined) {

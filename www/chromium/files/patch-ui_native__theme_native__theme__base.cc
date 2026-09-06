@@ -1,11 +1,11 @@
---- ui/native_theme/native_theme_base.cc.orig	2022-02-28 16:54:41 UTC
+--- ui/native_theme/native_theme_base.cc.orig	2026-08-12 09:02:10 UTC
 +++ ui/native_theme/native_theme_base.cc
-@@ -269,7 +269,7 @@ void NativeThemeBase::Paint(cc::PaintCanvas* canvas,
+@@ -167,7 +167,7 @@ void NativeThemeBase::PaintImpl(cc::PaintCanvas* canva
+                     std::get<ButtonExtraParams>(extra_params), dark_mode,
+                     contrast, accent_color);
        break;
- // TODO(crbug.com/1052397): Revisit the macro expression once build flag switch
- // of lacros-chrome is complete.
--#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS)
-+#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS) || BUILDFLAG(IS_BSD)
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
      case kFrameTopArea:
-       PaintFrameTopArea(canvas, state, rect, extra.frame_top_area,
-                         color_scheme);
+       PaintFrameTopArea(canvas, state, rect,
+                         std::get<FrameTopAreaExtraParams>(extra_params));

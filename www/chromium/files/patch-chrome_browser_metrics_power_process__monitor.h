@@ -1,7 +1,16 @@
---- chrome/browser/metrics/power/process_monitor.h.orig	2022-07-22 17:30:31 UTC
+--- chrome/browser/metrics/power/process_monitor.h.orig	2026-07-01 06:24:19 UTC
 +++ chrome/browser/metrics/power/process_monitor.h
-@@ -70,7 +70,7 @@ class ProcessMonitor : public content::BrowserChildPro
-     double cpu_usage = 0.0;
+@@ -47,7 +47,7 @@ class ProcessMetricsDelegate {
+   GetPlatformIndependentCPUUsage() = 0;
+ 
+ #if BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || \
+-    BUILDFLAG(IS_AIX)
++    BUILDFLAG(IS_AIX) || BUILDFLAG(IS_BSD)
+   virtual int GetIdleWakeupsPerSecond() = 0;
+ #endif
+ 
+@@ -109,7 +109,7 @@ class ProcessMonitor : public content::BrowserChildPro
+     std::optional<double> cpu_usage;
  
  #if BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || \
 -    BUILDFLAG(IS_AIX)
