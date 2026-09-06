@@ -1,58 +1,60 @@
---- remoting/host/remoting_me2me_host.cc.orig	2022-08-31 12:19:35 UTC
+--- remoting/host/remoting_me2me_host.cc.orig	2026-08-31 10:59:09 UTC
 +++ remoting/host/remoting_me2me_host.cc
-@@ -124,7 +124,7 @@
+@@ -153,7 +153,7 @@
  #include "remoting/host/mac/permission_utils.h"
  #endif  // BUILDFLAG(IS_APPLE)
  
--#if (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)) && defined(REMOTING_USE_X11)
-+#if (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)) && defined(REMOTING_USE_X11)
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+ #if defined(REMOTING_USE_X11)
  #include <gtk/gtk.h>
  
- #include "ui/events/platform/x11/x11_event_source.h"
-@@ -132,13 +132,13 @@
- #endif  // (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)) &&
-         // defined(REMOTING_USE_X11)
+@@ -165,7 +165,7 @@
+ #endif  // defined(REMOTING_USE_X11)
+ #endif  // BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
  
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
  #include "base/linux_util.h"
- #include "remoting/host/audio_capturer_linux.h"
  #include "remoting/host/linux/certificate_watcher.h"
- #endif  // BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
+ #include "remoting/host/linux/pulse_audio_capturer.h"
+@@ -180,7 +180,7 @@
+ #include "remoting/host/pairing_registry_delegate_win.h"
+ #endif  // BUILDFLAG(IS_WIN)
  
 -#if BUILDFLAG(IS_LINUX)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
- #include "remoting/host/host_utmp_logger.h"
- #endif
- 
-@@ -176,7 +176,7 @@ const char kApplicationName[] = "chromoting";
- const char kStdinConfigPath[] = "-";
- #endif  // !defined(REMOTING_MULTI_PROCESS)
+ #include "remoting/base/crash/crash_reporting_crashpad.h"
+ #include "remoting/host/host_wtmpdb_logger.h"
+ #endif  // BUILDFLAG(IS_LINUX)
+@@ -206,7 +206,7 @@ const char kApplicationName[] = "chromoting";
+ // from stdin.
+ constexpr base::FilePath::CharType kStdinConfigPath[] = FILE_PATH_LITERAL("-");
  
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
  // The command line switch used to pass name of the pipe to capture audio on
  // linux.
  const char kAudioPipeSwitchName[] = "audio-pipe-name";
-@@ -381,7 +381,7 @@ class HostProcess : public ConfigWatcher::Delegate,
- 
-   std::unique_ptr<ChromotingHostContext> context_;
+@@ -468,7 +468,7 @@ class HostProcess : public ConfigWatcher::Delegate,
+   std::unique_ptr<AgentProcessBrokerClient> agent_process_broker_client_;
+ #endif
  
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
    // Watch for certificate changes and kill the host when changes occur
    std::unique_ptr<CertificateWatcher> cert_watcher_;
  #endif  // BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
-@@ -447,7 +447,7 @@ class HostProcess : public ConfigWatcher::Delegate,
+@@ -534,7 +534,7 @@ class HostProcess : public ConfigWatcher::Delegate,
+   std::unique_ptr<FtlEchoMessageListener> ftl_echo_message_listener_;
  
-   std::unique_ptr<HostStatusLogger> host_status_logger_;
    std::unique_ptr<HostEventLogger> host_event_logger_;
 -#if BUILDFLAG(IS_LINUX)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
-   std::unique_ptr<HostUTMPLogger> host_utmp_logger_;
+   std::unique_ptr<HostWtmpdbLogger> host_wtmpdb_logger_;
  #endif
    std::unique_ptr<HostPowerSaveBlocker> power_save_blocker_;
-@@ -753,7 +753,7 @@ void HostProcess::StartOnNetworkThread() {
+@@ -868,7 +868,7 @@ void HostProcess::StartOnNetworkThread() {
  void HostProcess::ShutdownOnNetworkThread() {
    DCHECK(context_->network_task_runner()->BelongsToCurrentThread());
    config_watcher_.reset();
@@ -61,25 +63,25 @@
    cert_watcher_.reset();
  #endif  // BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
  }
-@@ -812,7 +812,7 @@ void HostProcess::CreateAuthenticatorFactory() {
-     DCHECK(third_party_auth_config_.token_url.is_valid());
-     DCHECK(third_party_auth_config_.token_validation_url.is_valid());
+@@ -952,7 +952,7 @@ void HostProcess::CreateAuthenticatorFactory() {
+             context_->create_client_cert_store_callback(),
+             service_account_email_, oauth_refresh_token_));
  
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
      if (!cert_watcher_) {
        cert_watcher_ = std::make_unique<CertificateWatcher>(
            base::BindRepeating(&HostProcess::ShutdownHost,
-@@ -922,7 +922,7 @@ void HostProcess::StartOnUiThread() {
+@@ -1101,7 +1101,7 @@ void HostProcess::StartOnUiThread() {
        base::BindRepeating(&HostProcess::OnPolicyUpdate, base::Unretained(this)),
        base::BindRepeating(&HostProcess::OnPolicyError, base::Unretained(this)));
  
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
    // If an audio pipe is specific on the command-line then initialize
-   // AudioCapturerLinux to capture from it.
-   base::FilePath audio_pipe_name = base::CommandLine::ForCurrentProcess()->
-@@ -993,7 +993,7 @@ void HostProcess::ShutdownOnUiThread() {
+   // PulseAudioCapturer to capture from it.
+   base::FilePath audio_pipe_name =
+@@ -1187,7 +1187,7 @@ void HostProcess::ShutdownOnUiThread() {
    // It is now safe for the HostProcess to be deleted.
    self_ = nullptr;
  
@@ -88,8 +90,8 @@
    // Cause the global AudioPipeReader to be freed, otherwise the audio
    // thread will remain in-use and prevent the process from exiting.
    // TODO(wez): DesktopEnvironmentFactory should own the pipe reader.
-@@ -1001,7 +1001,7 @@ void HostProcess::ShutdownOnUiThread() {
-   AudioCapturerLinux::InitializePipeReader(nullptr, base::FilePath());
+@@ -1195,7 +1195,7 @@ void HostProcess::ShutdownOnUiThread() {
+   PulseAudioCapturer::InitializePipeReader(nullptr, base::FilePath());
  #endif  // BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
  
 -#if (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)) && defined(REMOTING_USE_X11)
@@ -97,43 +99,61 @@
    context_->input_task_runner()->PostTask(
        FROM_HERE,
        base::BindOnce([]() { delete ui::X11EventSource::GetInstance(); }));
-@@ -1328,7 +1328,7 @@ bool HostProcess::OnUsernamePolicyUpdate(base::Diction
-   // Returns false: never restart the host after this policy update.
-   DCHECK(context_->network_task_runner()->BelongsToCurrentThread());
+@@ -1837,7 +1837,7 @@ void HostProcess::InitializeSignaling() {
+   zombie_host_detector_ = std::make_unique<ZombieHostDetector>(base::BindOnce(
+       &HostProcess::OnZombieStateDetected, base::Unretained(this)));
  
--#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC)
-+#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_BSD)
-   absl::optional<bool> host_username_match_required =
-       policies->FindBoolKey(policy::key::kRemoteAccessHostMatchUsername);
-   if (!host_username_match_required.has_value())
-@@ -1712,7 +1712,7 @@ void HostProcess::StartHost() {
-   // The feature is enabled for all Googlers using a supported platform.
-   desktop_environment_options_.set_enable_remote_open_url(is_googler_);
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+   // TODO: joedow - Remove Linux scope after this codepath has been stabilized.
+   const base::CommandLine* cmd_line = base::CommandLine::ForCurrentProcess();
+   if (cmd_line->HasSwitch(kEnableCorpMessaging)) {
+@@ -1932,7 +1932,7 @@ void HostProcess::StartHost() {
  
--#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_WIN)
-+#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
-   desktop_environment_options_.set_enable_remote_webauthn(is_googler_);
- #endif
+   SetState(HOST_STARTED);
  
-@@ -1745,7 +1745,7 @@ void HostProcess::StartHost() {
-   host_status_logger_ = std::make_unique<HostStatusLogger>(
-       host_->status_monitor(), log_to_server_.get());
+-#if BUILDFLAG(IS_LINUX) && defined(REMOTING_USE_X11)
++#if (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)) && defined(REMOTING_USE_X11)
+   if (webrtc::DesktopCapturer::IsRunningUnderWayland()) {
+     if (GnomeRemoteDesktopSession::IsRunningUnderGnome()) {
+       GnomeRemoteDesktopSession::GetInstance()->Init(
+@@ -2048,7 +2048,7 @@ void HostProcess::StartHost() {
+ 
+   host_->AddExtension(std::make_unique<TestEchoExtension>());
  
 -#if BUILDFLAG(IS_LINUX)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
    const base::CommandLine* cmd_line = base::CommandLine::ForCurrentProcess();
-   if (cmd_line->HasSwitch(kEnableUtempter))
-     host_utmp_logger_ =
-@@ -1916,7 +1916,7 @@ int HostProcessMain() {
-   HOST_LOG << "Starting host process: version " << STRINGIZE(VERSION);
+   if (cmd_line->HasSwitch(kEnableWtmpdb)) {
+     host_wtmpdb_logger_ =
+@@ -2086,7 +2086,7 @@ void HostProcess::StartHost() {
+   // addresses.
+   host_->Start(*host_owner_emails_.begin());
+ 
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+   // For Multi-process hosts and Mac, ChromotingHostServices connections are
+   // handled by another process, then the message pipe is forwarded to the
+   // network process.
+@@ -2241,7 +2241,7 @@ int HostProcessMain(bool multi_process) {
+                                                    : " (single-process)");
    const base::CommandLine* cmd_line = base::CommandLine::ForCurrentProcess();
  
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
- #if defined(REMOTING_USE_X11)
-   // Initialize Xlib for multi-threaded use, allowing non-Chromium code to
-   // use X11 safely (such as the WebRTC capturer, GTK ...)
-@@ -1962,7 +1962,7 @@ int HostProcessMain() {
+   // For the multi-process host, screen capturing and UI rendering should be
+   // done by the desktop process.
+   if (!multi_process) {
+@@ -2293,7 +2293,7 @@ int HostProcessMain(bool multi_process) {
+     return kInitializationFailed;
+   }
+ 
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+   // Log and cleanup the crash database. We do this after a short delay so that
+   // the crash database has a chance to be updated properly if we just got
+   // relaunched after a crash.
+@@ -2313,7 +2313,7 @@ int HostProcessMain(bool multi_process) {
    std::unique_ptr<net::NetworkChangeNotifier> network_change_notifier(
        net::NetworkChangeNotifier::CreateIfNeeded());
  

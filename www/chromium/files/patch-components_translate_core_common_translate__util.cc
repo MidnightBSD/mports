@@ -1,11 +1,11 @@
---- components/translate/core/common/translate_util.cc.orig	2022-03-25 21:59:56 UTC
+--- components/translate/core/common/translate_util.cc.orig	2026-03-13 06:02:14 UTC
 +++ components/translate/core/common/translate_util.cc
-@@ -34,7 +34,7 @@ const base::Feature kTranslateSubFrames{"TranslateSubF
- const base::Feature kTFLiteLanguageDetectionEnabled{
-   "TFLiteLanguageDetectionEnabled",
+@@ -44,7 +44,7 @@ bool IsTFLiteLanguageDetectionEnabled() {
+ // The feature is explicitly disabled on WebView.
+ // TODO(crbug.com/40819484): Enable the feature on WebView.
  #if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_WIN) || \
--    BUILDFLAG(IS_MAC) || BUILDFLAG(IS_ANDROID)
-+    BUILDFLAG(IS_MAC) || BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_BSD)
-       base::FEATURE_ENABLED_BY_DEFAULT
+-    BUILDFLAG(IS_MAC) || BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_IOS)
++    BUILDFLAG(IS_MAC) || BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_IOS) || BUILDFLAG(IS_BSD)
+   return true;
  #else
-       base::FEATURE_DISABLED_BY_DEFAULT
+   return false;

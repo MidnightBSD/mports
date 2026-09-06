@@ -1,7 +1,16 @@
---- third_party/blink/public/common/renderer_preferences/renderer_preferences_mojom_traits.h.orig	2022-03-25 21:59:56 UTC
+--- third_party/blink/public/common/renderer_preferences/renderer_preferences_mojom_traits.h.orig	2026-08-31 10:59:09 UTC
 +++ third_party/blink/public/common/renderer_preferences/renderer_preferences_mojom_traits.h
-@@ -157,7 +157,7 @@ struct BLINK_COMMON_EXPORT
-     return data.accept_languages;
+@@ -133,7 +133,7 @@ struct BLINK_COMMON_EXPORT
+     return data.enable_encrypted_media;
+   }
+ 
+-#if BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_WIN)
++#if BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
+   static const bool& use_overlay_scrollbar(
+       const ::blink::RendererPreferences& data) {
+     return data.use_overlay_scrollbar;
+@@ -185,7 +185,7 @@ struct BLINK_COMMON_EXPORT
+     return data.send_subresource_notification;
    }
  
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
@@ -9,3 +18,12 @@
    static const std::string& system_font_family_name(
        const ::blink::RendererPreferences& data) {
      return data.system_font_family_name;
+@@ -199,7 +199,7 @@ struct BLINK_COMMON_EXPORT
+   }
+ #endif
+ 
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+   static const bool& middle_click_paste_allowed(
+       const ::blink::RendererPreferences& data) {
+     return data.middle_click_paste_allowed;

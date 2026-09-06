@@ -1,6 +1,6 @@
---- content/utility/services.cc.orig	2022-07-22 17:30:31 UTC
+--- content/utility/services.cc.orig	2026-08-12 09:02:10 UTC
 +++ content/utility/services.cc
-@@ -63,7 +63,7 @@
+@@ -72,14 +72,14 @@
  extern sandbox::TargetServices* g_utility_target_services;
  #endif  // BUILDFLAG(IS_WIN)
  
@@ -9,16 +9,15 @@
  #include "sandbox/linux/services/libc_interceptor.h"
  #include "sandbox/policy/mojom/sandbox.mojom.h"
  #include "sandbox/policy/sandbox_type.h"
-@@ -85,7 +85,7 @@ extern sandbox::TargetServices* g_utility_target_servi
- #endif  // BUILDFLAG(IS_CHROMEOS_ASH) && (BUILDFLAG(USE_VAAPI) ||
-         // BUILDFLAG(USE_V4L2_CODEC))
+ #endif  // BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
  
--#if (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_ASH)) && \
-+#if (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_ASH) || BUILDFLAG(IS_BSD)) && \
-     (BUILDFLAG(USE_VAAPI) || BUILDFLAG(USE_V4L2_CODEC))
- #include "media/mojo/services/stable_video_decoder_factory_service.h"  // nogncheck
- #endif  // (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_ASH)) &&
-@@ -198,7 +198,7 @@ auto RunAudio(mojo::PendingReceiver<audio::mojom::Audi
+ #if BUILDFLAG(IS_WIN) || (BUILDFLAG(GOOGLE_CHROME_BRANDING) && \
+-                          (BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX)))
++                          (BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)))
+ #include "services/shape_detection/public/mojom/shape_detection_service.mojom.h"  // nogncheck
+ #include "services/shape_detection/shape_detection_service.h"  // nogncheck
+ #endif  // BUILDFLAG(IS_WIN) || (BUILDFLAG(GOOGLE_CHROME_BRANDING) &&
+@@ -233,7 +233,7 @@ auto RunAudio(mojo::PendingReceiver<audio::mojom::Audi
        << "task_policy_set TASK_QOS_POLICY";
  #endif
  
@@ -27,21 +26,21 @@
    auto* command_line = base::CommandLine::ForCurrentProcess();
    if (sandbox::policy::SandboxTypeFromCommandLine(*command_line) ==
        sandbox::mojom::Sandbox::kNoSandbox) {
-@@ -288,7 +288,7 @@ auto RunOOPArcVideoAcceleratorFactoryService(
- #endif  // BUILDFLAG(IS_CHROMEOS_ASH) && (BUILDFLAG(USE_VAAPI) ||
-         // BUILDFLAG(USE_V4L2_CODEC))
+@@ -256,7 +256,7 @@ auto RunAudio(mojo::PendingReceiver<audio::mojom::Audi
+ }
  
--#if (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_ASH)) && \
-+#if (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_ASH) || BUILDFLAG(IS_BSD)) && \
-     (BUILDFLAG(USE_VAAPI) || BUILDFLAG(USE_V4L2_CODEC))
- auto RunStableVideoDecoderFactoryService(
-     mojo::PendingReceiver<media::stable::mojom::StableVideoDecoderFactory>
-@@ -342,7 +342,7 @@ void RegisterMainThreadServices(mojo::ServiceFactory& 
- #endif  // BUILDFLAG(IS_CHROMEOS_ASH) && (BUILDFLAG(USE_VAAPI) ||
-         // BUILDFLAG(USE_V4L2_CODEC))
+ #if BUILDFLAG(IS_WIN) || (BUILDFLAG(GOOGLE_CHROME_BRANDING) && \
+-                          (BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX)))
++                          (BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)))
+ auto RunShapeDetectionService(
+     mojo::PendingReceiver<shape_detection::mojom::ShapeDetectionService>
+         receiver) {
+@@ -417,7 +417,7 @@ void RegisterMainThreadServices(mojo::ServiceFactory& 
+   }
  
--#if (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_ASH)) && \
-+#if (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_ASH) || BUILDFLAG(IS_BSD)) && \
-     (BUILDFLAG(USE_VAAPI) || BUILDFLAG(USE_V4L2_CODEC))
-   services.Add(RunStableVideoDecoderFactoryService);
- #endif  // (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_ASH)) &&
+ #if BUILDFLAG(IS_WIN) || (BUILDFLAG(GOOGLE_CHROME_BRANDING) && \
+-                          (BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX)))
++                          (BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)))
+   services.Add(RunShapeDetectionService);
+ #endif
+ 

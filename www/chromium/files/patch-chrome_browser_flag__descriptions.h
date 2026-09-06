@@ -1,44 +1,21 @@
---- chrome/browser/flag_descriptions.h.orig	2022-08-31 12:19:35 UTC
+--- chrome/browser/flag_descriptions.h.orig	2026-08-31 10:59:09 UTC
 +++ chrome/browser/flag_descriptions.h
-@@ -3477,7 +3477,7 @@ extern const char kSideSearchDSESupportDescription[];
- // Random platform combinations -----------------------------------------------
+@@ -8813,6 +8813,18 @@ inline constexpr char kAntivirusTelemetryForDownloadsD
+     "Enables antivirus product info to be included in Safe Browsing download "
+     "pings.";
  
- #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
--    BUILDFLAG(IS_FUCHSIA)
-+    BUILDFLAG(IS_FUCHSIA) || BUILDFLAG(IS_BSD)
- 
- extern const char kDesktopDetailedLanguageSettingsName[];
- extern const char kDesktopDetailedLanguageSettingsDescription[];
-@@ -3498,7 +3498,7 @@ extern const char kWebBluetoothConfirmPairingSupportNa
- extern const char kWebBluetoothConfirmPairingSupportDescription[];
- #endif  // BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX)
- 
--#if BUILDFLAG(IS_LINUX)
-+#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
- extern const char kOzonePlatformHintChoiceDefault[];
- extern const char kOzonePlatformHintChoiceAuto[];
- extern const char kOzonePlatformHintChoiceX11[];
-@@ -3514,12 +3514,12 @@ extern const char kForcePasswordInitialSyncWhenDecrypt
- extern const char kForcePasswordInitialSyncWhenDecryptionFailsDescription[];
- #endif  // BUILDFLAG(IS_LINUX)
- 
--#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC)
-+#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_BSD)
- extern const char kSkipUndecryptablePasswordsName[];
- extern const char kSkipUndecryptablePasswordsDescription[];
- #endif  // BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC)
- 
--#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX)
-+#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
- extern const char kAsyncDnsName[];
- extern const char kAsyncDnsDescription[];
- #endif  // BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX)
-@@ -3595,7 +3595,7 @@ extern const char kElasticOverscrollDescription[];
- 
- #if BUILDFLAG(IS_WIN) ||                                      \
-     (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS)) || \
--    BUILDFLAG(IS_MAC) || BUILDFLAG(IS_FUCHSIA)
-+    BUILDFLAG(IS_MAC) || BUILDFLAG(IS_FUCHSIA) || BUILDFLAG(IS_BSD)
- extern const char kUIDebugToolsName[];
- extern const char kUIDebugToolsDescription[];
- #endif
++#if BUILDFLAG(IS_BSD)
++inline constexpr char kAudioBackendName[] =
++    "Audio Backend";
++inline constexpr char kAudioBackendDescription[] =
++#if BUILDFLAG(IS_OPENBSD)
++    "Select the desired audio backend to use. The default is sndio.";
++#elif BUILDFLAG(IS_FREEBSD)
++    "Select the desired audio backend to use. The default will automatically "
++    "enumerate through the supported backends.";
++#endif
++#endif
++
+ // ============================================================================
+ // Don't just add flags to the end, put them in the alphabetical order.
+ // ============================================================================

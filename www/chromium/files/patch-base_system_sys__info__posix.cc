@@ -1,38 +1,36 @@
---- base/system/sys_info_posix.cc.orig	2022-08-31 12:19:35 UTC
+--- base/system/sys_info_posix.cc.orig	2026-06-04 10:12:25 UTC
 +++ base/system/sys_info_posix.cc
-@@ -37,7 +37,7 @@
- 
- namespace {
- 
--#if !BUILDFLAG(IS_OPENBSD)
-+#if !BUILDFLAG(IS_BSD)
- int NumberOfProcessors() {
-   // sysconf returns the number of "logical" (not "physical") processors on both
-   // Mac and Linux.  So we get the number of max available "logical" processors.
-@@ -77,7 +77,7 @@ int NumberOfProcessors() {
- 
- base::LazyInstance<base::internal::LazySysInfoValue<int, NumberOfProcessors>>::
-     Leaky g_lazy_number_of_processors = LAZY_INSTANCE_INITIALIZER;
--#endif  // !BUILDFLAG(IS_OPENBSD)
-+#endif  // !BUILDFLAG(IS_BSD)
- 
- uint64_t AmountOfVirtualMemory() {
-   struct rlimit limit;
-@@ -144,11 +144,11 @@ bool GetDiskSpaceInfo(const base::FilePath& path,
+@@ -59,7 +59,11 @@ base::ByteSize AmountOfVirtualMemory() {
+   if (result != 0) {
+     NOTREACHED();
+   }
++#if BUILDFLAG(IS_FREEBSD)
++  return base::ByteSize(limit.rlim_cur == RLIM_INFINITY ? 0 : base::checked_cast<uint64_t>(limit.rlim_cur));
++#else
+   return base::ByteSize(limit.rlim_cur == RLIM_INFINITY ? 0 : limit.rlim_cur);
++#endif
+ }
+ using LazyVirtualMemory =
+     base::internal::LazySysInfoValue<base::ByteSize, AmountOfVirtualMemory>;
+@@ -110,7 +114,7 @@ void GetKernelVersionNumbers(int32_t* major_version,
  
  namespace base {
  
 -#if !BUILDFLAG(IS_OPENBSD)
 +#if !BUILDFLAG(IS_BSD)
+ // static
  int SysInfo::NumberOfProcessors() {
-   return g_lazy_number_of_processors.Get().value();
+ #if BUILDFLAG(IS_MAC)
+@@ -166,7 +170,7 @@ int SysInfo::NumberOfProcessors() {
+ 
+   return cached_num_cpus;
  }
 -#endif  // !BUILDFLAG(IS_OPENBSD)
 +#endif  // !BUILDFLAG(IS_BSD)
  
  // static
- uint64_t SysInfo::AmountOfVirtualMemory() {
-@@ -238,6 +238,8 @@ std::string SysInfo::OperatingSystemArchitecture() {
+ ByteSize SysInfo::AmountOfVirtualMemory() {
+@@ -275,6 +279,8 @@ std::string SysInfo::OperatingSystemArchitecture() {
      arch = "x86";
    } else if (arch == "amd64") {
      arch = "x86_64";

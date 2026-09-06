@@ -1,11 +1,11 @@
---- content/browser/compositor/viz_process_transport_factory.cc.orig	2022-02-28 16:54:41 UTC
+--- content/browser/compositor/viz_process_transport_factory.cc.orig	2026-06-04 10:12:25 UTC
 +++ content/browser/compositor/viz_process_transport_factory.cc
-@@ -112,7 +112,7 @@ class HostDisplayClient : public viz::HostDisplayClien
+@@ -101,7 +101,7 @@ class HostDisplayClient : public viz::HostDisplayClien
+   HostDisplayClient& operator=(const HostDisplayClient&) = delete;
+ 
    // viz::HostDisplayClient:
- // TODO(crbug.com/1052397): Revisit the macro expression once build flag switch
- // of lacros-chrome is complete.
--#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS)
-+#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS) || BUILDFLAG(IS_BSD)
+-#if BUILDFLAG(IS_LINUX) && BUILDFLAG(SUPPORTS_OZONE_X11)
++#if (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)) && BUILDFLAG(SUPPORTS_OZONE_X11)
    void DidCompleteSwapWithNewSize(const gfx::Size& size) override {
      compositor_->OnCompleteSwapWithNewSize(size);
    }

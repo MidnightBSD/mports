@@ -1,37 +1,6 @@
---- base/BUILD.gn.orig	2022-08-31 12:19:35 UTC
+--- base/BUILD.gn.orig	2026-08-31 10:59:09 UTC
 +++ base/BUILD.gn
-@@ -162,7 +162,7 @@ buildflag_header("ios_cronet_buildflags") {
-   flags = [ "CRONET_BUILD=$is_cronet_build" ]
- }
- 
--enable_message_pump_epoll = is_linux || is_chromeos || is_android
-+enable_message_pump_epoll = (is_linux || is_chromeos || is_android) && !is_bsd
- buildflag_header("message_pump_buildflags") {
-   header = "message_pump_buildflags.h"
-   header_dir = "base/message_loop"
-@@ -1014,7 +1014,7 @@ mixed_component("base") {
-       "timer/hi_res_timer_manager_posix.cc",
-     ]
- 
--    if (!is_nacl && !is_apple) {
-+    if (!is_nacl && !is_apple && !is_bsd) {
-       sources += [
-         "profiler/stack_copier_signal.cc",
-         "profiler/stack_copier_signal.h",
-@@ -1023,6 +1023,12 @@ mixed_component("base") {
-         "profiler/thread_delegate_posix.h",
-       ]
-     }
-+
-+    if (is_bsd) {
-+      sources += [
-+        "profiler/stack_sampler_posix.cc",
-+      ]
-+    }
-   }
- 
-   if (is_win) {
-@@ -1507,11 +1513,23 @@ mixed_component("base") {
+@@ -1195,11 +1195,26 @@ component("base") {
    # Needed for <atomic> if using newer C++ library than sysroot, except if
    # building inside the cros_sdk environment - use host_toolchain as a
    # more robust check for this.
@@ -43,7 +12,10 @@
  
 +  # *BSD needs libkvm
 +  if (is_bsd) {
-+    libs += [ "kvm" ]
++    libs += [
++      "kvm",
++      "epoll-shim",
++    ]
 +  }
 +
 +  if (is_freebsd) {
@@ -54,18 +26,9 @@
 +  }
 +
    if (use_allocator_shim) {
-     sources += [
-       "allocator/allocator_shim.cc",
-@@ -1539,7 +1557,7 @@ mixed_component("base") {
-       ]
-       configs += [ "//base/allocator:mac_no_default_new_delete_symbols" ]
-     }
--    if (is_chromeos || is_linux) {
-+    if (is_chromeos || (is_linux && !is_bsd)) {
-       sources += [
-         "allocator/allocator_shim_override_cpp_symbols.h",
-         "allocator/allocator_shim_override_glibc_weak_symbols.h",
-@@ -1595,7 +1613,7 @@ mixed_component("base") {
+     if (is_apple) {
+       sources += [ "allocator/early_zone_registration_apple.h" ]
+@@ -1219,7 +1234,7 @@ component("base") {
  
    # Allow more direct string conversions on platforms with native utf8
    # strings
@@ -74,30 +37,10 @@
      defines += [ "SYSTEM_NATIVE_UTF8" ]
    }
  
-@@ -2183,6 +2201,42 @@ mixed_component("base") {
-     }
+@@ -2243,6 +2258,22 @@ component("base") {
+     ]
    }
  
-+  if (is_bsd) {
-+    sources -= [
-+      "files/file_path_watcher_inotify.cc",
-+      "files/file_util_linux.cc",
-+      "files/scoped_file_linux.cc",
-+      "process/memory_linux.cc",
-+      "process/process_linux.cc",
-+      "system/sys_info_linux.cc",
-+      "process/process_iterator_linux.cc",
-+      "process/process_metrics_linux.cc",
-+      "process/process_handle_linux.cc"
-+    ]
-+    sources += [
-+      "process/memory_stubs.cc",
-+      "files/file_path_watcher_kqueue.cc",
-+      "files/file_path_watcher_kqueue.h",
-+      "files/file_path_watcher_bsd.cc",
-+    ]
-+  }
-+
 +  if (is_openbsd) {
 +    sources += [
 +      "process/process_handle_openbsd.cc",
@@ -116,26 +59,78 @@
 +
    # iOS
    if (is_ios) {
-     sources -= [
-@@ -3496,7 +3550,7 @@ test("base_unittests") {
+     sources += [
+@@ -2417,6 +2448,33 @@ component("base") {
      }
    }
  
++  if (is_bsd) {
++    sources -= [
++      "files/file_path_watcher_inotify.cc",
++      "files/scoped_file_linux.cc",
++      "process/set_process_title_linux.cc",
++      "process/set_process_title_linux.h",
++      "system/sys_info_linux.cc",
++      "process/process_iterator_linux.cc",
++      "process/process_linux.cc",
++      "process/process_metrics_linux.cc",
++      "process/process_handle_linux.cc",
++      "profiler/stack_copier_signal.cc",
++      "profiler/stack_copier_signal.h",
++      "profiler/thread_delegate_posix.cc",
++      "profiler/thread_delegate_posix.h",
++      "threading/platform_thread_linux.cc",
++      "stack_canary_linux.cc",
++      "stack_canary_linux.h",
++    ]
++    sources += [
++      "files/file_path_watcher_kqueue.cc",
++      "files/file_path_watcher_kqueue.h",
++      "files/file_path_watcher_bsd.cc",
++      "threading/platform_thread_bsd.cc",
++    ]
++  }
++
+   if (use_blink) {
+     sources += [
+       "files/file_path_watcher.cc",
+@@ -2986,7 +3044,7 @@ buildflag_header("protected_memory_buildflags") {
+   header = "protected_memory_buildflags.h"
+   header_dir = "base/memory"
+ 
+-  protected_memory_enabled = !is_component_build && is_clang &&
++  protected_memory_enabled = !is_openbsd && !is_component_build && is_clang &&
+                              (is_win || is_linux || is_android || is_mac)
+ 
+   flags = [ "PROTECTED_MEMORY_ENABLED=$protected_memory_enabled" ]
+@@ -3499,7 +3557,7 @@ if (is_apple) {
+   }
+ }
+ 
+-if (is_linux || is_chromeos) {
++if (!is_bsd && (is_linux || is_chromeos)) {
+   # This test must compile with -fstack-protector-all
+   source_set("stack_canary_linux_unittests") {
+     testonly = true
+@@ -4267,7 +4325,7 @@ test("base_unittests") {
+     configs += [ ":delayload_esent_dll" ]
+   }
+ 
 -  if (is_linux || is_chromeos) {
-+  if ((is_linux || is_chromeos) && !is_bsd) {
++  if (!is_bsd && (is_linux || is_chromeos)) {
      sources += [
        "debug/proc_maps_linux_unittest.cc",
        "files/scoped_file_linux_unittest.cc",
-@@ -3543,7 +3597,7 @@ test("base_unittests") {
+@@ -4290,7 +4348,7 @@ test("base_unittests") {
        "posix/file_descriptor_shuffle_unittest.cc",
        "posix/unix_domain_socket_unittest.cc",
      ]
--    if (!is_nacl && !is_apple) {
-+    if (!is_nacl && !is_apple && !is_bsd) {
+-    if (!is_apple) {
++    if (!is_apple && !is_bsd) {
        sources += [
+         "profiler/stack_base_address_posix_unittest.cc",
          "profiler/stack_copier_signal_unittest.cc",
-         "profiler/thread_delegate_posix_unittest.cc",
-@@ -3553,7 +3607,7 @@ test("base_unittests") {
+@@ -4301,7 +4359,7 @@ test("base_unittests") {
  
    # Allow more direct string conversions on platforms with native utf8
    # strings
@@ -144,8 +139,8 @@
      defines += [ "SYSTEM_NATIVE_UTF8" ]
    }
  
-@@ -3741,7 +3795,7 @@ test("base_unittests") {
-     }
+@@ -4485,7 +4543,7 @@ test("base_unittests") {
+     deps += [ ":base_profiler_test_support_library" ]
    }
  
 -  if (is_fuchsia || is_linux || is_chromeos) {

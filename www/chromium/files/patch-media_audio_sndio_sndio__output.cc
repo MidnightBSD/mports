@@ -1,6 +1,6 @@
---- media/audio/sndio/sndio_output.cc.orig	2022-02-28 16:54:41 UTC
+--- media/audio/sndio/sndio_output.cc.orig	2026-01-14 08:33:23 UTC
 +++ media/audio/sndio/sndio_output.cc
-@@ -0,0 +1,187 @@
+@@ -0,0 +1,189 @@
 +// Copyright (c) 2012 The Chromium Authors. All rights reserved.
 +// Use of this source code is governed by a BSD-style license that can be
 +// found in the LICENSE file.
@@ -9,6 +9,8 @@
 +#include "base/time/time.h"
 +#include "base/time/default_tick_clock.h"
 +#include "media/audio/audio_manager_base.h"
++#include "media/base/audio_bus.h"
++#include "media/base/audio_sample_types.h"
 +#include "media/base/audio_timestamp_helper.h"
 +#include "media/audio/sndio/sndio_output.h"
 +
@@ -165,7 +167,7 @@
 +    // Get data to play
 +    const base::TimeDelta delay = AudioTimestampHelper::FramesToTime(hw_delay,
 +	params.sample_rate());
-+    count = source->OnMoreData(delay, base::TimeTicks::Now(), 0, audio_bus.get());
++    count = source->OnMoreData(delay, base::TimeTicks::Now(), {}, audio_bus.get());
 +    audio_bus->ToInterleaved<SignedInt16SampleTypeTraits>(count, reinterpret_cast<int16_t*>(buffer));
 +    if (count == 0) {
 +      // We have to submit something to the device

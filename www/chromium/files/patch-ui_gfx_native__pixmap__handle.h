@@ -1,24 +1,24 @@
---- ui/gfx/native_pixmap_handle.h.orig	2022-02-28 16:54:41 UTC
+--- ui/gfx/native_pixmap_handle.h.orig	2026-06-04 10:12:25 UTC
 +++ ui/gfx/native_pixmap_handle.h
-@@ -15,7 +15,7 @@
- #include "third_party/abseil-cpp/absl/types/optional.h"
- #include "ui/gfx/gfx_export.h"
+@@ -14,7 +14,7 @@
+ #include "build/build_config.h"
+ #include "components/viz/common/resources/shared_image_format.h"
  
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
  #include "base/files/scoped_file.h"
  #endif
  
-@@ -32,7 +32,7 @@ struct GFX_EXPORT NativePixmapPlane {
-   NativePixmapPlane(int stride,
-                     int offset,
+@@ -34,7 +34,7 @@ struct COMPONENT_EXPORT(GFX) NativePixmapPlane {
+   NativePixmapPlane(uint32_t stride,
+                     uint64_t offset,
                      uint64_t size
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
                      ,
                      base::ScopedFD fd
  #elif BUILDFLAG(IS_FUCHSIA)
-@@ -53,7 +53,7 @@ struct GFX_EXPORT NativePixmapPlane {
+@@ -55,7 +55,7 @@ struct COMPONENT_EXPORT(GFX) NativePixmapPlane {
    // This is necessary to map the buffers.
    uint64_t size;
  
@@ -27,7 +27,7 @@
    // File descriptor for the underlying memory object (usually dmabuf).
    base::ScopedFD fd;
  #elif BUILDFLAG(IS_FUCHSIA)
-@@ -82,7 +82,7 @@ struct GFX_EXPORT NativePixmapHandle {
+@@ -78,7 +78,7 @@ struct COMPONENT_EXPORT(GFX) NativePixmapHandle {
  
    std::vector<NativePixmapPlane> planes;
  
