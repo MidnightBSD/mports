@@ -32,7 +32,7 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/src/${PORTNAME}/src/designer/images/designer.png \
 		${PREFIX}/share/pixmaps/designer-qt5.png
 	# The generated .pc file refers to a nonexistent other .pc file
-	${REINPLACE_CMD} -e '/^Requires/s/Qt5UiPlugin//' \
+	${SED} -i '' -e '/^Requires/s/Qt5UiPlugin//' \
 		${PREFIX}/libdata/pkgconfig/Qt5Designer.pc
 	${SED} -i '' 's|/../../../../|/../../../|g' \
 		${PREFIX}/lib/cmake/Qt5Designer/Qt5DesignerConfig.cmake
