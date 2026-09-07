@@ -219,7 +219,7 @@ pre-configure:
 # If we are using bootstrap compiler, configure and install it into ${BOOT_DIR}
 .if empty(PORT_OPTIONS:MBOOT)
 	cd ${BOOT_DIR} && ${CONFIGURE_ENV} ${CONFIGURE_ENV_BOOTSTRAP} ${CONFIGURE_CMD} --prefix=${BOOT_INSTALL_DIR} --build=${CONFIGURE_TARGET} --host=${CONFIGURE_TARGET} --target=${CONFIGURE_TARGET}
-	cd ${BOOT_DIR} && PACKAGES='' ${MAKE_CMD} install
+	cd ${BOOT_DIR} && ${SETENVI} ${WRK_ENV} ${MAKE_CMD} PACKAGES='' install
 .endif
 .ifdef USE_HADRIAN
 # Compile Hadrian
