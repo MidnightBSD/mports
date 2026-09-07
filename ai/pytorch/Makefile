@@ -1,7 +1,6 @@
 PORTNAME=	pytorch
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.4.1
-PORTREVISION=	1
+DISTVERSION=	2.13.0
 CATEGORIES=	ai # machine-learning
 MASTER_SITES=	https://github.com/pytorch/pytorch/releases/download/v${DISTVERSION}/
 DIST_SUBDIR=	${PORTNAME}
@@ -15,11 +14,12 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BROKEN_i386=	compilation fails: error: use of undeclared identifier 'AVX2'
 
-BUILD_DEPENDS=	gmake:devel/gmake \
-		${LOCALBASE}/include/fxdiv.h:devel/fxdiv \
+BUILD_DEPENDS=	${LOCALBASE}/include/fxdiv.h:devel/fxdiv \
+		${PYTHON_PKGNAMEPREFIX}packaging>=0:devel/py-packaging@${PY_FLAVOR} \
 		${PY_SETUPTOOLS}
 LIB_DEPENDS=	libabsl_base.so:devel/abseil \
 		libblis.so:math/blis \
+		libfmt.so:devel/libfmt \
 		libopenblas.so:math/openblas \
 		libmpi_cxx.so:net/openmpi4 \
 		libonnx.so:ai/onnx \
@@ -27,10 +27,11 @@ LIB_DEPENDS=	libabsl_base.so:devel/abseil \
 		libprotobuf.so:devel/protobuf \
 		libsleef.so:math/sleef
 
-USES=		compiler:c++17-lang cmake localbase:ldflags python # requires python even with PYTHON=off
+USES=		compiler:c++17-lang cmake:noninja gmake localbase:ldflags python # requires python even with PYTHON=off
 
 CMAKE_OFF=	BUILD_CUSTOM_PROTOBUF USE_CUDA USE_ROCM  USE_NNPACK USE_QNNPACK USE_PYTORCH_QNNPACK \
 		USE_FBGEMM # workaround recommended by the upstream here: https://github.com/pytorch/pytorch/issues/28337
+CMAKE_OFF+=	BUILD_TEST BUILD_AOT_INDUCTOR_TEST
 CMAKE_ON=	USE_SYSTEM_PYBIND11 \
 		USE_SYSTEM_SLEEF \
 		USE_SYSTEM_ONNX # see other USE_SYSTEM_xx in CMakeLists.txt
@@ -38,7 +39,6 @@ CMAKE_ON+=	ONNX_USE_LITE_PROTO # workaround for the protobuf-related failure des
 CMAKE_ARGS=	-DPSIMD_SOURCE_DIR=${WRKSRC}/third_party/psimd \
 		-DPYTHON_EXECUTABLE=${PYTHON_CMD}
 
-MAKE_ENV=	USE_NINJA=no # ninja breaks for some reason
 LDFLAGS+=	-lexecinfo \
 		-pthread
 
@@ -76,6 +76,8 @@ post-patch:
 post-install:
 	# functorch.so is installed back into the source directory, see https://github.com/pytorch/pytorch/issues/91524
 	@${RM} $$(${FIND} ${FAKE_DESTDIR} -name functorch.so)
+	# Remove build artifacts installed with absolute paths
+	@${RM} -r ${FAKE_DESTDIR}${WRKDIR} || true
 	# https://github.com/pytorch/pytorch/issues/24417
 	@${FIND} ${FAKE_DESTDIR} -type d -empty -delete
 
