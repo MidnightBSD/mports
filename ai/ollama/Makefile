@@ -1,6 +1,7 @@
 PORTNAME=	ollama
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.20.2
+PORTREVISION=	1
 CATEGORIES=	ai # machine-learning
 
 MAINTAINER=	ports@MidnightBSD.org
