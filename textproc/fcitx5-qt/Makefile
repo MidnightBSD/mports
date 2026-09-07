@@ -1,5 +1,5 @@
 PORTNAME=	fcitx5-qt
-DISTVERSION=	5.1.12
+DISTVERSION=	5.1.14
 CATEGORIES=	textproc
 MASTER_SITES=	https://download.fcitx-im.org/fcitx5/${PORTNAME}/
 

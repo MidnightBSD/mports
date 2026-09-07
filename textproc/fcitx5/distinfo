@@ -1,5 +1,5 @@
-TIMESTAMP = 1783147615
-SHA256 (fcitx5/fcitx5-5.1.13.tar.zst) = b8dd27c06dc3b56884a6ff353c8230be2805f5bca54d9eb9c7803147133d8d24
-SIZE (fcitx5/fcitx5-5.1.13.tar.zst) = 7745806
+TIMESTAMP = 1788793173
+SHA256 (fcitx5/fcitx5-5.1.21.tar.zst) = 0ddda3cae1c442be56cb4179e33875fdfba1bc2455f60e4af31fa48036292596
+SIZE (fcitx5/fcitx5-5.1.21.tar.zst) = 9877100
 SHA256 (fcitx5/en_dict-20121020.tar.gz) = c44a5d7847925eea9e4d2d04748d442cd28dd9299a0b572ef7d91eac4f5a6ceb
 SIZE (fcitx5/en_dict-20121020.tar.gz) = 630491
