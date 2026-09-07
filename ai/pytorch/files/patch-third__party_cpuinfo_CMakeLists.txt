@@ -1,56 +1,56 @@
---- third_party/cpuinfo/CMakeLists.txt.orig	2024-06-05 19:17:57 UTC
+-- Teach the bundled cpuinfo about MidnightBSD. CMAKE_SYSTEM_NAME is
+-- "MidnightBSD", so upstream's FreeBSD checks do not match and cpuinfo
+-- would build with no platform init, no topology source and no thread
+-- linkage, leaving cpuinfo_initialize() always failing.
+--- third_party/cpuinfo/CMakeLists.txt.orig	2026-07-08 17:44:27 UTC
 +++ third_party/cpuinfo/CMakeLists.txt
-@@ -92,7 +92,7 @@ IF(NOT CMAKE_SYSTEM_PROCESSOR)
-       "cpuinfo will compile, but cpuinfo_initialize() will always fail.")
-     SET(CPUINFO_SUPPORTED_PLATFORM FALSE)
-   ENDIF()
--ELSEIF(NOT CPUINFO_TARGET_PROCESSOR MATCHES "^(i[3-6]86|AMD64|x86(_64)?|armv[5-8].*|aarch64|arm64.*|ARM64.*)$")
-+ELSEIF(NOT CPUINFO_TARGET_PROCESSOR MATCHES "^(i[3-6]86|amd64|x86(_64)?|armv[5-8].*|aarch64|arm64.*|ARM64.*)$")
-   MESSAGE(WARNING
-     "Target processor architecture \"${CPUINFO_TARGET_PROCESSOR}\" is not supported in cpuinfo. "
-     "cpuinfo will compile, but cpuinfo_initialize() will always fail.")
-@@ -105,7 +105,7 @@ IF(NOT CMAKE_SYSTEM_NAME)
+@@ -67,7 +67,7 @@
+ 
+ # -- [ Determine target processor
+ SET(CPUINFO_TARGET_PROCESSOR "${CMAKE_SYSTEM_PROCESSOR}")
+-IF(CMAKE_SYSTEM_NAME MATCHES "FreeBSD" AND CPUINFO_TARGET_PROCESSOR STREQUAL "amd64")
++IF(CMAKE_SYSTEM_NAME MATCHES "FreeBSD|MidnightBSD" AND CPUINFO_TARGET_PROCESSOR STREQUAL "amd64")
+   SET(CPUINFO_TARGET_PROCESSOR "AMD64")
+ ENDIF()
+ IF(IS_APPLE_OS AND CMAKE_OSX_ARCHITECTURES MATCHES "^(x86_64|arm64.*)$")
+@@ -108,7 +108,7 @@
        "Target operating system is not specified. "
        "cpuinfo will compile, but cpuinfo_initialize() will always fail.")
    SET(CPUINFO_SUPPORTED_PLATFORM FALSE)
--ELSEIF(NOT CMAKE_SYSTEM_NAME MATCHES "^(Windows|WindowsStore|CYGWIN|MSYS|Darwin|Linux|Android)$")
-+ELSEIF(NOT CMAKE_SYSTEM_NAME MATCHES "^(Windows|WindowsStore|CYGWIN|MSYS|Darwin|Linux|FreeBSD|Android)$")
+-ELSEIF(NOT CMAKE_SYSTEM_NAME MATCHES "^(Windows|WindowsStore|CYGWIN|MSYS|Darwin|Linux|Android|FreeBSD|Emscripten)$")
++ELSEIF(NOT CMAKE_SYSTEM_NAME MATCHES "^(Windows|WindowsStore|CYGWIN|MSYS|Darwin|Linux|Android|FreeBSD|MidnightBSD|Emscripten)$")
    IF(${CMAKE_VERSION} VERSION_GREATER_EQUAL "3.14" AND NOT IS_APPLE_OS)
      MESSAGE(WARNING
        "Target operating system \"${CMAKE_SYSTEM_NAME}\" is not supported in cpuinfo. "
-@@ -158,7 +158,7 @@ IF(CPUINFO_SUPPORTED_PLATFORM)
- SET(CPUINFO_SRCS src/api.c src/cache.c src/init.c src/log.c)
- 
- IF(CPUINFO_SUPPORTED_PLATFORM)
--  IF(NOT CMAKE_SYSTEM_NAME STREQUAL "Emscripten" AND (CPUINFO_TARGET_PROCESSOR MATCHES "^(i[3-6]86|AMD64|x86(_64)?)$" OR IOS_ARCH MATCHES "^(i386|x86_64)$"))
-+  IF(NOT CMAKE_SYSTEM_NAME STREQUAL "Emscripten" AND (CPUINFO_TARGET_PROCESSOR MATCHES "^(i[3-6]86|amd64|x86(_64)?)$" OR IOS_ARCH MATCHES "^(i386|x86_64)$"))
-     LIST(APPEND CPUINFO_SRCS
-       src/x86/init.c
-       src/x86/info.c
-@@ -354,7 +354,7 @@ IF(CPUINFO_SUPPORTED_PLATFORM AND CPUINFO_BUILD_MOCK_T
- # ---[ cpuinfo mock library and mock tests
- IF(CPUINFO_SUPPORTED_PLATFORM AND CPUINFO_BUILD_MOCK_TESTS)
-   SET(CPUINFO_MOCK_SRCS "${CPUINFO_SRCS}")
--  IF(CPUINFO_TARGET_PROCESSOR MATCHES "^(i[3-6]86|AMD64|x86(_64)?)$")
-+  IF(CPUINFO_TARGET_PROCESSOR MATCHES "^(i[3-6]86|amd64|x86(_64)?)$")
-     LIST(APPEND CPUINFO_MOCK_SRCS src/x86/mockcpuid.c)
-   ENDIF()
-   IF(CMAKE_SYSTEM_NAME STREQUAL "Linux" OR CMAKE_SYSTEM_NAME STREQUAL "Android")
-@@ -798,7 +798,7 @@ IF(CPUINFO_SUPPORTED_PLATFORM AND CPUINFO_BUILD_UNIT_T
-     ADD_TEST(NAME get-current-test COMMAND get-current-test)
+@@ -181,7 +181,7 @@
+       LIST(APPEND CPUINFO_SRCS src/x86/mach/init.c)
+     ELSEIF(CMAKE_SYSTEM_NAME MATCHES "^(Windows|WindowsStore|CYGWIN|MSYS)$")
+       LIST(APPEND CPUINFO_SRCS src/x86/windows/init.c)
+-    ELSEIF(CMAKE_SYSTEM_NAME STREQUAL "FreeBSD")
++    ELSEIF(CMAKE_SYSTEM_NAME MATCHES "^(FreeBSD|MidnightBSD)$")
+       LIST(APPEND CPUINFO_SRCS src/x86/freebsd/init.c)
+     ENDIF()
+   ELSEIF(CMAKE_SYSTEM_NAME MATCHES "^Windows" AND CPUINFO_TARGET_PROCESSOR MATCHES "^(ARM64|arm64|aarch64)$")
+@@ -240,11 +240,11 @@
+       src/linux/processors.c)
+   ELSEIF(IS_APPLE_OS)
+     LIST(APPEND CPUINFO_SRCS src/mach/topology.c)
+-  ELSEIF(CMAKE_SYSTEM_NAME STREQUAL "FreeBSD")
++  ELSEIF(CMAKE_SYSTEM_NAME MATCHES "^(FreeBSD|MidnightBSD)$")
+     LIST(APPEND CPUINFO_SRCS src/freebsd/topology.c)
    ENDIF()
  
--  IF(CPUINFO_TARGET_PROCESSOR MATCHES "^(i[3-6]86|AMD64|x86(_64)?)$")
-+  IF(CPUINFO_TARGET_PROCESSOR MATCHES "^(i[3-6]86|amd64|x86(_64)?)$")
-     ADD_EXECUTABLE(brand-string-test test/name/brand-string.cc)
-     CPUINFO_TARGET_ENABLE_CXX11(brand-string-test)
-     CPUINFO_TARGET_RUNTIME_LIBRARY(brand-string-test)
-@@ -865,7 +865,7 @@ IF(CPUINFO_SUPPORTED_PLATFORM AND CPUINFO_BUILD_TOOLS)
-     CPUINFO_TARGET_RUNTIME_LIBRARY(cpuinfo-dump)
+-  IF(CMAKE_SYSTEM_NAME STREQUAL "Linux" OR CMAKE_SYSTEM_NAME STREQUAL "Android" OR CMAKE_SYSTEM_NAME STREQUAL "FreeBSD")
++  IF(CMAKE_SYSTEM_NAME STREQUAL "Linux" OR CMAKE_SYSTEM_NAME STREQUAL "Android" OR CMAKE_SYSTEM_NAME MATCHES "^(FreeBSD|MidnightBSD)$")
+     SET(CMAKE_THREAD_PREFER_PTHREAD TRUE)
+     SET(THREADS_PREFER_PTHREAD_FLAG TRUE)
+     FIND_PACKAGE(Threads REQUIRED)
+@@ -309,7 +309,7 @@
+     TARGET_LINK_LIBRARIES(cpuinfo_internals PUBLIC ${CMAKE_THREAD_LIBS_INIT})
+     TARGET_COMPILE_DEFINITIONS(cpuinfo PRIVATE _GNU_SOURCE=1)
+     TARGET_COMPILE_DEFINITIONS(cpuinfo_internals PRIVATE _GNU_SOURCE=1)
+-  ELSEIF(CMAKE_SYSTEM_NAME STREQUAL "FreeBSD")
++  ELSEIF(CMAKE_SYSTEM_NAME MATCHES "^(FreeBSD|MidnightBSD)$")
+     TARGET_LINK_LIBRARIES(cpuinfo PUBLIC ${CMAKE_THREAD_LIBS_INIT})
+     TARGET_LINK_LIBRARIES(cpuinfo_internals PUBLIC ${CMAKE_THREAD_LIBS_INIT})
    ENDIF()
- 
--  IF(CPUINFO_TARGET_PROCESSOR MATCHES "^(i[3-6]86|AMD64|x86(_64)?)$")
-+  IF(CPUINFO_TARGET_PROCESSOR MATCHES "^(i[3-6]86|amd64|x86(_64)?)$")
-     ADD_EXECUTABLE(cpuid-dump tools/cpuid-dump.c)
-     CPUINFO_TARGET_ENABLE_C99(cpuid-dump)
-     CPUINFO_TARGET_RUNTIME_LIBRARY(cpuid-dump)
