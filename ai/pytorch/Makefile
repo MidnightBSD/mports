@@ -1,6 +1,7 @@
 PORTNAME=	pytorch
 DISTVERSIONPREFIX=	v
 DISTVERSION=	2.13.0
+PORTREVISION=	1
 CATEGORIES=	ai # machine-learning
 MASTER_SITES=	https://github.com/pytorch/pytorch/releases/download/v${DISTVERSION}/
 DIST_SUBDIR=	${PORTNAME}
@@ -44,9 +45,16 @@ LDFLAGS+=	-lexecinfo \
 
 BINARY_ALIAS=	make=${GMAKE} git=true
 
-OPTIONS_DEFINE=		PYTHON # PYTHON only provides python support for the py-PyTorch port - it's not a python binding
+OPTIONS_DEFINE=		PYTHON DISTRIBUTED # PYTHON only provides python support for the py-PyTorch port - it's not a python binding
 OPTIONS_DEFAULT=	PYTHON
 OPTIONS_SUB=		yes
+
+DISTRIBUTED_DESC=	Distributed training support (gloo, MPI, tensorpipe)
+
+# USE_LIBUV rides along with USE_DISTRIBUTED rather than being a separate knob:
+# gloo's only other transport is tcp, which is Linux-only because it uses
+# epoll(2), so without libuv gloo would be built with no transport at all.
+DISTRIBUTED_CMAKE_BOOL=	USE_DISTRIBUTED USE_LIBUV
 
 PYTHON_CMAKE_BOOL=	BUILD_PYTHON
 PYTHON_PY_DEPENDS=	${PYNUMPY} \
