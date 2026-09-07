@@ -1,6 +1,6 @@
 PORTNAME=	log4cxx
 PORTVERSION=	1.5.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	https://archive.apache.org/dist/logging/log4cxx/${PORTVERSION}/
 DISTNAME=	apache-log4cxx-${PORTVERSION}

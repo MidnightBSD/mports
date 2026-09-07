@@ -1,6 +1,6 @@
 PORTNAME=	fmt
 # Make sure to check devel/spdlog consumers too
-PORTVERSION=	9.1.0
+PORTVERSION=	12.1.0
 CATEGORIES=	devel
 MASTER_SITES=	https://github.com/fmtlib/fmt/releases/download/${PORTVERSION}/
 PKGNAMEPREFIX=	lib
@@ -10,7 +10,7 @@ COMMENT=	Formatting library for C++
 WWW=		https://fmt.dev/
 
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/LICENSE.rst
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		cmake compiler:c++11-lang cpe zip
 
