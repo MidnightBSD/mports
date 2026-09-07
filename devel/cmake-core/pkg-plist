@@ -3300,6 +3300,10 @@ share/bash-completion/completions/ctest
 %%DATADIR%%/Modules/Platform/Linker/MSYS-LLD-C.cmake
 %%DATADIR%%/Modules/Platform/Linker/MSYS-LLD-CXX.cmake
 %%DATADIR%%/Modules/Platform/Linker/MSYS-LLD-Fortran.cmake
+%%DATADIR%%/Modules/Platform/Linker/MidnightBSD-ASM.cmake
+%%DATADIR%%/Modules/Platform/Linker/MidnightBSD-C.cmake
+%%DATADIR%%/Modules/Platform/Linker/MidnightBSD-CXX.cmake
+%%DATADIR%%/Modules/Platform/Linker/MidnightBSD-Fortran.cmake
 %%DATADIR%%/Modules/Platform/Linker/MirBSD-ASM.cmake
 %%DATADIR%%/Modules/Platform/Linker/MirBSD-C.cmake
 %%DATADIR%%/Modules/Platform/Linker/MirBSD-CXX.cmake
