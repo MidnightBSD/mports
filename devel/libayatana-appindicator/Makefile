@@ -4,6 +4,7 @@ CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ayatana Application Indicators Shared Library
+WWW=		https://github.com/AyatanaIndicators/libayatana-appindicator
 
 LICENSE=	lgpl3
 
@@ -19,8 +20,9 @@ LIB_DEPENDS=	libharfbuzz.so:print/harfbuzz \
 
 USE_GNOME=	introspection gtk30 glib20 pango atk cairo gdkpixbuf
 CMAKE_OFF=	ENABLE_BINDINGS_MONO \
-		FLAVOUR_GTK2 \
-		ENABLE_BINDINGS_VALA
+		ENABLE_BINDINGS_VALA \
+		ENABLE_GTKDOC \
+		FLAVOUR_GTK2
 
 USE_LDCONFIG=	yes
 
