@@ -1,6 +1,6 @@
 PORTNAME=	devilutionX
 DISTVERSION=	1.5.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	games
 MASTER_SITES=	https://github.com/diasurgical/devilutionx-assets/releases/download/${DATA_VERSION}/:data
 DISTFILES=	devilutionx.mpq?tag=${DATA_VERSION}:data
@@ -20,7 +20,7 @@ BUILD_DEPENDS=	${LOCALBASE}/include/SimpleIni.h:devel/simpleini
 LIB_DEPENDS=	libfmt.so:devel/libfmt
 
 USES=		cmake compiler:c++11-lang dos2unix gettext-tools pkgconfig sdl
-DOS2UNIX_GLOB=	*.cpp *.h CMakeLists.txt Dependencies.cmake
+DOS2UNIX_GLOB=	*.cpp *.h *.cmake CMakeLists.txt
 USE_GITHUB=	yes
 GH_ACCOUNT=	diasurgical
 GH_PROJECT=	DevilutionX
