@@ -1,6 +1,6 @@
 PORTNAME=	telegram-desktop
 DISTVERSION=	6.5.0
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	net-im
 MASTER_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/releases/download/v${DISTVERSION}/
 DISTNAME=	tdesktop-${DISTVERSION}-full
@@ -45,6 +45,13 @@ LIB_DEPENDS=	libabsl_base.so:devel/abseil \
 		libsrtp2.so:net/libsrtp2 \
 		libxxhash.so:devel/xxhash \
 		libvpx.so:multimedia/libvpx
+
+# clang runs out of memory building the generated gi/gio bindings when many
+# compiles run at once, dying with SIGBUS partway through a
+# gen/gio/*_impl.hpp parse. Seen with both base clang 19 and devel/llvm21, and
+# which file dies varies between runs. 16 jobs fails on a 32 GB machine, 8 and
+# 2 both succeed; capped conservatively so builders with less memory are safe.
+MAKE_JOBS_NUMBER_LIMIT=	4
 
 USES=		cmake compiler:c++20-lang desktop-file-utils gl gnome jpeg kde:6 localbase \
 		minizip openal pkgconfig python:build qt:6 ssl
