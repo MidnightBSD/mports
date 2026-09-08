@@ -1,5 +1,6 @@
 PORTNAME=	gmsh
 DISTVERSION=	4.15.2
+PORTREVISION=	1
 CATEGORIES=	cad
 MASTER_SITES=	http://gmsh.info/src/
 DISTNAME=	${PORTNAME}-${PORTVERSION}-source
@@ -31,7 +32,7 @@ LIB_DEPENDS=	libfltk.so:x11-toolkits/fltk \
 		${LIB_DEPENDS_${ARCH}}
 RUN_DEPENDS=	getdp:science/getdp
 
-USES=		bison compiler:c++14-lang cmake:testing eigen:3 fortran gl	\
+USES=		bison compiler:c++17-lang cmake:testing eigen:3 fortran gl	\
 		jpeg localbase tar:tgz xorg
 
 # Only for 64 bits ARCHs
@@ -76,5 +77,13 @@ OCC_LIB_DEPENDS=	libopenblas.so:math/openblas libTKernel.so:cad/opencascade
 OCC_USES=		gnome
 OCC_USE=		gnome=cairo
 STATIC_CMAKE_BOOL=	ENABLE_BUILD_LIB
+
+post-patch:
+# OpenCASCADE 8 headers require C++17
+	@${REINPLACE_CMD} -e 's|set(CMAKE_CXX_STANDARD 14)|set(CMAKE_CXX_STANDARD 17)|' \
+		${WRKSRC}/CMakeLists.txt
+# OpenCASCADE 8 dropped the legacy Handle_Foo typedefs; use the Handle() macro
+	@${REINPLACE_CMD} -E -e 's|Handle_([A-Za-z0-9_]+)|Handle(\1)|g' \
+		${WRKSRC}/src/geo/GModelIO_OCC.cpp
 
 .include <bsd.port.mk>

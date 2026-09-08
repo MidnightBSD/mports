@@ -1,6 +1,6 @@
 PORTNAME=	gmsh
 DISTVERSION=	4.14.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	cad python
 MASTER_SITES=	https://gmsh.info/src/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -29,7 +29,7 @@ LIB_DEPENDS=	libcgns.so:science/cgnslib \
 		libsz.so:science/libaec \
 		libTKV3d.so:cad/opencascade
 
-USES=		cmake gl gnome jpeg python tar:tgz xorg
+USES=		cmake compiler:c++17-lang gl gnome jpeg python tar:tgz xorg
 USE_PYTHON=	flavors
 USE_GNOME=	cairo
 USE_GL=		gl glu
@@ -57,5 +57,13 @@ post-install: # remove all except for the python binding
 			${STAGEDIR}${PREFIX}/lib/gmsh* \
 			${STAGEDIR}${PREFIX}/lib/lib* \
 			${STAGEDIR}${PYTHON_SITELIBDIR}
+
+post-patch:
+# OpenCASCADE 8 headers require C++17
+	@${REINPLACE_CMD} -e 's|set(CMAKE_CXX_STANDARD 14)|set(CMAKE_CXX_STANDARD 17)|' \
+		${WRKSRC}/CMakeLists.txt
+# OpenCASCADE 8 dropped the legacy Handle_Foo typedefs; use the Handle() macro
+	@${REINPLACE_CMD} -E -e 's|Handle_([A-Za-z0-9_]+)|Handle(\1)|g' \
+		${WRKSRC}/src/geo/GModelIO_OCC.cpp
 
 .include <bsd.port.mk>
