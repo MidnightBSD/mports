@@ -38,7 +38,7 @@ MPIF90=		${MPIFC}
 .    endif
 MPI_CFLAGS+=	`pkgconf --cflags mpich`
 .  elif ${mpi_ARGS} == openmpi
-LIB_DEPENDS+=	libmpi_cxx.so:net/openmpi
+LIB_DEPENDS+=	libmpi_mpifh.so:net/openmpi
 MPI_HOME=	${LOCALBASE}/mpi/openmpi
 MPI4PY=		${PYTHON_PKGNAMEPREFIX}mpi4py>0:net/py-mpi4py@${PY_FLAVOR}
 .    if ${USES:Mfortran}

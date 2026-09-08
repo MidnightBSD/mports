@@ -35,22 +35,14 @@ PLIST_SUB=	PYTHON_MAJOR_VER=${PYTHON_MAJOR_VER} \
 		SHLIB_VER=${DISTVERSION:R} \
 		SHLIB_VERSION=${DISTVERSION}
 
-.include <bsd.mport.options.mk>
-
-.if ${ARCH} == aarch64 || ${ARCH} == amd64 || ${ARCH} == i386
+# MidnightBSD only supports amd64 and i386, so the webengine-based modules
+# are always built.  Do not include bsd.mport.options.mk here: the double
+# inclusion of bsd.mport.mk prepends DESTDIR to LOCALBASE twice during fake,
+# which breaks ${PYTHON_CMD} in post-install.
 PLIST_SUB+=	PDF="" \
 		WEBENGINE="" \
 		WEBVIEW=""
 USE_QT+=	pdf webengine webview
-.else
-CMAKE_ON+=	CMAKE_DISABLE_FIND_PACKAGE_Qt6WebEngineCore \
-		CMAKE_DISABLE_FIND_PACKAGE_Qt6WebEngineQuick \
-		CMAKE_DISABLE_FIND_PACKAGE_Qt6WebEngineWidgets \
-		CMAKE_DISABLE_FIND_PACKAGE_Qt6WebView
-PLIST_SUB+=	PDF="@comment " \
-		WEBENGINE="@comment " \
-		WEBVIEW="@comment "
-.endif
 
 post-install:
 	${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py \
