@@ -1,7 +1,7 @@
 # Created by: torstenb
 
 PORTNAME=	zsh
-DISTVERSION=	5.9
+DISTVERSION=	5.9.2
 CATEGORIES=	shells
 MASTER_SITES=	https://www.zsh.org/pub/ \
 		SF \
@@ -20,12 +20,15 @@ LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 MAKE_JOBS_UNSAFE=	yes
 
-USES=		autoreconf cpe iconv localbase:ldflags ncurses shebangfix tar:xz
+USES=		cpe iconv localbase:ldflags ncurses perl5 shebangfix tar:xz
+
+USE_PERL5=	build
 
 SHEBANG_LANG=	zsh
 zsh_OLD_CMD=	zsh	# shebang appears as /bin/zsh and just zsh
 SHEBANG_FILES=	Functions/Calendar/* \
-		Functions/Misc/*
+		Functions/Misc/* \
+		Functions/VCS_Info/*
 
 CONFIGURE_ARGS=	--with-tcsetpgrp \
 		--enable-function-subdirs \
@@ -39,30 +42,28 @@ CONFIGURE_ARGS+=--disable-site-fndir \
 		--enable-additional-fpath=${DATADIR}/site-functions
 
 CONFIGURE_ENV+=	zsh_cv_sys_path_dev_fd=no \
-		ac_cv_header_sys_capability_h=no
+		ac_cv_header_sys_capability_h=no \
+		zsh_cv_path_utmpx=/var/run/utx.active
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd11.4
 
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-DBOOL_DEFINED
 LDFLAGS+=	-Wl,--as-needed
-#TEST_TARGET=	test
-NO_TEST=	yes
+TEST_TARGET=	test
 
-OPTIONS_DEFINE=	DEBUG ETCDIR GDBM MEM PCRE STATIC \
+OPTIONS_DEFINE=	DEBUG ETCDIR GDBM PCRE STATIC \
 		DOCS EXAMPLES
 OPTIONS_SUB=	yes
 
 ETCDIR_DESC=	System-wide defaults in /etc (instead of $${PREFIX}/etc)
 GDBM_DESC=	Enable GDBM support (GPL)
-MEM_DESC=	Enable zsh-mem options
 
 GDBM_LIB_DEPENDS=	libgdbm.so:databases/gdbm
-PCRE_LIB_DEPENDS=	libpcre.so:devel/pcre
+PCRE_LIB_DEPENDS=	libpcre2-8.so:devel/pcre2
 
 DEBUG_CONFIGURE_ENABLE=	zsh-debug
 ETCDIR_CONFIGURE_OFF=	--enable-etcdir=${PREFIX}/etc
 GDBM_CONFIGURE_ENABLE=	gdbm
-MEM_CONFIGURE_ENABLE=	zsh-mem
 PCRE_CONFIGURE_ENABLE=	pcre
 
 ## Some modules can only be built as a shared library.
@@ -80,7 +81,7 @@ DOCS_DISTFILES=	${DISTNAME}-doc${EXTRACT_SUFX}:doc
 PORTDOCS=	*
 PORTEXAMPLES=	zlogin zshenv zshrc
 
-ZSH_VER=	${PORTVERSION}
+ZSH_VER=	${DISTVERSION}
 PLIST_SUB+=	ZSH_VER="${ZSH_VER}"
 SUB_FILES=	pkg-message
 
