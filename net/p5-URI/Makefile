@@ -1,5 +1,5 @@
 PORTNAME=	URI
-PORTVERSION=	5.36
+PORTVERSION=	5.37
 CATEGORIES=	net perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:OALDERS
@@ -13,7 +13,8 @@ LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	p5-MIME-Base32>=0:converters/p5-MIME-Base32
+RUN_DEPENDS=	p5-MIME-Base32>=0:converters/p5-MIME-Base32 \
+		p5-MIME-Base64>=0:converters/p5-MIME-Base64
 TEST_DEPENDS=	p5-Test-Needs>=0:devel/p5-Test-Needs \
 		p5-Test-Warnings>=0:devel/p5-Test-Warnings
 
