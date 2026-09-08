@@ -130,7 +130,7 @@ post-patch:
 	${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|' \
 		${WRKSRC}/gio/xdgmime/xdgmime.c \
 		${WRKSRC}/glib/gutils.c \
-		${WRKSRC}/glib/tests/utils.c
+		${WRKSRC}/glib/tests/utils-unisolated.c
 
 CODEGENDIR=	${PREFIX}/share/glib-2.0/codegen
 
