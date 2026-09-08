@@ -264,6 +264,7 @@ post-patch-IPV6-off:
 	@${REINPLACE_CMD} -E -e's| ::1$$||' -e's| ::1?/128||g' \
 		-e'/acl localnet src f[ce][08]0::/d' \
 		-e's| 2001:DB8::[^[:space:]]+$$||' \
+		-e's| fe80::/10||' \
 		-e'/tcp_outgoing_address 2001:db8::/d' \
 		${WRKSRC}/src/cf.data.pre
 
