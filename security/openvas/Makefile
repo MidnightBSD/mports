@@ -1,7 +1,6 @@
 PORTNAME=	openvas
-DISTVERSION=	23.16.1
-PORTREVISION=	1
 DISTVERSIONPREFIX=	v
+DISTVERSION=	23.50.24
 CATEGORIES=	security
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -31,6 +30,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}impacket>=0:net/py-impacket@${PY_FLAVOR} \
 
 USES=		bison cmake gnome gssapi:mit pkgconfig python ssl
 USE_GITHUB=	yes
+USE_LDCONFIG=	yes
 GH_ACCOUNT=	greenbone
 GH_PROJECT=	${PORTNAME}-scanner
 USE_GNOME=	glib20
@@ -42,8 +42,8 @@ GROUPS=		${USERS}
 
 .include <bsd.port.pre.mk>
 
-.if ${OPSYS} == FreeBSD
-CFLAGS+=	-Wno-error=strict-prototypes -Wno-error=unused-but-set-variable -Wno-error=invalid-utf8 -Wno-implicit-function-declaration
+.if ${OPSYS} == FreeBSD || ${OPSYS} == MidnightBSD
+CFLAGS+=	-Wno-error=strict-prototypes -Wno-error=sometimes-uninitialized -Wno-error=unused-but-set-variable -Wno-error=invalid-utf8 -Wno-implicit-function-declaration
 .endif
 
 # The struct this error is about is only ever accessed using bcopy() and memset(),

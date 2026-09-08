@@ -1,6 +1,6 @@
 --- nasl/nasl_packet_forgery.c	2022-02-22 05:32:53.000000000 -0500
 +++ nasl/nasl_packet_forgery.c	2022-05-20 22:17:07.796127000 -0500
-@@ -33,6 +33,12 @@
+@@ -23,6 +23,12 @@
  #include "nasl_tree.h"
  #include "nasl_var.h"
  
@@ -28,7 +28,7 @@
 @@ -119,6 +130,7 @@
    struct in6_addr *dst_addr;
    char *data;
-   int data_len;
+   size_t data_len;
 +  struct in_addr tmp_src, tmp_dst;
  
    dst_addr = plug_get_host_ip (script_infos);
