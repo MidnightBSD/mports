@@ -77,7 +77,7 @@ post-install:
 	${MV} ${PREFIX}/share/man/man1/gpgv.1 ${PREFIX}/share/man/man1/gpgv2.1
 	${MV} ${DATADIR}/help*.txt ${DOCSDIR}
 
-# Preserve the established gpg2 command name while providing gpg as a link.
+# Preserve the established gpg2 command name for the test suite.
 pre-test:
 	${LN} -s gpg ${WRKSRC}/bin/gpg2
 
