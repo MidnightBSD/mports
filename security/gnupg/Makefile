@@ -1,5 +1,5 @@
 PORTNAME=	gnupg
-DISTVERSION=	2.4.9
+DISTVERSION=	2.5.22
 CATEGORIES=	security
 MASTER_SITES=	GNUPG
 
@@ -24,7 +24,7 @@ USES=		compiler:c11 cpe gmake iconv makeinfo pkgconfig readline sqlite tar:bzip2
 CONFLICTS=	dirmngr
 CPE_VENDOR=	gnupg
 
-CONFIGURE_ARGS=	--disable-ntbtls --enable-gpg-is-gpg2
+CONFIGURE_ARGS=	--disable-ntbtls
 GNU_CONFIGURE=	yes
 INFO=		gnupg
 TEST_TARGET=	check
@@ -70,10 +70,14 @@ pre-build:
 	${TOUCH} ${WRKSRC}/doc/*.texi
 
 post-install:
+	${MV} ${PREFIX}/bin/gpg ${PREFIX}/bin/gpg2
+	${MV} ${PREFIX}/bin/gpgv ${PREFIX}/bin/gpgv2
 	${MV} ${PREFIX}/bin/gpgsplit ${PREFIX}/bin/gpgsplit2
+	${MV} ${PREFIX}/share/man/man1/gpg.1 ${PREFIX}/share/man/man1/gpg2.1
+	${MV} ${PREFIX}/share/man/man1/gpgv.1 ${PREFIX}/share/man/man1/gpgv2.1
 	${MV} ${DATADIR}/help*.txt ${DOCSDIR}
 
-# Necessary because of --enable-gpg-is-gpg2
+# Preserve the established gpg2 command name for the test suite.
 pre-test:
 	${LN} -s gpg ${WRKSRC}/bin/gpg2
 
