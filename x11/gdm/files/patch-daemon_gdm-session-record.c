@@ -1,17 +1,17 @@
 --- daemon/gdm-session-record.c.orig	2022-01-12 14:15:56 UTC
 +++ daemon/gdm-session-record.c
 @@ -27,12 +27,20 @@
- 
+
  #if defined(HAVE_UTMPX_H)
  #include <utmpx.h>
 +#define utmp utmpx
  #endif
- 
+
  #if defined(HAVE_UTMP_H)
  #include <utmp.h>
 +#include <util.h>
  #endif
- 
+
 +#if defined(HAVE_GETTTYENT)
 +#include <fcntl.h> /* open(2) */
 +#include <ttyent.h>
@@ -24,7 +24,7 @@
 @@ -43,6 +51,9 @@
  #define GDM_BAD_SESSION_RECORDS_FILE "/var/log/btmp"
  #endif
- 
+
 +static void write_utmp_login_manually (struct utmp *ut);
 +static void write_utmp_logout_manually (char *);
 +
@@ -34,7 +34,7 @@
 @@ -168,6 +179,84 @@ record_set_line (UTMP       *u,
          g_debug ("using ut_line %.*s", (int) sizeof (u->ut_line), u->ut_line);
  }
- 
+
 +static void
 +write_utmp_login_manually (struct utmp *ut)
 +{
@@ -127,7 +127,7 @@
 +	    write_utmp_login_manually (&session_record);
  #endif
  }
- 
+
 @@ -259,8 +349,8 @@ gdm_session_record_logout (GPid                  sessi
          setutxent();
          pututxline (&session_record);
@@ -138,4 +138,4 @@
 +        write_utmp_logout_manually (session_record.ut_line);
  #endif
  }
- 
+
