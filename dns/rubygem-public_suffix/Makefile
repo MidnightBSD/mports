@@ -11,6 +11,7 @@ WWW=		https://simonecarletti.com/code/publicsuffix-ruby/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${PATCH_DEPENDS}
 PATCH_DEPENDS=	public_suffix_list>=0:dns/public_suffix_list
 
 USES=		gem
