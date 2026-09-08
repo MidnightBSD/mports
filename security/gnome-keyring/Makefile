@@ -1,12 +1,12 @@
 PORTNAME=	gnome-keyring
-PORTVERSION=	42.1
-PORTREVISION=	7
+PORTVERSION=	48.0
 CATEGORIES=	security gnome
-MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Program that keeps passwords and other secrets
+WWW=		https://gitlab.gnome.org/GNOME/gnome-keyring
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -22,15 +22,14 @@ RUN_DEPENDS=	pinentry-gnome3:security/pinentry-gnome
 
 PORTSCOUT=	limitw:1,even
 
-USE_GNOME=	cairo gtk30 intlhack libxslt:build
-USES=		compiler:c11 cpe gettext gmake gnome libtool localbase \
-		pathfix pkgconfig tar:xz
+USES=		compiler:c11 cpe gettext meson gnome localbase \
+		pkgconfig tar:xz
+USE_GNOME=	cairo glib20 gtk30 libxslt:build
 CPE_VENDOR=	gnome
-GNU_CONFIGURE=	yes
-GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 USE_LDCONFIG=	yes
-CONFIGURE_ARGS=	--with-pam-dir="${PREFIX}/lib"
-INSTALL_TARGET=	install-strip
+MESON_ARGS=	-Dssh-agent=true \
+		-Dselinux=disabled \
+		-Dsystemd=disabled
 GLIB_SCHEMAS=	org.gnome.crypto.cache.gschema.xml
 
 SUB_FILES=	pkg-message
