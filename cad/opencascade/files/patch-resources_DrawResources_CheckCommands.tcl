@@ -1,5 +1,5 @@
---- src/DrawResources/CheckCommands.tcl.orig	2021-10-30 11:13:45 UTC
-+++ src/DrawResources/CheckCommands.tcl
+--- resources/DrawResources/CheckCommands.tcl.orig	2026-05-06 22:31:54 UTC
++++ resources/DrawResources/CheckCommands.tcl
 @@ -1095,6 +1095,7 @@ help checkplatform {
      -windows : return 1 if current platform is 'Windows', otherwise return 0
      -linux   : return 1 if current platform is 'Linux', otherwise return 0
@@ -20,7 +20,7 @@
                   {"-osx" check_for_macosx 0}}
  
      _check_args ${args} ${options} "checkplatform"
-@@ -1114,17 +1117,19 @@ proc checkplatform {args} {
+@@ -1114,12 +1117,14 @@ proc checkplatform {args} {
          set current_platform Windows
      } elseif { $::tcl_platform(os) == "Linux" } {
          set current_platform Linux
@@ -36,13 +36,7 @@
          return ${current_platform}
      }
  
-     # check usage of proc checkplatform
--    if { [expr [string is true ${check_for_windows}] + [string is true ${check_for_linux}] + [string is true ${check_for_macosx}] ] > 1} {
-+    if { [expr [string is true ${check_for_windows}] + [string is true ${check_for_linux}] + [string is true ${check_for_macosx}] + [string is true ${check_for_freebsd}] ] > 1} {
-         error "Error: wrong usage of command checkplatform, only single option can be used at once"
-     }
- 
-@@ -1133,8 +1138,13 @@ proc checkplatform {args} {
+@@ -1133,8 +1138,12 @@ proc checkplatform {args} {
          return 1
      }
  
@@ -51,7 +45,6 @@
      if { ${check_for_linux} && ${current_platform} == "Linux" } {
 +        return 1
 +    }
-+
 +    # checking for FreeBSD platforms
 +    if { ${check_for_freebsd} && ${current_platform} == "FreeBSD" } {
          return 1
