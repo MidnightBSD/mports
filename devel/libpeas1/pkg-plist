@@ -18,11 +18,11 @@ include/libpeas-1.0/libpeas/peas.h
 lib/girepository-1.0/Peas-1.0.typelib
 lib/girepository-1.0/PeasGtk-1.0.typelib
 lib/libpeas-1.0.so
-lib/libpeas-1.0.so.0
-lib/libpeas-1.0.so.0.3600.0
+lib/libpeas-1.0.so.1
+lib/libpeas-1.0.so.1.3800.1
 lib/libpeas-gtk-1.0.so
-lib/libpeas-gtk-1.0.so.0
-lib/libpeas-gtk-1.0.so.0.3600.0
+lib/libpeas-gtk-1.0.so.1
+lib/libpeas-gtk-1.0.so.1.3800.1
 %%DEMOS%%lib/peas-demo/plugins/helloworld/helloworld.plugin
 %%DEMOS%%lib/peas-demo/plugins/helloworld/libhelloworld.so
 %%DEMOS%%lib/peas-demo/plugins/secondtime/libsecondtime.so
