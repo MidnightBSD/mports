@@ -42,19 +42,19 @@ PYSIDE6_BINDIR_REL=	${PYSIDE6_RELNAME}/bin
 post-install:
 # These directories contain templates that should not be byte-compiled.
 # Temporarily relocate them to avoid errors.
-	@${MV} ${STAGEDIR}${PREFIX}/${PYSIDE6_BINDIR_REL}/deploy_lib/android/recipes ${WRKDIR}
+	@${MV} ${PREFIX}/${PYSIDE6_BINDIR_REL}/deploy_lib/android/recipes ${WRKDIR}
 
 .for d in deploy_lib project_lib qtpy2cpp_lib
 	${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py \
-		-f -d ${PREFIX}/${PYSIDE6_BINDIR_REL}/${d} \
-		${STAGEDIR}${PREFIX}/${PYSIDE6_BINDIR_REL}/${d}
+		-f -d ${TRUE_PREFIX}/${PYSIDE6_BINDIR_REL}/${d} \
+		${PREFIX}/${PYSIDE6_BINDIR_REL}/${d}
 	${PYTHON_CMD} -O ${PYTHON_LIBDIR}/compileall.py \
-		-f -d ${PREFIX}/${PYSIDE6_BINDIR_REL}/${d} \
-		${STAGEDIR}${PREFIX}/${PYSIDE6_BINDIR_REL}/${d}
+		-f -d ${TRUE_PREFIX}/${PYSIDE6_BINDIR_REL}/${d} \
+		${PREFIX}/${PYSIDE6_BINDIR_REL}/${d}
 .endfor
 
 # Move the aforementioned templates back into STAGEDIR after the byte-compiling
 # operation has finished.
-	@${MV} ${WRKDIR}/recipes ${STAGEDIR}${PREFIX}/${PYSIDE6_BINDIR_REL}/deploy_lib/android
+	@${MV} ${WRKDIR}/recipes ${PREFIX}/${PYSIDE6_BINDIR_REL}/deploy_lib/android
 
 .include <bsd.port.mk>

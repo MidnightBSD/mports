@@ -1,6 +1,6 @@
 PORTNAME=	matplotlib
 DISTVERSION=	3.8.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	math python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -61,6 +61,6 @@ post-install:
 
 post-install-EXAMPLES-on:
 	@${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}
-	${CP} -R ${WRKSRC}/examples/ ${FAKE_DESTDIR}${EXAMPLESDIR}
+	${CP} -R ${WRKSRC}/galleries/examples/ ${FAKE_DESTDIR}${EXAMPLESDIR}
 
 .include <bsd.port.mk>

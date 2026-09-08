@@ -1,7 +1,7 @@
 PORTNAME=	pybind11
 DISTVERSIONPREFIX=	v
 DISTVERSION=	2.13.6
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel python
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -18,6 +18,9 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	pybind
 
 CMAKE_OFF=	PYBIND11_TEST
+# Upstream computes an empty prefix for pybind11.pc when the data root
+# directory is relative; set it explicitly.
+CMAKE_ARGS+=	-Dprefix_for_pc_file:STRING=${PREFIX}
 
 CMAKE_TESTING_ON=	PYBIND11_TEST # 6 tests are known to fail: https://github.com/pybind/pybind11/issues/4580
 CMAKE_TESTING_TARGET=	pytest
