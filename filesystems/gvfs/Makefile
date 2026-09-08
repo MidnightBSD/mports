@@ -1,15 +1,15 @@
 PORTNAME=	gvfs
-DISTVERSION=	1.56.0
-PORTREVISION=	3
+DISTVERSION=	1.58.4
 CATEGORIES=	filesystems devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME virtual file system
-WWW=		https://www.gnome.org/
+WWW=		https://gitlab.gnome.org/GNOME/gvfs
 
-LICENSE=	gpl2
+LICENSE=	lgpl gpl3 bsd3
+LICENSE_COMB=	multi
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	docbook-xsl>=0:textproc/docbook-xsl
@@ -20,11 +20,10 @@ LIB_DEPENDS=	libgcrypt.so:security/libgcrypt \
 		libgudev-1.0.so:devel/libgudev \
 		libudisks2.so:sysutils/libudisks \
 		libsecret-1.so:security/libsecret
-RUN_DEPENDS=	bsdisks>0:sysutils/bsdisks \
-		lsof:sysutils/lsof
+RUN_DEPENDS=	bsdisks>0:sysutils/bsdisks
 PORTSCOUT=	limitw:1,even
 
-USES=		cpe gettext gnome libarchive localbase meson \
+USES=		cpe gettext-tools gnome libarchive localbase meson \
 		pkgconfig python:build tar:xz
 USE_GNOME=	glib20 libxml2 libxslt:build
 MESON_ARGS=	-Dsystemduserunitdir=no \
@@ -32,15 +31,17 @@ MESON_ARGS=	-Dsystemduserunitdir=no \
 		-Dadmin=false \
 		-Dlogind=false \
 		-Dlibusb=false \
+		-Donedrive=false \
 		-Dman=true
-USE_LDCONFIG=	yes
 CPE_VENDOR=	gnome
 
 GLIB_SCHEMAS=	org.gnome.system.gvfs.enums.xml
 
 OPTIONS_SUB=	yes
-OPTIONS_DEFINE=	AVAHI FUSE AFC GOA SMB CDDA GOOGLE GPHOTO MTP NFS BLURAY
-OPTIONS_DEFAULT=AVAHI SMB CDDA GPHOTO MTP NFS BLURAY
+OPTIONS_DEFINE=	AFC AVAHI BLURAY CDDA FUSE GOA GOOGLE GPHOTO MTP NFS SMB
+OPTIONS_RADIO=	BUSYCOMMAND
+OPTIONS_RADIO_BUSYCOMMAND=	FUSER LSOF
+OPTIONS_DEFAULT=	AVAHI BLURAY CDDA FUSER GPHOTO MTP NFS SMB
 
 AFC_DESC=	Apple device support
 GOA_DESC=	GNOME Online Accounts volume monitor support
@@ -61,9 +62,13 @@ AFC_LIB_DEPENDS=	libimobiledevice-1.0.so:comms/libimobiledevice \
 			libplist-2.0.so:devel/libplist
 AFC_MESON_TRUE=		afc
 
-GOA_LIB_DEPENDS=	libgoa-1.0.so:net/gnome-online-accounts \
-			libmsgraph-0.so:net/msgraph
-GOA_MESON_TRUE=		goa onedrive
+FUSER_DESC=		Use fuser(1) to check processes blocking umount
+LSOF_DESC=		Use lsof(1) to check processes blocking umount
+
+FUSER_MESON_ON=		-Dbusy_processes_command=fuser
+
+GOA_LIB_DEPENDS=	libgoa-1.0.so:net/gnome-online-accounts
+GOA_MESON_TRUE=		goa
 
 SMB_USES=		samba:lib
 SMB_MESON_TRUE=		smb
@@ -79,6 +84,9 @@ GOOGLE_MESON_TRUE=	google
 
 GPHOTO_LIB_DEPENDS=	libgphoto2.so:graphics/libgphoto2
 GPHOTO_MESON_TRUE=	gphoto2
+
+LSOF_MESON_ON=		-Dbusy_processes_command=lsof
+LSOF_RUN_DEPENDS=	lsof:sysutils/lsof
 
 MTP_LIB_DEPENDS=	libmtp.so:multimedia/libmtp
 MTP_MESON_TRUE=		mtp
