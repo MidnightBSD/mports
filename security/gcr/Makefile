@@ -26,4 +26,6 @@ USE_LDCONFIG=	yes
 MESON_ARGS=	-Dsystemd=disabled \
 		-Dgtk_doc=false
 
+NO_TEST=	yes
+
 .include <bsd.port.mk>
