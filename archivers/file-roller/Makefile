@@ -1,5 +1,5 @@
 PORTNAME=	file-roller
-PORTVERSION=	44.5
+PORTVERSION=	44.6
 PORTEPOCH=	1
 CATEGORIES=	archivers gnome
 MASTER_SITES=	GNOME
@@ -7,24 +7,17 @@ DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Archive manager for zip files, tar, etc
-WWW=		https://wiki.gnome.org/Apps/FileRoller
+WWW=		https://gitlab.gnome.org/GNOME/file-roller
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	itstool:textproc/itstool
-LIB_DEPENDS=	libjson-glib-1.0.so:devel/json-glib \
-		libnotify.so:devel/libnotify \
-		libhandy-1.so:x11-toolkits/libhandy \
-		libportal.so:deskutils/libportal \
-		libportal-gtk4.so:deskutils/libportal-gtk4
-RUN_DEPENDS=	gtar:archivers/gtar
+LIB_DEPENDS=	libjson-glib-1.0.so:devel/json-glib
 
-PORTSCOUT=	limitw:1,even
-
-USES=		cpe desktop-file-utils gettext gnome libarchive localbase \
+USES=		cpe desktop-file-utils gettext-tools gnome libarchive localbase \
 		meson pkgconfig python:build tar:xz
-USE_GNOME=	cairo gdkpixbuf gtk40 libadwaita
+USE_GNOME=	glib20 gtk40 libadwaita
 USE_LDCONFIG=	yes
 MESON_ARGS=	-Dpackagekit=false
 BINARY_ALIAS=	python3=${PYTHON_VERSION}
@@ -61,8 +54,9 @@ NAUTILUS_USE=	GNOME=nautilus4
 NAUTILUS_MESON_ENABLED=	nautilus-actions
 
 post-patch:
+	@${REINPLACE_CMD} -e '/--force-local/d' -e '/--no-recursion/d' \
+		-e '/--no-wildcards/d' ${WRKSRC}/src/fr-command-tar.c
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
-		${WRKSRC}/src/fr-command-tar.c \
 		${WRKSRC}/src/fr-command-zip.c
 	@${REINPLACE_CMD} -e 's|"7z"|"7zz"|g' \
 		${WRKSRC}/src/fr-archive-libarchive.c \
