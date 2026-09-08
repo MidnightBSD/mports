@@ -1,5 +1,5 @@
 PORTNAME=	public_suffix_list
-PORTVERSION=	20230728
+PORTVERSION=	20260819
 CATEGORIES=	dns
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -20,11 +20,11 @@ PORTDATA=	public_suffix_list.dat \
 
 GH_ACCOUNT=	publicsuffix
 GH_PROJECT=	list
-GH_TAGNAME=	4e6c53c
+GH_TAGNAME=	e8c9a2b
 USE_GITHUB=	yes
 
 do-install:
-	${MKDIR} ${DATADIR}/
-	${INSTALL_DATA} ${WRKSRC}/public_suffix_list.dat ${WRKSRC}/tests/test_psl.txt ${DATADIR}/
+	${MKDIR} ${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/public_suffix_list.dat ${WRKSRC}/tests/test_psl.txt ${DATADIR}
 
 .include <bsd.port.mk>
