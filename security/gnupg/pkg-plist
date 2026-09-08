@@ -1,6 +1,7 @@
 %%GNUTLS%%bin/dirmngr
 %%GNUTLS%%bin/dirmngr-client
 bin/gpg-agent
+bin/gpg-authcode-sign.sh
 bin/gpg-card
 bin/gpg-connect-agent
 bin/gpg-mail-tube
@@ -94,7 +95,10 @@ sbin/applygnupgdefaults
 %%PORTDOCS%%%%DOCSDIR%%/help.zh_CN.txt
 %%PORTDOCS%%%%DOCSDIR%%/help.zh_TW.txt
 %%DATADIR%%/distsigkey.gpg
-%%GNUTLS%%%%DATADIR%%/sks-keyservers.netCA.pem
+%%DATADIR%%/mail-tube.de.txt
+%%DATADIR%%/mail-tube.txt
+%%DATADIR%%/wks-utils.de.txt
+%%DATADIR%%/wks-utils.txt
 %%NLS%%share/locale/ca/LC_MESSAGES/gnupg2.mo
 %%NLS%%share/locale/cs/LC_MESSAGES/gnupg2.mo
 %%NLS%%share/locale/da/LC_MESSAGES/gnupg2.mo
@@ -112,6 +116,7 @@ sbin/applygnupgdefaults
 %%NLS%%share/locale/id/LC_MESSAGES/gnupg2.mo
 %%NLS%%share/locale/it/LC_MESSAGES/gnupg2.mo
 %%NLS%%share/locale/ja/LC_MESSAGES/gnupg2.mo
+%%NLS%%share/locale/ka/LC_MESSAGES/gnupg2.mo
 %%NLS%%share/locale/nb/LC_MESSAGES/gnupg2.mo
 %%NLS%%share/locale/nl/LC_MESSAGES/gnupg2.mo
 %%NLS%%share/locale/pl/LC_MESSAGES/gnupg2.mo
