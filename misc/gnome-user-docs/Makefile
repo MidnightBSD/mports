@@ -1,7 +1,7 @@
 PORTNAME=	gnome-user-docs
-PORTVERSION=	42.0
+PORTVERSION=	47.6
 CATEGORIES=	misc gnome
-MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
+MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:R}
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,7 +12,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	itstool:textproc/itstool
 
-PORTSCOUT=	limitw:1,even
+PORTSCOUT=	limit:^47
 
 GNU_CONFIGURE=	yes
 NO_ARCH=	yes
