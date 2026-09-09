@@ -51,7 +51,7 @@ NO_TEST=	yes
 .if ${FLAVOR:U} == bootstrap
 MAKE_ENV+=	LD_LIBRARY_PATH=${LOCALBASE}/glib-bootstrap/lib
 LDFLAGS+=	-L${LOCALBASE}/glib-bootstrap/lib
-PKG_CONFIG_PATH=${LOCALBASE}/glib-bootstrap/libdata/pkgconfig
+PKGCONFIG_PATHS+=	${LOCALBASE}/glib-bootstrap/libdata/pkgconfig
 MESON_ARGS+=	-Dcairo=disabled
 OPTIONS_DEFINE=
 PREFIX=		${LOCALBASE}/${PORTNAME}-bootstrap
