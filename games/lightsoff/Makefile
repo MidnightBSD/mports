@@ -5,7 +5,7 @@ MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Gnome ligthsoff
+COMMENT=	Lights Off game for GNOME
 WWW=		https://wiki.gnome.org/Lightsoff
 
 LICENSE=	gpl2+
