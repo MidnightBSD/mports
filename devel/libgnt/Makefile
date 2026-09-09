@@ -1,11 +1,12 @@
 PORTNAME=	libgnt
-PORTVERSION=	2.14.3
-PORTREVISION=	1
+DISTVERSION=	2.14.4
 CATEGORIES=	devel
-MASTER_SITES=	SF/pidgin/${PORTNAME}/${PORTVERSION}/
+MASTER_SITES=	SF/pidgin/${PORTNAME}/${DISTVERSION}/
+DISTNAME=	${PORTNAME}-${DISTVERSION}-dev
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Toolkit based on glib and ncurses for text-mode user interfaces
+WWW=		https://keep.imfreedom.org/libgnt/libgnt/
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING

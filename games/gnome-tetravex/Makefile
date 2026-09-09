@@ -1,12 +1,8 @@
 PORTNAME=	gnome-tetravex
-PORTVERSION=	3.38.2
-PORTREVISION=	1
+PORTVERSION=	3.38.3
 CATEGORIES=	games gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
-
-PATCH_SITES=	https://gitlab.gnome.org/GNOME/${PORTNAME}/-/commit/
-PATCHFILES+=	80912d06f5e5.patch:-p1 # https://gitlab.gnome.org/GNOME/gnome-tetravex/-/merge_requests/20
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gnome tetravex
@@ -19,9 +15,12 @@ BUILD_DEPENDS=	itstool:textproc/itstool
 
 PORTSCOUT=	limitw:1,even
 
-USES=		gettext gmake gnome localbase meson pathfix pkgconfig \
-		python tar:xz vala:build
-USE_GNOME=	cairo gtk30 intlhack librsvg2 libxml2:build
+USES=		desktop-file-utils gettext-tools gnome localbase meson \
+		pkgconfig python shebangfix tar:xz vala:build
+USE_GNOME=	glib20 gtk30
+INSTALLS_ICONS=	yes
+
+SHEBANG_FILES=	build-aux/meson_post_install.py
 
 BINARY_ALIAS=	python3=${PYTHON_VERSION}
 
