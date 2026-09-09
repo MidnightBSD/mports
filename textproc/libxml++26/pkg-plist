@@ -1,4 +1,4 @@
-include/libxml++-%%API_VERSION%%/include/libxml++config.h
+lib/libxml++-%%API_VERSION%%/include/libxml++config.h
 include/libxml++-%%API_VERSION%%/libxml++/attribute.h
 include/libxml++-%%API_VERSION%%/libxml++/attributedeclaration.h
 include/libxml++-%%API_VERSION%%/libxml++/attributenode.h
