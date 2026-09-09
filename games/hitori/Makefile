@@ -1,6 +1,5 @@
 PORTNAME=	hitori
-PORTVERSION=	3.38.4
-PORTREVISION=	2
+PORTVERSION=	44.0
 CATEGORIES=	games gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -9,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Hitori
 WWW=		https://wiki.gnome.org/Apps/Hitori
 
-LICENSE=	gpl3
+LICENSE=	gpl3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	itstool:textproc/itstool \
@@ -19,7 +18,7 @@ PORTSCOUT=	limitw:1,even
 
 USES=		compiler:c11 gettext gmake gnome localbase meson pathfix \
 		pkgconfig tar:xz
-USE_GNOME=	cairo gtk30 librsvg2 libxml2:build
+USE_GNOME=	cairo glib20 gtk30 librsvg2 libxml2:build
 INSTALLS_ICONS=	yes
 
 GLIB_SCHEMAS=	org.gnome.hitori.gschema.xml
