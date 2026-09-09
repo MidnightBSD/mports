@@ -1,6 +1,5 @@
 PORTNAME=	gdk-pixbuf
-PORTVERSION=	2.42.12
-PORTREVISION=	1
+PORTVERSION=	2.44.1
 CATEGORIES=	graphics
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	2
@@ -10,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphic library for GTK
 WWW=		https://developer.gnome.org/gdk-pixbuf/
 
-LICENSE=	lgpl+
+LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		cpe gettext gnome localbase:ldflags meson pkgconfig \
@@ -19,11 +18,12 @@ CPE_VENDOR=	gnome
 USE_GNOME=	glib20 introspection:build libxslt:build
 SHEBANG_FILES=	build-aux/*.py
 USE_LDCONFIG=	yes
-MESON_ARGS=	-Dbuiltin_loaders="none" -Dgtk_doc=false -Dinstalled_tests=false -Dtests=false
+MESON_ARGS=	-Dbuiltin_loaders="none" -Dgtk_doc=false -Dinstalled_tests=false \
+		-Dtests=false -Dandroid=disabled -Dglycin=disabled
 TRIGGERS=	gdk-pixbuf-query-loaders
 SUB_LIST=	GTK2_VERSION=${GTK2_VERSION}
 
-LIBVERSION=	0.4200.12
+LIBVERSION=	0.4400.1
 PLIST_SUB+=	LIBVERSION=${LIBVERSION}
 
 OPTIONS_SUB=	yes
