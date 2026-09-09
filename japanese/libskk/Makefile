@@ -1,7 +1,7 @@
 PORTNAME=	libskk
-DISTVERSION=	1.0.5
-PORTREVISION=	1
+DISTVERSION=	1.1.1
 CATEGORIES=	japanese
+MASTER_SITES=	https://github.com/ueno/${PORTNAME}/releases/download/${DISTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library to deal with Japanese Kana-to-Kanji conversion method
@@ -15,9 +15,7 @@ LIB_DEPENDS=	libgee-0.8.so:devel/libgee \
 		libjson-glib-1.0.so:devel/json-glib \
 		libxkbcommon.so:x11/libxkbcommon
 
-USES=		autoreconf gmake gnome libtool pathfix pkgconfig vala:build
-USE_GITHUB=	yes
-GH_ACCOUNT=	ueno
+USES=		autoreconf gmake gnome libtool pathfix pkgconfig tar:xz vala:build
 GNU_CONFIGURE=	yes
 GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 USE_GNOME=	introspection:build
