@@ -1,28 +1,25 @@
 PORTNAME=	gnome-mahjongg
-DISTVERSION=	3.38.3
-PORTREVISION=	1
+DISTVERSION=	47.2
 CATEGORIES=	games gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
-
-PATCH_SITES=	https://gitlab.gnome.org/GNOME/${PORTNAME}/-/commit/
-PATCHFILES+=	7604f8c8311f.patch:-p1 # https://gitlab.gnome.org/GNOME/gnome-mahjongg/-/merge_requests/26
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gnome mahjongg
 WWW=		https://wiki.gnome.org/Apps/Mahjongg
 
-LICENSE=	gpl2
-LICENSE_FILE=	${WRKSRC}/COPYING
+LICENSE=	gpl2+ CC-BY-SA-3.0 CC0-1.0
+LICENSE_COMB=	multi
+LICENSE_FILE_gpl2+ =	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	itstool:textproc/itstool
+RUN_DEPENDS=	dbus>0:devel/dbus
 
-USES=		gettext gmake gnome localbase meson pathfix pkgconfig tar:xz vala:build
-USE_GNOME=	cairo gtk30 intlhack librsvg2 libxml2:build
+USES=		desktop-file-utils gettext gmake gnome localbase meson pkgconfig tar:xz vala:build
+USE_GNOME=	cairo glib20 gtk40 libadwaita librsvg2
 GLIB_SCHEMAS=	org.gnome.Mahjongg.gschema.xml
+INSTALLS_ICONS=	yes
 
-MESON_ARGS=	-Dcompile-schemas=disabled -Dupdate-icon-cache=disabled
-
-PORTSCOUT=	limitw:1,even
+PORTSCOUT=	limit:^47\.
 
 .include <bsd.port.mk>
