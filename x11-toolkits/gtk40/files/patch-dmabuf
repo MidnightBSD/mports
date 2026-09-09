@@ -1,10 +1,12 @@
 --- dma-buf-compat.h.orig	2024-08-27 18:15:44 UTC
 +++ dma-buf-compat.h
-@@ -0,0 +1,22 @@
+@@ -0,0 +1,36 @@
 +#ifdef __linux__
 +#include <linux/dma-buf.h>
++#include <linux/udmabuf.h>
 +#else
 +typedef uint64_t __u64;
++typedef uint32_t __u32;
 +
 +// From https://github.com/evadot/drm-subtree or https://reviews.freebsd.org/D23085
 +struct dma_buf_sync
@@ -22,18 +24,29 @@
 +
 +#define DMA_BUF_BASE       'b'
 +#define DMA_BUF_IOCTL_SYNC _IOW(DMA_BUF_BASE, 0, struct dma_buf_sync)
++
++struct udmabuf_create
++{
++  __u32 memfd;
++  __u32 flags;
++  __u64 offset;
++  __u64 size;
++};
++
++#define UDMABUF_FLAGS_CLOEXEC 0x01
++#define UDMABUF_IOCTL_BASE 'u'
++#define UDMABUF_CREATE _IOW(UDMABUF_IOCTL_BASE, 0x42, struct udmabuf_create)
 +#endif
 --- gdk/gdkdmabuf.c.orig	2024-08-27 18:17:03 UTC
 +++ gdk/gdkdmabuf.c
-@@ -28,8 +28,8 @@
- #ifdef HAVE_DMABUF
+@@ -30,6 +30,5 @@
+ #include <fcntl.h>
  #include <sys/mman.h>
  #include <sys/ioctl.h>
 -#include <linux/dma-buf.h>
+-#include <linux/udmabuf.h>
  #include <epoxy/egl.h>
 +#include "../dma-buf-compat.h"
- 
- typedef struct _GdkDrmFormatInfo GdkDrmFormatInfo;
  
 --- gsk/gpu/gskgpudownloadop.c.orig	2024-09-13 14:11:36 UTC
 +++ gsk/gpu/gskgpudownloadop.c
@@ -57,6 +70,27 @@
  #endif
  
  struct _GskVulkanImage
+--- testsuite/gdk/udmabuf.c.orig	2026-09-09 00:00:00 UTC
++++ testsuite/gdk/udmabuf.c
+@@ -8,8 +8,8 @@
+ #include <inttypes.h>
+ #include <fcntl.h>
+ #include <sys/mman.h>
+ #include <sys/ioctl.h>
+-#include <linux/udmabuf.h>
++#include "../../dma-buf-compat.h"
+ #include <errno.h>
+ #include <gtk/gtk.h>
+ #include <gio/gio.h>
+--- testsuite/gdk/meson.build.orig	2025-02-13 19:07:42 UTC
++++ testsuite/gdk/meson.build
+@@ -45,5 +45,5 @@ if os_linux
+ else
+   tests += [
+-    { 'name': 'colorstate' }
++    { 'name': 'colorstate', 'sources': [ 'udmabuf.c' ] },
+   ]
+ endif
 --- meson.build.orig	2024-08-27 18:19:59 UTC
 +++ meson.build
 @@ -636,7 +636,7 @@ cdata.set('HAVE_DRM_FOURCC_H', libdrm_dep.found())
