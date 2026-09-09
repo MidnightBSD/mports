@@ -1,30 +1,30 @@
 PORTNAME=	dconf-editor
-PORTVERSION=	3.38.3
-PORTREVISION=	2
+PORTVERSION=	45.0.1
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
 
+# https://gitlab.gnome.org/GNOME/dconf-editor/-/merge_requests/34
 PATCH_SITES=	https://gitlab.gnome.org/GNOME/${PORTNAME}/-/commit/
-PATCHFILES+=	56474378568e.patch:-p1 # https://gitlab.gnome.org/GNOME/dconf-editor/-/merge_requests/21
+PATCHFILES=	baf18373.patch:-p1 \
+		dd8ddbbf.patch:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Configuration database editor for GNOME
-WWW=		https://wiki.gnome.org/Projects/dconf
+COMMENT=	Viewer and editor of applications internal settings
+WWW=		https://gitlab.gnome.org/GNOME/dconf-editor
 
-LICENSE=	gpl3
+LICENSE=	gpl3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	dconf>=0.23.2:devel/dconf
-LIB_DEPENDS=	libdconf.so:devel/dconf
+LIB_DEPENDS=	libhandy-1.so:x11-toolkits/libhandy \
+		libdconf.so:devel/dconf
+RUN_DEPENDS=	dconf>0:devel/dconf \
+		dbus>0:devel/dbus
 
-PORTSCOUT=	limitw:1,even
-
-USES=		gettext gnome localbase meson \
-		pkgconfig python:build tar:xz vala:build
-USE_GNOME=	gtk30
-USE_LDCONFIG=	yes
-BINARY_ALIAS=	python3=${PYTHON_VERSION}
+USES=		desktop-file-utils gettext gnome localbase meson pkgconfig tar:xz \
+		vala:build
+USE_GNOME=	glib20 gtk30 libxml2:build
+INSTALLS_ICONS=	yes
 
 GLIB_SCHEMAS=	ca.desrt.dconf-editor.gschema.xml
 
