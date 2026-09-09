@@ -1,12 +1,8 @@
 PORTNAME=	gitg
-PORTVERSION=	41
-PORTREVISION=	6
+PORTVERSION=	44
 CATEGORIES=	devel deskutils gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
-
-PATCH_SITES=	https://gitlab.gnome.org/GNOME/${PORTNAME}/-/commit/
-PATCHFILES+=	1978973b1284.patch:-p1 # https://gitlab.gnome.org/GNOME/gitg/-/merge_requests/175
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GTK-based git repository viewer
@@ -25,7 +21,9 @@ LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup \
 		libpeas-1.0.so:devel/libpeas1 \
 		libgspell-1.so:textproc/gspell \
 		libdazzle-1.0.so:x11-toolkits/libdazzle \
-		libsecret-1.so:security/libsecret
+		libsecret-1.so:security/libsecret \
+		libgpgme.so:security/gpgme \
+		libhandy-1.so:x11-toolkits/libhandy
 RUN_DEPENDS=	gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas
 
 CONFLICTS=	gitg0
