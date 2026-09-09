@@ -1,7 +1,7 @@
 PORTNAME=	libcloudproviders
-PORTVERSION=	0.3.6
+PORTVERSION=	0.4.0
 CATEGORIES=	net
-MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+.[0-9]+)\..*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,7 +10,8 @@ WWW=		https://gitlab.gnome.org/GNOME/libcloudproviders
 
 LICENSE=	lgpl3
 
-USES=	tar:xz meson gnome vala:build pkgconfig
+USES=	gnome meson pkgconfig tar:xz vala:build
 USE_GNOME=	glib20 introspection:build
+USE_LDCONFIG=	yes
 
 .include <bsd.port.mk>

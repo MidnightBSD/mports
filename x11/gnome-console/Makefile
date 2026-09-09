@@ -1,33 +1,28 @@
 PORTNAME=	gnome-console
-PORTVERSION=	43.0
-PORTREVISION=	1
+PORTVERSION=	48.1
 CATEGORIES=	x11 gnome
-MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Minimal terminal for GNOME
-WWW=		https://gitlab.gnome.org/GNOME/console
+WWW=		https://apps.gnome.org/Console/
 
-LICENSE=	gpl2+
+LICENSE=	gpl3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	itstool>0:textproc/itstool \
-		sassc>0:textproc/sassc
-LIB_DEPENDS=	libenchant-2.so:textproc/enchant2 \
-		libgtop-2.0.so:devel/libgtop \
-		libhandy-1.so:x11-toolkits/libhandy \
-		libicudata.so:devel/icu \
-		libpcre2-8.so:devel/pcre2 \
-		libvte-2.91.so:x11-toolkits/vte3
+BUILD_DEPENDS= 	gsettings-desktop-schemas>0:devel/gsettings-desktop-schemas
+LIB_DEPENDS= 	libgtop-2.0.so:devel/libgtop \
+		libpcre2-8.so:devel/pcre2
+RUN_DEPENDS= 	gsettings-desktop-schemas>0:devel/gsettings-desktop-schemas
 
-USES=		compiler:c11 desktop-file-utils gettext gnome localbase meson \
-		pkgconfig tar:xz
+USES=		compiler:c11 desktop-file-utils gettext-tools gnome localbase \
+		meson pkgconfig tar:xz
 USE_CSTD=	c11
-USE_GNOME=	gtk30 gtksourceview5 libadwaita
-MESON_ARGS=	${${PORTVERSION:R}<44:?-Dwerror=false:}
+USE_GNOME=	glib20 gtk40 libadwaita pango vte3
 GLIB_SCHEMAS=	org.gnome.Console.gschema.xml
+INSTALLS_ICONS=	yes
 
-PORTSCOUT=	limitw:1,even
+PORTSCOUT=	limit:^48
 
 .include <bsd.port.mk>
