@@ -1,7 +1,6 @@
 PORTNAME=	skk-tools
-DISTVERSION=	1.3.4-28
-PORTREVISION=	1
-DISTVERSIONSUFFIX=	-g1e8c457
+DISTVERSION=	1.3.4-40
+DISTVERSIONSUFFIX=	-g7bfccbc
 PORTEPOCH=	1
 CATEGORIES=	japanese
 
@@ -34,9 +33,6 @@ DIFF_RUN_DEPENDS=	gosh:lang/gauche
 DIFF_PLIST_FILES=	bin/skkdic-diff
 DIFF_PORTDOCS=		README.skkdic-diff.md
 DIFF_VARS=		SHEBANG_FILES+=skkdic-diff.scm SHEBANG_LANG=gosh
-
-post-extract:
-	@${REINPLACE_CMD} -e 's|skk2cdb.py|skk2cdb|' ${WRKSRC}/skk2cdb.py
 
 post-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/skk2cdb.py ${PREFIX}/bin/skk2cdb
