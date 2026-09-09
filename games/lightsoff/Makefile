@@ -14,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 BUILD_DEPENDS=	itstool:textproc/itstool
 PORTSCOUT=	limitw:1,even
 
-USES=		gettext gnome localbase meson pkgconfig tar:xz vala:build
+USES=		desktop-file-utils gettext gnome localbase meson pkgconfig tar:xz vala:build
 USE_GNOME=	cairo glib20 gtk40 libadwaita
 
 INSTALLS_ICONS=	yes
