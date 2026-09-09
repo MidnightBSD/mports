@@ -1,5 +1,5 @@
 PORTNAME=	gnome-color-manager
-PORTVERSION=	3.36.0
+PORTVERSION=	3.36.2
 PORTREVISION=	2
 CATEGORIES=	graphics gnome
 MASTER_SITES=	GNOME
@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Session framework for the GNOME desktop to manage color profiles
 WWW=		https://git.gnome.org/browse/gnome-color-manager
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 DEPRECATED=	Depends on expired textproc-docbook-utils
@@ -31,7 +31,6 @@ PORTSCOUT=	limitw:1,even
 USES=		compiler:c++11-lang desktop-file-utils gettext gnome meson \
 		pkgconfig tar:xz
 USE_GNOME=	cairo gtk30 vte3
-USE_LDCONFIG=	yes
 INSTALLS_ICONS=	yes
 MESON_ARGS=	-Dtests=false
 
