@@ -1,0 +1,5 @@
+--- meson.build.orig	2025-06-12 16:51:49 UTC
++++ meson.build
+@@ -16 +16 @@
+-pkgconfigdir = join_paths(datadir, 'pkgconfig')
++pkgconfigdir = join_paths(prefix, 'libdata', 'pkgconfig')
