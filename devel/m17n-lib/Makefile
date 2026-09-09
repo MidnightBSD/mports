@@ -1,22 +1,22 @@
 PORTNAME=	m17n-lib
-PORTVERSION=	1.8.0
-PORTREVISION=	6
+PORTVERSION=	1.8.5
 CATEGORIES=	devel textproc
 MASTER_SITES=	SAVANNAH/m17n
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for multilingual text handling
+WWW=		https://www.nongnu.org/m17n/
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	m17n-db>=1.8.0:devel/m17n-db
+BUILD_DEPENDS=	m17n-db>=1.8.10:devel/m17n-db
 LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \
 		libfribidi.so:converters/fribidi \
 		libgd.so:graphics/gd \
 		libotf.so:print/libotf
-RUN_DEPENDS=	m17n-db>=1.8.0:devel/m17n-db
+RUN_DEPENDS=	m17n-db>=1.8.10:devel/m17n-db
 
 MAKE_JOBS_UNSAFE=	yes
 
