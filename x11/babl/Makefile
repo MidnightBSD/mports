@@ -1,6 +1,5 @@
 PORTNAME=	babl
-PORTVERSION=	0.1.116
-PORTREVISION=	0
+PORTVERSION=	0.1.126
 CATEGORIES=	x11
 MASTER_SITES=	GIMP
 
@@ -18,11 +17,12 @@ USES=		compiler:c11 gnome meson pathfix pkgconfig tar:xz vala:build
 USE_GNOME=	introspection:build
 USE_LDCONFIG=	yes
 
-MESON_ARGS=	-Dgi-docgen=disabled -Dwith-docs=false
+# relocatable does not mean ELF relocation
+MESON_ARGS=	-Dgi-docgen=disabled -Dwith-docs=false -Drelocatable-bundle=no
 
 NO_TEST=	yes
 
-BABL_SHLIB=	0.215.1
+BABL_SHLIB=	0.225.1
 BABL_VER=	0.1
 PLIST_SUB+=	BABL_SHLIB=${BABL_SHLIB} BABL_VER=${BABL_VER}
 
