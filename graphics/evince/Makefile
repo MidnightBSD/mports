@@ -1,15 +1,14 @@
 PORTNAME=	evince
-DISTVERSION=	46.3.1
-PORTREVISION=	3
+DISTVERSION=	48.1
 CATEGORIES=	graphics print gnome
-MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME multi-format document viewer
-WWW=		https://wiki.gnome.org/Apps/Evince
+WWW=		https://gitlab.gnome.org/GNOME/evince
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 FLAVOR?=	full
@@ -17,6 +16,7 @@ FLAVORS=	full lite
 
 BUILD_DEPENDS=	adwaita-icon-theme>=0:x11-themes/adwaita-icon-theme \
 		gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas \
+		${PYTHON_PKGNAMEPREFIX}gi-docgen>0:textproc/py-gi-docgen@${PY_FLAVOR} \
 		itstool:textproc/itstool
 LIB_DEPENDS=	libfribidi.so:converters/fribidi \
 		libhandy-1.so:x11-toolkits/libhandy \
@@ -29,23 +29,22 @@ RUN_DEPENDS=	adwaita-icon-theme>=0:x11-themes/adwaita-icon-theme \
 PORTSCOUT=	limitw:1,even
 
 USES=		compiler:c++11-lib cpe desktop-file-utils gettext gnome gstreamer libarchive \
-		localbase:ldflags meson pkgconfig tar:xz xorg
-USE_GNOME=	cairo gdkpixbuf gtk30
+		localbase:ldflags meson pkgconfig python:build tar:xz xorg
+USE_GNOME=	cairo gdkpixbuf gtk30 libxml2
 USE_LDCONFIG=	yes
 USE_XORG=	ice
 CPE_VENDOR=	gnome
 MESON_ARGS=	-Dgtk_doc=false \
+		-Duser_doc=true \
 		-Dpdf=enabled \
 		-Dps=enabled \
-		-Dsystemduserunitdir=no \
-		-Dnautilus=false
+		-Dsystemduserunitdir=no
 
 .if ${FLAVOR} == lite
 MESON_ARGS+=		-Dintrospection=false \
 			-Dpreviewer=false \
 			-Dthumbnail_cache=disabled \
 			-Dthumbnailer=false
-USE_GNOME+=		libxml2
 OPTIONS_EXCLUDE=	DBUS
 PLIST=			${.CURDIR}/pkg-plist-lite
 PKGNAMESUFFIX=		-lite
@@ -63,7 +62,7 @@ PLIST_SUB=	VERSION=3.0
 
 OPTIONS_SUB=		yes
 OPTIONS_DEFINE=		COMICS DBUS DJVU DVI KEYRING SPELL XPS
-OPTIONS_DEFAULT=	COMICS DBUS DJVU KEYRING SPELL XPS
+OPTIONS_DEFAULT=	COMICS DBUS KEYRING SPELL XPS
 
 COMICS_DESC=		Comic book archives support
 COMICS_MESON_ENABLED=	comics
