@@ -13,7 +13,7 @@ LICENSE_COMB=	dual
 
 USES=		gettext gmake gnome libtool localbase pathfix pkgconfig \
 		python tar:xz
-USE_GNOME=	glib20 intltool introspection:buid
+USE_GNOME=	glib20 intltool introspection:build
 USE_LDCONFIG=	yes
 PORTSCOUT=	site:https://github.com/mate-desktop/mate-menus/releases/ limitw:1,even
 GNU_CONFIGURE=	yes
