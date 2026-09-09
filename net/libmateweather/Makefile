@@ -1,9 +1,7 @@
 PORTNAME=	libmateweather
-PORTVERSION=	1.28.0
-PORTREVISION=	1
+DISTVERSIONPREFIX=	v
+DISTVERSION=	1.28.1
 CATEGORIES=	net mate
-MASTER_SITES=	MATE
-DIST_SUBDIR=	mate
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library to access online weather information
@@ -16,8 +14,10 @@ LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup
 
 PORTSCOUT=	limitw:1,even
 
-USES=		gettext gmake gnome libtool localbase pathfix pkgconfig tar:xz
-USE_GNOME=	cairo gnomeprefix gtk30 intltool libxml2
+USES=		autoreconf gettext gmake gnome libtool localbase pathfix pkgconfig
+USE_GITHUB=	yes
+GH_ACCOUNT=	mate-desktop
+USE_GNOME=	cairo gtk30 intltool libxml2
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
@@ -26,5 +26,8 @@ INSTALL_TARGET=	install-strip
 GLIB_SCHEMAS=	org.mate.weather.gschema.xml
 
 OPTIONS_DEFINE=	DOCS
+
+DOCS_BUILD_DEPENDS=	gtk-doc>=0:textproc/gtk-doc
+DOCS_CONFIGURE_ON=	--enable-gtk-doc --with-html-dir=${PREFIX}/share/doc
 
 .include <bsd.port.mk>
