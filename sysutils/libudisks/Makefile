@@ -1,5 +1,5 @@
 PORTNAME=	libudisks
-DISTVERSION=	2.10.1
+DISTVERSION=	2.11.0
 CATEGORIES=	sysutils
 MASTER_SITES=	https://github.com/storaged-project/udisks/releases/download/udisks-${DISTVERSION}/
 DISTNAME=	udisks-${DISTVERSION}
@@ -30,6 +30,7 @@ GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 # --with-libintl-prefix is needed because otherwise
 # configure won't find libintl when PREFIX != LOCALBASE.
 CONFIGURE_ARGS=	--disable-daemon \
+		--enable-introspection=no \
 		--with-html-dir=${PREFIX}/share/doc \
 		--with-libintl-prefix=${LOCALBASE}
 
