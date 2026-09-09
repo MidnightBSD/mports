@@ -1,6 +1,5 @@
 PORTNAME=	pygobject
-DISTVERSION=	3.50.2
-PORTREVISION?=	1
+DISTVERSION=	3.58.0
 CATEGORIES=	devel python
 MASTER_SITES=	GNOME
 PKGNAMEPREFIX?=	${PYTHON_PKGNAMEPREFIX}
@@ -33,6 +32,8 @@ do-install:
 	@${MKDIR} ${PREFIX}/include/pygobject-3.0
 	${INSTALL_DATA} ${WRKSRC}/gi/pygobject.h \
 		${PREFIX}/include/pygobject-3.0/pygobject.h
+	${INSTALL_DATA} ${WRKSRC}/gi/pygobject-types.h \
+		${PREFIX}/include/pygobject-3.0/pygobject-types.h
 .else
 BUILD_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}meson-python>=0.12.1:devel/meson-python@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cairo>=1.16:graphics/py-cairo@${PY_FLAVOR} \
