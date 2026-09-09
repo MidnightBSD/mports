@@ -1,0 +1,3 @@
+A tool which prints the process IDs associated with a given process name.
+
+It uses the kernel virtual-memory interface to locate matching processes.
