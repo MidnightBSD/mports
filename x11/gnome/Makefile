@@ -29,6 +29,7 @@ USES=		metaport
 PKGNAMESUFFIX=	-lite
 COMMENT=	The "meta-port" of the GNOME desktop slimmed down for only the basics
 DESCR=		${.CURDIR}/pkg-descr-lite
+PKGMESSAGE=	${.CURDIR}/pkg-message-lite
 .endif
 
 .if ${FLAVOR} == "full"
