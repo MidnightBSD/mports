@@ -58,6 +58,7 @@ OPTIONS_DEFINE=	ACCESSKIT BASH CUPS COLORD DEBUG BROADWAY GSTREAMER VULKAN \
 		WAYLAND X11
 OPTIONS_DEFAULT=CUPS COLORD GSTREAMER VULKAN WAYLAND X11
 OPTIONS_SUB=	yes
+INSTALLS_ICONS=	yes
 
 ACCESSKIT_DESC=	Enable AccessKit backend for accessibility (experimental)
 BROADWAY_DESC=	Enable GDK Broadway backend for showing GTK in the webbrowser using HTML5 and web sockets.
