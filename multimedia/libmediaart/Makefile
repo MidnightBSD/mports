@@ -1,5 +1,5 @@
 PORTNAME=	libmediaart
-DISTVERSION=	1.9.6
+DISTVERSION=	1.9.7
 CATEGORIES=	multimedia devel
 MASTER_SITES=	GNOME
 
@@ -11,9 +11,9 @@ LICENSE=	gpl2 lgpl2.1
 LICENSE_COMB=	dual
 
 USES=		gnome meson pathfix pkgconfig tar:xz vala:build
-USE_GNOME=	gdkpixbuf introspection:build
+USE_GNOME=	glib20 gdkpixbuf introspection:build
 USE_LDCONFIG=	yes
 
-MESON_ARGS=	-Dimage_library=gdk-pixbuf -Dgtk_doc=false
+MESON_ARGS=	-Dimage_library=gdk-pixbuf
 
 .include <bsd.port.mk>
