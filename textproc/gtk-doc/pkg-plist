@@ -79,6 +79,3 @@ share/aclocal/gtk-doc.m4
 %%DATADIR%%/python/gtkdoc/rebase.py
 %%DATADIR%%/python/gtkdoc/scan.py
 %%DATADIR%%/python/gtkdoc/scangobj.py
-@preunexec %%XMLCATMGR%% -sc %%CATALOG_PORTS_SGML%% remove CATALOG %%CATALOG_DIR%%/gtk-doc.cat
-@comment share/sgml/gtk-doc/gtk-doc.cat
-@postexec %%XMLCATMGR%% -sc %%CATALOG_PORTS_SGML%% add CATALOG %%CATALOG_DIR%%/gtk-doc.cat
