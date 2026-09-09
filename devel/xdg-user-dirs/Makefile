@@ -1,6 +1,5 @@
 PORTNAME=	xdg-user-dirs
-DISTVERSION=	0.19
-PORTREVISION=	2
+DISTVERSION=	0.20
 CATEGORIES=	devel
 MASTER_SITES=	https://user-dirs.freedesktop.org/releases/
 
@@ -10,7 +9,7 @@ WWW=		https://freedesktop.org/wiki/Software/xdg-user-dirs/
 
 LICENSE=	gpl2+ mit
 LICENSE_COMB=	multi
-LICENSE_FILE_gpl2+=	${WRKSRC}/COPYING
+LICENSE_FILE_gpl2+ =	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	${LOCALBASE}/share/xsl/docbook/html/docbook.xsl:textproc/docbook-xsl
 
