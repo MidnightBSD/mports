@@ -1,7 +1,7 @@
 # Created by: Kimura Fuyuki <fuyuki@hadaly.org>
 
 PORTNAME=	m17n-db
-PORTVERSION=	1.8.0
+PORTVERSION=	1.8.10
 CATEGORIES=	devel textproc
 MASTER_SITES=	SAVANNAH/m17n:m17n \
 		GNU/glibc:glibc
@@ -11,6 +11,7 @@ EXTRACT_ONLY=	${M17N_DISTFILE}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Data files for the m17n library
+WWW=		https://www.nongnu.org/m17n/
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -27,7 +28,7 @@ NLS_USES=	gettext
 NLS_CONFIGURE_ENABLE=	nls
 
 M17N_DISTFILE=	${DISTNAME}${EXTRACT_SUFX}
-GLIBC_VERSION=	2.27
+GLIBC_VERSION=	2.41
 GLIBC_DISTFILE=	glibc-${GLIBC_VERSION}.tar.bz2
 CHARMAPSDIR=	glibc-${GLIBC_VERSION}/localedata/charmaps
 
