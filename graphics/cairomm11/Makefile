@@ -1,6 +1,5 @@
 PORTNAME=	cairomm
-PORTVERSION=	1.18.0
-PORTREVISION=	1
+PORTVERSION=	1.19.0
 CATEGORIES=	graphics
 MASTER_SITES=	https://cairographics.org/releases/
 PKGNAMESUFFIX=	11
@@ -20,7 +19,6 @@ USE_GNOME=	cairo libsigc++30 libxslt
 
 MESON_ARGS=	-Dmaintainer-mode=false \
 		-Dbuild-documentation=false \
-		-Dbuild-examples=false \
-		-Dbuild-tests=false
+	-Dbuild-examples=false
 
 .include <bsd.port.mk>
