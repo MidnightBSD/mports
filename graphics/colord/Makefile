@@ -1,5 +1,5 @@
 PORTNAME=	colord
-PORTVERSION=	1.4.7
+PORTVERSION=	1.4.8
 CATEGORIES=	graphics
 MASTER_SITES=	https://www.freedesktop.org/software/colord/releases/
 
