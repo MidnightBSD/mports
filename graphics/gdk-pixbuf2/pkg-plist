@@ -3,7 +3,6 @@ bin/gdk-pixbuf-pixdata
 bin/gdk-pixbuf-query-loaders
 bin/gdk-pixbuf-thumbnailer
 include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-animation.h
-include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-autocleanups.h
 include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-core.h
 include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-enum-types.h
 include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-features.h
@@ -142,4 +141,3 @@ share/thumbnailers/gdk-pixbuf-thumbnailer.thumbnailer
 @postunexec rm %D/lib/gdk-pixbuf-2.0/%%GTK2_VERSION%%/loaders.cache 2>&1 >/dev/null || true
 @dir lib/gdk-pixbuf-2.0/%%GTK2_VERSION%%
 @dir lib/gdk-pixbuf-2.0
-
