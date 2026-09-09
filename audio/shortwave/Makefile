@@ -1,5 +1,5 @@
 PORTNAME=	shortwave
-DISTVERSION=	5.0.0
+DISTVERSION=	5.1.0
 CATEGORIES=	audio
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,11 +10,12 @@ LICENSE=	gpl3+
 LICENSE_FILE=	${WRKSRC}/COPYING.md
 
 LIB_DEPENDS=	libdbus-1.so:devel/dbus \
+		libgraphene-1.0.so:graphics/graphene \
 		libshumate-1.0.so:x11-toolkits/libshumate
 
 USES=		cargo desktop-file-utils gettext gnome gstreamer meson pkgconfig sqlite ssl
 USE_GITLAB=	yes
-USE_GNOME=	gdkpixbuf gtk40 libadwaita
+USE_GNOME=	gtk40 libadwaita
 USE_GSTREAMER=	good libav soup vorbis
 GL_SITE=	https://gitlab.gnome.org
 GL_ACCOUNT=	World
@@ -24,6 +25,7 @@ CARGO_BUILD=	no
 CARGO_INSTALL=	no
 CARGO_TEST=	no
 GLIB_SCHEMAS=	de.haeckerfelix.Shortwave.gschema.xml
+INSTALLS_ICONS=	yes
 
 OPTIONS_DEFINE=	PULSEAUDIO
 OPTIONS_DEFAULT=PULSEAUDIO
@@ -31,9 +33,6 @@ OPTIONS_DEFAULT=PULSEAUDIO
 PULSEAUDIO_USE=	GSTREAMER=pulse
 
 post-patch:
-	@${REINPLACE_CMD} -e '/gstreamer.*bad/d' \
-		-e "/vcs_tag/s/=.*/= '${DISTVERSIONFULL}'/" \
-		${WRKSRC}/meson.build
 	@${REINPLACE_CMD} -e 's|%%CARGO_BUILD_TARGET%%|${CARGO_BUILD_TARGET}|g' \
 		${WRKSRC}/src/meson.build
 
