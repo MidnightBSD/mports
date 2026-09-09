@@ -1,11 +1,12 @@
 PORTNAME=	cantarell-fonts
-DISTVERSION=	0.301
+DISTVERSION=	0.311
 CATEGORIES=	x11-fonts gnome
-MASTER_SITES=	GNOME
+MASTER_SITES=	https://cantarell.gnome.org/releases/
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cantarell, a Humanist sans-serif font family
-WWW=		https://wiki.gnome.org/Projects/CantarellFonts
+WWW=		https://cantarell.gnome.org/
 
 LICENSE=	OFL11
 LICENSE_FILE=	${WRKSRC}/COPYING

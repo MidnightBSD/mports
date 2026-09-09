@@ -1,9 +1,4 @@
-%%FONTSDIR%%/Cantarell-Bold.otf
-%%FONTSDIR%%/Cantarell-ExtraBold.otf
-%%FONTSDIR%%/Cantarell-Light.otf
-%%FONTSDIR%%/Cantarell-Regular.otf
-%%FONTSDIR%%/Cantarell-Thin.otf
 %%FONTSDIR%%/Cantarell-VF.otf
 share/metainfo/org.gnome.cantarell.metainfo.xml
-@exec %D/bin/fc-cache -f -v %D/%%FONTSDIR%%
-@unexec %D/bin/fc-cache -f -v %D/%%FONTSDIR%%
+@postexec %%LOCALBASE%%/bin/fc-cache -f -v %%FONTSDIR%% || /usr/bin/true
+@postunexec %%LOCALBASE%%/bin/fc-cache -f -v %%FONTSDIR%% || /usr/bin/true
