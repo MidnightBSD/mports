@@ -1,15 +1,14 @@
 PORTNAME=	tali
-PORTVERSION=	40.8
-PORTREVISION=	3
+PORTVERSION=	40.9
 CATEGORIES=	games gnome
-MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gnome tali
 WWW=		https://wiki.gnome.org/Apps/Tali
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	itstool:textproc/itstool
