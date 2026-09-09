@@ -97,6 +97,7 @@
     SUBDIR += lapispuzzle
     SUBDIR += libggz
     SUBDIR += libgnome-games-support
+    SUBDIR += libgnome-games-support2
     SUBDIR += libkdegames
     SUBDIR += libkmahjongg
     SUBDIR += libretro-beetle_psx
