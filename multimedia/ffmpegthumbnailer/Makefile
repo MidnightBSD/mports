@@ -1,8 +1,7 @@
 PORTNAME=	ffmpegthumbnailer
-DISTVERSION=	2.2.2.20221021
-PORTREVISION=	2
+DISTVERSIONPREFIX=	v
+DISTVERSION=	2.3.1
 CATEGORIES=	multimedia graphics
-#MASTER_SITES=	https://github.com/dirkvdb/${PORTNAME}/releases/download/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lightweight video thumbnailer that can be used by file managers
@@ -14,10 +13,9 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 LIB_DEPENDS=	libpng.so:graphics/png \
 		libavformat.so:multimedia/ffmpeg
 
-USES=		cmake compiler:c++11-lib gnome jpeg localbase pkgconfig tar:bz2
+USES=		cmake:testing compiler:c++14-lang gnome jpeg localbase pathfix pkgconfig
 USE_GITHUB=	yes
 GH_ACCOUNT=	dirkvdb
-GH_TAGNAME=	e0bf01d
 
 USE_GNOME=	glib20
 USE_LDCONFIG=	yes
@@ -25,17 +23,17 @@ USE_LDCONFIG=	yes
 EXTRACT_CMD=	${SETENV} LC_ALL=en_US.UTF-8 /usr/bin/bsdtar
 
 CMAKE_ON=	ENABLE_GIO
+CMAKE_OFF=	ENABLE_TESTS
+CMAKE_TESTING_ON=	ENABLE_TESTS
 
-OPTIONS_DEFINE=	TEST THUMBNAILER
-THUMBNAILER_DESC=Register as a system thumbnailer
-OPTIONS_SUB=	yes
-OPTIONS_DEFAULT=THUMBNAILER
+OPTIONS_DEFINE=		AUDIO_THUMBNAILER THUMBNAILER
+OPTIONS_DEFAULT=	AUDIO_THUMBNAILER THUMBNAILER
+OPTIONS_SUB=		yes
 
-TEST_CMAKE_BOOL=	ENABLE_TESTS
+AUDIO_THUMBNAILER_DESC=	Register as a system thumbnailer for audio files
+THUMBNAILER_DESC=	Register as a system thumbnailer for video files
 
-THUMBNAILER_CMAKE_ON=	-DENABLE_THUMBNAILER:BOOL=ON
-
-do-test:
-	(cd ${TEST_WRKSRC} && CTEST_OUTPUT_ON_FAILURE=1 ctest)
+AUDIO_THUMBNAILER_CMAKE_BOOL=	ENABLE_AUDIO_THUMBNAILER
+THUMBNAILER_CMAKE_BOOL=		ENABLE_THUMBNAILER
 
 .include <bsd.port.mk>
