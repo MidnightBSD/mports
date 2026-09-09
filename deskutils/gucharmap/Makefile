@@ -1,5 +1,5 @@
 PORTNAME=	gucharmap
-PORTVERSION=	17.0.0 # must sync with textproc/UCD
+PORTVERSION=	17.0.2 # must sync with textproc/UCD
 CATEGORIES=	deskutils gnome
 DIST_SUBDIR=	gnome
 
