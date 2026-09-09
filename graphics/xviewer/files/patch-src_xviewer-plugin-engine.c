@@ -1,13 +1,21 @@
 --- src/xviewer-plugin-engine.c.orig
 +++ src/xviewer-plugin-engine.c
-@@ -36,0 +37,4 @@
-+
+@@ -34,7 +34,11 @@
+ #include <glib/gi18n.h>
+ #include <glib.h>
+ #include <gio/gio.h>
 +#if USE_GIR20
 +#include <girepository/girepository.h>
 +#else
-@@ -37,0 +42 @@
+ #include <girepository.h>
 +#endif
-@@ -88,0 +94,29 @@
+ 
+ #define XVIEWER_PLUGIN_DATA_DIR XVIEWER_DATA_DIR G_DIR_SEPARATOR_S "plugins"
+ 
+@@ -86,6 +90,35 @@
+ 	GError *error = NULL;
+ 
+ 	/* This should be moved to libpeas */
 +#if USE_GIR20
 +	GIRepository *repo = gi_repository_dup_default ();
 +
@@ -37,5 +45,14 @@
 +
 +	g_object_unref (repo);
 +#else
-@@ -114,0 +149 @@
+ 	if (g_irepository_require (g_irepository_get_default (),
+ 				   "Peas", "1.0", 0, &error) == NULL)
+ 	{
+@@ -112,6 +145,7 @@
+ 			   error->message);
+ 		g_clear_error (&error);
+ 	}
 +#endif
+ 
+ 	engine = XVIEWER_PLUGIN_ENGINE (g_object_new (XVIEWER_TYPE_PLUGIN_ENGINE,
+ 						  NULL));
