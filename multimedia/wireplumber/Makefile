@@ -1,6 +1,5 @@
 PORTNAME=	wireplumber
-DISTVERSION=	0.5.13
-PORTREVISION=	1
+DISTVERSION=	0.5.15
 CATEGORIES=	multimedia
 
 MAINTAINER=	ports@MidnightBSD.org
