@@ -1,6 +1,5 @@
 PORTNAME=	gnome-online-accounts
-PORTVERSION=	3.54.5
-PORTREVISION=	1
+PORTVERSION=	3.54.11
 CATEGORIES=	net
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -24,6 +23,7 @@ USES=		compiler:c++11-lib desktop-file-utils gettext-tools gnome \
 USE_GNOME=	glib20 gtk40 introspection:build libadwaita libxml2 \
 		libxslt:build
 USE_LDCONFIG=	yes
+INSTALLS_ICONS=	yes
 
 GLIB_SCHEMAS=	org.gnome.online-accounts.gschema.xml
 
