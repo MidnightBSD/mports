@@ -1,5 +1,5 @@
 PORTNAME=	libspice-server
-DISTVERSION=	0.15.2
+DISTVERSION=	0.16.0
 CATEGORIES=	devel
 MASTER_SITES=	https://www.spice-space.org/download/releases/spice-server/
 DISTNAME=	spice-${PORTVERSION}
@@ -42,7 +42,5 @@ LZ4_MESON_TRUE=	lz4
 SASL_LIB_DEPENDS=	libsasl2.so:security/cyrus-sasl2
 SASL_MESON_TRUE=	sasl
 STATISTICS_MESON_ON=	-Dstatistics=true
-
-NO_TEST=	yes
 
 .include <bsd.port.mk>
