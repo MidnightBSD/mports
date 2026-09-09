@@ -1,5 +1,5 @@
 PORTNAME=	libdex
-PORTVERSION=	0.10.1
+PORTVERSION=	1.0.0
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -15,6 +15,7 @@ USE_GNOME=	glib20 introspection:build
 USE_LDCONFIG=	yes
 
 MESON_ARGS=	-Dexamples=false \
-		-Dtests=false
+		-Dtests=false \
+		-Dliburing=disabled
 
 .include <bsd.port.mk>
