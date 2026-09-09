@@ -1,5 +1,5 @@
 PORTNAME=	glibmm
-DISTVERSION=	2.66.7
+DISTVERSION=	2.66.8
 PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
@@ -23,7 +23,5 @@ MESON_ARGS=	-Dbuild-documentation=false \
 # 2.68 and later are currently incompatible with consumers
 PORTSCOUT=	limit:^2\.66
 PLIST_SUB=	VERSION=2.4
-
-NO_TEST=	yes
 
 .include <bsd.port.mk>
