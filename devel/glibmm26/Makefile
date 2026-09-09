@@ -1,5 +1,5 @@
 PORTNAME=	glibmm
-PORTVERSION=	2.80.1
+PORTVERSION=	2.86.0
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	26
@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C++ interfaces for glib2
 WWW=		https://www.gtkmm.org/
 
-LICENSE=	lgpl2.1
+LICENSE=	lgpl2.1+
 
 USES=		compiler:c++11-lang gettext gnome meson pathfix perl5 \
 		pkgconfig python:build shebangfix tar:xz
@@ -22,7 +22,5 @@ MESON_ARGS=	-Dbuild-documentation=false
 
 PORTSCOUT=	limitw:1,even
 PLIST_SUB=	VERSION=2.68
-
-NO_TEST=	yes
 
 .include <bsd.port.mk>
