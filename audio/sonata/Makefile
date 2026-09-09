@@ -7,6 +7,7 @@ PKGNAMEPREFIX=		${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Elegant music player for MPD
+WWW=		https://github.com/multani/sonata
 
 LICENSE=	gpl3
 
@@ -32,7 +33,7 @@ MPD_DESC=	Install Music Player Daemon
 OPTIONS_SUB=	yes
 
 MPD_RUN_DEPENDS+=	musicpd:audio/musicpd
-MMKEYS_RUN_DEPENDS=${PYTHON_PKGNAMEPREFIX}dbus>=0.82.4:devel/py-dbus@${FLAVOR}
+MMKEYS_RUN_DEPENDS=${PYTHON_PKGNAMEPREFIX}dbus>=0.82.4:devel/py-dbus@${PY_FLAVOR}
 ICONSDIR=	share/icons/hicolor/128x128/apps
 
 post-patch:
