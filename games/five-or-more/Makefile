@@ -1,8 +1,5 @@
-
-
 PORTNAME=	five-or-more
-PORTVERSION=	3.28.0
-PORTREVISION=	1
+PORTVERSION=	48.1
 CATEGORIES=	games gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -14,18 +11,15 @@ LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	itstool:textproc/itstool
+LIB_DEPENDS=	libgnome-games-support-1.so:games/libgnome-games-support \
+		libgee-0.8.so:devel/libgee
 
 PORTSCOUT=	limitw:1,even
 
-USES=		gettext gmake gnome localbase pathfix pkgconfig tar:xz
-USE_GNOME=	cairo gtk30 intlhack librsvg2
-GNU_CONFIGURE=	yes
+USES=		gettext gnome meson pkgconfig tar:xz vala:build
+USE_GNOME=	cairo glib20 gtk30 librsvg2
 INSTALLS_ICONS=	yes
-CONFIGURE_ARGS=	--localstatedir=${PREFIX}/share
 
 GLIB_SCHEMAS=	org.gnome.five-or-more.gschema.xml
-
-post-install:
-	@${MKDIR} ${PREFIX}/share/games
 
 .include <bsd.port.mk>

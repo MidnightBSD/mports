@@ -1,6 +1,7 @@
 bin/xdg-user-dirs-gtk-update
 etc/xdg/autostart/user-dirs-update-gtk.desktop
 share/applications/user-dirs-update-gtk.desktop
+lib/systemd/user/user-dirs-update-gtk.service
 share/locale/af/LC_MESSAGES/xdg-user-dirs-gtk.mo
 share/locale/an/LC_MESSAGES/xdg-user-dirs-gtk.mo
 share/locale/ar/LC_MESSAGES/xdg-user-dirs-gtk.mo
