@@ -25,6 +25,7 @@ USES=		compiler:c++11-lang desktop-file-utils gettext-tools gnome \
 		tar:xz xorg
 USE_GNOME=	cairo gnomedesktop3 gtk30 introspection librsvg2
 USE_XORG=	x11
+INSTALLS_ICONS=	yes
 
 MESON_ARGS=	-Dlibportal=false
 
