@@ -1,8 +1,8 @@
 include/libgedit-gfls-1/gfls/gfls-attribute-keys.h
 include/libgedit-gfls-1/gfls/gfls-bytes-region-builder.h
 include/libgedit-gfls-1/gfls/gfls-bytes-region.h
-include/libgedit-gfls-1/gfls/gfls-encoding-conversion.h
 include/libgedit-gfls-1/gfls/gfls-encoding-convert.h
+include/libgedit-gfls-1/gfls/gfls-encoding-conversion.h
 include/libgedit-gfls-1/gfls/gfls-enum-types.h
 include/libgedit-gfls-1/gfls/gfls-error.h
 include/libgedit-gfls-1/gfls/gfls-iconv.h
