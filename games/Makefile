@@ -99,6 +99,8 @@
     SUBDIR += libgnome-games-support
     SUBDIR += libgnome-games-support2
     SUBDIR += libkdegames
+
+    SUBDIR += libmanette
     SUBDIR += libkmahjongg
     SUBDIR += libretro-beetle_psx
     SUBDIR += libretro-fceumm
