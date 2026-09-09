@@ -19,11 +19,6 @@ USE_GITHUB=	yes
 NO_BUILD=	yes
 NO_ARCH=	yes
 
-OPTIONS_DEFINE=	PARALLEL
-
-PARALLEL_DESC=		Install sysutils/parallel to enable parallel runs
-PARALLEL_RUN_DEPENDS=	parallel:sysutils/parallel
-
 do-install:
 	cd ${WRKSRC} && ./install.sh ${PREFIX}
 
