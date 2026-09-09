@@ -1,0 +1,4 @@
+--- src/meson.build.orig
++++ src/meson.build
+@@ -133,0 +134 @@
++    gi,

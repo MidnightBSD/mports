@@ -1,0 +1,11 @@
+--- meson.build.orig
++++ meson.build
+@@ -42,0 +43,8 @@
++
++gi = dependency('girepository-2.0', required: false)
++use_gir20 = gi.found()
++if not use_gir20
++    gi = dependency('gobject-introspection-1.0', version: '>= 0.9.2')
++endif
++xviewer_conf.set10('USE_GIR20', use_gir20)
++
