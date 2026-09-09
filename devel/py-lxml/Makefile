@@ -1,6 +1,5 @@
 PORTNAME=	lxml
-DISTVERSION=	6.0.1
-PORTREVISION=	7
+DISTVERSION=	6.1.3
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,7 +13,9 @@ LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/doc/licenses/BSD.txt
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>0:devel/py-setuptools@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}cython>=3.2.9<3.3:lang/cython@${PY_FLAVOR}
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cssselect>0:www/py-cssselect@${PY_FLAVOR}
 
 USES=		compiler cpe gnome python
 USE_GNOME=	libxml2 libxslt
@@ -39,6 +40,11 @@ post-install-DOCS-on:
 	@${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${DOCS_FILES:S,^,${WRKSRC}/,} ${DOCSDIR}
 	@cd ${WRKSRC} && ${COPYTREE_SHARE} doc ${DOCSDIR}
+
+# Tests require compiled extensions in the source directories.
+do-test:
+	${CP} -a ${BUILD_WRKSRC}/build/lib.*/lxml/ ${BUILD_WRKSRC}/src/lxml/
+	cd ${BUILD_WRKSRC} && LD_LIBRARY_PATH=${LOCALBASE}/lib ${PYTHON_CMD} test.py -p -v
 
 .include <bsd.port.pre.mk>
 
