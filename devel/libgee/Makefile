@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GObject collection library
 WWW=		https://wiki.gnome.org/Projects/Libgee
 
-LICENSE=	lgpl2.1
+LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 PORTSCOUT=	limitw:1,even
