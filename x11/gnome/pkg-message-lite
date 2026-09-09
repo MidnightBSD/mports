@@ -1,16 +1,16 @@
 [
 { type: install
   message: <<EOM
-The GNOME 3 desktop Lite edition has been successfully installed.
+The GNOME desktop Lite edition has been successfully installed.
 
-The Lite edition only includes the minimal components to get a working GNOME 3
-Desktop. The user then has to install prefered applications like editor,
+The Lite edition only includes the minimal components for a working GNOME
+desktop. The user can then install preferred applications such as an editor,
 web browser or e-mail client. If you wish to install the full desktop, you can
-remove this port, and install the x11/gnome3 port or package.  That can be best
+remove this port and install the x11/gnome port or package. That can be
 accomplished using the following commands:
 
-# mport delete gnome3-lite
-# cd /usr/mports/x11/gnome3
+# mport delete gnome-lite
+# cd /usr/mports/x11/gnome
 # make install clean
 
 Alternatively, you can install additional GNOME components individually
