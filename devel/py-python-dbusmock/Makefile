@@ -1,22 +1,39 @@
 PORTNAME=	python-dbusmock
-PORTVERSION=	0.22.0
-PORTREVISION=	1
+DISTVERSION=	0.38.1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTNAME=	${PORTNAME:S/-/_/}-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mock D-Bus objects for tests
+WWW=		https://pypi.org/project/python-dbusmock
 
-LICENSE=	lgpl3
+LICENSE=	lgpl3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+BUILD_DEPENDS=	${PY_SETUPTOOLS} \
+		${PYTHON_PKGNAMEPREFIX}setuptools-scm>0:devel/py-setuptools-scm@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}dbus>0:devel/py-dbus@${PY_FLAVOR}
 
 USES=		gnome python
 USE_GNOME=	pygobject3
-USE_PYTHON=	autoplist distutils
+USE_PYTHON=	autoplist pep517 unittest
 
+BINARY_ALIAS=	python3=${PYTHON_CMD}
 NO_ARCH=	yes
+
+PORTDOCS=	README.md
+
+OPTIONS_DEFINE=	DOCS
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|/usr/bin/python3|${PYTHON_CMD}|' \
+		${WRKSRC}/tests/test_api.py
+
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
