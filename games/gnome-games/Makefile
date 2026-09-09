@@ -19,7 +19,10 @@ RUN_DEPENDS=	five-or-more:games/five-or-more \
 		gnome-robots:games/gnome-robots \
 		gnome-sudoku:games/gnome-sudoku \
 		lightsoff:games/lightsoff \
-		aisleriot>=0:games/aisleriot \
 		swell-foop:games/swell-foop
+
+.if ${ARCH:Uunknown} == amd64
+RUN_DEPENDS+=	aisleriot>=0:games/aisleriot
+.endif
 
 .include <bsd.port.mk>
