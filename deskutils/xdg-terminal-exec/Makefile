@@ -1,6 +1,6 @@
 PORTNAME=	xdg-terminal-exec
 DISTVERSIONPREFIX=v
-DISTVERSION=	0.14.1
+DISTVERSION=	0.14.3
 CATEGORIES=	deskutils
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,18 +11,20 @@ LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	ginstall:sysutils/coreutils
+TEST_DEPENDS=	bats:devel/bats-core
 
 USES=		gmake
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	Vladimir-csp
 
-MAKE_ARGS=	prefix=${FAKE_DESTDIR}${TRUE_PREFIX}
+MAKE_ARGS=	prefix=${TRUE_PREFIX}
+TEST_ENV=	HOME=${WRKDIR}
+TEST_TARGET=	test
 
 BINARY_ALIAS=	install=ginstall
 OPTIONS_SUB=	yes
 NO_ARCH=	yes
-NO_TEST=	yes
 
 OPTIONS_DEFINE=	MANPAGES
 
