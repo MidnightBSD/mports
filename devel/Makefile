@@ -207,6 +207,7 @@
     SUBDIR += ayatana-ido
     SUBDIR += b2
     SUBDIR += basu
+    SUBDIR += bats-core
     SUBDIR += benchmark
     SUBDIR += bglibs
     SUBDIR += binutils
