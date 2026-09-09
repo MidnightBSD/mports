@@ -1,5 +1,5 @@
 PORTNAME=	gedit
-DISTVERSION=	49.0
+DISTVERSION=	50.0
 CATEGORIES=	editors gnome
 DIST_SUBDIR=	gnome
 
@@ -24,7 +24,7 @@ USES=		compiler:c11 cpe desktop-file-utils gettext gnome localbase \
 USE_CSTD=	c11
 USE_GNOME=	glib20 gtk30 introspection
 #USE_LDCONFIG=	yes
-PLIST_SUB=	VERSION=49
+PLIST_SUB=	VERSION=50
 MESON_ARGS=	-Dgtk_doc=false
 CPE_VENDOR=	gnome
 
