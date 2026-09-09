@@ -21,6 +21,7 @@ PORTSCOUT=	limitw:1,even
 USES=		desktop-file-utils gettext-tools gnome meson pkgconfig tar:xz \
 		vala:build
 USE_GNOME=	gsound glib20 gtk40 libadwaita pango
+INSTALLS_ICONS=	yes
 
 GLIB_SCHEMAS=	org.gnome.Nibbles.gschema.xml
 
