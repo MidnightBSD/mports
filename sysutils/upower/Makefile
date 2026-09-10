@@ -38,6 +38,10 @@ MANPAGES_BUILD_DEPENDS=		${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:tex
 MANPAGES_USE=			GNOME=libxslt:build
 MANPAGES_MESON_TRUE=		man
 
+post-patch-DOCS-off:
+	@${REINPLACE_CMD} -e '/^install_data(/,/^)$$/d' \
+		${WRKSRC}/etc/UPower.conf.d/meson.build
+
 post-install:
 	@${MKDIR} ${PREFIX}/etc/UPower/UPower.conf.d
 
