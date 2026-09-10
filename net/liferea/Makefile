@@ -22,7 +22,8 @@ LIB_DEPENDS=	libfribidi.so:converters/fribidi \
 		libpeas-2.so:devel/libpeas \
 		libjson-glib-1.0.so:devel/json-glib
 RUN_DEPENDS=	gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas \
-		${PYTHON_PKGNAMEPREFIX}libpeas>=0:devel/py-libpeas@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}libpeas>=0:devel/py-libpeas@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}requests>=0:www/py-requests@${PY_FLAVOR}
 
 USES=		compiler:c++11-lang cpe desktop-file-utils gettext \
 		gmake gnome libtool localbase meson shebangfix \
