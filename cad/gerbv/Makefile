@@ -1,6 +1,6 @@
 PORTNAME=	gerbv
 DISTVERSIONPREFIX=v
-DISTVERSION=	2.10.0
+DISTVERSION=	2.13.0
 CATEGORIES=	cad
 MASTER_SITES=	GH
 
@@ -14,38 +14,27 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2
 
-USES=		autoreconf compiler:c++11-lang cpe desktop-file-utils \
-		gmake gnome libtool localbase pkgconfig
+BUILD_DEPENDS=	bash:shells/bash
+
+USES=		cmake compiler:c++11-lang cpe desktop-file-utils gettext \
+		gnome libtool localbase pkgconfig
 USE_GITHUB=	yes
-USE_GNOME=	cairo gtk20
+USE_GNOME=	cairo gtk-update-icon-cache gtk20
 USE_LDCONFIG=	yes
 
 CPE_VENDOR=	gerbv_project
 
-GNU_CONFIGURE=	yes
-GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ENV=	ac_aux_dir="."
 CFLAGS+=	-fcommon
-INSTALL_TARGET=	install-strip
+INSTALLS_ICONS=	yes
 
 PLIST_SUB=	VERSION="${PORTVERSION}"
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
 
-post-patch:
-	@${REINPLACE_CMD} -e \
-		's|^AM_NLS|#AM_NLS| ; \
-		 s|^AM_GNU_GETTEXT|#AM_GNU_GETTEXT| ; \
-		 /intl\/Makefile/d ; \
-		 /po\/Makefile/d' ${WRKSRC}/configure.ac
-	@${REINPLACE_CMD} -e \
-		'/^SUBDIRS/s|=.*|= src man scheme|' ${WRKSRC}/Makefile.am
-	@${REINPLACE_CMD} -e \
-		'/^man_MANS/s|gerbv.ru.1|| ; \
-		 s|^PO_|#PO_|' ${WRKSRC}/man/Makefile.am
-	@${REINPLACE_CMD} -e \
-		'/^pkgconfigdir/s|$$(libdir)|$$(prefix)/libdata|' \
-		${WRKSRC}/src/Makefile.am
+post-patch-DOCS-off:
+	@${REINPLACE_CMD} -e '/^install(DIRECTORY example TYPE DOC)/d' \
+		${WRKSRC}/CMakeLists.txt
 
 post-install:
 	(cd ${WRKSRC}/desktop && ${INSTALL_DATA} gerbv.desktop \
