@@ -1,6 +1,5 @@
 PORTNAME=	yaru-icon-theme
-DISTVERSION=	22.10.3
-PORTREVISION=	1
+DISTVERSION=	25.10.3
 CATEGORIES=	x11-themes
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,14 +14,13 @@ BUILD_DEPENDS=	bash>0:shells/bash \
 		sassc:textproc/sassc
 
 USES=		gnome meson ninja python shebangfix
-USE_GNOME=	glib20:build
+USE_GNOME=	glib20:build gtk-update-icon-cache
 USE_GITHUB=	yes
 GH_ACCOUNT=	ubuntu
 GH_PROJECT=	yaru
 
 NO_ARCH=	yes
-NO_TEST=	yes
-
+INSTALLS_ICONS=	yes
 BINARY_ALIAS=	realpath=grealpath
 
 MESON_ARGS=	-Dgnome-shell=false \
@@ -33,6 +31,8 @@ MESON_ARGS=	-Dgnome-shell=false \
 		-Dsounds=false
 
 SHEBANG_LANG=	${PYTHON_CMD}
-SHEBANG_FILES=	icons/meson/post_install.py icons/src/generate-index-theme.py
+SHEBANG_FILES=	icons/meson/post_install.py \
+		icons/src/generate-index-theme.py \
+		icons/src/symlinks/generate-symlinks.sh
 
 .include <bsd.port.mk>
