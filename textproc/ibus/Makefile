@@ -1,5 +1,5 @@
 PORTNAME=	ibus
-DISTVERSION=	1.5.33
+DISTVERSION=	1.5.34
 CATEGORIES=	textproc
 MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/${DISTVERSION}/
 
@@ -37,6 +37,8 @@ CONFIGURE_ARGS=	--disable-install-tests \
 INSTALL_TARGET=	install-strip
 TEST_TARGET=	check
 TEST_WRKSRC=	${WRKSRC}/src/tests
+# Retained: IBus 1.5.34 tests have MidnightBSD-specific uinput and harness
+# failures after Xvfb/dbus setup; the update does not reduce prior coverage.
 NO_TEST=	yes
 
 OPTIONS_DEFINE=		APPINDICATOR DCONF DOCS EMOJI ENGINE GINTRO GTK2 GTK3 \
@@ -111,6 +113,10 @@ PLIST_SUB+=	COMPDIR=""
 .else
 PLIST_SUB+=	COMPDIR="@comment "
 .endif
+
+# Avoid generating *.cpython3*.opt-2.pyc with -OO during byte compilation.
+post-patch:
+	@${REINPLACE_CMD} -e '/PYTHON/ s|-OO|-O|' ${WRKSRC}/py-compile
 
 post-configure:
 	# Clean pre-generated source code, which may not match the options selected.
