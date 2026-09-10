@@ -1,7 +1,6 @@
 PORTNAME=	pgmodeler
-PORTVERSION=	1.2.2
+PORTVERSION=	1.2.3
 DISTVERSIONPREFIX=	v
-PORTREVISION=	1
 CATEGORIES=	databases
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -18,8 +17,6 @@ USE_GNOME=	libxml2
 USE_GL=		gl
 USE_QT=		base svg tools
 USE_XORG=	x11 xext
-
-USE_LDCONFIG=	yes
 
 LDFLAGS+=	-lexecinfo
 
