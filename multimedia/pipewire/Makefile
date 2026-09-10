@@ -1,5 +1,5 @@
 PORTNAME=	pipewire
-DISTVERSION=	1.4.9
+DISTVERSION=	1.6.8
 CATEGORIES=	multimedia
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -82,7 +82,7 @@ X11_BELL_MESON_ENABLED=	libcanberra x11 x11-xfixes
 
 MESON_ARGS=	-D pw-cat=enabled \
 		-D v4l2=enabled \
-		-D raop=disabled \
+		-D raop=enabled \
 		-D session-managers='[]' \
 		-D compress-offload=disabled \
 		-D avb=disabled \
@@ -92,11 +92,13 @@ MESON_ARGS=	-D pw-cat=enabled \
 		-D roc=disabled \
 		-D sdl2=disabled \
 		-D selinux=disabled \
-		-D systemd=disabled \
+		-D libsystemd=disabled \
+		-D systemd-user-service=disabled \
 		-D logind=disabled \
 		-D pipewire-v4l2=disabled \
 		-D libmysofa=disabled \
 		-D libffado=disabled \
+		-D onnxruntime=disabled \
 		-D snap=disabled \
 		-D gsettings-pulse-schema=disabled \
 		-D udevrulesdir="${LOCALBASE}/lib/udev/rules.d"
@@ -115,8 +117,8 @@ post-patch:
 		${WRKSRC}/meson.build
 
 post-install-ALSA-on:
-	${MKDIR} ${DATADIR}/${PORTNAME}.conf.d
+	${MKDIR} ${FAKE_DESTDIR}${DATADIR}/${PORTNAME}.conf.d
 	${INSTALL_DATA} ${WRKDIR}/10-alsa-default.conf \
-		${DATADIR}/${PORTNAME}.conf.d
+		${FAKE_DESTDIR}${DATADIR}/${PORTNAME}.conf.d
 
 .include <bsd.port.mk>
