@@ -1,5 +1,5 @@
 PORTNAME=	ristretto
-PORTVERSION=	0.13.4
+PORTVERSION=	0.14.0
 CATEGORIES=	graphics xfce
 MASTER_SITES=	XFCE/apps
 DIST_SUBDIR=	xfce4
@@ -8,14 +8,15 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Image viewer with Xfce integration
 WWW=		https://docs.xfce.org/apps/ristretto/start
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libexif.so:graphics/libexif
 
 USES=		cmake:indirect compiler:c11 desktop-file-utils gettext-tools gnome \
 		meson pkgconfig tar:xz xfce xorg
-USE_GNOME=	cairo gdkpixbuf glib20 gtk30
+USE_GNOME=	cairo gdkpixbuf glib20 gtk-update-icon-cache gtk30
+INSTALLS_ICONS=	yes
 USE_XFCE=	libexo libmenu xfconf
 USE_XORG=	ice sm x11
 
