@@ -20,7 +20,7 @@ include/gphoto2/gphoto2-widget.h
 include/gphoto2/gphoto2.h
 lib/libgphoto2.so
 lib/libgphoto2.so.6
-lib/libgphoto2.so.6.3.0
+lib/libgphoto2.so.6.4.0
 lib/libgphoto2/%%VERSION%%/ax203.so
 lib/libgphoto2/%%VERSION%%/canon.so
 lib/libgphoto2/%%VERSION%%/digigr8.so

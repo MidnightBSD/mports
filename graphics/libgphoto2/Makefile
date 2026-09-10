@@ -1,6 +1,5 @@
 PORTNAME=	libgphoto2
-PORTVERSION=	2.5.31
-PORTREVISION=	1
+PORTVERSION=	2.5.33
 CATEGORIES=	graphics
 MASTER_SITES=	SF/gphoto/libgphoto/${PORTVERSION}
 
@@ -17,6 +16,7 @@ USES=		gnome libtool pathfix pkgconfig ssl tar:xz
 USE_GNOME=	libxml2
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
+TEST_TARGET=	check
 USE_LDCONFIG=	yes
 PATHFIX_MAKEFILEIN=	Makefile.in \
 			configure \
