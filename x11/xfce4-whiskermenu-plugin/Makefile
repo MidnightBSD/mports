@@ -15,6 +15,7 @@ USES=		compiler:c++14-lang gettext-tools gnome localbase meson \
 		pkgconfig tar:xz xfce
 USE_GNOME=	gtk30
 USE_XFCE=	garcon libexo panel xfconf
+RUN_DEPENDS=	gtk-update-icon-cache:graphics/gtk-update-icon-cache
 INSTALLS_ICONS=	yes
 
 OPTIONS_DEFINE=		ACCOUNTS_SERVICE MENULIBRE NLS WAYLAND
