@@ -1,29 +1,28 @@
 PORTNAME=	xfce4-stopwatch-plugin
-PORTVERSION=	0.5.0
-PORTREVISION=	1
+PORTVERSION=	0.6.0
 CATEGORIES=	x11-clocks xfce
 MASTER_SITES=	XFCE/panel-plugins
 DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XFCE panel plugin to keep track of elapsed time
+WWW=		https://docs.xfce.org/panel-plugins/xfce4-stopwatch-plugin/start
 
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		compiler:c11 gettext-tools gmake gnome libtool pkgconfig \
-		tar:bzip2 xfce
-USE_GNOME=	cairo gtk30 intltool
-USE_XFCE=	panel
+USES=		compiler:c11 gettext-tools gnome meson pkgconfig tar:xz xfce
+USE_GNOME=	gtk30
+USE_XFCE=	libutil panel
 
-GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
-INSTALL_TARGET=	install-strip
 
 OPTIONS_DEFINE=		NLS
 OPTIONS_SUB=		yes
 
 NLS_USES=		gettext-runtime
-NLS_CONFIGURE_ENABLE=	nls
+
+post-patch-NLS-off:
+	@${REINPLACE_CMD} -e "/^subdir('po')/d" ${WRKSRC}/meson.build
 
 .include <bsd.port.mk>
