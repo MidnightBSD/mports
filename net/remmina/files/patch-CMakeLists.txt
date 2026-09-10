@@ -1,6 +1,6 @@
 --- CMakeLists.txt.orig	2024-02-26 08:35:18 UTC
 +++ CMakeLists.txt
-@@ -285,10 +285,13 @@ include_directories(src/include)
+@@ -287,10 +287,13 @@ include_directories(src/include)
  include_directories(.)
  include_directories(src/include)
  
@@ -13,6 +13,6 @@
 +  list(APPEND CMAKE_PREFIX_PATH /usr/local/share/cmake/Modules/FreeRDP2)
 +  list(APPEND CMAKE_PREFIX_PATH /usr/local/share/cmake/Modules/FreeRDP-Client2)
 +  list(APPEND CMAKE_PREFIX_PATH /usr/local/share/cmake/Modules/WinPR2)
-   include_directories(/usr/local/include /usr/include)
+   include_directories(SYSTEM /usr/local/include /usr/include)
    link_directories(/usr/local/lib /usr/lib)
    set(CMAKE_REQUIRED_INCLUDES /usr/local/include)
