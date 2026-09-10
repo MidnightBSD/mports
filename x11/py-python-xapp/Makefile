@@ -33,4 +33,7 @@ NO_ARCH=	yes
 post-patch:
 	@${REINPLACE_CMD} 's|/usr/bin|${PREFIX}/bin|g' ${WRKSRC}/xapp/os.py
 
+post-patch-NLS-off:
+	@${REINPLACE_CMD} "/subdir('po')/d" ${WRKSRC}/meson.build
+
 .include <bsd.port.mk>
