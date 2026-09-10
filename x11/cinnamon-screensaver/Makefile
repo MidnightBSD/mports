@@ -1,6 +1,5 @@
 PORTNAME=	cinnamon-screensaver
-PORTVERSION=	5.4.2
-PORTREVISION=	7
+PORTVERSION=	6.4.1
 CATEGORIES=	x11 gnome
 DIST_SUBDIR=	gnome
 
@@ -24,25 +23,34 @@ RUN_DEPENDS=	${LOCALBASE}/lib/pam_gnome_keyring.so:security/gnome-keyring \
 		${PYTHON_PKGNAMEPREFIX}python-xapp>0:x11/py-python-xapp@${PY_FLAVOR} \
 		${LOCALBASE}/libexec/unix-selfauth-helper:security/unix-selfauth-helper
 
-USES=		gettext-tools gnome meson pkgconfig python shebangfix xorg
+USES=		gnome localbase:ldflags meson pkgconfig python shebangfix xorg
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	linuxmint
 
-USE_XORG=	x11 xext xinerama xrandr xscrnsaver
+USE_XORG=	x11 xext xrandr
 
-USE_GNOME=	cairo gdkpixbuf glib20 intltool introspection:build libgnomekbd pygobject3
+USE_GNOME=	cairo gdkpixbuf glib20 gtk-update-icon-cache gtk30 introspection:build pygobject3
 
 SHEBANG_GLOB=	*.py
 BINARY_ALIAS=	python3=${PYTHON_CMD}
 
-USE_LDCONFIG=	yes
+INSTALLS_ICONS=	yes
 
 SUB_FILES+=	cinnamon-screensaver.pam
 
+OPTIONS_DEFINE=		LOCKING SETRES XINERAMA
+OPTIONS_DEFAULT=	LOCKING XINERAMA
+
+LOCKING_DESC=	Compile in support for locking the display
+SETRES_DESC=	Use setresuid/setresgid in the setuid.c helper
+
+LOCKING_MESON_TRUE=	locking
+SETRES_MESON_TRUE=	setres
+XINERAMA_USE=		xorg=xinerama
+XINERAMA_MESON_TRUE=	xinerama
+
 post-patch:
-	@${REINPLACE_CMD} -e 's|/usr/lib|${PREFIX}/lib|g' \
-		${WRKSRC}/src/pamhelper/authClient.py
 	@${REINPLACE_CMD} -e 's|/usr/share|${PREFIX}/share|' \
 		${WRKSRC}/src/pamhelper/cinnamon-screensaver-pam-helper.c \
 		${WRKSRC}/libcscreensaver/test-passwd.c \
