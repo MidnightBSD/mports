@@ -18,15 +18,15 @@
  	public enum RepositoryLoadFlags {
  		LAZY = 1
  	}
-@@ -17,14 +17,14 @@ namespace Introspection
+@@ -17,16 +17,14 @@ namespace Introspection
 -	[CCode (ref_function = "", unref_function = "")]
 -	public class Repository {
-+	public class Repository : GLib.Object {
 -		public static unowned Repository get_default();
+-		public static void prepend_search_path(string directory);
+-		public static unowned GLib.SList<string> get_search_path();
++	public class Repository : GLib.Object {
 +		[CCode (cname = "gi_repository_dup_default")]
 +		public static Repository get_default();
- 		public static void prepend_search_path(string directory);
- 		public static unowned GLib.SList<string> get_search_path();
  
  		public unowned Typelib? require(string namespace_, string? version = null, RepositoryLoadFlags flags = 0) throws RepositoryError;
  	}
