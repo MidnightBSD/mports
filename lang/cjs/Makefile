@@ -15,8 +15,8 @@ LICENSE_FILE_lgpl+ =	${WRKSRC}/LICENSES/LGPL-2.0-or-later.txt
 LIB_DEPENDS=	libffi.so:devel/libffi \
 		libmozjs-128.so:lang/spidermonkey128
 TEST_DEPENDS=	dbus-run-session:devel/dbus \
-			gtk3>0:x11-toolkits/gtk30 \
-			gtk4>0:x11-toolkits/gtk40
+		gtk3>0:x11-toolkits/gtk30 \
+		gtk4>0:x11-toolkits/gtk40
 
 USES=		compiler:c++17-lang display:test gettext gnome meson pkgconfig \
 		python:build shebangfix xorg
