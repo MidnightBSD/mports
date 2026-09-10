@@ -22,7 +22,7 @@ GH_ACCOUNT=	linuxmint
 
 SHEBANG_GLOB=	*.py
 
-USE_GNOME=	cairo gdkpixbuf glib20 gtk30
+USE_GNOME=	cairo gdkpixbuf glib20 gtk-update-icon-cache gtk30 pygobject3
 INSTALLS_ICONS=	yes
 USE_XORG=	ice sm x11 xau xcomposite xext xrender xtrans xtst
 USE_GL=		gl
