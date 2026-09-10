@@ -1,6 +1,5 @@
 PORTNAME=	xfce4-whiskermenu-plugin
-PORTVERSION=	2.10.0
-PORTREVISION=	1
+PORTVERSION=	2.10.1
 CATEGORIES=	x11 xfce
 MASTER_SITES=	XFCE/panel-plugins
 DIST_SUBDIR=	xfce4
@@ -16,6 +15,7 @@ USES=		compiler:c++14-lang gettext-tools gnome localbase meson \
 		pkgconfig tar:xz xfce
 USE_GNOME=	gtk30
 USE_XFCE=	garcon libexo panel xfconf
+INSTALLS_ICONS=	yes
 
 OPTIONS_DEFINE=		ACCOUNTS_SERVICE MENULIBRE NLS WAYLAND
 OPTIONS_DEFAULT=	ACCOUNTS_SERVICE MENULIBRE WAYLAND
