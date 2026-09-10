@@ -1,6 +1,5 @@
 PORTNAME=	gtkwave
-DISTVERSION=	3.3.124
-PORTREVISION=	1
+DISTVERSION=	3.3.128
 CATEGORIES=	cad
 MASTER_SITES=	SF/${PORTNAME}/${DISTNAME}
 DISTNAME=	${PORTNAME}-gtk3-${DISTVERSION}
@@ -20,7 +19,8 @@ USES=		desktop-file-utils gettext-runtime gmake gnome gperf pkgconfig \
 		shared-mime-info
 USES+=	cpe
 CPE_VENDOR=		tonybybell
-USE_GNOME=	cairo gdkpixbuf gtk30
+USE_GNOME=	cairo gdkpixbuf gdkpixbufextra gtk-update-icon-cache gtk30
+INSTALLS_ICONS=	yes
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-mime-update \
