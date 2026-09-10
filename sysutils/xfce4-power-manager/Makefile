@@ -1,5 +1,5 @@
 PORTNAME=	xfce4-power-manager
-PORTVERSION=	4.20.0
+PORTVERSION=	4.20.1
 CATEGORIES=	sysutils xfce
 MASTER_SITES=	XFCE
 DIST_SUBDIR=	xfce4
@@ -21,6 +21,8 @@ USES=		compiler:c11 gettext-tools gmake gnome libtool pkgconfig \
 USE_GNOME=	cairo gdkpixbuf glib20 gtk30
 USE_XFCE=	libmenu panel xfconf
 USE_XORG=	ice sm x11 xext xrandr xscrnsaver xtst
+USE_GNOME+=	gtk-update-icon-cache
+INSTALLS_ICONS=	yes
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-network-manager \
