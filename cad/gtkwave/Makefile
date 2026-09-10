@@ -1,6 +1,5 @@
 PORTNAME=	gtkwave
-DISTVERSION=	3.3.124
-PORTREVISION=	1
+DISTVERSION=	3.3.128
 CATEGORIES=	cad
 MASTER_SITES=	SF/${PORTNAME}/${DISTNAME}
 DISTNAME=	${PORTNAME}-gtk3-${DISTVERSION}
@@ -15,12 +14,14 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 FAKE_OPTS=	trueprefix
 
 LIB_DEPENDS=	libharfbuzz.so:print/harfbuzz
+RUN_DEPENDS=	gdk-pixbuf-extra>0:graphics/gdk-pixbuf-extra
 
 USES=		desktop-file-utils gettext-runtime gmake gnome gperf pkgconfig \
 		shared-mime-info
 USES+=	cpe
 CPE_VENDOR=		tonybybell
 USE_GNOME=	cairo gdkpixbuf gtk30
+INSTALLS_ICONS=	yes
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-mime-update \
