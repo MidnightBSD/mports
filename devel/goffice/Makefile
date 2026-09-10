@@ -1,12 +1,12 @@
 PORTNAME=	goffice
-PORTVERSION=	0.10.53
-PORTREVISION=	2
+PORTVERSION=	0.10.61
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GLib/GTK set of document centric objects and utilities
-WWW=		http://live.gnome.org/libgoffice
+WWW=		https://gitlab.gnome.org/GNOME/goffice
 
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
