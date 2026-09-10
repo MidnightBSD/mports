@@ -1,32 +1,38 @@
 PORTNAME=	meld
-PORTVERSION=	3.20.4
-PORTREVISION=	3
+DISTVERSION=	3.22.3
 CATEGORIES=	textproc devel python
 MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME visual diff and merge tool
+WWW=		https://meld.app/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	itstool:textproc/itstool
 RUN_DEPENDS=	gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas
 
-USES=		desktop-file-utils gettext gnome python:3.4+ shared-mime-info \
+USES=		desktop-file-utils gnome meson pkgconfig python shared-mime-info \
 		shebangfix tar:xz
 SHEBANG_FILES=	bin/meld
-USE_PYTHON=	distutils noflavors
-USE_GNOME=	gtksourceview3 intltool libxml2:build pygobject3
+USE_GNOME=	gtksourceview4 intltool libxml2:build pygobject3
+OPTIONS_DEFINE=	NLS
+OPTIONS_SUB=	yes
+
+NLS_USES=		gettext
+
+MESON_ARGS=	-Dbyte-compile=false
+BINARY_ALIAS=	python3=${PYTHON_CMD}
 GLIB_SCHEMAS=	org.gnome.meld.gschema.xml
-PYDISTUTILS_INSTALL_TARGET=	--no-update-icon-cache --no-compile-schemas install
 INSTALLS_ICONS=	yes
 NO_ARCH=	yes
 
-PLIST_SUB=	PORTVER=${PORTVERSION}
+post-patch:
+	@${REINPLACE_CMD} -e "s|dependency('python3'|dependency('python-${PYTHON_VER}'|" \
+		${WRKSRC}/meson.build
 
-.include <bsd.port.pre.mk>
+post-install-NLS-off:
+	@${RM} -r ${FAKE_DESTDIR}${PREFIX}/share/locale
 
-PYDISTUTILS_INSTALLARGS=	-c -O1 --prefix=${TRUE_PREFIX} --root=${FAKE_DESTDIR}
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
