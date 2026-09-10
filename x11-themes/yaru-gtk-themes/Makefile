@@ -1,6 +1,5 @@
 PORTNAME=	yaru-gtk-themes
-DISTVERSION=	22.10.3
-PORTREVISION=	2
+DISTVERSION=	25.10.3
 CATEGORIES=	x11-themes
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -24,7 +23,7 @@ GH_PROJECT=	yaru
 
 NO_ARCH=	yes
 
-BINARY_ALIAS=	realpath=grealpath
+BINARY_ALIAS=	realpath=grealpath cp=gcp mv=gmv
 
 MESON_ARGS=	-Dcinnamon-dark=true \
 		-Dcinnamon-shell=true \
