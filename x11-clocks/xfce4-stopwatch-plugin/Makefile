@@ -12,7 +12,7 @@ LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		compiler:c11 gettext-tools gnome meson pkgconfig tar:xz xfce
-USE_GNOME=	gtk30
+USE_GNOME=	gtk-update-icon-cache gtk30
 USE_XFCE=	libutil panel
 
 INSTALLS_ICONS=	yes
