@@ -27,7 +27,7 @@ GL_ACCOUNT=	Remmina
 GL_PROJECT=	Remmina
 GL_TAGNAME=	7be0cf2348d149c6bf5bd882fe91d3bec7d6aebb
 
-USE_GNOME=	cairo gdkpixbuf glib20 gtk30 pango
+USE_GNOME=	cairo gdkpixbuf glib20 gtk-update-icon-cache gtk30 pango
 INSTALLS_ICONS=	yes
 
 USE_XORG=	ice sm x11 xext
