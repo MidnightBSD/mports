@@ -23,8 +23,8 @@ share/gtksourceview-%%OSREL%%/styles/Yaru-dark.xml
 share/gtksourceview-%%OSREL%%/styles/Yaru.xml
 share/gtksourceview-5/styles/Yaru-dark.xml
 share/gtksourceview-5/styles/Yaru.xml
-share/%%LIB32DIR%%gedit-gtksourceview-300/styles/Yaru.xml
-share/%%LIB32DIR%%gedit-gtksourceview-300/styles/Yaru-dark.xml
+share/libgedit-gtksourceview-300/styles/Yaru.xml
+share/libgedit-gtksourceview-300/styles/Yaru-dark.xml
 share/themes/Yaru-olive-dark/index.theme
 share/themes/Yaru-olive-dark/gtk-%%OSREL%%.0/gtk-dark.css
 share/themes/Yaru-olive-dark/gtk-%%OSREL%%.0/gtk.css
@@ -5181,8 +5181,8 @@ share/themes/Yaru-blue-dark/index.theme
 @dir share/gtksourceview-%%OSREL%%
 @dir share/gtksourceview-5/styles
 @dir share/gtksourceview-5
-@dir share/%%LIB32DIR%%gedit-gtksourceview-300/styles
-@dir share/%%LIB32DIR%%gedit-gtksourceview-300
+@dir share/libgedit-gtksourceview-300/styles
+@dir share/libgedit-gtksourceview-300
 @dir share/themes/Yaru-olive-dark/gtk-%%OSREL%%.0
 @dir share/themes/Yaru-olive-dark/cinnamon/dark-assets/checkbox
 @dir share/themes/Yaru-olive-dark/cinnamon/dark-assets/menu
