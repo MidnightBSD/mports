@@ -11,7 +11,7 @@ WWW=		https://docs.xfce.org/panel-plugins/xfce4-timer-plugin/start
 LICENSE=	gpl2
 
 USES=		compiler:c11 gettext-tools gnome meson pkgconfig tar:xz xfce
-USE_GNOME=	gtk30
+USE_GNOME=	gtk-update-icon-cache gtk30
 USE_XFCE=	libmenu panel
 
 INSTALLS_ICONS=	yes
