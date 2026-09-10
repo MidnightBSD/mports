@@ -1,5 +1,5 @@
 PORTNAME=	wifimgr
-DISTVERSION=	1.25
+DISTVERSION=	1.26
 CATEGORIES=	net-mgmt sysutils
 MASTER_SITES=	https://opal.com/src/wifimgr/
 
