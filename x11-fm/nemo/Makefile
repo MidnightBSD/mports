@@ -1,6 +1,6 @@
 PORTNAME=	nemo
-PORTVERSION=	5.4.2
-PORTREVISION=	7
+DISTVERSION=	6.4.5
+PORTREVISION=	0
 CATEGORIES=	x11-fm gnome
 DIST_SUBDIR=	gnome
 
@@ -16,39 +16,53 @@ LICENSE_FILE_lgpl=	${WRKSRC}/COPYING.LIB
 BUILD_DEPENDS=	gnome-icon-theme>=0:misc/gnome-icon-theme \
 		gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas
 LIB_DEPENDS=	libcinnamon-desktop.so:x11/cinnamon-desktop \
-		libxapp.so:x11/xapp
+		libxapp.so:x11/xapp \
+		libjson-glib-1.0.so:devel/json-glib
 RUN_DEPENDS=	gnome-icon-theme>=0:misc/gnome-icon-theme \
 		gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas \
-		gvfs>0:filesystems/gvfs
+		${PYTHON_PKGNAMEPREFIX}cairo>=0:graphics/py-cairo@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}xlrd>=0:textproc/py-xlrd@${PY_FLAVOR} \
+		catdoc:textproc/catdoc \
+		html2text:textproc/html2text \
+		pdftotext:graphics/poppler-utils
 
-USES=		compiler:c11 desktop-file-utils gettext gnome meson pkgconfig \
-		python shared-mime-info shebangfix xorg
+USES=		compiler:c11 desktop-file-utils display:test gettext ghostscript:run gnome \
+		localbase meson pkgconfig python shared-mime-info shebangfix xorg
 
-SHEBANG_FILES=	generate_additional_file makepot search-helpers/nemo-xls-to-txt
+SHEBANG_FILES=	generate_additional_file makepot search-helpers/nemo-xls-to-txt \
+		search-helpers/nemo-odf-to-txt
 SHEBANG_GLOB=	*.py
-
-NO_TEST=	yes
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	linuxmint
 
-USE_GNOME=	cairo gdkpixbuf gtk30 intlhack introspection libgsf \
-		libxml2 pango pygobject3
+USE_GNOME=	cairo gdkpixbuf gtk-update-icon-cache gtk30 gvfs:run intltool introspection:build libgsf \
+		pango pygobject3
 
 USE_XORG=	x11
 
-MESON_ARGS=	-Dtracker=false
+TEST_ENV+=	${MAKE_ENV} \
+		GSETTINGS_SCHEMA_DIR=${BUILD_WRKSRC}/test-schemas
+
+pre-test:
+	@${MKDIR} ${BUILD_WRKSRC}/test-schemas
+	@${CP} ${WRKSRC}/libnemo-private/org.nemo.gschema.xml \
+		${BUILD_WRKSRC}/test-schemas
+	@${LOCALBASE}/bin/glib-compile-schemas ${BUILD_WRKSRC}/test-schemas
 
 GLIB_SCHEMAS=	org.nemo.gschema.xml
 
+INSTALLS_ICONS=	yes
+
 USE_LDCONFIG=	yes
 
-OPTIONS_DEFINE=		DOCS EXEMPI EXIF
+OPTIONS_DEFINE=		DOCS EXEMPI EXIF TRACKER
 OPTIONS_DEFAULT=	DOCS EXEMPI EXIF
 OPTIONS_SUB=		yes
 
 EXEMPI_DESC=		XMP support
 EXIF_DESC=		Digital camera file meta-data support
+TRACKER_DESC=		Integration with tracker
 
 DOCS_BUILD_DEPENDS=	gtkdocize:textproc/gtk-doc
 DOCS_MESON_TRUE=	gtk_doc
@@ -58,5 +72,8 @@ EXEMPI_MESON_TRUE=	xmp
 
 EXIF_LIB_DEPENDS=	libexif.so:graphics/libexif
 EXIF_MESON_TRUE=	exif
+
+TRACKER_LIB_DEPENDS=	libtracker-sparql-3.0.so:devel/tinysparql
+TRACKER_MESON_TRUE=	tracker
 
 .include <bsd.port.mk>
