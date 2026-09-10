@@ -1,6 +1,5 @@
 PORTNAME=	strawberry
-DISTVERSION=	1.2.17
-PORTREVISION=	1
+DISTVERSION=	1.2.27
 CATEGORIES=	audio
 MASTER_SITES=	https://github.com/strawberrymusicplayer/${PORTNAME}/releases/download/${DISTVERSION}/
 
@@ -27,6 +26,7 @@ USE_GNOME=	glib20
 USE_GSTREAMER=	faac faad flac lame libav mpg123 opus soup taglib vorbis
 USE_QT=		base imageformats:run sqldriver-sqlite:run
 USE_XORG=	ice sm x11 xcb xext
+INSTALLS_ICONS=	yes
 
 CMAKE_OFF=		ENABLE_UDISKS2
 CMAKE_TESTING_SETENV=	yes
