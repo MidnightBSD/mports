@@ -14,13 +14,12 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 FAKE_OPTS=	trueprefix
 
 LIB_DEPENDS=	libharfbuzz.so:print/harfbuzz
-RUN_DEPENDS=	gdk-pixbuf-extra>0:graphics/gdk-pixbuf-extra
 
 USES=		desktop-file-utils gettext-runtime gmake gnome gperf pkgconfig \
 		shared-mime-info
 USES+=	cpe
 CPE_VENDOR=		tonybybell
-USE_GNOME=	cairo gdkpixbuf gtk30
+USE_GNOME=	cairo gdkpixbuf gdkpixbufextra gtk-update-icon-cache gtk30
 INSTALLS_ICONS=	yes
 
 GNU_CONFIGURE=	yes
