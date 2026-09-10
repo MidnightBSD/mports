@@ -23,7 +23,7 @@ PORTSCOUT=	limit:^4[67]\.
 
 USES=		desktop-file-utils gettext-tools gnome localbase meson \
 		pkgconfig tar:xz
-USE_GNOME=	introspection
+USE_GNOME=	introspection libadwaita
 
 GLIB_SCHEMAS=	org.gnome.Polari.gschema.xml
 INSTALLS_ICONS=	yes
