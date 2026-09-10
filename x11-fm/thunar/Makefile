@@ -1,5 +1,5 @@
 PORTNAME=	thunar
-DISTVERSION=	4.20.8
+DISTVERSION=	4.20.9
 CATEGORIES=	x11-fm xfce
 MASTER_SITES=	XFCE
 DIST_SUBDIR=	xfce4
@@ -20,8 +20,9 @@ RUN_DEPENDS=	pkexec:sysutils/polkit \
 USES=		compiler:c11 cpe desktop-file-utils gettext-tools gmake gnome \
 		libtool pathfix perl5 pkgconfig tar:bzip2 xfce xorg
 CPE_VENDOR=	xfce
-USE_GNOME=	cairo gdkpixbuf glib20 gtk30
+USE_GNOME=	cairo gdkpixbuf glib20 gtk-update-icon-cache gtk30
 USE_LDCONFIG=	yes
+INSTALLS_ICONS=	yes
 USE_XFCE=	libexo panel xfconf
 USE_XORG=	ice sm x11
 
