@@ -1,30 +1,27 @@
-# Created by: Martin Wilke (miwi@FreeBSD.org)
-
 PORTNAME=	xfce4-timer-plugin
-PORTVERSION=	1.7.1
-PORTREVISION=	1
+PORTVERSION=	1.8.0
 CATEGORIES=	x11-clocks xfce
 MASTER_SITES=	XFCE/panel-plugins
 DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Timer plugin for Xfce
+WWW=		https://docs.xfce.org/panel-plugins/xfce4-timer-plugin/start
 
 LICENSE=	gpl2
 
-USES=		compiler:c11 gettext-tools gmake gnome libtool pkgconfig \
-		tar:bzip2 xfce
-USE_GNOME=	cairo gtk30 intltool
-USE_XFCE=	panel
+USES=		compiler:c11 gettext-tools gnome meson pkgconfig tar:xz xfce
+USE_GNOME=	gtk30
+USE_XFCE=	libmenu panel
 
-GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
-INSTALL_TARGET=	install-strip
 
 OPTIONS_DEFINE=		NLS
 OPTIONS_SUB=		yes
 
 NLS_USES=		gettext-runtime
-NLS_CONFIGURE_ENABLE=	nls
+
+post-patch-NLS-off:
+	@${REINPLACE_CMD} -e "/^subdir('po')/d" ${WRKSRC}/meson.build
 
 .include <bsd.port.mk>
