@@ -1,6 +1,6 @@
 PORTNAME=	gtksourceview4
-PORTVERSION=	4.3.4
-PORTREVISION=	1
+PORTVERSION=	4.3.7
+PORTREVISION=	0
 CATEGORIES=	x11-toolkits rubygems
 MASTER_SITES=	RG
 
@@ -13,7 +13,8 @@ LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/COPYING.LIB
 
 BUILD_DEPENDS=	rubygem-rake>=0:devel/rubygem-rake
-RUN_DEPENDS=	rubygem-gtk3>=${PORTVERSION}<${PORTVERSION:R}.99:x11-toolkits/rubygem-gtk3
+RUN_DEPENDS=	rubygem-gtk3>=${PORTVERSION}<${PORTVERSION}_99:x11-toolkits/rubygem-gtk3 \
+		rubygem-rake>=0:devel/rubygem-rake
 
 USES=		gem gnome
 USE_GNOME=	gtksourceview4
