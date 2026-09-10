@@ -1,6 +1,5 @@
 PORTNAME=	meld
 DISTVERSION=	3.22.3
-PORTEPOCH=	1
 CATEGORIES=	textproc devel python
 MASTER_SITES=	GNOME
 
@@ -18,9 +17,7 @@ USES=		desktop-file-utils gettext gnome meson pkgconfig python shared-mime-info 
 		shebangfix tar:xz
 SHEBANG_FILES=	bin/meld
 USE_GNOME=	gtksourceview4 intltool libxml2:build pygobject3
-OPTIONS_DEFINE=	NLS
-OPTIONS_SUB=	yes
-
+PLIST_SUB=	NLS=
 MESON_ARGS=	-Dbyte-compile=false
 BINARY_ALIAS=	python3=${PYTHON_CMD}
 GLIB_SCHEMAS=	org.gnome.meld.gschema.xml
