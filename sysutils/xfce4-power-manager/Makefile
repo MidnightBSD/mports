@@ -21,6 +21,7 @@ USES=		compiler:c11 gettext-tools gmake gnome libtool pkgconfig \
 USE_GNOME=	cairo gdkpixbuf glib20 gtk30
 USE_XFCE=	libmenu panel xfconf
 USE_XORG=	ice sm x11 xext xrandr xscrnsaver xtst
+USE_GNOME+=	gtk-update-icon-cache
 INSTALLS_ICONS=	yes
 
 GNU_CONFIGURE=	yes
