@@ -1,13 +1,13 @@
 # Created by: Tom McLaughlin <tmclaugh@sdf.lonestar.org>
 
 PORTNAME=	libgdiplus
-PORTVERSION=	6.0.4
-PORTREVISION=	1
+PORTVERSION=	6.1
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	http://download.mono-project.com/sources/${PORTNAME}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GDI+ API for System.Windows.Forms in Mono
+WWW=		https://www.mono-project.com/docs/gui/libgdiplus/
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -20,7 +20,7 @@ LIB_DEPENDS=	libtiff.so:graphics/tiff \
 		libfontconfig.so:x11-fonts/fontconfig
 
 GNU_CONFIGURE=	yes
-USES=		cpe gettext-runtime gmake gnome jpeg libtool:keepla pathfix \
+USES=		autoreconf cpe gettext-runtime gmake gnome jpeg libtool:keepla pathfix \
 		pkgconfig
 USE_GNOME=	cairo glib20 pango
 USE_LDCONFIG=	yes
