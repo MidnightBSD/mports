@@ -189,6 +189,7 @@
     SUBDIR += p5-Quota
     SUBDIR += p5-Sys-Hostname-Long
     SUBDIR += p5-Unix-Processors
+    SUBDIR += pidof
     SUBDIR += password-store
     SUBDIR += patchelf
     SUBDIR += pcbsd-libsh

@@ -1,8 +1,10 @@
 PORTNAME=	consolekit
-PORTVERSION=	1.2.6
-PORTREVISION=	1
+DISTVERSION=	2.0.0
 CATEGORIES=	sysutils gnome
 PKGNAMESUFFIX=	2
+
+PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
+PATCHFILES=	75867d5ec7187b60e5732843acbe0f67c61421cf.patch:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Framework for defining and tracking users
@@ -11,6 +13,7 @@ WWW=		https://github.com/ConsoleKit2/ConsoleKit2
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+BUILD_DEPENDS=	${LOCALBASE}/share/aclocal/gtk-doc.m4:textproc/gtk-doc
 LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libdrm.so:graphics/libdrm \
 		libevdev.so:devel/libevdev \
@@ -30,9 +33,8 @@ X11_USE=		XORG=x11
 X11_CONFIGURE_WITH=	x
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	arrowd
+GH_ACCOUNT=	ConsoleKit2
 GH_PROJECT=	ConsoleKit2
-GH_TAGNAME=	70b5f7d6f710377f288b4723a32923290dc16501
 
 USES=		autoreconf gettext gmake gnome libtool localbase pathfix pkgconfig \
 		tar:bzip2

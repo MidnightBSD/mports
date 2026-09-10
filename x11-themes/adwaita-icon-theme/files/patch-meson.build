@@ -1,0 +1,8 @@
+--- meson.build.orig	2024-09-14 15:12:46 UTC
++++ meson.build
+@@ -5,4 +5,5 @@ pkg.generate(
+   name : 'adwaita-icon-theme',
+   description : 'A collection of icons used as the basis for GNOME themes',
+   dataonly : true,
++  install_dir : get_option('prefix') / 'libdata' / 'pkgconfig',
+ )

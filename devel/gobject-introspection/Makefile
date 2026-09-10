@@ -1,6 +1,5 @@
 PORTNAME=	gobject-introspection
-DISTVERSION=	1.84.0
-PORTREVISION=	2
+DISTVERSION=	1.86.0
 PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
@@ -10,8 +9,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generate interface introspection data for GObject libraries
 WWW=		https://gi.readthedocs.io/en/latest/
 
-LICENSE=	gpl2 lgpl
+LICENSE=	gpl2+ lgpl+
 LICENSE_COMB=	multi
+LICENSE_FILE_gpl2+ =	${WRKSRC}/COPYING.GPL
+LICENSE_FILE_lgpl+ =	${WRKSRC}/COPYING.LGPL
 
 LIB_DEPENDS=	libffi.so:devel/libffi
 
@@ -20,8 +21,6 @@ FLAVOR?=	${FLAVORS:[1]}
 
 #PKGCONFIG_BASE=	yes
 
-MAKE_ENV+= LD_LIBRARY_PATH=${LOCALBASE}/glib-bootstrap/lib
-
 default_LIB_DEPENDS=	libglib-2.0.so:devel/glib20
 
 bootstrap_PKGNAMESUFFIX=	-bootstrap
@@ -29,10 +28,9 @@ bootstrap_BUILD_DEPENDS=	${LOCALBASE}/glib-bootstrap/lib/libglib-2.0.so:devel/gl
 bootstrap_RUN_DEPENDS=		${LOCALBASE}/glib-bootstrap/lib/libglib-2.0.so:devel/glib20@bootstrap
 
 #LDFLAGS+= -lc_nonshared
-LDFLAGS+= -L/usr/local/glib-bootstrap/lib -L/usr/local/lib
 
 USES=		bison gettext localbase:ldflags meson pkgconfig python tar:xz
-BINARY_ALIAS=  python3=${PYTHON_CMD}
+BINARY_ALIAS=	python3=${PYTHON_CMD}
 USE_LDCONFIG=	yes
 MESON_ARGS=	-Ddoctool=disabled \
 		-Dpython=${PYTHON_CMD} \
@@ -40,7 +38,7 @@ MESON_ARGS=	-Ddoctool=disabled \
 		-Dglib:dtrace=disabled -Dglib:systemtap=disabled \
 		-Dglib:sysprof=disabled \
 		-Dglib:c_link_args="-lc_nonshared"
-CFLAGS+=	-D__BSD_VISIBLE=1  -L${LOCALBASE}/glib-bootstrap/lib
+CFLAGS+=	-D__BSD_VISIBLE=1
 #-lc_nonshared -I/usr/local/include/python3.11/
 PORTSCOUT=	limitw:1,even
 
@@ -51,8 +49,10 @@ TEST_LIB_DEPENDS=	libcairo.so:graphics/cairo
 NO_TEST=	yes
 
 .if ${FLAVOR:U} == bootstrap
-PKG_CONFIG_PATH=/usr/local/glib-bootstrap/libdata/pkgconfig
-MESON_ARGS+=	-Dcairo=disabled 
+MAKE_ENV+=	LD_LIBRARY_PATH=${LOCALBASE}/glib-bootstrap/lib
+LDFLAGS+=	-L${LOCALBASE}/glib-bootstrap/lib
+PKGCONFIG_PATHS+=	${LOCALBASE}/glib-bootstrap/libdata/pkgconfig
+MESON_ARGS+=	-Dcairo=disabled
 OPTIONS_DEFINE=
 PREFIX=		${LOCALBASE}/${PORTNAME}-bootstrap
 PLIST_FILES+=	/usr/local/libdata/ldconfig/gobject-introspection-bootstrap

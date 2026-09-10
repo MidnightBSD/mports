@@ -1,40 +1,30 @@
---- src/api/cover_loader.rs.orig	2025-02-05 10:44:30 UTC
+--- src/api/cover_loader.rs.orig	2025-12-24 14:16:03 UTC
 +++ src/api/cover_loader.rs
-@@ -22,7 +22,6 @@ use gdk::RGBA;
- use async_compat::CompatExt;
- use futures_util::StreamExt;
- use gdk::RGBA;
+@@ -25 +24,0 @@
 -use glycin::Loader;
- use gtk::gio::{Cancelled, File};
- use gtk::graphene::Rect;
- use gtk::prelude::TextureExt;
-@@ -88,9 +87,7 @@ impl CoverRequest {
-     async fn cover_bytes(&self) -> Result<(gdk::Texture, Vec<u8>)> {
-         self.download_tmp_file().compat().await?;
- 
--        let loader = Loader::new(self.tmp_file.clone());
--        let image = loader.load().await?;
--        let texture = image.next_frame().await?.texture();
-+        let texture = Self::load_texture(&self.tmp_file).await?;
- 
-         let snapshot = gtk::Snapshot::new();
-         snapshot_thumbnail(&snapshot, texture, self.size as f32);
-@@ -106,6 +103,18 @@ impl CoverRequest {
- 
-         let png_bytes = texture.save_to_png_bytes().to_vec();
-         Ok((texture, png_bytes))
-+    }
+@@ -70,4 +69 @@
+-        let loader = Loader::for_bytes(&bytes);
+-        let image = loader.load_future().await?;
+-        let frame = image.next_frame_future().await?;
+-        let texture = glycin_gtk4::frame_get_texture(&frame);
++        let texture = Self::texture_from_bytes(&bytes).await?;
+@@ -83,4 +79 @@
+-        let loader = Loader::for_bytes(&bytes);
+-        let image = loader.load_future().await?;
+-        let frame = image.next_frame_future().await?;
+-        let texture = glycin_gtk4::frame_get_texture(&frame);
++        let texture = Self::texture_from_bytes(&bytes).await?;
+@@ -119,0 +113,13 @@
 +
 +    #[cfg(target_os = "linux")]
-+    async fn load_texture(file: &gio::File) -> Result<gdk::Texture> {
-+        let loader = glycin::Loader::new(file.clone());
-+        let image = loader.load().await?;
-+        Ok(image.next_frame().await?.texture())
++    async fn texture_from_bytes(bytes: &glib::Bytes) -> Result<gdk::Texture> {
++        let loader = glycin::Loader::for_bytes(bytes);
++        let image = loader.load_future().await?;
++        let frame = image.next_frame_future().await?;
++        Ok(glycin_gtk4::frame_get_texture(&frame))
 +    }
 +
-+    #[cfg(target_os = "freebsd")]
-+    async fn load_texture(file: &gio::File) -> Result<gdk::Texture> {
-+        Ok(gdk::Texture::from_file(file)?)
-     }
- 
-     async fn download_tmp_file(&self) -> Result<()> {
++    #[cfg(not(target_os = "linux"))]
++    async fn texture_from_bytes(bytes: &glib::Bytes) -> Result<gdk::Texture> {
++        Ok(gdk::Texture::from_bytes(bytes)?)
++    }

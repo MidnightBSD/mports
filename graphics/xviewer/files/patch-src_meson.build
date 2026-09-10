@@ -1,4 +1,10 @@
 --- src/meson.build.orig
 +++ src/meson.build
-@@ -133,0 +134 @@
+@@ -136,6 +136,7 @@
+     gtk,
+     libpeas,
+     libpeas_gtk,
 +    gi,
+     math,
+     X11,
+     zlib,

@@ -1,15 +1,14 @@
 PORTNAME=	libsigc++
-PORTVERSION=	3.6.0
-PORTREVISION=	1
+DISTVERSION=	3.8.1
 CATEGORIES=	devel
-MASTER_SITES=	GNOME
+MASTER_SITES=	https://github.com/libsigcplusplus/libsigcplusplus/releases/download/${DISTVERSION}/
 PKGNAMESUFFIX=	30
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Callback Framework for C++
 WWW=		https://libsigcplusplus.github.io/libsigcplusplus/index.html
 
-LICENSE=	lgpl2.1+
+LICENSE=	lgpl3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		compiler:c++17-lang gnome meson pkgconfig python:build tar:xz

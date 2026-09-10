@@ -1,41 +1,30 @@
 PORTNAME=	folks
-PORTVERSION=	0.15.5
-PORTREVISION=	5
+PORTVERSION=	0.15.12
 CATEGORIES=	net-im
 MASTER_SITES=	GNOME
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library to aggregates people from multiple sources
 WWW=		https://wiki.gnome.org/Projects/Folks
 
-LICENSE=	lgpl2.1
+LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libgee-0.8.so:devel/libgee \
-		libgcr-base-3.so:security/gcr3 \
-		libzeitgeist-2.0.so:sysutils/zeitgeist \
-		libtelepathy-glib.so:net-im/telepathy-glib \
-		libnspr4.so:devel/nspr \
-		libssl3.so:security/nss \
-		libsecret-1.so:security/libsecret \
-		libsoup-2.4.so:devel/libsoup \
-		libdbus-glib-1.so:devel/dbus-glib \
-		libdbus-1.so:devel/dbus
+LIB_DEPENDS=	libgee-0.8.so:devel/libgee
 
-USES=		gettext gnome localbase meson python:build pkgconfig \
-		readline sqlite tar:xz vala:build
-USE_GNOME=	evolutiondataserver3 intlhack introspection:build
+USES=		gettext-tools gnome localbase meson python:build pkgconfig \
+		readline tar:xz vala:build
+USE_GNOME=	glib20 evolutiondataserver3 introspection:build libxml2
 USE_LDCONFIG=	yes
 
-NO_TEST=	yes
-
-MESON_ARGS=	-Dbluez_backend=false
+MESON_ARGS=	-Dbluez_backend=false \
+		-Dtelepathy_backend=false \
+		-Dtests=false
 
 GLIB_SCHEMAS=	org.freedesktop.folks.gschema.xml
 
 PLIST_SUB=	LIBVER=26 LIBVERLONG=26.0.0
 
 BINARY_ALIAS=	python3=${PYTHON_CMD}
-PORTSCOUT=	limitw:1,even
-
 .include <bsd.port.mk>
