@@ -1,14 +1,16 @@
 PORTNAME=	gtk-layer-shell
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.10.0
+DISTVERSION=	0.10.1
 CATEGORIES=	x11-toolkits
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GTK3 library for the Wayland layer-shell protocol
 WWW=		https://github.com/wmww/gtk-layer-shell
 
-LICENSE=	lgpl3 mit
+LICENSE=	lgpl3+ mit
 LICENSE_COMB=	multi
+LICENSE_FILE_lgpl3+ =	${WRKSRC}/LICENSE_LGPL.txt
+LICENSE_FILE_mit=	${WRKSRC}/LICENSE_MIT.txt
 
 BUILD_DEPENDS=	wayland-protocols>=1.16:graphics/wayland-protocols
 LIB_DEPENDS=	libwayland-client.so:graphics/wayland
@@ -27,8 +29,6 @@ DOCS_BUILD_DEPENDS=	gtk-doc>0:textproc/gtk-doc
 DOCS_MESON_TRUE=	docs
 
 EXAMPLES_MESON_TRUE=	examples
-
-NO_TEST=yes
 
 pre-configure:
 # .if !exists() evaluates too early before gtk3 has a chance to be installed
