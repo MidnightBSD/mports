@@ -4,7 +4,7 @@ bin/magic
 @comment bin/spice2sim
 lib/magic/doc/addendum6_5.ps
 lib/magic/doc/copyright.ps
-lib/magic/doc/html/Makefile
+lib/magic/doc/html/archive.html
 lib/magic/doc/html/addcommandentry.html
 lib/magic/doc/html/addpath.html
 lib/magic/doc/html/antennacheck.html
@@ -54,8 +54,6 @@ lib/magic/doc/html/ext2sim.html
 lib/magic/doc/html/ext2spice.html
 lib/magic/doc/html/extract.html
 lib/magic/doc/html/extresist.html
-lib/magic/doc/html/exttosim.html
-lib/magic/doc/html/exttospice.html
 lib/magic/doc/html/feedback.html
 lib/magic/doc/html/fill.html
 lib/magic/doc/html/findbox.html
@@ -173,6 +171,7 @@ lib/magic/doc/html/template.html
 lib/magic/doc/html/tk_path_name.html
 lib/magic/doc/html/tool.html
 lib/magic/doc/html/undo.html
+lib/magic/doc/html/units.html
 lib/magic/doc/html/unexpand.html
 lib/magic/doc/html/unmeasure.html
 lib/magic/doc/html/updatedisplay.html

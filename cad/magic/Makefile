@@ -1,6 +1,5 @@
 PORTNAME=	magic
-DISTVERSION=	8.3.485
-PORTREVISION=	1
+DISTVERSION=	8.3.680
 CATEGORIES=	cad
 MASTER_SITES=	http://opencircuitdesign.com/magic/archive/
 
@@ -18,14 +17,12 @@ RUN_DEPENDS=	bash:shells/bash
 
 USES=		gmake gnome gl localbase:ldflags python:build shebangfix tk:tea tar:tgz xorg
 USE_GNOME=	cairo
-USE_XORG=	ice x11 xext xi xmu
+USE_XORG=	ice sm x11 xext xi xmu
 USE_GL=		gl glu
 
 SHEBANG_FILES=	scripts/preproc.py tcltk/magic.sh.in tcltk/ext2sim.sh.in tcltk/ext2spice.sh.in
 
-CONFIGURE_ARGS=	--with-opengl \
-		--enable-modular # --enable-modular should fix build on 15, when failures were due to missing symbols defined in *.sym but not in code
-CONFIGURE_WRKSRC=	${WRKSRC}/scripts
+CONFIGURE_ARGS=	--with-opengl
 
 ALL_TARGET=	tcllibrary
 
@@ -33,7 +30,8 @@ DESKTOP_ENTRIES="Magic" "" "" "${PORTNAME}" "" ""
 
 PORTSCOUT=	limit:^8\.
 
-BINARY_ALIAS=	python3=${PYTHON_CMD} # this is needed, see https://github.com/RTimothyEdwards/magic/issues/173#issuecomment-1200065429
+BINARY_ALIAS=	git=${FALSE} \
+		python3=${PYTHON_CMD} # this is needed, see https://github.com/RTimothyEdwards/magic/issues/173#issuecomment-1200065429
 
 .include <bsd.port.pre.mk>
 
@@ -48,7 +46,7 @@ post-patch:
 		 s|wish$${TK_VERSION}|${WISH:T}|g ; \
 		 s|tclsh$${TK_VERSION}|${TCLSH:T}|g ; \
 		 s|-l/usr/X11R6/include|-I${LOCALBASE}/include|g' \
-	    ${CONFIGURE_WRKSRC}/configure
+	    ${WRKSRC}/configure
 	@${REINPLACE_CMD} -e \
 		's|^#!.*|#!${TCLSH}|' ${WRKSRC}/tcltk/strip_reflibs.tcl
 	@${REINPLACE_CMD} -e \
