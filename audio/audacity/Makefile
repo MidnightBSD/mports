@@ -1,6 +1,6 @@
 PORTNAME=	audacity
 DISTVERSIONPREFIX=	Audacity-
-DISTVERSION=	3.7.1
+DISTVERSION=	3.7.9
 CATEGORIES=	audio
 MASTER_SITES+=	https://github.com/${PORTNAME}/${PORTNAME}-manual/releases/download/v${DISTVERSION}/:manual
 DISTFILES+=	${PORTNAME}-manual-${DISTVERSION}.tar.gz:manual
@@ -11,6 +11,8 @@ WWW=		https://www.audacityteam.org/
 
 LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
+
+INSTALLS_ICONS=	yes
 
 BUILD_DEPENDS=	conan:sysutils/conan \
 		rapidjson>0:devel/rapidjson \
@@ -41,7 +43,7 @@ USES=		cmake compiler:c++20-lang cpe desktop-file-utils gettext \
 CPE_VENDOR=	audacityteam
 
 USE_GITHUB=	yes
-USE_GNOME=	cairo gdkpixbuf gtk30
+USE_GNOME=	cairo gdkpixbuf gtk-update-icon-cache gtk30
 USE_WX=		3.2+
 WX_COMPS=	wx
 
@@ -73,9 +75,10 @@ CMAKE_OFF=	audacity_has_audiocom_upload audacity_conan_enabled audacity_conan_fo
 		audacity_has_crashreports audacity_has_networking audacity_has_updates_check audacity_has_url_schemes_support \
 		audacity_has_tests audacity_has_vst3 audacity_perform_codesign audacity_use_pch
 
-# TODO: fix NLS support properly
-PLIST_SUB+=	NLS=""
 PORTDOCS=	README.md
+
+# TODO: fix NLS support properly; upstream unconditionally builds locale.
+PLIST_SUB+=	NLS=""
 
 OPTIONS_DEFINE=		DEBUG DOCS FFMPEG FLAC ID3TAG LADSPA MANUAL \
 			OGG SBSMS SOUNDTOUCH TWOLAME VAMP VORBIS VST
