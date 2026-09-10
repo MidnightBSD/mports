@@ -34,20 +34,14 @@ SHEBANG_GLOB=	*.py
 
 PORTSCOUT=	limit:^[0-9.]+$$	# ignore master.mint* tags
 
+.if !defined(DISPLAY)
+TEST_ENV+=	DISPLAY=:${XVFBPORT}
+.endif
+
 OPTIONS_DEFINE=		READLINE
 OPTIONS_DEFAULT=	READLINE
 
 READLINE_MESON_ENABLED=	readline
 READLINE_USES=		readline
-
-do-test:
-	@(cd ${TEST_WRKSRC}; if ! ${SETENVI} ${WRK_ENV} DISPLAY=:${XVFBPORT} \
-		${TEST_ENV} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} \
-		${TEST_ARGS:NDESTDIR=*} ${TEST_TARGET}; then \
-		${FALSE}; \
-	fi)
-
-post-install:
-	@${RM} -r ${PREFIX}/libexec/installed-tests
 
 .include <bsd.port.mk>
