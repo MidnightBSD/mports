@@ -33,7 +33,7 @@
  
  	[Compact]
 -	[CCode (cname = "GTypelib", cprefix = "g_typelib_", free_function = "g_typelib_free")]
-+	[CCode (cname = "GITypelib", cprefix = "gi_typelib_", free_function = "gi_typelib_free")]
++	[CCode (cname = "GITypelib", cprefix = "gi_typelib_", free_function = "gi_typelib_unref")]
  	public class Typelib {
  		public unowned string get_namespace();
  	}
