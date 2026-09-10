@@ -1,7 +1,6 @@
 PORTNAME=	libwmf
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.2.13
-PORTREVISION=	1
+DISTVERSION=	0.2.15
 CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -39,15 +38,8 @@ X11_USES=	xorg
 X11_USE=	XORG=x11
 X11_CONFIGURE_OFF=--with-x=no
 
-post-patch:
-	@${REINPLACE_CMD} -e \
-		's|@LIBWMF_GDK_PIXBUF_TRUE@|#|g ; \
-		 s|@LIBWMF_GDK_PIXBUF_FALSE@||g ; \
-		 s|: install-loaderLTLIBRARIES|:|g' ${WRKSRC}/src/Makefile.in
-
 pre-configure:
-	@(cd ${CONFIGURE_WRKSRC} && ${SETENV} AUTOHEADER="${TRUE}" \
-	 ${LOCALBASE}/bin/autoreconf -vif -Ipatches)
+	@(cd ${CONFIGURE_WRKSRC} && ${LOCALBASE}/bin/autoreconf -vif -Ipatches)
 
 post-configure:
 	@${REINPLACE_CMD} -e 's|autoheader|autoheader -Ipatches|g' \
