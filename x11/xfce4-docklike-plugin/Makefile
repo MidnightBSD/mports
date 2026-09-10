@@ -1,5 +1,5 @@
 PORTNAME=	xfce4-docklike-plugin
-PORTVERSION=	0.5.0
+DISTVERSION=	0.5.1
 CATEGORIES=	x11 xfce
 MASTER_SITES=	XFCE/panel-plugins
 DIST_SUBDIR=	xfce4
@@ -10,10 +10,11 @@ WWW=		https://gitlab.xfce.org/panel-plugins/xfce4-docklike-plugin
 
 LICENSE=		gpl3
 
-USES=		gettext-tools gnome meson pkgconfig tar:xz xfce xorg
+USES=		compiler:c++11-lang gettext-tools gnome meson pkgconfig tar:xz \
+		xfce xorg
 USE_GNOME=	gdkpixbuf gtk30
 USE_XFCE=	libmenu panel windowing
-USE_XORG=	x11
+USE_XORG=	x11 xi
 
 MESON_ARGS=	-Dx11=enabled
 
