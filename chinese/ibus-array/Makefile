@@ -1,6 +1,5 @@
 PORTNAME=	ibus-array
-PORTVERSION=	0.2.2.${SNAPDATE}
-PORTREVISION=	1
+PORTVERSION=	0.3.2
 CATEGORIES=	chinese
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -9,27 +8,21 @@ WWW=		https://github.com/lexical/ibus-array/
 
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	ibus-daemon:textproc/ibus zh-opencc>=1.0:chinese/opencc
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlite3>=0:databases/py-sqlite3@${PY_FLAVOR} \
+		ibus-daemon:textproc/ibus \
+		zh-opencc>=1.0:chinese/opencc
 RUN_DEPENDS=	ibus-daemon:textproc/ibus zh-opencc>=1.0:chinese/opencc
 
-USES=		autoreconf gmake gnome libtool pkgconfig python sqlite
+USES=		gettext-tools gnome meson pkgconfig python sqlite
 USE_GNOME+=	glib20
 USE_GITHUB=	yes
 GH_ACCOUNT=	lexical
-GH_TAGNAME=	06146c5e6518ddf813d0ab1789ba84eadbe9d52b
-SNAPDATE=	20230502
+GH_TAGNAME=	release-${PORTVERSION}
 
-GNU_CONFIGURE=	yes
+BINARY_ALIAS=	python3=${PYTHON_CMD}
 
-OPTIONS_DEFINE=	NLS
-OPTIONS_SUB=	yes
-
-NLS_USES=		gettext
-NLS_CONFIGURE_ENABLE=	nls
-
-pre-configure:
-	${CP} ${MPORTSDIR}/Template/config.sub ${WRKSRC}/
-	${CP} ${MPORTSDIR}/Template/config.guess ${WRKSRC}/
-	cd ${WRKSRC} && ./autogen.sh
+post-patch:
+	@${REINPLACE_CMD} -e "s|cur.execute('INSERT INTO main.*|cur.execute('INSERT INTO main (keys, ch, cat, cnt) VALUES (?, ?, ?, ?);', (r[1], r[2], r[0], '0'))|" \
+		${WRKSRC}/data/cin2sqlite.py
 
 .include <bsd.port.mk>
