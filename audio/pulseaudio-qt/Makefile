@@ -1,7 +1,7 @@
 PORTNAME=	pulseaudio-qt
-DISTVERSION=	1.7.0
-MASTER_SITES=	KDE/stable/${PORTNAME}
+DISTVERSION=	1.8.1
 CATEGORIES=	audio kde
+MASTER_SITES=	KDE/stable/${PORTNAME}
 PKGNAMESUFFIX=	6
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -19,6 +19,7 @@ USE_GL=		gl opengl # GLX
 USE_GNOME=	glib20
 USE_KDE=	ecm:build
 USE_QT=		base
+USE_LDCONFIG=	yes
 
 PLIST_SUB=	SOVERSION=${DISTVERSION}
 
