@@ -34,9 +34,8 @@ SHEBANG_GLOB=	*.py
 
 PORTSCOUT=	limit:^[0-9.]+$$	# ignore master.mint* tags
 
-.if !defined(DISPLAY)
-TEST_ENV+=	DISPLAY=:${XVFBPORT}
-.endif
+# meson.mk extends TEST_ENV before the framework's default assignment.
+TEST_ENV+=	${MAKE_ENV}
 
 OPTIONS_DEFINE=		READLINE
 OPTIONS_DEFAULT=	READLINE
