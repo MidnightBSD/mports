@@ -68,6 +68,7 @@
     SUBDIR += elasticsearch7
     SUBDIR += elasticsearch8
     SUBDIR += elasticsearch9
+    SUBDIR += en-hunspell
     SUBDIR += enchant
     SUBDIR += enchant2
     SUBDIR += exempi
