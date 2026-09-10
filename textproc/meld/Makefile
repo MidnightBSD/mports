@@ -13,11 +13,15 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 BUILD_DEPENDS=	itstool:textproc/itstool
 RUN_DEPENDS=	gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas
 
-USES=		desktop-file-utils gettext gnome meson pkgconfig python shared-mime-info \
+USES=		desktop-file-utils gnome meson pkgconfig python shared-mime-info \
 		shebangfix tar:xz
 SHEBANG_FILES=	bin/meld
 USE_GNOME=	gtksourceview4 intltool libxml2:build pygobject3
-PLIST_SUB=	NLS=
+OPTIONS_DEFINE=	NLS
+OPTIONS_SUB=	yes
+
+NLS_USES=		gettext
+
 MESON_ARGS=	-Dbyte-compile=false
 BINARY_ALIAS=	python3=${PYTHON_CMD}
 GLIB_SCHEMAS=	org.gnome.meld.gschema.xml
@@ -27,5 +31,8 @@ NO_ARCH=	yes
 post-patch:
 	@${REINPLACE_CMD} -e "s|dependency('python3'|dependency('python-${PYTHON_VER}'|" \
 		${WRKSRC}/meson.build
+
+post-install-NLS-off:
+	@${RM} -r ${FAKE_DESTDIR}${PREFIX}/share/locale
 
 .include <bsd.port.mk>
