@@ -28,7 +28,7 @@ MESON_ARGS=	-Dgtk-doc=false \
 		-Dzshcompletiondir=no
 LDFLAGS+=	-lkvm
 
-OPTIONS_DEFINE=			MANPAGES
+OPTIONS_DEFINE=			DOCS MANPAGES
 OPTIONS_DEFAULT=		MANPAGES
 OPTIONS_SUB=			yes
 MANPAGES_BUILD_DEPENDS=		${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:textproc/docbook-xsl \
@@ -37,5 +37,8 @@ MANPAGES_BUILD_DEPENDS=		${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:tex
 				gtkdoc-scan:textproc/gtk-doc
 MANPAGES_USE=			GNOME=libxslt:build
 MANPAGES_MESON_TRUE=		man
+
+post-install:
+	@${MKDIR} ${PREFIX}/etc/UPower/UPower.conf.d
 
 .include <bsd.port.mk>

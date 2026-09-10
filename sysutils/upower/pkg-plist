@@ -1,5 +1,4 @@
 bin/upower
-etc/UPower/UPower.conf.d/README.md
 etc/UPower/UPower.conf
 include/libupower-glib/up-autocleanups.h
 include/libupower-glib/up-client.h
@@ -18,6 +17,7 @@ libexec/upowerd
 %%MANPAGES%%share/man/man1/upower.1.gz
 %%MANPAGES%%share/man/man7/UPower.7.gz
 %%MANPAGES%%share/man/man8/upowerd.8.gz
+%%PORTDOCS%%%%DOCSDIR%%/README.md
 share/dbus-1/interfaces/org.freedesktop.UPower.Device.xml
 share/dbus-1/interfaces/org.freedesktop.UPower.KbdBacklight.xml
 share/dbus-1/interfaces/org.freedesktop.UPower.xml
@@ -31,5 +31,6 @@ share/locale/pl/LC_MESSAGES/upower.mo
 share/locale/sv/LC_MESSAGES/upower.mo
 share/polkit-1/actions/org.freedesktop.upower.policy
 share/polkit-1/rules.d/org.freedesktop.upower.rules
+@dir etc/UPower/UPower.conf.d
 @dir /var/lib/upower
 @dir /var/lib/
