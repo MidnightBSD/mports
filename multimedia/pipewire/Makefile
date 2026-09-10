@@ -117,8 +117,8 @@ post-patch:
 		${WRKSRC}/meson.build
 
 post-install-ALSA-on:
-	${MKDIR} ${FAKE_DESTDIR}${DATADIR}/${PORTNAME}.conf.d
+	${MKDIR} ${DATADIR}/${PORTNAME}.conf.d
 	${INSTALL_DATA} ${WRKDIR}/10-alsa-default.conf \
-		${FAKE_DESTDIR}${DATADIR}/${PORTNAME}.conf.d
+		${DATADIR}/${PORTNAME}.conf.d
 
 .include <bsd.port.mk>
