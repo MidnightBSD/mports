@@ -1,6 +1,6 @@
 PORTNAME=	gsettings-desktop-schemas
-DISTVERSION=	47.1
-PORTREVISION=	2
+DISTVERSION=	50.1
+PORTREVISION=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -38,6 +38,7 @@ GLIB_SCHEMAS=	org.gnome.desktop.a11y.applications.gschema.xml \
 		org.gnome.desktop.notifications.gschema.xml \
 		org.gnome.desktop.peripherals.gschema.xml \
 		org.gnome.desktop.privacy.gschema.xml \
+		org.gnome.desktop.screen-time-limits.gschema.xml \
 		org.gnome.desktop.screensaver.gschema.xml \
 		org.gnome.desktop.search-providers.gschema.xml \
 		org.gnome.desktop.session.gschema.xml \
