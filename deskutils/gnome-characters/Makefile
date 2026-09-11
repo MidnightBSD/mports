@@ -1,6 +1,6 @@
 PORTNAME=	gnome-characters
-PORTVERSION=	47.0
-PORTREVISION=	1
+PORTVERSION=	48.0
+PORTREVISION=	0
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -19,10 +19,9 @@ LIB_DEPENDS=	libadwaita-1.so:x11-toolkits/libadwaita \
 		libdbus-1.so:devel/dbus \
 		libgjs.so:lang/gjs \
 
-USES=		gettext gnome iconv:wchar_t localbase:ldflags meson pkgconfig \
+USES=		gettext gnome iconv:wchar_t meson pkgconfig \
 		python:build tar:xz
 USE_GNOME=	gtk40 introspection pango gnomedesktop3
-USE_LDCONFIG=	yes
 INSTALLS_ICONS=	yes
 BINARY_ALIAS=	python3=${PYTHON_VERSION}
 
