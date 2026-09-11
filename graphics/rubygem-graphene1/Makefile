@@ -12,7 +12,7 @@ LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/COPYING.LIB
 
 LIB_DEPENDS=	libgraphene-1.0.so:graphics/graphene
-RUN_DEPENDS=	rubygem-gobject-introspection>=${PORTVERSION}<${PORTVERSION:R}.99:devel/rubygem-gobject-introspection
+RUN_DEPENDS=	rubygem-gobject-introspection>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-gobject-introspection
 
 USES=		gem
 
