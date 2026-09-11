@@ -1,0 +1,12 @@
+--- meson.build.orig	2026-07-10 22:13:10 UTC
++++ meson.build
+@@ -56,5 +56 @@ else
+-  if get_option('python_wheel')
+-    pkgconfig_path = 'share' / 'pkgconfig'
+-  else
+-    pkgconfig_path = 'pkgconfig'
+-  endif
++  pkgconfig_path = 'libdata/pkgconfig'
+@@ -70 +66 @@
+-    install_dir: get_option('datadir') / pkgconfig_path,
++    install_dir: get_option('prefix') / pkgconfig_path,
