@@ -394,6 +394,7 @@
     SUBDIR += rubygem-flamegraph
     SUBDIR += rubygem-gd2
     SUBDIR += rubygem-gdk_pixbuf2
+    SUBDIR += rubygem-graphene1
     SUBDIR += rubygem-gemojione
     SUBDIR += rubygem-gemojione32
     SUBDIR += rubygem-geokit
