@@ -1,9 +1,9 @@
 PORTNAME=	librest
-PORTVERSION=	0.9.1
-PORTREVISION=	4
+PORTVERSION=	0.10.2
+PORTREVISION=	0
 CATEGORIES=	net devel gnome
+MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	1
-MASTER_SITES=	https://gitlab.gnome.org/GNOME/librest/-/archive/${PORTVERSION}/
 
 MAINTAINER=	ports@MidinghtBSD.org
 COMMENT=	GNOME REST library
@@ -18,8 +18,8 @@ LIB_DEPENDS=	libadwaita-1.so:x11-toolkits/libadwaita \
 
 PORTSCOUT=	limitw:1,even
 
-USES=		gettext gnome localbase meson pkgconfig python tar:bz2
-USE_GNOME=	glib20 gtksourceview5 introspection:build
+USES=		gettext gnome localbase meson pkgconfig python tar:xz
+USE_GNOME=	glib20 gtksourceview5 introspection:build libxml2
 USE_LDCONFIG=	yes
 MESON_ARGS=	-Dca_certificates=true \
 		-Dca_certificates_path=/etc/ssl/cert.pem \
