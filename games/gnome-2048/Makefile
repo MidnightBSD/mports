@@ -21,7 +21,7 @@ TEST_DEPENDS=	appstreamcli:devel/appstream
 
 PORTSCOUT=	limitw:1,even
 
-USE_GNOME=	glib20 gtk40 libadwaita libxml2:build
+USE_GNOME=	glib20 gtk40 gtk-update-icon-cache libadwaita libxml2:build
 INSTALLS_ICONS=	yes
 
 CARGO_BUILD=	no
