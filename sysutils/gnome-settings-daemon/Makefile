@@ -11,8 +11,8 @@ WWW=		https://www.gnome.org/
 
 LICENSE=	gpl2+ lgpl2.1+
 LICENSE_COMB=	multi
-LICENSE_FILE_gpl2+=	${WRKSRC}/COPYING
-LICENSE_FILE_lgpl2.1+=	${WRKSRC}/COPYING.LIB
+LICENSE_FILE_gpl2+ =	${WRKSRC}/COPYING
+LICENSE_FILE_lgpl2.1+ =	${WRKSRC}/COPYING.LIB
 
 LIB_DEPENDS=	libcanberra-gtk3.so:audio/libcanberra-gtk3 \
 		libcanberra.so:audio/libcanberra \
