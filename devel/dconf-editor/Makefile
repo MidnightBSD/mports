@@ -1,13 +1,9 @@
 PORTNAME=	dconf-editor
-PORTVERSION=	45.0.1
+PORTVERSION=	49.0
+PORTREVISION=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
-
-# https://gitlab.gnome.org/GNOME/dconf-editor/-/merge_requests/34
-PATCH_SITES=	https://gitlab.gnome.org/GNOME/${PORTNAME}/-/commit/
-PATCHFILES=	baf18373.patch:-p1 \
-		dd8ddbbf.patch:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Viewer and editor of applications internal settings
