@@ -1,5 +1,6 @@
 PORTNAME=	gtk4
-PORTVERSION=	4.3.4
+PORTVERSION=	4.3.7
+PORTREVISION=	0
 CATEGORIES=	x11-toolkits rubygems
 MASTER_SITES=	RG
 
@@ -12,8 +13,9 @@ LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/COPYING.LIB
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
-RUN_DEPENDS=	rubygem-atk>=${PORTVERSION}<${PORTVERSION:R}.99:accessibility/rubygem-atk \
-		rubygem-gdk4>=${PORTVERSION}<${PORTVERSION:R}.99:x11-toolkits/rubygem-gdk4
+RUN_DEPENDS=	rubygem-atk>=${PORTVERSION}<${PORTVERSION}_99:accessibility/rubygem-atk \
+		rubygem-gdk4>=${PORTVERSION}<${PORTVERSION}_99:x11-toolkits/rubygem-gdk4 \
+		rubygem-gsk4>=${PORTVERSION}<${PORTVERSION}_99:x11-toolkits/rubygem-gsk4
 
 USES=		gem gnome
 USE_GNOME=	gtk40
