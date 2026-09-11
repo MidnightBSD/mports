@@ -54,6 +54,7 @@
     SUBDIR += gnome-nettool
     SUBDIR += gnome-connections
     SUBDIR += gnome-online-accounts
+	SUBDIR += gweather-locations
     SUBDIR += google-cloud-sdk
     SUBDIR += gopher
     SUBDIR += grilo

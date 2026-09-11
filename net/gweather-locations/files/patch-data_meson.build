@@ -1,0 +1,13 @@
+--- data/meson.build.orig
++++ data/meson.build
+@@ -10,9 +10,10 @@
+   test('Valid Locations file',
+     xmllint,
+     args: [
+       xmllint_flags,
+       'Locations.xml',
+     ],
++    workdir: meson.current_source_dir(),
+     suite: ['lint'],
+   )
+ endif
