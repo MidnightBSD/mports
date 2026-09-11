@@ -1,18 +1,42 @@
 PORTNAME=	lib2geom
-DISTVERSION=	1.1
+DISTVERSION=	1.4
+PORTREVISION=	0
 CATEGORIES=	math gnome
-MASTER_SITES=	https://gitlab.com/inkscape/${PORTNAME}/-/archive/${DISTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Easy to use 2D geometry library in C++
+WWW=		https://gitlab.com/inkscape/lib2geom
 
-BUILD_DEPENDS=	googletest>0:devel/googletest
+LICENSE=	lgpl2.1 MPL11
+LICENSE_COMB=	dual
+LICENSE_FILE_lgpl2.1=	${WRKSRC}/COPYING-LGPL-2.1
+LICENSE_FILE_MPL11=	${WRKSRC}/COPYING-MPL-1.1
+
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cairo>0:graphics/py-cairo@${PY_FLAVOR} \
+		ragel:devel/ragel \
+		googletest>0:devel/googletest
 LIB_DEPENDS=	libdouble-conversion.so:devel/double-conversion \
 		libgsl.so:math/gsl \
 		libboost_thread.so:devel/boost-libs
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cairo>0:graphics/py-cairo@${PY_FLAVOR}
+TEST_DEPENDS=	googletest>0:devel/googletest \
+		ragel:devel/ragel
 
-USES=		cmake gettext-runtime gnome localbase:ldflags pkgconfig
-USE_GNOME=	cairo glib20
-CMAKE_ON=	2GEOM_BUILD_SHARED
+USES=		compiler:c++20-lang cmake:testing gettext-runtime gnome localbase:ldflags \
+		pkgconfig python
+USE_GNOME=	cairo glib20 gtk30
+USE_PYTHON=	cython cython_test
+
+USE_GITLAB=	yes
+GL_ACCOUNT=	inkscape
+
+CMAKE_ON=	2GEOM_BUILD_SHARED \
+		2GEOM_TESTING
+NO_TEST=	yes
+
+OPTIONS_DEFINE=	GPL
+
+GPL_DESC=	Build with GPL-licensed code
+GPL_CMAKE_BOOL=	2GEOM_USE_GPL_CODE
 
 .include <bsd.port.mk>
