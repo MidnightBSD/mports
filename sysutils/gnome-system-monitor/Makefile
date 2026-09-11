@@ -1,5 +1,6 @@
 PORTNAME=	gnome-system-monitor
-PORTVERSION=	47.1
+PORTVERSION=	49.1
+PORTREVISION=	0
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -8,10 +9,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME system monitor program
 WWW=		https://apps.gnome.org/GnomeSystemMonitor/
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	itstool:textproc/itstool
+BUILD_DEPENDS=	catch2>0:devel/catch2 \
+		itstool:textproc/itstool
 LIB_DEPENDS=	libgtop-2.0.so:devel/libgtop \
 		libgraphene-1.0.so:graphics/graphene
 RUN_DEPENDS=	polkit>0:sysutils/polkit
