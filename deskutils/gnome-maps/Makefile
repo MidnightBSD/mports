@@ -1,6 +1,6 @@
 PORTNAME=	gnome-maps
-DISTVERSION=	47.9
-PORTREVISION=	2
+DISTVERSION=	50.0
+PORTREVISION=	0
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -14,7 +14,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 PORTSCOUT=	limit:^47\.
 
-BUILD_DEPENDS=	geoclue>=0:net/geoclue
+BUILD_DEPENDS=	blueprint-compiler:devel/blueprint-compiler \
+		geoclue>=0:net/geoclue
 LIB_DEPENDS=	libgeocode-glib-2.so:net/geocode-glib2 \
 		libgjs.so:lang/gjs \
 		libgweather-4.so:net/libgweather4 \
@@ -32,9 +33,13 @@ CPE_VENDOR=	gnome
 USE_GNOME=	cairo glib20 gtk40 introspection:build libadwaita \
 		libxml2 librsvg2
 USE_LDCONFIG=	yes
+INSTALLS_ICONS=	yes
 
 GLIB_SCHEMAS=	org.gnome.Maps.gschema.xml
 
 NO_TEST=	yes
+
+post-install:
+	@${RM} "${PREFIX}/share/gnome-maps/icons/hicolor/16x16/apps/explore-symbolic copy.svg"
 
 .include <bsd.port.mk>
