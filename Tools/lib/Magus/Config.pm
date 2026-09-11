@@ -55,6 +55,8 @@ sub load_config {
         DBUser         => 'magus',
         Machine        => hostname(),
         DoneWaitPeriod => 200,
+        MakeTimeout    => 86400,
+        MakeTimeouts   => { test => 7200 },
         ChrootTarBall  => '/usr/magus/os.tar.xz',
         DistfilesRoot  => '/mnt/magus/distfiles',
         PkgfilesRoot   => '/mnt/magus/packages',

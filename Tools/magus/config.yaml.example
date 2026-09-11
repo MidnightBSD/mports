@@ -6,6 +6,15 @@ DBPass: changeme
 
 Machine: vm-current
 DoneWaitPeriod: 600
+# Wall clock limit, in seconds, for a single make target.  A port that hangs
+# (a deadlocked test suite, a configure script waiting on stdin) is killed off
+# along with everything it spawned instead of wedging the worker.  MakeTimeouts
+# overrides the limit per target; 0 disables the watchdog.  Setting
+# MakeTimeouts here replaces the built-in hash outright rather than merging
+# with it, so list every target you care about, not just the one you change.
+MakeTimeout: 86400
+MakeTimeouts:
+  test: 7200
 ChrootTarBall: /usr/magus/0.2-CURRENT-20070901.tar
 # Set ZfsChrootEnabled to 1 to use per-worker ZFS datasets and snapshot
 # rollback instead of cpdup for cleanup.  ZfsChrootDataset must name an
