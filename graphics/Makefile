@@ -397,6 +397,7 @@
     SUBDIR += rubygem-gemojione
     SUBDIR += rubygem-gemojione32
     SUBDIR += rubygem-geokit
+    SUBDIR += rubygem-graphene1
     SUBDIR += rubygem-gitlab_emoji
     SUBDIR += rubygem-gruff
     SUBDIR += rubygem-histogram
