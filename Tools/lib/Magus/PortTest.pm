@@ -161,8 +161,12 @@ sub run {
         
     if ($presults->{errors}) {
       # these will be the first errors we see.  If we parsed them, we just
-      # report the results of parsing.  
-      $results{errors} = $presults->{errors};
+      # report the results of parsing -- except for a timeout, which is why
+      # the log is truncated in the first place, so it stays at the front.
+      my @timeouts = grep { ($_->{name} || '') eq 'MakeTimeout' }
+                     @{$results{errors} || []};
+
+      $results{errors} = [@timeouts, @{$presults->{errors}}];
     }
     
     if ($presults->{warnings}) {
@@ -318,10 +322,20 @@ sub _run_make {
   die "Couldn't fork for make $target: $!\n" unless defined $pid;
 
   unless ($pid) {
-    # Lead our own process group so the watchdog can signal the whole build.
-    POSIX::setsid();
     open(STDOUT, '>', $logfile)  || exit 127;
     open(STDERR, '>&', \*STDOUT) || exit 127;
+
+    # Lead our own process group so the watchdog can signal the whole build.
+    # setsid() only fails when we already lead one, so check the invariant
+    # rather than the call: without it _reap_group cannot do its job, and
+    # silently running unsupervised is worse than not running at all.
+    POSIX::setsid();
+
+    unless (getpgrp() == $$) {
+      print STDERR "*** magus: no process group for make $target, refusing to run ***\n";
+      exit 127;
+    }
+
     exec(@cmd);
     exit 127;
   }
@@ -366,6 +380,12 @@ sub _run_make {
 Terminate the process group led by $pid, escalating to SIGKILL if it does not
 go away, and wait for the leader so we do not leave a zombie behind.
 
+Reaping the leader is not enough: make can exit on SIGTERM while a test runner
+or compiler it spawned ignores the signal and keeps running in the group, which
+is the very thing the watchdog exists to stop.  We are done only once the group
+itself is empty, so the caller can be delayed up to 2 * $KillGrace seconds past
+the configured limit -- bounded, unlike the hang it replaces.
+
 =cut
 
 sub _reap_group {
@@ -375,6 +395,7 @@ sub _reap_group {
     kill($signal, -$pid) || kill($signal, $pid);
 
     foreach (1 .. $KillGrace) {
+      # kill(0) counts the group's surviving members without signalling them.
       my $leader = waitpid($pid, WNOHANG);
       return if $leader != 0 && !kill(0, -$pid);
       sleep 1;
