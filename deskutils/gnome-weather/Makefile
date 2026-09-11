@@ -24,6 +24,7 @@ USES=		desktop-file-utils gettext gnome localbase meson pkgconfig \
 USE_GNOME=	glib20 gtk40 introspection:build libadwaita
 
 GLIB_SCHEMAS=	org.gnome.Weather.gschema.xml
+USE_GNOME+=	gtk-update-icon-cache
 INSTALLS_ICONS=	yes
 
 .include <bsd.port.mk>
