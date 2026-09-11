@@ -1,5 +1,6 @@
 PORTNAME=	gnome-music
-PORTVERSION=	47.1
+PORTVERSION=	50.0
+PORTREVISION=	0
 CATEGORIES=	audio gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -17,19 +18,21 @@ BUILD_DEPENDS=	appstream-util:devel/appstream-glib \
 LIB_DEPENDS=	libgoa-1.0.so:net/gnome-online-accounts \
 		libgrilo-0.3.so:net/grilo \
 		libmediaart-2.0.so:multimedia/libmediaart \
+		libsoup-3.0.so:devel/libsoup3 \
 		libtinysparql-3.0.so:devel/tinysparql
-RUN_DEPENDS=	grilo-plugins>0:net/grilo-plugins
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cairo>0:graphics/py-cairo@${PY_FLAVOR} \
+		grilo-plugins>0:net/grilo-plugins
 
-PORTSCOUT=	limitw:1,even
+PORTSCOUT=	limit:^50\.
 
 USES=		desktop-file-utils gettext gnome gstreamer localbase meson pkgconfig \
 		python shebangfix tar:xz
-USE_LDCONFIG=	yes
 USE_GNOME=	cairo gtk40 libadwaita introspection pygobject3
 USE_GSTREAMER=	mpg123 ogg
 SHEBANG_FILES=	gnome-music.in
 BINARY_ALIAS=	python3=${PYTHON_VERSION}
 
 GLIB_SCHEMAS=	org.gnome.Music.gschema.xml
+INSTALLS_ICONS=	yes
 
 .include <bsd.port.mk>
