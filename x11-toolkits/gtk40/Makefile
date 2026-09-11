@@ -41,6 +41,7 @@ USE_PERL5=	build
 USE_GNOME=	atk cairo gdkpixbuf introspection:build pango \
 		librsvg2
 MESON_ARGS=	-Dbuild-testsuite=false
+TEST_ENV=	${MAKE_ENV}
 LDFLAGS+=	-lexecinfo
 
 BINARY_ALIAS=	python3=${PYTHON_CMD}
