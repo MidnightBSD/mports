@@ -1,5 +1,6 @@
 PORTNAME=	nautilus
-PORTVERSION=	47.6
+PORTVERSION=	49.6
+PORTREVISION=	0
 CATEGORIES=	x11-fm gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -26,8 +27,9 @@ USES=		compiler:c11 cpe desktop-file-utils gettext gnome gstreamer \
 USE_GNOME=	cairo glib20 gdkpixbuf gnomedesktop4 gtk40 libadwaita
 USE_LDCONFIG=	yes
 USE_XORG=	x11
+INSTALLS_ICONS=	yes
 
-PORTSCOUT=	limit:^47\.
+PORTSCOUT=	limit:^49\.
 
 MESON_ARGS=	-Dpackagekit=false \
 		-Dselinux=false \
