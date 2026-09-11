@@ -212,6 +212,7 @@
     SUBDIR += bglibs
     SUBDIR += binutils
     SUBDIR += bison
+    SUBDIR += blueprint-compiler
     SUBDIR += bmake
     SUBDIR += bmkdep
     SUBDIR += boehm-gc
