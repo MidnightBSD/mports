@@ -1,5 +1,0 @@
---- po/hi.po.orig
-+++ po/hi.po
-@@ -415 +415 @@
--"DVI (SyncTeX के साथ) और कॉमिक बुक अभिलेखागार (CBR, CBT, CBZ & CB7)।"
-+"DVI (SyncTeX के साथ) और कॉमिक बुक अभिलेखागार (CBR, CBT, CBZ, CB7)।"
