@@ -1,11 +1,6 @@
 bin/gnome-text-editor
 share/applications/org.gnome.TextEditor.desktop
 share/dbus-1/services/org.gnome.TextEditor.service
-%%DATADIR%%/styles/builder-dark.xml
-%%DATADIR%%/styles/builder.xml
-%%DATADIR%%/styles/peninsula-dark.xml
-%%DATADIR%%/styles/peninsula.xml
-%%DATADIR%%/styles/printing.xml
 share/help/C/gnome-text-editor/basics-create-new-file.page
 share/help/C/gnome-text-editor/basics-draft-folder.page
 share/help/C/gnome-text-editor/basics-open-file.page
@@ -207,6 +202,7 @@ share/help/zh_CN/gnome-text-editor/media/search-recent.png
 share/icons/hicolor/scalable/apps/org.gnome.TextEditor.svg
 share/icons/hicolor/symbolic/apps/org.gnome.TextEditor-symbolic.svg
 share/locale/ab/LC_MESSAGES/gnome-text-editor.mo
+share/locale/ar/LC_MESSAGES/gnome-text-editor.mo
 share/locale/be/LC_MESSAGES/gnome-text-editor.mo
 share/locale/bg/LC_MESSAGES/gnome-text-editor.mo
 share/locale/ca/LC_MESSAGES/gnome-text-editor.mo
@@ -255,7 +251,8 @@ share/locale/sv/LC_MESSAGES/gnome-text-editor.mo
 share/locale/th/LC_MESSAGES/gnome-text-editor.mo
 share/locale/tr/LC_MESSAGES/gnome-text-editor.mo
 share/locale/uk/LC_MESSAGES/gnome-text-editor.mo
+share/locale/uz/LC_MESSAGES/gnome-text-editor.mo
 share/locale/vi/LC_MESSAGES/gnome-text-editor.mo
 share/locale/zh_CN/LC_MESSAGES/gnome-text-editor.mo
 share/locale/zh_TW/LC_MESSAGES/gnome-text-editor.mo
-share/metainfo/org.gnome.TextEditor.appdata.xml
+share/metainfo/org.gnome.TextEditor.metainfo.xml

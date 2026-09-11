@@ -1,5 +1,6 @@
 PORTNAME=	gnome-text-editor
-PORTVERSION=	47.4
+PORTVERSION=	49.0
+PORTREVISION=	0
 CATEGORIES=	editors gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -21,9 +22,10 @@ LIB_DEPENDS=	libenchant-2.so:textproc/enchant2 \
 USES=		compiler:c11 desktop-file-utils gettext gnome localbase meson \
 		pkgconfig tar:xz
 USE_CSTD=	c11
-USE_GNOME=	cairo glib20 gtk40 gtksourceview5 libadwaita
+USE_GNOME=	cairo glib20 gtk40 gtk-update-icon-cache gtksourceview5 libadwaita
+INSTALLS_ICONS=	yes
 GLIB_SCHEMAS=	org.gnome.TextEditor.gschema.xml
 
-PORTSCOUT=	limit:^47\.
+PORTSCOUT=	limit:^49\.
 
 .include <bsd.port.mk>
