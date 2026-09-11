@@ -1,5 +1,6 @@
 PORTNAME=	gnome-backgrounds
-PORTVERSION=	47.0
+PORTVERSION=	50.0
+PORTREVISION=	0
 CATEGORIES=	x11-themes graphics gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -11,7 +12,7 @@ WWW=		https://gitlab.gnome.org/GNOME/gnome-backgrounds
 LICENSE=	CC-BY-SA-3.0
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-PORTSCOUT=	limit:^47\.
+PORTSCOUT=	limit:^50\.
 
 NO_ARCH=	yes
 USES=		gettext-runtime meson tar:xz
