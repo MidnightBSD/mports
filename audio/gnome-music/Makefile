@@ -27,7 +27,7 @@ PORTSCOUT=	limit:^50\.
 
 USES=		desktop-file-utils gettext gnome gstreamer localbase meson pkgconfig \
 		python shebangfix tar:xz
-USE_GNOME=	cairo gtk40 libadwaita introspection pygobject3
+USE_GNOME=	cairo gtk40 gtk-update-icon-cache introspection libadwaita pygobject3
 USE_GSTREAMER=	mpg123 ogg
 SHEBANG_FILES=	gnome-music.in
 BINARY_ALIAS=	python3=${PYTHON_VERSION}
