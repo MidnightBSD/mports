@@ -11,8 +11,8 @@ WWW=		https://ruby-gnome.github.io/ \
 LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/COPYING.LIB
 
-RUN_DEPENDS=	rubygem-gdk4>=${PORTVERSION}<${PORTVERSION:R}.99:x11-toolkits/rubygem-gdk4 \
-		rubygem-graphene1>=${PORTVERSION}<${PORTVERSION:R}.99:graphics/rubygem-graphene1
+RUN_DEPENDS=	rubygem-gdk4>=${PORTVERSION}<${PORTVERSION}_99:x11-toolkits/rubygem-gdk4 \
+		rubygem-graphene1>=${PORTVERSION}<${PORTVERSION}_99:graphics/rubygem-graphene1
 
 USES=		gem
 
