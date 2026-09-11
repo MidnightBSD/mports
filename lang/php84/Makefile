@@ -20,6 +20,10 @@ CONFLICTS_INSTALL?=	php[0-9][0-9]${PKGNAMESUFFIX}
 .if !defined(PKGNAMESUFFIX)
 LIB_DEPENDS=	libpcre2-8.so:devel/pcre2
 
+# The upstream suite deadlocks in ext/standard/tests/streams (proc_open/pty)
+# and wedges the build cluster.  Matches lang/php82 and lang/php83.
+NO_TEST=	yes
+
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	\
 		--disable-all \
@@ -164,9 +168,6 @@ post-build:
 	@${ECHO_CMD} -n "PHP_EXT_DIR=" >> ${WRKDIR}/php.conf
 	@${SH} ${WRKSRC}/scripts/php-config --extension-dir | ${SED} -ne 's,^${PREFIX}/lib/php/,,p' >> ${WRKDIR}/php.conf
 	@${ECHO_CMD} "PHP_EXT_INC=hash json openssl pcre random spl" >> ${WRKDIR}/php.conf
-
-test: build
-	@(cd ${WRKSRC} && ${MAKE} test)
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/php.ini-development ${WRKSRC}/php.ini-production \
