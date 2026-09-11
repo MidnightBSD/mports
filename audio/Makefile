@@ -26,6 +26,7 @@
     SUBDIR += fluidsynth
     SUBDIR += freealut
     SUBDIR += freedesktop-sound-theme
+    SUBDIR += gnome-metronome
     SUBDIR += gnome-music
     SUBDIR += gnome-podcasts
     SUBDIR += gnustep-cdplayer
