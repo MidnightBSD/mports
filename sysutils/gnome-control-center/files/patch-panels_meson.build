@@ -1,6 +1,6 @@
---- panels/meson.build.orig	2025-04-14 07:07:35 UTC
+--- panels/meson.build.orig	2026-09-11 00:00:00 UTC
 +++ panels/meson.build
-@@ -14,15 +14,13 @@ panels = [
+@@ -16,16 +16,14 @@ panels = [
    'printers',
    'privacy',
    'search',
@@ -8,7 +8,8 @@
    'sound',
    'system',
    'universal-access',
-- 'wwan',
+   'wellbeing',
+-  'wwan',
  ]
  
  if host_is_linux

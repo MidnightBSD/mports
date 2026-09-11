@@ -1,6 +1,6 @@
 PORTNAME=	gnome-control-center
-PORTVERSION=	47.7
-PORTREVISION=	2
+PORTVERSION=	50.4
+PORTREVISION=	0
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -14,6 +14,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	gnome-settings-daemon>0:sysutils/gnome-settings-daemon \
 		gsettings-desktop-schemas>0:devel/gsettings-desktop-schemas \
+		blueprint-compiler>0:devel/blueprint-compiler \
 		tecla>0:x11/tecla
 LIB_DEPENDS=	libaccountsservice.so:sysutils/accountsservice \
 		libcolord-gtk4.so:graphics/colord-gtk \
@@ -46,22 +47,13 @@ USE_GNOME=	cairo gdkpixbufextra gnomedesktop4 glib20 gtk40 gsound \
 		libadwaita libxml2
 USE_XORG=	x11 xi
 BINARY_ALIAS=	python3=${PYTHON_VERSION}
+INSTALLS_ICONS=	yes
 
 MESON_ARGS=	-Dlocation-services=disabled \
 		-Dsnap=false \
-		-Dtests=false
-
+	-Dtests=false
 
 GLIB_SCHEMAS=	org.gnome.Settings.gschema.xml
-
-OPTIONS_SUB=	yes
-
-OPTIONS_DEFINE=		WAYLAND
-OPTIONS_DEFAULT=	WAYLAND
-
-WAYLAND_MESON_TRUE=	wayland
-
-PORTSCOUT=	limit:^47\.
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${LOCALBASE}|' \

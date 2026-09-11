@@ -20,8 +20,7 @@
  #ifdef BUILD_WACOM
  extern void cc_wacom_panel_static_init_func (void);
  #endif /* BUILD_WACOM */
-@@ -105,7 +109,9 @@ static CcPanelLoaderVtable default_panels[] =
-   PANEL_TYPE("printers",         cc_printers_panel_get_type,             NULL),
+@@ -107,6 +111,8 @@ static CcPanelLoaderVtable default_panels[] =
    PANEL_TYPE("privacy",          cc_privacy_panel_get_type,              NULL),
    PANEL_TYPE("search",           cc_search_panel_get_type,               NULL),
 +#ifdef BUILD_SHARING
