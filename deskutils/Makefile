@@ -19,6 +19,7 @@ SUBDIR += gnome-font-viewer
 SUBDIR += gnome-maps
 SUBDIR += gnome-photos
 SUBDIR += gnome-pomodoro
+SUBDIR += gnome-sound-recorder
 SUBDIR += gnome-screenshot
 SUBDIR += gnome-shell-extension-lockkeys
 SUBDIR += gnome-todo
