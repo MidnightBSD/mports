@@ -1,0 +1,10 @@
+--- llvm-project/llvm/tools/llvm-shlib/CMakeLists.txt.orig	2024-05-24 18:46:43 UTC
++++ llvm-project/llvm/tools/llvm-shlib/CMakeLists.txt
+@@ -35,6 +35,7 @@
+   list(REMOVE_DUPLICATES LIB_NAMES)
+   if(("${CMAKE_SYSTEM_NAME}" STREQUAL "Linux") OR (MINGW) OR (HAIKU)
+      OR ("${CMAKE_SYSTEM_NAME}" STREQUAL "FreeBSD")
++     OR ("${CMAKE_SYSTEM_NAME}" STREQUAL "MidnightBSD")
+      OR ("${CMAKE_SYSTEM_NAME}" STREQUAL "GNU")
+      OR ("${CMAKE_SYSTEM_NAME}" STREQUAL "OpenBSD")
+      OR ("${CMAKE_SYSTEM_NAME}" STREQUAL "Fuchsia")

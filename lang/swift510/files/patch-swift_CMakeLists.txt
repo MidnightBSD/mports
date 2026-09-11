@@ -1,0 +1,11 @@
+--- swift/CMakeLists.txt.orig	2024-06-06 04:26:30 UTC
++++ swift/CMakeLists.txt
+@@ -133,7 +133,7 @@
+ else()
+   if("${CMAKE_SYSTEM_NAME}" STREQUAL "Linux")
+     set(SWIFT_HOST_VARIANT_SDK_default "LINUX")
+-  elseif("${CMAKE_SYSTEM_NAME}" STREQUAL "FreeBSD")
++  elseif("${CMAKE_SYSTEM_NAME}" STREQUAL "FreeBSD" OR "${CMAKE_SYSTEM_NAME}" STREQUAL "MidnightBSD")
+     set(SWIFT_HOST_VARIANT_SDK_default "FREEBSD")
+   elseif("${CMAKE_SYSTEM_NAME}" STREQUAL "OpenBSD")
+     set(SWIFT_HOST_VARIANT_SDK_default "OPENBSD")
