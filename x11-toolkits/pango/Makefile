@@ -1,5 +1,6 @@
 PORTNAME=	pango
-PORTVERSION=	1.56.4
+DISTVERSION=	1.57.1
+PORTREVISION=	0
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -8,13 +9,14 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-source framework for the layout and rendering of i18n text
 WWW=		https://www.gtk.org/docs/architecture/pango
 
-LICENSE=	lgpl
+LICENSE=	lgpl+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libfreetype.so:print/freetype2 \
 		libharfbuzz.so:print/harfbuzz \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libfribidi.so:converters/fribidi
+TEST_DEPENDS=	cantarell-fonts>=0:x11-fonts/cantarell-fonts
 
 USES=		compiler:c11 cpe gnome meson pkgconfig tar:xz
 CPE_VENDOR=	gnome
@@ -23,26 +25,34 @@ USE_LDCONFIG=	yes
 
 PORTSCOUT=	limit:^1\.[^9]
 
-PLIST_SUB=	LIBVERSION=0.${PORTVERSION:R:E}00.${PORTVERSION:E}
+PLIST_SUB=	LIBVERSION=0.${PORTVERSION:R:E}0${PORTVERSION:E}.0
+
+TESTING_UNSAFE=	test-fonts and test-layout depend on host Cantarell variable-font metrics
 
 OPTIONS_DEFINE=		DOCS LANG_TH MANPAGES X11
 OPTIONS_DEFAULT=	LANG_TH MANPAGES X11
 OPTIONS_SUB=		yes
 
 DOCS_BUILD_DEPENDS=	gi-docgen:textproc/py-gi-docgen \
-			rst2man:textproc/py-docutils
+			rst2html5:textproc/py-docutils
 DOCS_MESON_TRUE=	documentation
 
 LANG_TH_LIB_DEPENDS=	libthai.so:devel/libthai
 LANG_TH_MESON_ENABLED=	libthai
 
+MANPAGES_BUILD_DEPENDS=	rst2man:textproc/py-docutils
 MANPAGES_MESON_TRUE=	man-pages
-MANPAGES_IMPLIES=	DOCS
 
 X11_USES=		xorg
 X11_USE=		XORG=x11,xft,xrender
 X11_MESON_ENABLED=	xft
 
-NO_TEST=	yes
+post-patch:
+	${REINPLACE_CMD} -e 's|/etc/fonts/fonts.conf|${LOCALBASE}&|' \
+		${WRKSRC}/tests/meson.build
+
+pre-test:
+# Don't test backup files. Silly Meson.
+	@${FIND} ${WRKSRC}/tests/fontsets/ -name "*.orig" -delete
 
 .include <bsd.port.mk>
