@@ -375,7 +375,8 @@ sub _reap_group {
     kill($signal, -$pid) || kill($signal, $pid);
 
     foreach (1 .. $KillGrace) {
-      return if waitpid($pid, WNOHANG) > 0;
+      my $leader = waitpid($pid, WNOHANG);
+      return if $leader != 0 && !kill(0, -$pid);
       sleep 1;
     }
   }
