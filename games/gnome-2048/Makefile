@@ -1,35 +1,35 @@
 PORTNAME=	gnome-2048
-PORTVERSION=	3.38.2
-PORTREVISION=	3
+PORTVERSION=	50.2
+PORTREVISION=	0
 CATEGORIES=	games gnome
 MASTER_SITES=	GNOME
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 DIST_SUBDIR=	gnome
-
-PATCH_SITES=	https://gitlab.gnome.org/GNOME/${PORTNAME}/-/commit/
-PATCHFILES+=	194e22699f71.patch:-p1 # https://gitlab.gnome.org/GNOME/gnome-2048/-/merge_requests/21
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Move the tiles until you obtain the 2048 tile
 WWW=		https://wiki.gnome.org/Apps/2048
 
-LICENSE=	gpl3
+LICENSE=	gpl3+
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	itstool:textproc/itstool \
-		appstream-util:devel/appstream-glib
-LIB_DEPENDS=	libclutter-1.0.so:graphics/clutter \
-		libclutter-gtk-1.0.so:graphics/clutter-gtk3 \
-		libcogl.so:graphics/cogl \
-		libgee-0.8.so:devel/libgee \
-		libgnome-games-support-1.so:games/libgnome-games-support \
-		libjson-glib-1.0.so:devel/json-glib
+USES=		cargo desktop-file-utils gettext gnome localbase meson pkgconfig \
+		tar:xz vala:build
+
+BUILD_DEPENDS=	itstool:textproc/itstool
+TEST_DEPENDS=	appstreamcli:devel/appstream
 
 PORTSCOUT=	limitw:1,even
 
-USES=		gettext gl gmake gnome localbase meson pathfix pkgconfig tar:xz vala:build xorg
-USE_GNOME=	cairo gtk30 intltool libxml2:build
-USE_GL=		egl
-USE_XORG+=	x11 xext xdamage xfixes xcomposite xi xrandr
+USE_GNOME=	glib20 gtk40 libadwaita libxml2:build
 INSTALLS_ICONS=	yes
+
+CARGO_BUILD=	no
+CARGO_INSTALL=	no
+CARGO_TEST=	no
+
+# Meson invokes cargo itself and expects its native target output directory.
+MAKE_ENV=	${CARGO_ENV:NCARGO_BUILD_TARGET=*}
 
 GLIB_SCHEMAS=	org.gnome.TwentyFortyEight.gschema.xml
 
