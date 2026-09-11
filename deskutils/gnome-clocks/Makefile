@@ -1,5 +1,6 @@
 PORTNAME=	gnome-clocks
-PORTVERSION=	47.0
+PORTVERSION=	50.0
+PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	GNOME
@@ -9,10 +10,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Clocks for GNOME
 WWW=		https://wiki.gnome.org/Apps/Clocks
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
 BUILD_DEPENDS=	itstool:textproc/itstool \
+		oggenc:audio/vorbis-tools \
 		update-desktop-database:devel/desktop-file-utils
 LIB_DEPENDS=	libgeoclue-2.so:net/geoclue \
 		libgeocode-glib-2.so:net/geocode-glib2 \
@@ -23,7 +25,7 @@ PORTSCOUT=	limitw:1,even
 USES=		compiler:c11 gettext gnome localbase meson pkgconfig \
 		shebangfix tar:xz vala:build
 USE_LDCONFIG=	yes
-USE_GNOME=	gtk40 libadwaita gnomedesktop3
+USE_GNOME=	gtk40 libadwaita gnomedesktop4
 INSTALLS_ICONS=	yes
 
 GLIB_SCHEMAS=	org.gnome.clocks.gschema.xml
