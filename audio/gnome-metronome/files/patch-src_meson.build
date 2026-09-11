@@ -1,0 +1,12 @@
+--- src/meson.build.orig
++++ src/meson.build
+@@ -33,0 +34,6 @@
++cargo_target = run_command('sh', '-c', 'printf %s "$CARGO_BUILD_TARGET"', check: true).stdout().strip()
++cargo_output_dir = 'src' / rust_target
++if cargo_target != ''
++  cargo_output_dir = 'src' / cargo_target / rust_target
++endif
++
+@@ -50 +56 @@
+-    'cp', 'src' / rust_target / meson.project_name(), '@OUTPUT@',
++    'cp', cargo_output_dir / meson.project_name(), '@OUTPUT@',
