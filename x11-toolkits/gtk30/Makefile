@@ -1,5 +1,6 @@
 PORTNAME=	gtk
 DISTVERSION=	3.24.52 # sync with x11-themes: adwaita-icon-theme, gnome-themes-standard and mate-themes
+PORTREVISION=	0
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME/sources/gtk/${DISTVERSION:R}
 PKGNAMESUFFIX=	3
