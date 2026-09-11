@@ -4,7 +4,6 @@ libexec/gnome-system-monitor/gsm-renice
 libexec/gnome-system-monitor/gsm-taskset
 share/applications/gnome-system-monitor-kde.desktop
 share/applications/org.gnome.SystemMonitor.desktop
-%%DATADIR%%/gsm.gresource
 share/help/C/gnome-system-monitor/commandline.page
 share/help/C/gnome-system-monitor/cpu-check.page
 share/help/C/gnome-system-monitor/cpu-mem-normal.page
@@ -747,9 +746,10 @@ share/locale/th/LC_MESSAGES/gnome-system-monitor.mo
 share/locale/tr/LC_MESSAGES/gnome-system-monitor.mo
 share/locale/ug/LC_MESSAGES/gnome-system-monitor.mo
 share/locale/uk/LC_MESSAGES/gnome-system-monitor.mo
+share/locale/uz/LC_MESSAGES/gnome-system-monitor.mo
 share/locale/vi/LC_MESSAGES/gnome-system-monitor.mo
 share/locale/zh_CN/LC_MESSAGES/gnome-system-monitor.mo
 share/locale/zh_HK/LC_MESSAGES/gnome-system-monitor.mo
 share/locale/zh_TW/LC_MESSAGES/gnome-system-monitor.mo
-share/metainfo/org.gnome.SystemMonitor.appdata.xml
+share/metainfo/org.gnome.SystemMonitor.metainfo.xml
 share/polkit-1/actions/org.gnome.gnome-system-monitor.policy
