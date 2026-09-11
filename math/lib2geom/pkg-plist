@@ -90,7 +90,7 @@ include/2geom-1.4.0/2geom/transforms.h
 include/2geom-1.4.0/2geom/utils.h
 lib/cmake/2Geom/2GeomConfig.cmake
 lib/cmake/2Geom/2GeomConfigVersion.cmake
-lib/cmake/2Geom/2GeomTargets-release.cmake
+lib/cmake/2Geom/2GeomTargets-%%CMAKE_BUILD_TYPE%%.cmake
 lib/cmake/2Geom/2GeomTargets.cmake
 lib/lib2geom.so
 lib/lib2geom.so.1.4.0
