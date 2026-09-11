@@ -22,7 +22,7 @@ LIB_DEPENDS=	libenchant-2.so:textproc/enchant2 \
 USES=		compiler:c11 desktop-file-utils gettext gnome localbase meson \
 		pkgconfig tar:xz
 USE_CSTD=	c11
-USE_GNOME=	cairo glib20 gtk40 gtksourceview5 libadwaita
+USE_GNOME=	cairo glib20 gtk40 gtk-update-icon-cache gtksourceview5 libadwaita
 INSTALLS_ICONS=	yes
 GLIB_SCHEMAS=	org.gnome.TextEditor.gschema.xml
 
