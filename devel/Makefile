@@ -1437,6 +1437,7 @@
     SUBDIR += py-daemon
     SUBDIR += py-dataclasses-json
     SUBDIR += py-datadog
+    SUBDIR += py-dasbus
     SUBDIR += py-dbus
     SUBDIR += py-ddt
     SUBDIR += py-decorator
