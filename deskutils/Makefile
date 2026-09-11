@@ -18,6 +18,7 @@ SUBDIR += gnome-dictionary
 SUBDIR += gnome-font-viewer
 SUBDIR += gnome-maps
 SUBDIR += gnome-photos
+SUBDIR += gnome-pomodoro
 SUBDIR += gnome-screenshot
 SUBDIR += gnome-todo
 SUBDIR += gnome-tweaks
