@@ -305,4 +305,4 @@ share/locale/xh/LC_MESSAGES/gnome-chess.mo
 share/locale/zh_CN/LC_MESSAGES/gnome-chess.mo
 share/locale/zh_HK/LC_MESSAGES/gnome-chess.mo
 share/locale/zh_TW/LC_MESSAGES/gnome-chess.mo
-share/metainfo/org.gnome.Chess.appdata.xml
+share/metainfo/org.gnome.Chess.metainfo.xml
