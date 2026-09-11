@@ -136,6 +136,7 @@
     SUBDIR += tcl-wrapper
     SUBDIR += tcl86
     SUBDIR += tcl90
+    SUBDIR += typescript
     SUBDIR += tolua
     SUBDIR += tolua++
     SUBDIR += v
