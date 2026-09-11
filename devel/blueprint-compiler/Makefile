@@ -19,7 +19,11 @@ USE_GNOME=	pygobject3
 SHEBANG_FILES=	${PORTNAME}.py docs/collect-sections.py
 NO_ARCH=	yes
 # TEST_ENV is initialized before USES extensions append to MAKE_ENV.
+.if defined(DISPLAY)
+TEST_ENV+=	DISPLAY="${DISPLAY}"
+.else
 TEST_ENV+=	DISPLAY=":${XVFBPORT}"
+.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e "s,'python3','${PYTHON_CMD}'," ${WRKSRC}/meson.build
