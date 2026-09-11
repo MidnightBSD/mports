@@ -18,7 +18,7 @@ WRKSRC=		${WRKDIR}/package
 
 post-patch:
 	${FIND} ${WRKSRC}/bin -type f | ${XARGS} \
-		${REINPLACE_CMD} -i "" -e 's|../lib|${LOCALBASE}/lib/node_modules/${PORTNAME}|'
+		${REINPLACE_CMD} -i "" -e 's|../lib|${TRUE_PREFIX}/lib/node_modules/${PORTNAME}|'
 
 do-install:
 	${MKDIR} ${PREFIX}/lib/node_modules/${PORTNAME}
