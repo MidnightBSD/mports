@@ -52,6 +52,7 @@
     SUBDIR += glib-networking
     SUBDIR += gnet2
     SUBDIR += gnome-nettool
+    SUBDIR += gnome-connections
     SUBDIR += gnome-online-accounts
     SUBDIR += google-cloud-sdk
     SUBDIR += gopher
