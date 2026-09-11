@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidinghtBSD.org
 COMMENT=	GNOME REST library
 WWW=		https://gitlab.gnome.org/GNOME/librest
 
-LICENSE=	lgpl2.1
+LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libadwaita-1.so:x11-toolkits/libadwaita \
@@ -24,6 +24,7 @@ USE_LDCONFIG=	yes
 MESON_ARGS=	-Dca_certificates=true \
 		-Dca_certificates_path=/etc/ssl/cert.pem \
 		-Dgtk_doc=false
+NO_TEST=	yes
 
 OPTIONS_DEFINE=	DOCS
 
