@@ -33,11 +33,15 @@ use strict;
 use warnings;
 
 use File::Path qw(mkpath);
+use POSIX qw(setsid :sys_wait_h);
 
 use Mport::Globals qw($MAKE);
 use Mport::Utils   qw(make_var);
 
 use Magus::OutcomeRules ();
+
+# Seconds to wait for a killed build to go away before escalating TERM to KILL.
+our $KillGrace = 10;
 
 =head1 NAME 
 
@@ -120,13 +124,21 @@ sub run {
 
   foreach my $target ($self->targets_for_phase($phase)) {
     if (!$self->_run_make($target)) {
-      my $error_code = $? >> 8;
-      push(@{$results{errors}}, {
-        phase => $target,
-        msg   => "make $target returned non-zero: $error_code",
-        name  => "MakeExitNonZero",
-      });
-      
+      if (my $limit = $self->{timed_out}) {
+        push(@{$results{errors}}, {
+          phase => $target,
+          msg   => "make $target timed out after $limit seconds and was killed",
+          name  => "MakeTimeout",
+        });
+      } else {
+        my $error_code = $? >> 8;
+        push(@{$results{errors}}, {
+          phase => $target,
+          msg   => "make $target returned non-zero: $error_code",
+          name  => "MakeExitNonZero",
+        });
+      }
+
       $results{summary} = 'fail';
     }
     
@@ -250,18 +262,125 @@ sub check_master_sites {
 }
 
 
+=head2 $test->_timeout_for($target)
+
+The wall clock limit, in seconds, for a single make target.  C<MakeTimeouts>
+gives per target overrides, C<MakeTimeout> the fallback.  Zero disables the
+watchdog.
+
+=cut
+
+sub _timeout_for {
+  my ($self, $target) = @_;
+
+  my $timeouts = $Magus::Config{MakeTimeouts};
+
+  if (ref $timeouts eq 'HASH' && defined $timeouts->{$target}) {
+    return $timeouts->{$target};
+  }
+
+  return $Magus::Config{MakeTimeout} || 0;
+}
+
+
+=head2 $test->_run_make($target)
+
+Runs a single make target, logging to F<$logdir/$target>.  The make runs in its
+own session so that a port which hangs -- a test suite deadlocked on a pipe, a
+configure script waiting on stdin -- can be killed off along with everything it
+spawned instead of wedging this worker forever.
+
+Returns true when make exited zero.  On a timeout C<$self->{timed_out}> is set
+to the limit that was exceeded.
+
+=cut
+
 sub _run_make {
   my ($self, $target) = @_;
 
-  my $flavor =  $self->{port}->flavor;
+  my $flavor  = $self->{port}->flavor;
+  my $logfile = "$self->{logdir}/$target";
+
+  delete $self->{timed_out};
 
   chdir($self->{port}->origin) || die "Couldn't chdir to " . $self->{port}->origin . ": $!\n";
 
-  if (length $flavor) {
-    return system("$MAKE LANG=C.UTF-8 LC_ALL=C.UTF-8 $target >$self->{logdir}/$target FLAVOR=$flavor 2>&1") == 0;
-  } else {
-    return system("$MAKE LANG=C.UTF-8 LC_ALL=C.UTF-8 $target >$self->{logdir}/$target 2>&1") == 0;
+  my @cmd = ($MAKE, 'LANG=C.UTF-8', 'LC_ALL=C.UTF-8', $target);
+  push(@cmd, "FLAVOR=$flavor") if length $flavor;
+
+  my $timeout = $self->_timeout_for($target);
+
+  # magus.pl installs a SIGCHLD handler that reaps indiscriminately; keep it
+  # away from our waitpid so we actually see make's exit status.
+  local $SIG{CHLD} = 'DEFAULT';
+
+  my $pid = fork;
+  die "Couldn't fork for make $target: $!\n" unless defined $pid;
+
+  unless ($pid) {
+    # Lead our own process group so the watchdog can signal the whole build.
+    POSIX::setsid();
+    open(STDOUT, '>', $logfile)  || exit 127;
+    open(STDERR, '>&', \*STDOUT) || exit 127;
+    exec(@cmd);
+    exit 127;
   }
+
+  my $status;
+  my $timed_out = 0;
+
+  eval {
+    local $SIG{ALRM} = sub { $timed_out = 1; die "make timeout\n" };
+    alarm($timeout) if $timeout;
+    waitpid($pid, 0);
+    $status = $?;
+    alarm(0);
+    1;
+  };
+
+  alarm(0);
+
+  if ($timed_out) {
+    $self->{timed_out} = $timeout;
+    $self->_reap_group($pid);
+
+    if (open(my $fh, '>>', $logfile)) {
+      print $fh "\n*** magus: make $target exceeded $timeout seconds, killed ***\n";
+      close($fh);
+    }
+
+    $? = -1;
+    return 0;
+  }
+
+  die $@ if $@;
+
+  $? = defined($status) ? $status : -1;
+
+  return defined($status) && $status == 0;
+}
+
+
+=head2 $test->_reap_group($pid)
+
+Terminate the process group led by $pid, escalating to SIGKILL if it does not
+go away, and wait for the leader so we do not leave a zombie behind.
+
+=cut
+
+sub _reap_group {
+  my ($self, $pid) = @_;
+
+  foreach my $signal (qw(TERM KILL)) {
+    kill($signal, -$pid) || kill($signal, $pid);
+
+    foreach (1 .. $KillGrace) {
+      return if waitpid($pid, WNOHANG) > 0;
+      sleep 1;
+    }
+  }
+
+  waitpid($pid, WNOHANG);
 }
 
 
