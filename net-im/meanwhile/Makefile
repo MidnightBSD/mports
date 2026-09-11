@@ -1,5 +1,6 @@
 PORTNAME=	meanwhile
 PORTVERSION=	1.1.1
+PORTREVISION=	0
 CATEGORIES=	net-im
 
 MAINTAINER=	ports@MidnightBSD.org
