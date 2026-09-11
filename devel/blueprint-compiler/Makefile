@@ -28,7 +28,7 @@ TEST_ENV+=	DISPLAY=":${XVFBPORT}"
 post-patch:
 	@${REINPLACE_CMD} -e "s,'python3','${PYTHON_CMD}'," ${WRKSRC}/meson.build
 
-post-stage:
+post-fake:
 	${PYTHON_CMD} -m compileall -d ${PYTHON_SITELIBDIR} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}
 	${PYTHON_CMD} -O -m compileall -d ${PYTHON_SITELIBDIR} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}
 
