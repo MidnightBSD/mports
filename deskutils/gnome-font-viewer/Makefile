@@ -1,6 +1,6 @@
 PORTNAME=	gnome-font-viewer
-PORTVERSION=	47.0
-PORTREVISION=	1
+PORTVERSION=	48.0
+PORTREVISION=	0
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME font viewer utility
 WWW=		https://github.com/GNOME/gnome-font-viewer
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
@@ -23,7 +23,6 @@ USES=		compiler:c11 desktop-file-utils gettext gnome localbase meson \
 		pkgconfig tar:xz
 USES+=	cpe
 CPE_VENDOR=	gnome
-USE_LDCONFIG=	yes
 USE_GNOME=	gtk40 libadwaita
 INSTALLS_ICONS=	yes
 
