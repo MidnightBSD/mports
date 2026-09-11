@@ -51,7 +51,7 @@ INSTALLS_ICONS=	yes
 
 MESON_ARGS=	-Dlocation-services=disabled \
 		-Dsnap=false \
-	-Dtests=false
+		-Dtests=false
 
 GLIB_SCHEMAS=	org.gnome.Settings.gschema.xml
 
