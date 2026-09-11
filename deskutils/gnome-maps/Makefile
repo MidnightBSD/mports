@@ -33,6 +33,7 @@ CPE_VENDOR=	gnome
 USE_GNOME=	cairo glib20 gtk40 introspection:build libadwaita \
 		libxml2 librsvg2
 USE_LDCONFIG=	yes
+USE_GNOME+=	gtk-update-icon-cache
 INSTALLS_ICONS=	yes
 
 GLIB_SCHEMAS=	org.gnome.Maps.gschema.xml
