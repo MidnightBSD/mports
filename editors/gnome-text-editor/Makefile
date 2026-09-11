@@ -1,5 +1,5 @@
 PORTNAME=	gnome-text-editor
-PORTVERSION=	49.0
+PORTVERSION=	50.0
 PORTREVISION=	0
 CATEGORIES=	editors gnome
 MASTER_SITES=	GNOME
@@ -26,6 +26,6 @@ USE_GNOME=	cairo glib20 gtk40 gtk-update-icon-cache gtksourceview5 libadwaita
 INSTALLS_ICONS=	yes
 GLIB_SCHEMAS=	org.gnome.TextEditor.gschema.xml
 
-PORTSCOUT=	limit:^49\.
+PORTSCOUT=	limit:^50\.
 
 .include <bsd.port.mk>
