@@ -23,6 +23,7 @@ USES=		desktop-file-utils gettext gnome localbase meson pkgconfig \
 		python shebangfix tar:xz
 USE_GNOME=	glib20 gnomedesktop4 gtk40 introspection libadwaita pygobject3
 GLIB_SCHEMAS=	org.gnome.tweaks.gschema.xml
+USE_GNOME+=	gtk-update-icon-cache
 INSTALLS_ICONS=	yes
 SHEBANG_FILES=	gnome-tweaks meson-postinstall.py
 BINARY_ALIAS=	python3=${PYTHON_VERSION}
