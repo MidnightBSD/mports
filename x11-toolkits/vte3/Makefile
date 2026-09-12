@@ -1,5 +1,6 @@
 PORTNAME=	vte
-PORTVERSION=	0.80.5
+PORTVERSION=	0.82.4
+PORTREVISION=	0
 CATEGORIES=	x11-toolkits gnome
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	3
@@ -20,7 +21,7 @@ LIB_DEPENDS=	libpcre2-8.so:devel/pcre2 \
 
 PORTSCOUT=	limitw:1,even
 
-USES=		compiler:c++20-lang gettext-tools gnome localbase meson \
+USES=		compiler:c++23-lang gettext-tools gnome localbase meson \
 		pkgconfig python:build tar:xz vala:build
 USE_LDCONFIG=	yes
 USE_GNOME=	cairo gdkpixbuf gtk30 introspection:build
