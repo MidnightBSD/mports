@@ -1,5 +1,5 @@
 PORTNAME=	gnome-maps
-DISTVERSION=	50.0
+DISTVERSION=	50.5
 PORTREVISION=	0
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	GNOME
@@ -11,8 +11,6 @@ WWW=		https://apps.gnome.org/Maps/
 
 LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
-
-PORTSCOUT=	limit:^47\.
 
 BUILD_DEPENDS=	blueprint-compiler:devel/blueprint-compiler \
 		geoclue>=0:net/geoclue
@@ -37,8 +35,6 @@ USE_GNOME+=	gtk-update-icon-cache
 INSTALLS_ICONS=	yes
 
 GLIB_SCHEMAS=	org.gnome.Maps.gschema.xml
-
-NO_TEST=	yes
 
 post-install:
 	@${RM} "${PREFIX}/share/gnome-maps/icons/hicolor/16x16/apps/explore-symbolic copy.svg"
