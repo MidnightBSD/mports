@@ -32,6 +32,7 @@ share/locale/et/LC_MESSAGES/gnome-user-share.mo
 share/locale/eu/LC_MESSAGES/gnome-user-share.mo
 share/locale/fa/LC_MESSAGES/gnome-user-share.mo
 share/locale/fi/LC_MESSAGES/gnome-user-share.mo
+share/locale/fil/LC_MESSAGES/gnome-user-share.mo
 share/locale/fr/LC_MESSAGES/gnome-user-share.mo
 share/locale/fur/LC_MESSAGES/gnome-user-share.mo
 share/locale/ga/LC_MESSAGES/gnome-user-share.mo
@@ -88,6 +89,7 @@ share/locale/th/LC_MESSAGES/gnome-user-share.mo
 share/locale/tr/LC_MESSAGES/gnome-user-share.mo
 share/locale/ug/LC_MESSAGES/gnome-user-share.mo
 share/locale/uk/LC_MESSAGES/gnome-user-share.mo
+share/locale/uz/LC_MESSAGES/gnome-user-share.mo
 share/locale/vi/LC_MESSAGES/gnome-user-share.mo
 share/locale/zh_CN/LC_MESSAGES/gnome-user-share.mo
 share/locale/zh_HK/LC_MESSAGES/gnome-user-share.mo

@@ -9,6 +9,7 @@ share/icons/hicolor/symbolic/apps/org.gnome.Characters-symbolic.svg
 share/locale/ab/LC_MESSAGES/org.gnome.Characters.mo
 share/locale/af/LC_MESSAGES/org.gnome.Characters.mo
 share/locale/ar/LC_MESSAGES/org.gnome.Characters.mo
+share/locale/az/LC_MESSAGES/org.gnome.Characters.mo
 share/locale/be/LC_MESSAGES/org.gnome.Characters.mo
 share/locale/bg/LC_MESSAGES/org.gnome.Characters.mo
 share/locale/bn/LC_MESSAGES/org.gnome.Characters.mo
@@ -35,6 +36,7 @@ share/locale/he/LC_MESSAGES/org.gnome.Characters.mo
 share/locale/hi/LC_MESSAGES/org.gnome.Characters.mo
 share/locale/hr/LC_MESSAGES/org.gnome.Characters.mo
 share/locale/hu/LC_MESSAGES/org.gnome.Characters.mo
+share/locale/ia/LC_MESSAGES/org.gnome.Characters.mo
 share/locale/id/LC_MESSAGES/org.gnome.Characters.mo
 share/locale/ie/LC_MESSAGES/org.gnome.Characters.mo
 share/locale/is/LC_MESSAGES/org.gnome.Characters.mo
@@ -44,6 +46,7 @@ share/locale/ka/LC_MESSAGES/org.gnome.Characters.mo
 share/locale/kab/LC_MESSAGES/org.gnome.Characters.mo
 share/locale/kk/LC_MESSAGES/org.gnome.Characters.mo
 share/locale/ko/LC_MESSAGES/org.gnome.Characters.mo
+share/locale/kw/LC_MESSAGES/org.gnome.Characters.mo
 share/locale/ln/LC_MESSAGES/org.gnome.Characters.mo
 share/locale/lt/LC_MESSAGES/org.gnome.Characters.mo
 share/locale/lv/LC_MESSAGES/org.gnome.Characters.mo
@@ -70,10 +73,12 @@ share/locale/ta/LC_MESSAGES/org.gnome.Characters.mo
 share/locale/tg/LC_MESSAGES/org.gnome.Characters.mo
 share/locale/th/LC_MESSAGES/org.gnome.Characters.mo
 share/locale/tr/LC_MESSAGES/org.gnome.Characters.mo
+share/locale/ug/LC_MESSAGES/org.gnome.Characters.mo
 share/locale/uk/LC_MESSAGES/org.gnome.Characters.mo
+share/locale/uz/LC_MESSAGES/org.gnome.Characters.mo
 share/locale/zh_CN/LC_MESSAGES/org.gnome.Characters.mo
 share/locale/zh_TW/LC_MESSAGES/org.gnome.Characters.mo
-share/metainfo/org.gnome.Characters.appdata.xml
+share/metainfo/org.gnome.Characters.metainfo.xml
 share/org.gnome.Characters/gir-1.0/Gc-1.0.gir
 share/org.gnome.Characters/org.gnome.Characters
 share/org.gnome.Characters/org.gnome.Characters.data.gresource

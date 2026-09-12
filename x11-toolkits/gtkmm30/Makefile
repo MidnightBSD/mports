@@ -1,5 +1,6 @@
 PORTNAME=	gtkmm
-DISTVERSION=	3.24.9
+DISTVERSION=	3.24.11
+PORTREVISION=	0
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	30
@@ -9,21 +10,20 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C++ wrapper for Gtk+3
 WWW=		http://gtkmm.sourceforge.net/
 
-LICENSE=	lgpl2.1
+LICENSE=	lgpl2.1+
 
-PORTSCOUT=	limitw:1,even
-
-USES=		compiler:c++11-lang gnome localbase:ldflags meson \
+USES=		compiler:c++11-lang display:test gnome localbase:ldflags meson \
 		pkgconfig python:build tar:xz
 USE_GNOME=	gdkpixbuf gtk30 glibmm cairomm atkmm pangomm
 USE_LDCONFIG=	yes
 
+PORTSCOUT=	limitw:1,even
+
 MESON_ARGS=	-Dbuild-documentation=false \
 		-Dbuild-demos=false \
 		-Dcpp_std=c++11
+TEST_ENV=	${MAKE_ENV}
 
 PLIST_SUB=	API_VERSION="3.0"
-
-NO_TEST=	yes
 
 .include <bsd.port.mk>

@@ -1,6 +1,6 @@
 PORTNAME=	gnome-terminal
-DISTVERSION=	3.56.3
-PORTREVISION=	2
+DISTVERSION=	3.58.1
+PORTREVISION=	0
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -26,6 +26,7 @@ USE_XORG=	x11
 CPE_VENDOR=	gnome
 
 MESON_ARGS=	-Ddocs=false
+INSTALLS_ICONS=	yes
 
 GLIB_SCHEMAS=	org.gnome.Terminal.gschema.xml
 

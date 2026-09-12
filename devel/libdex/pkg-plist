@@ -7,9 +7,12 @@ include/libdex-1/dex-channel.h
 include/libdex-1/dex-delayed.h
 include/libdex-1/dex-enums.h
 include/libdex-1/dex-error.h
+include/libdex-1/dex-features.h
 include/libdex-1/dex-fiber.h
 include/libdex-1/dex-future-set.h
 include/libdex-1/dex-future.h
+include/libdex-1/dex-future-list-model.h
+include/libdex-1/dex-gdbus.h
 include/libdex-1/dex-gio.h
 include/libdex-1/dex-init.h
 include/libdex-1/dex-main-scheduler.h
@@ -30,6 +33,8 @@ lib/libdex-1.so
 lib/libdex-1.so.1
 lib/libdex-1.so.1.0.0
 libdata/pkgconfig/libdex-1.pc
+lib/python3.12/site-packages/gi/overrides/Dex.py
+libexec/libdex-1/dex-gdbus-codegen-extension.py
 share/gir-1.0/Dex-1.gir
 share/vala/vapi/libdex-1.deps
 share/vala/vapi/libdex-1.vapi

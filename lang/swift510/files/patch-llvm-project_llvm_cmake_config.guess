@@ -1,0 +1,24 @@
+--- llvm-project/llvm/cmake/config.guess.orig	2024-05-24 18:46:43 UTC
++++ llvm-project/llvm/cmake/config.guess
+@@ -798,7 +798,21 @@
+ 		echo x86_64-unknown-freebsd`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'` ;;
+ 	    *)
+ 		echo ${UNAME_PROCESSOR}-unknown-freebsd`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'` ;;
++	esac
++	exit ;;
++    *:MidnightBSD:*:*)
++	# MidnightBSD's system compiler targets a FreeBSD triple; reuse it so
++	# the host triple agrees with the compiler that builds the toolchain.
++	if triple=`cc -dumpmachine 2>/dev/null` && [ -n "${triple}" ] ; then
++		echo ${triple}
++		exit
++	fi
++	UNAME_PROCESSOR=`/usr/bin/uname -p`
++	case ${UNAME_PROCESSOR} in
++	    amd64)
++		UNAME_PROCESSOR=x86_64 ;;
+ 	esac
++	echo ${UNAME_PROCESSOR}-unknown-freebsd13.4
+ 	exit ;;
+     i*:CYGWIN*:*)
+ 	echo ${UNAME_MACHINE}-pc-cygwin

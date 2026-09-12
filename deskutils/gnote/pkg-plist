@@ -40,8 +40,8 @@ lib/gnote/plugins/%%VERSION%%/tomboyimport.desktop
 lib/gnote/plugins/%%VERSION%%/underline.desktop
 lib/gnote/plugins/%%VERSION%%/webdavsyncservice.desktop
 lib/libgnote-%%VERSION%%.so
-lib/libgnote-%%VERSION%%.so.1
-lib/libgnote-%%VERSION%%.so.1.0.0
+lib/libgnote-%%VERSION%%.so.0
+lib/libgnote-%%VERSION%%.so.0.0.2
 share/applications/org.gnome.Gnote.desktop
 share/dbus-1/services/org.gnome.Gnote.service
 share/gnome-shell/search-providers/org.gnome.Gnote.search-provider.ini

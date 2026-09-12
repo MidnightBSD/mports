@@ -1,6 +1,6 @@
 PORTNAME=	gnome-builder
-PORTVERSION=	47.2
-PORTREVISION=	2
+PORTVERSION=	50.0
+PORTREVISION=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -27,8 +27,6 @@ LIB_DEPENDS=	libcmark.so:textproc/cmark \
 		libeditorconfig.so:editors/editorconfig-core-c
 RUN_DEPENDS=	d-spy:devel/d-spy
 
-PORTSCOUT=	limit:^47\.
-
 USES=		compiler:c++11-lang desktop-file-utils gettext gnome \
 		localbase:lfdlags meson pkgconfig python:build shebangfix \
 		tar:xz
@@ -36,6 +34,7 @@ USE_GNOME=	glib20 gtk40 gtksourceview5 introspection libadwaita \
 		libxml2 vte3
 SHEBANG_FILES=	${WRKSRC}/build-aux/meson/post_install.py
 USE_LDCONFIG=	yes
+INSTALLS_ICONS=	yes
 
 MESON_ARGS=	-Dwebkit=disabled \
 		-Dplugin_sphinx_preview=false \
@@ -62,6 +61,7 @@ GLIB_SCHEMAS=	org.gnome.builder.build.gschema.xml \
 		org.gnome.builder.editor.gschema.xml \
 		org.gnome.builder.editor.language.gschema.xml \
 		org.gnome.builder.extension-type.gschema.xml \
+		org.gnome.builder.git.gschema.xml \
 		org.gnome.builder.gschema.xml \
 		org.gnome.builder.plugin.gschema.xml \
 		org.gnome.builder.project-tree.gschema.xml \

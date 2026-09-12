@@ -1,0 +1,18 @@
+--- swift-corelibs-xctest/CMakeLists.txt.orig	2026-09-11 17:14:03 UTC
++++ swift-corelibs-xctest/CMakeLists.txt
+@@ -118,12 +118,12 @@
+ set_property(GLOBAL APPEND PROPERTY XCTest_EXPORTS XCTest)
+ get_swift_host_arch(swift_arch)
+ install(TARGETS XCTest
+-  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}/swift$<$<NOT:$<BOOL:${BUILD_SHARED_LIBS}>>:_static>/$<LOWER_CASE:${CMAKE_SYSTEM_NAME}>
+-  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/swift$<$<NOT:$<BOOL:${BUILD_SHARED_LIBS}>>:_static>/$<LOWER_CASE:${CMAKE_SYSTEM_NAME}>
++  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}/swift$<$<NOT:$<BOOL:${BUILD_SHARED_LIBS}>>:_static>/$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},MidnightBSD>,freebsd,$<LOWER_CASE:${CMAKE_SYSTEM_NAME}>>
++  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/swift$<$<NOT:$<BOOL:${BUILD_SHARED_LIBS}>>:_static>/$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},MidnightBSD>,freebsd,$<LOWER_CASE:${CMAKE_SYSTEM_NAME}>>
+   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+ install(FILES
+   ${CMAKE_CURRENT_BINARY_DIR}/swift/XCTest.swiftdoc
+   ${CMAKE_CURRENT_BINARY_DIR}/swift/XCTest.swiftmodule
+-  DESTINATION ${CMAKE_INSTALL_LIBDIR}/swift$<$<NOT:$<BOOL:${BUILD_SHARED_LIBS}>>:_static>/$<LOWER_CASE:${CMAKE_SYSTEM_NAME}>/${swift_arch})
++  DESTINATION ${CMAKE_INSTALL_LIBDIR}/swift$<$<NOT:$<BOOL:${BUILD_SHARED_LIBS}>>:_static>/$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},MidnightBSD>,freebsd,$<LOWER_CASE:${CMAKE_SYSTEM_NAME}>>/${swift_arch})
+ 
+ add_subdirectory(cmake/modules)

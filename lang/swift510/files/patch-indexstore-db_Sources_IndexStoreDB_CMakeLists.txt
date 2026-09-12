@@ -1,0 +1,17 @@
+--- indexstore-db/Sources/IndexStoreDB/CMakeLists.txt.orig	2026-09-11 17:14:03 UTC
++++ indexstore-db/Sources/IndexStoreDB/CMakeLists.txt
+@@ -26,11 +26,11 @@
+ 
+ get_swift_host_arch(swift_arch)
+ install(TARGETS IndexStoreDB
+-  ARCHIVE DESTINATION lib/swift$<$<NOT:$<BOOL:${BUILD_SHARED_LIBS}>>:_static>/$<LOWER_CASE:${CMAKE_SYSTEM_NAME}>
+-  LIBRARY DESTINATION lib/swift$<$<NOT:$<BOOL:${BUILD_SHARED_LIBS}>>:_static>/$<LOWER_CASE:${CMAKE_SYSTEM_NAME}>
++  ARCHIVE DESTINATION lib/swift$<$<NOT:$<BOOL:${BUILD_SHARED_LIBS}>>:_static>/$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},MidnightBSD>,freebsd,$<LOWER_CASE:${CMAKE_SYSTEM_NAME}>>
++  LIBRARY DESTINATION lib/swift$<$<NOT:$<BOOL:${BUILD_SHARED_LIBS}>>:_static>/$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},MidnightBSD>,freebsd,$<LOWER_CASE:${CMAKE_SYSTEM_NAME}>>
+   RUNTIME DESTINATION bin)
+ install(FILES
+   ${CMAKE_BINARY_DIR}/swift/IndexStoreDB.swiftdoc
+   ${CMAKE_BINARY_DIR}/swift/IndexStoreDB.swiftmodule
+-  DESTINATION lib/swift$<$<NOT:$<BOOL:${BUILD_SHARED_LIBS}>>:_static>/$<LOWER_CASE:${CMAKE_SYSTEM_NAME}>/${swift_arch})
++  DESTINATION lib/swift$<$<NOT:$<BOOL:${BUILD_SHARED_LIBS}>>:_static>/$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},MidnightBSD>,freebsd,$<LOWER_CASE:${CMAKE_SYSTEM_NAME}>>/${swift_arch})
+ set_property(GLOBAL APPEND PROPERTY IndexStoreDB_EXPORTS IndexStoreDB)

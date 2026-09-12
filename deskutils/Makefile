@@ -21,6 +21,7 @@ SUBDIR += gnome-photos
 SUBDIR += gnome-pomodoro
 SUBDIR += gnome-screenshot
 SUBDIR += gnome-shell-extension-lockkeys
+SUBDIR += gnome-sound-recorder
 SUBDIR += gnome-todo
 SUBDIR += gnome-tweaks
 SUBDIR += gnome-utils

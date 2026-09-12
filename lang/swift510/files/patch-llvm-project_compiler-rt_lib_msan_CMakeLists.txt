@@ -1,0 +1,16 @@
+--- llvm-project/compiler-rt/lib/msan/CMakeLists.txt.orig	2024-05-24 18:46:43 UTC
++++ llvm-project/compiler-rt/lib/msan/CMakeLists.txt
+@@ -30,11 +30,11 @@
+   )
+ 
+ set(MSAN_RTL_CFLAGS ${SANITIZER_COMMON_CFLAGS})
+-if(CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
++if(CMAKE_SYSTEM_NAME MATCHES "FreeBSD|MidnightBSD")
+   append_list_if(COMPILER_RT_HAS_FTLS_MODEL_INITIAL_EXEC -ftls-model=initial-exec MSAN_RTL_CFLAGS)
+ endif()
+ append_rtti_flag(OFF MSAN_RTL_CFLAGS)
+-if(NOT CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
++if(NOT CMAKE_SYSTEM_NAME MATCHES "FreeBSD|MidnightBSD")
+   append_list_if(COMPILER_RT_HAS_FPIE_FLAG -fPIE MSAN_RTL_CFLAGS)
+ endif()
+ # Prevent clang from generating libc calls.
