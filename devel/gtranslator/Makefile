@@ -1,6 +1,6 @@
 PORTNAME=	gtranslator
-DISTVERSION=	47.1
-PORTREVISION=	2
+DISTVERSION=	50.0
+PORTREVISION=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -11,7 +11,7 @@ WWW=		https://gitlab.gnome.org/GNOME/gtranslator
 
 LICENSE=	gpl3+
 
-PORTSCOUT=	limit:^47\.
+PORTSCOUT=	limit:^50\.
 
 BUILD_DEPENDS=	gsettings-desktop-schemas>0:devel/gsettings-desktop-schemas \
 		itstool:textproc/itstool
@@ -26,9 +26,9 @@ USES=		cpe desktop-file-utils gettext gnome localbase:ldflags \
 CPE_VENDOR=	gtranslate
 CPE_PRODUCT=	google_language_translator
 USE_GNOME=	cairo glib20 gtk40 gtksourceview5 libadwaita libgda6 libxml2
-USE_LDCONFIG=	yes
 
 GLIB_SCHEMAS=	org.gnome.Gtranslator.gschema.xml \
 		org.gnome.gtranslator.plugins.translation-memory.gschema.xml
+INSTALLS_ICONS=	yes
 
 .include <bsd.port.mk>
