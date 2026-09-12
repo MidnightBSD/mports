@@ -7,7 +7,7 @@ include/libgweather-4.0/libgweather/gweather.h
 lib/girepository-1.0/GWeather-4.0.typelib
 lib/libgweather-4.so
 lib/libgweather-4.so.0
-lib/libgweather-4.so.0.500.0
+lib/libgweather-4.so.0.600.0
 libdata/pkgconfig/gweather4.pc
 share/doc/libgweather-4.0/RedHatDisplay-Black.woff
 share/doc/libgweather-4.0/RedHatDisplay-Black.woff2
