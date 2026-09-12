@@ -22,7 +22,7 @@ LIB_DEPENDS=	libjson-glib-1.0.so:devel/json-glib \
 		libgudev-1.0.so:devel/libgudev \
 		libinput.so:x11/libinput
 
-PORTSCOUT=	limit:1,even
+PORTSCOUT=	limitw:1,even
 
 USES=		cpe gettext gl gmake gnome libtool localbase pathfix pkgconfig \
 		tar:xz xorg

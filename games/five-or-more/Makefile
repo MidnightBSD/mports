@@ -14,8 +14,6 @@ BUILD_DEPENDS=	itstool:textproc/itstool
 LIB_DEPENDS=	libgnome-games-support-1.so:games/libgnome-games-support \
 		libgee-0.8.so:devel/libgee
 
-PORTSCOUT=	limitw:1,even
-
 USES=		gettext gnome meson pkgconfig tar:xz vala:build
 USE_GNOME=	cairo glib20 gtk30 librsvg2
 INSTALLS_ICONS=	yes

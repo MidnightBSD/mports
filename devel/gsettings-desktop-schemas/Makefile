@@ -11,8 +11,6 @@ COMMENT=	Collection of globally shared GSetting schemas
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-PORTSCOUT=	limitw:1,even
-
 USES=		gettext gnome localbase meson pkgconfig python:build \
 		tar:xz
 USE_GNOME=	glib20 introspection:build

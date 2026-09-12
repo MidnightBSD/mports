@@ -22,7 +22,7 @@ USES=		gem
 
 NO_ARCH=	yes
 
-PORTSCOUT=	limit:^3\.3\.
+PORTSCOUT=	limit:^3\.10\.
 
 PLIST_FILES=	bin/vite
 

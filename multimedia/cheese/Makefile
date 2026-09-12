@@ -23,8 +23,6 @@ LIB_DEPENDS=	libcanberra-gtk3.so:audio/libcanberra-gtk3 \
 		libclutter-gst-3.0.so:multimedia/clutter-gst3
 RUN_DEPENDS=	gnome-video-effects>=0:graphics/gnome-video-effects
 
-PORTSCOUT=	limitw:1,even
-
 USES=		gettext gl gnome gstreamer localbase:ldflags pkgconfig meson tar:xz xorg vala:build
 USE_GNOME=	cairo librsvg2 gnomedesktop3 libxml2:build introspection:build
 USE_GL=		egl

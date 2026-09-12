@@ -22,7 +22,7 @@ LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 RUN_DEPENDS=	gpg2:security/gnupg
 
 CONFLICTS=	gnome-keyring-2.[0-9]*
-PORTSCOUT=	limitw:1,even
+PORTSCOUT=	limit:^3\.
 
 USES=		desktop-file-utils gettext-tools gnome meson \
 		pkgconfig python shared-mime-info tar:xz vala:build

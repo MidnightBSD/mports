@@ -54,7 +54,7 @@ NO_TEST=	yes
 #TEST_ARGS=	-k
 #TEST_TARGET=	check
 
-PORTSCOUT=	limit:^\d+\.\d+\.[1-9]\d*
+PORTSCOUT=	limit:^6\.8\.
 
 # XXX MCL mat says: no. Options must not change themselves depending on what is installed.
 # XXX MCL just leave this out for now to try to get *something* done.

@@ -34,7 +34,7 @@ GL_SITE=	https://gitlab.gnome.org
 GL_ACCOUNT=	World/gedit
 GL_TUPLE=	GNOME:libgd:3cccf992:libgd/subprojects/libgd
 
-PORTSCOUT=	limit:^48\.
+PORTSCOUT=	limit:^50\.
 
 GLIB_SCHEMAS=	org.gnome.gedit.enums.xml \
 		org.gnome.gedit.gschema.xml \

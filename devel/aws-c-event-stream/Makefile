@@ -29,6 +29,6 @@ CMAKE_OFF=	BUILD_TESTING
 
 LDFLAGS+=	-lexecinfo -lpthread
 
-PORTSCOUT=	limit:^d\.d\.
+PORTSCOUT=	limit:^[0-9]+\.[0-9]+\.
 
 .include <bsd.port.mk>

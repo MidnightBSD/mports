@@ -38,6 +38,4 @@ BINARY_ALIAS=	python3=${PYTHON_CMD}
 
 NO_ARCH=	yes
 
-PORTSCOUT=	limit:^py-
-
 .include <bsd.port.mk>

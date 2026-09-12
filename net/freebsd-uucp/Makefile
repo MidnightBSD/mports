@@ -13,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/uucp/COPYING
 
 FAKE_OPTS=	trueprefix
 
-PORTSCOUT=	limit:^1_
+PORTSCOUT=	limit:^1\.
 
 USES=		fakeroot
 
