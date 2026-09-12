@@ -21,7 +21,12 @@ USES=		compiler:c11 desktop-file-utils display:test gettext-tools gnome localbas
 		meson pkgconfig tar:xz
 USE_CSTD=	c11
 USE_GNOME=	glib20 gtk40 libadwaita pango vte3
-TEST_ENV+=	DISPLAY=:${XVFBPORT}
+# TEST_ENV is initialized before USES extensions append to MAKE_ENV.
+.if defined(DISPLAY)
+TEST_ENV+=	DISPLAY="${DISPLAY}"
+.else
+TEST_ENV+=	DISPLAY=":${XVFBPORT}"
+.endif
 GLIB_SCHEMAS=	org.gnome.Console.gschema.xml
 INSTALLS_ICONS=	yes
 
