@@ -1,12 +1,9 @@
-src/meson.build:69:21: ERROR: C shared or static library 'atomic' not found
-
---- src/meson.build.orig	2025-03-15 19:01:29 UTC
+--- src/meson.build.orig
 +++ src/meson.build
-@@ -65,7 +65,7 @@ libdex_deps = [
-   glib_dep,
- ]
+@@ -106,7 +106,7 @@ if have_gdbus_codegen
+ endif
  
--if host_machine.system() != 'darwin'
+-if host_machine.system() != 'darwin' and cc.get_argument_syntax() != 'msvc'
 +if host_machine.system() == 'linux'
    libatomic_dep = cc.find_library('atomic')
    if not cc.links('int main(){}', dependencies: [libatomic_dep])
