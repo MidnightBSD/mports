@@ -1,5 +1,6 @@
 PORTNAME=	gjs
-PORTVERSION=	1.82.3
+PORTVERSION=	1.86.0
+PORTREVISION=	0
 CATEGORIES=	lang gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -8,11 +9,13 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME Javascript binding
 WWW=		https://gitlab.gnome.org/GNOME/gjs
 
-LICENSE=	MPL20 gpl2 lgpl2.1 mit
-LICENSE_COMB=	multi
+LICENSE=	mit lgpl+
+LICENSE_COMB=	dual
+LICENSE_FILE_mit=	${WRKSRC}/LICENSES/MIT.txt
+LICENSE_FILE_lgpl+ = ${WRKSRC}/LICENSES/LGPL-2.0-or-later.txt
 
 BUILD_DEPENDS=	dbus-run-session:devel/dbus
-LIB_DEPENDS=	libmozjs-128.so:lang/spidermonkey128 \
+LIB_DEPENDS=	libmozjs-140.so:lang/spidermonkey140 \
 		libffi.so:devel/libffi
 
 USES=		compiler:c++17-lang gettext gnome \
