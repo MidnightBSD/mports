@@ -1,0 +1,11 @@
+--- llbuild/lib/llvm/Support/CMakeLists.txt.orig	2024-01-09 06:44:05 UTC
++++ llbuild/lib/llvm/Support/CMakeLists.txt
+@@ -59,7 +59,7 @@
+   Threads::Threads
+   ${CMAKE_DL_LIBS})
+ 
+-if(${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD")
++if(${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD|MidnightBSD")
+   target_link_libraries(llvmSupport PRIVATE
+     execinfo)
+ endif()

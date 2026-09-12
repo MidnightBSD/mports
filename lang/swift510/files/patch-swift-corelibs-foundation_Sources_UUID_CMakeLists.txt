@@ -1,0 +1,12 @@
+--- swift-corelibs-foundation/Sources/UUID/CMakeLists.txt.orig	2026-09-11 17:14:03 UTC
++++ swift-corelibs-foundation/Sources/UUID/CMakeLists.txt
+@@ -28,7 +28,7 @@
+   # TODO(drexin): should be installed in architecture specific folder, once
+   # the layout is fixed for non-Darwin platforms
+   install(TARGETS uuid
+-    ARCHIVE DESTINATION lib/swift_static/$<LOWER_CASE:${CMAKE_SYSTEM_NAME}>
+-    LIBRARY DESTINATION lib/swift_static/$<LOWER_CASE:${CMAKE_SYSTEM_NAME}>
++    ARCHIVE DESTINATION lib/swift_static/$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},MidnightBSD>,freebsd,$<LOWER_CASE:${CMAKE_SYSTEM_NAME}>>
++    LIBRARY DESTINATION lib/swift_static/$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},MidnightBSD>,freebsd,$<LOWER_CASE:${CMAKE_SYSTEM_NAME}>>
+     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+ endif()

@@ -1,0 +1,11 @@
+--- llvm-project/compiler-rt/CMakeLists.txt.orig	2024-05-24 18:46:43 UTC
++++ llvm-project/compiler-rt/CMakeLists.txt
+@@ -192,7 +192,7 @@
+     set(${var}_LIBNAME "${CMAKE_MATCH_1}")
+     set(${var}_SYSTEM 1)
+   elseif (${var} STREQUAL "default")
+-    if (APPLE OR CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
++    if (APPLE OR CMAKE_SYSTEM_NAME MATCHES "FreeBSD|MidnightBSD")
+       set(${var}_LIBNAME "libc++")
+       set(${var}_SYSTEM 1)
+     elseif (FUCHSIA)
