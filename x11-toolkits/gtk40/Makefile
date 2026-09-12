@@ -15,7 +15,7 @@ WWW=		https://www.gtk.org/
 
 LICENSE=	lgpl2.1+
 
-PORTSCOUT=	limit:1,even
+PORTSCOUT=	limit:^4\. limitw:1,even
 
 BUILD_DEPENDS=	${LOCALBASE}/include/libdrm/drm_fourcc.h:graphics/libdrm \
 		iso-codes>0:misc/iso-codes \

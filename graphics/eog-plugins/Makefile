@@ -24,8 +24,6 @@ LIB_DEPENDS=	libgdata.so:devel/libgdata \
 		libchamplain-0.12.so:graphics/libchamplain
 RUN_DEPENDS=	eog:graphics/eog
 
-PORTSCOUT=	limitw:1,even
-
 USE_GNOME=	cairo gdkpixbuf gtk30 introspection libxml2
 USES=		gettext gnome meson pkgconfig tar:xz
 

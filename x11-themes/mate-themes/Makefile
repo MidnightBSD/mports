@@ -15,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 RUN_DEPENDS=	gtk-engines2>=2.15.0:x11-themes/gtk-engines2 \
 		gtk-murrine-engine>=0.98:x11-themes/gtk-murrine-engine
 
-PORTSCOUT=	limit:^${PORTVERSION:R:S|.|\.|}\.*$$
+PORTSCOUT=	limit:^${PORTVERSION:R:S|.|\.|}\.
 
 USES=		gettext gmake gnome localbase pathfix pkgconfig tar:xz
 USE_GNOME=	gtk20 intltool

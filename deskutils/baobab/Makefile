@@ -12,7 +12,7 @@ WWW=		https://apps.gnome.org/Baobab/
 LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-PORTSCOUT=	limit:^47\.
+PORTSCOUT=	limit:^48\.
 
 BUILD_DEPENDS=	itstool:textproc/itstool
 LIB_DEPENDS=	libgraphene-1.0.so:graphics/graphene

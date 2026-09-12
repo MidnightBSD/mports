@@ -14,8 +14,6 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 BUILD_DEPENDS=	itstool:textproc/itstool
 LIB_DEPENDS=	libgnome-games-support-1.so:games/libgnome-games-support
 
-PORTSCOUT=	limitw:1,even
-
 USES=		gettext gnome localbase meson pkgconfig \
 		python:build tar:xz
 USE_GNOME=	cairo gtk30 intlhack librsvg2 libxml2:build

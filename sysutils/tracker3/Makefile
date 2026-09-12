@@ -34,7 +34,7 @@ MESON_ARGS=	-Dbash_completion=true \
 
 DATADIR=	${PREFIX}/share/${PORTNAME}${PKGNAMESUFFIX}
 BINARY_ALIAS=	python3=${PYTHON_CMD}
-PORTSCOUT=	limitw:1,even
+PORTSCOUT=	limit:^3\.
 
 PLIST_SUB=	LIBVER=0.304.0
 

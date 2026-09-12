@@ -16,7 +16,7 @@ LIB_DEPENDS=	libenchant-2.so:textproc/enchant2 \
 TEST_DEPENDS=	en-hunspell>0:textproc/en-hunspell \
 		Xvfb:x11-servers/xorg-server@xvfb
 
-PORTSCOUT=	limitw:even
+PORTSCOUT=	limitw:1,even
 
 USES=		gettext-tools gnome meson pkgconfig tar:xz vala:build
 USE_GNOME=	glib20 gtk30 introspection:build

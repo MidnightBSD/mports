@@ -22,6 +22,5 @@ SHEBANG_FILES=	tools/yelp-build.in tools/yelp-check.in tools/yelp-new.in
 
 BINARY_ALIAS=	python3=${PYTHON_CMD}
 NO_ARCH=	yes
-PORTSCOUT=	limitw:1,even
 
 .include <bsd.port.mk>

@@ -17,8 +17,6 @@ BUILD_DEPENDS=	docbook-xsl>=0:textproc/docbook-xsl \
 		${LOCALBASE}/bin/as:devel/binutils
 LIB_DEPENDS=	libdbus-1.so:devel/dbus
 
-PORTSCOUT=	limitw:1,even
-
 USES=		gettext gnome localbase meson pkgconfig python:build \
 		shebangfix tar:xz vala:build
 USE_CSTD=	c99
