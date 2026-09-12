@@ -12,7 +12,7 @@ WWW=		https://gitlab.gnome.org/GNOME/gjs
 LICENSE=	mit lgpl+
 LICENSE_COMB=	dual
 LICENSE_FILE_mit=	${WRKSRC}/LICENSES/MIT.txt
-LICENSE_FILE_lgpl+=	${WRKSRC}/LICENSES/LGPL-2.0-or-later.txt
+LICENSE_FILE_lgpl+ = ${WRKSRC}/LICENSES/LGPL-2.0-or-later.txt
 
 BUILD_DEPENDS=	dbus-run-session:devel/dbus
 LIB_DEPENDS=	libmozjs-140.so:lang/spidermonkey140 \
