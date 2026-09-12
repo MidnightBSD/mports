@@ -1,6 +1,6 @@
 PORTNAME=	bluefish
-DISTVERSION=	2.4.0
-PORTREVISION=	1
+DISTVERSION=	2.4.2
+PORTREVISION=	0
 CATEGORIES=	www editors
 MASTER_SITES=	https://www.bennewitz.com/bluefish/stable/source/ \
 		SF
@@ -32,7 +32,6 @@ CONFIGURE_ARGS=	--disable-update-databases \
 		--with-icon-path=${PREFIX}/share/pixmaps
 INSTALL_TARGET=	install-strip
 INSTALLS_ICONS=	yes
-USE_LDCONFIG=	yes
 
 PORTSCOUT=	skipv:2.2.15fp
 
