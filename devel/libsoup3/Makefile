@@ -1,5 +1,6 @@
 PORTNAME=	libsoup
-PORTVERSION=	3.7.1
+PORTVERSION=	3.7.2
+PORTREVISION=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	3
@@ -9,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	HTTP client/server library for GNOME
 WWW=		https://gitlab.gnome.org/GNOME/libsoup
 
-LICENSE=	lgpl
+LICENSE=	lgpl+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	glib-networking>0:net/glib-networking \
