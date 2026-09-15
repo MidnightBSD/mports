@@ -1,5 +1,6 @@
 PORTNAME=	lxml
 DISTVERSION=	6.1.3
+PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/doc/licenses/BSD.txt
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>0:devel/py-setuptools@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}cython>=3.2.9<3.3:lang/cython@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}cython>=3.2.9<3.4:lang/cython@${PY_FLAVOR}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cssselect>0:www/py-cssselect@${PY_FLAVOR}
 
 USES=		compiler cpe gnome python
