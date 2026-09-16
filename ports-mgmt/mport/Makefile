@@ -1,6 +1,5 @@
 PORTNAME=	mport
-PORTVERSION=	2.6.8
-PORTREVISION=	0
+PORTVERSION=	2.8.1
 CATEGORIES=	ports-mgmt sysutils
 
 MAINTAINER=	luke@midnightbsd.org

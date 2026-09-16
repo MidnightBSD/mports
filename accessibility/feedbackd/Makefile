@@ -1,7 +1,7 @@
 PORTNAME=	feedbackd
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.7.0
-PORTREVISION=	1
+DISTVERSION=	0.8.1
+PORTREVISION=	0
 CATEGORIES=	accessibility
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,7 +11,7 @@ WWW=		https://source.puri.sm/Librem5/feedbackd
 LICENSE=	gpl3+ lgpl2.1+
 LICENSE_COMB=	multi
 LICENSE_FILE_gpl3+ =	${WRKSRC}/COPYING
-LICENSE_FILE_lgpl21+ =	${WRKSRC}/COPYING.LIB
+LICENSE_FILE_lgpl2.1+ =	${WRKSRC}/COPYING.LIB
 
 USES=		compiler:c11 gnome meson pkgconfig python:build shebangfix
 USE_GITLAB=	yes
