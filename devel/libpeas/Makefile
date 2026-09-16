@@ -1,6 +1,6 @@
 PORTNAME=	libpeas
-PORTVERSION=	2.0.7
-PORTREVISION=	2
+PORTVERSION=	2.2.1
+PORTREVISION=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -14,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		cpe gettext gnome meson pathfix pkgconfig python tar:xz \
 		vala:build
-USE_GNOME=	introspection libxml2 pygobject3
+USE_GNOME=	glib20 introspection libxml2 pygobject3
 CPE_VENDOR=	gnome
 
 MESON_ARGS=	-Dlua51=false
