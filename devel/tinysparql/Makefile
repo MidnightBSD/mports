@@ -1,6 +1,6 @@
 PORTNAME=	tinysparql
-PORTVERSION=	3.10.1
-PORTREVISION=	3
+PORTVERSION=	3.12.0
+PORTREVISION=	0
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -9,8 +9,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RDF triple store library with SPARQL 1.1 interface
 WWW=		https://gitlab.gnome.org/GNOME/tinysparql
 
-LICENSE=	lgpl2.1 gpl2 bsd3
+LICENSE=	lgpl2.1+ gpl2+ bsd3
 LICENSE_COMB=	multi
+LICENSE_FILE_gpl2+ =	${WRKSRC}/COPYING.GPL
+LICENSE_FILE_lgpl2.1+ =	${WRKSRC}/COPYING.LGPL
+LICENSE_FILE_bsd3=	${WRKSRC}/subprojects/libstemmer_c-3.0.1/COPYING
 
 BUILD_DEPENDS=	a2x:textproc/asciidoc
 LIB_DEPENDS=	libdbus-1.so:devel/dbus \
@@ -49,9 +52,9 @@ VAPI_MESON_ENABLED=	vapi
 
 post-install:
 	@(cd ${PREFIX}/lib && \
-		${LN} -sf libtinysparql-3.0.so.0.1001.0 \
-			libtracker-sparql-3.0.so.0.1001.0 && \
-		${LN} -sf libtracker-sparql-3.0.so.0.1001.0 \
+		${LN} -sf libtinysparql-3.0.so.0.1200.0 \
+			libtracker-sparql-3.0.so.0.1200.0 && \
+		${LN} -sf libtracker-sparql-3.0.so.0.1200.0 \
 			libtracker-sparql-3.0.so)
 
 .include <bsd.port.mk>
