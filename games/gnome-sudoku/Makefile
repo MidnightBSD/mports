@@ -1,5 +1,5 @@
 PORTNAME=	gnome-sudoku
-PORTVERSION=	49.6
+PORTVERSION=	51.0.1
 PORTREVISION=	0
 CATEGORIES=	games gnome
 MASTER_SITES=	GNOME
@@ -12,7 +12,7 @@ WWW=		https://wiki.gnome.org/GnomeSudoku
 LICENSE=	gpl3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	blueprint-compiler>0:devel/blueprint-compiler \
+BUILD_DEPENDS=	blueprint-compiler>=0.16:devel/blueprint-compiler \
 		itstool:textproc/itstool
 LIB_DEPENDS=	libgee-0.8.so:devel/libgee \
 		libqqwing.so:games/qqwing \
