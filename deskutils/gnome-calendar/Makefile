@@ -1,6 +1,6 @@
 PORTNAME=	gnome-calendar
 PORTVERSION=	51.0
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -20,13 +20,16 @@ LIB_DEPENDS=	libical.so:devel/libical \
 		libgeoclue-2.so:net/geoclue
 RUN_DEPENDS=	gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas
 
-PORTSCOUT=	limitw:1,even
+PORTSCOUT=	limit:^51\.
 
 USES=		compiler:c11 desktop-file-utils gettext gnome \
 		localbase:ldflags meson pkgconfig python:build tar:xz
 USE_GNOME=	cairo evolutiondataserver3 libadwaita
 BINARY_ALIAS=	python3=${PYTHON_VERSION}
 INSTALLS_ICONS=	yes
+
+# Upstream release builds disable GLib assertions, making its test binaries abort.
+MESON_ARGS=	--buildtype debugoptimized
 
 GLIB_SCHEMAS=	org.gnome.calendar.enums.xml \
 		org.gnome.calendar.gschema.xml
