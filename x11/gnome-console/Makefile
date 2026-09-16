@@ -1,5 +1,5 @@
 PORTNAME=	gnome-console
-PORTVERSION=	50.0
+PORTVERSION=	51.0
 PORTREVISION=	0
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
@@ -30,6 +30,6 @@ TEST_ENV+=	DISPLAY=":${XVFBPORT}"
 GLIB_SCHEMAS=	org.gnome.Console.gschema.xml
 INSTALLS_ICONS=	yes
 
-PORTSCOUT=	limit:^50
+PORTSCOUT=	limit:^51
 
 .include <bsd.port.mk>
