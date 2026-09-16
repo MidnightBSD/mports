@@ -1,6 +1,6 @@
 --- tests/meson.build.orig	2026-09-16 20:00:00 UTC
 +++ tests/meson.build
-@@ -1,9 +1,11 @@
+@@ -1,7 +1,9 @@
  if get_option('tests')
  
 -  umockdev_dep = dependency('umockdev-1.0')
