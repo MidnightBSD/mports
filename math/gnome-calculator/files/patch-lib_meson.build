@@ -1,0 +1,9 @@
+--- lib/meson.build.orig	2026-09-10 00:00:00 UTC
++++ lib/meson.build
+@@ -36,6 +36,7 @@ libcalculator_deps = [
+   mpfr,
+   gmp,
+   posix,
++  libmath,
+   libmpfr_inc_libh_dep
+ ]

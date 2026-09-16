@@ -1,5 +1,6 @@
 PORTNAME=	gnome-calculator
-PORTVERSION=	47.3
+PORTVERSION=	51.0
+PORTREVISION=	0
 CATEGORIES=	math gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -10,6 +11,8 @@ WWW=		https://apps.gnome.org/Calculator/
 
 LICENSE=	gpl3+
 LICENSE_FILE=	${WRKSRC}/COPYING
+
+PORTSCOUT=	limit:^51\.
 
 BUILD_DEPENDS=	itstool:textproc/itstool
 LIB_DEPENDS=	libmpfr.so:math/mpfr \
