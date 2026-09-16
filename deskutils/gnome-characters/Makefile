@@ -12,7 +12,7 @@ WWW=		https://apps.gnome.org/Characters/
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-PORTSCOUT=	limitw:1,even
+PORTSCOUT=	limit:^51\.
 
 BUILD_DEPENDS=	update-desktop-database:devel/desktop-file-utils
 LIB_DEPENDS=	libadwaita-1.so:x11-toolkits/libadwaita \
