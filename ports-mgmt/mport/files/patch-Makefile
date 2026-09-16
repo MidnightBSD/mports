@@ -1,0 +1,11 @@
+--- Makefile.orig	2026-09-16 00:00:00 UTC
++++ Makefile
+@@ -1,7 +1,6 @@
+ SUBDIR=	liblua \
+ 	libmport \
+ 	mport \
+-	libexec \
+-	tests
++	libexec
+ 
+ .include <bsd.subdir.mk>
