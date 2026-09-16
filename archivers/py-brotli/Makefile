@@ -1,10 +1,8 @@
 PORTNAME=	brotli
-PORTVERSION=	1.0.9
-PORTREVISION=	1
+PORTVERSION=	1.2.0
 CATEGORIES=	archivers python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-DISTNAME=	Brotli-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generic-purpose lossless compression algorithm
@@ -13,12 +11,18 @@ WWW=		https://github.com/google/brotli
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		compiler:c++0x cpe python shebangfix zip
-USE_PYTHON=	autoplist concurrent distutils
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
+
+USES=		cpe python
+USE_PYTHON=	autoplist concurrent pep517
 
 CPE_VENDOR=	google
 
-SHEBANG_FILES=	python/bro.py
+NO_TEST=	yes
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|%%PORTVERSION%%|${PORTVERSION}|' ${WRKSRC}/setup.py
 
 post-install:
 	${FIND} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
