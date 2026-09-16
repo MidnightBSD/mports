@@ -243,6 +243,7 @@
     SUBDIR += php85-sockets
     SUBDIR += phpldapadmin
     SUBDIR += pimcommon
+    SUBDIR += py-aiohappyeyeballs
     SUBDIR += py-avahi
     SUBDIR += py-ec2-cli-tools
     SUBDIR += py-eventlet
