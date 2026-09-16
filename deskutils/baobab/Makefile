@@ -1,5 +1,5 @@
 PORTNAME=	baobab
-PORTVERSION=	48.0
+PORTVERSION=	50.0
 PORTREVISION=	0
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	GNOME
@@ -12,7 +12,7 @@ WWW=		https://apps.gnome.org/Baobab/
 LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-PORTSCOUT=	limit:^48\.
+PORTSCOUT=	limit:^50\.
 
 BUILD_DEPENDS=	itstool:textproc/itstool
 LIB_DEPENDS=	libgraphene-1.0.so:graphics/graphene
