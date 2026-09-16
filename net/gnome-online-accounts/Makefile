@@ -1,5 +1,5 @@
 PORTNAME=	gnome-online-accounts
-PORTVERSION=	3.57.1
+PORTVERSION=	3.58.0
 PORTREVISION=	0
 CATEGORIES=	net
 MASTER_SITES=	GNOME
@@ -25,8 +25,6 @@ USE_GNOME=	glib20 gtk40 introspection:build libadwaita libxml2 \
 		libxslt:build
 USE_LDCONFIG=	yes
 INSTALLS_ICONS=	yes
-
-GLIB_SCHEMAS=	org.gnome.online-accounts.gschema.xml
 
 MESON_ARGS+=	-Dexchange=true \
 		-Dkerberos=false \
