@@ -1,5 +1,6 @@
 PORTNAME=	gnome-desktop
-PORTVERSION=	44.5
+PORTVERSION=	51.0
+PORTREVISION=	0
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -8,8 +9,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Additional UI API for GNOME
 WWW=		https://gitlab.gnome.org/GNOME/gnome-desktop
 
-LICENSE=	gpl2 lgpl
+LICENSE=	gpl2+ lgpl2.1+
 LICENSE_COMB=	multi
+LICENSE_FILE_gpl2+ =	${WRKSRC}/COPYING
+LICENSE_FILE_lgpl2.1+ =	${WRKSRC}/COPYING.LIB
 
 BUILD_DEPENDS=	iso-codes>0:misc/iso-codes \
 		gsettings-desktop-schemas>0:devel/gsettings-desktop-schemas \

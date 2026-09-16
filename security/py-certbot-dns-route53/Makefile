@@ -1,6 +1,6 @@
 PORTNAME=	certbot-dns-route53
 PORTVERSION=	${ACME_VERSION}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	security python
 MASTER_SITES=	PYPI \
 		https://github.com/certbot/certbot/releases/download/v${PORTVERSION}/

@@ -129,6 +129,8 @@ include/gtkmm-%%API_VERSION%%/gtkmm/aboutdialog.h
 include/gtkmm-%%API_VERSION%%/gtkmm/accelerator.h
 include/gtkmm-%%API_VERSION%%/gtkmm/accelkey.h
 include/gtkmm-%%API_VERSION%%/gtkmm/accessible.h
+include/gtkmm-%%API_VERSION%%/gtkmm/accessiblehyperlink.h
+include/gtkmm-%%API_VERSION%%/gtkmm/accessiblehypertext.h
 include/gtkmm-%%API_VERSION%%/gtkmm/accessibletext.h
 include/gtkmm-%%API_VERSION%%/gtkmm/actionable.h
 include/gtkmm-%%API_VERSION%%/gtkmm/actionbar.h
@@ -308,6 +310,7 @@ include/gtkmm-%%API_VERSION%%/gtkmm/papersize.h
 include/gtkmm-%%API_VERSION%%/gtkmm/passwordentry.h
 include/gtkmm-%%API_VERSION%%/gtkmm/picture.h
 include/gtkmm-%%API_VERSION%%/gtkmm/popover.h
+include/gtkmm-%%API_VERSION%%/gtkmm/popoverbin.h
 include/gtkmm-%%API_VERSION%%/gtkmm/popovermenu.h
 include/gtkmm-%%API_VERSION%%/gtkmm/popovermenubar.h
 include/gtkmm-%%API_VERSION%%/gtkmm/printcontext.h
@@ -321,6 +324,8 @@ include/gtkmm-%%API_VERSION%%/gtkmm/printsetup.h
 include/gtkmm-%%API_VERSION%%/gtkmm/printunixdialog.h
 include/gtkmm-%%API_VERSION%%/gtkmm/private/aboutdialog_p.h
 include/gtkmm-%%API_VERSION%%/gtkmm/private/accessible_p.h
+include/gtkmm-%%API_VERSION%%/gtkmm/private/accessiblehyperlink_p.h
+include/gtkmm-%%API_VERSION%%/gtkmm/private/accessiblehypertext_p.h
 include/gtkmm-%%API_VERSION%%/gtkmm/private/accessibletext_p.h
 include/gtkmm-%%API_VERSION%%/gtkmm/private/actionable_p.h
 include/gtkmm-%%API_VERSION%%/gtkmm/private/actionbar_p.h
@@ -496,6 +501,7 @@ include/gtkmm-%%API_VERSION%%/gtkmm/private/papersize_p.h
 include/gtkmm-%%API_VERSION%%/gtkmm/private/passwordentry_p.h
 include/gtkmm-%%API_VERSION%%/gtkmm/private/picture_p.h
 include/gtkmm-%%API_VERSION%%/gtkmm/private/popover_p.h
+include/gtkmm-%%API_VERSION%%/gtkmm/private/popoverbin_p.h
 include/gtkmm-%%API_VERSION%%/gtkmm/private/popovermenu_p.h
 include/gtkmm-%%API_VERSION%%/gtkmm/private/popovermenubar_p.h
 include/gtkmm-%%API_VERSION%%/gtkmm/private/printcontext_p.h
@@ -558,6 +564,7 @@ include/gtkmm-%%API_VERSION%%/gtkmm/private/stringobject_p.h
 include/gtkmm-%%API_VERSION%%/gtkmm/private/stringsorter_p.h
 include/gtkmm-%%API_VERSION%%/gtkmm/private/stylecontext_p.h
 include/gtkmm-%%API_VERSION%%/gtkmm/private/styleprovider_p.h
+include/gtkmm-%%API_VERSION%%/gtkmm/private/svg_p.h
 include/gtkmm-%%API_VERSION%%/gtkmm/private/switch_p.h
 include/gtkmm-%%API_VERSION%%/gtkmm/private/symbolicpaintable_p.h
 include/gtkmm-%%API_VERSION%%/gtkmm/private/text_p.h
@@ -648,6 +655,7 @@ include/gtkmm-%%API_VERSION%%/gtkmm/stringobject.h
 include/gtkmm-%%API_VERSION%%/gtkmm/stringsorter.h
 include/gtkmm-%%API_VERSION%%/gtkmm/stylecontext.h
 include/gtkmm-%%API_VERSION%%/gtkmm/styleprovider.h
+include/gtkmm-%%API_VERSION%%/gtkmm/svg.h
 include/gtkmm-%%API_VERSION%%/gtkmm/switch.h
 include/gtkmm-%%API_VERSION%%/gtkmm/symbolicpaintable.h
 include/gtkmm-%%API_VERSION%%/gtkmm/text.h
