@@ -1,3 +1,4 @@
+lib/systemd/user/gnome-session@gnome-classic.target.d/gnome-classic.session.conf
 share/gnome-shell/extensions/apps-menu@gnome-shell-extensions.gcampax.github.com/extension.js
 share/gnome-shell/extensions/apps-menu@gnome-shell-extensions.gcampax.github.com/metadata.json
 share/gnome-shell/extensions/apps-menu@gnome-shell-extensions.gcampax.github.com/stylesheet.css
@@ -25,6 +26,7 @@ share/gnome-shell/extensions/window-list@gnome-shell-extensions.gcampax.github.c
 share/gnome-shell/extensions/window-list@gnome-shell-extensions.gcampax.github.com/stylesheet-workspace-switcher-dark.css
 share/gnome-shell/extensions/window-list@gnome-shell-extensions.gcampax.github.com/stylesheet-workspace-switcher-light.css
 share/gnome-shell/extensions/window-list@gnome-shell-extensions.gcampax.github.com/workspaceIndicator.js
+share/gnome-shell/extensions/window-list@gnome-shell-extensions.gcampax.github.com/workspacePrefs.js
 share/gnome-shell/extensions/windowsNavigator@gnome-shell-extensions.gcampax.github.com/extension.js
 share/gnome-shell/extensions/windowsNavigator@gnome-shell-extensions.gcampax.github.com/metadata.json
 share/gnome-shell/extensions/windowsNavigator@gnome-shell-extensions.gcampax.github.com/stylesheet.css
@@ -34,7 +36,9 @@ share/gnome-shell/extensions/workspace-indicator@gnome-shell-extensions.gcampax.
 share/gnome-shell/extensions/workspace-indicator@gnome-shell-extensions.gcampax.github.com/stylesheet-dark.css
 share/gnome-shell/extensions/workspace-indicator@gnome-shell-extensions.gcampax.github.com/stylesheet-light.css
 share/gnome-shell/extensions/workspace-indicator@gnome-shell-extensions.gcampax.github.com/workspaceIndicator.js
+share/gnome-shell/extensions/workspace-indicator@gnome-shell-extensions.gcampax.github.com/workspacePrefs.js
 share/gnome-shell/modes/classic.json
+share/gnome-session/sessions/gnome-classic.session
 share/locale/ab/LC_MESSAGES/gnome-shell-extensions.mo
 share/locale/af/LC_MESSAGES/gnome-shell-extensions.mo
 share/locale/an/LC_MESSAGES/gnome-shell-extensions.mo
@@ -66,6 +70,7 @@ share/locale/he/LC_MESSAGES/gnome-shell-extensions.mo
 share/locale/hi/LC_MESSAGES/gnome-shell-extensions.mo
 share/locale/hr/LC_MESSAGES/gnome-shell-extensions.mo
 share/locale/hu/LC_MESSAGES/gnome-shell-extensions.mo
+share/locale/ia/LC_MESSAGES/gnome-shell-extensions.mo
 share/locale/id/LC_MESSAGES/gnome-shell-extensions.mo
 share/locale/is/LC_MESSAGES/gnome-shell-extensions.mo
 share/locale/it/LC_MESSAGES/gnome-shell-extensions.mo
@@ -108,7 +113,4 @@ share/locale/vi/LC_MESSAGES/gnome-shell-extensions.mo
 share/locale/zh_CN/LC_MESSAGES/gnome-shell-extensions.mo
 share/locale/zh_HK/LC_MESSAGES/gnome-shell-extensions.mo
 share/locale/zh_TW/LC_MESSAGES/gnome-shell-extensions.mo
-share/wayland-sessions/gnome-classic-wayland.desktop
 share/wayland-sessions/gnome-classic.desktop
-share/xsessions/gnome-classic-xorg.desktop
-share/xsessions/gnome-classic.desktop
