@@ -1,5 +1,5 @@
 PORTNAME=	gnome-text-editor
-PORTVERSION=	50.1
+PORTVERSION=	51.0
 PORTREVISION=	0
 CATEGORIES=	editors gnome
 MASTER_SITES=	GNOME
@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Small but powerful text editor for the GNOME Desktop Environment
 WWW=		https://apps.gnome.org/TextEditor/
 
-LICENSE=	gpl2+
+LICENSE=	gpl3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	itstool>0:textproc/itstool
@@ -26,6 +26,6 @@ USE_GNOME=	cairo glib20 gtk40 gtk-update-icon-cache gtksourceview5 libadwaita
 INSTALLS_ICONS=	yes
 GLIB_SCHEMAS=	org.gnome.TextEditor.gschema.xml
 
-PORTSCOUT=	limit:^50\.
+PORTSCOUT=	limit:^51\.
 
 .include <bsd.port.mk>
