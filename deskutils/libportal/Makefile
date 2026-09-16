@@ -1,9 +1,7 @@
 PORTNAME=	libportal
-PORTVERSION=	0.9.1
+PORTVERSION=	0.10.0
+PORTREVISION=	0
 CATEGORIES=	deskutils
-
-PATCH_SITES=	https://github.com/flatpak/libportal/commit/
-PATCHFILES+=	796053d2eebe4532aad6bd3fd80cdf3b197806ec.patch:-p1 # Fix build with Qt >= 6.9.0
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	GIO-styled async APIs for Flatpak
@@ -13,8 +11,10 @@ LICENSE=	lgpl3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	gtkdoc-scan:textproc/gtk-doc
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>0:devel/py-pytest@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}python-dbusmock>0:devel/py-python-dbusmock@${PY_FLAVOR}
 
-USES+=		gnome meson pkgconfig
+USES+=		gnome meson pkgconfig python:3.11+,test
 
 USE_GNOME+=	glib20 introspection:build
 USE_LDCONFIG=	yes
@@ -32,8 +32,6 @@ MESON_ARGS=	-Ddocs=false \
 		-Dbackend-gtk3=disabled -Dbackend-gtk4=disabled \
 		-Dbackend-qt5=disabled -Dbackend-qt6=disabled
 OPTIONS_SUB=	yes
-
-NO_TEST=	yes
 
 .if defined(BACKEND)
 LIB_DEPENDS=	libportal.so:deskutils/libportal
