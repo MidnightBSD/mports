@@ -1,5 +1,6 @@
 PORTNAME=	file-roller
-PORTVERSION=	44.6
+PORTVERSION=	44.7
+PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	archivers gnome
 MASTER_SITES=	GNOME
@@ -9,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Archive manager for zip files, tar, etc
 WWW=		https://gitlab.gnome.org/GNOME/file-roller
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	itstool:textproc/itstool
@@ -18,9 +19,9 @@ LIB_DEPENDS=	libjson-glib-1.0.so:devel/json-glib
 USES=		cpe desktop-file-utils gettext-tools gnome libarchive localbase \
 		meson pkgconfig python:build tar:xz
 USE_GNOME=	glib20 gtk40 libadwaita
-USE_LDCONFIG=	yes
 MESON_ARGS=	-Dpackagekit=false
 BINARY_ALIAS=	python3=${PYTHON_VERSION}
+INSTALLS_ICONS=	yes
 CPE_VENDOR=	gnome
 
 GLIB_SCHEMAS=	org.gnome.FileRoller.gschema.xml
