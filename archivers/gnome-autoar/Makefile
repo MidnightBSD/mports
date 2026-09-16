@@ -1,5 +1,6 @@
 PORTNAME=	gnome-autoar
-DISTVERSION=	0.4.5
+DISTVERSION=	0.5.2
+PORTREVISION=	0
 CATEGORIES=	archivers
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -16,10 +17,11 @@ USES=		cpe gettext-runtime gmake gnome libarchive meson pkgconfig \
 
 CPE_VENDOR=	gnome
 USE_GNOME=	cairo gdkpixbuf gtk30 introspection:build
+USE_LDCONFIG=	yes
 
 OPTIONS_DEFINE=	DOCS
 
-DOCS_MESON_TRUE=	gtk_doc
-DOCS_BUILD_DEPENDS=	gtk-doc>0:textproc/gtk-doc
+DOCS_MESON_TRUE=	docs
+DOCS_BUILD_DEPENDS=	gi-docgen:textproc/py-gi-docgen
 
 .include <bsd.port.mk>
