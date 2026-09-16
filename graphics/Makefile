@@ -91,6 +91,7 @@
     SUBDIR += geos
     SUBDIR += gexiv2
     SUBDIR += giflib
+    SUBDIR += glycin2
     SUBDIR += gifsicle
     SUBDIR += gimp
     SUBDIR += gimp-app
