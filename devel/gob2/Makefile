@@ -1,6 +1,6 @@
 PORTNAME=	gob2
-PORTVERSION=	2.0.18
-PORTREVISION=	1
+PORTVERSION=	2.0.20
+PORTREVISION=	0
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -9,14 +9,15 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Preprocessor for making GObjects with inline C
 WWW=		https://www.5z.com/jirka/gob.html
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
+LICENSE_FILE=	${WRKSRC}/COPYING
 
+USES=		gmake gnome localbase pkgconfig tar:xz
+USE_GNOME=	glib20
 GNU_CONFIGURE=	yes
 GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
-USE_GNOME=	glib20
-USES=		gmake gnome localbase pkgconfig
 
-PLIST_FILES=	bin/gob2 share/aclocal/gob2.m4 ${EXAMPLES:S/^/%%EXAMPLESDIR%%\//} \
+PLIST_FILES=	bin/gob2 share/aclocal/gob2.m4 ${EXAMPLES:S,^,${EXAMPLESDIR_REL}/,} \
 		share/man/man1/gob2.1.gz
 
 EXAMPLES=	GNOME_Foo_SomeInterface.idl \
