@@ -1,5 +1,6 @@
 PORTNAME=	gnome-robots
-DISTVERSION=	41.2
+DISTVERSION=	50.0
+PORTREVISION=	0
 CATEGORIES=	games gnome
 DIST_SUBDIR=	gnome
 
@@ -11,7 +12,8 @@ LICENSE=	gpl3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	itstool:textproc/itstool
-LIB_DEPENDS=	libgraphene-1.0.so:graphics/graphene
+LIB_DEPENDS=	libglycin-2.so:graphics/glycin2 \
+		libgraphene-1.0.so:graphics/graphene
 
 USES=		cargo desktop-file-utils gettext gnome meson pkgconfig tar:bz2
 USE_GNOME=	glib20 gtk40 libadwaita librsvg2 libxml2
