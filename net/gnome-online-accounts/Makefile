@@ -1,5 +1,6 @@
 PORTNAME=	gnome-online-accounts
-PORTVERSION=	3.54.11
+PORTVERSION=	3.57.1
+PORTREVISION=	0
 CATEGORIES=	net
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -29,7 +30,6 @@ GLIB_SCHEMAS=	org.gnome.online-accounts.gschema.xml
 
 MESON_ARGS+=	-Dexchange=true \
 		-Dkerberos=false \
-		-Dwindows_live=true \
 		-Dms_graph=false \
 		-Ddocumentation=false
 
