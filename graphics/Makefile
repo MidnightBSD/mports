@@ -101,6 +101,7 @@
     SUBDIR += glfw
     SUBDIR += glitz
     SUBDIR += glslang
+    SUBDIR += glycin2
     SUBDIR += gnash
     SUBDIR += gnome-color-manager
     SUBDIR += gnome-video-effects
