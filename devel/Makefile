@@ -1658,6 +1658,7 @@
     SUBDIR += py-pre-commit
     SUBDIR += py-pretend
     SUBDIR += py-prompt-toolkit
+    SUBDIR += py-propcache
     SUBDIR += py-proto-plus
     SUBDIR += py-proselint
     SUBDIR += py-protobuf
