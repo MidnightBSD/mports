@@ -1,3 +1,3 @@
-TIMESTAMP = 1788928300
-SHA256 (gnome/gtkmm-4.20.0.tar.xz) = daad9bf9b70f90975f91781fc7a656c923a91374261f576c883cd3aebd59c833
-SIZE (gnome/gtkmm-4.20.0.tar.xz) = 17463040
+TIMESTAMP = 1789568178
+SHA256 (gnome/gtkmm-4.22.0.tar.xz) = 2e8a21b4b0725f620e33aaee0cd343ed121b533275b632896619b1c89e96de67
+SIZE (gnome/gtkmm-4.22.0.tar.xz) = 17841520
