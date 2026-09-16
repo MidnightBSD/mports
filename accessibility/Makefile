@@ -3,6 +3,7 @@
     SUBDIR += accerciser
     SUBDIR += at-spi2-core
     SUBDIR += atkmm
+    SUBDIR += atkmm26
     SUBDIR += caribou
     SUBDIR += darkman
     SUBDIR += eflite
