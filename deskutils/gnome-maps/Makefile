@@ -1,5 +1,5 @@
 PORTNAME=	gnome-maps
-DISTVERSION=	50.5
+DISTVERSION=	51.0
 PORTREVISION=	0
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	GNOME
@@ -12,7 +12,7 @@ WWW=		https://apps.gnome.org/Maps/
 LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	blueprint-compiler:devel/blueprint-compiler \
+BUILD_DEPENDS=	blueprint-compiler>=0.19:devel/blueprint-compiler \
 		geoclue>=0:net/geoclue
 LIB_DEPENDS=	libgeocode-glib-2.so:net/geocode-glib2 \
 		libgjs.so:lang/gjs \
