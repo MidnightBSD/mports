@@ -1,5 +1,6 @@
 PORTNAME=	epiphany
-PORTVERSION=	47.7
+PORTVERSION=	48.5
+PORTREVISION=	0
 CATEGORIES=	www gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -11,7 +12,7 @@ WWW=		https://apps.gnome.org/Epiphany/
 LICENSE=	gpl3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-PORTSCOUT=	limit:^47\.
+PORTSCOUT=	limit:^48\.
 
 BUILD_DEPENDS=	gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas \
 		iso-codes>=0:misc/iso-codes \
@@ -35,7 +36,7 @@ USES=		compiler:c++11-lib cpe desktop-file-utils gettext gnome \
 
 CPE_VENDOR=	gnome
 USE_GNOME=	cairo gdkpixbuf glib20 gtk40 libadwaita libxml2
-USE_LDCONFIG=	yes
+INSTALLS_ICONS=	yes
 MESON_ARGS=	-Db_lundef=false \
 		-Dunit_tests=disabled
 GLIB_SCHEMAS=	org.gnome.Epiphany.enums.xml \
