@@ -1,5 +1,6 @@
 PORTNAME=	cheese
 PORTVERSION=	44.1
+PORTREVISION=	1
 CATEGORIES=	multimedia gnome
 MASTER_SITES=  GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
 DIST_SUBDIR=	gnome
