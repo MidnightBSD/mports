@@ -1,5 +1,5 @@
 PORTNAME=	libsoup
-PORTVERSION=	3.7.2
+PORTVERSION=	3.7.3
 PORTREVISION=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
@@ -49,7 +49,7 @@ MESON_ARGS=	-Ddocs=disabled \
 		-Dautobahn=disabled \
 		-Dntlm=disabled
 
-TESTING_UNSAFE=	Two tests fail due to getting a different error code than the test expects
+TESTING_UNSAFE=	Three tests fail due to getting a different error code than the test expects
 
 GSSAPI_BASE_USES=		gssapi
 GSSAPI_BASE_MESON_ON=		-Dgssapi=enabled
