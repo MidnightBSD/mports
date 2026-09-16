@@ -1,6 +1,6 @@
 PORTNAME=	tracker
-PORTVERSION=	3.1.2
-PORTREVISION=	2
+PORTVERSION=	3.7.3
+PORTREVISION=	0
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	3
@@ -14,13 +14,15 @@ LICENSE_FILE=	${WRKSRC}/COPYING.LGPL
 BUILD_DEPENDS=	valac:lang/vala \
 		${LOCALBASE}/bin/sqlite3:databases/sqlite3
 LIB_DEPENDS=	libdbus-1.so:devel/dbus \
+		libavahi-glib.so:net/avahi-app \
 		libicutu.so:devel/icu \
 		libjson-glib-1.0.so:devel/json-glib \
 		libsoup-2.4.so:devel/libsoup \
+		libsoup-3.0.so:devel/libsoup3 \
 		libuuid.so:misc/e2fsprogs-libuuid
 RUN_DEPENDS=	${LOCALBASE}/bin/sqlite3:databases/sqlite3
 
-USES=		compiler:c++11-lib gettext gnome localbase:ldflags meson \
+USES=		compiler:c++11-lib gettext gnome localbase meson \
 		pkgconfig python:build sqlite tar:xz
 USE_GNOME=	glib20 libxml2 introspection:build
 USE_LDCONFIG=	yes
@@ -35,8 +37,6 @@ MESON_ARGS=	-Dbash_completion=true \
 DATADIR=	${PREFIX}/share/${PORTNAME}${PKGNAMESUFFIX}
 BINARY_ALIAS=	python3=${PYTHON_CMD}
 PORTSCOUT=	limit:^3\.
-
-PLIST_SUB=	LIBVER=0.304.0
 
 OPTIONS_DEFINE=		DOCS MAN
 OPTIONS_SUB=		yes
