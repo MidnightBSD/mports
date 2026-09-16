@@ -9,7 +9,7 @@ include/libpeas-2/peas-version.h
 lib/girepository-1.0/Peas-2.typelib
 lib/libpeas-2.so
 lib/libpeas-2.so.0
-lib/libpeas-2.so.0.0.7
+lib/libpeas-2.so.0.200.1
 lib/libpeas-2/loaders/libgjsloader.so
 libdata/pkgconfig/libpeas-2.pc
 share/gir-1.0/Peas-2.gir
@@ -55,6 +55,7 @@ share/locale/kab/LC_MESSAGES/libpeas-2.mo
 share/locale/kk/LC_MESSAGES/libpeas-2.mo
 share/locale/kn/LC_MESSAGES/libpeas-2.mo
 share/locale/ko/LC_MESSAGES/libpeas-2.mo
+share/locale/kw/LC_MESSAGES/libpeas-2.mo
 share/locale/lt/LC_MESSAGES/libpeas-2.mo
 share/locale/lv/LC_MESSAGES/libpeas-2.mo
 share/locale/ml/LC_MESSAGES/libpeas-2.mo
@@ -64,6 +65,7 @@ share/locale/nb/LC_MESSAGES/libpeas-2.mo
 share/locale/nds/LC_MESSAGES/libpeas-2.mo
 share/locale/ne/LC_MESSAGES/libpeas-2.mo
 share/locale/nl/LC_MESSAGES/libpeas-2.mo
+share/locale/nn/LC_MESSAGES/libpeas-2.mo
 share/locale/oc/LC_MESSAGES/libpeas-2.mo
 share/locale/or/LC_MESSAGES/libpeas-2.mo
 share/locale/pa/LC_MESSAGES/libpeas-2.mo
@@ -84,6 +86,7 @@ share/locale/th/LC_MESSAGES/libpeas-2.mo
 share/locale/tr/LC_MESSAGES/libpeas-2.mo
 share/locale/ug/LC_MESSAGES/libpeas-2.mo
 share/locale/uk/LC_MESSAGES/libpeas-2.mo
+share/locale/uz/LC_MESSAGES/libpeas-2.mo
 share/locale/vi/LC_MESSAGES/libpeas-2.mo
 share/locale/zh_CN/LC_MESSAGES/libpeas-2.mo
 share/locale/zh_HK/LC_MESSAGES/libpeas-2.mo
