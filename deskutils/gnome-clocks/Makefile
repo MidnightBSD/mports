@@ -1,5 +1,5 @@
 PORTNAME=	gnome-clocks
-PORTVERSION=	50.0
+PORTVERSION=	51.0
 PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	deskutils gnome
@@ -24,7 +24,6 @@ PORTSCOUT=	limitw:1,even
 
 USES=		compiler:c11 gettext gnome localbase meson pkgconfig \
 		shebangfix tar:xz vala:build
-USE_LDCONFIG=	yes
 USE_GNOME=	gtk40 libadwaita gnomedesktop4
 INSTALLS_ICONS=	yes
 
