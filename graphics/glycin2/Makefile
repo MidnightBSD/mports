@@ -15,10 +15,10 @@ WWW=		https://gitlab.gnome.org/GNOME/glycin
 LICENSE=	MPL20 lgpl2.1+
 LICENSE_COMB=	dual
 LICENSE_FILE_MPL20=	${WRKSRC}/LICENSE-MPL-2.0
-LICENSE_FILE_lgpl2.1+	=	${WRKSRC}/LICENSE-LGPL-2.1
+LICENSE_FILE_lgpl2.1+ =	${WRKSRC}/LICENSE-LGPL-2.1
 
 USES=		cargo gettext gnome meson pkgconfig tar:xz
-USE_GNOME=	glib20 gtk40
+USE_GNOME=	glib20 gtk40 introspection:build
 USE_LDCONFIG=	yes
 
 CARGO_BUILD=	no

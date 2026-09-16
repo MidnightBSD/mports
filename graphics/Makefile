@@ -91,7 +91,6 @@
     SUBDIR += geos
     SUBDIR += gexiv2
     SUBDIR += giflib
-    SUBDIR += glycin2
     SUBDIR += gifsicle
     SUBDIR += gimp
     SUBDIR += gimp-app
@@ -102,6 +101,7 @@
     SUBDIR += glfw
     SUBDIR += glitz
     SUBDIR += glslang
+    SUBDIR += glycin2
     SUBDIR += gnash
     SUBDIR += gnome-color-manager
     SUBDIR += gnome-video-effects
