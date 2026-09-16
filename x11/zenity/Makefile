@@ -1,5 +1,6 @@
 PORTNAME=	zenity
-PORTVERSION=	3.44.5
+PORTVERSION=	4.2.2
+PORTREVISION=	0
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -13,15 +14,10 @@ LICENSE=	lgpl2.1+
 BUILD_DEPENDS=	itstool:textproc/itstool
 
 USES=		gettext gnome localbase meson pkgconfig \
-		perl5 tar:xz xorg
+		perl5 tar:xz
 USE_CSTD=	c99
-USE_GNOME=	cairo gdkpixbuf gtk30
-USE_XORG=	x11
+USE_GNOME=	cairo gdkpixbuf libadwaita
 MESON_ARGS=	-Dwebkitgtk=false
-
-OPTIONS_DEFINE=	NOTIFY
-OPTIONS_DEFAULT=NOTIFY
-NOTIFY_LIB_DEPENDS=	libnotify.so:devel/libnotify
-NOTIFY_MESON_TRUE=	libnotify
+INSTALLS_ICONS=	yes
 
 .include <bsd.port.mk>
