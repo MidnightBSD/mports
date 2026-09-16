@@ -34,13 +34,13 @@ EXTRACT_AFTER_ARGS=	-d ${WRKDIR}
 WRKSRC=			${WRKDIR}
 
 PEP517_BUILD_DEPEND=	# wheel-only, no build from source
-PEP517_INSTALL_CMD=	${PYTHON_CMD} -m installer --destdir ${STAGEDIR} --prefix ${PREFIX} ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}
+PEP517_INSTALL_CMD=	${PYTHON_CMD} -m installer --destdir ${FAKE_DESTDIR} --prefix ${TRUE_PREFIX} ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}
 
 do-build:
 	@${DO_NADA}
 
-post-stage:
-	@${RM} ${STAGEDIR}${PREFIX}/LICENSE.txt
+post-fake:
+	@${RM} ${FAKE_DESTDIR}${TRUE_PREFIX}/LICENSE.txt
 
 POST_PLIST=	fix-plist
 
