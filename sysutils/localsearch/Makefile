@@ -1,6 +1,6 @@
 PORTNAME=	localsearch
 PORTVERSION=	3.10.2
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -17,7 +17,7 @@ LICENSE_FILE_gpl2+ =	${WRKSRC}/COPYING.GPL
 BUILD_DEPENDS=	a2x:textproc/asciidoc
 LIB_DEPENDS=	libexempi.so:textproc/exempi \
 		libavformat.so:multimedia/ffmpeg \
-		libgexiv2.so:graphics/gexiv2 \
+		libgexiv2-0.16.so:graphics/gexiv2 \
 		libgudev-1.0.so:devel/libgudev \
 		libcue.so:textproc/libcue \
 		libexif.so:graphics/libexif \
