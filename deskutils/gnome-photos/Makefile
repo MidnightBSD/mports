@@ -1,6 +1,6 @@
 PORTNAME=	gnome-photos
 DISTVERSION=	44.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -21,7 +21,7 @@ LIB_DEPENDS=	libbabl-0.1.so:x11/babl \
 		libfribidi.so:converters/fribidi \
 		libgegl-0.4.so:graphics/gegl \
 		libgeocode-glib-2.so:net/geocode-glib2 \
-		libgexiv2.so:graphics/gexiv2 \
+		libgexiv2-0.16.so:graphics/gexiv2 \
 		libgoa-1.0.so:net/gnome-online-accounts \
 		libhandy-1.so:x11-toolkits/libhandy \
 		libpng.so:graphics/png \
