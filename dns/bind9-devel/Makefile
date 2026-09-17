@@ -1,14 +1,14 @@
 # pkg-help formatted with fmt 59 63
 
 PORTNAME=	bind
-DISTVERSION=	9.21.24
+DISTVERSION=	9.21.26
 .if defined(BIND_TOOLS_SLAVE)
 # dns/bind-tools here
-PORTREVISION=	2
+PORTREVISION=	0
 .else
 # XXX: correct version
 # dns/bind9xx here
-PORTREVISION=	1
+PORTREVISION=	0
 .endif
 CATEGORIES=	dns net
 MASTER_SITES=	ISC/bind9/${DISTVERSION}
@@ -186,24 +186,28 @@ SUB_LIST+=	ENGINES=${LOCALBASE}/lib/engines
 
 .if !defined(BIND_TOOLS_SLAVE)
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/mtree
-	${MKDIR} ${STAGEDIR}${ETCDIR}
+	${MKDIR} ${PREFIX}/etc/mtree
+	${MKDIR} ${ETCDIR}
 .  for i in dynamic primary secondary working
-	@${MKDIR} ${STAGEDIR}${ETCDIR}/$i
+	@${MKDIR} ${ETCDIR}/$i
 .  endfor
-	${INSTALL_DATA} ${WRKDIR}/named.conf ${STAGEDIR}${ETCDIR}/named.conf.sample
-	${INSTALL_DATA} ${FILESDIR}/named.root ${STAGEDIR}${ETCDIR}
-	${INSTALL_DATA} ${FILESDIR}/empty.db ${STAGEDIR}${ETCDIR}/primary
-	${INSTALL_DATA} ${FILESDIR}/localhost-forward.db ${STAGEDIR}${ETCDIR}/primary
-	${INSTALL_DATA} ${FILESDIR}/localhost-reverse.db ${STAGEDIR}${ETCDIR}/primary
-	${INSTALL_DATA} ${FILESDIR}/BIND.chroot.dist ${STAGEDIR}${PREFIX}/etc/mtree/BIND.chroot.dist.sample
-	${INSTALL_DATA} ${FILESDIR}/BIND.chroot.local.dist ${STAGEDIR}${PREFIX}/etc/mtree/BIND.chroot.local.dist.sample
+	${INSTALL_DATA} ${WRKDIR}/named.conf ${ETCDIR}/named.conf.sample
+	${INSTALL_DATA} ${FILESDIR}/named.root ${ETCDIR}
+	${INSTALL_DATA} ${FILESDIR}/empty.db ${ETCDIR}/primary
+	${INSTALL_DATA} ${FILESDIR}/localhost-forward.db ${ETCDIR}/primary
+	${INSTALL_DATA} ${FILESDIR}/localhost-reverse.db ${ETCDIR}/primary
+	${INSTALL_DATA} ${FILESDIR}/BIND.chroot.dist ${PREFIX}/etc/mtree/BIND.chroot.dist.sample
+	${INSTALL_DATA} ${FILESDIR}/BIND.chroot.local.dist ${PREFIX}/etc/mtree/BIND.chroot.local.dist.sample
 
-	# In MidnightBSD fake mode STAGEDIR is not populated for this explicit
-	# header copy; FAKE_DESTDIR is the staging root used by the mport framework.
-	(for dir in ${WRKSRC}/lib/*/include; do \
-		cd $$dir && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${PREFIX}/include '-name *.h'; \
+	(for dir in ${WRKSRC}/lib/*/include ${BUILD_WRKSRC}/lib/*/include; do \
+		cd $$dir && ${COPYTREE_SHARE} . ${PREFIX}/include '-name *.h'; \
 	done)
+
+# The meson build installs only the versioned libraries; create the
+# unversioned development symlinks that the autotools build used to.
+.  for lib in dns isc isccc isccfg ns
+	${LN} -sf lib${lib}-${DISTVERSION}.so ${PREFIX}/lib/lib${lib}.so
+.  endfor
 
 post-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/arm
