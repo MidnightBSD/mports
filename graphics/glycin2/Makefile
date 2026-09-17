@@ -6,7 +6,6 @@ DISTNAME=	glycin-${DISTVERSION}
 # The cargo extension appends its crates to DISTFILES before the framework
 # supplies its default main distfile, so list the source archive explicitly.
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
-DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sandboxed image decoding library
