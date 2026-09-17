@@ -158,6 +158,7 @@ include/gtk-4.0/gsk/gskpathmeasure.h
 include/gtk-4.0/gsk/gskpathpoint.h
 include/gtk-4.0/gsk/gskpastenode.h
 include/gtk-4.0/gsk/gskradialgradientnode.h
+include/gtk-4.0/gsk/gskrectsnap.h
 include/gtk-4.0/gsk/gskrenderer.h
 include/gtk-4.0/gsk/gskrendernode.h
 include/gtk-4.0/gsk/gskrenderreplay.h
