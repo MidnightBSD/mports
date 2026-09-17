@@ -1,6 +1,6 @@
---- src/3rdparty/chromium/content/common/features.cc.orig	2025-08-15 18:30:00 UTC
+--- src/3rdparty/chromium/content/common/features.cc.orig	2026-08-11 12:42:19 UTC
 +++ src/3rdparty/chromium/content/common/features.cc
-@@ -127,7 +127,7 @@ BASE_FEATURE(kEmbeddingRequiresOptIn,
+@@ -191,7 +191,7 @@ BASE_FEATURE(kEmbeddingRequiresOptIn,
               base::FEATURE_DISABLED_BY_DEFAULT);
  
  // Enables error reporting for JS errors inside DevTools frontend host

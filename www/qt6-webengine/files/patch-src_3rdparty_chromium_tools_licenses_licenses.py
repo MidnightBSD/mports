@@ -1,4 +1,4 @@
---- src/3rdparty/chromium/tools/licenses/licenses.py.orig	2025-11-06 16:28:09 UTC
+--- src/3rdparty/chromium/tools/licenses/licenses.py.orig	2025-02-21 12:29:33 UTC
 +++ src/3rdparty/chromium/tools/licenses/licenses.py
 @@ -808,6 +808,8 @@ def _GnBinary():
    exe = 'gn'
@@ -8,3 +8,4 @@
 +    subdir = '../../../../.build/install/bin'
    elif sys.platform == 'darwin':
      subdir = 'mac'
+   elif sys.platform == 'win32':

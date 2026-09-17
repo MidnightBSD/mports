@@ -1,11 +1,10 @@
 PORTNAME=	shiboken6
-DISTVERSION=	6.10.2
-PORTREVISION=	4
+DISTVERSION=	${PYSIDE6_VERSION}
 CATEGORIES=	devel
 MASTER_SITES=	QT/official_releases/QtForPython/pyside6/PySide6-${DISTVERSION}-src
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	pyside-setup-everywhere-src-${DISTVERSION}
-DIST_SUBDIR=	KDE/Qt/${DISTVERSION}
+DIST_SUBDIR=	KDE/Qt/${PYSIDE6_VERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python binding generator for C++ libraries
@@ -14,23 +13,17 @@ WWW=		http://qt-project.org
 LICENSE=	gpl2 lgpl2.1 lgpl3
 LICENSE_COMB=	multi
 
-LIB_DEPENDS=	libxslt.so:textproc/libxslt
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}shiboken6-tools>=${PYSIDE6_VERSION}:devel/shiboken6-tools@${PY_FLAVOR}
 
-USES=		cmake compiler:c++17-lang gnome llvm:lib,min=17,noexport pathfix \
-		python qt:6 tar:xz
-USE_GNOME=	libxml2
+USES=		cmake compiler:c++17-lang python qt:6 tar:xz
 USE_LDCONFIG=	${PREFIX}/${PORTNAME}
 USE_PYTHON=	flavors
-USE_QT=		base
 
-CMAKE_ARGS=	-DClang_DIR:PATH="${LLVM_PREFIX}/lib/cmake/clang" \
-		-DLLVM_DIR:PATH="${LLVM_PREFIX}/lib/cmake/llvm" \
-		-DCMAKE_CXX_STANDARD_LIBRARIES=-lexecinfo \
+CMAKE_ARGS=	-DCMAKE_CXX_STANDARD_LIBRARIES=-lexecinfo \
 		-DUSE_PYTHON_VERSION=${PYTHON_VER} \
 		-DBUILD_TESTS:BOOL=false
-CONFIGURE_ENV=	LLVM_INSTALL_DIR="${LLVM_PREFIX}/lib/cmake/llvm"
 
-BINARY_ALIAS=	sphinx-build=sphinx-build-${PYTHON_VER}
+DOCS_BINARY_ALIAS=	sphinx-build=sphinx-build-${PYTHON_VER}
 
 WRKSRC_SUBDIR=	sources/shiboken6
 PLIST_SUB=	PYTHON_MAJOR_VER=${PYTHON_MAJOR_VER} \
@@ -56,10 +49,10 @@ post-install:
 	${RM} ${PREFIX}/bin/shiboken_tool.py
 	${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py \
 		-f -d ${PYTHONPREFIX_SITELIBDIR}/${PORTNAME} \
-		${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/${PORTNAME}
+		${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/${PORTNAME}
 	${PYTHON_CMD} -O ${PYTHON_LIBDIR}/compileall.py \
 		-f -d ${PYTHONPREFIX_SITELIBDIR}/${PORTNAME} \
-		${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/${PORTNAME}
+		${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/${PORTNAME}
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/html

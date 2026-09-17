@@ -1,14 +1,15 @@
 PORTNAME=	base
 DISTVERSION=	${QT6_VERSION}
-PORTREVISION=	3
 CATEGORIES=	devel
 PKGNAMEPREFIX=	qt6-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt base (core, gui, widgets, network,...)
 
-BUILD_DEPENDS=	${LOCALBASE}/include/vulkan/vulkan.h:graphics/vulkan-headers \
-		${LOCALBASE}/include/linux/input.h:devel/evdev-proto
+BUILD_DEPENDS=	evdev-proto>=5.8:devel/evdev-proto \
+		${PYTHON_PKGNAMEPREFIX}cyclonedx-python-lib>0:textproc/py-cyclonedx-python-lib@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}spdx-tools>=0.8.3:misc/py-spdx-tools@${PY_FLAVOR} \
+		vulkan-headers>=1.4:graphics/vulkan-headers
 LIB_DEPENDS=	libatk-1.0.so:accessibility/at-spi2-core \
 		libatk-bridge-2.0.so:accessibility/at-spi2-core \
 		libatspi.so:accessibility/at-spi2-core \
@@ -53,9 +54,11 @@ CMAKE_ON=	CMAKE_DISABLE_FIND_PACKAGE_LTTngUST \
 		QT_FIND_ALL_PACKAGES_ALWAYS \
 		QT_FEATURE_openssl_linked
 CMAKE_OFF=	QT_FEATURE_eglfs \
-		QT_FEATURE_gssapi
+		QT_FEATURE_gssapi \
+		QT_FEATURE_reduce_relocations
 # sql drivers are handled in the databases/qt6-base_sqldriver port
-CMAKE_OFF+=	FEATURE_sql_mysql \
+CMAKE_OFF+=	FEATURE_sql_ibase \
+		FEATURE_sql_mysql \
 		FEATURE_sql_odbc \
 		FEATURE_sql_psql \
 		FEATURE_sql_sqlite

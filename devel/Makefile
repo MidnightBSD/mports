@@ -709,6 +709,7 @@
     SUBDIR += ocl-icd
     SUBDIR += onetbb
     SUBDIR += oniguruma
+    SUBDIR += openapi-generator
     SUBDIR += opencl
     SUBDIR += opengrok
     SUBDIR += orc
@@ -1665,6 +1666,7 @@
     SUBDIR += py-pure-eval
     SUBDIR += py-py
     SUBDIR += py-py-partiql-parser
+    SUBDIR += py-py-serializable
     SUBDIR += py-py-ubjson
     SUBDIR += py-pyasn1
     SUBDIR += py-pyasn1-modules
@@ -1958,9 +1960,11 @@
     SUBDIR += qt6-grpc
     SUBDIR += qt6-languageserver
     SUBDIR += qt6-location
+    SUBDIR += qt6-openapi
     SUBDIR += qt6-positioning
     SUBDIR += qt6-remoteobjects
     SUBDIR += qt6-scxml
+    SUBDIR += qt6-tasktree
     SUBDIR += qt6-tools
     SUBDIR += qt6-translations
     SUBDIR += qtcreator
@@ -2661,6 +2665,7 @@
     SUBDIR += sdl3
     SUBDIR += serd
     SUBDIR += shiboken6
+    SUBDIR += shiboken6-tools
     SUBDIR += shunit2
     SUBDIR += sigar
     SUBDIR += signal-fts5-extension
