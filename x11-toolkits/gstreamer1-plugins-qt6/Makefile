@@ -1,4 +1,4 @@
-PORTREVISION=	1
+PORTREVISION=	0
 CATEGORIES=	x11-toolkits
 
 COMMENT=	GStreamer Qt6 QML videosink plugin
