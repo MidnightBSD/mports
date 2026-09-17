@@ -1,5 +1,5 @@
 PORTNAME=	gexiv2
-PORTVERSION=	0.14.7
+PORTVERSION=	0.16.2
 CATEGORIES=	graphics
 MASTER_SITES=	GNOME
 
@@ -21,8 +21,6 @@ BINARY_ALIAS=	python3=${PYTHON_CMD}
 
 USE_CXXSTD=	c++17
 
-PLIST_SUB=	SOVERSION=${PORTVERSION:C/^0./2./}
-
 OPTIONS_DEFINE=		DOCS
 OPTIONS_SUB=		yes
 DOCS_BUILD_DEPENDS=	gtkdoc-scan:textproc/gtk-doc
@@ -34,7 +32,7 @@ pre-install:
 	@${MKDIR} ${PREFIX}/share/vala/vapi
 
 post-install:
-	${STRIP_CMD} ${PREFIX}/lib/libgexiv2.so
+	${STRIP_CMD} ${PREFIX}/lib/libgexiv2-0.16.so
 	-${RM} -r ${PREFIX}/lib/python*
 
 .include <bsd.port.mk>
