@@ -1,6 +1,6 @@
 PORTNAME=	evolution-data-server
-DISTVERSION=	3.56.2
-PORTREVISION=	5
+DISTVERSION=	3.60.2
+PORTREVISION=	0
 CATEGORIES=	databases gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Centralized access to appointments and contacts
 WWW=		https://gnome.pages.gitlab.gnome.org/evolution-data-server/
 
-LICENSE=	lgpl
+LICENSE=	lgpl+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libgoa-1.0.so:net/gnome-online-accounts \
@@ -29,6 +29,7 @@ USE_CXXSTD=	gnu++17
 USE_GNOME=	cairo glib20 introspection:build libxml2 pango
 USE_XORG=	x11
 USE_LDCONFIG=	yes
+INSTALLS_ICONS=	yes
 CPE_VENDOR=	gnome
 
 LDFLAGS=	-L${LOCALBASE}/lib
