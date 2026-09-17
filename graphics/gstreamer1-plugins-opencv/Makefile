@@ -1,4 +1,4 @@
-PORTREVISION=	2
+PORTREVISION=	0
 CATEGORIES=	graphics
 
 COMMENT=	GStreamer opencv real time computer vision plugin
