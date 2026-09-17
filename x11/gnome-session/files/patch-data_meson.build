@@ -1,6 +1,7 @@
 --- data/meson.build.orig
 +++ data/meson.build
-@@ -63,0 +64 @@
+@@ -62,0 +63,2 @@
 +if enable_systemd_session
-@@ -113,0 +115 @@
++
+@@ -128,0 +131,1 @@
 +endif

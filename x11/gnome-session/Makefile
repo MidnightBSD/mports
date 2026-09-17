@@ -3,6 +3,7 @@ PORTVERSION=	49.3
 PORTREVISION=	0
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
+PORTSCOUT=	limit:^49\.
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -26,6 +27,7 @@ USE_GNOME=	glib20 gnomedesktop3 gtk30 libxslt:build
 USE_XORG=	ice sm x11 xcomposite xtrans
 USE_GL=		egl gl glesv2
 MESON_ARGS=	-Ddocbook=false \
+		-Dx11=true \
 		-Dsystemd=false \
 		-Dsystemd_session=disable \
 		-Dsystemd_journal=false \

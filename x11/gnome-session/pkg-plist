@@ -2,9 +2,9 @@ bin/gnome-session
 bin/gnome-session-inhibit
 bin/gnome-session-quit
 libexec/gnome-session-service
-app-flatpak-.scope.d/override.conf
-app-gnome-.scope.d/override.conf
 %%DATADIR%%/sessions/gnome.session
+share/xsessions/gnome-xorg.desktop
+share/xsessions/gnome.desktop
 share/locale/ab/LC_MESSAGES/gnome-session-%%VERSION%%.mo
 share/locale/af/LC_MESSAGES/gnome-session-%%VERSION%%.mo
 share/locale/am/LC_MESSAGES/gnome-session-%%VERSION%%.mo
