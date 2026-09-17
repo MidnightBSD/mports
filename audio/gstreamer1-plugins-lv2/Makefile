@@ -1,4 +1,4 @@
-PORTREVISION=	2
+PORTREVISION=	0
 CATEGORIES=	audio
 
 COMMENT=	Gstreamer lv2 wrapper plugin
