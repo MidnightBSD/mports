@@ -1,6 +1,6 @@
---- src/3rdparty/chromium/content/browser/gpu/gpu_data_manager_impl.cc.orig	2025-08-15 18:30:00 UTC
+--- src/3rdparty/chromium/content/browser/gpu/gpu_data_manager_impl.cc.orig	2026-08-11 12:42:19 UTC
 +++ src/3rdparty/chromium/content/browser/gpu/gpu_data_manager_impl.cc
-@@ -402,7 +402,7 @@ void GpuDataManagerImpl::OnDisplayMetricsChanged(
+@@ -427,7 +427,7 @@ void GpuDataManagerImpl::OnDisplayMetricsChanged(
    private_->OnDisplayMetricsChanged(display, changed_metrics);
  }
  

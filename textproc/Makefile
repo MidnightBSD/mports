@@ -339,6 +339,7 @@
     SUBDIR += py-cmarkgfm
     SUBDIR += py-commonmark
     SUBDIR += py-cssselect2
+    SUBDIR += py-cyclonedx-python-lib
     SUBDIR += py-docstring-parser
     SUBDIR += py-docstring_parser
     SUBDIR += py-docutils
@@ -391,6 +392,7 @@
     SUBDIR += py-myst-parser
     SUBDIR += py-nltk
     SUBDIR += py-openstep-plist
+    SUBDIR += py-packageurl-python
     SUBDIR += py-paginate
     SUBDIR += py-parse
     SUBDIR += py-parso

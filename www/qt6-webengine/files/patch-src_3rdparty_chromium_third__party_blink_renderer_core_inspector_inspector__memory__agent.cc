@@ -1,6 +1,6 @@
---- src/3rdparty/chromium/third_party/blink/renderer/core/inspector/inspector_memory_agent.cc.orig	2025-08-15 18:30:00 UTC
+--- src/3rdparty/chromium/third_party/blink/renderer/core/inspector/inspector_memory_agent.cc.orig	2026-08-11 12:42:19 UTC
 +++ src/3rdparty/chromium/third_party/blink/renderer/core/inspector/inspector_memory_agent.cc
-@@ -192,7 +192,7 @@ Vector<String> InspectorMemoryAgent::Symbolize(
+@@ -197,7 +197,7 @@ Vector<String> InspectorMemoryAgent::Symbolize(
  
  Vector<String> InspectorMemoryAgent::Symbolize(
      const std::vector<const void*>& addresses) {

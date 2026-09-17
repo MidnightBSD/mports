@@ -1,9 +1,9 @@
 PORTNAME=	spdx-tools
-DISTVERSION=	0.8.3
-PORTREVISION=	1
+DISTVERSION=	0.8.5
 CATEGORIES=	misc python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTNAME=	spdx_tools-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Parses, validates and creates SPDX documents
@@ -33,19 +33,16 @@ USE_PYTHON=	autoplist concurrent pep517 pytest
 TEST_ENV=	PYTHONPATH=${PYTHONPREFIX_SITELIBDIR} LC_ALL=en_US.UTF-8
 
 NO_ARCH=	yes
-PLIST_FILES=	${PYTHON_SITELIBDIR}/spdx_tools/spdx/parser/tagvalue/parser.out
 PORTEXAMPLES=	*
 
 OPTIONS_DEFINE=	EXAMPLES
 
 pre-build:
-	${SETENVI} PYTHONPATH=${WRKSRC}/src:${PYTHON_LIBDIR} ${PYTHON_CMD} ${FILESDIR}/generate-parser.py
+	${SETENVI} PYTHONPATH=${WRKSRC}/src:${PYTHON_LIBDIR} ${PYTHON_CMD} ${FILESDIR}/generate-parsetag.py
 
 post-install:
 	@${MKDIR} ${EXAMPLESDIR}
 	${FIND} ${WRKSRC}/examples -type f -exec ${INSTALL_DATA} {} ${EXAMPLESDIR} \;
-	${INSTALL_DATA} ${WRKSRC}/src/spdx_tools/spdx/parser/tagvalue/parser.out \
-		${PYTHON_SITELIBDIR}/spdx_tools/spdx/parser/tagvalue
 
 # This test requires https://github.com/RDFLib/pySHACL, which is not currently
 # in the ports tree. Using PYTEST_IGNORED_TESTS doesn't seem to work in this

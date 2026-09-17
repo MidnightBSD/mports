@@ -1,11 +1,10 @@
 PORTNAME=	pyside6
-DISTVERSION=	6.10.2
-PORTREVISION=	1
+DISTVERSION=	${PYSIDE6_VERSION}
 CATEGORIES=	devel
 MASTER_SITES=	QT/official_releases/QtForPython/${PORTNAME}/PySide6-${DISTVERSION}-src
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	pyside-setup-everywhere-src-${DISTVERSION}
-DIST_SUBDIR=	KDE/Qt/${DISTVERSION}
+DIST_SUBDIR=	KDE/Qt/${PYSIDE6_VERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python Qt bindings for Qt 6
@@ -13,7 +12,8 @@ WWW=		https://wiki.qt.io/Qt_for_Python
 
 LICENSE=	lgpl3
 
-BUILD_DEPENDS=	${LOCALBASE}/include/vulkan/vulkan.h:graphics/vulkan-headers
+BUILD_DEPENDS=	${LOCALBASE}/include/vulkan/vulkan.h:graphics/vulkan-headers \
+		${PYTHON_PKGNAMEPREFIX}shiboken6-tools>=${PYSIDE6_VERSION}:devel/shiboken6-tools@${PY_FLAVOR}
 LIB_DEPENDS=	libshiboken6.abi${PYTHON_MAJOR_VER}.so:devel/shiboken6@${PY_FLAVOR} \
 		libxkbcommon.so:x11/libxkbcommon
 
@@ -21,7 +21,8 @@ USES=		cmake gl llvm:lib,min=17,noexport python qt:6 tar:xz
 USE_GL=		opengl
 USE_LDCONFIG=	${PREFIX}/PySide6
 USE_PYTHON=	flavors
-USE_QT=		3d base charts connectivity datavis3d declarative doc graphs \
+USE_QT=		3d base charts canvaspainter connectivity datavis3d declarative \
+		doc graphs \
 		httpserver imageformats location multimedia networkauth \
 		positioning quick3d quicktimeline remoteobjects scxml sensors \
 		serialbus serialport shadertools speech svg tools translations \
