@@ -1,4 +1,4 @@
-PORTREVISION=	1
+PORTREVISION=	0
 CATEGORIES?=	multimedia audio
 
 COMMENT=	GStreamer-plugins set of good-quality plug-ins that might have distribution problems

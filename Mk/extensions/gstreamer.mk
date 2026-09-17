@@ -47,7 +47,7 @@ _GST_VER=	${_GST_VER_DEFAULT}
 # - multimedia/gstreamer1-rtsp-server
 # - multimedia/gstreamer1-vaapi
 # - multimedia/py-gstreamer1
-_GST1_VERSION=		1.26.1
+_GST1_VERSION=		1.28.6
 _GST1_LIB_VER=		1.0
 _GST1_SOVERSION=	0.${_GST1_VERSION:R:E}${${_GST1_VERSION:E} > 9:?:0}${_GST1_VERSION:E}.0
 
@@ -66,7 +66,7 @@ _GST1_PLUGINS_graphics=	aalib cairo gdkpixbuf gl jpeg kms libcaca libvisual \
 _GST1_PLUGINS_multimedia=	aom assrender bad dash dts dv dvdread \
 			editing-services good hls libav libde265 \
 			mpeg2dec mpeg2enc mplex mm msdk openh264 resindvd \
-			rtsp-server rust smoothstreaming theora ttml ugly \
+			rtsp-server rust smoothstreaming svtav1 theora ttml ugly \
 			v4l2 vaapi vpx webrtc x264 x265
 _GST1_PLUGINS_net=	sctp srtp
 _GST1_PLUGINS_security=	dtls
@@ -354,11 +354,12 @@ gst-rtsp-server_IMPL=	#
 
 gst-rust_PORT=		multimedia/gstreamer${_GST_VER}-plugins-rust
 gst-rust_IMPL=		#
-gst-rust_GST1_VERSION=	0.13.5
-gst-rust_VERSION=	${gst-rust_GST${_GST_VER}_VERSION}
 
 gst-smoothstreaming_PORT=	multimedia/gstreamer${_GST_VER}-plugins-smoothstreaming
 gst-smoothstreaming_IMPL=	bad
+
+gst-svtav1_PORT=	multimedia/gstreamer${_GST_VER}-plugins-svt-av1
+gst-svtav1_IMPL=	bad
 
 gst-theora_PORT=	multimedia/gstreamer${_GST_VER}-plugins-theora
 gst-theora_IMPL=	#
@@ -372,6 +373,8 @@ gst-v4l2_IMPL=		good
 gst-vaapi_PORT=		multimedia/gstreamer${_GST_VER}-vaapi
 gst-vaapi_SUFFIX=	#
 gst-vaapi_IMPL=		#
+gst-vaapi_GST1_VERSION=	1.26.1
+gst-vaapi_VERSION=	${gst-vaapi_GST${_GST_VER}_VERSION}
 
 gst-vpx_PORT=		multimedia/gstreamer${_GST_VER}-plugins-vpx
 gst-vpx_IMPL=		good

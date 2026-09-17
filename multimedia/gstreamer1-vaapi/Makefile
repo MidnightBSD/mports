@@ -1,5 +1,7 @@
 PORTNAME=	gstreamer1-vaapi
-PORTVERSION=	${_GST_VERSION}
+# gstreamer-vaapi releases stopped at 1.26.x; retain the last available
+# release while the rest of the GStreamer stack advances.
+PORTVERSION=	1.26.1
 CATEGORIES=	multimedia
 MASTER_SITES=	https://gstreamer.freedesktop.org/src/gstreamer-vaapi/
 DISTNAME=	gstreamer-vaapi-${PORTVERSION}

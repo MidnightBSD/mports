@@ -1,6 +1,6 @@
 PORTNAME=	gstreamer1-validate
 PORTVERSION=	1.16.3
-PORTREVISION=	2
+PORTREVISION=	0
 CATEGORIES=	multimedia
 MASTER_SITES=	https://gstreamer.freedesktop.org/src/gst-validate/
 DISTNAME=	gst-validate-${PORTVERSION}
