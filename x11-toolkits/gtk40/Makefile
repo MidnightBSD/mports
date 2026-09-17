@@ -1,13 +1,10 @@
 PORTNAME=	gtk
-PORTVERSION=	4.22.5
+PORTVERSION=	4.24.0
 PORTREVISION=	0
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	4
 DIST_SUBDIR=	gnome
-
-PATCH_SITES=	https://gitlab.gnome.org/GNOME/gtk/-/commit/
-PATCHFILES=	047c8e64d4156897776ec2bc3d0613a81cfe7ad1.patch:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gimp Toolkit for X11 GUI (current stable version)
@@ -40,13 +37,14 @@ USE_LDCONFIG=	yes
 USE_PERL5=	build
 USE_GNOME=	atk cairo gdkpixbuf introspection:build pango \
 		librsvg2
-MESON_ARGS=	-Dbuild-testsuite=false
+MESON_ARGS=	-Dbuild-testsuite=false \
+		-Ddocumentation=false
 TEST_ENV=	${MAKE_ENV}
 LDFLAGS+=	-lexecinfo
 
 BINARY_ALIAS=	python3=${PYTHON_CMD}
 
-LIBVERSION=	1.2200.5
+LIBVERSION=	1.2400.0
 PLIST_SUB+=	LIBVERSION=${LIBVERSION}
 
 GLIB_SCHEMAS=	org.gtk.Demo4.gschema.xml \
