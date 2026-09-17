@@ -1,5 +1,6 @@
 PORTNAME=	gegl
 DISTVERSION=	0.4.70
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	GIMP
 
@@ -66,7 +67,7 @@ ENSCRIPT_BUILD_DEPENDS=	enscript:print/enscript-a4
 FFMPEG_LIB_DEPENDS=	libavformat.so:multimedia/ffmpeg
 FFMPEG_MESON_ENABLED=	libav
 
-GEXIV2_LIB_DEPENDS=	libgexiv2.so:graphics/gexiv2
+GEXIV2_LIB_DEPENDS=	libgexiv2-0.16.so:graphics/gexiv2
 GEXIV2_MESON_ENABLED=	gexiv2
 
 GRAPHVIZ_BUILD_DEPENDS=	dot:graphics/graphviz

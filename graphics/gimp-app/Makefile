@@ -1,6 +1,6 @@
 PORTNAME?=	gimp
 PORTVERSION=	2.10.38
-PORTREVISION=	0
+PORTREVISION=	1
 PORTEPOCH?=	1
 CATEGORIES?=	graphics gnome
 MASTER_SITES=	GIMP/gimp/v${PORTVERSION:R}
@@ -23,7 +23,7 @@ LIB_DEPENDS=	libasound.so:audio/alsa-lib \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \
 		libgegl-0.4.so:graphics/gegl \
-		libgexiv2.so:graphics/gexiv2 \
+		libgexiv2-0.16.so:graphics/gexiv2 \
 		libharfbuzz.so:print/harfbuzz \
 		libjson-c.so:devel/json-c \
 		libjson-glib-1.0.so:devel/json-glib \

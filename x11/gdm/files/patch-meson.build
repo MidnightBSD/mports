@@ -18,8 +18,8 @@
  # PAM
  libpam_dep = cc.find_library('pam')
  pam_extensions_supported = cc.has_header_symbol(
-@@ -123,23 +129,29 @@ endif
-   have_xdmcp = false
+@@ -123,32 +129,33 @@ endif
+  have_xdmcp = false
  endif
  # systemd
 -logind_provider = get_option('logind-provider')
@@ -35,33 +35,48 @@
 -      '/usr/lib/systemd',
 -    ])
 -  systemd_x_server = systemd_multiseat_x.found()? systemd_multiseat_x.path() : '/lib/systemd/systemd-multi-seat-x'
+-
+-  have_userdb = libsystemd_dep.version().version_compare('>= 257')
+-
+-  # Our range is documented at https://systemd.io/UIDS-GIDS/
+-  greeter_uid_min = systemd_dep.get_variable('greeter_uid_min', default_value: '60578')
+-  greeter_uid_max = systemd_dep.get_variable('greeter_uid_max', default_value: '60705')
+-else
+-  elogind_dep = dependency('libelogind')
+-  logind_dep = elogind_dep
+-  systemd_x_server = 'disabled'
+-  have_userdb = false
+-  greeter_uid_min = 0
+-  greeter_uid_max = 0
+-endif
 +if host_machine.system() == 'linux'
 +  logind_provider = get_option('logind-provider')
 +  systemd_dep = dependency('systemd', required: false)
 +  if logind_provider == 'systemd'
 +    libsystemd_dep = dependency('libsystemd')
 +    logind_dep = libsystemd_dep
-+    systemd_multiseat_x = find_program('systemd-multi-seat-x',
-+      required: false,
-+      dirs: [
-+        systemd_dep.get_variable(pkgconfig: 'systemdutildir'),
-+        '/lib/systemd',
-+        '/usr/lib/systemd',
-+      ])
++    systemd_multiseat_x = find_program('systemd-multi-seat-x', required: false,
++      dirs: [systemd_dep.get_variable(pkgconfig: 'systemdutildir'), '/lib/systemd', '/usr/lib/systemd'])
 +    systemd_x_server = systemd_multiseat_x.found()? systemd_multiseat_x.path() : '/lib/systemd/systemd-multi-seat-x'
++    have_userdb = libsystemd_dep.version().version_compare('>= 257')
++    greeter_uid_min = systemd_dep.get_variable('greeter_uid_min', default_value: '60578')
++    greeter_uid_max = systemd_dep.get_variable('greeter_uid_max', default_value: '60705')
 +  else
 +    elogind_dep = dependency('libelogind')
 +    logind_dep = elogind_dep
 +    systemd_x_server = 'disabled'
++    have_userdb = false
++    greeter_uid_min = 0
++    greeter_uid_max = 0
 +  endif
- else
--  elogind_dep = dependency('libelogind')
--  logind_dep = elogind_dep
--  systemd_x_server = 'disabled'
++else
 +  systemd_dep = dependency('libconsolekit')
-+  logind_dep = dependency('libconsolekit')
++  logind_dep = systemd_dep
 +  systemd_x_server = '/lib/systemd/systemd-multi-seat-x'
- endif
++  have_userdb = false
++  greeter_uid_min = 0
++  greeter_uid_max = 0
++endif
  # Plymouth
  plymouth_dep = dependency('ply-boot-client', required: get_option('plymouth'))
 @@ -292,7 +304,10 @@ conf.set_quoted('X_PATH', x_path)
@@ -81,6 +96,7 @@
  conf.set('HAVE_UT_UT_SYSLEN', utmp_has_syslen_field)
  conf.set('ENABLE_IPV6', get_option('ipv6'))
 +conf.set('HAVE_SIGWAITINFO', cc.has_function('sigwaitinfo'))
+ conf.set('HAVE_SYS_SOCKIO_H', cc.has_header('sys/sockio.h'))
  configure_file(output: 'config.h', configuration: conf)
 
  # Subdirs

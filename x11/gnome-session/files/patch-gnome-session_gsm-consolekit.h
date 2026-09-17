@@ -1,4 +1,4 @@
---- gnome-session/gsm-consolekit.h.orig	2024-12-30 10:33:15 UTC
+--- /dev/null
 +++ gnome-session/gsm-consolekit.h
 @@ -0,0 +1,59 @@
 +/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
