@@ -395,8 +395,8 @@ lib/girepository-1.0/EDataServer-%%EVO_VERSION%%.typelib
 lib/girepository-1.0/EDataServerUI-%%EVO_VERSION%%.typelib
 %%GTK4%%lib/girepository-1.0/EDataServerUI4-1.0.typelib
 lib/libcamel-%%EVO_VERSION%%.so
-lib/libcamel-%%EVO_VERSION%%.so.67
-lib/libcamel-%%EVO_VERSION%%.so.67.0.0
+lib/libcamel-%%EVO_VERSION%%.so.68
+lib/libcamel-%%EVO_VERSION%%.so.68.0.0
 lib/libebackend-%%EVO_VERSION%%.so
 lib/libebackend-%%EVO_VERSION%%.so.11
 lib/libebackend-%%EVO_VERSION%%.so.11.0.0
@@ -416,8 +416,8 @@ lib/libedata-cal-%%CAL_API_VERSION%%.so
 lib/libedata-cal-%%CAL_API_VERSION%%.so.2
 lib/libedata-cal-%%CAL_API_VERSION%%.so.2.0.0
 lib/libedataserver-%%EVO_VERSION%%.so
-lib/libedataserver-%%EVO_VERSION%%.so.27
-lib/libedataserver-%%EVO_VERSION%%.so.27.0.0
+lib/libedataserver-%%EVO_VERSION%%.so.28
+lib/libedataserver-%%EVO_VERSION%%.so.28.0.0
 lib/libedataserverui-%%EVO_VERSION%%.so
 lib/libedataserverui-%%EVO_VERSION%%.so.4
 lib/libedataserverui-%%EVO_VERSION%%.so.4.0.0
