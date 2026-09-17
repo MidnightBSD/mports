@@ -54,7 +54,7 @@ BINARY_ALIAS=	python3=${PYTHON_VERSION}
 SHEBANG_FILES=	plugins/power/test.py \
 		plugins/xsettings/test.py
 
-# wayland doesn't build yet, undefined symbol
+# Keep Wayland disabled until the required gudev support is available.
 MESON_ARGS+=	-Dgudev=false
 #WAYLAND_MESON_TRUE=	wayland gudev
 #WAYLAND_LIB_DEPENDS=	libgudev-1.0.so:devel/libgudev \
