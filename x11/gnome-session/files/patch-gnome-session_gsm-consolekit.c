@@ -1,6 +1,6 @@
---- gnome-session/gsm-consolekit.c.orig	2024-12-30 10:33:10 UTC
+--- /dev/null
 +++ gnome-session/gsm-consolekit.c
-@@ -0,0 +1,972 @@
+@@ -0,0 +1,970 @@
 +/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
 + *
 + * Copyright (C) 2008 Jon McCann <jmccann@redhat.com>
@@ -902,11 +902,9 @@
 +        iface->suspend = gsm_consolekit_suspend;
 +        iface->hibernate = gsm_consolekit_hibernate;
 +        iface->set_session_idle = gsm_consolekit_set_session_idle;
-+        iface->is_login_session = gsm_consolekit_is_login_session;
 +        iface->set_inhibitors = gsm_consolekit_set_inhibitors;
 +        iface->prepare_shutdown = gsm_consolekit_prepare_shutdown;
 +        iface->complete_shutdown = gsm_consolekit_complete_shutdown;
-+        iface->is_last_session_for_user = gsm_consolekit_is_last_session_for_user;
 +}
 +
 +GsmConsolekit *
