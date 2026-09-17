@@ -28,7 +28,12 @@ BROKEN_SSL_REASON_libressl-devel=	fails to compile: no member named 'alert_dispa
 
 USE_LDCONFIG=	yes
 USE_XORG=	ice sm x11 xext
+INSTALLS_ICONS=	yes
 
+# FreeRDP needs its FreeBSD platform defaults on MidnightBSD: libepoll-shim
+# supplies the Wayland epoll API and OSS lives in the base system.
+CMAKE_ARGS+=	-DFREEBSD=TRUE -DOSS_HDR_NAME=sys/soundcard.h \
+		-DOSS_INCLUDE_DIRS=/usr/include
 CMAKE_ON=	CHANNEL_SERIAL CHANNEL_URBDRC_CLIENT RDTK_FORCE_STATIC_BUILD \
 		UWAC_FORCE_STATIC_BUILD WITH_BINARY_VERSIONING WITH_CHANNELS \
 		WITH_CLIENT_SDL_VERSIONED WITH_FREERDP_DEPRECATED \
