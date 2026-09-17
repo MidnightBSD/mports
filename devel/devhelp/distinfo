@@ -1,5 +1,3 @@
-TIMESTAMP = 1633280533
-SHA256 (gnome/devhelp-41.2.tar.xz) = ecaa90b0f4daa8fb2030f6dc690bf533ff99a773437fe0e18acfe82d997f60d2
-SIZE (gnome/devhelp-41.2.tar.xz) = 1455736
-SHA256 (gnome/f1c27fd4eaa5.patch) = 7625169b84a7df3b91716b5f15823e5e43c1f04dfe4585716bbaf692c56bae77
-SIZE (gnome/f1c27fd4eaa5.patch) = 1613
+TIMESTAMP = 1789149560
+SHA256 (gnome/devhelp-43.0.tar.xz) = 63ceeefd05392e02044881ef1ecd724293553da5735b7efc082b2d13fe85dd04
+SIZE (gnome/devhelp-43.0.tar.xz) = 327508
