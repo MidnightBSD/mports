@@ -1,0 +1,6 @@
+--- src/helpers/meson.build.orig
++++ src/helpers/meson.build
+@@ -3,0 +4,1 @@
++if host_machine.system() == 'linux'
+@@ -22,0 +24,1 @@
++endif

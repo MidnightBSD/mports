@@ -1,5 +1,6 @@
 PORTNAME=	mutter
-PORTVERSION=	47.10
+PORTVERSION=	49.7
+PORTREVISION=	0
 CATEGORIES=	x11-wm
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -14,9 +15,11 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 BUILD_DEPENDS=	evdev-proto>0:devel/evdev-proto \
 		gnome-settings-daemon>0:sysutils/gnome-settings-daemon \
 		gsettings-desktop-schemas>0:devel/gsettings-desktop-schemas \
+		py-argcomplete>0:devel/py-argcomplete \
 		xkeyboard-config>0:x11/xkeyboard-config \
 		dbus>0:devel/dbus
 LIB_DEPENDS=	libcanberra.so:audio/libcanberra \
+		libglycin-2.so:graphics/glycin2 \
 		libgudev-1.0.so:devel/libgudev \
 		libdrm.so:graphics/libdrm \
 		libinput.so:x11/libinput \
@@ -42,15 +45,18 @@ USE_XORG=	ice pixman sm x11 xcb xcomposite xcursor xdamage xext \
 		xfixes xi xinerama xkbfile xrandr xrender xtst
 USE_LDCONFIG=	yes
 
-PORTSCOUT=	limit:^47\.
+PORTSCOUT=	limit:^49\.
 
 CFLAGS+=	-Wno-unknown-warning-option -Wno-format-nonliteral
+CFLAGS+=	-I${LOCALBASE}/include/gudev-1.0
+CFLAGS+=	-I${LOCALBASE}/include/glycin-2
 CPPFLAGS+=	-fno-omit-frame-pointer
-MESON_ARGS=	-Dlibdisplay_info=enabled \
-		-Dlibwacom=false \
+MESON_ARGS=	-Dlibwacom=false \
 		-Dnative_backend=false \
+		-Dlogind=false \
+		-Dudev=false \
+		-Ddevkit=disabled \
 		-Dprofiler=false \
-		-Dsystemd=false \
 		-Dtests=disabled \
 		-Dcogl_tests=false \
 		-Dclutter_tests=false \
