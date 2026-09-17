@@ -1,6 +1,6 @@
 PORTNAME=	evolution
-DISTVERSION=	3.56.2
-PORTREVISION=	6
+DISTVERSION=	3.61.3
+PORTREVISION=	0
 CATEGORIES=	mail gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -22,7 +22,7 @@ BUILD_DEPENDS=	highlight:textproc/highlight \
 LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libdbus-glib-1.so:devel/dbus-glib \
 		libenchant-2.so:textproc/enchant2 \
-		libgnome-autoar-gtk-0.so:archivers/gnome-autoar \
+		libgnome-autoar-0.so:archivers/gnome-autoar \
 		libgspell-1.so:textproc/gspell \
 		libical.so:devel/libical \
 		libicuuc.so:devel/icu \
