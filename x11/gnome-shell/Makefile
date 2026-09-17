@@ -1,6 +1,6 @@
 PORTNAME=	gnome-shell
-PORTVERSION=	47.10
-PORTREVISION=	1
+PORTVERSION=	49.10
+PORTREVISION=	0
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -18,11 +18,12 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}docutils>0:textproc/py-docutils@${PY_FLAVO
 		sassc:textproc/sassc
 
 LIB_DEPENDS=	libgcr-4.so:security/gcr \
+		libepoll-shim.so:devel/libepoll-shim \
 		libgjs.so:lang/gjs \
 		libgraphene-1.0.so:graphics/graphene \
 		libical.so:devel/libical \
 		libjson-glib-1.0.so:devel/json-glib \
-		libmutter-15.so:x11-wm/mutter \
+		libmutter-17.so:x11-wm/mutter \
 		libp11-kit.so:security/p11-kit \
 		libpolkit-agent-1.so:sysutils/polkit \
 		libpulse-mainloop-glib.so:audio/pulseaudio \
@@ -39,13 +40,17 @@ USE_GNOME=	atk evolutiondataserver3 gdkpixbuf glib20 \
 		gnomedesktop4 gnomecontrolcenter3 gtk40 introspection \
 		libxml2 libxslt:build
 USE_XORG=	x11 xfixes xext
+LDFLAGS+=	-L${LOCALBASE}/lib -lepoll-shim
 
-PORTSCOUT=	limit:^47\.
+PORTSCOUT=	limit:^49\.
 
 SHEBANG_FILES=	src/gnome-shell-test-tool.in \
 		src/data-to-c.py
 # These libs are found via rpath mechanism
 NO_SHLIB_REQUIRES_GLOB=	libmutter-clutter-* libmutter-cogl-* libmutter-mtk-*
+CFLAGS+=	-I${LOCALBASE}/include/mutter-17/clutter \
+		-I${LOCALBASE}/include/mutter-17/cogl \
+		-I${LOCALBASE}/include/mutter-17/mtk
 
 OPTIONS_DEFINE=	EXAMPLES
 OPTIONS_DEFAULT=	EXAMPLES
