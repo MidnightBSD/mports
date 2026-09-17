@@ -772,7 +772,6 @@ share/locale/zh_CN/LC_MESSAGES/epiphany.mo
 share/locale/zh_HK/LC_MESSAGES/epiphany.mo
 share/locale/zh_TW/LC_MESSAGES/epiphany.mo
 share/metainfo/org.gnome.Epiphany.appdata.xml
-share/glib-2.0/schemas/org.gnome.Epiphany.enums.xml
 share/help/bg/epiphany/browse-local.page
 share/help/bg/epiphany/browse-private.page
 share/help/bg/epiphany/browse-tab.page
