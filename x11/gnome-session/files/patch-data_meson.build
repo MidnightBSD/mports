@@ -1,7 +1,13 @@
 --- data/meson.build.orig
 +++ data/meson.build
-@@ -62,0 +63,2 @@
-+if enable_systemd_session
-+
-@@ -128,0 +131,1 @@
+@@ -18,2 +18,3 @@
+ # Next, let's install the necessary systemd scaffolding
+
++if enable_systemd
+@@ -73,5 +74,6 @@
+   rename: 'override.conf',
+   install_dir : join_paths(systemd_userunitdir, 'app-flatpak-.scope.d')
+ )
 +endif
+
+ # Install some other misc. configuration files

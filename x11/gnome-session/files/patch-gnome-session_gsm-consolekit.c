@@ -1,6 +1,6 @@
 --- /dev/null
 +++ gnome-session/gsm-consolekit.c
-@@ -0,0 +1,970 @@
+@@ -0,0 +1,974 @@
 +/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
 + *
 + * Copyright (C) 2008 Jon McCann <jmccann@redhat.com>
@@ -67,11 +67,17 @@
 +        PROP_ACTIVE
 +};
 +
-+static void gsm_consolekit_system_init (GsmSystemInterface *iface);
++static gboolean gsm_consolekit_can_switch_user (GsmSystem *system);
++static GsmActionAvailability gsm_consolekit_can_shutdown (GsmSystem *system);
++static GsmActionAvailability gsm_consolekit_can_restart (GsmSystem *system);
++static GsmActionAvailability gsm_consolekit_can_suspend (GsmSystem *system);
++static void gsm_consolekit_suspend (GsmSystem *system);
++static void gsm_consolekit_set_session_idle (GsmSystem *system, gboolean is_idle);
++static void gsm_consolekit_set_inhibitors (GsmSystem *system, GsmInhibitorFlag flags);
++static void gsm_consolekit_prepare_shutdown (GsmSystem *system, gboolean restart);
++static void gsm_consolekit_complete_shutdown (GsmSystem *system);
 +
-+G_DEFINE_TYPE_WITH_CODE (GsmConsolekit, gsm_consolekit, G_TYPE_OBJECT,
-+                         G_IMPLEMENT_INTERFACE (GSM_TYPE_SYSTEM,
-+                                                gsm_consolekit_system_init))
++G_DEFINE_TYPE (GsmConsolekit, gsm_consolekit, GSM_TYPE_SYSTEM)
 +
 +static void
 +drop_system_inhibitor (GsmConsolekit *manager)
@@ -158,6 +164,16 @@
 +        g_object_class_override_property (object_class, PROP_ACTIVE, "active");
 +
 +        g_type_class_add_private (manager_class, sizeof (GsmConsolekitPrivate));
++        GsmSystemClass *system_class = GSM_SYSTEM_CLASS (manager_class);
++        system_class->can_switch_user = gsm_consolekit_can_switch_user;
++        system_class->can_shutdown = gsm_consolekit_can_shutdown;
++        system_class->can_restart = gsm_consolekit_can_restart;
++        system_class->can_suspend = gsm_consolekit_can_suspend;
++        system_class->suspend = gsm_consolekit_suspend;
++        system_class->set_session_idle = gsm_consolekit_set_session_idle;
++        system_class->set_inhibitors = gsm_consolekit_set_inhibitors;
++        system_class->prepare_shutdown = gsm_consolekit_prepare_shutdown;
++        system_class->complete_shutdown = gsm_consolekit_complete_shutdown;
 +}
 +
 +static void ck_session_proxy_signal_cb (GDBusProxy  *proxy,
@@ -281,8 +297,8 @@
 +        call_error = NULL;
 +
 +        if (error != NULL) {
-+                call_error = g_error_new_literal (GSM_SYSTEM_ERROR,
-+                                                  GSM_SYSTEM_ERROR_RESTARTING,
++                call_error = g_error_new_literal (G_IO_ERROR,
++                                                  G_IO_ERROR_FAILED,
 +                                                  error->message);
 +        }
 +
@@ -303,8 +319,8 @@
 +        call_error = NULL;
 +
 +        if (error != NULL) {
-+                call_error = g_error_new_literal (GSM_SYSTEM_ERROR,
-+                                                  GSM_SYSTEM_ERROR_STOPPING,
++                call_error = g_error_new_literal (G_IO_ERROR,
++                                                  G_IO_ERROR_FAILED,
 +                                                  error->message);
 +        }
 +
@@ -481,7 +497,7 @@
 +        return ret > 0;
 +}
 +
-+static gboolean
++static GsmActionAvailability
 +gsm_consolekit_can_restart (GsmSystem *system)
 +{
 +        GsmConsolekit *manager = GSM_CONSOLEKIT (system);
@@ -498,13 +514,13 @@
 +        if (!res) {
 +                g_warning ("Calling CanRestart failed. Check that ConsoleKit is "
 +                           "properly installed.");
-+                return FALSE;
++                return GSM_ACTION_UNAVAILABLE;
 +        }
 +
 +        g_variant_get (res, "(b)", &can_restart);
 +        g_variant_unref (res);
 +
-+        return can_restart;
++        return can_restart ? GSM_ACTION_AVAILABLE : GSM_ACTION_UNAVAILABLE;
 +}
 +
 +static gboolean
@@ -531,6 +547,12 @@
 +        g_variant_unref (res);
 +
 +        return can_stop;
++}
++
++static GsmActionAvailability
++gsm_consolekit_can_shutdown (GsmSystem *system)
++{
++        return gsm_consolekit_can_stop (system) ? GSM_ACTION_AVAILABLE : GSM_ACTION_UNAVAILABLE;
 +}
 +
 +/* returns -1 on failure, 0 on success */
@@ -584,7 +606,7 @@
 +        return ret;
 +}
 +
-+static gboolean
++static GsmActionAvailability
 +gsm_consolekit_can_suspend (GsmSystem *system)
 +{
 +        GsmConsolekit *manager = GSM_CONSOLEKIT (system);
@@ -602,7 +624,7 @@
 +        if (!res) {
 +                g_warning ("Calling CanSuspend failed. Check that ConsoleKit is "
 +                           "properly installed.");
-+                return FALSE;
++                return GSM_ACTION_UNAVAILABLE;
 +        }
 +
 +        g_variant_get (res, "(s)", &rv);
@@ -613,7 +635,7 @@
 +
 +        g_free (rv);
 +
-+        return can_suspend;
++        return can_suspend ? GSM_ACTION_AVAILABLE : GSM_ACTION_UNAVAILABLE;
 +}
 +
 +static gboolean
@@ -887,24 +909,6 @@
 +gsm_consolekit_is_last_session_for_user (GsmSystem *system)
 +{
 +        return FALSE;
-+}
-+
-+static void
-+gsm_consolekit_system_init (GsmSystemInterface *iface)
-+{
-+        iface->can_switch_user = gsm_consolekit_can_switch_user;
-+        iface->can_stop = gsm_consolekit_can_stop;
-+        iface->can_restart = gsm_consolekit_can_restart;
-+        iface->can_suspend = gsm_consolekit_can_suspend;
-+        iface->can_hibernate = gsm_consolekit_can_hibernate;
-+        iface->attempt_stop = gsm_consolekit_attempt_stop;
-+        iface->attempt_restart = gsm_consolekit_attempt_restart;
-+        iface->suspend = gsm_consolekit_suspend;
-+        iface->hibernate = gsm_consolekit_hibernate;
-+        iface->set_session_idle = gsm_consolekit_set_session_idle;
-+        iface->set_inhibitors = gsm_consolekit_set_inhibitors;
-+        iface->prepare_shutdown = gsm_consolekit_prepare_shutdown;
-+        iface->complete_shutdown = gsm_consolekit_complete_shutdown;
 +}
 +
 +GsmConsolekit *

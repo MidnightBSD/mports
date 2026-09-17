@@ -1,14 +1,14 @@
 PORTNAME=	gnome-session
-PORTVERSION=	49.3
+PORTVERSION=	51.0
 PORTREVISION=	0
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
-PORTSCOUT=	limit:^49\.
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Session component for the GNOME desktop
 WWW=		https://www.gnome.org/
+PORTSCOUT=	limit:^51\.
 
 LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -27,7 +27,6 @@ USE_GNOME=	glib20 gnomedesktop3 gtk30 libxslt:build
 USE_XORG=	ice sm x11 xcomposite xtrans
 USE_GL=		egl gl glesv2
 MESON_ARGS=	-Ddocbook=false \
-		-Dx11=true \
 		-Dsystemd=false \
 		-Dsystemd_session=disable \
 		-Dsystemd_journal=false \
@@ -40,7 +39,7 @@ GLIB_SCHEMAS=	org.gnome.SessionManager.gschema.xml
 
 post-patch:
 # Avoid lots of warnings in gdm log
-.for f in gnome-wayland.desktop.in.in gnome.desktop.in.in
+.for f in gnome.desktop.in.in
 	${REINPLACE_CMD} -e 's|/gnome-session|/gnome-session --disable-acceleration-check|g' \
 		${WRKSRC}/data/${f}
 .endfor

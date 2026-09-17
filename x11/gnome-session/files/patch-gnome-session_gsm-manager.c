@@ -1,17 +1,24 @@
 --- gnome-session/gsm-manager.c.orig
 +++ gnome-session/gsm-manager.c
-@@ -42,0 +43 @@
+@@ -41,6 +41,13 @@
+ #include "gsm-manager.h"
+ #include "org.gnome.SessionManager.h"
+
 +#ifdef ENABLE_SYSTEMD_JOURNAL
-@@ -43,0 +45 @@
+ #include <systemd/sd-journal.h>
 +#endif
-@@ -44,0 +47 @@
+
 +#ifdef HAVE_SYSTEMD
-@@ -45,0 +49,4 @@
+ #include <systemd/sd-daemon.h>
 +#else
 +#define sd_notify(u, m) do {} while (0)
 +#define sd_notifyf(u, m, ...) do {} while (0)
 +#endif
-@@ -780,0 +788 @@
+@@ -786,6 +786,8 @@
+                 sd_notify (0, "STATUS=Running");
 +#ifdef ENABLE_SYSTEMD_JOURNAL
-@@ -784,0 +793 @@
+                 sd_journal_send ("MESSAGE_ID=%s", GSM_MANAGER_STARTUP_SUCCEEDED_MSGID,
+                                  "PRIORITY=%d", 5,
+                                  "MESSAGE=Entering running state",
+                                  NULL);
 +#endif

@@ -1,13 +1,9 @@
 --- gnome-session/meson.build.orig
 +++ gnome-session/meson.build
-@@ -21,0 +22 @@
-+if enable_systemd_session
-@@ -36,0 +38,2 @@
-+endif
+@@ -57,2 +57,6 @@
+   'service-main.c'
+ )
 +
-@@ -51,0 +55,5 @@
 +if enable_consolekit
 +  sources += files('gsm-consolekit.c')
 +endif
-+
-+
