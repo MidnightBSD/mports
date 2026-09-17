@@ -16,7 +16,7 @@ USES=		cpe gettext-runtime gmake gnome libarchive meson pkgconfig \
 		tar:xz vala:build
 
 CPE_VENDOR=	gnome
-USE_GNOME=	cairo gdkpixbuf gtk30 introspection:build
+USE_GNOME=	cairo gdkpixbuf introspection:build
 USE_LDCONFIG=	yes
 
 OPTIONS_DEFINE=	DOCS
