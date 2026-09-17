@@ -1,4 +1,4 @@
-PORTREVISION=	2
+PORTREVISION=	0
 CATEGORIES=	comms
 
 COMMENT=	GStreamer DSP library and software FAX machine plugin
