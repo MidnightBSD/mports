@@ -1,6 +1,6 @@
 --- /dev/null
 +++ gnome-session/gsm-consolekit.h
-@@ -0,0 +1,59 @@
+@@ -0,0 +1,60 @@
 +/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
 + *
 + * Copyright (C) 2008 Jon McCann <jmccann@redhat.com>
@@ -27,6 +27,7 @@
 +
 +#include <glib.h>
 +#include <glib-object.h>
++#include "gsm-system.h"
 +
 +G_BEGIN_DECLS
 +
@@ -43,14 +44,14 @@
 +
 +struct _GsmConsolekit
 +{
-+        GObject               parent;
++        GsmSystem             parent;
 +
 +        GsmConsolekitPrivate *priv;
 +};
 +
 +struct _GsmConsolekitClass
 +{
-+        GObjectClass parent_class;
++        GsmSystemClass parent_class;
 +};
 +
 +GType            gsm_consolekit_get_type        (void);
