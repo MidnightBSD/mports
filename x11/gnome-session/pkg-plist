@@ -1,13 +1,9 @@
 bin/gnome-session
 bin/gnome-session-inhibit
 bin/gnome-session-quit
-libexec/gnome-session-binary
-libexec/gnome-session-check-accelerated
-libexec/gnome-session-check-accelerated-gl-helper
-libexec/gnome-session-check-accelerated-gles-helper
-libexec/gnome-session-failed
-%%DATADIR%%/hardware-compatibility
-%%DATADIR%%/sessions/gnome-dummy.session
+libexec/gnome-session-service
+app-flatpak-.scope.d/override.conf
+app-gnome-.scope.d/override.conf
 %%DATADIR%%/sessions/gnome.session
 share/locale/ab/LC_MESSAGES/gnome-session-%%VERSION%%.mo
 share/locale/af/LC_MESSAGES/gnome-session-%%VERSION%%.mo
@@ -128,5 +124,3 @@ share/man/man1/gnome-session.1.gz
 share/wayland-sessions/gnome-wayland.desktop
 share/wayland-sessions/gnome.desktop
 share/xdg-desktop-portal/gnome-portals.conf
-share/xsessions/gnome-xorg.desktop
-share/xsessions/gnome.desktop

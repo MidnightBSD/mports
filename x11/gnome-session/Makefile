@@ -1,6 +1,6 @@
 PORTNAME=	gnome-session
-PORTVERSION=	47.0.1
-PORTREVISION=	1
+PORTVERSION=	49.3
+PORTREVISION=	0
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -19,8 +19,6 @@ LIB_DEPENDS=	libjson-glib-1.0.so:devel/json-glib \
 RUN_DEPENDS=	consolekit2>0:sysutils/consolekit2 \
 		dbus-daemon:devel/dbus \
 		zenity:x11/zenity
-
-PORTSCOUT=	limit:^47\.
 
 USES=		compiler:c11 gettext gl gnome localbase:ldflags meson \
 		pkgconfig python:build tar:xz xorg
