@@ -1,12 +1,9 @@
 PORTNAME=	devhelp
-PORTVERSION=	41.2
-PORTREVISION=	5
+PORTVERSION=	43.0
+PORTREVISION=	0
 CATEGORIES=	devel gnome
-MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
+MASTER_SITES=	GNOME/sources/${PORTNAME}
 DIST_SUBDIR=	gnome
-
-PATCH_SITES=	https://gitlab.gnome.org/GNOME/${PORTNAME}/-/commit/
-PATCHFILES+=	f1c27fd4eaa5.patch:-p1 # https://gitlab.gnome.org/GNOME/devhelp/-/merge_requests/42
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Developer help browser for GNOME
@@ -25,6 +22,8 @@ PORTSCOUT=	limitw:1,even
 USES=		compiler:c++11-lib gettext gnome localbase meson pkgconfig \
 		python:build tar:xz
 USE_GNOME=	cairo gtk30 introspection
+
+INSTALLS_ICONS=	yes
 
 USE_LDCONFIG=	yes
 
