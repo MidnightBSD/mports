@@ -20,7 +20,6 @@ lib/libgdm.so
 lib/libgdm.so.1
 lib/libgdm.so.1.0.0
 lib/security/pam_gdm.so
-lib/udev/rules.d/61-gdm.rules
 libdata/pkgconfig/gdm.pc
 libexec/gdm-host-chooser
 libexec/gdm-runtime-config
@@ -35,7 +34,6 @@ share/dconf/profile/gdm
 %%DATADIR%%/greeter-dconf-defaults
 %%DATADIR%%/greeter/applications/mime-dummy-handler.desktop
 %%DATADIR%%/greeter/applications/mimeapps.list
-%%DATADIR%%/greeter/autostart/orca-autostart.desktop
 %%DATADIR%%/locale.alias
 share/gir-1.0/Gdm-1.0.gir
 share/gnome-session/sessions/gnome-login.session

@@ -477,17 +477,6 @@
 
  static gboolean
  gdm_session_worker_handle_initialize (GdmDBusWorker         *object,
-@@ -3064,8 +3331,10 @@ gdm_session_worker_handle_initialize (GdmDBusWorker
-         while (g_variant_iter_loop (&iter, "{sv}", &key, &value)) {
-                 if (g_strcmp0 (key, "service") == 0) {
-                         worker->service = g_variant_dup_string (value, NULL);
-+#ifdef SUPPORTS_PAM_EXTENSIONS
-                 } else if (g_strcmp0 (key, "extensions") == 0) {
-                         worker->extensions = filter_extensions (g_variant_get_strv (value, NULL));
-+#endif
-                 } else if (g_strcmp0 (key, "username") == 0) {
-                         worker->username = g_variant_dup_string (value, NULL);
-                 } else if (g_strcmp0 (key, "is-program-session") == 0) {
 @@ -3089,7 +3358,9 @@ gdm_session_worker_handle_initialize (GdmDBusWorker
                  }
          }

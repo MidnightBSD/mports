@@ -1,6 +1,6 @@
 PORTNAME=	gdm
-PORTVERSION=	47.0
-PORTREVISION=	1
+PORTVERSION=	49.4
+PORTREVISION=	0
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -12,7 +12,7 @@ WWW=		https://gitlab.gnome.org/GNOME/gdm
 LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-PORTSCOUT=	limit:^47\.
+PORTSCOUT=	limit:^49\.
 
 BUILD_DEPENDS=	iso-codes>0:misc/iso-codes \
 		xorg-server>0:x11-servers/xorg-server \
@@ -60,9 +60,10 @@ MESON_ARGS=	-Dat-spi-registryd-dir=${PREFIX}/libexec \
 		-Dlibaudit=disabled \
 		-Dpid-file=/var/run/gdm.pid \
 		-Dplymouth=disabled \
-		-Dscreenshot-dir=/var/run/gdm/greeter \
 		-Dselinux=disabled \
 		-Dsystemd-journal=false \
+		-Dsystemdsystemunitdir=no \
+		-Dsystemduserunitdir=no \
 		-Duser-display-server=false \
 		-Dudev-dir=${PREFIX}/lib/udev/rules.d \
 		-Duser=gdm \
@@ -71,6 +72,10 @@ MESON_ARGS=	-Dat-spi-registryd-dir=${PREFIX}/libexec \
 
 # this is a hack until we can get our own pam dir and dir in order.
 CPPFLAGS+=	-DHAS_SA_LEN -DWITH_CONSOLE_KIT=1
+
+# Ensure the introspection helper links against the just-built libgdm before
+# any installed copy with the same linker name.
+CONFIGURE_ENV+=	LDFLAGS="-L${WRKSRC}/_build/libgdm ${LDFLAGS}"
 
 SUB_FILES+=	gdm-autologin gdm-launch-environment gdm-password \
 		locale.conf
