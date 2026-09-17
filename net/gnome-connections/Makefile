@@ -1,5 +1,6 @@
 PORTNAME=	gnome-connections
-PORTVERSION=	50.0
+PORTVERSION=	51.0
+PORTREVISION=	0
 CATEGORIES=	net gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -14,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 BUILD_DEPENDS=	itstool:textproc/itstool
 LIB_DEPENDS=	libgtk-vnc-2.0.so:net/gtk-vnc \
 		libhandy-1.so:x11-toolkits/libhandy \
-		libfreerdp2.so:net/freerdp \
+		libfreerdp3.so:net/freerdp3 \
 		libsecret-1.so:security/libsecret
 
 USES=		desktop-file-utils fuse:3 gettext gnome meson pkgconfig \
