@@ -1,7 +1,7 @@
 PORTNAME=	xdg-desktop-portal-hyprland
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.3.11
-PORTREVISION=	1
+DISTVERSION=	1.4.1
+PORTREVISION=	0
 CATEGORIES=	x11 wayland
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -18,6 +18,7 @@ LIB_DEPENDS=	libhyprlang.so:devel/hyprlang \
 		libhyprutils.so:devel/hyprutils \
 		libsdbus-c++.so:devel/sdbus-cpp \
 		libdrm.so:graphics/libdrm \
+		libuuid.so:misc/libuuid \
 		libwayland-client.so:graphics/wayland \
 		libpipewire-0.3.so:multimedia/pipewire
 RUN_DEPENDS=	xdg-desktop-portal>0:deskutils/xdg-desktop-portal \
