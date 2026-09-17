@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Glib wrapper around libarchives
 WWW=		https://gitlab.gnome.org/GNOME/gnome-autoar
 
-LICENSE=	lgpl2.1
+LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		cpe gettext-runtime gmake gnome libarchive meson pkgconfig \
