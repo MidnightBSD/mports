@@ -75,6 +75,9 @@ include/webkitgtk-%%API_VERSION%%/webkit/WebKitUserMessage.h
 include/webkitgtk-%%API_VERSION%%/webkit/WebKitVersion.h
 include/webkitgtk-%%API_VERSION%%/webkit/WebKitWebContext.h
 include/webkitgtk-%%API_VERSION%%/webkit/WebKitWebEditor.h
+include/webkitgtk-%%API_VERSION%%/webkit/WebKitWebExtension.h
+include/webkitgtk-%%API_VERSION%%/webkit/WebKitWebExtensionAutocleanups.h
+include/webkitgtk-%%API_VERSION%%/webkit/WebKitWebExtensionMatchPattern.h
 include/webkitgtk-%%API_VERSION%%/webkit/WebKitWebFormManager.h
 include/webkitgtk-%%API_VERSION%%/webkit/WebKitWebHitTestResult.h
 include/webkitgtk-%%API_VERSION%%/webkit/WebKitWebInspector.h
