@@ -1,5 +1,5 @@
 PORTNAME=	epiphany
-PORTVERSION=	48.5
+PORTVERSION=	51.0
 PORTREVISION=	0
 CATEGORIES=	www gnome
 MASTER_SITES=	GNOME
@@ -12,7 +12,7 @@ WWW=		https://apps.gnome.org/Epiphany/
 LICENSE=	gpl3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-PORTSCOUT=	limit:^48\.
+PORTSCOUT=	limit:^51\.
 
 BUILD_DEPENDS=	gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas \
 		iso-codes>=0:misc/iso-codes \

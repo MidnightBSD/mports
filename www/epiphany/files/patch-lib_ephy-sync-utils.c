@@ -1,8 +1,7 @@
---- lib/ephy-sync-utils.c.orig	2024-10-22 19:17:50 UTC
+--- lib/ephy-sync-utils.c.orig	2026-09-17 00:00:00 UTC
 +++ lib/ephy-sync-utils.c
-@@ -30,7 +30,7 @@
- #include <stdio.h>
- #include <string.h>
+@@ -35,7 +35,7 @@
+ #include <json-glib/json-glib.h>
  #include <webkit/webkit.h>
 -#if defined(__linux__)
 +#if defined(__linux__) || defined(__FreeBSD__)
