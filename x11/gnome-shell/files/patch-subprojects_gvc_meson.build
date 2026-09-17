@@ -1,0 +1,5 @@
+--- subprojects/gvc/meson.build.orig
++++ subprojects/gvc/meson.build
+@@ -93,1 +93,1 @@
+-  libgvc_shared = shared_library('gvc',
++  libgvc_shared = shared_library('gvc-shell',
