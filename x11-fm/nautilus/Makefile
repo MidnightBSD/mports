@@ -1,5 +1,5 @@
 PORTNAME=	nautilus
-PORTVERSION=	49.6
+PORTVERSION=	51.0.1
 PORTREVISION=	0
 CATEGORIES=	x11-fm gnome
 MASTER_SITES=	GNOME
@@ -12,7 +12,7 @@ WWW=		https://apps.gnome.org/Nautilus/
 LICENSE=	gpl3+
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-LIB_DEPENDS=	libgexiv2.so:graphics/gexiv2 \
+LIB_DEPENDS=	libgexiv2-0.16.so:graphics/gexiv2 \
 		libgnome-autoar-0.so:archivers/gnome-autoar \
 		libportal.so:deskutils/libportal \
 		libportal-gtk4.so:deskutils/libportal-gtk4 \
@@ -29,7 +29,7 @@ USE_LDCONFIG=	yes
 USE_XORG=	x11
 INSTALLS_ICONS=	yes
 
-PORTSCOUT=	limit:^49\.
+PORTSCOUT=	limit:^51\.
 
 MESON_ARGS=	-Dpackagekit=false \
 		-Dselinux=false \
