@@ -1,5 +1,6 @@
 PORTNAME=	gitg
-PORTVERSION=	44
+PORTVERSION=	50
+PORTREVISION=	0
 CATEGORIES=	devel deskutils gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -8,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GTK-based git repository viewer
 WWW=		https://wiki.gnome.org/Apps/Gitg
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas
