@@ -1,5 +1,5 @@
 PORTNAME=	gtksourceview
-DISTVERSION=	5.18.0
+DISTVERSION=	5.22.0
 CATEGORIES=	x11-toolkits gnome
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	5
@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Text widget that adds syntax highlighting to the GtkTextView widget
 WWW=		https://gitlab.gnome.org/GNOME/gtksourceview
 
-LICENSE=	lgpl2.1
+LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
