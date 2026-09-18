@@ -1,6 +1,6 @@
 PORTNAME=	gnome-latex
-PORTVERSION=	3.44.0
-PORTREVISION=	1
+PORTVERSION=	3.46.0
+PORTREVISION=	0
 CATEGORIES=	editors
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Integrated LaTeX environment
 WWW=		https://wiki.gnome.org/Apps/LaTeXila
 
-LICENSE=	gpl3
+LICENSE=	gpl3+
 
 BUILD_DEPENDS=	itstool:textproc/itstool \
 		gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas
@@ -42,12 +42,7 @@ GLIB_SCHEMAS=	org.gnome.gnome-latex.gschema.xml
 CFLAGS+=	-Wno-error=incompatible-function-pointer-types
 
 post-patch:
-	${REINPLACE_CMD} -e 's|amtk-5|libgedit-amtk-5|g' \
-		-e 's|gtksourceview-4|libgedit-gtksourceview-300|g' \
-		-e 's|tepl-6|libgedit-tepl-6|g' \
+	${REINPLACE_CMD} -e 's|tepl-6|libgedit-tepl-6|g' \
 		${WRKSRC}/configure
-	${REINPLACE_CMD} -e 's|GtkSource-4|GtkSource-300|g' \
-		${WRKSRC}/src/liblatexila/Makefile.in \
-		${WRKSRC}/src/Makefile.in
 
 .include <bsd.port.post.mk>
