@@ -305,6 +305,7 @@ include/gtk-4.0/gtk/gtkeditablelabel.h
 include/gtk-4.0/gtk/gtkemojichooser.h
 include/gtk-4.0/gtk/gtkentry.h
 include/gtk-4.0/gtk/gtkentrybuffer.h
+include/gtk-4.0/gtk/gtkenumlist.h
 include/gtk-4.0/gtk/gtkenums.h
 include/gtk-4.0/gtk/gtkeventcontroller.h
 include/gtk-4.0/gtk/gtkeventcontrollerfocus.h
@@ -415,6 +416,7 @@ include/gtk-4.0/gtk/gtkshortcuttrigger.h
 include/gtk-4.0/gtk/gtksignallistitemfactory.h
 include/gtk-4.0/gtk/gtksingleselection.h
 include/gtk-4.0/gtk/gtksizegroup.h
+include/gtk-4.0/gtk/gtksvgwidget.h
 include/gtk-4.0/gtk/gtksizerequest.h
 include/gtk-4.0/gtk/gtkslicelistmodel.h
 include/gtk-4.0/gtk/gtksnapshot.h
