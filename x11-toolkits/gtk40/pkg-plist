@@ -416,7 +416,6 @@ include/gtk-4.0/gtk/gtkshortcuttrigger.h
 include/gtk-4.0/gtk/gtksignallistitemfactory.h
 include/gtk-4.0/gtk/gtksingleselection.h
 include/gtk-4.0/gtk/gtksizegroup.h
-include/gtk-4.0/gtk/gtksvgwidget.h
 include/gtk-4.0/gtk/gtksizerequest.h
 include/gtk-4.0/gtk/gtkslicelistmodel.h
 include/gtk-4.0/gtk/gtksnapshot.h
@@ -431,6 +430,7 @@ include/gtk-4.0/gtk/gtkstringfilter.h
 include/gtk-4.0/gtk/gtkstringlist.h
 include/gtk-4.0/gtk/gtkstringsorter.h
 include/gtk-4.0/gtk/gtkstyleprovider.h
+include/gtk-4.0/gtk/gtksvgwidget.h
 include/gtk-4.0/gtk/gtkswitch.h
 include/gtk-4.0/gtk/svg/gtksvg.h
 include/gtk-4.0/gtk/svg/gtksvgenumtypes.h
