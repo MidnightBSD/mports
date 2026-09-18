@@ -1,6 +1,5 @@
 PORTNAME=	kio
 DISTVERSION=	${KDE_FRAMEWORKS_VERSION}
-PORTREVISION=	2
 CATEGORIES=	devel kde kde-frameworks
 
 COMMENT=	Network transparent access to files and data
