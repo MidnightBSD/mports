@@ -1,5 +1,5 @@
 PORTNAME=	orca
-PORTVERSION=	50.2
+PORTVERSION=	51.0
 PORTREVISION=	0
 CATEGORIES=	accessibility gnome
 MASTER_SITES=	GNOME
@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Scriptable screen reader
 WWW=		https://gitlab.gnome.org/GNOME/orca
 
-LICENSE=	lgpl2.1
+LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 NO_ARCH=	yes
@@ -28,7 +28,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}dasbus>0:devel/py-dasbus@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}psutil>0:sysutils/py-psutil@${PY_FLAVOR}
 
 CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}orca
-PORTSCOUT=	limit:^50\.
+PORTSCOUT=	limit:^51\.
 
 CPE_VENDOR=	gnome
 
