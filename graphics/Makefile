@@ -170,6 +170,7 @@
     SUBDIR += kimageannotator
     SUBDIR += kmscube
     SUBDIR += kolourpaint
+    SUBDIR += kquickimageeditor
     SUBDIR += ksanecore
     SUBDIR += laternamagica
     SUBDIR += lcms

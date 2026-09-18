@@ -1,6 +1,5 @@
 PORTNAME=	spectacle
 DISTVERSION=	${KDE_PLASMA_VERSION}
-PORTREVISION=	1
 CATEGORIES=	graphics kde kde-plasma
 
 MAINTAINER=	ports@MidnightBSD.org
