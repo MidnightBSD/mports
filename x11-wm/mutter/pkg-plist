@@ -107,6 +107,10 @@ include/mutter-18/cogl/cogl/cogl-texture.h
 include/mutter-18/cogl/cogl/cogl-trace.h
 include/mutter-18/cogl/cogl/cogl-types.h
 include/mutter-18/cogl/cogl/cogl.h
+include/mutter-18/cogl/cogl/winsys/cogl-onscreen-egl.h
+include/mutter-18/cogl/cogl/winsys/cogl-winsys-egl-feature-functions.h
+include/mutter-18/cogl/cogl/winsys/cogl-winsys-egl.h
+include/mutter-18/cogl/cogl/winsys/cogl-winsys.h
 include/mutter-18/cogl/cogl/deprecated/cogl-program.h
 include/mutter-18/cogl/cogl/deprecated/cogl-shader.h
 include/mutter-18/cogl/cogl/gl-prototypes/cogl-core-functions.h
