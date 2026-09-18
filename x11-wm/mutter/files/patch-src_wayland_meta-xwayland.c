@@ -1,27 +1,25 @@
-Based on https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=258042
-
---- src/wayland/meta-xwayland.c.orig	2024-11-25 14:05:12 UTC
+--- src/wayland/meta-xwayland.c.orig
 +++ src/wayland/meta-xwayland.c
-@@ -598,9 +598,11 @@ open_display_sockets (MetaXWaylandManager  *manager,
+@@ -602,16 +602,22 @@
  {
-   int abstract_fd, unix_fd;
+   g_autofd int abstract_fd = -1, unix_fd = -1;
  
 +#ifdef __linux__
-   abstract_fd = bind_to_abstract_socket (display_index, error);
-   if (abstract_fd < 0)
-     return FALSE;
+   if (abstract_fd_out)
+     {
+       abstract_fd = bind_to_abstract_socket (display_index, error);
+       if (abstract_fd < 0)
+         return FALSE;
+     }
 +#endif
  
    unix_fd = bind_to_unix_socket (display_index, error);
    if (unix_fd < 0)
-@@ -608,6 +610,10 @@ open_display_sockets (MetaXWaylandManager  *manager,
-       close (abstract_fd);
-       return FALSE;
-     }
+     return FALSE;
 +
 +#ifndef __linux__
-+  abstract_fd = unix_fd;
++  abstract_fd = g_steal_fd (&unix_fd);
 +#endif
  
-   *abstract_fd_out = abstract_fd;
-   *unix_fd_out = unix_fd;
+   if (abstract_fd_out)
+     *abstract_fd_out = g_steal_fd (&abstract_fd);

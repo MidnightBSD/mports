@@ -1,6 +1,14 @@
 --- src/helpers/meson.build.orig
 +++ src/helpers/meson.build
-@@ -3,0 +4,1 @@
+@@ -1,2 +1,4 @@
 +if host_machine.system() == 'linux'
-@@ -22,0 +24,1 @@
++
+ helpers_cdata = configuration_data()
+ helpers_cdata.set('libexecdir', libexecdir)
+@@ -18,4 +20,6 @@
+   install_rpath: pkglibdir,
+   install_dir: libexecdir,
+   install: true,
+ )
++
 +endif

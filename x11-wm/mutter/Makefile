@@ -1,5 +1,5 @@
 PORTNAME=	mutter
-PORTVERSION=	49.7
+PORTVERSION=	50.5
 PORTREVISION=	0
 CATEGORIES=	x11-wm
 MASTER_SITES=	GNOME
@@ -45,7 +45,7 @@ USE_XORG=	ice pixman sm x11 xcb xcomposite xcursor xdamage xext \
 		xfixes xi xinerama xkbfile xrandr xrender xtst
 USE_LDCONFIG=	yes
 
-PORTSCOUT=	limit:^49\.
+PORTSCOUT=	limit:^50\.
 
 CFLAGS+=	-Wno-unknown-warning-option -Wno-format-nonliteral
 CFLAGS+=	-I${LOCALBASE}/include/gudev-1.0
@@ -75,7 +75,6 @@ WAYLAND_BUILD_DEPENDS=	wayland-protocols>0:graphics/wayland-protocols \
 WAYLAND_LIB_DEPENDS=	libwayland-server.so:graphics/wayland
 WAYLAND_RUN_DEPENDS=	xwayland>0:x11-servers/xwayland
 WAYLAND_USE=	XORG=xau
-WAYLAND_MESON_TRUE=	wayland \
-			xwayland
+WAYLAND_MESON_TRUE=	xwayland
 
 .include <bsd.port.mk>
