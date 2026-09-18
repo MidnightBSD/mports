@@ -4,6 +4,8 @@ include/libdex-1/dex-async-result.h
 include/libdex-1/dex-block.h
 include/libdex-1/dex-cancellable.h
 include/libdex-1/dex-channel.h
+include/libdex-1/dex-closure.h
+include/libdex-1/dex-coroutine.h
 include/libdex-1/dex-delayed.h
 include/libdex-1/dex-enums.h
 include/libdex-1/dex-error.h
@@ -15,13 +17,18 @@ include/libdex-1/dex-future-list-model.h
 include/libdex-1/dex-gdbus.h
 include/libdex-1/dex-gio.h
 include/libdex-1/dex-init.h
+include/libdex-1/dex-limiter.h
 include/libdex-1/dex-main-scheduler.h
 include/libdex-1/dex-object.h
 include/libdex-1/dex-platform.h
 include/libdex-1/dex-promise.h
 include/libdex-1/dex-scheduler.h
 include/libdex-1/dex-static-future.h
+include/libdex-1/dex-state-machine.h
+include/libdex-1/dex-task-group.h
+include/libdex-1/dex-test.h
 include/libdex-1/dex-thread.h
+include/libdex-1/dex-thread-pool.h
 include/libdex-1/dex-thread-pool-scheduler.h
 include/libdex-1/dex-timeout.h
 include/libdex-1/dex-unix-signal.h
