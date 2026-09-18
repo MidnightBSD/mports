@@ -2,7 +2,6 @@
 bin/gtk4-builder-tool
 bin/gtk4-demo
 bin/gtk4-demo-application
-bin/gtk4-encode-symbolic-svg
 bin/gtk4-image-tool
 bin/gtk4-launch
 bin/gtk4-node-editor
@@ -13,13 +12,11 @@ bin/gtk4-rendernode-tool
 bin/gtk4-update-icon-cache
 bin/gtk4-widget-factory
 %%BROADWAY%%include/gtk-4.0/gdk/broadway/gdkbroadway.h
-%%BROADWAY%%include/gtk-4.0/gdk/broadway/gdkbroadwaycursor.h
 %%BROADWAY%%include/gtk-4.0/gdk/broadway/gdkbroadwaydisplay.h
 %%BROADWAY%%include/gtk-4.0/gdk/broadway/gdkbroadwaymonitor.h
 %%BROADWAY%%include/gtk-4.0/gdk/broadway/gdkbroadwaysurface.h
 include/gtk-4.0/gdk/deprecated/gdkpixbuf.h
 include/gtk-4.0/gdk/broadway/gdkbroadway.h
-include/gtk-4.0/gdk/broadway/gdkbroadwaycursor.h
 include/gtk-4.0/gdk/broadway/gdkbroadwaydisplay.h
 include/gtk-4.0/gdk/broadway/gdkbroadwaymonitor.h
 include/gtk-4.0/gdk/broadway/gdkbroadwaysurface.h
@@ -79,15 +76,6 @@ include/gtk-4.0/gdk/gdktoplevellayout.h
 include/gtk-4.0/gdk/gdktoplevelsize.h
 include/gtk-4.0/gdk/gdktypes.h
 include/gtk-4.0/gdk/gdkvulkancontext.h
-include/gtk-4.0/gdk/wayland/gdkwayland.h
-include/gtk-4.0/gdk/wayland/gdkwaylanddevice.h
-include/gtk-4.0/gdk/wayland/gdkwaylanddisplay.h
-include/gtk-4.0/gdk/wayland/gdkwaylandglcontext.h
-include/gtk-4.0/gdk/wayland/gdkwaylandmonitor.h
-include/gtk-4.0/gdk/wayland/gdkwaylandpopup.h
-include/gtk-4.0/gdk/wayland/gdkwaylandseat.h
-include/gtk-4.0/gdk/wayland/gdkwaylandsurface.h
-include/gtk-4.0/gdk/wayland/gdkwaylandtoplevel.h
 include/gtk-4.0/gdk/version/gdk-visibility.h
 include/gtk-4.0/gdk/version/gdkversionmacros.h
 include/gtk-4.0/gdk/x11/gdkx-autocleanups.h
@@ -170,6 +158,7 @@ include/gtk-4.0/gsk/gskpathmeasure.h
 include/gtk-4.0/gsk/gskpathpoint.h
 include/gtk-4.0/gsk/gskpastenode.h
 include/gtk-4.0/gsk/gskradialgradientnode.h
+include/gtk-4.0/gsk/gskrectsnap.h
 include/gtk-4.0/gsk/gskrenderer.h
 include/gtk-4.0/gsk/gskrendernode.h
 include/gtk-4.0/gsk/gskrenderreplay.h
@@ -441,7 +430,8 @@ include/gtk-4.0/gtk/gtkstringlist.h
 include/gtk-4.0/gtk/gtkstringsorter.h
 include/gtk-4.0/gtk/gtkstyleprovider.h
 include/gtk-4.0/gtk/gtkswitch.h
-include/gtk-4.0/gtk/gtksvg.h
+include/gtk-4.0/gtk/svg/gtksvg.h
+include/gtk-4.0/gtk/svg/gtksvgenumtypes.h
 include/gtk-4.0/gtk/gtksymbolicpaintable.h
 include/gtk-4.0/gtk/gtktestatcontext.h
 include/gtk-4.0/gtk/gtktestutils.h
