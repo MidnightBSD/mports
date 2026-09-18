@@ -305,6 +305,7 @@ include/gtk-4.0/gtk/gtkeditablelabel.h
 include/gtk-4.0/gtk/gtkemojichooser.h
 include/gtk-4.0/gtk/gtkentry.h
 include/gtk-4.0/gtk/gtkentrybuffer.h
+include/gtk-4.0/gtk/gtkenumlist.h
 include/gtk-4.0/gtk/gtkenums.h
 include/gtk-4.0/gtk/gtkeventcontroller.h
 include/gtk-4.0/gtk/gtkeventcontrollerfocus.h
@@ -429,6 +430,7 @@ include/gtk-4.0/gtk/gtkstringfilter.h
 include/gtk-4.0/gtk/gtkstringlist.h
 include/gtk-4.0/gtk/gtkstringsorter.h
 include/gtk-4.0/gtk/gtkstyleprovider.h
+include/gtk-4.0/gtk/gtksvgwidget.h
 include/gtk-4.0/gtk/gtkswitch.h
 include/gtk-4.0/gtk/svg/gtksvg.h
 include/gtk-4.0/gtk/svg/gtksvgenumtypes.h
