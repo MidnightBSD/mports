@@ -5,8 +5,8 @@
  gst_allocators_headers = files([
    'allocators.h',
    'allocators-prelude.h',
-@@ -102,3 +103,4 @@ meson.override_dependency('gstreamer-allocators-1.0',
+@@ -102,3 +103,4 @@ meson.override_dependency('gstreamer-allocators-1.0', 
    sources : allocators_gen_sources)
-
+ 
  meson.override_dependency('gstreamer-allocators-1.0', allocators_dep)
 +endif
