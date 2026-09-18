@@ -1,5 +1,5 @@
 PORTNAME=	glib-networking
-PORTVERSION=	2.80.1
+PORTVERSION=	2.90.0
 CATEGORIES=	net
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -8,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Network-related giomodules for glib
 WWW=		https://gitlab.gnome.org/GNOME/glib-networking
 
-LICENSE=	lgpl2.1
+LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		compiler:c11 gettext gnome localbase meson pkgconfig \
