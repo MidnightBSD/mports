@@ -34,6 +34,7 @@ lib/cmake/KF6QQC2DesktopStyle/KF6QQC2DesktopStyleConfigVersion.cmake
 %%QT_QMLDIR%%/org/kde/desktop/RoundButton.qml
 %%QT_QMLDIR%%/org/kde/desktop/ScrollBar.qml
 %%QT_QMLDIR%%/org/kde/desktop/ScrollView.qml
+%%QT_QMLDIR%%/org/kde/desktop/SearchField.qml
 %%QT_QMLDIR%%/org/kde/desktop/Slider.qml
 %%QT_QMLDIR%%/org/kde/desktop/SpinBox.qml
 %%QT_QMLDIR%%/org/kde/desktop/SplitView.qml
@@ -86,6 +87,7 @@ share/locale/es/LC_MESSAGES/qqc2desktopstyle_qt.qm
 share/locale/eu/LC_MESSAGES/qqc2desktopstyle_qt.qm
 share/locale/fi/LC_MESSAGES/qqc2desktopstyle_qt.qm
 share/locale/fr/LC_MESSAGES/qqc2desktopstyle_qt.qm
+share/locale/ga/LC_MESSAGES/qqc2desktopstyle_qt.qm
 share/locale/gl/LC_MESSAGES/qqc2desktopstyle_qt.qm
 share/locale/he/LC_MESSAGES/qqc2desktopstyle_qt.qm
 share/locale/hi/LC_MESSAGES/qqc2desktopstyle_qt.qm
@@ -110,6 +112,7 @@ share/locale/sl/LC_MESSAGES/qqc2desktopstyle_qt.qm
 share/locale/sv/LC_MESSAGES/qqc2desktopstyle_qt.qm
 share/locale/ta/LC_MESSAGES/qqc2desktopstyle_qt.qm
 share/locale/tr/LC_MESSAGES/qqc2desktopstyle_qt.qm
+share/locale/ug/LC_MESSAGES/qqc2desktopstyle_qt.qm
 share/locale/uk/LC_MESSAGES/qqc2desktopstyle_qt.qm
 share/locale/zh_CN/LC_MESSAGES/qqc2desktopstyle_qt.qm
 share/locale/zh_TW/LC_MESSAGES/qqc2desktopstyle_qt.qm

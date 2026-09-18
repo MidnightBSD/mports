@@ -9,7 +9,7 @@ WWW=		https://api.kde.org/ecm-index.html
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/COPYING-CMAKE-SCRIPTS
 
-USES=		cmake:testing kde:6 shebangfix tar:xz \
+USES=		cmake:testing kde:6 kfhack shebangfix tar:xz \
 		python:build
 
 SHEBANG_FILES=	kde-modules/kde-git-commit-hooks/json-schema.py

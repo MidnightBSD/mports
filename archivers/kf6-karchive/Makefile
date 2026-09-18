@@ -7,7 +7,7 @@ MAINTAINER=	ports@MidnightBSD.org
 
 LIB_DEPENDS=	libzstd.so:archivers/zstd
 
-USES=		cmake kde:6 pkgconfig qt:6 tar:xz
+USES=		cmake kde:6 kfhack pkgconfig qt:6 tar:xz
 USE_KDE=	ecm:build
 USE_QT=		base tools
 
