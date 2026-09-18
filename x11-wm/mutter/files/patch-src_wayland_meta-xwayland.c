@@ -18,7 +18,7 @@
      return FALSE;
 +
 +#ifndef __linux__
-+  abstract_fd = unix_fd;
++  abstract_fd = g_steal_fd (&unix_fd);
 +#endif
  
    if (abstract_fd_out)
