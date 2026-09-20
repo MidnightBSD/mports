@@ -2,6 +2,7 @@ COMMENT = Network news
 
 SUBDIR += inn
 SUBDIR += lusernet
+SUBDIR += libcanlock
 SUBDIR += newsfetch
 SUBDIR += p5-NNTPClient
 SUBDIR += p5-News-Newsrc
