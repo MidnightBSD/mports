@@ -11,6 +11,7 @@ WWW=		https://www.pango.org/
 LICENSE=	lgpl
 
 USES=		cpe linux:c7
+SKIP_FAKE_ALL=	yes
 CPE_VENDOR=	gnome
 CPE_PRODUCT=	pango
 USE_LDCONFIG=	yes
