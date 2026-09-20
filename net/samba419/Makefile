@@ -618,44 +618,47 @@ post-install-rm-junk:
 post-install-fix-manpages:
 .if ${PORT_OPTIONS:MMANPAGES}
 .for f in vfs_aio_linux.8 vfs_btrfs.8 vfs_ceph.8 vfs_gpfs.8
-				${RM} ${FAKE_DESTDIR}${PREFIX}/share/man/man8/${f}
+				${RM} ${PREFIX}/share/man/man8/${f}
 .endfor
 .if defined(SAMBA4_BUNDLED_LDB) && ${SAMBA4_BUNDLED_LDB} == yes
 .	for f in ldbadd.1 ldbdel.1 ldbedit.1 ldbmodify.1 ldbrename.1 ldbsearch.1
-				${MV} ${FAKE_DESTDIR}${PREFIX}/share/man/man1/${f} ${FAKE_DESTDIR}${PREFIX}/share/man/man1/samba-${f}
+				${MV} ${PREFIX}/share/man/man1/${f} ${PREFIX}/share/man/man1/samba-${f}
 .	endfor
 .endif
 
 .if defined(SAMBA4_BUNDLED_TALLOC) && ${SAMBA4_BUNDLED_TALLOC} == yes
 .	for f in talloc.3
-				${MV} ${FAKE_DESTDIR}${PREFIX}/share/man/man3/${f} ${FAKE_DESTDIR}${PREFIX}/share/man/man3/samba-${f}
+				${MV} ${PREFIX}/share/man/man3/${f} ${PREFIX}/share/man/man3/samba-${f}
 .	endfor
 .endif
 
 .if defined(SAMBA4_BUNDLED_TDB) && ${SAMBA4_BUNDLED_TDB} == yes
 .	for f in tdbbackup.8 tdbdump.8 tdbrestore.8 tdbtool.8
-				${MV} ${FAKE_DESTDIR}${PREFIX}/share/man/man8/${f} ${FAKE_DESTDIR}${PREFIX}/share/man/man8/samba-${f}
+				${MV} ${PREFIX}/share/man/man8/${f} ${PREFIX}/share/man/man8/samba-${f}
 .	endfor
 .endif
 .endif
 
 post-install: post-install-rm-junk post-install-fix-manpages
 .if ${PORT_OPTIONS:MMANPAGES}
-				${LN} -sf smb.conf.5.gz ${FAKE_DESTDIR}${PREFIX}/share/man/man5/smb4.conf.5.gz
+				${LN} -sf smb.conf.5.gz ${PREFIX}/share/man/man5/smb4.conf.5.gz
 .endif
 # Run post-install script
-.for dir in			${SAMBA4_LOGDIR} ${SAMBA4_RUNDIR} ${SAMBA4_LOCKDIR} ${SAMBA4_MODULEDIR}
+# These are outside ${PREFIX}, which fake does not redirect, so they still need
+# ${FAKE_DESTDIR}. ${SAMBA4_MODULEDIR} is under ${PREFIX} and is handled below.
+.for dir in			${SAMBA4_LOGDIR} ${SAMBA4_RUNDIR} ${SAMBA4_LOCKDIR}
 					${INSTALL} -d -m 0755 "${FAKE_DESTDIR}${dir}"
 .endfor
+				${INSTALL} -d -m 0755 "${SAMBA4_MODULEDIR}"
 				${INSTALL} -d -m 0750 "${FAKE_DESTDIR}${SAMBA4_BINDDNSDIR}"
 				${INSTALL} -d -m 0750 "${FAKE_DESTDIR}${SAMBA4_PRIVATEDIR}"
 .for module_class in			${SAMBA4_MODULES_CLASS}
-					${INSTALL} -d -m 0755 "${FAKE_DESTDIR}${SAMBA4_MODULEDIR}/${module_class}"
+					${INSTALL} -d -m 0755 "${SAMBA4_MODULEDIR}/${module_class}"
 .endfor
 .if !defined(WITH_DEBUG)
-				-${FIND} ${FAKE_DESTDIR}${PREFIX}/bin ${FAKE_DESTDIR}${PREFIX}/sbin ${FAKE_DESTDIR}${PREFIX}/libexec \
+				-${FIND} ${PREFIX}/bin ${PREFIX}/sbin ${PREFIX}/libexec \
 					-type f -print0 | ${XARGS} -0 -n 1 -t ${STRIP_CMD}
-				-${FIND} ${FAKE_DESTDIR}${PREFIX}/lib -name '*.so*' \
+				-${FIND} ${PREFIX}/lib -name '*.so*' \
 					-type f -print0 | ${XARGS} -0 -n 1 -t ${STRIP_CMD}
 .endif
 
