@@ -10,6 +10,7 @@ WWW=		https://www.gtk.org/
 LICENSE=	lgpl
 
 USES=		cpe linux:c7
+SKIP_FAKE_ALL=	yes
 CPE_VENDOR=	gnome
 CPE_PRODUCT=	gtk
 USE_LDCONFIG=	yes
