@@ -12,6 +12,7 @@ WWW=		https://github.com/rails/rails/tree/master/railties \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-actionpack80>=${PORTVERSION}<${PORTVERSION}.99:www/rubygem-actionpack80 \
 		rubygem-activesupport80>=${PORTVERSION}<${PORTVERSION}.99:devel/rubygem-activesupport80 \
 		rubygem-irb>=1.13<2:devel/rubygem-irb \
