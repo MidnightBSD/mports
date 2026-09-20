@@ -1,5 +1,6 @@
 PORTNAME=	kinfocenter
 DISTVERSION=	${KDE_PLASMA_VERSION}
+PORTREVISION=	1
 CATEGORIES=	sysutils kde kde-plasma
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -40,6 +41,9 @@ post-install:
 	${INSTALL_DATA} ${FILESDIR}/freebsd_logo.svg /${DATADIR}/images/
 	${MKDIR} /${PREFIX}/etc/xdg
 	${INSTALL_DATA} ${FILESDIR}/kcm-about-distrorc /${PREFIX}/etc/xdg/
-	${REINPLACE_CMD} -i "" -e "s#%%DATADIR%%#${DATADIR}#" /${PREFIX}/etc/xdg/kcm-about-distrorc
+# ${DATADIR} points into the staging directory during fake, so substituting it
+# directly bakes the build path into the installed file. Use the runtime path.
+	${REINPLACE_CMD} -i "" -e "s#%%DATADIR%%#${DATADIR:S,^${PREFIX},${TRUE_PREFIX},}#" \
+		/${PREFIX}/etc/xdg/kcm-about-distrorc
 
 .include <bsd.port.mk>
