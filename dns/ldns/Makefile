@@ -1,6 +1,5 @@
 PORTNAME=	ldns
-DISTVERSION=	1.8.4
-PORTREVISION=	1
+DISTVERSION=	1.9.2
 CATEGORIES=	dns
 MASTER_SITES=	https://www.nlnetlabs.nl/downloads/ldns/ \
 		FREEBSD_LOCAL/ehaupt
