@@ -1,6 +1,6 @@
 PORTNAME=	codex
 DISTVERSIONPREFIX=	rust-v
-DISTVERSION=	0.149.0
+DISTVERSION=	0.155.1
 CATEGORIES=	ai devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -24,7 +24,7 @@ RUN_DEPENDS=	bash:shells/bash \
 		rg:textproc/ripgrep
 TEST_DEPENDS=	bash:shells/bash
 
-USES=		cargo gnome llvm:min=21 ninja:build python:test \
+USES=		cargo dos2unix gnome llvm:min=21 ninja:build python:test \
 		shebangfix ssl
 
 # The all-features workspace test suite exceeds practical time and memory limits.
@@ -37,6 +37,12 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	openai
 
 USE_GNOME=	glib20
+
+# Several Cargo manifests in the MXC git dependency use CRLF endings.  The
+# cargo framework's package scanner requires Unix line endings to locate the
+# individual crates in that repository.
+DOS2UNIX_WRKSRC=	${WRKDIR}
+DOS2UNIX_REGEX=		${WRKDIR}/mxc-[^/]+/.*Cargo.toml
 
 SHEBANG_FILES=	codex-rs/app-server-protocol/scripts/write_schema_fixtures.py \
 		codex-rs/skills/src/assets/samples/imagegen/scripts/image_gen.py \
@@ -124,7 +130,6 @@ post-patch:
 		${BUILD_WRKSRC}/core/src/shell_snapshot_tests.rs \
 		${BUILD_WRKSRC}/core/src/shell_tests.rs \
 		${BUILD_WRKSRC}/core/src/tasks/user_shell_tests.rs \
-		${BUILD_WRKSRC}/core/src/tools/handlers/shell_tests.rs \
 		${BUILD_WRKSRC}/core/src/tools/handlers/unified_exec_tests.rs \
 		${BUILD_WRKSRC}/core/src/tools/runtimes/mod.rs \
 		${BUILD_WRKSRC}/core/src/tools/runtimes/mod_tests.rs \
@@ -164,7 +169,6 @@ post-patch:
 		${BUILD_WRKSRC}/core/tests/suite/approvals.rs \
 		${BUILD_WRKSRC}/core/tests/suite/code_mode.rs \
 		${BUILD_WRKSRC}/core/tests/suite/compact.rs \
-		${BUILD_WRKSRC}/core/tests/suite/compact_remote_parity.rs \
 		${BUILD_WRKSRC}/core/tests/suite/exec.rs \
 		${BUILD_WRKSRC}/core/tests/suite/hooks.rs \
 		${BUILD_WRKSRC}/core/tests/suite/hooks_mcp.rs \
@@ -218,18 +222,19 @@ post-install:
 .endfor
 
 post-install-COMPLETIONS-on:
-	@${MKDIR} ${PREFIX}/etc/bash_completion.d \
-		${PREFIX}/share/fish/completions \
-		${PREFIX}/share/zsh/site-functions
+	@${MKDIR} ${FAKE_DESTDIR}${PREFIX}/etc/bash_completion.d \
+		${FAKE_DESTDIR}${PREFIX}/share/fish/completions \
+		${FAKE_DESTDIR}${PREFIX}/share/zsh/site-functions
 	${INSTALL_DATA} ${WRKSRC}/completions/${PORTNAME}.bash \
-		${PREFIX}/etc/bash_completion.d/${PORTNAME}
+		${FAKE_DESTDIR}${PREFIX}/etc/bash_completion.d/${PORTNAME}
 	${INSTALL_DATA} ${WRKSRC}/completions/${PORTNAME}.fish \
-		${PREFIX}/share/fish/completions/${PORTNAME}.fish
+		${FAKE_DESTDIR}${PREFIX}/share/fish/completions/${PORTNAME}.fish
 	${INSTALL_DATA} ${WRKSRC}/completions/${PORTNAME}.zsh \
-		${PREFIX}/share/zsh/site-functions/_${PORTNAME}
+		${FAKE_DESTDIR}${PREFIX}/share/zsh/site-functions/_${PORTNAME}
 
 post-install-DOCS-on:
-	@${MKDIR} ${DOCSDIR}
-	${INSTALL_MAN} ${PORTDOCS:S|^|${BUILD_WRKSRC}/|} ${DOCSDIR}
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_MAN} ${PORTDOCS:S|^|${BUILD_WRKSRC}/|} \
+		${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
