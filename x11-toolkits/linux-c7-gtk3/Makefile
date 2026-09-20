@@ -14,6 +14,7 @@ RUN_DEPENDS=	hicolor-icon-theme>0:misc/hicolor-icon-theme \
 		adwaita-icon-theme>0:x11-themes/adwaita-icon-theme
 
 USES=		cpe linux:c7
+SKIP_FAKE_ALL=	yes
 CPE_VENDOR=	gnome
 CPE_PRODUCT=	gtk
 USE_LDCONFIG=	yes
