@@ -36,8 +36,6 @@ PLIST_FILES=	${DATADIR}/README_en_AU${AU_VARIANT}.txt \
 		${DATADIR}/en_GB.dic \
 		${DATADIR}/en_GB.aff
 
-COPY=		-lh	# Use hardlinks rather than copies under stage/
-
 OPTIONS_SINGLE=	AU CA GB US
 OPTIONS_SINGLE_AU=	AU_STANDARD AU_LARGE
 OPTIONS_SINGLE_CA=	CA_STANDARD CA_LARGE
