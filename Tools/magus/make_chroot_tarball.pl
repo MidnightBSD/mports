@@ -114,10 +114,19 @@ if ($arch eq 'amd64') {
     push @files, '/usr/lib32';
 }
 
+# files to exclude from the tarball.  /etc/ssl/cert.pem is a symlink to the
+# ca_root_nss package's bundle; if it is present in the chroot, mport refuses
+# to install ca_root_nss ("already exists but is not managed by mport").
+my @excludes = qw(
+  /etc/ssl/cert.pem
+);
+
 # directories to get out of the tempdir
 my @tempdirs = qw(mnt proc);
 
-run(qq(/usr/bin/tar -cpf $ballname @files));
+my @exclude_args = map { "--exclude=$_" } @excludes;
+
+run(qq(/usr/bin/tar -cpf $ballname @exclude_args @files));
 
 mkdir("$tmpdir/$_") for @tempdirs;
 
