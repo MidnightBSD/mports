@@ -9,7 +9,7 @@ COMMENT=	Sophisticated paginator for Rails 4+
 WWW=		https://github.com/kaminari/kaminari
 
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/mit-LICENSE
+LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
 RUN_DEPENDS=	rubygem-activesupport-gitlab>=4.1.0:devel/rubygem-activesupport-gitlab \
 		rubygem-kaminari-actionview-rails-gitlab>=${PORTVERSION}:www/rubygem-kaminari-actionview-rails-gitlab \
