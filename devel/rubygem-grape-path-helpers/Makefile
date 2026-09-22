@@ -11,6 +11,7 @@ WWW=		https://gitlab.com/gitlab-org/grape-path-helpers
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activesupport-gitlab>=0:devel/rubygem-activesupport-gitlab \
 		rubygem-grape20>=2.0<3:devel/rubygem-grape20 \
 		rubygem-rake>=12:devel/rubygem-rake \
