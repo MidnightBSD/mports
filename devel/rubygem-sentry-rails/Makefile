@@ -10,6 +10,7 @@ WWW=		https://github.com/getsentry/sentry-ruby
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-railties-gitlab>=5.0.0:www/rubygem-railties-gitlab \
 		rubygem-sentry-ruby>=5.23.0<5.24:devel/rubygem-sentry-ruby
 
