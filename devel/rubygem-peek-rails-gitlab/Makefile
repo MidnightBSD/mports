@@ -11,6 +11,7 @@ WWW=		https://github.com/peek/peek
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-railties-gitlab>=4.0.0:www/rubygem-railties-gitlab
 
 USES=		gem
