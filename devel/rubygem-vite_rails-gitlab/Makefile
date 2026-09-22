@@ -12,6 +12,7 @@ WWW=		https://github.com/ElMassimo/vite_ruby \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-railties-gitlab>=5.1<9:www/rubygem-railties-gitlab \
 		rubygem-vite_ruby-gitlab>=3.2.2<4:devel/rubygem-vite_ruby-gitlab
 
