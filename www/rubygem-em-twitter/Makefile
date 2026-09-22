@@ -12,7 +12,7 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
-RUN_DEPENDS=	rubygem-buftok0>=0.2<1:devel/rubygem-buftok0 \
+RUN_DEPENDS=	rubygem-buftok>=0.2<1:devel/rubygem-buftok \
 		rubygem-eventmachine>=1.0<2:devel/rubygem-eventmachine \
 		rubygem-http_parser.rb>=0.6<1:net/rubygem-http_parser.rb \
 		rubygem-simple_oauth>=0.2<1:net/rubygem-simple_oauth
