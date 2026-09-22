@@ -13,9 +13,14 @@ MAINTAINER=	CQG00620@nifty.ne.jp
 COMMENT=	Japanized NetHack
 WWW=		https://sourceforge.jp/projects/jnethack/
 
+LICENSE=	nethack
+LICENSE_NAME=	NETHACK GENERAL PUBLIC LICENSE
+LICENSE_FILE=	${WRKSRC}/dat/license
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
-USES=		cpe gmake tar:tgz
+USES=		cpe gmake ncurses tar:tgz
 MAKE_ENV=	GRAPHICS="${GRAPHICS}"
 PLIST_SUB=	DATADIR="${HACKDIR}" \
 		HACKNAME="${HACKNAME}"
@@ -37,7 +42,7 @@ OPTIONS_DEFAULT=SHELL X11
 SHELL_DESC=	Shell support
 
 X11_USES=	xorg
-X11_USE=	XORG=xaw,xpm
+X11_USE=	XORG=ice,sm,x11,xaw,xext,xmu,xpm,xt
 X11_VARS=	GRAPHICS=X11_GRAPHICS
 
 .include <bsd.mport.options.mk>
@@ -74,6 +79,7 @@ post-install:
 # the script ends up with HACKDIR pointing into the stage directory.  Strip it
 # back to the runtime path.
 	@${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' ${PREFIX}/bin/${HACKNAME}
+	@${RM} ${PREFIX}/bin/${HACKNAME}.bak
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
