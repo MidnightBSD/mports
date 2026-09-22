@@ -21,10 +21,12 @@ DOCSDIR=	${PREFIX}/share/doc/postgresql/${PORTNAME}
 EXAMPLESDIR=	${PREFIX}/share/examples/postgresql/${PORTNAME}
 INSTALL_TARGET=	install-strip
 
-post-install:
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/examples/* ${STAGEDIR}${EXAMPLESDIR}
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/docs/libpgeasy.html ${STAGEDIR}${DOCSDIR}
+post-install-EXAMPLES-on:
+	@${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/examples/* ${FAKE_DESTDIR}${EXAMPLESDIR}
+
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/docs/libpgeasy.html ${FAKE_DESTDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
