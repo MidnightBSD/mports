@@ -36,6 +36,7 @@ post-configure:
 	@cd ${WRKSRC}/src/backend && ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${MAKE_CMD} generated-headers
 
 post-install:
-	@- ${INSTALL_DATA} ${WRKSRC}/contrib/README ${STAGEDIR}${DOCSDIR}/extension/README
+	@${MKDIR} ${DOCSDIR}/extension
+	${INSTALL_DATA} ${WRKSRC}/contrib/README ${DOCSDIR}/extension/README
 
 .include "${MASTERDIR}/Makefile"
