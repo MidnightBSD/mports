@@ -333,10 +333,6 @@ PLIST_SUB=	${SUB_LIST}
 NO_TEST=	yes
 
 post-extract:
-	@${RM} -r ${WRKSRC}/vendor/go.etcd.io/etcd/client/pkg/v3
-	@${RLN} ${WRKSRC_etcd_io_etcd}/client/pkg ${WRKSRC}/vendor/go.etcd.io/etcd/client/pkg/v3
-	@${RM} -r ${WRKSRC}/vendor/go.etcd.io/etcd/client/v3
-	@${RLN} ${WRKSRC_etcd_io_etcd}/client/v3 ${WRKSRC}/vendor/go.etcd.io/etcd/client/v3
 	@${RM} -r ${WRKSRC}/vendor/github.com/Azure/go-autorest/autorest
 	@${RLN} ${WRKSRC_azure_go_autorest_autorest}/autorest ${WRKSRC}/vendor/github.com/Azure/go-autorest/autorest
 	@${RM} -r ${WRKSRC}/vendor/github.com/Azure/go-autorest/autorest/adal
