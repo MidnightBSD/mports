@@ -18,7 +18,8 @@ LIB_DEPENDS=	libfwnt.so:devel/libfwnt
 GNU_CONFIGURE=	yes
 GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ARGS=	--enable-python --with-openssl=no \
-		--with-libfwnt=${LOCALBASE}
+		--with-libfwnt=${LOCALBASE} \
+		--with-pythondir=${PYTHON_SITELIBDIR}
 CONFIGURE_ENV=	PYTHON_CONFIG=${PYTHON_CMD}-config
 USES=		cpe libtool fuse pathfix pkgconfig python
 CPE_VENDOR=	${PORTNAME}_project
