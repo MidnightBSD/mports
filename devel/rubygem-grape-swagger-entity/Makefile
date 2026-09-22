@@ -10,6 +10,7 @@ WWW=		https://github.com/ruby-grape/grape-swagger-entity
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-grape-entity>=1,1<2,1:devel/rubygem-grape-entity \
 		rubygem-grape-swagger-gitlab>=2<3:devel/rubygem-grape-swagger-gitlab
 
