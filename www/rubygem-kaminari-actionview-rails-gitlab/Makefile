@@ -9,7 +9,7 @@ COMMENT=	Kaminari Action View adapter
 WWW=		https://github.com/kaminari/kaminari/tree/master/kaminari-actionview
 
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/mit-LICENSE
+LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-actionview-gitlab>=0:devel/rubygem-actionview-gitlab \
