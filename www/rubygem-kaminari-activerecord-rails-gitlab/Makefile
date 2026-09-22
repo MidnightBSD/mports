@@ -9,7 +9,7 @@ COMMENT=	Kaminari Active Record adapter
 WWW=		https://github.com/kaminari/kaminari/tree/master/kaminari-activerecord
 
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/mit-LICENSE
+LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activerecord-gitlab>=0:databases/rubygem-activerecord-gitlab \
