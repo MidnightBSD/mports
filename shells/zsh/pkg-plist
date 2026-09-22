@@ -105,6 +105,7 @@ bin/zsh-%%ZSH_VER%%
 %%DATADIR%%/%%ZSH_VER%%/functions/Completion/BSD/_ktrace_points
 %%DATADIR%%/%%ZSH_VER%%/functions/Completion/BSD/_ldap
 %%DATADIR%%/%%ZSH_VER%%/functions/Completion/BSD/_login_classes
+%%DATADIR%%/%%ZSH_VER%%/functions/Completion/BSD/_mdo
 %%DATADIR%%/%%ZSH_VER%%/functions/Completion/BSD/_mixerctl
 %%DATADIR%%/%%ZSH_VER%%/functions/Completion/BSD/_nbsd_architectures
 %%DATADIR%%/%%ZSH_VER%%/functions/Completion/BSD/_obsd_architectures

@@ -93,8 +93,10 @@ CONFIGURE_ENV+=	ac_cv_lib_iconv_libiconv=no
 
 post-patch:
 	@${REINPLACE_CMD} -e '/LIBS/s|-lrt||' ${WRKSRC}/configure
+	@${TOUCH} ${WRKSRC}/stamp-h.in
 	@${REINPLACE_CMD} -e "s|/etc/|${LOCALBASE}/etc/|" \
 		${WRKSRC}/Functions/MIME/zsh-mime-setup
+	@${RM} ${WRKSRC}/Functions/MIME/zsh-mime-setup.bak
 	${RM} ${WRKSRC}/Doc/help.txt
 
 post-patch-STATIC-on:
