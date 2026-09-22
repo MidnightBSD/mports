@@ -14,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-faraday-gitlab>=1<3:www/rubygem-faraday-gitlab \
-		rubygem-sawyer>=0.9<1:www/rubygem-sawyer
+		rubygem-sawyer-gitlab>=0.9<1:www/rubygem-sawyer-gitlab
 
 USES=		gem
 

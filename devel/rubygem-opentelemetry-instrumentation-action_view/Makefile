@@ -12,6 +12,7 @@ WWW=		https://opentelemetry.io/ \
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-opentelemetry-instrumentation-active_support>=0.7<1:devel/rubygem-opentelemetry-instrumentation-active_support
 
 USES=		gem

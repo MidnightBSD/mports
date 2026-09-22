@@ -13,6 +13,7 @@ WWW=		https://github.com/rails/rails/tree/master/railties \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-actionpack-gitlab>=${PORTVERSION}<${PORTVERSION:R}.99:www/rubygem-actionpack-gitlab \
 		rubygem-activesupport-gitlab>=${PORTVERSION}<${PORTVERSION:R}.99:devel/rubygem-activesupport-gitlab \
 		rubygem-cgi>=0:www/rubygem-cgi \

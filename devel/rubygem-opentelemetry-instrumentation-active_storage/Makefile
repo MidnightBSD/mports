@@ -1,5 +1,5 @@
 PORTNAME=	opentelemetry-instrumentation-active_storage
-PORTVERSION=	0.2.0
+PORTVERSION=	0.5.1
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
@@ -12,7 +12,8 @@ WWW=		https://opentelemetry.io/ \
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	rubygem-opentelemetry-instrumentation-active_support>=0.7<1:devel/rubygem-opentelemetry-instrumentation-active_support
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	rubygem-opentelemetry-instrumentation-active_support>=0.10<1:devel/rubygem-opentelemetry-instrumentation-active_support
 
 USES=		gem
 
