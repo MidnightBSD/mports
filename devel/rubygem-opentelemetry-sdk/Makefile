@@ -18,6 +18,7 @@ RUN_DEPENDS=	rubygem-logger>=0:devel/rubygem-logger \
 		rubygem-opentelemetry-registry>=0.2<1:devel/rubygem-opentelemetry-registry \
 		rubygem-opentelemetry-semantic_conventions>=0:devel/rubygem-opentelemetry-semantic_conventions
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 USES=		gem
 
 RUBY_VER=	3.3
