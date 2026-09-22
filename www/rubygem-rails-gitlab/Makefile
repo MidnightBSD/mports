@@ -10,7 +10,7 @@ WWW=		https://rubyonrails.org/ \
 		https://github.com/rails/rails
 
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/mit-LICENSE
+LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
 RUN_DEPENDS=	rubygem-actioncable-gitlab>=${PORTVERSION}<${PORTVERSION:R}.99:www/rubygem-actioncable-gitlab \
 		rubygem-actionmailbox-gitlab>=${PORTVERSION}<${PORTVERSION:R}.99:mail/rubygem-actionmailbox-gitlab \
