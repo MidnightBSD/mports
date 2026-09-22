@@ -10,6 +10,7 @@ WWW=		https://github.com/roidrage/lograge
 
 LICENSE=	mit
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-actionpack-gitlab>=4:www/rubygem-actionpack-gitlab \
 		rubygem-activesupport-gitlab>=4:devel/rubygem-activesupport-gitlab \
 		rubygem-railties-gitlab>=4:www/rubygem-railties-gitlab \
