@@ -13,6 +13,7 @@ WWW=		https://www.ruby-grape.org/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activesupport-gitlab>=5:devel/rubygem-activesupport-gitlab \
 		rubygem-builder>=0:devel/rubygem-builder \
 		rubygem-dry-types-gitlab>=1.1:devel/rubygem-dry-types-gitlab \
