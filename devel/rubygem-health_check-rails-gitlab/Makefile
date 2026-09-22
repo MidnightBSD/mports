@@ -9,7 +9,7 @@ COMMENT=	Simple health check of Rails app for uptime monitoring
 WWW=		https://github.com/ianheggie/health_check
 
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/mit-LICENSE
+LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
 RUN_DEPENDS=	rubygem-railties-gitlab>=5.0:www/rubygem-railties-gitlab
 
