@@ -28,11 +28,11 @@ do-build:
 	${MAKE_CMD} -C ${WRKSRC} html
 
 do-install:
-	@ ${MKDIR} ${STAGEDIR}${PGDOCSDIR}
+	@${MKDIR} ${PGDOCSDIR}
 	( cd ${WRKSRC}/doc/src/sgml/html && \
-		${COPYTREE_SHARE} . ${STAGEDIR}${PGDOCSDIR} )
+		${COPYTREE_SHARE} . ${PGDOCSDIR} )
 
 post-install:
-	@(cd ${STAGEDIR}${PREFIX} && ${FIND} ${PGDOCSREL} -type f) >> ${TMPPLIST}
+	@(cd ${PREFIX} && ${FIND} ${PGDOCSREL} -type f) >> ${TMPPLIST}
 
 .include "${MASTERDIR}/Makefile"
