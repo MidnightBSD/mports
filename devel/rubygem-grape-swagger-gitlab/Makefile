@@ -11,6 +11,7 @@ WWW=		https://github.com/ruby-grape/grape-swagger
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-grape20>=1.7<4.0:devel/rubygem-grape20
 
 USES=		gem
