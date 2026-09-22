@@ -9,7 +9,7 @@ COMMENT=	Bundle and process CSS with Tailwind, Bootstrap, PostCSS, Sass in Rails
 WWW=		https://github.com/rails/cssbundling-rails
 
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/mit-LICENSE
+LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
 RUN_DEPENDS=	rubygem-railties-gitlab>=6.0.0:www/rubygem-railties-gitlab
 
