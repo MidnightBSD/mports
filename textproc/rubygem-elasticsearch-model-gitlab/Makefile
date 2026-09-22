@@ -12,6 +12,7 @@ WWW=		https://github.com/elastic/elasticsearch-rails/tree/master/elasticsearch-m
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activesupport-gitlab>=3:devel/rubygem-activesupport-gitlab \
 		rubygem-elasticsearch-gitlab>=7<8:textproc/rubygem-elasticsearch-gitlab \
 		rubygem-hashie-gitlab>=0:devel/rubygem-hashie-gitlab
