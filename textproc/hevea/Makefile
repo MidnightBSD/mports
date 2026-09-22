@@ -1,13 +1,18 @@
 PORTNAME=	hevea
 PORTVERSION=	2.38
 CATEGORIES=	textproc
-MASTER_SITES=	http://moscova.inria.fr/~maranget/${PORTNAME}/distri/
+MASTER_SITES=	https://hevea.inria.fr/distri/
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Convert LaTeX to HTML
 WWW=		http://para.inria.fr/~maranget/hevea/
+
+LICENSE=	QPL-1.0
+LICENSE_NAME=	Q Public License 1.0
+LICENSE_FILE=	${WRKSRC}/LICENSE
+LICENSE_PERMS=	${_LICENSE_PERMS_DEFAULT}
 
 BUILD_DEPENDS=	ocamlbuild:devel/ocaml-ocamlbuild
 
