@@ -39,8 +39,7 @@ PORTSCOUT=	skipv:5.7.2.1
 GNU_CONFIGURE=	yes
 USE_RC_SUBR=	snmpd snmptrapd
 USE_LDCONFIG=	yes
-LIB_DEPENDS=	libpcre.so:devel/pcre \
-		libpcap.so:net/libpcap
+LIB_DEPENDS=	libpcre.so:devel/pcre
 
 USES=		cpe libtool perl5 shebangfix ssl
 SHEBANG_FILES=	local/checkbandwidth local/mib2c local/net-snmp-cert \
