@@ -11,6 +11,7 @@ WWW=		https://github.com/heartcombo/devise
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-bcrypt>=3.0<4:security/rubygem-bcrypt \
 		rubygem-orm_adapter>=0.1<1:devel/rubygem-orm_adapter \
 		rubygem-railties-gitlab>=4.1.0:www/rubygem-railties-gitlab \
