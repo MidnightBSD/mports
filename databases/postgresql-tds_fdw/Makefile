@@ -18,6 +18,6 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	tds-fdw
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/postgresql/tds_fdw.so
+	${STRIP_CMD} ${PREFIX}/lib/postgresql/tds_fdw.so
 
 .include <bsd.port.mk>
