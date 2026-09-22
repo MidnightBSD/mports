@@ -13,6 +13,7 @@ LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	rubygem-opentelemetry-instrumentation-base>=0.23<1:devel/rubygem-opentelemetry-instrumentation-base
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		gem
 
