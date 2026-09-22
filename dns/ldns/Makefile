@@ -145,8 +145,7 @@ post-install:
 
 .if (defined(BUILD_PYLDNS))
 post-install:
-# file /usr/local/lib/python3.11/site-packages/_ldns.so.3.6.0
-	${STRIP_CMD} ${PREFIX}/lib/${PYTHON_VERSION}/site-packages/_ldns.so.3.6.0
+	${STRIP_CMD} ${PREFIX}/lib/${PYTHON_VERSION}/site-packages/_ldns.so.3.9.0
 .endif # BUILD_PYLDNS
 
 .include <bsd.port.post.mk>
