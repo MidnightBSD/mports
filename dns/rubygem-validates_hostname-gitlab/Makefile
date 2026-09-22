@@ -9,7 +9,7 @@ COMMENT=	Extension to ActiveRecord::Base for validating hostnames
 WWW=		https://github.com/KimNorgaard/validates_hostname
 
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/mit-LICENSE
+LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-activerecord-gitlab>=3.0:databases/rubygem-activerecord-gitlab \
