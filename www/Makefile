@@ -534,6 +534,7 @@
     SUBDIR += rubygem-rqrcode_core-gitlab
     SUBDIR += rubygem-ruby-openai37
     SUBDIR += rubygem-sawyer
+    SUBDIR += rubygem-sawyer-gitlab
     SUBDIR += rubygem-socksify
     SUBDIR += rubygem-swd
     SUBDIR += rubygem-toml-rb
