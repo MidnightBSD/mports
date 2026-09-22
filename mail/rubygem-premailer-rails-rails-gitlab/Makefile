@@ -11,6 +11,7 @@ WWW=		https://github.com/fphilipe/premailer-rails
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-actionmailer-gitlab>=3:mail/rubygem-actionmailer-gitlab \
 		rubygem-net-smtp>=0:mail/rubygem-net-smtp \
 		rubygem-premailer>=1.7.9<2:mail/rubygem-premailer
