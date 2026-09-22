@@ -16,6 +16,6 @@ USES=		bison gmake pgsql
 LLD_UNSAFE=	yes
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/postgresql/plproxy.so
+	${STRIP_CMD} ${PREFIX}/lib/postgresql/plproxy.so
 
 .include <bsd.port.mk>
