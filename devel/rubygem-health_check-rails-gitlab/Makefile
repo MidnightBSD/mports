@@ -11,6 +11,7 @@ WWW=		https://github.com/ianheggie/health_check
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-railties-gitlab>=5.0:www/rubygem-railties-gitlab
 
 USES=		gem shebangfix
