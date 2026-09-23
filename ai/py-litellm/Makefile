@@ -1,9 +1,9 @@
 PORTNAME=	litellm
-DISTVERSION=	1.91.4
-PORTREVISION=	1
+DISTVERSION=	1.102.1
 CATEGORIES=	ai python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Call all LLM APIs using the OpenAI format
@@ -12,7 +12,8 @@ WWW=		https://github.com/BerriAI/litellm
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}uv-build>=0.11.8:devel/py-uv-build@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}maturin>=1.13<2:devel/py-maturin@${PY_FLAVOR}
+LIB_DEPENDS=	libonig.so:devel/oniguruma
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}fastuuid>=0.14.0<1.0:devel/py-fastuuid@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}httpx>=0.28.0<1.0.0:www/py-httpx@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}openai>=2.20.0<3.0.0:ai/py-openai@${PY_FLAVOR} \
@@ -22,18 +23,29 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}fastuuid>=0.14.0<1.0:devel/py-fastuuid@${PY_
 		${PYTHON_PKGNAMEPREFIX}tokenizers>=0.21.0<1.0:textproc/py-tokenizers@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}click>=8.0.0<9.0:devel/py-click@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}Jinja2>=3.1.6<4.0.0:devel/py-Jinja2@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}aiohttp>=3.10:www/py-aiohttp@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}aiohttp>=3.14.2<4.0:www/py-aiohttp@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pydantic2>=2.10.0<3.0.0:devel/py-pydantic2@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}jsonschema>=4.0.0<5.0.0:devel/py-jsonschema@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}pydantic-settings>=2.14.1<3.0:devel/py-pydantic-settings@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}jsonschema>=4.0.0<5.0.0:devel/py-jsonschema@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}boto3>=1.43.1<2.0:www/py-boto3@${PY_FLAVOR}
 
-USES=		python shebangfix
+USES=		cargo python shebangfix
 USE_PYTHON=	autoplist concurrent pep517
 
 SHEBANG_FILES=	litellm/proxy/start.sh
 bash_CMD=	${SH}
 
+CARGO_CARGOTOML=${WRKSRC}/litellm-rust/Cargo.toml
+CARGO_CARGOLOCK=${WRKSRC}/litellm-rust/Cargo.lock
+CARGO_BUILD=	no
+CARGO_INSTALL=	no
+CARGO_TEST=	no
+
+MAKE_ENV=	${CARGO_ENV}
+
+BINARY_ALIAS=	python3=${PYTHON_CMD}
+
 REINPLACE_ARGS=	-i ''
-NO_ARCH=	yes
 
 PORTDOCS=	README.md
 

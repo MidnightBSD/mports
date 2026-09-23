@@ -1,13 +1,11 @@
---- pyproject.toml.orig	2026-06-23 19:11:42 UTC
+--- pyproject.toml.orig	2026-09-23 15:38:23 UTC
 +++ pyproject.toml
-@@ -227,7 +227,7 @@ healthcheck = [
+@@ -275,7 +275,7 @@ healthcheck = [
  ]
--
-+
+ 
  [build-system]
--requires = ["uv_build==0.11.8"]
-+requires = ["uv_build>=0.11.8"]
- build-backend = "uv_build"
--
-+
- [tool.uv]
+-requires = ["maturin==1.15.0"]
++requires = ["maturin>=1.13"]
+ build-backend = "maturin"
+ 
+ [tool.maturin]
