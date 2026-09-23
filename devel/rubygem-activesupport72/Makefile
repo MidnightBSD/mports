@@ -1,5 +1,5 @@
 PORTNAME=	activesupport
-PORTVERSION=	7.2.3.1
+PORTVERSION=	7.2.3.2
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	72
@@ -12,7 +12,7 @@ WWW=		https://github.com/rails/rails/tree/main/activesupport \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
-BUILD_DEPENDS=  ${RUN_DEPENDS}
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-base64>=0:converters/rubygem-base64 \
 		rubygem-benchmark>=0.3:benchmarks/rubygem-benchmark \
 		rubygem-bigdecimal>=0:math/rubygem-bigdecimal \
