@@ -1,6 +1,7 @@
 PORTNAME=	libxkbcommon
 DISTVERSIONPREFIX=	xkbcommon-
 DISTVERSION=	1.13.2
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -20,6 +21,7 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	xkbcommon
 USE_LDCONFIG=	yes
 SHLIB_VERSION=	${DISTVERSION:S/^1./0./}
+HAS_SYMBOL_VERSION=	${PREFIX}/lib/libxkbregistry.so.${SHLIB_VERSION}
 PLIST_SUB=	SHLIB_VERSION=${SHLIB_VERSION}
 MESON_ARGS=	-Denable-docs=false \
 		-Dx-locale-root="${PREFIX}/lib/X11/locale" \
