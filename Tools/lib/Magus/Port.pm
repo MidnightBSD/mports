@@ -99,6 +99,22 @@ __PACKAGE__->set_sql(ready_test_ports => qq{
           SELECT 1 FROM locks
           WHERE locks.port=__TABLE__.id AND locks.phase='test'
         )
+        AND NOT EXISTS (
+          SELECT 1
+          FROM depends test_dep
+          JOIN ports dep ON dep.id=test_dep.dependency
+          WHERE test_dep.port=__TABLE__.id
+            AND test_dep.type='test'
+            AND dep.status NOT IN ('pass', 'warn')
+        )
+        AND NOT EXISTS (
+          SELECT 1
+          FROM depends test_dep
+          JOIN locks dep_locks ON dep_locks.port=test_dep.dependency
+                              AND dep_locks.phase='build'
+          WHERE test_dep.port=__TABLE__.id
+            AND test_dep.type='test'
+        )
       ORDER BY __TABLE__.name ASC
   });
 __PACKAGE__->set_sql(ready_scan_ports => qq{
@@ -197,6 +213,40 @@ sub all_depends {
   delete $depends{$self};
   return sort values %depends;
 }    
+
+sub build_depends_closure {
+  my ($self) = @_;
+  return _phase_depends_closure($self, 0);
+}
+
+sub test_depends_closure {
+  my ($self) = @_;
+  return _phase_depends_closure($self, 1);
+}
+
+sub _phase_depends_closure {
+  my ($self, $include_test) = @_;
+  my %depends;
+  _walk_phase_depends($self, \%depends, $include_test);
+  delete $depends{$self};
+  return sort values %depends;
+}
+
+sub _walk_phase_depends {
+  my ($port, $depends, $include_test) = @_;
+
+  foreach my $relation (Magus::Depend->search(port => $port)) {
+    next if $relation->type eq q{test} && !$include_test;
+
+    my $depend = $relation->dependency;
+    next if $depends->{$depend};
+    $depends->{$depend} = $depend;
+
+    # Dependency tests do not affect whether its package can be installed.
+    # Only the selected port's direct test dependencies belong in this phase.
+    _walk_phase_depends($depend, $depends, 0);
+  }
+}
 
 sub _walk {
   my ($port, $depends) = @_;

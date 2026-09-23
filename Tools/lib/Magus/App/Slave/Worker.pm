@@ -120,6 +120,11 @@ sub prep_chroot {
     tarball  => $Magus::Config{ChrootTarBall},
   );
 
+  # A dirty chroot is cleaned by Magus::Chroot->new().  Do not start a new
+  # build if that cleanup left artifacts which could make the ports framework
+  # reuse stale stage cookies or generated files.
+  $self->{chroot}->assert_workdir_empty;
+
   # Mark the chroot before dependencies or distfiles are injected so an
   # interruption cannot leave modified state advertised as clean.
   $self->{chroot}->mark_dirty;
@@ -141,15 +146,20 @@ sub inject_fetch_depends {
 
 sub inject_depends {
   my ($self) = @_;
-  
-  foreach my $depend ($self->{port}->all_depends) {
+
+  my $phase = $self->{phase} || q{build};
+  my @depends = $phase eq q{test}
+    ? $self->{port}->test_depends_closure
+    : $self->{port}->build_depends_closure;
+
+  foreach my $depend (@depends) {
     if ($depend->status eq 'pass' || $depend->status eq 'warn') {
       # There should be a package that we can use to install the port.
       $self->inject_pkgfile($depend);
       next;
     }
   
-    die "Port was scheduled as ready to build, but $depend had not been built successfuly.\n";
+    die "Port was scheduled as ready for $phase, but $depend had not been built successfully.\n";
   }
 }
 

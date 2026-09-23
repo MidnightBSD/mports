@@ -368,7 +368,8 @@ create VIEW ready_ports AS
     WHERE ports.status = 'untested' and locks.id is null and
           not exists
               (SELECT depends.port AS port
-               FROM depends WHERE ports.id = depends.port and (not exists
+               FROM depends WHERE ports.id = depends.port
+                 and depends.type <> 'test' and (not exists
                  (SELECT ports.id as dep_id
                   FROM ports
                   WHERE ports.id = depends.dependency and (ports.status = 'pass' or ports.status = 'warn'))

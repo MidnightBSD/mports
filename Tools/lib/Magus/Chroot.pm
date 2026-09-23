@@ -704,6 +704,36 @@ sub workdir {
 }
 
 
+=head2 $chroot->assert_workdir_empty
+
+Verify that the build work directory is empty after chroot preparation. Build
+artifacts are intentionally retained until the worker is reused, so callers
+should run this check after C<new()> has performed any pending cleanup and
+before marking the chroot dirty for the next build.
+
+=cut
+
+sub assert_workdir_empty {
+  my ($self) = @_;
+
+  my $path = "$self->{root}$self->{workdir}";
+  opendir(my $dh, $path)
+    or die "Could not open Magus work directory $path: $!\n";
+  my @entries = sort grep { $_ ne q{.} && $_ ne q{..} } readdir($dh);
+  closedir($dh)
+    or die "Could not close Magus work directory $path: $!\n";
+
+  return 1 unless @entries;
+
+  my @shown = @entries > 10 ? @entries[0 .. 9] : @entries;
+  my $extra = @entries > @shown
+    ? sprintf(" and %d more", scalar(@entries) - scalar(@shown))
+    : q{};
+  die "Magus work directory $path is not empty after chroot cleanup: "
+    . join(q{, }, @shown) . "$extra\n";
+}
+
+
 =head2 $chroot->distfiles
 
 Returns the directory that DISTDIR should be set to.
