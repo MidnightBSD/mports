@@ -21,6 +21,8 @@ CONFIGURE_ARGS=	--enable-python --with-openssl=no \
 		--with-libfwnt=${LOCALBASE} \
 		--with-pythondir=${PYTHON_SITELIBDIR}
 CONFIGURE_ENV=	PYTHON_CONFIG=${PYTHON_CMD}-config
+# configure derives pyexecdir from distutils, which Python 3.12 lacks
+MAKE_ARGS=	pyexecdir=${PYTHON_SITELIBDIR}
 USES=		cpe libtool fuse pathfix pkgconfig python
 CPE_VENDOR=	${PORTNAME}_project
 USE_LDCONFIG=	yes
