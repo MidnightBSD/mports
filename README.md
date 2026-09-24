@@ -42,7 +42,7 @@ building a given port.  /usr/mports/Distfiles can also be periodically
 cleaned without ill-effect.
 
 ## Supported Releases ##
-We currently support MidnightBSD 3.x+ with mports.
+We currently support MidnightBSD 4.x+ with mports. Support for MidnightBSD 3.x is no longer guaranteed.
 
 Users on older releases should checkout a quarterly tagged release or an older point in time relative to
 when the release was out.
