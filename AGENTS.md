@@ -157,9 +157,14 @@ If `portlint` is available, run it before committing. If it is not installed, sk
 
 ## ELF symbol versioning in shared libraries
 
-The framework never adds or removes `-Wl,--version-script`; a library only gets
-version nodes when the upstream build passes its own map to the linker. Neither
-`strip`, `meson --strip`, nor `cmake install/strip` removes `.gnu.version_d`.
+By default the framework neither adds nor removes `-Wl,--version-script`; a
+library gets version nodes when the upstream build passes its own map to the
+linker. Two non-default paths also matter: port patches can add the flag
+themselves (e.g. `security/nss/files/patch-coreconf_MidnightBSD.mk`), and
+`Mk/extensions/libtool.mk` rewrites libtool's `-retain-symbols-file` into an
+anonymous `-version-script`, which only filters exports and creates no version
+nodes. Neither `strip`, `meson --strip`, nor `cmake install/strip` removes
+`.gnu.version_d`.
 Two toolchain behaviours make upstream capability probes report "unsupported"
 on MidnightBSD (and on FreeBSD), so the map is silently dropped:
 
