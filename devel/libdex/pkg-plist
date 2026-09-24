@@ -40,7 +40,7 @@ lib/libdex-1.so
 lib/libdex-1.so.1
 lib/libdex-1.so.1.0.0
 libdata/pkgconfig/libdex-1.pc
-lib/python3.12/site-packages/gi/overrides/Dex.py
+%%PYTHON_SITELIBDIR%%/gi/overrides/Dex.py
 libexec/libdex-1/dex-gdbus-codegen-extension.py
 share/gir-1.0/Dex-1.gir
 share/vala/vapi/libdex-1.deps
