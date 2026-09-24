@@ -1,13 +1,18 @@
---- data/meson.build.orig
+--- data/meson.build.orig	2026-05-28 14:47:55 UTC
 +++ data/meson.build
-@@ -18,2 +18,3 @@
+@@ -17,6 +17,7 @@ i18n.merge_file(
+ 
  # Next, let's install the necessary systemd scaffolding
-
+ 
 +if enable_systemd
-@@ -73,5 +74,6 @@
+ install_data(
+     'gnome.session.conf',
+     install_dir: systemd_userunitdir / 'gnome-session@gnome.target.d',
+@@ -73,6 +74,7 @@ install_data(
    rename: 'override.conf',
    install_dir : join_paths(systemd_userunitdir, 'app-flatpak-.scope.d')
  )
 +endif
-
+ 
  # Install some other misc. configuration files
+ 

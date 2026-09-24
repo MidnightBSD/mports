@@ -1,9 +1,31 @@
---- gnome-session/meson.build.orig
+--- gnome-session/meson.build.orig	2026-05-28 14:47:55 UTC
 +++ gnome-session/meson.build
-@@ -57,2 +57,6 @@
+@@ -19,6 +19,7 @@ executable(
+   install_dir: session_bindir
+ )
+ 
++if enable_systemd_session
+ sources = files(
+     'gsm-util.c',
+     'leader-systemd.c',
+@@ -34,6 +35,8 @@ executable(
+   install_dir: session_libexecdir
+ )
+ 
++endif
++
+ sources = files(
+   'gsm-app.c',
+   'gsm-client.c',
+@@ -49,6 +52,11 @@ sources = files(
+   'gsm-util.c',
    'service-main.c'
  )
-+
 +if enable_consolekit
 +  sources += files('gsm-consolekit.c')
 +endif
++
++
+ 
+ dbus_ifaces = [
+   'org.gnome.SessionManager',

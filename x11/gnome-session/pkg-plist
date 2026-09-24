@@ -3,6 +3,7 @@ bin/gnome-session-inhibit
 bin/gnome-session-quit
 libexec/gnome-session-service
 %%DATADIR%%/sessions/gnome.session
+share/applications/gnome-mimeapps.list
 share/locale/ab/LC_MESSAGES/gnome-session.mo
 share/locale/af/LC_MESSAGES/gnome-session.mo
 share/locale/am/LC_MESSAGES/gnome-session.mo
@@ -51,6 +52,7 @@ share/locale/hi/LC_MESSAGES/gnome-session.mo
 share/locale/hr/LC_MESSAGES/gnome-session.mo
 share/locale/hu/LC_MESSAGES/gnome-session.mo
 share/locale/hy/LC_MESSAGES/gnome-session.mo
+share/locale/ia/LC_MESSAGES/gnome-session.mo
 share/locale/id/LC_MESSAGES/gnome-session.mo
 share/locale/ie/LC_MESSAGES/gnome-session.mo
 share/locale/ig/LC_MESSAGES/gnome-session.mo
@@ -64,6 +66,8 @@ share/locale/km/LC_MESSAGES/gnome-session.mo
 share/locale/kn/LC_MESSAGES/gnome-session.mo
 share/locale/ko/LC_MESSAGES/gnome-session.mo
 share/locale/ku/LC_MESSAGES/gnome-session.mo
+share/locale/kw/LC_MESSAGES/gnome-session.mo
+share/locale/lo/LC_MESSAGES/gnome-session.mo
 share/locale/lt/LC_MESSAGES/gnome-session.mo
 share/locale/lv/LC_MESSAGES/gnome-session.mo
 share/locale/mai/LC_MESSAGES/gnome-session.mo

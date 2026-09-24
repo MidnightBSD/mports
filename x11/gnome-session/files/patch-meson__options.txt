@@ -1,7 +1,12 @@
---- meson_options.txt.orig
+--- meson_options.txt.orig	2026-05-28 14:47:55 UTC
 +++ meson_options.txt
-@@ -2,0 +3,4 @@
+@@ -1,5 +1,9 @@ option('systemduserunitdir', type: 'string', descripti
+ option('deprecation_flags', type: 'boolean', value: false, description: 'use *_DISABLE_DEPRECATED flags')
+ option('systemduserunitdir', type: 'string', description: 'Directory for systemd user service files')
 +option('systemd', type: 'boolean', value: true, description: 'Use systemd')
 +option('systemd_session', type: 'combo', choices: ['disable', 'enable', 'default'], value: 'default', description: 'Whether to include systemd session support and use it by default')
 +option('systemd_journal', type: 'boolean', value: true, description: 'Send log to systemd-journal')
 +option('consolekit', type: 'boolean', value: false, description: 'Use ConsoleKit')
+ option('docbook', type: 'boolean', value: true, description: 'build documentation')
+ option('man', type: 'boolean', value: true, description: 'build documentation (requires xmlto)')
+ option('mimeapps', type: 'boolean', value: true, description: 'install default gnome-mimeapps.list')
