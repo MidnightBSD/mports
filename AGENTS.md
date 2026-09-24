@@ -155,6 +155,47 @@ For new ports, generate an initial `pkg-plist` after staging:
 
 If `portlint` is available, run it before committing. If it is not installed, skip this step — do not install it automatically.
 
+## ELF symbol versioning in shared libraries
+
+The framework never adds or removes `-Wl,--version-script`; a library only gets
+version nodes when the upstream build passes its own map to the linker. Neither
+`strip`, `meson --strip`, nor `cmake install/strip` removes `.gnu.version_d`.
+Two toolchain behaviours make upstream capability probes report "unsupported"
+on MidnightBSD (and on FreeBSD), so the map is silently dropped:
+
+1. Probe links an *executable* with a map containing `local: *;` (Meson
+   `cc.links()` pattern in libxkbcommon, mesa). `crt1.o` defines `environ` and
+   `__progname` while `libc.so.7` references them, so hiding them fails with
+   `non-exported symbol 'environ' in '/usr/lib/crt1.o' is referenced by DSO`.
+   Both LLD and GNU ld reject this; it is not a linker bug. Fix: patch the probe
+   to link with `-shared` (see `x11/libxkbcommon/files/patch-meson.build`).
+2. Map names a symbol the probe never defines (gnulib `gl_LD_VERSION_SCRIPT`
+   used by libidn2, gnutls, nettle, libtasn1). LLD 16+ defaults to
+   `--no-undefined-version`, so this is a hard error (GNU ld only warns). Fix:
+   `CONFIGURE_ARGS+= --enable-ld-version-script` and
+   `LDFLAGS+= -Wl,--undefined-version`.
+
+Some upstreams intentionally enable maps only on Linux (`libgpg-error`,
+`libgcrypt`, `libassuan`); FreeBSD ships those unversioned too. Match FreeBSD
+unless there is a reason not to (`libksba` passes `--enable-ld-version-script`).
+
+When a library is expected to carry version nodes, guard it in the Makefile:
+
+```makefile
+HAS_SYMBOL_VERSION=	${PREFIX}/lib/libfoo.so.${SHLIB_VERSION}
+```
+
+`fake-sanity` then runs `Mk/scripts/check_have_symbols.sh` and fails the build
+if `.gnu.version_d` is missing. To inspect a staged or installed library:
+
+```sh
+readelf -D -s libfoo.so.1 | grep -o '@[A-Z][A-Za-z0-9_.]*' | sort -u   # own nodes; @FBSD_* are libc needs
+readelf -S libfoo.so.1 | grep version_d                                  # section present at all
+```
+
+Note that `readelf -V` on MidnightBSD prints the `.gnu.version_d` entries in a
+format the check script parses; the dynsym suffix form above is easier to read.
+
 ## Bumping dependent ports (PORTREVISION)
 
 When a port is upgraded and its shared library version changes (e.g., `libfoo.so.1` becomes `libfoo.so.2`), all ports that depend on it must have their `PORTREVISION` bumped to ensure they are rebuilt against the new library.
