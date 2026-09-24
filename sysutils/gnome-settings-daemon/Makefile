@@ -1,6 +1,7 @@
 PORTNAME=	gnome-settings-daemon
-PORTVERSION=	51.0
+PORTVERSION=	50.1
 PORTREVISION=	0
+PORTEPOCH=	1
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -33,7 +34,7 @@ LIB_DEPENDS=	libcanberra-gtk3.so:audio/libcanberra-gtk3 \
 		libupower-glib.so:sysutils/upower
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}python-dbusmock>0:devel/py-python-dbusmock@${PY_FLAVOR}
 
-PORTSCOUT=	limitw:1,even
+PORTSCOUT=	limit:^50\.
 
 USE_XORG=	x11 xext xfixes xi xtst
 USE_GNOME=	cairo glib20 gnomedesktop3 gtk30
@@ -61,6 +62,7 @@ MESON_ARGS+=	-Dgudev=false
 #			libwayland-client.so:graphics/wayland
 
 GLIB_SCHEMAS=	org.gnome.settings-daemon.enums.xml \
+		org.gnome.settings-daemon.global-shortcuts.gschema.xml \
 		org.gnome.settings-daemon.peripherals.gschema.xml \
 		org.gnome.settings-daemon.peripherals.wacom.gschema.xml \
 		org.gnome.settings-daemon.plugins.color.gschema.xml \

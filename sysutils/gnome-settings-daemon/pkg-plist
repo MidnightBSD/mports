@@ -1,6 +1,6 @@
 etc/xdg/Xwayland-session.d/00-xrdb
-include/gnome-settings-daemon-51/gnome-settings-daemon/gsd-enums.h
-lib/gnome-settings-daemon-51/libgsd.so
+include/gnome-settings-daemon-50/gnome-settings-daemon/gsd-enums.h
+lib/gnome-settings-daemon-50/libgsd.so
 libdata/pkgconfig/gnome-settings-daemon.pc
 libexec/gsd-a11y-settings
 libexec/gsd-color
@@ -73,11 +73,9 @@ share/locale/kn/LC_MESSAGES/gnome-settings-daemon.mo
 share/locale/ko/LC_MESSAGES/gnome-settings-daemon.mo
 share/locale/ku/LC_MESSAGES/gnome-settings-daemon.mo
 share/locale/lt/LC_MESSAGES/gnome-settings-daemon.mo
-share/locale/lo/LC_MESSAGES/gnome-settings-daemon.mo
 share/locale/lv/LC_MESSAGES/gnome-settings-daemon.mo
 share/locale/mai/LC_MESSAGES/gnome-settings-daemon.mo
 share/locale/mg/LC_MESSAGES/gnome-settings-daemon.mo
-share/locale/mi/LC_MESSAGES/gnome-settings-daemon.mo
 share/locale/mk/LC_MESSAGES/gnome-settings-daemon.mo
 share/locale/ml/LC_MESSAGES/gnome-settings-daemon.mo
 share/locale/mn/LC_MESSAGES/gnome-settings-daemon.mo
