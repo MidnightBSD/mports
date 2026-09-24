@@ -1,6 +1,7 @@
 PORTNAME=	gnome-session
-PORTVERSION=	51.0
+PORTVERSION=	50.1
 PORTREVISION=	0
+PORTEPOCH=	1
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -8,7 +9,7 @@ DIST_SUBDIR=	gnome
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Session component for the GNOME desktop
 WWW=		https://www.gnome.org/
-PORTSCOUT=	limit:^51\.
+PORTSCOUT=	limit:^50\.
 
 LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/COPYING

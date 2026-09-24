@@ -1,6 +1,6 @@
---- /dev/null
+--- gnome-session/gsm-consolekit.c.orig	2026-09-24 04:27:02 UTC
 +++ gnome-session/gsm-consolekit.c
-@@ -0,0 +1,974 @@
+@@ -0,0 +1,784 @@
 +/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
 + *
 + * Copyright (C) 2008 Jon McCann <jmccann@redhat.com>
@@ -67,17 +67,11 @@
 +        PROP_ACTIVE
 +};
 +
-+static gboolean gsm_consolekit_can_switch_user (GsmSystem *system);
-+static GsmActionAvailability gsm_consolekit_can_shutdown (GsmSystem *system);
-+static GsmActionAvailability gsm_consolekit_can_restart (GsmSystem *system);
-+static GsmActionAvailability gsm_consolekit_can_suspend (GsmSystem *system);
-+static void gsm_consolekit_suspend (GsmSystem *system);
-+static void gsm_consolekit_set_session_idle (GsmSystem *system, gboolean is_idle);
-+static void gsm_consolekit_set_inhibitors (GsmSystem *system, GsmInhibitorFlag flags);
-+static void gsm_consolekit_prepare_shutdown (GsmSystem *system, gboolean restart);
-+static void gsm_consolekit_complete_shutdown (GsmSystem *system);
++static void gsm_consolekit_system_init (GsmSystemInterface *iface);
 +
-+G_DEFINE_TYPE (GsmConsolekit, gsm_consolekit, GSM_TYPE_SYSTEM)
++G_DEFINE_TYPE_WITH_CODE (GsmConsolekit, gsm_consolekit, G_TYPE_OBJECT,
++                         G_IMPLEMENT_INTERFACE (GSM_TYPE_SYSTEM,
++                                                gsm_consolekit_system_init))
 +
 +static void
 +drop_system_inhibitor (GsmConsolekit *manager)
@@ -164,16 +158,6 @@
 +        g_object_class_override_property (object_class, PROP_ACTIVE, "active");
 +
 +        g_type_class_add_private (manager_class, sizeof (GsmConsolekitPrivate));
-+        GsmSystemClass *system_class = GSM_SYSTEM_CLASS (manager_class);
-+        system_class->can_switch_user = gsm_consolekit_can_switch_user;
-+        system_class->can_shutdown = gsm_consolekit_can_shutdown;
-+        system_class->can_restart = gsm_consolekit_can_restart;
-+        system_class->can_suspend = gsm_consolekit_can_suspend;
-+        system_class->suspend = gsm_consolekit_suspend;
-+        system_class->set_session_idle = gsm_consolekit_set_session_idle;
-+        system_class->set_inhibitors = gsm_consolekit_set_inhibitors;
-+        system_class->prepare_shutdown = gsm_consolekit_prepare_shutdown;
-+        system_class->complete_shutdown = gsm_consolekit_complete_shutdown;
 +}
 +
 +static void ck_session_proxy_signal_cb (GDBusProxy  *proxy,
@@ -286,128 +270,6 @@
 +                          G_CALLBACK (ck_session_proxy_signal_cb), manager);
 +
 +        g_object_unref (bus);
-+}
-+
-+static void
-+emit_restart_complete (GsmConsolekit *manager,
-+                       GError     *error)
-+{
-+        GError *call_error;
-+
-+        call_error = NULL;
-+
-+        if (error != NULL) {
-+                call_error = g_error_new_literal (G_IO_ERROR,
-+                                                  G_IO_ERROR_FAILED,
-+                                                  error->message);
-+        }
-+
-+        g_signal_emit_by_name (G_OBJECT (manager),
-+                               "request_completed", call_error);
-+
-+        if (call_error != NULL) {
-+                g_error_free (call_error);
-+        }
-+}
-+
-+static void
-+emit_stop_complete (GsmConsolekit *manager,
-+                    GError     *error)
-+{
-+        GError *call_error;
-+
-+        call_error = NULL;
-+
-+        if (error != NULL) {
-+                call_error = g_error_new_literal (G_IO_ERROR,
-+                                                  G_IO_ERROR_FAILED,
-+                                                  error->message);
-+        }
-+
-+        g_signal_emit_by_name (G_OBJECT (manager),
-+                               "request_completed", call_error);
-+
-+        if (call_error != NULL) {
-+                g_error_free (call_error);
-+        }
-+}
-+
-+static void
-+restart_done (GObject      *source,
-+              GAsyncResult *result,
-+              gpointer      user_data)
-+{
-+        GDBusProxy *proxy = G_DBUS_PROXY (source);
-+        GsmConsolekit *manager = user_data;
-+        GError *error = NULL;
-+        GVariant *res;
-+
-+        res = g_dbus_proxy_call_finish (proxy, result, &error);
-+
-+        if (!res) {
-+                g_warning ("Unable to restart system: %s", error->message);
-+                emit_restart_complete (manager, error);
-+                g_error_free (error);
-+        } else {
-+                emit_restart_complete (manager, NULL);
-+                g_variant_unref (res);
-+        }
-+}
-+
-+static void
-+gsm_consolekit_attempt_restart (GsmSystem *system)
-+{
-+        GsmConsolekit *manager = GSM_CONSOLEKIT (system);
-+
-+        /* Use Restart instead of Reboot because it will work on
-+         * both CK and CK2 */
-+        g_dbus_proxy_call (manager->priv->ck_proxy,
-+                           "Restart",
-+                           g_variant_new ("()"),
-+                           0,
-+                           G_MAXINT,
-+                           NULL,
-+                           restart_done,
-+                           manager);
-+}
-+
-+static void
-+stop_done (GObject      *source,
-+           GAsyncResult *result,
-+           gpointer      user_data)
-+{
-+        GDBusProxy *proxy = G_DBUS_PROXY (source);
-+        GsmConsolekit *manager = user_data;
-+        GError *error = NULL;
-+        GVariant *res;
-+
-+        res = g_dbus_proxy_call_finish (proxy, result, &error);
-+
-+        if (!res) {
-+                g_warning ("Unable to stop system: %s", error->message);
-+                emit_stop_complete (manager, error);
-+                g_error_free (error);
-+        } else {
-+                emit_stop_complete (manager, NULL);
-+                g_variant_unref (res);
-+        }
-+}
-+
-+static void
-+gsm_consolekit_attempt_stop (GsmSystem *system)
-+{
-+        GsmConsolekit *manager = GSM_CONSOLEKIT (system);
-+
-+        /* Use Stop insetad of PowerOff because it will work with
-+         * Ck and CK2. */
-+        g_dbus_proxy_call (manager->priv->ck_proxy,
-+                           "Stop",
-+                           g_variant_new ("()"),
-+                           0,
-+                           G_MAXINT,
-+                           NULL,
-+                           stop_done,
-+                           manager);
 +}
 +
 +static void
@@ -638,38 +500,6 @@
 +        return can_suspend ? GSM_ACTION_AVAILABLE : GSM_ACTION_UNAVAILABLE;
 +}
 +
-+static gboolean
-+gsm_consolekit_can_hibernate (GsmSystem *system)
-+{
-+        GsmConsolekit *manager = GSM_CONSOLEKIT (system);
-+        gchar *rv;
-+        GVariant *res;
-+        gboolean can_hibernate;
-+
-+        res = g_dbus_proxy_call_sync (manager->priv->ck_proxy,
-+                                      "CanHibernate",
-+                                      NULL,
-+                                      0,
-+                                      G_MAXINT,
-+                                      NULL,
-+                                      NULL);
-+        if (!res) {
-+                g_warning ("Calling CanHibernate failed. Check that ConsoleKit is "
-+                           "properly installed.");
-+                return FALSE;
-+        }
-+
-+        g_variant_get (res, "(s)", &rv);
-+        g_variant_unref (res);
-+
-+        can_hibernate = g_strcmp0 (rv, "yes") == 0 ||
-+                        g_strcmp0 (rv, "challenge") == 0;
-+
-+        g_free (rv);
-+
-+        return can_hibernate;
-+}
-+
 +static void
 +suspend_done (GObject      *source,
 +              GAsyncResult *result,
@@ -690,25 +520,6 @@
 +}
 +
 +static void
-+hibernate_done (GObject      *source,
-+                GAsyncResult *result,
-+                gpointer      user_data)
-+{
-+        GDBusProxy *proxy = G_DBUS_PROXY (source);
-+        GError *error = NULL;
-+        GVariant *res;
-+
-+        res = g_dbus_proxy_call_finish (proxy, result, &error);
-+
-+        if (!res) {
-+                g_warning ("Unable to hibernate system: %s", error->message);
-+                g_error_free (error);
-+        } else {
-+                g_variant_unref (res);
-+        }
-+}
-+
-+static void
 +gsm_consolekit_suspend (GsmSystem *system)
 +{
 +        GsmConsolekit *manager = GSM_CONSOLEKIT (system);
@@ -720,21 +531,6 @@
 +                           G_MAXINT,
 +                           NULL,
 +                           suspend_done,
-+                           manager);
-+}
-+
-+static void
-+gsm_consolekit_hibernate (GsmSystem *system)
-+{
-+        GsmConsolekit *manager = GSM_CONSOLEKIT (system);
-+
-+        g_dbus_proxy_call (manager->priv->ck_proxy,
-+                           "Hibernate",
-+                           g_variant_new ("(b)", TRUE),
-+                           0,
-+                           G_MAXINT,
-+                           NULL,
-+                           hibernate_done,
 +                           manager);
 +}
 +
@@ -909,6 +705,20 @@
 +gsm_consolekit_is_last_session_for_user (GsmSystem *system)
 +{
 +        return FALSE;
++}
++
++static void
++gsm_consolekit_system_init (GsmSystemInterface *iface)
++{
++        iface->can_switch_user = gsm_consolekit_can_switch_user;
++        iface->can_shutdown = gsm_consolekit_can_shutdown;
++        iface->can_restart = gsm_consolekit_can_restart;
++        iface->can_suspend = gsm_consolekit_can_suspend;
++        iface->suspend = gsm_consolekit_suspend;
++        iface->set_session_idle = gsm_consolekit_set_session_idle;
++        iface->set_inhibitors = gsm_consolekit_set_inhibitors;
++        iface->prepare_shutdown = gsm_consolekit_prepare_shutdown;
++        iface->complete_shutdown = gsm_consolekit_complete_shutdown;
 +}
 +
 +GsmConsolekit *

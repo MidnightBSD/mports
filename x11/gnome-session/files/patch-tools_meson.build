@@ -1,8 +1,15 @@
---- tools/meson.build.orig
+--- tools/meson.build.orig	2026-05-28 14:47:55 UTC
 +++ tools/meson.build
-@@ -3 +2,0 @@
+@@ -1,9 +1,11 @@ programs = [
+ programs = [
+   # name, deps, install_dir
 -  ['gnome-session-ctl', session_bin_deps, session_libexecdir],
-@@ -6,0 +6,3 @@
+   ['gnome-session-inhibit', session_deps, session_bindir],
+   ['gnome-session-quit', session_deps, session_bindir],
+ ]
 +if enable_systemd_session
 +  programs += [['gnome-session-ctl', session_bin_deps, session_libexecdir]]
 +endif
+ 
+ foreach program: programs
+   executable(

@@ -1,6 +1,9 @@
---- meson.build.orig
+--- meson.build.orig	2026-05-28 14:47:55 UTC
 +++ meson.build
-@@ -91,15 +91,30 @@
+@@ -86,21 +86,36 @@ session_deps = [
+   dependency('gnome-desktop-4'),
+ ]
+ 
 -libsystemd_dep = dependency('libsystemd', version: '>= 209', required: true)
 -config_h.set('SYSTEMD_STRICT_ENV',
 -              libsystemd_dep.version().version_compare('< 248'))
@@ -15,7 +18,6 @@
 -  systemd_dep = dependency('systemd', version: '>= 242', required: true)
 -  systemd_userunitdir = systemd_dep.get_variable(pkgconfig: 'systemduserunitdir',
 -                                                 pkgconfig_define: ['prefix', session_prefix])
--endif
 +enable_systemd = get_option('systemd')
 +enable_systemd_session = get_option('systemd_session') != 'disable'
 +use_systemd_session = get_option('systemd_session') == 'default'
@@ -23,7 +25,7 @@
 +enable_consolekit = get_option('consolekit')
 +if enable_systemd_journal
 +  assert(enable_systemd, 'Systemd journal support requires systemd')
-+endif
+ endif
 +if enable_systemd_session
 +  assert(enable_systemd, 'Systemd support must be enabled when using systemd session management')
 +endif
@@ -46,5 +48,6 @@
 +config_h.set('HAVE_SYSTEMD', enable_systemd)
 +config_h.set('ENABLE_SYSTEMD_SESSION', enable_systemd_session)
 +config_h.set('ENABLE_SYSTEMD_JOURNAL', enable_systemd_journal)
-+config_h.set('HAVE_CONSOLEKIT', enable_consolekit)
-+config_h.set10('USE_SYSTEMD_SESSION', use_systemd_session)
+ 
+ configure_file(
+   output: 'config.h',
