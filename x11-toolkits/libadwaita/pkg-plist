@@ -24,6 +24,7 @@ include/libadwaita-1/adw-clamp-layout.h
 include/libadwaita-1/adw-clamp-scrollable.h
 include/libadwaita-1/adw-clamp.h
 include/libadwaita-1/adw-combo-row.h
+include/libadwaita-1/adw-css-class-binding.h
 include/libadwaita-1/adw-dialog.h
 include/libadwaita-1/adw-easing.h
 include/libadwaita-1/adw-entry-row.h
@@ -220,6 +221,8 @@ libdata/pkgconfig/libadwaita-1.pc
 %%PORTDOCS%%%%DOCSDIR%%-1/buttons-suggested-action-dark.png
 %%PORTDOCS%%%%DOCSDIR%%-1/buttons-suggested-action.png
 %%PORTDOCS%%%%DOCSDIR%%-1/callback.AnimationTargetFunc.html
+%%PORTDOCS%%%%DOCSDIR%%-1/callback.CssClassBindingMapToClassFunc.html
+%%PORTDOCS%%%%DOCSDIR%%-1/callback.CssClassBindingMapToPropertyFunc.html
 %%PORTDOCS%%%%DOCSDIR%%-1/cards-dark.png
 %%PORTDOCS%%%%DOCSDIR%%-1/cards.png
 %%PORTDOCS%%%%DOCSDIR%%-1/carousel-dark.png
@@ -256,6 +259,7 @@ libdata/pkgconfig/libadwaita-1.pc
 %%PORTDOCS%%%%DOCSDIR%%-1/class.ClampLayout.html
 %%PORTDOCS%%%%DOCSDIR%%-1/class.ClampScrollable.html
 %%PORTDOCS%%%%DOCSDIR%%-1/class.ComboRow.html
+%%PORTDOCS%%%%DOCSDIR%%-1/class.CssClassBinding.html
 %%PORTDOCS%%%%DOCSDIR%%-1/class.Dialog.html
 %%PORTDOCS%%%%DOCSDIR%%-1/class.EntryRow.html
 %%PORTDOCS%%%%DOCSDIR%%-1/class.EnumListItem.html
@@ -469,6 +473,9 @@ libdata/pkgconfig/libadwaita-1.pc
 %%PORTDOCS%%%%DOCSDIR%%-1/flat-header-bar.png
 %%PORTDOCS%%%%DOCSDIR%%-1/fonts.css
 %%PORTDOCS%%%%DOCSDIR%%-1/func.CHECK_VERSION.html
+%%PORTDOCS%%%%DOCSDIR%%-1/func.bind_property_to_css_class.html
+%%PORTDOCS%%%%DOCSDIR%%-1/func.bind_property_to_css_class_full.html
+%%PORTDOCS%%%%DOCSDIR%%-1/func.bind_property_to_css_class_with_closures.html
 %%PORTDOCS%%%%DOCSDIR%%-1/func.get_enable_animations.html
 %%PORTDOCS%%%%DOCSDIR%%-1/func.get_major_version.html
 %%PORTDOCS%%%%DOCSDIR%%-1/func.get_micro_version.html
@@ -529,6 +536,7 @@ libdata/pkgconfig/libadwaita-1.pc
 %%PORTDOCS%%%%DOCSDIR%%-1/method.AboutDialog.get_issue_url.html
 %%PORTDOCS%%%%DOCSDIR%%-1/method.AboutDialog.get_license.html
 %%PORTDOCS%%%%DOCSDIR%%-1/method.AboutDialog.get_license_type.html
+%%PORTDOCS%%%%DOCSDIR%%-1/method.AboutDialog.get_other_apps_title.html
 %%PORTDOCS%%%%DOCSDIR%%-1/method.AboutDialog.get_release_notes.html
 %%PORTDOCS%%%%DOCSDIR%%-1/method.AboutDialog.get_release_notes_version.html
 %%PORTDOCS%%%%DOCSDIR%%-1/method.AboutDialog.get_support_url.html
@@ -549,6 +557,7 @@ libdata/pkgconfig/libadwaita-1.pc
 %%PORTDOCS%%%%DOCSDIR%%-1/method.AboutDialog.set_issue_url.html
 %%PORTDOCS%%%%DOCSDIR%%-1/method.AboutDialog.set_license.html
 %%PORTDOCS%%%%DOCSDIR%%-1/method.AboutDialog.set_license_type.html
+%%PORTDOCS%%%%DOCSDIR%%-1/method.AboutDialog.set_other_apps_title.html
 %%PORTDOCS%%%%DOCSDIR%%-1/method.AboutDialog.set_release_notes.html
 %%PORTDOCS%%%%DOCSDIR%%-1/method.AboutDialog.set_release_notes_version.html
 %%PORTDOCS%%%%DOCSDIR%%-1/method.AboutDialog.set_support_url.html
@@ -809,6 +818,12 @@ libdata/pkgconfig/libadwaita-1.pc
 %%PORTDOCS%%%%DOCSDIR%%-1/method.ComboRow.set_search_match_mode.html
 %%PORTDOCS%%%%DOCSDIR%%-1/method.ComboRow.set_selected.html
 %%PORTDOCS%%%%DOCSDIR%%-1/method.ComboRow.set_use_subtitle.html
+%%PORTDOCS%%%%DOCSDIR%%-1/method.CssClassBinding.get_flags.html
+%%PORTDOCS%%%%DOCSDIR%%-1/method.CssClassBinding.get_source.html
+%%PORTDOCS%%%%DOCSDIR%%-1/method.CssClassBinding.get_source_property.html
+%%PORTDOCS%%%%DOCSDIR%%-1/method.CssClassBinding.get_target.html
+%%PORTDOCS%%%%DOCSDIR%%-1/method.CssClassBinding.get_target_css_class.html
+%%PORTDOCS%%%%DOCSDIR%%-1/method.CssClassBinding.unbind.html
 %%PORTDOCS%%%%DOCSDIR%%-1/method.Dialog.add_breakpoint.html
 %%PORTDOCS%%%%DOCSDIR%%-1/method.Dialog.close.html
 %%PORTDOCS%%%%DOCSDIR%%-1/method.Dialog.force_close.html
@@ -1168,6 +1183,14 @@ libdata/pkgconfig/libadwaita-1.pc
 %%PORTDOCS%%%%DOCSDIR%%-1/method.ShortcutsSection.add.html
 %%PORTDOCS%%%%DOCSDIR%%-1/method.ShortcutsSection.get_title.html
 %%PORTDOCS%%%%DOCSDIR%%-1/method.ShortcutsSection.set_title.html
+%%PORTDOCS%%%%DOCSDIR%%-1/method.Sidebar.get_prefix.html
+%%PORTDOCS%%%%DOCSDIR%%-1/method.Sidebar.get_suffix.html
+%%PORTDOCS%%%%DOCSDIR%%-1/method.Sidebar.set_prefix.html
+%%PORTDOCS%%%%DOCSDIR%%-1/method.Sidebar.set_suffix.html
+%%PORTDOCS%%%%DOCSDIR%%-1/method.SidebarItem.get_prefix.html
+%%PORTDOCS%%%%DOCSDIR%%-1/method.SidebarItem.set_prefix.html
+%%PORTDOCS%%%%DOCSDIR%%-1/method.SidebarSection.get_suffix.html
+%%PORTDOCS%%%%DOCSDIR%%-1/method.SidebarSection.set_suffix.html
 %%PORTDOCS%%%%DOCSDIR%%-1/method.SpinRow.configure.html
 %%PORTDOCS%%%%DOCSDIR%%-1/method.SpinRow.get_adjustment.html
 %%PORTDOCS%%%%DOCSDIR%%-1/method.SpinRow.get_climb_rate.html
@@ -1543,6 +1566,10 @@ libdata/pkgconfig/libadwaita-1.pc
 %%PORTDOCS%%%%DOCSDIR%%-1/method.ViewSwitcherBar.get_stack.html
 %%PORTDOCS%%%%DOCSDIR%%-1/method.ViewSwitcherBar.set_reveal.html
 %%PORTDOCS%%%%DOCSDIR%%-1/method.ViewSwitcherBar.set_stack.html
+%%PORTDOCS%%%%DOCSDIR%%-1/method.ViewSwitcherSidebar.get_prefix.html
+%%PORTDOCS%%%%DOCSDIR%%-1/method.ViewSwitcherSidebar.get_suffix.html
+%%PORTDOCS%%%%DOCSDIR%%-1/method.ViewSwitcherSidebar.set_prefix.html
+%%PORTDOCS%%%%DOCSDIR%%-1/method.ViewSwitcherSidebar.set_suffix.html
 %%PORTDOCS%%%%DOCSDIR%%-1/method.ViewSwitcherTitle.get_stack.html
 %%PORTDOCS%%%%DOCSDIR%%-1/method.ViewSwitcherTitle.get_subtitle.html
 %%PORTDOCS%%%%DOCSDIR%%-1/method.ViewSwitcherTitle.get_title.html
@@ -1675,6 +1702,7 @@ libdata/pkgconfig/libadwaita-1.pc
 %%PORTDOCS%%%%DOCSDIR%%-1/property.AboutDialog.issue-url.html
 %%PORTDOCS%%%%DOCSDIR%%-1/property.AboutDialog.license-type.html
 %%PORTDOCS%%%%DOCSDIR%%-1/property.AboutDialog.license.html
+%%PORTDOCS%%%%DOCSDIR%%-1/property.AboutDialog.other-apps-title.html
 %%PORTDOCS%%%%DOCSDIR%%-1/property.AboutDialog.release-notes-version.html
 %%PORTDOCS%%%%DOCSDIR%%-1/property.AboutDialog.release-notes.html
 %%PORTDOCS%%%%DOCSDIR%%-1/property.AboutDialog.support-url.html
@@ -1791,6 +1819,11 @@ libdata/pkgconfig/libadwaita-1.pc
 %%PORTDOCS%%%%DOCSDIR%%-1/property.ComboRow.selected-item.html
 %%PORTDOCS%%%%DOCSDIR%%-1/property.ComboRow.selected.html
 %%PORTDOCS%%%%DOCSDIR%%-1/property.ComboRow.use-subtitle.html
+%%PORTDOCS%%%%DOCSDIR%%-1/property.CssClassBinding.flags.html
+%%PORTDOCS%%%%DOCSDIR%%-1/property.CssClassBinding.source-property.html
+%%PORTDOCS%%%%DOCSDIR%%-1/property.CssClassBinding.source.html
+%%PORTDOCS%%%%DOCSDIR%%-1/property.CssClassBinding.target-css-class.html
+%%PORTDOCS%%%%DOCSDIR%%-1/property.CssClassBinding.target.html
 %%PORTDOCS%%%%DOCSDIR%%-1/property.Dialog.can-close.html
 %%PORTDOCS%%%%DOCSDIR%%-1/property.Dialog.child.html
 %%PORTDOCS%%%%DOCSDIR%%-1/property.Dialog.content-height.html
@@ -1939,6 +1972,10 @@ libdata/pkgconfig/libadwaita-1.pc
 %%PORTDOCS%%%%DOCSDIR%%-1/property.ShortcutsItem.subtitle.html
 %%PORTDOCS%%%%DOCSDIR%%-1/property.ShortcutsItem.title.html
 %%PORTDOCS%%%%DOCSDIR%%-1/property.ShortcutsSection.title.html
+%%PORTDOCS%%%%DOCSDIR%%-1/property.Sidebar.prefix.html
+%%PORTDOCS%%%%DOCSDIR%%-1/property.Sidebar.suffix.html
+%%PORTDOCS%%%%DOCSDIR%%-1/property.SidebarItem.prefix.html
+%%PORTDOCS%%%%DOCSDIR%%-1/property.SidebarSection.suffix.html
 %%PORTDOCS%%%%DOCSDIR%%-1/property.SpinRow.adjustment.html
 %%PORTDOCS%%%%DOCSDIR%%-1/property.SpinRow.climb-rate.html
 %%PORTDOCS%%%%DOCSDIR%%-1/property.SpinRow.digits.html
@@ -2108,6 +2145,8 @@ libdata/pkgconfig/libadwaita-1.pc
 %%PORTDOCS%%%%DOCSDIR%%-1/property.ViewSwitcher.stack.html
 %%PORTDOCS%%%%DOCSDIR%%-1/property.ViewSwitcherBar.reveal.html
 %%PORTDOCS%%%%DOCSDIR%%-1/property.ViewSwitcherBar.stack.html
+%%PORTDOCS%%%%DOCSDIR%%-1/property.ViewSwitcherSidebar.prefix.html
+%%PORTDOCS%%%%DOCSDIR%%-1/property.ViewSwitcherSidebar.suffix.html
 %%PORTDOCS%%%%DOCSDIR%%-1/property.ViewSwitcherTitle.stack.html
 %%PORTDOCS%%%%DOCSDIR%%-1/property.ViewSwitcherTitle.subtitle.html
 %%PORTDOCS%%%%DOCSDIR%%-1/property.ViewSwitcherTitle.title-visible.html
@@ -2355,6 +2394,7 @@ share/icons/hicolor/symbolic/apps/org.gnome.Adwaita1.Demo-symbolic.svg
 share/locale/ab/LC_MESSAGES/libadwaita.mo
 share/locale/be/LC_MESSAGES/libadwaita.mo
 share/locale/bg/LC_MESSAGES/libadwaita.mo
+share/locale/bs/LC_MESSAGES/libadwaita.mo
 share/locale/ca/LC_MESSAGES/libadwaita.mo
 share/locale/cs/LC_MESSAGES/libadwaita.mo
 share/locale/da/LC_MESSAGES/libadwaita.mo
@@ -2382,6 +2422,7 @@ share/locale/ka/LC_MESSAGES/libadwaita.mo
 share/locale/kab/LC_MESSAGES/libadwaita.mo
 share/locale/kk/LC_MESSAGES/libadwaita.mo
 share/locale/ko/LC_MESSAGES/libadwaita.mo
+share/locale/kw/LC_MESSAGES/libadwaita.mo
 share/locale/lt/LC_MESSAGES/libadwaita.mo
 share/locale/lv/LC_MESSAGES/libadwaita.mo
 share/locale/nb/LC_MESSAGES/libadwaita.mo
