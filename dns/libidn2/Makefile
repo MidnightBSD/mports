@@ -1,5 +1,6 @@
 PORTNAME=	libidn2
 PORTVERSION=	2.3.8
+PORTREVISION=	1
 CATEGORIES=	dns
 MASTER_SITES=	GNU/libidn
 
@@ -17,10 +18,14 @@ LIB_DEPENDS=	libunistring.so:devel/libunistring
 USES=		charsetfix iconv libtool localbase makeinfo pathfix
 
 CONFIGURE_ARGS=	--disable-nls \
+		--enable-ld-version-script \
 		--with-libunistring-prefix=${LOCALBASE} \
 		ac_cv_prog_RONN=${TRUE}
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
+HAS_SYMBOL_VERSION=	${PREFIX}/lib/libidn2.so.0
+LDFLAGS+=	-Wl,--undefined-version
+TEST_TARGET=	check
 USE_LDCONFIG=	yes
 
 INFO=		libidn2
