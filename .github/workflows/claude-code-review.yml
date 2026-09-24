@@ -30,6 +30,7 @@ jobs:
           fetch-depth: 0
 
       - name: Claude Code Review (automatic)
+        id: review
         if: github.event_name == 'pull_request'
         uses: anthropics/claude-code-action@v1
         with:
@@ -49,6 +50,37 @@ jobs:
             5. Compatibility — patches must not drop ARM, RISC-V, MIPS, or WebAssembly support; no sparc64/powerpc-only code added.
 
             Post inline comments on specific lines where issues are found. Summarize overall verdict at the end.
+
+      # The action hides Claude's output for safety, so a session that ends with
+      # is_error:true and zero turns leaves no clue in the log (for example a
+      # rejected token or a subscription usage limit, both of which surface only
+      # as api_error_status on the result record). Print just the status fields
+      # and a short, redacted excerpt of the result text.
+      - name: Explain Claude review failure
+        if: failure() && steps.review.outputs.execution_file != ''
+        env:
+          EXECUTION_FILE: ${{ steps.review.outputs.execution_file }}
+        run: |
+          python3 - <<'EOF'
+          import json, os, re
+          path = os.environ["EXECUTION_FILE"]
+          try:
+              data = json.load(open(path))
+          except Exception as e:
+              print(f"::warning::could not parse {path}: {e}")
+              raise SystemExit(0)
+          msgs = data if isinstance(data, list) else [data]
+          for m in msgs:
+              if m.get("type") != "result":
+                  continue
+              fields = {k: m.get(k) for k in ("subtype", "is_error", "num_turns",
+                        "duration_ms", "total_cost_usd", "api_error_status",
+                        "api_retry_statuses", "errors", "permission_denials_count")}
+              print("claude result:", json.dumps(fields))
+              text = str(m.get("result") or "")[:300]
+              text = re.sub(r"(sk-ant-[A-Za-z0-9_-]+|gh[pousr]_[A-Za-z0-9]+)", "[redacted]", text)
+              print("result text (first 300 chars):", text)
+          EOF
 
       - name: Claude Code Review (manual)
         if: github.event_name == 'workflow_dispatch'
