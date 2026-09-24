@@ -11,9 +11,11 @@ WWW=		https://gitlab.gnome.org/GNOME/libdex
 
 LICENSE=	lgpl2.1+
 
-USES=		gnome meson pkgconfig tar:xz vala:build
+USES=		gnome meson pkgconfig python:build tar:xz vala:build
 USE_GNOME=	glib20 introspection:build
 USE_LDCONFIG=	yes
+
+BINARY_ALIAS=	python3=${PYTHON_CMD}
 
 MESON_ARGS=	-Dexamples=false \
 		-Dtests=false \
