@@ -1,6 +1,7 @@
 PORTNAME=	gnome-user-docs
-PORTVERSION=	51.0
+PORTVERSION=	50.5
 PORTREVISION=	0
+PORTEPOCH=	1
 CATEGORIES=	misc gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -12,13 +13,13 @@ WWW=		https://gitlab.gnome.org/GNOME/gnome-user-docs
 LICENSE=	CC-BY-3.0
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		gettext-tools gnome meson tar:xz
+USES=		gettext-tools gmake gnome pathfix tar:xz
 USE_GNOME=	libxml2:build
+GNU_CONFIGURE=	yes
 NO_ARCH=	yes
 
 BUILD_DEPENDS=	itstool:textproc/itstool
-TEST_DEPENDS=	yelp-check:textproc/yelp-tools
 
-PORTSCOUT=	limit:^51\.
+PORTSCOUT=	limit:^50\.
 
 .include <bsd.port.mk>
