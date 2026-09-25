@@ -1,5 +1,5 @@
 PORTNAME=	claude-code
-DISTVERSION=	2.1.282
+DISTVERSION=	2.1.283
 CATEGORIES=	ai linux
 MASTER_SITES=	https://registry.npmjs.org/@anthropic-ai/claude-code-linux-x64/-/
 DISTNAME=	claude-code-linux-x64-${DISTVERSION}
