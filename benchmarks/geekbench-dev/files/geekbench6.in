@@ -9,5 +9,14 @@ case "$0" in
 	;;
 esac
 
+if [ "$(id -u)" -eq 0 ]; then
+	printf '%s\n' \
+	    'Warning: Geekbench may crash as root due to /dev/mem compatibility issues.' \
+	    'Run Geekbench as a non-root user instead.' >&2
+fi
+
 prefix=$(dirname "$(dirname "$prog")")
-exec "${prefix}/libexec/geekbench6/geekbench6" "$@"
+"${prefix}/libexec/geekbench6/geekbench6" "$@"
+status=$?
+
+exit "${status}"
