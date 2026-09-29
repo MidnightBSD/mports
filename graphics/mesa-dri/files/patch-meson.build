@@ -9,6 +9,14 @@
  
  gallium_drivers = get_option('gallium-drivers')
  if gallium_drivers.contains('auto')
+@@ -503,5 +503,5 @@
+  if meson.is_cross_build() and not meson.can_run_host_binaries()
+    warning('cannot auto-detect -mtls-dialect when cross-compiling, using compiler default')
+-  elif host_machine.system() == 'freebsd'
+-    warning('cannot use -mtls-dialect for FreeBSD, using compiler default')
++  elif ['freebsd', 'midnightbsd'].contains(host_machine.system())
++    warning('cannot use -mtls-dialect on this system, using compiler default')
+  else
 @@ -998,7 +998,7 @@
  endif
  
