@@ -1,10 +1,13 @@
 PORTNAME=	gtk
-PORTVERSION=	4.24.0
-PORTREVISION=	1
+PORTVERSION=	4.20.4
+PORTEPOCH=	1
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	4
 DIST_SUBDIR=	gnome
+
+PATCH_SITES=	https://gitlab.gnome.org/GNOME/gtk/-/commit/
+PATCHFILES=	047c8e64d4156897776ec2bc3d0613a81cfe7ad1.patch:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gimp Toolkit for X11 GUI (current stable version)
@@ -12,7 +15,7 @@ WWW=		https://www.gtk.org/
 
 LICENSE=	lgpl2.1+
 
-PORTSCOUT=	limit:^4\. limitw:1,even
+PORTSCOUT=	limit:1,even
 
 BUILD_DEPENDS=	${LOCALBASE}/include/libdrm/drm_fourcc.h:graphics/libdrm \
 		iso-codes>0:misc/iso-codes \
@@ -29,7 +32,7 @@ LIB_DEPENDS=	libepoxy.so:graphics/libepoxy \
 RUN_DEPENDS=	hicolor-icon-theme>0:misc/hicolor-icon-theme \
 		adwaita-icon-theme>0:x11-themes/adwaita-icon-theme
 
-USES=		compiler:c11 cpe display:test gettext-tools gnome jpeg localbase meson \
+USES=		compiler:c11 cpe gettext-tools gnome jpeg localbase meson \
 		ninja pathfix perl5 python pkgconfig tar:xz
 CPE_VENDOR=	gnome
 CPE_PRODUCT=	gtk
@@ -37,14 +40,12 @@ USE_LDCONFIG=	yes
 USE_PERL5=	build
 USE_GNOME=	atk cairo gdkpixbuf introspection:build pango \
 		librsvg2
-MESON_ARGS=	-Dbuild-testsuite=false \
-		-Ddocumentation=false
-TEST_ENV=	${MAKE_ENV}
+MESON_ARGS=	-Dbuild-testsuite=false
 LDFLAGS+=	-lexecinfo
 
 BINARY_ALIAS=	python3=${PYTHON_CMD}
 
-LIBVERSION=	1.2400.0
+LIBVERSION=	1.2000.4
 PLIST_SUB+=	LIBVERSION=${LIBVERSION}
 
 GLIB_SCHEMAS=	org.gtk.Demo4.gschema.xml \
