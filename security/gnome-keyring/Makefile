@@ -9,8 +9,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Program that keeps passwords and other secrets
 WWW=		https://gitlab.gnome.org/GNOME/gnome-keyring
 
-LICENSE=	gpl2
-LICENSE_FILE=	${WRKSRC}/COPYING
+LICENSE=	gpl2+ lgpl2.1+
+LICENSE_COMB=	multi
+LICENSE_FILE_gpl2+ =	${WRKSRC}/COPYING
+LICENSE_FILE_lgpl2.1+ =	${WRKSRC}/COPYING.LIB
 
 BUILD_DEPENDS=	docbook-xsl>=0:textproc/docbook-xsl
 LIB_DEPENDS=	libdbus-1.so:devel/dbus \
