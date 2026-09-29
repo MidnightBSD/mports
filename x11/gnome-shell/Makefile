@@ -1,6 +1,7 @@
 PORTNAME=	gnome-shell
-PORTVERSION=	50.5
-PORTREVISION=	0
+PORTVERSION=	47.10
+PORTREVISION=	1
+PORTEPOCH=	1
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -10,20 +11,19 @@ COMMENT=	Next generation GNOME desktop shell
 WWW=		https://live.gnome.org/GnomeShell
 
 LICENSE=	gpl2+ lgpl2.1+
-LICENSE_FILE=	${WRKSRC}/COPYING
 LICENSE_COMB=	multi
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}docutils>0:textproc/py-docutils@${PY_FLAVOR} \
 		gsettings-desktop-schemas>0:devel/gsettings-desktop-schemas \
 		sassc:textproc/sassc
 
 LIB_DEPENDS=	libgcr-4.so:security/gcr \
-		libepoll-shim.so:devel/libepoll-shim \
 		libgjs.so:lang/gjs \
 		libgraphene-1.0.so:graphics/graphene \
 		libical.so:devel/libical \
 		libjson-glib-1.0.so:devel/json-glib \
-		libmutter-18.so:x11-wm/mutter \
+		libmutter-15.so:x11-wm/mutter \
 		libp11-kit.so:security/p11-kit \
 		libpolkit-agent-1.so:sysutils/polkit \
 		libpulse-mainloop-glib.so:audio/pulseaudio \
@@ -40,17 +40,13 @@ USE_GNOME=	atk evolutiondataserver3 gdkpixbuf glib20 \
 		gnomedesktop4 gnomecontrolcenter3 gtk40 introspection \
 		libxml2 libxslt:build
 USE_XORG=	x11 xfixes xext
-LDFLAGS+=	-L${LOCALBASE}/lib -lepoll-shim
 
-PORTSCOUT=	limit:^50\.
+PORTSCOUT=	limit:^47\.
 
 SHEBANG_FILES=	src/gnome-shell-test-tool.in \
 		src/data-to-c.py
 # These libs are found via rpath mechanism
 NO_SHLIB_REQUIRES_GLOB=	libmutter-clutter-* libmutter-cogl-* libmutter-mtk-*
-CFLAGS+=	-I${LOCALBASE}/include/mutter-18/clutter \
-		-I${LOCALBASE}/include/mutter-18/cogl \
-		-I${LOCALBASE}/include/mutter-18/mtk
 
 OPTIONS_DEFINE=	EXAMPLES
 OPTIONS_DEFAULT=	EXAMPLES

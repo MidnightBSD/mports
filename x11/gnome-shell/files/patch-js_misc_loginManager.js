@@ -1,6 +1,6 @@
---- js/misc/loginManager.js.orig
+--- js/misc/loginManager.js.orig	2025-04-13 15:04:25 UTC
 +++ js/misc/loginManager.js
-@@ -14,6 +14,12 @@
+@@ -13,6 +13,12 @@ const SystemdLoginUser = Gio.DBusProxy.makeProxyWrappe
  const SystemdLoginSession = Gio.DBusProxy.makeProxyWrapper(SystemdLoginSessionIface);
  const SystemdLoginUser = Gio.DBusProxy.makeProxyWrapper(SystemdLoginUserIface);
  
@@ -13,16 +13,16 @@
  function haveSystemd() {
      return GLib.access('/run/systemd/seats', 0) >= 0;
  }
-@@ -47,7 +53,7 @@
+@@ -46,7 +52,7 @@ export function canLock() {
              -1, null);
  
-         const version = result.deepUnpack()[0].deepUnpack();
+         let version = result.deepUnpack()[0].deepUnpack();
 -        return haveSystemd() && versionCompare('3.5.91', version);
 +        return versionCompare('3.5.91', version);
      } catch {
          return false;
      }
-@@ -101,12 +107,107 @@
+@@ -82,12 +88,84 @@ export function getLoginManager() {
          if (haveSystemd())
              _loginManager = new LoginManagerSystemd();
          else
@@ -42,14 +42,6 @@
 +            '/org/freedesktop/ConsoleKit/Manager');
 +        this._proxy.connectSignal('PrepareForSleep',
 +            this._prepareForSleep.bind(this));
-+
-+        this._preparingForSleep = false;
-+    }
-+
-+    getCurrentUserProxy() {
-+        // ConsoleKit has no user objects; like LoginManagerDummy, never
-+        // settle the promise so callers simply do not get a user proxy
-+        return new Promise(() => {});
 +    }
 +
 +    async getCurrentSessionProxy() {
@@ -98,16 +90,6 @@
 +        this._proxy.SuspendAsync(true);
 +    }
 +
-+    canRebootToBootLoaderMenu() {
-+        return new Promise(resolve => resolve({
-+            canRebootToBootLoaderMenu: false,
-+            needsAuth: false,
-+        }));
-+    }
-+
-+    setRebootToBootLoaderMenu() {
-+    }
-+
 +    async inhibit(reason, cancellable) {
 +        const inVariant = new GLib.Variant('(ssss)',
 +            ['sleep', 'GNOME Shell', reason, 'delay']);
@@ -119,15 +101,27 @@
 +    }
 +
 +    _prepareForSleep(proxy, sender, [aboutToSuspend]) {
-+        this._preparingForSleep = aboutToSuspend;
 +        this.emit('prepare-for-sleep', aboutToSuspend);
-+    }
-+
-+    get preparingForSleep() {
-+        return this._preparingForSleep;
 +    }
 +}
 +
  class LoginManagerSystemd extends Signals.EventEmitter {
      constructor() {
          super();
+@@ -230,16 +308,6 @@ class LoginManagerDummy extends Signals.EventEmitter  
+             canSuspend: false,
+             needsAuth: false,
+         }));
+-    }
+-
+-    canRebootToBootLoaderMenu() {
+-        return new Promise(resolve => resolve({
+-            canRebootToBootLoaderMenu: false,
+-            needsAuth: false,
+-        }));
+-    }
+-
+-    setRebootToBootLoaderMenu() {
+     }
+ 
+     listSessions() {
