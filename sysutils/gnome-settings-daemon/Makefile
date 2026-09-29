@@ -1,9 +1,9 @@
 PORTNAME=	gnome-settings-daemon
-PORTVERSION=	50.1
+PORTVERSION=	47.2
 PORTREVISION=	0
-PORTEPOCH=	1
+PORTEPOCH=	2
 CATEGORIES=	sysutils gnome
-MASTER_SITES=	GNOME
+MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -34,7 +34,7 @@ LIB_DEPENDS=	libcanberra-gtk3.so:audio/libcanberra-gtk3 \
 		libupower-glib.so:sysutils/upower
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}python-dbusmock>0:devel/py-python-dbusmock@${PY_FLAVOR}
 
-PORTSCOUT=	limit:^50\.
+PORTSCOUT=	limitw:1,even
 
 USE_XORG=	x11 xext xfixes xi xtst
 USE_GNOME=	cairo glib20 gnomedesktop3 gtk30
@@ -48,21 +48,20 @@ MESON_ARGS=	-Dalsa=false \
 		-Drfkill=false \
 		-Dsmartcard=true \
 		-Dsystemd=false \
-		-Dsystemd-units=false \
 		-Dusb-protection=false \
 		-Dwwan=false
 BINARY_ALIAS=	python3=${PYTHON_VERSION}
 SHEBANG_FILES=	plugins/power/test.py \
 		plugins/xsettings/test.py
 
-# Keep Wayland disabled until the required gudev support is available.
-MESON_ARGS+=	-Dgudev=false
+# wayland doesn't build yet, undefined symbol
+MESON_ARGS+=	-Dgudev=false \
+		-Dwayland=false
 #WAYLAND_MESON_TRUE=	wayland gudev
 #WAYLAND_LIB_DEPENDS=	libgudev-1.0.so:devel/libgudev \
 #			libwayland-client.so:graphics/wayland
 
 GLIB_SCHEMAS=	org.gnome.settings-daemon.enums.xml \
-		org.gnome.settings-daemon.global-shortcuts.gschema.xml \
 		org.gnome.settings-daemon.peripherals.gschema.xml \
 		org.gnome.settings-daemon.peripherals.wacom.gschema.xml \
 		org.gnome.settings-daemon.plugins.color.gschema.xml \
