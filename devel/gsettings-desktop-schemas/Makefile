@@ -1,6 +1,7 @@
 PORTNAME=	gsettings-desktop-schemas
-DISTVERSION=	51.0
-PORTREVISION=	0
+DISTVERSION=	47.1
+PORTREVISION=	2
+PORTEPOCH=	1
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -10,6 +11,8 @@ COMMENT=	Collection of globally shared GSetting schemas
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING
+
+PORTSCOUT=	limitw:1,even
 
 USES=		gettext gnome localbase meson pkgconfig python:build \
 		tar:xz
@@ -36,7 +39,6 @@ GLIB_SCHEMAS=	org.gnome.desktop.a11y.applications.gschema.xml \
 		org.gnome.desktop.notifications.gschema.xml \
 		org.gnome.desktop.peripherals.gschema.xml \
 		org.gnome.desktop.privacy.gschema.xml \
-		org.gnome.desktop.screen-time-limits.gschema.xml \
 		org.gnome.desktop.screensaver.gschema.xml \
 		org.gnome.desktop.search-providers.gschema.xml \
 		org.gnome.desktop.session.gschema.xml \
