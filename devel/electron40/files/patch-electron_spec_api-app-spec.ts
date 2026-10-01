@@ -1,6 +1,15 @@
---- electron/spec/api-app-spec.ts.orig	2026-03-17 08:46:36 UTC
+--- electron/spec/api-app-spec.ts.orig	2026-06-15 14:42:57 UTC
 +++ electron/spec/api-app-spec.ts
-@@ -129,11 +129,11 @@ describe('app module', () => {
+@@ -133,7 +133,7 @@ describe('app module', () => {
+     });
+   });
+ 
+-  ifdescribe(process.platform === 'linux')('app.setDesktopName(name)', () => {
++  ifdescribe(process.platform === 'linux' || process.platform === 'freebsd')('app.setDesktopName(name)', () => {
+     it('sets the desktop name to the CHROME_DESKTOP environment variable', () => {
+       const original = process.env.CHROME_DESKTOP;
+       defer(() => {
+@@ -162,11 +162,11 @@ describe('app module', () => {
    });
  
    describe('app.getPreferredSystemLanguages()', () => {
@@ -14,7 +23,7 @@
        const languages = app.getPreferredSystemLanguages();
        if (languages.length) {
          expect(languages).to.not.include('C');
-@@ -210,7 +210,7 @@ describe('app module', () => {
+@@ -245,7 +245,7 @@ describe('app module', () => {
        expect(code).to.equal(123, 'exit code should be 123, if you see this please tag @MarshallOfSound');
      });
  
@@ -23,7 +32,7 @@
        const electronPath = process.execPath;
        const appPath = path.join(fixturesPath, 'api', 'singleton');
        appProcess = cp.spawn(electronPath, [appPath]);
-@@ -374,7 +374,7 @@ describe('app module', () => {
+@@ -416,7 +416,7 @@ describe('app module', () => {
    });
  
    // GitHub Actions macOS-13 runners used for x64 seem to have a problem with this test.
@@ -32,7 +41,7 @@
      const tempFiles = [
        path.join(fixturesPath, 'foo.txt'),
        path.join(fixturesPath, 'bar.txt'),
-@@ -502,7 +502,7 @@ describe('app module', () => {
+@@ -545,7 +545,7 @@ describe('app module', () => {
    //   let w = null
  
    //   before(function () {
@@ -41,25 +50,25 @@
    //       this.skip()
    //     }
    //   })
-@@ -609,7 +609,7 @@ describe('app module', () => {
+@@ -655,7 +655,7 @@ describe('app module', () => {
+ 
    describe('app.badgeCount', () => {
      const platformIsNotSupported =
-       (process.platform === 'win32') ||
--      (process.platform === 'linux' && !app.isUnityRunning());
-+      (process.platform === 'linux' && !app.isUnityRunning()) || (process.platform === 'freebsd');
+-      process.platform === 'win32' || (process.platform === 'linux' && !app.isUnityRunning());
++      process.platform === 'win32' || (process.platform === 'linux' && !app.isUnityRunning()) || process.platform === 'freebsd';
  
      const expectedBadgeCount = 42;
  
-@@ -653,7 +653,7 @@ describe('app module', () => {
-     });
+@@ -702,7 +702,7 @@ describe('app module', () => {
    });
  
--  ifdescribe(process.platform !== 'linux' && !process.mas && (process.platform !== 'darwin' || process.arch === 'arm64'))('app.get/setLoginItemSettings API', function () {
-+  ifdescribe(process.platform !== 'linux' && process.platform !== 'freebsd' && !process.mas && (process.platform !== 'darwin' || process.arch === 'arm64'))('app.get/setLoginItemSettings API', function () {
+   ifdescribe(
+-    process.platform !== 'linux' && !process.mas && (process.platform !== 'darwin' || process.arch === 'arm64')
++    process.platform !== 'linux' &&  process.platform !== 'freebsd' && !process.mas && (process.platform !== 'darwin' || process.arch === 'arm64')
+   )('app.get/setLoginItemSettings API', function () {
      const isMac = process.platform === 'darwin';
      const isWin = process.platform === 'win32';
- 
-@@ -1033,7 +1033,7 @@ describe('app module', () => {
+@@ -1119,7 +1119,7 @@ describe('app module', () => {
      });
    });
  
@@ -68,7 +77,7 @@
      it('is mutable', () => {
        const values = [false, true, false];
        const setters: Array<(arg: boolean) => void> = [
-@@ -1302,7 +1302,7 @@ describe('app module', () => {
+@@ -1389,7 +1389,7 @@ describe('app module', () => {
      });
    });
  
@@ -77,25 +86,43 @@
      let w: BrowserWindow;
  
      before(function () {
-@@ -1437,7 +1437,7 @@ describe('app module', () => {
+@@ -1530,7 +1530,7 @@ describe('app module', () => {
+     });
+   });
+ 
+-  ifdescribe(process.platform === 'linux')('default protocol client APIs with mocked XDG settings', () => {
++  ifdescribe(process.platform === 'linux' || process.platform === 'freebsd')('default protocol client APIs with mocked XDG settings', () => {
+     const protocol = 'electron-test-linux';
+     const desktopFileId = 'electron-test.desktop';
+     const protocolMimeType = `x-scheme-handler/${protocol}`;
+@@ -1620,7 +1620,7 @@ describe('app module', () => {
  
    describe('getApplicationNameForProtocol()', () => {
      // TODO: Linux CI doesn't have registered http & https handlers
--    ifit(!(process.env.CI && process.platform === 'linux'))('returns application names for common protocols', function () {
-+    ifit(!(process.env.CI && (process.platform === 'linux' || process.platform === 'freebsd')))('returns application names for common protocols', function () {
-       // We can't expect particular app names here, but these protocols should
-       // at least have _something_ registered. Except on our Linux CI
-       // environment apparently.
-@@ -1455,7 +1455,7 @@ describe('app module', () => {
+-    ifit(!(process.env.CI && process.platform === 'linux'))(
++    ifit(!(process.env.CI && (process.platform === 'linux' || process.platform === 'freebsd')))(
+       'returns application names for common protocols',
+       function () {
+         // We can't expect particular app names here, but these protocols should
+@@ -1637,7 +1637,7 @@ describe('app module', () => {
+       expect(app.getApplicationNameForProtocol('bogus-protocol://')).to.equal('');
+     });
+ 
+-    ifdescribe(process.platform === 'linux')('on Linux with mocked XDG dirs', () => {
++    ifdescribe(process.platform === 'linux' || process.platform === 'freebsd')('on Linux with mocked XDG dirs', () => {
+       const fixtureApp = path.join(fixturesPath, 'api', 'protocol-name');
+       const desktopFileId = 'mock-browser.desktop';
+       const mockScheme = 'mockproto';
+@@ -1764,7 +1764,7 @@ describe('app module', () => {
      });
    });
  
 -  ifdescribe(process.platform !== 'linux')('getApplicationInfoForProtocol()', () => {
 +  ifdescribe(process.platform !== 'linux' && process.platform !== 'freebsd')('getApplicationInfoForProtocol()', () => {
      it('returns promise rejection for a bogus protocol', async function () {
-       await expect(
-         app.getApplicationInfoForProtocol('bogus-protocol://')
-@@ -1528,7 +1528,7 @@ describe('app module', () => {
+       await expect(app.getApplicationInfoForProtocol('bogus-protocol://')).to.eventually.be.rejectedWith(
+         'Unable to retrieve installation path to app'
+@@ -1835,7 +1835,7 @@ describe('app module', () => {
    });
  
    // FIXME Get these specs running on Linux CI
@@ -104,7 +131,7 @@
      const iconPath = path.join(__dirname, 'fixtures/assets/icon.ico');
      const sizes = {
        small: 16,
-@@ -1610,7 +1610,7 @@ describe('app module', () => {
+@@ -1917,7 +1917,7 @@ describe('app module', () => {
            expect(entry.memory).to.have.property('privateBytes').that.is.greaterThan(0);
          }
  
@@ -113,7 +140,7 @@
            expect(entry.sandboxed).to.be.a('boolean');
          }
  
-@@ -1684,7 +1684,7 @@ describe('app module', () => {
+@@ -1986,7 +1986,7 @@ describe('app module', () => {
  
      it('succeeds with complete GPUInfo', async () => {
        const completeInfo = await getGPUInfo('complete');
@@ -122,12 +149,12 @@
          // For linux and macOS complete info is same as basic info
          await verifyBasicGPUInfo(completeInfo);
          const basicInfo = await getGPUInfo('basic');
-@@ -1708,7 +1708,7 @@ describe('app module', () => {
+@@ -2010,7 +2010,7 @@ describe('app module', () => {
      });
    });
  
--  ifdescribe(!(process.platform === 'linux' && (process.arch === 'arm64' || process.arch === 'arm')))('sandbox options', () => {
-+  ifdescribe(!((process.platform === 'linux' || process.platform === 'freebsd') && (process.arch === 'arm64' || process.arch === 'arm')))('sandbox options', () => {
-     let appProcess: cp.ChildProcess = null as any;
-     let server: net.Server = null as any;
-     const socketPath = process.platform === 'win32' ? '\\\\.\\pipe\\electron-mixed-sandbox' : '/tmp/electron-mixed-sandbox';
+-  ifdescribe(!(process.platform === 'linux' && (process.arch === 'arm64' || process.arch === 'arm')))(
++  ifdescribe(!((process.platform === 'linux' || process.platform === 'freebsd') && (process.arch === 'arm64' || process.arch === 'arm')))(
+     'sandbox options',
+     () => {
+       let appProcess: cp.ChildProcess = null as any;
