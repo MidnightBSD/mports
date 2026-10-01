@@ -1,43 +1,55 @@
 PORTNAME=	cabal-install
-DISTVERSIONPREFIX=	${PORTNAME}-
-DISTVERSION=	3.4.0.0
-PORTREVISION=	3
+DISTVERSIONPREFIX=	${PORTNAME}-v
+DISTVERSION=	3.16.1.0
 CATEGORIES=	devel haskell
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Command-line interface for Cabal and Hackage
+WWW=		https://www.haskell.org/cabal/
 
 LICENSE=	bsd3
 
 BUILD_DEPENDS=	ghc:lang/ghc
 
-USES=		cabal:nodefault compiler:c11 python:build
+USES=		cabal:nodefault compiler:c11 pkgconfig python:build
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	haskell
 GH_PROJECT=	cabal
 
-USE_CABAL=	async-2.2.2_1 \
-		base16-bytestring-0.1.1.7 \
-		base64-bytestring-1.1.0.0 \
-		cryptohash-sha256-0.11.101.0_4 \
-		digest-0.0.1.2 \
-		echo-0.1.3_1 \
-		ed25519-0.0.5.0_3 \
+USE_CABAL=	alex-3.5.3.0 \
+		async-2.2.5_3 \
+		atomic-counter-0.1.2.3 \
+		base16-bytestring-1.0.2.0_1 \
+		base64-bytestring-1.2.1.0_1 \
+		cryptohash-sha256-0.11.102.1_6 \
+		directory-1.3.9.0_1 \
+		directory-ospath-streaming-0.2.2 \
+		echo-0.1.4 \
+		ed25519-0.0.5.0_9 \
 		edit-distance-0.2.2.1_1 \
-		hackage-security-0.6.0.1_2 \
-		hashable-1.3.0.0_1 \
-		HTTP-4000.3.14_1 \
-		lukko-0.1.1.2 \
-		network-3.1.1.1 \
-		network-uri-2.6.3.0 \
-		random-1.2.0 \
-		regex-base-0.94.0.0_1 \
-		regex-posix-0.96.0.0_2 \
-		resolv-0.1.2.0 \
-		splitmix-0.1 \
-		tar-0.5.1.1_2 \
-		zlib-0.6.2.1_1
+		file-io-0.1.5 \
+		filepath-1.5.4.0 \
+		hackage-security-0.6.3.1_1 \
+		hashable-1.5.0.0_1 \
+		hsc2hs-0.68.10_4 \
+		HTTP-4000.4.1_6 \
+		network-3.2.7.0 \
+		network-uri-2.6.4.2_1 \
+		open-browser-0.4.0.0 \
+		os-string-2.0.7 \
+		process-1.6.25.0 \
+		random-1.3.1 \
+		regex-base-0.94.0.3 \
+		regex-posix-0.96.0.2 \
+		resolv-0.2.0.2_5 \
+		safe-exceptions-0.1.7.4_1 \
+		semaphore-compat-1.0.0_3 \
+		splitmix-0.1.3.1 \
+		tar-0.6.4.0_1 \
+		th-compat-0.1.6 \
+		unix-2.8.6.0_1 \
+		zlib-0.7.1.0_2
 
 CABAL_BOOTSTRAP=	yes
 
@@ -60,7 +72,7 @@ post-extract:
 
 do-build:
 	cd ${WRKSRC} && \
-		${PYTHON_CMD} bootstrap/bootstrap.py -d bootstrap/linux-8.10.1.json
+		${PYTHON_CMD} bootstrap/bootstrap.py -d bootstrap/linux-9.12.2.json
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/_build/bin/cabal ${PREFIX}/bin/
