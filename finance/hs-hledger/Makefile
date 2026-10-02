@@ -10,6 +10,8 @@ WWW=		https://hledger.org/ \
 LICENSE=	gpl3+
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+ONLY_FOR_ARCHS=	aarch64 amd64
+
 USES=		cabal
 
 .include <bsd.port.mk>
