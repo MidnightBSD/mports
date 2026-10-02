@@ -2,6 +2,7 @@ PORTNAME=	cabal-install
 DISTVERSIONPREFIX=	${PORTNAME}-v
 DISTVERSION=	3.16.1.0
 CATEGORIES=	devel haskell
+EXTRACT_ONLY=	${DISTNAME_DEFAULT}${_GITHUB_EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Command-line interface for Cabal and Hackage
@@ -10,8 +11,6 @@ WWW=		https://www.haskell.org/cabal/
 LICENSE=	bsd3
 
 ONLY_FOR_ARCHS=	aarch64 amd64
-
-BUILD_DEPENDS=	ghc:lang/ghc
 
 USES=		cabal:nodefault compiler:c11 pkgconfig python:build
 
@@ -53,11 +52,8 @@ USE_CABAL=	alex-3.5.3.0 \
 		unix-2.8.6.0_1 \
 		zlib-0.7.1.0_2
 
-CABAL_BOOTSTRAP=	yes
-
-PLIST_FILES=	bin/cabal
-
-.include <bsd.port.pre.mk>
+CABAL_EXECUTABLES=	cabal
+SKIP_CABAL_EXTRACT=	yes
 
 post-extract:
 	${MKDIR} ${WRKSRC}/_build/tarballs/
@@ -79,4 +75,4 @@ do-build:
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/_build/bin/cabal ${PREFIX}/bin/
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
