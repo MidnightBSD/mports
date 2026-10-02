@@ -12,6 +12,9 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libinotify.so:devel/libinotify
 
+ONLY_FOR_ARCHS=		aarch64 amd64
+ONLY_FOR_ARCHS_REASON=	requires the Cabal toolchain, which is only available on aarch64 and amd64
+
 USES=		cabal
 
 .include <bsd.port.mk>
