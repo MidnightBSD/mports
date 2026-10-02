@@ -1,5 +1,5 @@
 PORTNAME=	redis
-DISTVERSION=	8.8.0
+DISTVERSION=	8.10.2
 CATEGORIES=	databases
 MASTER_SITES=	https://download.redis.io/releases/
 
@@ -20,6 +20,9 @@ LICENSE_PERMS_SSPLv1=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 USES=		compiler:c11 cpe gmake localbase:ldflags pkgconfig tcl:test
 CPE_VENDOR=	redis
 USE_RC_SUBR=	redis sentinel
+
+# Build the Redis server; modules are packaged by separate ports.
+ALL_TARGET=	build core
 
 MAKE_ENV=	OPTIMIZATION= \
 		V=yo

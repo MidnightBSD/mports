@@ -9,14 +9,13 @@
  INSTALL_BIN=$(PREFIX)/bin
  INSTALL=install
  PKG_CONFIG?=pkg-config
-@@ -152,7 +152,6 @@ FINAL_LIBS=-lm
- FINAL_CFLAGS=$(STD) $(WARN) $(OPT) $(DEBUG) $(CFLAGS) $(REDIS_CFLAGS)
- FINAL_LDFLAGS=$(LDFLAGS) $(OPT) $(REDIS_LDFLAGS) $(DEBUG)
- FINAL_LIBS=-lm
+@@ -171,5 +171,4 @@ endif
+ endif
 -DEBUG=-g -ggdb
  
  # Linux ARM32 needs -latomic at linking time
  ifneq (,$(findstring armv,$(uname_M)))
-@@ -217,1 +217,1 @@
+@@ -234,2 +233,2 @@
+ else
 -ifeq ($(uname_S),FreeBSD)
 +ifneq (,$(filter FreeBSD MidnightBSD,$(uname_S)))
