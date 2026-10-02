@@ -403,6 +403,7 @@
     SUBDIR += gumbo
     SUBDIR += highlighterkit
     SUBDIR += highway
+    SUBDIR += hs-ShellCheck
     SUBDIR += hs-cabal-install
     SUBDIR += hwloc
     SUBDIR += hwloc2
