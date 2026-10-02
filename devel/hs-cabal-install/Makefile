@@ -9,6 +9,8 @@ WWW=		https://www.haskell.org/cabal/
 
 LICENSE=	bsd3
 
+ONLY_FOR_ARCHS=	aarch64 amd64
+
 BUILD_DEPENDS=	ghc:lang/ghc
 
 USES=		cabal:nodefault compiler:c11 pkgconfig python:build
