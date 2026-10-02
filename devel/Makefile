@@ -403,8 +403,10 @@
     SUBDIR += gumbo
     SUBDIR += highlighterkit
     SUBDIR += highway
+    SUBDIR += hs-ShellCheck
     SUBDIR += hs-cabal-install
     SUBDIR += hs-git-annex
+    SUBDIR += hs-hadolint
     SUBDIR += hwloc
     SUBDIR += hwloc2
     SUBDIR += hyperscan
