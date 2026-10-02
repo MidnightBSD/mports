@@ -1,0 +1,27 @@
+--- verismith.cabal.orig	2001-09-09 01:46:40 UTC
++++ verismith.cabal
+@@ -90,13 +90,13 @@ --  ghc-options: -ddump-simpl -ddump-to-file
+                , base >=4.7 && <5
+                , binary >= 0.8.5.1 && <0.9
+                , blaze-html >=0.9.0.1 && <0.10
+-               , bytestring >=0.10 && <0.12
++               , bytestring >=0.10 && <0.13
+                , cryptonite >=0.25 && <0.31
+                , deepseq >= 1.4.3.0 && <1.6
+                , exceptions >=0.10.0 && <0.11
+                , fgl >=5.6 && <5.9
+                , fgl-visualize >=0.1 && <0.2
+-               , filepath >=1.4.2 && <1.5
++               , filepath >=1.4.2 && <1.6
+                , gitrev >= 1.3.1 && <1.4
+                , hedgehog >=1.0 && <1.6
+                , lens >=4.16.1 && <5.4
+@@ -112,7 +112,7 @@ --  ghc-options: -ddump-simpl -ddump-to-file
+                , shelly >=1.8.0 && <1.13
+                , template-haskell >=2.13.0 && <2.24
+                , text >=1.2 && <2.2
+-               , time >= 1.8.0.2 && <1.13
++               , time >= 1.8.0.2 && <1.15
+                , tomland >=1.3.2 && <1.4
+                , transformers >=0.5 && <0.7
+                , transformers-base >=0.4.5 && <0.5
