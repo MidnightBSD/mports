@@ -3,7 +3,7 @@
 # must match "executable" line from xmonad-config.cabal
 EXE_NAME=xmonad-config
 
-# xmonad tells us how it want resulting executable to be named
+# xmonad tells us how it wants the resulting executable to be named
 output_file=$1; shift
 
 CFG_DIR="$HOME/.xmonad"
