@@ -12,6 +12,7 @@
     SUBDIR += fluxbox
     SUBDIR += fvwm2
     SUBDIR += hikari
+    SUBDIR += hs-xmonad
     SUBDIR += i3
     SUBDIR += icewm
     SUBDIR += labwc
