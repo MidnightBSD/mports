@@ -404,6 +404,7 @@
     SUBDIR += highlighterkit
     SUBDIR += highway
     SUBDIR += hs-cabal-install
+    SUBDIR += hs-git-annex
     SUBDIR += hwloc
     SUBDIR += hwloc2
     SUBDIR += hyperscan
