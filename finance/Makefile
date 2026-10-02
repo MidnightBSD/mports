@@ -6,6 +6,7 @@
     SUBDIR += R-cran-timeDate
     SUBDIR += expense
     SUBDIR += hs-hledger
+    SUBDIR += hs-hledger-ui
     SUBDIR += libofx
     SUBDIR += prestashop
     SUBDIR += py-bitcoin
