@@ -1,6 +1,5 @@
 PORTNAME?=	mariadb
-PORTVERSION=	10.6.24
-PORTREVISION?=	1
+PORTVERSION=	10.6.28
 CATEGORIES=	databases
 MASTER_SITES=	https://mirror.nodesdirect.com/${SITESDIR}/ \
 		https://mirror.one.com/${SITESDIR}/ \
@@ -22,7 +21,7 @@ WWW=		https://mariadb.org/
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-DEPRECATED=           End-of-Life approaching, please switch to 11.8 (or 11.4)
+DEPRECATED=	End-of-Life approaching, please switch to 11.8 (or 11.4)
 EXPIRATION_DATE=	2026-06-30
 
 LIB_DEPENDS+=	libpcre2-8.so:devel/pcre2 \
