@@ -1,34 +1,32 @@
 #
-
+# Format the POD documentation into manual pages.
 #
+# perl is not in base on MidnightBSD 4.0+, so pod2man comes from lang/perl5.
+.if exists(/usr/local/bin/pod2man)
+POD2MAN?=	/usr/local/bin/pod2man
+.else
+POD2MAN?=	/usr/bin/pod2man
+.endif
 
-#
-# A simple makefile to format our POD into manpages and stick them in src. 
-# It's up to you to commit them to cvs after that.
-# 
-
-
-POD2MAN=	/usr/bin/pod2man
-
-.if !exists(${POD2MAN}) 
-.error "pod2man not found.  Perhaps you don't have perl installed?"
+.if !exists(${POD2MAN})
+.error "pod2man not found.  Install lang/perl5 (mport install perl5)."
 .endif
 
 POD5=	bsd.mport.mk.pod
-MAN5=	${POD5:S/.pod/.5/g}
+MAN5=	${POD5:S/.pod$/.5/}
 
-MANS=	${MAN5}
+all: ${MAN5}
 
-all: ${MANS}
+.SUFFIXES: .pod .5
 
-.for SEC in "1 2 3 4 5 6 7 8"
-.    for PAGE in ${MAN${SEC}:S/.${SEC}//g}
-${PAGE}.${SEC}: ${PAGE}.pod
-	${POD2MAN} -r MidnightBSD -c "MidnightBSD File Formats Manual" -n ${PAGE} -s ${SEC} ${PAGE}.pod > ${PAGE}.${SEC}
-.    endfor
-.endfor
+.pod.5:
+	${POD2MAN} -r MidnightBSD -c "MidnightBSD File Formats Manual" \
+		-n ${.TARGET:R} -s 5 ${.IMPSRC} > ${.TARGET}
 
-.PHONY: clean
+check:
+	podchecker ${POD5}
+
+.PHONY: all check clean
 
 clean:
-	rm -f ${MANS}
+	rm -f ${MAN5}
