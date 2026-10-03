@@ -265,6 +265,16 @@ git push -u origin 2026Q2
 
 Do not create the branch automatically — ask the user to confirm first.
 
+## Dependencies
+
+Dependency variables take `path:origin[:target]` tuples, as in FreeBSD: `PKG_DEPENDS`, `FETCH_DEPENDS`, `EXTRACT_DEPENDS`, `PATCH_DEPENDS`, `BUILD_DEPENDS`, `LIB_DEPENDS`, `RUN_DEPENDS`, `TEST_DEPENDS`, plus `BUILD_RUN_DEPENDS` for a dependency needed both to build and at run time:
+
+```makefile
+BUILD_RUN_DEPENDS=	unzip:archivers/unzip
+```
+
+`BUILD_RUN_DEPENDS` is folded into `BUILD_DEPENDS` and `RUN_DEPENDS` by the framework. Use it instead of `RUN_DEPENDS=${BUILD_DEPENDS}`, which also copies whatever `USES` added to `BUILD_DEPENDS`. The per-option (`OPT_BUILD_RUN_DEPENDS`, `OPT_BUILD_RUN_DEPENDS_OFF`), per-flavor (`flavor_BUILD_RUN_DEPENDS`) and per-subpackage (`BUILD_RUN_DEPENDS.sub`) forms work like the other dependency variables.
+
 ## USES extensions
 
 `USES` is a space-separated list of extension keywords in a port's `Makefile`. Each keyword maps to a file in `Mk/extensions/<keyword>.mk`, which injects build dependencies, environment variables, and make targets automatically.
