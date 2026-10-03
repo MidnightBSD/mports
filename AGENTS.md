@@ -373,6 +373,8 @@ When updating an existing port, always verify the license is still accurate — 
 
 **Do not modify `Mk/bsd.mport.mk` without consulting the maintainer** (`luke@MidnightBSD.org`). The file carries a strong warning against unauthorized changes.
 
+The framework's reference manual is `Mk/docs/bsd.mport.mk.pod` (perldoc; rendered as `bsd.mport.mk(5)` by `make` in `Mk/docs`, which needs `pod2man` from the `lang/perl5` packages since perl is not in base). Read it to learn how targets, stages and variables are meant to behave before reading the makefiles themselves: `perldoc Mk/docs/bsd.mport.mk.pod`. Whenever a change to `Mk/` adds, removes or changes the meaning of a public target or variable, update the manual in the same commit and run `podchecker Mk/docs/bsd.mport.mk.pod`.
+
 Key things defined in `bsd.mport.mk`:
 
 | Item | Description |
