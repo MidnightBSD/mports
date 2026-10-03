@@ -92,6 +92,7 @@
     SUBDIR += p5-Class-DBI-Plugin-DeepAbstractSearch
     SUBDIR += p5-Class-DBI-Plugin-Pager
     SUBDIR += p5-DBD-CSV
+    SUBDIR += p5-DBD-MariaDB
     SUBDIR += p5-DBD-Pg
     SUBDIR += p5-DBD-SQLite
     SUBDIR += p5-DBD-mysql
