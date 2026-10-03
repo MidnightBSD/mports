@@ -739,6 +739,20 @@ as FETCH_DEPENDS.  This will be checked during the "install" stage and the
 name of the dependency will be put into the package as well.  If the third
 field ("target") exists, it will be used instead of ${DEPENDS_TARGET}.
 
+=item BUILD_RUN_DEPENDS
+
+A list of "path:dir[:target]" tuples of other ports this package depends on
+both to build and to run.  Each tuple is added to BUILD_DEPENDS and to
+RUN_DEPENDS, so it is checked from the "configure" stage through "build"
+and again at "install", and the dependency is recorded in the package.  Use
+it instead of listing the same tuple twice or writing
+RUN_DEPENDS=${BUILD_DEPENDS}, which also copies whatever USES and the
+framework have added to BUILD_DEPENDS.  The per-option (OPT_BUILD_RUN_DEPENDS
+and OPT_BUILD_RUN_DEPENDS_OFF), per-flavor (flavor_BUILD_RUN_DEPENDS) and
+per-subpackage (BUILD_RUN_DEPENDS.sub) forms work like those of the other
+dependency variables.  If the third field ("target") exists, it will be used
+instead of ${DEPENDS_TARGET}.
+
 =item LIB_DEPENDS
 
 A list of "lib:dir[:target]" tuples of other ports this package depends on. 
