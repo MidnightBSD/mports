@@ -580,8 +580,8 @@ _DID_FLAVORS_HELPERS=	yes
 _FLAVOR_HELPERS_OVERRIDE=	DESCR PLIST PKGNAMEPREFIX PKGNAMESUFFIX
 _FLAVOR_HELPERS_APPEND=	 	CONFLICTS CONFLICTS_BUILD CONFLICTS_INSTALL \
 							PKG_DEPENDS EXTRACT_DEPENDS PATCH_DEPENDS \
-							FETCH_DEPENDS BUILD_DEPENDS LIB_DEPENDS \
-							RUN_DEPENDS TEST_DEPENDS
+							FETCH_DEPENDS BUILD_RUN_DEPENDS BUILD_DEPENDS \
+							LIB_DEPENDS RUN_DEPENDS TEST_DEPENDS
 # These overwrite the current value
 .      for v in ${_FLAVOR_HELPERS_OVERRIDE}
 .        if defined(${FLAVOR}_${v})
@@ -3332,6 +3332,17 @@ package-noinstall: package
 ################################################################
 # Dependency checking
 ################################################################
+
+# BUILD_RUN_DEPENDS lists a dependency once for both the build and the
+# run time.  It is folded into BUILD_DEPENDS and RUN_DEPENDS here, before
+# either is read, so nothing downstream (the depends targets, the lists,
+# actual-package-depends and the package itself) knows it existed.  It
+# replaces RUN_DEPENDS=${BUILD_DEPENDS}, which also copied whatever USES
+# and the framework had added to BUILD_DEPENDS.
+.    for sp in ${_PKGS}
+BUILD_DEPENDS${_SP.${sp}}+=	${BUILD_RUN_DEPENDS${_SP.${sp}}}
+RUN_DEPENDS${_SP.${sp}}+=	${BUILD_RUN_DEPENDS${_SP.${sp}}}
+.    endfor
 
 .    if !target(depends)
 depends: pkg-depends extract-depends patch-depends lib-depends fetch-depends build-depends run-depends
