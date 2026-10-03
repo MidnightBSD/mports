@@ -65,6 +65,8 @@
     SUBDIR += mariadb114-server
     SUBDIR += mariadb118-client
     SUBDIR += mariadb118-server
+    SUBDIR += mariadb123-client
+    SUBDIR += mariadb123-server
     SUBDIR += mdbtools
     SUBDIR += memcached
     SUBDIR += mongodb60

@@ -1,0 +1,5 @@
+--- tpool/CMakeLists.txt.orig	2026-10-03 00:00:00 UTC
++++ tpool/CMakeLists.txt
+@@ -11 +11 @@
+-
++ADD_DEFINITIONS(-fPIC)
