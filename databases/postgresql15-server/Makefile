@@ -1,7 +1,7 @@
-DISTVERSION?=	15.18
+DISTVERSION?=	15.19
 # PORTREVISION must be ?= otherwise, all slave ports get this PORTREVISION and
 # not their own.  Probably best to keep it at ?=0 when reset here too.
-PORTREVISION?=	1
+PORTREVISION?=	0
 
 MAINTAINER?=	ports@MidnightBSD.org
 
