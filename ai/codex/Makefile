@@ -1,6 +1,7 @@
 PORTNAME=	codex
 DISTVERSIONPREFIX=	rust-v
 DISTVERSION=	0.160.0
+PORTREVISION=	1
 CATEGORIES=	ai devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -91,7 +92,12 @@ BUILD_WRKSRC=	${WRKSRC}/codex-rs
 PLIST_FILES=	bin/${PORTNAME} \
 		bin/${PORTNAME}-code-mode-host \
 		bin/${PORTNAME}-responses-api-proxy \
-		bin/logs_client
+		bin/logs_client \
+		libexec/${PORTNAME}/bin/${PORTNAME} \
+		libexec/${PORTNAME}/bin/${PORTNAME}-code-mode-host \
+		libexec/${PORTNAME}/codex-package.json \
+		libexec/${PORTNAME}/codex-path/rg
+PLIST_DIRS=	libexec/${PORTNAME}/codex-resources
 PORTDOCS=	README.md config.md
 
 OPTIONS_DEFINE=		COMPLETIONS DOCS
@@ -204,15 +210,27 @@ post-build-COMPLETIONS-on:
 .endfor
 
 do-install:
-	@${MKDIR} ${PREFIX}/bin
-.for prog in ${PLIST_FILES:Mbin/*:T}
+	@${MKDIR} ${PREFIX}/bin ${PREFIX}/libexec/${PORTNAME}/bin \
+		${PREFIX}/libexec/${PORTNAME}/codex-path \
+		${PREFIX}/libexec/${PORTNAME}/codex-resources
+.for prog in ${PORTNAME} ${PORTNAME}-code-mode-host
+	${INSTALL_PROGRAM} ${CARGO_TARGET_DIR}/${CARGO_BUILD_TARGET}/release/${prog} \
+		${PREFIX}/libexec/${PORTNAME}/bin
+	${LN} -s ../libexec/${PORTNAME}/bin/${prog} ${PREFIX}/bin/${prog}
+.endfor
+.for prog in ${PORTNAME}-responses-api-proxy logs_client
 	${INSTALL_PROGRAM} ${CARGO_TARGET_DIR}/${CARGO_BUILD_TARGET}/release/${prog} \
 		${PREFIX}/bin
 .endfor
+	${INSTALL_PROGRAM} ${LOCALBASE}/bin/rg ${PREFIX}/libexec/${PORTNAME}/codex-path/rg
+	@${ECHO_CMD} '{"layoutVersion":1,"version":"${DISTVERSION}","target":"${CARGO_BUILD_TARGET}","variant":"codex","entrypoint":"bin/codex","resourcesDir":"codex-resources","pathDir":"codex-path"}' > ${PREFIX}/libexec/${PORTNAME}/codex-package.json
 
 post-install:
-.for prog in ${PLIST_FILES:Mbin/*}
-	@${STRIP_CMD} ${PREFIX}/${prog}
+	@${STRIP_CMD} ${PREFIX}/libexec/${PORTNAME}/bin/${PORTNAME} \
+		${PREFIX}/libexec/${PORTNAME}/bin/${PORTNAME}-code-mode-host \
+		${PREFIX}/libexec/${PORTNAME}/codex-path/rg
+.for prog in ${PORTNAME}-responses-api-proxy logs_client
+	@${STRIP_CMD} ${PREFIX}/bin/${prog}
 .endfor
 
 post-install-COMPLETIONS-on:
