@@ -1,6 +1,5 @@
 PORTNAME?=		mysql
-PORTVERSION=		8.4.5
-PORTREVISION?=		1
+PORTVERSION=		8.4.11
 CATEGORIES=		databases
 MASTER_SITES=		MYSQL/MySQL-8.4
 PKGNAMESUFFIX?=		84-server
@@ -12,7 +11,7 @@ WWW=		https://www.mysql.com/
 LICENSE=		gpl2
 
 # MySQL8.2+ supports only 64-bit platforms
-NOT_FOR_ARCHS= armv6 armv7 i386 powerpc
+NOT_FOR_ARCHS=	armv6 armv7 i386 powerpc
 
 BROKEN_MidnightBSD_3.2=	Needs newer C++20 support for std:ranges
 
