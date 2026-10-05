@@ -1,6 +1,5 @@
 PORTNAME=	cups-pdf
-DISTVERSION=	3.0.1
-PORTREVISION=	3
+DISTVERSION=	3.0.3
 CATEGORIES=	print
 MASTER_SITES=	http://www.cups-pdf.de/src/ \
 		http://www.physik.uni-wuerzburg.de/~vrbehr/cups-pdf/src/
