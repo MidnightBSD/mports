@@ -1,5 +1,4 @@
 PORTNAME=	mysql
-PORTREVISION=	1
 PKGNAMESUFFIX=	84-client
 
 COMMENT=	Multithreaded SQL database (client)
@@ -7,7 +6,7 @@ COMMENT=	Multithreaded SQL database (client)
 LICENSE+=	lgpl2.1
 
 # MySQL8.2+ supports only 64-bit platforms
-NOT_FOR_ARCHS= armv6 armv7 i386 powerpc
+NOT_FOR_ARCHS=	armv6 armv7 i386 powerpc
 
 MASTERDIR=	${.CURDIR}/../mysql84-server
 
