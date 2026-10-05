@@ -1,7 +1,6 @@
 bin/thunderbird
 share/pixmaps/thunderbird.png
 share/applications/thunderbird.desktop
-lib/thunderbird/rnp-cli
 lib/thunderbird/gfxtest
 lib/thunderbird/librnp.so
 lib/thunderbird/dependentlibs.list
@@ -36,7 +35,6 @@ lib/thunderbird/chrome/icons/default/msgcomposeWindow48.png
 lib/thunderbird/chrome/icons/default/default256.png
 lib/thunderbird/chrome/icons/default/calendar-alarm-dialog.png
 lib/thunderbird/application.ini
-lib/thunderbird/rnpkeys
 lib/thunderbird/removed-files
 lib/thunderbird/thunderbird-bin
 lib/thunderbird/interesting_serverknobs.json
