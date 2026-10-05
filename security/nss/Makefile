@@ -1,5 +1,5 @@
 PORTNAME=	nss
-PORTVERSION=	3.127
+PORTVERSION=	3.129
 CATEGORIES=	security
 MASTER_SITES=	MOZILLA/security/${PORTNAME}/releases/${DISTNAME:tu:C/[-.]/_/g}_RTM/src
 
@@ -11,6 +11,7 @@ LICENSE=	MPL20
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	${BUILD_DEPENDS_${ARCH}}
+BUILD_RUN_DEPENDS=	nspr>=4.39:devel/nspr
 LIB_DEPENDS=	libnspr4.so:devel/nspr \
 		libsqlite3.so:databases/sqlite3
 BUILD_DEPENDS+=	${LOCALBASE}/bin/sqlite3:databases/sqlite3
