@@ -1,5 +1,5 @@
 PORTNAME=	zlib-ng
-DISTVERSION=	2.2.1
+DISTVERSION=	2.3.3
 CATEGORIES=	archivers
 
 MAINTAINER=	ports@MidnightBSD.org
