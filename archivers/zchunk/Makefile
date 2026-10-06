@@ -1,6 +1,5 @@
 PORTNAME=	zchunk
-DISTVERSION=	1.5.1
-PORTREVISION=	1
+DISTVERSION=	1.5.4
 CATEGORIES=	archivers
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -31,7 +30,5 @@ OPENSSL_LDFLAGS=	-L${OPENSSLLIB} -lssl -lcrypto # workaround for https://github.
 ZSTD_MESON_ON=		-Dwith-zstd=enabled
 ZSTD_MESON_OFF=		-Dwith-zstd=disabled
 ZSTD_LIB_DEPENDS=	libzstd.so:archivers/zstd
-
-NO_TEST=	yes
 
 .include <bsd.port.mk>
