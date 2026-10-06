@@ -1,11 +1,8 @@
 PORTNAME=	brotli
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.1.0
+DISTVERSION=	1.2.0
 PORTEPOCH=	1
 CATEGORIES=	archivers devel
-
-PATCH_SITES=	https://github.com/google/${PORTNAME}/commit/
-PATCHFILES=	741610efd335a8b6ff9be4c9bed643e0a74fdb6a.patch:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generic-purpose lossless compression algorithm
@@ -29,6 +26,6 @@ CMAKE_ARGS=	-DSHARE_INSTALL_PREFIX=share
 OPTIONS_DEFINE=		STATIC
 OPTIONS_SUB=		yes
 
-STATIC_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-static-libs
+STATIC_CMAKE_BOOL=	BROTLI_BUILD_FOR_PACKAGE
 
 .include <bsd.port.mk>
