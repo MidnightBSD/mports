@@ -1,5 +1,5 @@
 PORTNAME=	lha
-PORTVERSION=	1.14i.20211125
+PORTVERSION=	1.14i.20250923
 CATEGORIES=	archivers
 PKGNAMESUFFIX=	-ac
 
@@ -17,7 +17,7 @@ CPE_VENDOR=	tsugio_okamoto
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	jca02266
-GH_TAGNAME=	release-${PORTVERSION:E}
+GH_TAGNAME=	0a07ec7
 
 RESTRICTED=	no permission to redistribute
 
