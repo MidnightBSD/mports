@@ -1,8 +1,8 @@
 PORTNAME=	minizip
-PORTVERSION=	1.3.1
+DISTVERSION=	1.3.2
 CATEGORIES=	archivers
 MASTER_SITES=	https://github.com/madler/zlib/releases/download/v${DISTVERSION}/
-DISTNAME=	zlib-${PORTVERSION}
+DISTNAME=	zlib-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Zip library and programs from Zlib distribution
@@ -17,7 +17,7 @@ PATHFIX_MAKEFILEIN=	Makefile.am
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-demos
 INSTALL_TARGET=	install-strip
-WRKSRC=		${WRKDIR}/zlib-${PORTVERSION}/contrib/minizip
+WRKSRC=		${WRKDIR}/zlib-${DISTVERSION}/contrib/minizip
 
 .include <bsd.mport.options.mk>
 
