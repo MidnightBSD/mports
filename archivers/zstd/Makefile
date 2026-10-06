@@ -1,8 +1,11 @@
 PORTNAME=	zstd
-PORTVERSION=	1.5.6
-PORTREVISION=	1
+PORTVERSION=	1.5.7
 CATEGORIES=	archivers
 MASTER_SITES=	https://github.com/facebook/zstd/releases/download/v${PORTVERSION}/
+
+# The 1.5.7 release omitted its updated manual pages.
+PATCH_SITES=	https://github.com/facebook/zstd/commit/
+PATCHFILES=	6af3842118ea5325480b403213b2a9fbed3d3d74.diff:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast real-time compression algorithm
