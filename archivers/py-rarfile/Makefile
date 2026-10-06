@@ -1,8 +1,7 @@
 # Created by: Kevin Golding <ports@caomhin.org>
 
 PORTNAME=	rarfile
-PORTVERSION=	4.0
-PORTREVISION=	1
+PORTVERSION=	4.5
 CATEGORIES=	archivers python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
