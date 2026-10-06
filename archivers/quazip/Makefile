@@ -1,6 +1,6 @@
 PORTNAME=	quazip
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.4
+DISTVERSION=	1.7.1
 CATEGORIES=	archivers
 PKGNAMESUFFIX=	-${FLAVOR}
 
@@ -26,6 +26,7 @@ _USE_QT_qt5=	core network testlib \
 _USE_QT_qt6=	base 5compat
 
 PLIST_SUB=	QTVER_SUFFIX=${FLAVOR:S/qt//} \
+		QUAZIP_VER=${DISTVERSION:R} \
 		QUAZIP_VERSION=${DISTVERSION}
 
 .include <bsd.port.mk>
