@@ -1,6 +1,5 @@
 PORTNAME=	7-zip
-DISTVERSION=	26.00
-PORTREVISION=	2
+DISTVERSION=	26.03
 CATEGORIES=	archivers
 MASTER_SITES=	https://www.7-zip.org/a/
 DISTNAME=	7z${DISTVERSION:S/.//}-src
@@ -8,8 +7,6 @@ DISTNAME=	7z${DISTVERSION:S/.//}-src
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Console version of the 7-Zip file archiver
 WWW=		https://www.7-zip.org/
-
-CONFLICTS_INSTALL=	p7zip
 
 LICENSE=	bsd3 lgpl2.1+ UNRAR
 LICENSE_COMB=	multi
@@ -19,6 +16,7 @@ LICENSE_FILE_lgpl2.1+ =	${WRKSRC}/DOC/copying.txt
 LICENSE_FILE_UNRAR=	${WRKSRC}/DOC/unRarLicense.txt
 LICENSE_PERMS_UNRAR=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
+CONFLICTS_INSTALL=	p7zip
 LIB_DEPENDS=	libsysinfo.so:devel/libsysinfo
 
 USES=		7z cpe dos2unix gmake localbase
@@ -47,9 +45,8 @@ OPTIONS_DEFINE=	DOCS
 .include <bsd.port.pre.mk>
 
 .if ${OSVERSION} < 300000
-IGNORE= Requires MidnightBSD 3.0 or higher
+IGNORE=	requires MidnightBSD 3.0 or higher
 .endif
-
 
 post-patch:
 	${ECHO_CMD} > ${WRKSRC}/CPP/7zip/warn_clang.mak
