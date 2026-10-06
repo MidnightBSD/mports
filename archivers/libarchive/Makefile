@@ -1,5 +1,5 @@
 PORTNAME=	libarchive
-DISTVERSION=	3.8.1
+DISTVERSION=	3.8.8
 PORTEPOCH=	1
 CATEGORIES=	archivers
 MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/v${DISTVERSION}/ \
@@ -27,7 +27,7 @@ INSTALL_TARGET=	install-strip
 #TEST_TARGET=	check
 NO_TEST=	yes
 
-CONFIGURE_ARGS=	--disable-static --without-xml2
+CONFIGURE_ARGS=	--disable-static --without-libb2 --without-xml2
 
 OPTIONS_DEFINE=	LZ4 LZO ZSTD
 OPTIONS_DEFAULT=LZ4 ZSTD OPENSSL
