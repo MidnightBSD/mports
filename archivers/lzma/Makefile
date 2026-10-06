@@ -1,7 +1,8 @@
 PORTNAME=	lzma
-PORTVERSION=	19.00
+PORTVERSION=	26.03
 CATEGORIES=	archivers
-MASTER_SITES=	SF/sevenzip/LZMA%20SDK/
+MASTER_SITES=	SF/sevenzip/LZMA%20SDK/ \
+		https://www.7-zip.org/a/
 DISTNAME=	lzma${PORTVERSION:S/.//g}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -27,7 +28,7 @@ CFLAGS+=	-D_LZMA_PROB32
 #enable some optimizations in LZMA Decoder to get smaller executable code
 CFLAGS+=	-D_LZMA_SIZE_OPT
 .endif
-PORTDOCS=	7zC.txt 7zFormat.txt Methods.txt lzma-history.txt lzma.txt
+PORTDOCS=	7zC.txt 7zFormat.txt Methods.txt lzma-history.txt lzma-specification.txt lzma.txt
 
 OPTIONS_DEFINE=	DOCS
 
@@ -42,13 +43,13 @@ post-patch:
 			${BUILD_WRKSRC}/${MAKEFILE}
 
 do-install:
-	${INSTALL_PROGRAM} ${BUILD_WRKSRC}/${PORTNAME} ${PREFIX}/bin
+	${INSTALL_PROGRAM} ${BUILD_WRKSRC}/_o/${PORTNAME} ${PREFIX}/bin
 
 do-install-DOCS-on:
 	@${INSTALL} -d ${FAKE_DESTDIR}${DOCSDIR}
 	(cd ${WRKSRC}/DOC/&&${INSTALL_DATA} ${PORTDOCS} ${FAKE_DESTDIR}${DOCSDIR})
 
 do-test:
-	${BUILD_WRKSRC}/${PORTNAME} b
+	${BUILD_WRKSRC}/_o/${PORTNAME} b
 
 .include <bsd.port.mk>
