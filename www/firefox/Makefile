@@ -1,5 +1,5 @@
 PORTNAME=     firefox
-DISTVERSION=  155.0
+DISTVERSION=  157.0
 PORTEPOCH=    2
 CATEGORIES=   www wayland
 MASTER_SITES= MOZILLA/${PORTNAME}/releases/${DISTVERSION}${DISTVERSIONSUFFIX}/source \
@@ -12,6 +12,8 @@ WWW=		https://www.mozilla.com/firefox
 
 LICENSE=	MPL20 gpl2
 LICENSE_COMB=	dual
+
+ONLY_FOR_ARCHS=	amd64
 
 BUILD_DEPENDS=	nspr>=4.32:devel/nspr \
 		nss>=3.127:security/nss \
