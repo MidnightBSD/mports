@@ -1,5 +1,6 @@
 PORTNAME=	fritzing
 PORTVERSION=	1.0.6
+PORTREVISION=	1
 CATEGORIES=	cad
 
 MAINTAINER=	ports@MidnightBSD.org
