@@ -1,6 +1,6 @@
 PORTNAME=	fritzing
 PORTVERSION=	1.0.6
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	cad
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -28,7 +28,7 @@ GH_TAGNAME=	04e5bb0241e8f1de24d0fce9be070041c6d5b68e \
 
 USE_CXXSTD=	c++17
 USE_GL=		egl gl opengl
-USE_QT=		base serialport svg tools
+USE_QT=		base 5compat serialport svg tools
 USE_XORG=	x11 xau xcb xdmcp
 
 post-extract:
