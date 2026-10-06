@@ -1,6 +1,5 @@
 PORTNAME=	zopfli
-PORTVERSION=	0.2.3
-PORTREVISION=	1
+PORTVERSION=	0.4.3
 CATEGORIES=	archivers python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -16,10 +15,18 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLA
 		${PYTHON_PKGNAMEPREFIX}setuptools-scm>=0:devel/py-setuptools-scm@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 
-USES=		python zip
+LIB_DEPENDS=	libzopfli.so:archivers/zopfli
+
+USES=		python
 USE_PYTHON=	autoplist concurrent pep517 pytest
 
+MAKE_ENV=	USE_PY_LIMITED_API=0 \
+		USE_SYSTEM_ZOPFLI=1
 TEST_ENV=	PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' ${WRKSRC}/setup.py
+	@${RM} -r ${WRKSRC}/zopfli/
 
 post-install:
 	${FIND} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
