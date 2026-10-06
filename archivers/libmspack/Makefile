@@ -1,8 +1,7 @@
 PORTNAME=	libmspack
-PORTVERSION=	0.10.1
+DISTVERSION=	0.11alpha
 CATEGORIES=	archivers
 MASTER_SITES=	http://www.cabextract.org.uk/libmspack/
-DISTNAME=	${PORTNAME}-${PORTVERSION}alpha
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for Microsoft compression formats
