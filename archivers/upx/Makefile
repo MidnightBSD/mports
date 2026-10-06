@@ -1,8 +1,8 @@
 PORTNAME=	upx
-PORTVERSION=	4.2.3
-MASTER_SITES=	https://github.com/upx/upx/releases/download/v${PORTVERSION}/
-CATEGORIES=	archivers
+PORTVERSION=	5.2.1
 DISTVERSIONSUFFIX=	-src
+CATEGORIES=	archivers
+MASTER_SITES=	https://github.com/upx/upx/releases/download/v${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ultimate Packer for eXecutables
