@@ -9,7 +9,7 @@ WWW=		https://github.com/hobu/laz-perf
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		cmake compiler:c++11-lang
+USES=		cmake compiler:c++17-lang
 USE_GITHUB=	yes
 GH_ACCOUNT=	hobu
 GH_PROJECT=	laz-perf
