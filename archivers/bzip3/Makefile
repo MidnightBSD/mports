@@ -1,6 +1,5 @@
 PORTNAME=	bzip3
-DISTVERSION=	1.4.0
-PORTREVISION=	2
+DISTVERSION=	1.5.4
 CATEGORIES=	archivers
 MASTER_SITES=	https://github.com/kspalaiologos/${PORTNAME}/releases/download/${DISTVERSION}/
 
@@ -10,15 +9,13 @@ WWW=		https://github.com/kspalaiologos/bzip3
 
 LICENSE=	Apache-2.0 bsd2 lgpl3+
 LICENSE_COMB=	multi
-LICENSE_FILE_apache2=	${WRKSRC}/libsais-LICENSE
+LICENSE_FILE_Apache-2.0=	${WRKSRC}/3rdparty/libsais-LICENSE
 LICENSE_FILE_lgpl3+ =	${WRKSRC}/LICENSE
 
-USES=		cmake pathfix tar:xz cpe
+USES=		cpe libtool tar:xz
 CPE_VENDOR=	bzip3_project
 USE_LDCONFIG=	yes
-
-post-patch:
-	@${REINPLACE_CMD} -e "s|\(VERSION \)1\.3\.0|\1${DISTVERSION}|" \
-		${WRKSRC}/CMakeLists.txt
+GNU_CONFIGURE=	yes
+INSTALL_TARGET=	install-strip
 
 .include <bsd.port.mk>
