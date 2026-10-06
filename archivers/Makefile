@@ -99,6 +99,7 @@
     SUBDIR += rpm4
     SUBDIR += rubygem-rubyzip
     SUBDIR += rubygem-rubyzip-gitlab
+    SUBDIR += rubygem-rubyzip2
     SUBDIR += sharutils
     SUBDIR += snappy
     SUBDIR += snappy-java
