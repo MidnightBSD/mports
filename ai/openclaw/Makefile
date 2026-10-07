@@ -1,6 +1,6 @@
 PORTNAME=	openclaw
 DISTVERSION=	2026.5.7
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	ai # machine-learning
 PKGNAMESUFFIX=	-ai-gateway
 DISTFILES=	${PORTNAME}-${DISTVERSION}${EXTRACT_SUFX}
@@ -129,26 +129,26 @@ do-build:
 
 do-install:
 	# install node_modules
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib
+	@${MKDIR} ${PREFIX}/lib
 	@cd ${WRKSRC} && \
-		${COPYTREE_SHARE} node_modules ${STAGEDIR}${PREFIX}/lib
+		${COPYTREE_SHARE} node_modules ${PREFIX}/lib
 	# remove *.node binaries for non-FreeBSD platforms
-	@${FIND} ${STAGEDIR}${PREFIX}/lib/node_modules \
+	@${FIND} ${PREFIX}/lib/node_modules \
 		-name "*.node" ! -path "*freebsd*" -delete
 	# remove prebuilt FreeBSD binaries for non-target architectures
-	@${FIND} ${STAGEDIR}${PREFIX}/lib/node_modules \
+	@${FIND} ${PREFIX}/lib/node_modules \
 		-name "*.node" -path "*freebsd*" ! -path "*${NODE_ARCH}*" -delete
-	@${FIND} ${STAGEDIR}${PREFIX}/lib/node_modules -name "*.node" \
+	@${FIND} ${PREFIX}/lib/node_modules -name "*.node" \
 		-exec ${STRIP_CMD} {} \;
 	# set exec bit
 	@${CHMOD} +x \
-		${STAGEDIR}${PREFIX}/lib/node_modules/${PACKAGE_NAME}/openclaw.mjs
+		${PREFIX}/lib/node_modules/${PACKAGE_NAME}/openclaw.mjs
 	# create wrapper script
-	@${MKDIR} ${STAGEDIR}${PREFIX}/bin
-	@${ECHO_CMD} '#!/bin/sh' > ${STAGEDIR}${PREFIX}/bin/openclaw
+	@${MKDIR} ${PREFIX}/bin
+	@${ECHO_CMD} '#!/bin/sh' > ${PREFIX}/bin/openclaw
 	@${ECHO_CMD} 'exec ${TRUE_PREFIX}/lib/node_modules/${PACKAGE_NAME}/openclaw.mjs "$$@"' \
-		>> ${STAGEDIR}${PREFIX}/bin/openclaw
-	@${CHMOD} +x ${STAGEDIR}${PREFIX}/bin/openclaw
+		>> ${PREFIX}/bin/openclaw
+	@${CHMOD} +x ${PREFIX}/bin/openclaw
 
 post-patch-EXTEND_AI_TIMEOUT-on:
 	@${FIND} ${WRKSRC}/node_modules/${PACKAGE_NAME}/dist -name "*.js" \
@@ -172,15 +172,15 @@ post-patch-EXTEND_TYPING_TTL_TIMEOUT-on:
 
 post-install:
 	# Remove editor and placeholder artifacts before plist generation.
-	@${FIND} ${STAGEDIR}${PREFIX}/lib/node_modules -name "*.bak" -delete
-	@${FIND} ${STAGEDIR}${PREFIX}/lib/node_modules -name ".gitkeep" -delete
-	@${FIND} ${STAGEDIR}${PREFIX}/lib/node_modules -path "*/.history/*" -delete
-	@${FIND} ${STAGEDIR}${PREFIX}/lib/node_modules -type f -empty \
+	@${FIND} ${PREFIX}/lib/node_modules -name "*.bak" -delete
+	@${FIND} ${PREFIX}/lib/node_modules -name ".gitkeep" -delete
+	@${FIND} ${PREFIX}/lib/node_modules -path "*/.history/*" -delete
+	@${FIND} ${PREFIX}/lib/node_modules -type f -empty \
 		-exec ${SH} -c 'printf "\n" > "$$1"' _ {} \;
 	# remove empty directories in STAGEDIR
-	@${FIND} ${STAGEDIR}${PREFIX}/lib/node_modules -type d -empty -delete
+	@${FIND} ${PREFIX}/lib/node_modules -type d -empty -delete
 	# autoplist: 32k+ files with randomizing strings in names warrant autoplist
-	@cd ${STAGEDIR}${PREFIX} && \
+	@cd ${PREFIX} && \
 		${FIND} * -type f -or -type l >> ${TMPPLIST}
 
 .include <bsd.port.mk>
