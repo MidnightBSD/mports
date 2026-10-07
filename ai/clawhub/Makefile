@@ -1,5 +1,5 @@
 PORTNAME=	clawhub
-DISTVERSION=	0.9.0
+DISTVERSION=	0.12.0
 CATEGORIES=	ai # machine-learning
 DIST_SUBDIR=	${PORTNAME}
 
@@ -42,19 +42,17 @@ post-patch:
 		${WRKSRC}/node_modules/${PORTNAME}/bin/clawdhub.js
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib
+	@${MKDIR} ${PREFIX}/lib
 	@cd ${WRKSRC} && \
-		${COPYTREE_SHARE} node_modules ${STAGEDIR}${PREFIX}/lib
+		${COPYTREE_SHARE} node_modules ${PREFIX}/lib
 	@${CHMOD} +x \
-		${STAGEDIR}${PREFIX}/lib/node_modules/${PORTNAME}/bin/clawdhub.js
-	@${RM} -f \
-		${STAGEDIR}${PREFIX}/lib/node_modules/${PORTNAME}/node_modules/undici/lib/llhttp/.gitkeep
+		${PREFIX}/lib/node_modules/${PORTNAME}/bin/clawdhub.js
 	# Create wrapper scripts
-	@${MKDIR} ${STAGEDIR}${PREFIX}/bin
-	@${ECHO_CMD} '#!/bin/sh' > ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
+	@${MKDIR} ${PREFIX}/bin
+	@${ECHO_CMD} '#!/bin/sh' > ${PREFIX}/bin/${PORTNAME}
 	@${ECHO_CMD} 'exec ${TRUE_PREFIX}/lib/node_modules/${PORTNAME}/bin/clawdhub.js "$$@"' \
-		>> ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
-	@${CHMOD} +x ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
-	@${LN} ${STAGEDIR}${PREFIX}/bin/${PORTNAME} ${STAGEDIR}${PREFIX}/bin/clawdhub
+		>> ${PREFIX}/bin/${PORTNAME}
+	@${CHMOD} +x ${PREFIX}/bin/${PORTNAME}
+	@${LN} ${PREFIX}/bin/${PORTNAME} ${PREFIX}/bin/clawdhub
 
 .include <bsd.port.mk>
