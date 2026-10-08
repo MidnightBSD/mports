@@ -1,6 +1,5 @@
 PORTNAME=	xorg
-PORTVERSION=	21.1.24
-PORTREVISION=	0
+PORTVERSION=	21.1.25
 PORTEPOCH=	1
 CATEGORIES=	x11-servers
 MASTER_SITES=	XORG/individual/xserver
@@ -28,7 +27,7 @@ PORTNAME=	xephyr
 PKGNAMESUFFIX=	-server
 .elif ${FLAVOR} == xnest
 PORTEPOCH=	2
-PKGNAMESUFFIX= -nestserver
+PKGNAMESUFFIX=	-nestserver
 .elif ${FLAVOR} == xvfb
 PKGNAMESUFFIX=	-vfbserver
 .endif
@@ -94,7 +93,7 @@ LIB_DEPENDS+=	libxcb-render-util.so:x11/xcb-util-renderutil \
 
 FONTPATH_ROOT?=	${LOCALBASE}/share/fonts
 FONTPATHD?=	${PREFIX}/etc/X11/fontpath.d
-DEFAULT_FONTPATH_LIST= \
+DEFAULT_FONTPATH_LIST=	\
 	${FONTPATH_ROOT}/misc/	\
 	${FONTPATH_ROOT}/TTF/ \
 	${FONTPATH_ROOT}/OTF/ \
