@@ -1,6 +1,5 @@
 PORTNAME=	xwayland
-PORTVERSION=	24.1.13
-PORTREVISION=	1
+PORTVERSION=	24.1.14
 PORTEPOCH=	1
 CATEGORIES=	x11-servers
 MASTER_SITES=	XORG/individual/xserver
@@ -42,7 +41,7 @@ MESON_ARGS=	-Dxvfb=false \
 # Keep in sync with xorg-server
 FONTPATH_ROOT?=	${LOCALBASE}/share/fonts
 FONTPATHD?=	${PREFIX}/etc/X11/fontpath.d
-DEFAULT_FONTPATH_LIST= \
+DEFAULT_FONTPATH_LIST=	\
 	${FONTPATH_ROOT}/misc/	\
 	${FONTPATH_ROOT}/TTF/ \
 	${FONTPATH_ROOT}/OTF/ \
