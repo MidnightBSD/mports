@@ -3581,6 +3581,16 @@ package-depends-list:
 _LIB_RUN_DEPENDS=	${LIB_DEPENDS_ALL} ${RUN_DEPENDS_ALL}
 # the mport binary tools only store the the first tier of the depenancy
 # tree in a mports archive.
+# How a version requirement on a dependency (e.g. foo>=1.0<4.0:devel/foo) is
+# reduced to what mport.create records.  mport on MidnightBSD 4.1 and later
+# understands compound requirements, so only the package name is stripped.
+# Older releases keep the historical behaviour of keeping the last bound only.
+.if ${OSVERSION} >= 401000
+_DEPEND_VERSION_SED=	s/^[^<>]*//
+.else
+_DEPEND_VERSION_SED=	s/^.*([<>])/\1/
+.endif
+
 PACKAGE-DEPENDS-LIST?= \
 	for depend in `${ECHO_CMD} "${_LIB_RUN_DEPENDS}" | ${SED} -e 'y/ /\n/' | ${SORT} -u`; do \
 		version=`(${ECHO_CMD} $$depend | ${CUT} -f 1 -d ':' | ${GREP} -se '[<>]') || ${TRUE}`; \
@@ -3602,7 +3612,7 @@ PACKAGE-DEPENDS-LIST?= \
 			if [ -z "$$version" ]; then \
 				${ECHO_CMD} "$$dir $$meta" | ${AWK} '{print $$2 " " $$1 " " $$3}'; \
 			else \
-				version=`${ECHO_CMD} $$version | ${SED} -E 's/^.*([<>])/\1/'`; \
+				version=`${ECHO_CMD} $$version | ${SED} -E '${_DEPEND_VERSION_SED}'`; \
 				${ECHO_CMD} "$$dir $$meta $$version" | ${AWK} '{print $$2 " " $$1 " " $$3 " " $$4}'; \
 			fi; \
 		else \
