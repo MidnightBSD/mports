@@ -1,0 +1,50 @@
+--- cmake/mlx/CMakeLists.txt.orig
++++ cmake/mlx/CMakeLists.txt
+@@ -63,15 +63,17 @@
+ 
+ include(FetchContent)
+ set(XGRAMMAR_VERSION v0.2.5)
+-FetchContent_Declare(xgrammar
+-    GIT_REPOSITORY "https://github.com/mlc-ai/xgrammar.git"
+-    GIT_TAG ${XGRAMMAR_VERSION}
+-    GIT_SHALLOW TRUE
+-    GIT_SUBMODULES 3rdparty/dlpack
+-    # Do not add XGrammar's Python-oriented CMake project.
+-    SOURCE_SUBDIR cmake/ollama)
+-FetchContent_MakeAvailable(xgrammar)
++#FetchContent_Declare(xgrammar
++#    GIT_REPOSITORY "https://github.com/mlc-ai/xgrammar.git"
++#    GIT_TAG ${XGRAMMAR_VERSION}
++#    GIT_SHALLOW TRUE
++#    GIT_SUBMODULES 3rdparty/dlpack
++#    # Do not add XGrammar's Python-oriented CMake project.
++#    SOURCE_SUBDIR cmake/ollama)
++#FetchContent_MakeAvailable(xgrammar)
+ 
++set(xgrammar_SOURCE_DIR "%%WRKSRC%%/xgrammar")
++
+ file(GLOB_RECURSE XGRAMMAR_SOURCES CONFIGURE_DEPENDS "${xgrammar_SOURCE_DIR}/cpp/*.cc")
+ list(FILTER XGRAMMAR_SOURCES EXCLUDE REGEX "/cpp/tvm_ffi/.*\\.cc$")
+ add_library(xgrammar STATIC ${XGRAMMAR_SOURCES})
+@@ -138,7 +140,6 @@
+ # Keep mlx/mlxc targets separate from runtime dependencies so --strip only
+ # applies to the binaries we build, not vendor DLLs/libs.
+ install(TARGETS mlx mlxc ollama_xgrammar
+-    RUNTIME_DEPENDENCY_SET mlx_runtime_deps
+     RUNTIME DESTINATION ${OLLAMA_INSTALL_DIR} COMPONENT MLX
+     LIBRARY DESTINATION ${OLLAMA_INSTALL_DIR} COMPONENT MLX
+     FRAMEWORK DESTINATION ${OLLAMA_INSTALL_DIR} COMPONENT MLX
+@@ -208,13 +209,6 @@
+     endforeach()
+ " COMPONENT MLX)
+ 
+-install(RUNTIME_DEPENDENCY_SET mlx_runtime_deps
+-    DIRECTORIES ${MLX_RUNTIME_DIRS}
+-    PRE_INCLUDE_REGEXES ${MLX_INCLUDE_REGEXES}
+-    PRE_EXCLUDE_REGEXES ".*"
+-    RUNTIME DESTINATION ${OLLAMA_INSTALL_DIR} COMPONENT MLX_VENDOR
+-    LIBRARY DESTINATION ${OLLAMA_INSTALL_DIR} COMPONENT MLX_VENDOR
+-)
+ 
+ get_target_property(_MLX_LINK_LIBRARIES mlx LINK_LIBRARIES)
+ if(TARGET jaccl AND "jaccl" IN_LIST _MLX_LINK_LIBRARIES)
