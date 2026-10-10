@@ -49,8 +49,8 @@ cp -r \
 	../$GH_ACCOUNT_ORIG-$GH_PROJECT.repo/.golangci.yaml \
 	.
 
-# apply freebsd compatibility patch
-(patch-no-backup-1 < ../files/freebsd-compatibility.patch) || { echo "error: failed to apply freebsd compatibility patch"; exit 1; }
+# change import path to the fork
+grep -rl ollama/ollama | xargs sed -i '' -e 's|ollama/ollama|yurivict/ollama|g'
 
 # it should be buildable at this point
 
@@ -67,8 +67,8 @@ git tag -a v$VERSION -m "Release version v$VERSION + freebsd patches"
 git push origin
 git push --tags
 
-# make GoLang proxy
-echo "==> submitting the new version $VERSION to GoLang proxy"
+# make GoLang proxy to ingest the new version
+echo "==> submitting the new version $VERSION to the GoLang proxy"
 GOPROXY=proxy.golang.org $GO_CMD list -m github.com/$GH_ACCOUNT_FORK/ollama@v$VERSION
 
 # final message

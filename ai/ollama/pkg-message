@@ -3,7 +3,7 @@
   message: <<EOM
 You installed ollama: the AI model runner.
 
-To run ollama, plese open 2 terminals.
+To run ollama, please open 2 terminals.
 1. In the first terminal, please run:
    $ ollama serve
 2. In the second terminal, please run:
@@ -47,8 +47,11 @@ Working examples:
   1. run 'OLLAMA_CONTEXT_LENGTH=65536 ollama serve'
      or
      setup and start the service 'ollama'
-  2. install claude-code and run:
+  2. run:
      ollama run x/z-image-turbo {textual description of the desired image}
+
+The x/z-image-turbo model requires at least 64GB of RAM or a similar
+amount of VRAM on a Vulkan device.
 
 There are also a lot of text-to-text models that you can chat with.
 
