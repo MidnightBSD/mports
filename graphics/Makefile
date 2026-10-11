@@ -451,6 +451,7 @@
     SUBDIR += viewnior
     SUBDIR += vigra
     SUBDIR += vips
+    SUBDIR += vectorcraft
     SUBDIR += vulkan-headers
     SUBDIR += vulkan-loader
     SUBDIR += vulkan-tools
