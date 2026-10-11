@@ -22,9 +22,11 @@ LIB_DEPENDS=	libasound.so:audio/alsa-lib \
 RUN_DEPENDS=	xdg-open:devel/xdg-utils \
 		zenity:x11/zenity
 
-USES=		cargo desktop-file-utils gl pkgconfig shared-mime-info xorg
+USES=		cargo desktop-file-utils gl gnome pkgconfig shared-mime-info xorg
 USE_GL=		egl
+USE_GNOME=	gtk-update-icon-cache
 USE_XORG=	x11 xcb xcursor xi xrandr
+INSTALLS_ICONS=	yes
 USE_GITHUB=	yes
 GH_ACCOUNT=	storytold
 GH_PROJECT=	filmcraft craft-fonts:fonts
