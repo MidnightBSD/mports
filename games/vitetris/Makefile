@@ -1,9 +1,6 @@
 # New ports collection makefile for:	vitetris
 # Date created:				27 April 2008
 # Whom:					<smultron@midnightbsd.org>
-#
-
-#
 
 PORTNAME=	vitetris
 PORTVERSION=	0.57
