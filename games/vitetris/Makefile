@@ -3,9 +3,9 @@
 # Whom:					<smultron@midnightbsd.org>
 
 PORTNAME=	vitetris
-PORTVERSION=	0.57
+PORTVERSION=	0.59.1
+DISTVERSIONPREFIX=	v
 CATEGORIES=	games
-MASTER_SITES=	http://victornils.net/tetris/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	vitetris is a terminal-based Tetris clone by Victor Nilsson.
@@ -13,6 +13,8 @@ COMMENT=	vitetris is a terminal-based Tetris clone by Victor Nilsson.
 LICENSE=	bsd2
 
 USES=		gmake
+USE_GITHUB=	yes
+GH_ACCOUNT=	vicgeralds
 ALL_TARGET=	tetris
 USE_XORG=	x11
 HAS_CONFIGURE=	yes
