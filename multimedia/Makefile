@@ -18,6 +18,7 @@
     SUBDIR += ffmpegthumbnailer
     SUBDIR += ffms2
     SUBDIR += ffnvcodec-headers
+    SUBDIR += filmcraft
     SUBDIR += gavl
     SUBDIR += gmp-api
     SUBDIR += gpac-libgpac
