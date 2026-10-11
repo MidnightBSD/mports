@@ -19,6 +19,8 @@ LIB_DEPENDS=	libasound.so:audio/alsa-lib \
 		libvulkan.so:graphics/vulkan-loader \
 		libwayland-client.so:graphics/wayland \
 		libxkbcommon.so:x11/libxkbcommon
+RUN_DEPENDS=	xdg-open:devel/xdg-utils \
+		zenity:x11/zenity
 
 USES=		cargo desktop-file-utils gl pkgconfig shared-mime-info xorg
 USE_GL=		egl
