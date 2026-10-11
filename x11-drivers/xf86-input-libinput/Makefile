@@ -1,5 +1,5 @@
 PORTNAME=	xf86-input-libinput
-PORTVERSION=	1.3.0
+PORTVERSION=	1.5.0
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
