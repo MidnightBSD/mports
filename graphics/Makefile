@@ -41,6 +41,7 @@
     SUBDIR += aalib
     SUBDIR += agg
     SUBDIR += argyllcms
+    SUBDIR += artcraft
     SUBDIR += cairo
     SUBDIR += cairomm
     SUBDIR += cairomm11
