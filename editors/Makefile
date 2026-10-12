@@ -39,6 +39,7 @@
     SUBDIR += ted
     SUBDIR += vim
     SUBDIR += vscode
+    SUBDIR += wordcraft
     SUBDIR += xcoral
     SUBDIR += xed
     SUBDIR += xnedit
