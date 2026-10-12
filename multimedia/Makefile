@@ -13,6 +13,7 @@
     SUBDIR += dvdauthor
     SUBDIR += emby-server
     SUBDIR += emby-server46
+    SUBDIR += effectcraft
     SUBDIR += ffmpeg
     SUBDIR += ffmpeg4
     SUBDIR += ffmpegthumbnailer
