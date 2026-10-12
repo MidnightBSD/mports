@@ -192,6 +192,7 @@
     SUBDIR += sndio
     SUBDIR += sonata
     SUBDIR += sound-juicer
+    SUBDIR += soundcraft
     SUBDIR += soundtouch
     SUBDIR += sox
     SUBDIR += speex
