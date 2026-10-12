@@ -15,6 +15,8 @@ LICENSE_PERMS=	no-dist-mirror no-dist-sell no-pkg-mirror no-pkg-sell auto-accept
 ONLY_FOR_ARCHS=	amd64
 ONLY_FOR_ARCHS_REASON=	Frontend Rollup binary is unavailable for FreeBSD i386
 
+FETCH_DEPENDS=	${LOCALBASE}/bin/npm:www/npm-node24 \
+		git:devel/git
 BUILD_DEPENDS=	${LOCALBASE}/bin/npm:www/npm-node24 \
 		${LOCALBASE}/bin/rustc:lang/rust
 LIB_DEPENDS=	libwebkit2gtk-4.1.so:www/webkit2-gtk@41 \
