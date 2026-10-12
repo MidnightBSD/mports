@@ -49,6 +49,7 @@ SUBDIR += linux-rl9-freetype
 SUBDIR += linux-rl9-harfbuzz
 SUBDIR += mp-letter
 SUBDIR += p5-Text-PDF
+SUBDIR += pdfcraft
 SUBDIR += pdflib
 SUBDIR += plasma6-print-manager
 SUBDIR += pslib

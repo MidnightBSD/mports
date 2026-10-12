@@ -1,0 +1,27 @@
+bin/pdfcraft
+bin/pdfcraft-cli
+share/applications/ai.storyteller.pdfcraft.desktop
+share/icons/hicolor/128x128/apps/ai.storyteller.pdfcraft.png
+share/icons/hicolor/16x16/apps/ai.storyteller.pdfcraft.png
+share/icons/hicolor/24x24/apps/ai.storyteller.pdfcraft.png
+share/icons/hicolor/256x256/apps/ai.storyteller.pdfcraft.png
+share/icons/hicolor/32x32/apps/ai.storyteller.pdfcraft.png
+share/icons/hicolor/48x48/apps/ai.storyteller.pdfcraft.png
+share/icons/hicolor/512x512/apps/ai.storyteller.pdfcraft.png
+share/icons/hicolor/64x64/apps/ai.storyteller.pdfcraft.png
+share/icons/hicolor/scalable/apps/ai.storyteller.pdfcraft.svg
+share/metainfo/ai.storyteller.pdfcraft.metainfo.xml
+share/mime/packages/ai.storyteller.pdfcraft.xml
+%%DATADIR%%/models/ATTRIBUTION.md
+%%DATADIR%%/models/text-detection.rten
+%%DATADIR%%/models/text-detection.rten.LICENCE.txt
+%%DATADIR%%/models/text-recognition.rten
+%%DATADIR%%/models/text-recognition.rten.LICENCE.txt
+%%DOCSDIR%%/ATTRIBUTION.md
+%%DOCSDIR%%/LICENSE-APACHE
+%%DOCSDIR%%/LICENSE-MIT
+%%DOCSDIR%%/NOTICE
+%%DOCSDIR%%/README.md
+@dir %%DATADIR%%/models
+@dir %%DATADIR%%
+@dir %%DOCSDIR%%
