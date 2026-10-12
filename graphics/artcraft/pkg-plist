@@ -1,0 +1,6 @@
+bin/artcraft
+share/applications/artcraft.desktop
+share/icons/hicolor/512x512/apps/artcraft.png
+%%DOCSDIR%%/LICENSE.md
+%%DOCSDIR%%/README.md
+@dir %%DOCSDIR%%
