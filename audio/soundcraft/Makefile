@@ -7,8 +7,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Digital audio workstation and command-line tools
 WWW=		https://github.com/storytold/soundcraft
 
-LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/LICENSE-MIT
+LICENSE= mit Apache-2.0
+LICENSE_COMB= dual
+LICENSE_FILE_mit= ${WRKSRC}/LICENSE-MIT
+LICENSE_FILE_Apache-2.0= ${WRKSRC}/LICENSE-APACHE
 
 ONLY_FOR_ARCHS=	amd64
 ONLY_FOR_ARCHS_REASON=	Upstream FreeBSD build is tested only on x86_64
