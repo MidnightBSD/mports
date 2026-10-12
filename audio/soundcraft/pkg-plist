@@ -1,0 +1,20 @@
+bin/soundcraft
+bin/soundcraft-cli
+share/applications/ai.storyteller.soundcraft.desktop
+%%DOCSDIR%%/LICENSE-APACHE
+%%DOCSDIR%%/README.md
+%%DOCSDIR%%/LICENSE-MIT
+%%DOCSDIR%%/NOTICE
+%%DOCSDIR%%/ATTRIBUTION.md
+share/icons/hicolor/24x24/apps/ai.storyteller.soundcraft.png
+share/icons/hicolor/64x64/apps/ai.storyteller.soundcraft.png
+share/icons/hicolor/48x48/apps/ai.storyteller.soundcraft.png
+share/icons/hicolor/512x512/apps/ai.storyteller.soundcraft.png
+share/icons/hicolor/256x256/apps/ai.storyteller.soundcraft.png
+share/icons/hicolor/scalable/apps/ai.storyteller.soundcraft.svg
+share/icons/hicolor/128x128/apps/ai.storyteller.soundcraft.png
+share/icons/hicolor/32x32/apps/ai.storyteller.soundcraft.png
+share/icons/hicolor/16x16/apps/ai.storyteller.soundcraft.png
+share/metainfo/ai.storyteller.soundcraft.metainfo.xml
+share/mime/packages/ai.storyteller.soundcraft.xml
+@dir %%DOCSDIR%%
