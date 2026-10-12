@@ -10,6 +10,7 @@
     SUBDIR += gedit-plugins
     SUBDIR += gnome-latex
     SUBDIR += gnome-text-editor
+    SUBDIR += gridcraft
     SUBDIR += impress
     SUBDIR += jedit
     SUBDIR += joe
