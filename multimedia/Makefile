@@ -9,6 +9,7 @@
     SUBDIR += clutter-gst3
     SUBDIR += cmrtlib
     SUBDIR += dav1d
+    SUBDIR += deckcraft
     SUBDIR += dragon
     SUBDIR += dvdauthor
     SUBDIR += emby-server
