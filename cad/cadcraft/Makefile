@@ -19,10 +19,12 @@ LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libvulkan.so:graphics/vulkan-loader \
 		libwayland-client.so:graphics/wayland \
 		libxkbcommon.so:x11/libxkbcommon
+RUN_DEPENDS=	xdg-open:devel/xdg-utils \
+		zenity:x11/zenity
 
 USES=		cargo desktop-file-utils gl gnome pkgconfig shared-mime-info xorg
 USE_GL=		egl
-USE_GNOME=	gtk30
+USE_GNOME=	gtk-update-icon-cache
 USE_XORG=	x11 xcb xcursor xi xrandr
 USE_GITHUB=	yes
 GH_ACCOUNT=	storytold
