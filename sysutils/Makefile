@@ -150,7 +150,6 @@
     SUBDIR += lmmon
     SUBDIR += localsearch
     SUBDIR += lockfile-progs
-    SUBDIR += logstash6
     SUBDIR += logstash7
     SUBDIR += logstash8
     SUBDIR += loki
