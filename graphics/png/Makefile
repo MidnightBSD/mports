@@ -1,9 +1,7 @@
 PORTNAME=	png
-DISTVERSION=	1.6.58
+DISTVERSION=	1.6.59
 CATEGORIES=	graphics
 MASTER_SITES=	SF/lib${PORTNAME}/lib${PORTNAME}16/${DISTVERSION}/
-PATCH_SITES=	SF/lib${PORTNAME}-apng/lib${PORTNAME}16/${DISTVERSION}/
-# Keep this because you normally need to keep patch version in sync with release 
 DISTNAME=	lib${PORTNAME}-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -19,8 +17,9 @@ LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 USES=		cmake:testing cpe pathfix tar:xz
 CPE_PRODUCT=	libpng
 USE_LDCONFIG=	yes
+HAS_SYMBOL_VERSION=	${PREFIX}/lib/libpng16.so
 
-CMAKE_TESTING_ON=	 PNG_TESTS
+CMAKE_TESTING_ON=	PNG_TESTS
 
 CMAKE_ARGS=	-DPNG_DEBUG_POSTFIX=""
 CMAKE_OFF=	PNG_TESTS
@@ -48,8 +47,9 @@ CFLAGS+=	-maltivec -mvsx
 .endif
 
 .if ${PORT_OPTIONS:MAPNG} || make(makesum)
-# Keep this because you normally need to keep patch version in sync with release
-PATCHFILES=	lib${PORTNAME}-${DISTVERSION}-apng.patch.gz:-p1
+# No 1.6.59 APNG patch is available yet.
+PATCH_SITES=	SF/lib${PORTNAME}-apng/lib${PORTNAME}16/1.6.58/
+PATCHFILES=	lib${PORTNAME}-1.6.58-apng.patch.gz:-p1
 .endif
 
 .include <bsd.port.mk>
