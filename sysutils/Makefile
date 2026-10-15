@@ -30,6 +30,7 @@
     SUBDIR += beadm
     SUBDIR += beats7
     SUBDIR += beats8
+    SUBDIR += beats9
     SUBDIR += bhyve-firmware
     SUBDIR += brasero
     SUBDIR += bsd-splash-changer
