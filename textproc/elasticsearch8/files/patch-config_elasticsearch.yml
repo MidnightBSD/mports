@@ -10,7 +10,7 @@
  # Path to log files:
  #
 -#path.logs: /path/to/logs
-+path.logs: /var/run/elasticsearch
++path.logs: /var/log/elasticsearch
  #
  # ----------------------------------- Memory -----------------------------------
  #
@@ -19,5 +19,5 @@
  #
  #action.destructive_requires_name: false
 +#
-+# ml is not supported on FreeBSD
++# Native machine learning is not supported on MidnightBSD.
 +xpack.ml.enabled: false
