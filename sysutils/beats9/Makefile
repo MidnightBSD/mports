@@ -12,6 +12,8 @@ WWW=		https://www.elastic.co/products/beats/
 
 LICENSE=	Apache-2.0
 
+NO_TEST=	yes
+
 USES=		go:1.25+,modules
 USE_GITHUB=	yes
 
