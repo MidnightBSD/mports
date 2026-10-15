@@ -1,6 +1,6 @@
 PORTNAME=	pdfcraft
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.6.0
+DISTVERSION=	0.8.0
 CATEGORIES=	print
 MASTER_SITES=	https://ocrs-models.s3-accelerate.amazonaws.com/:models \
 		https://creativecommons.org/licenses/by-sa/4.0/:modellicense
@@ -24,7 +24,7 @@ ONLY_FOR_ARCHS=	amd64
 ONLY_FOR_ARCHS_REASON=	Upstream FreeBSD build is tested only on x86_64
 
 BUILD_DEPENDS=	cmake:devel/cmake-core \
-		rust>=1.94:lang/rust
+		rust>=1.95:lang/rust
 LIB_DEPENDS=	libasound.so:audio/alsa-lib \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libvulkan.so:graphics/vulkan-loader \
@@ -61,7 +61,7 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/packaging/linux/ai.storyteller.pdfcraft.mime.xml \
 		${PREFIX}/share/mime/packages/ai.storyteller.pdfcraft.xml
 	${SED} -e 's/@VERSION@/${DISTVERSION}/g' \
-		-e 's/@DATE@/2026-10-11/g' \
+		-e 's/@DATE@/2026-10-14/g' \
 		${WRKSRC}/packaging/linux/ai.storyteller.pdfcraft.metainfo.xml.in \
 		> ${PREFIX}/share/metainfo/ai.storyteller.pdfcraft.metainfo.xml
 	(cd ${WRKSRC}/assets/app-icon && ${COPYTREE_SHARE} hicolor ${PREFIX}/share/icons/)
