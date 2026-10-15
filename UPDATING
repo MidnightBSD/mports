@@ -1,6 +1,18 @@
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20261015:
+	sysutils/logstash8 now uses the Apache-2.0 OSS distribution. X-Pack
+	features, including centralized pipeline management and X-Pack
+	monitoring, are no longer included. The elastic_integration filter
+	is also omitted. Review existing X-Pack settings and affected
+	pipelines before upgrading.
+
+	Logstash 8.19.23 requires Java 21 by default. Review logstash_java_home
+	in /etc/rc.conf and custom jvm.options. The service now honors
+	logstash_java_home and logstash_java_opts through LS_JAVA_HOME and
+	LS_JAVA_OPTS; previously ignored overrides will take effect.
+
 20260226:
 	PHP_DEFAULT updated to 8.3
 
