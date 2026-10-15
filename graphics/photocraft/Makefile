@@ -1,6 +1,6 @@
 PORTNAME=	photocraft
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.5.0
+DISTVERSION=	0.8.2
 CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -30,7 +30,7 @@ MAKE_JOBS_NUMBER_LIMIT=	4
 CARGO_BUILD_ARGS=	-p photocraft -p photocraft-cli --features heif
 CARGO_TEST_ARGS=	-p photocraft -p photocraft-cli --features heif
 CARGO_BUILDDEP=	no
-CARGO_ENV+=	PHOTOCRAFT_BUILD_SHA=e5e3e397523b4db6a016dd19526e4c68514fcc72
+CARGO_ENV+=	PHOTOCRAFT_BUILD_SHA=d43db3e153c76aefce9b32cef9099e458eaf17a8
 CARGO_INSTALL=	no
 
 do-install:
@@ -46,7 +46,7 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/packaging/linux/ai.storyteller.photocraft.mime.xml \
 		${PREFIX}/share/mime/packages/ai.storyteller.photocraft.xml
 	${SED} -e 's/@VERSION@/${DISTVERSION}/g' \
-		-e 's/@DATE@/2026-10-08/g' \
+		-e 's/@DATE@/2026-10-12/g' \
 		${WRKSRC}/packaging/linux/ai.storyteller.photocraft.metainfo.xml.in \
 		> ${PREFIX}/share/metainfo/ai.storyteller.photocraft.metainfo.xml
 	(cd ${WRKSRC}/assets/app-icon && ${COPYTREE_SHARE} hicolor ${PREFIX}/share/icons/)
@@ -58,6 +58,7 @@ do-install:
 		${WRKSRC}/assets/fonts/OFL-JetBrainsMono.txt \
 		${WRKSRC}/assets/icons/LICENSE-lucide.txt \
 		${WRKSRC}/assets/icons/LICENSE-noun-magnetic-lasso.txt \
+		${WRKSRC}/assets/icons/LICENSE-symmetry-axes.txt \
 		${DOCSDIR}/
 
 .include <bsd.port.mk>
