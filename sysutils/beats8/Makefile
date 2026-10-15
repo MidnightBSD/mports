@@ -1,6 +1,6 @@
 PORTNAME=	beats
 DISTVERSIONPREFIX=	v
-DISTVERSION=	8.14.3
+DISTVERSION=	8.19.23
 CATEGORIES=	sysutils
 MASTER_SITES=	https://raw.githubusercontent.com/${GH_ACCOUNT}/${GH_PROJECT}/${DISTVERSIONFULL}/:gomod
 PKGNAMESUFFIX?=	8
@@ -14,14 +14,14 @@ LICENSE=	Apache-2.0
 
 #BROKEN=		hostname error on app startup
 
-USES=		go:modules
+USES=		go:1.26,modules
 USE_GITHUB=	yes
 
 GH_ACCOUNT=	elastic
 
 USE_RC_SUBR=	${GO_TARGET:C,\./,,g}
 
-GO_MODULE=	github.com/elastic/beats/v8
+GO_MODULE=	github.com/elastic/beats/v7
 CGO_CFLAGS=	-I.
 CGO_LDFLAGS=	-L.
 MAKE_ENV+=	GOBUILD_FLAGS="-mod=vendor"
@@ -62,6 +62,15 @@ PACKETBEAT_VARS=		CGO_CFLAGS+=-I/usr/include \
 NO_TEST=	yes
 
 .include <bsd.mport.options.mk>
+
+.ifmake makesum
+.for BEAT in AUDITBEAT FILEBEAT HEARTBEAT METRICBEAT PACKETBEAT
+.if !${PORT_OPTIONS:M${BEAT}}
+MASTER_SITES+=	${${BEAT}_MASTER_SITES}
+DISTFILES+=	${${BEAT}_DISTFILES}
+.endif
+.endfor
+.endif
 
 post-patch:
 	${REINPLACE_CMD} -e "s|%%BEATSVERSION%%|v${PORTVERSION}|g" ${WRKSRC}/dev-tools/mage/settings.go
