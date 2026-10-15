@@ -41,6 +41,7 @@
     SUBDIR += aalib
     SUBDIR += agg
     SUBDIR += argyllcms
+    SUBDIR += artcraft
     SUBDIR += cairo
     SUBDIR += cairomm
     SUBDIR += cairomm11
@@ -232,6 +233,7 @@
     SUBDIR += libwpg03
     SUBDIR += libyuv
     SUBDIR += libzmf
+    SUBDIR += lightcraft
     SUBDIR += linux-c7-cairo
     SUBDIR += linux-c7-cairo-gobject
     SUBDIR += linux-c7-dri
@@ -307,6 +309,7 @@
     SUBDIR += p5-Image-PBMlib
     SUBDIR += p5-Image-Size
     SUBDIR += pecl-imagick
+    SUBDIR += photocraft
     SUBDIR += php82-exif
     SUBDIR += php82-gd
     SUBDIR += php83-exif

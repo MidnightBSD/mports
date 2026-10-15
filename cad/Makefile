@@ -13,6 +13,7 @@
     SUBDIR += astk-serveur
     SUBDIR += atlc
     SUBDIR += brlcad
+    SUBDIR += cadcraft
     SUBDIR += calculix
     SUBDIR += calculix-ccx
     SUBDIR += camotics

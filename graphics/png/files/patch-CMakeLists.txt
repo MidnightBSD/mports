@@ -1,0 +1,18 @@
+--- CMakeLists.txt.orig
++++ CMakeLists.txt
+@@ -401,4 +401,9 @@
+   # try_compile under CMake 4.4 or newer.
+   set(_SAVED_CMAKE_REQUIRED_FLAGS "${CMAKE_REQUIRED_FLAGS}")
++  set(_SAVED_CMAKE_REQUIRED_LINK_OPTIONS "${CMAKE_REQUIRED_LINK_OPTIONS}")
++  if(CMAKE_SYSTEM_NAME STREQUAL "MidnightBSD")
++    # Probe the linker map on the shared library that actually uses it.
++    list(APPEND CMAKE_REQUIRED_LINK_OPTIONS "-shared")
++  endif()
+   if(NOT CMAKE_HOST_SOLARIS)
+     # Avoid using CMAKE_SHARED_LIBRARY_C_FLAGS in version script checks on
+@@ -428,4 +433,5 @@
+   endif()
+   set(CMAKE_REQUIRED_FLAGS "${_SAVED_CMAKE_REQUIRED_FLAGS}")
++  set(CMAKE_REQUIRED_LINK_OPTIONS "${_SAVED_CMAKE_REQUIRED_LINK_OPTIONS}")
+   file(REMOVE "${CMAKE_CURRENT_BINARY_DIR}/conftest.map")
+ endif()

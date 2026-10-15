@@ -15,7 +15,7 @@
 +      JAVA="$ES_HOME/jdk.app/Contents/Home/bin/java"
 +      ;;
 +    "MidnightBSD")
-+      JAVA=%%LOCALBASE%%/bin/java
++      JAVA=%%JAVA_HOME%%/bin/java
 +      ;;
 +    *)
 +      JAVA="$ES_HOME/jdk/bin/java"

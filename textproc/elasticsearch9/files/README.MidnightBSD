@@ -1,0 +1,19 @@
+This Elasticsearch 9.4.1 distribution has been modified for MidnightBSD.
+
+The port rebuilds the BSD native-access and entitlement classes from the
+matching upstream sources. BSD support is based on the portsbuild/elasticsearch
+v9.4.1 changes by Saro, with MidnightBSD platform detection and verified amd64
+libc constants. Other upstream classes and multi-release JAR entries are kept.
+
+The native backend uses the system zstd library and BSD resource limits to
+prevent child processes, following Elasticsearch's earlier FreeBSD sandbox.
+Native machine learning remains disabled. Vector operations use the upstream
+Java fallback; no BSD native vector library is enabled.
+
+The JDK 21 foreign-memory classes are compiled and have their preview class
+marker removed in the same way as upstream's MrjarPlugin. Compilation uses
+OpenJDK 21; a newer runtime can be selected with elasticsearch_java_home.
+
+Sources:
+https://github.com/elastic/elasticsearch/tree/v9.4.1
+https://github.com/portsbuild/elasticsearch/compare/elastic:v9.4.1...v9.4.1

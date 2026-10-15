@@ -10,6 +10,7 @@
     SUBDIR += gedit-plugins
     SUBDIR += gnome-latex
     SUBDIR += gnome-text-editor
+    SUBDIR += gridcraft
     SUBDIR += impress
     SUBDIR += jedit
     SUBDIR += joe
@@ -39,6 +40,7 @@
     SUBDIR += ted
     SUBDIR += vim
     SUBDIR += vscode
+    SUBDIR += wordcraft
     SUBDIR += xcoral
     SUBDIR += xed
     SUBDIR += xnedit

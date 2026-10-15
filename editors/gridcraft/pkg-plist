@@ -1,0 +1,20 @@
+bin/gridcraft
+bin/gridcraft-cli
+share/applications/ai.storyteller.gridcraft.desktop
+share/icons/hicolor/128x128/apps/ai.storyteller.gridcraft.png
+share/icons/hicolor/16x16/apps/ai.storyteller.gridcraft.png
+share/icons/hicolor/24x24/apps/ai.storyteller.gridcraft.png
+share/icons/hicolor/256x256/apps/ai.storyteller.gridcraft.png
+share/icons/hicolor/32x32/apps/ai.storyteller.gridcraft.png
+share/icons/hicolor/48x48/apps/ai.storyteller.gridcraft.png
+share/icons/hicolor/512x512/apps/ai.storyteller.gridcraft.png
+share/icons/hicolor/64x64/apps/ai.storyteller.gridcraft.png
+share/icons/hicolor/scalable/apps/ai.storyteller.gridcraft.svg
+share/metainfo/ai.storyteller.gridcraft.metainfo.xml
+share/mime/packages/ai.storyteller.gridcraft.xml
+%%DOCSDIR%%/ATTRIBUTION.md
+%%DOCSDIR%%/LICENSE-APACHE
+%%DOCSDIR%%/LICENSE-MIT
+%%DOCSDIR%%/NOTICE
+%%DOCSDIR%%/README.md
+@dir %%DOCSDIR%%
