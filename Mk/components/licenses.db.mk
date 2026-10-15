@@ -1,5 +1,5 @@
 _LICENSE_LIST= 	apsl2 apsl1 \
-		bdb BSL-1.0 bzip2 cddl epl fdl1.1 fdl1.2 fdl1.3 gfdl guile \
+		bdb BSL-1.0 bzip2 cddl Elastic-2.0 epl fdl1.1 fdl1.2 fdl1.3 gfdl guile \
 		ibm ilm infozip iscl liberation \
 		mit modula3 ncsa npl nvidia NONE openldap2.8 OpenSSL opera owl OFL10 OFL11 \
 		pgsql python ruby sgi subversion unlicense \
@@ -238,6 +238,10 @@ _LICENSE_GROUPS_CC-BY-4.0=      # empty
 
 _LICENSE_NAME_cddl=	Common Development and Distribution License
 _LICENSE_GROUPS_cddl=	FSF OSI
+
+_LICENSE_NAME_Elastic-2.0=	Elastic License 2.0
+_LICENSE_GROUPS_Elastic-2.0=	# empty
+_LICENSE_PERMS_Elastic-2.0=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 _LICENSE_NAME_epl=	Eclipse Public License
 _LICENSE_GROUPS_epl=	FSF OSI

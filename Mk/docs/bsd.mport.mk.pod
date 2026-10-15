@@ -710,6 +710,12 @@ identifiers the framework knows and see Mk/components/licenses.db.mk for
 their names, permissions and groups.  Run "make check-license" after
 changing any of these.
 
+Elastic License 2.0 is registered as C<Elastic-2.0>.  Ports can use
+C<LICENSE=Elastic-2.0>; the framework supplies its name, permissions and
+standard license text.  Omit custom LICENSE_NAME and LICENSE_PERMS
+declarations for this known license.  LICENSE_FILE may still select the
+license file supplied by upstream.
+
 =over 4
 
 =item LICENSE
