@@ -1,22 +1,32 @@
 PORTNAME=	elasticsearch
 PORTVERSION=	9.4.1
+PORTREVISION=	1
 CATEGORIES=	textproc java devel
 MASTER_SITES=	https://artifacts.elastic.co/downloads/${PORTNAME}/
 PKGNAMESUFFIX=	9
 DISTNAME=	${PORTNAME}-${PORTVERSION}-darwin-x86_64
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
+EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Distributed, RESTful search and analytics engine
 WWW=		https://www.elastic.co/
 
-LICENSE=	Apache-2.0
+LICENSE=	ELASTIC20
+LICENSE_NAME=	Elastic License 2.0
+LICENSE_FILE=	${WRKSRC}/LICENSE.txt
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-BUILD_DEPENDS=	jna>0:devel/jna
-RUN_DEPENDS=	bash:shells/bash \
-		jna>0:devel/jna
+ONLY_FOR_ARCHS=	amd64
+ONLY_FOR_ARCHS_REASON=	BSD native bindings use the amd64 ABI
+
+LIB_DEPENDS=	libzstd.so:archivers/zstd
+RUN_DEPENDS=	bash:shells/bash
 
 USES=		cpe java shebangfix
-JAVA_VERSION=	25 21 17
+JAVA_VERSION=	21
+USE_GITHUB=	nodefault
+GH_TUPLE=	elastic:elasticsearch:v${PORTVERSION}:source
 USE_RC_SUBR=	${PORTNAME}
 
 SHEBANG_FILES=	bin/elasticsearch bin/elasticsearch-certgen \
@@ -35,8 +45,6 @@ SHEBANG_FILES=	bin/elasticsearch bin/elasticsearch-certgen \
 
 CONFLICTS=	elasticsearch6 elasticsearch7 elasticsearch8
 
-NO_ARCH=	yes
-NO_BUILD=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
 OPTIONS_DEFINE=	DOCS
@@ -68,19 +76,38 @@ PORTSCOUT=	limit:^9
 
 SUB_FILES=	pkg-message
 SUB_LIST=	ETCDIR=${ETCDIR} \
+		LOCALBASE=${LOCALBASE} \
 		JAVA_HOME=${JAVA_HOME} \
 		BINDIR=${PREFIX}/bin
 
 post-extract:
 	${RM} -rf ${WRKSRC}/jdk.app
+.for module in entitlement native
+	${MKDIR} ${WRKSRC}/src/${module:S/entitlement/ent/}
+	${TAR} -xf ${DISTDIR}/${DISTFILE_source} -C ${WRKSRC}/src \
+		-C ${module:S/entitlement/ent/} --strip-components=6 \
+		${PORTNAME}-${PORTVERSION}/libs/${module}/src/main/java
+.endfor
 
 post-patch:
-	${RM} ${WRKSRC}/lib/jna-*.jar
-	# ML plugin not supported on BSD
-	${RM} -rf ${WRKSRC}/modules/x-pack-ml \
-		${WRKSRC}/modules/ml-package-loader
-	${RM} -rf ${WRKSRC}/jdk.app
-	${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' ${WRKSRC}/bin/elasticsearch-env
+	# Keep the ML module's settings and dependencies, but disable its native code.
+	${RM} -rf ${WRKSRC}/modules/x-pack-ml/platform
+	${REINPLACE_CMD} -e 's|%%JAVA_HOME%%|${JAVA_HOME}|g' ${WRKSRC}/bin/elasticsearch-env
+
+do-build:
+	${SETENV} JAVA_HOME=${JAVA_HOME} ${SH} ${FILESDIR}/build-bsd.sh \
+		${WRKSRC} ${WRKDIR}/bsd-classes ${PORTVERSION}
+
+do-test:
+	${MKDIR} ${WRKDIR}/bsd-test-classes
+	${CC} ${CFLAGS} -o ${WRKDIR}/posix-fallocate-probe ${FILESDIR}/PosixFallocateProbe.c
+	${JAVAC} -J-XX:TieredStopAtLevel=1 -proc:none --release 21 \
+		-classpath "${WRKSRC}/lib/*" -d ${WRKDIR}/bsd-test-classes \
+		${FILESDIR}/BsdNativeTests.java
+	${JAVA} --enable-native-access=ALL-UNNAMED -ea \
+		-Des.nativelibs.path=${LOCALBASE}/lib \
+		-classpath "${WRKDIR}/bsd-test-classes:${WRKSRC}/lib/*" BsdNativeTests \
+		${WRKDIR}/posix-fallocate-probe
 
 do-install:
 	${INSTALL} -d -m 0750 ${PREFIX}/etc/elasticsearch
@@ -95,14 +122,18 @@ do-install:
 .endfor
 	${MKDIR} ${PREFIX}/lib/elasticsearch/lib
 	(cd ${WRKSRC}/lib && ${COPYTREE_SHARE} . ${PREFIX}/lib/elasticsearch/lib/ "-name *\.jar")
+	${MKDIR} ${PREFIX}/lib/elasticsearch/lib/platform/freebsd-x64
+	${LN} -s ${LOCALBASE}/lib/libzstd.so.1 \
+		${PREFIX}/lib/elasticsearch/lib/platform/freebsd-x64/libzstd.so
+	${INSTALL_DATA} ${FILESDIR}/README.MidnightBSD ${PREFIX}/lib/elasticsearch/
 
 	${MKDIR} ${PREFIX}/lib/elasticsearch/modules
 	(cd ${WRKSRC}/modules && ${COPYTREE_SHARE} . ${PREFIX}/lib/elasticsearch/modules/)
 	${MKDIR} ${PREFIX}/lib/elasticsearch/plugins
 	${MKDIR} ${PREFIX}/libexec/elasticsearch
 	${INSTALL} -lrs ${ETCDIR} ${PREFIX}/lib/elasticsearch/config
-	${LN} -s ${JAVASHAREDIR}/classes/jna.jar ${PREFIX}/lib/elasticsearch/lib/jna-0.0.0.jar
 	${TOUCH} ${ETCDIR}/users.sample ${ETCDIR}/users_roles.sample
+	${MKDIR} ${ETCDIR}/jvm.options.d
 
 do-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
@@ -121,6 +152,7 @@ post-install:
 	${ECHO} "@dir lib/elasticsearch/plugins" >> ${TMPPLIST}
 	${ECHO} "@dir libexec/elasticsearch" >> ${TMPPLIST}
 	${ECHO} "@dir(${SEARCHUSER},${SEARCHGROUP},0755) ${ETCDIR_REL}" >> ${TMPPLIST}
+	${ECHO} "@dir(${SEARCHUSER},${SEARCHGROUP},0755) ${ETCDIR_REL}/jvm.options.d" >> ${TMPPLIST}
 	${ECHO} "@owner ${SEARCHUSER}" >> ${TMPPLIST}
 	${ECHO} "@group ${SEARCHGROUP}" >> ${TMPPLIST}
 	${ECHO} "@mode 0640" >> ${TMPPLIST}
