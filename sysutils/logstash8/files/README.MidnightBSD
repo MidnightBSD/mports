@@ -1,0 +1,28 @@
+Logstash 8.19.23 OSS on MidnightBSD
+=================================
+
+This port uses the Apache-2.0 OSS distribution; X-Pack is not included.
+
+Use Java 21 and set LS_JAVA_HOME for direct command-line use. The rc script
+passes logstash_java_home and logstash_java_opts as LS_JAVA_HOME and
+LS_JAVA_OPTS. Review previously ignored overrides when upgrading.
+
+The binary archive bundles JRuby 9.4.15.0, JFFI 1.3.15, JNR-POSIX 3.1.22
+and JNR-constants 0.10.4. The port rebuilds only their affected platform
+classes from matching checksummed upstream sources. Existing classes and
+native resources are retained; os.name remains MidnightBSD.
+
+The patches select the shipped FreeBSD native resources and constants,
+post-FreeBSD 12 FFI types and stat ABI. JNR's stat allocation includes all
+ten spare fields, and device and link-count fields use 64 bits. MidnightBSD
+has no /bin/freebsd-version, so its ABI is selected explicitly.
+
+bmake test compares stat layout and results against an independent C probe
+and the system stat utility. It also exercises native POSIX, FFI libc,
+libfixposix and child-process creation. Runtime testing additionally needs
+an isolated pipeline, since plugins load the vendored FFI copy through
+Bundler.
+
+The build uses Tier 1 for javac/jar because older MidnightBSD OpenJDK 21
+packages can crash in C2. This affects build tools only. It does not change
+the JVM options used by the installed service.

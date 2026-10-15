@@ -1,3 +1,11 @@
-TIMESTAMP = 1779000000
-SHA256 (logstash-8.19.15-darwin-x86_64.tar.gz) = 9824f515a89ca09d7d2bf3ff23d7f9c432c4434cb77dcc783b65d99799c7c79b
-SIZE (logstash-8.19.15-darwin-x86_64.tar.gz) = 441498162
+TIMESTAMP = 1792096559
+SHA256 (logstash-oss-8.19.23-darwin-x86_64.tar.gz) = 58d3d1e17de79aec42fe64297922edc76cf85bf7a3c6efd5cfe54d7580b19e2b
+SIZE (logstash-oss-8.19.23-darwin-x86_64.tar.gz) = 374417370
+SHA256 (jnr-posix-3.1.22-sources.jar) = 47e41c4582ad1f0b4d3cf47403b5438e3c7e81d8ea3577000f2559d4143130e7
+SIZE (jnr-posix-3.1.22-sources.jar) = 138134
+SHA256 (jnr-constants-0.10.4-sources.jar) = 696f737f76a29d900401e52277274c3c12a47cb70d00eb9e3619f3ff0b261a5f
+SIZE (jnr-constants-0.10.4-sources.jar) = 534145
+SHA256 (jnr-jffi-jffi-1.3.15_GH0.tar.gz) = 2f9dcdede918746c5784ba55c992214e30eaf62b23ad2609561730644917a189
+SIZE (jnr-jffi-jffi-1.3.15_GH0.tar.gz) = 3032180
+SHA256 (jruby-jruby-9.4.15.0_GH0.tar.gz) = c7152aeff82fe8e2d729ccc4bd7891db4eaa3c2e52516ebf77572a01b24f4305
+SIZE (jruby-jruby-9.4.15.0_GH0.tar.gz) = 9592741
