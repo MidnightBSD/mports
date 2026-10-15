@@ -1,6 +1,5 @@
-Kibana is an open source (Apache Licensed), browser based analytics and search
-dashboard for Elasticsearch. Kibana is a snap to setup and start using. Kibana
-strives to be easy to get started with, while also being flexible and powerful,
-just like Elasticsearch.
+Kibana provides a browser based analytics and search interface for
+Elasticsearch, including visualizations and dashboards. This port packages
+the Elastic License 2.0 distribution.
 
-Kibana 7.x is compatible with Elasticsearch 7.x
+Use Kibana 8.x with the matching Elasticsearch 8.x release.

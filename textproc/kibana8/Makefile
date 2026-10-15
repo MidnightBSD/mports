@@ -1,122 +1,66 @@
 PORTNAME=	kibana
-DISTVERSION=	8.11.3
-PORTREVISION=	2
+DISTVERSION=	8.19.23
 DISTVERSIONSUFFIX=	-linux-x86_64
 CATEGORIES=	textproc www
-MASTER_SITES=	https://artifacts.elastic.co/downloads/kibana/ \
-		http://artifacts.elastic.co/downloads/kibana/
+MASTER_SITES=	https://artifacts.elastic.co/downloads/kibana/
 PKGNAMESUFFIX=	8
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Browser based analytics and search interface to ElasticSearch
+COMMENT=	Browser based analytics and search interface to Elasticsearch
 WWW=		https://www.elastic.co/products/kibana
 
-LICENSE=	Apache-2.0
+LICENSE=	Elastic-2.0
+LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-BUILD_DEPENDS=	npm-node20>=9.7.2:www/npm-node20
-LIB_DEPENDS=	libre2.so:devel/re2 \
-		libuv.so:devel/libuv
-RUN_DEPENDS=	${LOCALBASE}/bin/node:www/node20
+ONLY_FOR_ARCHS=	amd64
+ONLY_FOR_ARCHS_REASON=	upstream distribution targets 64-bit x86
 
-USES=		compiler:c++17-lang cpe nodejs:20,build,run python:build
+RUN_DEPENDS=	node24>=24.21.0:www/node24
+# The isolated port checks can also run on an older host Node runtime.
+TEST_DEPENDS=	node:www/node24
+
+USES=		cpe nodejs:24,env
 CPE_VENDOR=	elastic
-
-USE_GITHUB=	nodefault
-GH_TUPLE=	nodejs:nan:v${_NODE_NAN_VER}:node_nan \
-		uhop:node-re2:${_NODE_RE2_VER}:node_re2
-
-USE_CXXSTD=	c++17
 USE_RC_SUBR=	${PORTNAME}
 
 CONFLICTS=	kibana7
+NO_BUILD=	yes
+PORTSCOUT=	limit:^8
+
+EXTRACT_AFTER_ARGS+=	--exclude '${PORTNAME}-${DISTVERSION}/node' \
+	--exclude '*/@napi-rs/nice-linux-x64-gnu' \
+	--exclude '*/chromium/headless_shell-linux_x64'
 
 WWWDIR=		${PREFIX}/www/${PORTNAME}${PKGNAMESUFFIX}
-
-PORTSCOUT=	limit:^8
+WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION}
 
 SUB_FILES=	pkg-deinstall pkg-message
 SUB_LIST+=	BINDIR=${PREFIX}/bin \
 		PKGNAMESUFFIX=${PKGNAMESUFFIX} \
 		PORTNAME=${PORTNAME}
 
-WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION}
-
-BINS=		kibana-encryption-keys kibana-keystore kibana-plugin \
-		kibana-setup kibana-verification-code
-
-#######################################################################
-# Set node-nan version here
-_NODE_NAN_VER=	2.18.0
-# Set node-re version here
-_NODE_RE2_VER=	1.20.0
-#######################################################################
-
-_NODECMD=	${LOCALBASE}/bin/node --version
-_DEVDIR:=	${WRKDIR}/.devdir
-
-_RE2DIR=	${WRKDIR}/node-re2-${_NODE_RE2_VER}
-
-# Extra patch files must be updated whenever node-re2 changes
-_RE2PATCHES=	${PATCHDIR}/extra-node-re2-binding-gyp.patch
-
-# Directory to prune
-_DIR2DEL=	node_modules packages src/plugins x-pack/packages
+BINS=		kibana-encryption-keys kibana-health-gateway kibana-keystore \
+		kibana-plugin kibana-setup kibana-verification-code
 
 post-patch:
-.for _dirdel in ${_DIR2DEL}
-	${FIND} -s ${WRKSRC}/${_dirdel} -type d -empty -delete
-.endfor
-	${REINPLACE_CMD} -e "s|%%WWWDIR%%|${WWWDIR}|g" \
-	${WRKSRC}/config/kibana.yml
-	cd ${_RE2DIR} && ${PATCH} -p0 < ${_RE2PATCHES}
-	${REINPLACE_CMD} -e "s|%%PREFIX%%|${PREFIX}|g" \
-	-e "s|%%DEVDIR%%|${_DEVDIR}|g" ${_RE2DIR}/binding.gyp
+	${REINPLACE_CMD} -e 's|%%WWWDIR%%|${WWWDIR}|g' ${WRKSRC}/config/kibana.yml
 
-pre-configure:
-	( \
-	_NODEVER=$$(${_NODECMD} | ${SED} -n 's|^v\(.*\)|\1|p') && \
-	${MKDIR} ${_DEVDIR}/$${_NODEVER}/include && \
-	${RLN} ${LOCALBASE}/include/node ${_DEVDIR}/$${_NODEVER}/include/node && \
-	${ECHO} "9" > ${_DEVDIR}/$${_NODEVER}/installVersion \
-	)
-
-do-configure:
-	${MKDIR} ${_DEVDIR}/nan
-	(cd ${WRKDIR}/nan-${_NODE_NAN_VER} && ${COPYTREE_SHARE} . \
-		${_DEVDIR}/nan \
-		"! ( -name \.* -or -path *\/test\/* -or -name test )")
-	(cd ${_RE2DIR} && \
-		${SETENV} HOME=${WRKDIR} \
-		${LOCALBASE}/bin/node \
-		${LOCALBASE}/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js configure \
-		--python=${PYTHON_CMD} \
-		--nodedir=${LOCALBASE} \
-		--devdir=${_DEVDIR})
-
-do-build:
-	(cd ${_RE2DIR} && \
-		${SETENV} HOME=${WRKDIR} \
-		${LOCALBASE}/bin/node \
-		${LOCALBASE}/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js build \
-		--devdir=${_DEVDIR})
+do-test:
+	${LOCALBASE}/bin/node ${FILESDIR}/port-tests.cjs ${WRKSRC}
 
 do-install:
 	${MKDIR} ${WWWDIR} ${ETCDIR}
 	${INSTALL_DATA} ${WRKSRC}/config/kibana.yml ${ETCDIR}/kibana.yml.sample
 	${INSTALL_DATA} ${WRKSRC}/config/node.options ${ETCDIR}/node.options.sample
-	-(cd ${WRKSRC} && \
-		${RM} -r config node optimize && \
-		${COPYTREE_SHARE} . ${WWWDIR} && \
-		${COPYTREE_BIN} bin ${WWWDIR})
+	(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${WWWDIR} "-not -regex ./config(/.*)? -and -not -name *.orig")
+	(cd ${WRKSRC} && ${COPYTREE_BIN} bin ${WWWDIR})
 	${INSTALL} -lrs ${ETCDIR} ${WWWDIR}/config
-	${MKDIR} ${WWWDIR}/node/bin
-	${LN} -s ${LOCALBASE}/bin/node ${WWWDIR}/node/bin/node
-	-${RM} ${WWWDIR}/node_modules/re2/build/Release/re2.node
-	${INSTALL_LIB} ${_RE2DIR}/build/Release/re2.node \
-		${WWWDIR}/node_modules/re2/build/Release/re2.node
+	${MKDIR} ${WWWDIR}/node/glibc-217/bin ${WWWDIR}/data \
+		${WWWDIR}/plugins ${WWWDIR}/logs
+	${LN} -s ${LOCALBASE}/bin/node ${WWWDIR}/node/glibc-217/bin/node
+	${INSTALL_DATA} ${FILESDIR}/README.MidnightBSD ${WWWDIR}
 .for f in ${BINS}
-	${INSTALL} -l rs ${WWWDIR}/bin/${f} ${PREFIX}/bin/${f}
+	${INSTALL} -lrs ${WWWDIR}/bin/${f} ${PREFIX}/bin/${f}
 	${ECHO} "bin/${f}" >> ${TMPPLIST}
 .endfor
 
@@ -124,9 +68,9 @@ post-install:
 	${ECHO} "@sample ${ETCDIR_REL}/kibana.yml.sample" >> ${TMPPLIST}
 	${ECHO} "@sample ${ETCDIR_REL}/node.options.sample" >> ${TMPPLIST}
 	${FIND} -s ${WWWDIR} -not -type d | ${SORT} | \
-		${SED} -e 's#^${PREFIX}/##' >> ${TMPPLIST}
+		${SED} -e 's#^${FAKE_DESTDIR}${TRUE_PREFIX}/##' >> ${TMPPLIST}
+	${FIND} -s ${WWWDIR} -type d -empty -not -path ${WWWDIR}/data | \
+		${SED} -e 's#^${FAKE_DESTDIR}${TRUE_PREFIX}/#@dir #' >> ${TMPPLIST}
 	${ECHO} "@dir(www,www) ${WWWDIR_REL}/data" >> ${TMPPLIST}
-	${ECHO} "@dir ${WWWDIR_REL}/plugins" >> ${TMPPLIST}
-	${ECHO} "@dir ${WWWDIR_REL}/logs" >> ${TMPPLIST}
 
 .include <bsd.port.mk>
