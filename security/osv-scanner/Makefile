@@ -1,7 +1,6 @@
 PORTNAME=	osv-scanner
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.9.2
-PORTREVISION=	2
+DISTVERSION=	2.5.1
 CATEGORIES=	security
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,13 +10,15 @@ WWW=		https://github.com/google/osv-scanner
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:1.23,modules
+USES=		go:1.26,modules,run
+
+NOT_FOR_ARCHS=	armv6 armv7 i386
 
 _BUILD_VERSION=	${DISTVERSION}
-_BUILD_COMMIT=	1e295ee
+_BUILD_COMMIT=	c84fa45
 _BUILD_DATE=	$$(date +%Y-%m-%d)
 
-GO_MODULE=	github.com/google/${PORTNAME}
+GO_MODULE=	github.com/google/${PORTNAME}/v2
 GO_TARGET=	./cmd/${PORTNAME}
 GO_BUILDFLAGS=	-ldflags "\
 		-s -w \
