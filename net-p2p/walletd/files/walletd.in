@@ -8,11 +8,11 @@
 # to enable this service:
 #
 # walletd_enable (bool):	Set to NO by default.
-#			Set it to YES to enable doormand.
-# walletd_datadir (path):	Set to /var/lib/walletd by default.
+#			Set it to YES to enable walletd.
+# walletd_config (path):	Path to the walletd YAML configuration file.
+#			Defaults to %%PREFIX%%/etc/walletd.yml.
 #
-# walletd_passwordfile (filepath): set the UI password there.
-#                       by default located in %%PREFIX%%/etc/walletd.conf 
+# Set the API password in walletd.yml before enabling the service.
 
 . /etc/rc.subr
 
@@ -31,6 +31,6 @@ command="/usr/sbin/daemon"
 command_args="-r -f -H \
   -o \"/var/log/${name}.log\" \
   -P \"${pidfile}\" \
-  -u %%USERS%% \"${walletd_executable}\"
+  -u %%USERS%% \"${walletd_executable}\""
 
 run_rc_command "$1"
