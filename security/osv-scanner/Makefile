@@ -14,7 +14,6 @@ USES=		go:1.26,modules,run
 
 NOT_FOR_ARCHS=	armv6 armv7 i386
 
-_BUILD_VERSION=	${DISTVERSION}
 _BUILD_COMMIT=	c84fa45
 _BUILD_DATE=	$$(date +%Y-%m-%d)
 
@@ -22,9 +21,8 @@ GO_MODULE=	github.com/google/${PORTNAME}/v2
 GO_TARGET=	./cmd/${PORTNAME}
 GO_BUILDFLAGS=	-ldflags "\
 		-s -w \
-		-X main.version=${_BUILD_VERSION} \
-		-X main.date=${_BUILD_DATE} \
-		-X main.commit=${_BUILD_COMMIT}"
+		-X ${GO_MODULE}/cmd/${PORTNAME}/internal/cmd.date=${_BUILD_DATE} \
+		-X ${GO_MODULE}/cmd/${PORTNAME}/internal/cmd.commit=${_BUILD_COMMIT}"
 
 PLIST_FILES=	${GO_TARGET:C/.\/cmd/bin/}
 PORTDOCS=	CHANGELOG.md CONTRIBUTING.md README.md
