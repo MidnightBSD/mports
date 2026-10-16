@@ -1,11 +1,14 @@
 PORTNAME=	go
-DISTVERSION?=	g20240208
+DISTVERSION?=	g20261015
 PORTREVISION?=	0
 CATEGORIES=	lang
 MASTER_SITES?=	https://github.com/dmgk/go-bootstrap/releases/download/${BOOTSTRAP_TAG}/:bootstrap \
 		FREEBSD_LOCAL/dmgk:bootstrap
 PKGNAMESUFFIX=	${DISTVERSION:C/^g[0-9]+/-devel/:C/^([0-9]+)\.([0-9]+).*/\1\2/}
 DISTFILES?=	go-freebsd-${GOARCH_${ARCH}}${GOARM_${ARCH}}-${BOOTSTRAP_TAG}.tar.xz:bootstrap
+.ifndef MASTERDIR
+DISTFILES=
+.endif
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Go programming language (development version)
@@ -21,6 +24,9 @@ IGNORE=		fails to build with qemu-user-static
 ONLY_FOR_ARCHS=	aarch64 amd64 armv6 armv7 i386 riscv64
 
 BUILD_DEPENDS?=	bash:shells/bash
+.ifndef MASTERDIR
+BUILD_DEPENDS+=	go126:lang/go126
+.endif
 RUN_DEPENDS=	${RUN_DEPENDS_${ARCH}}
 # ld.bfd from devel/binutils is needed for working cgo on aarch64
 RUN_DEPENDS_aarch64=	binutils>0:devel/binutils
@@ -35,8 +41,9 @@ NO_SHLIB_REQUIRES_GLOB=	*
 .ifndef MASTERDIR
 USE_GITHUB=	yes
 GH_ACCOUNT=	golang
-# go1.22
-GH_TAGNAME=	20107e05a609b8f2e61a6b5e8dc258237ad046e7
+GH_TAGNAME=	575e5cc903bd2c6b3d711e541a569104697794e3
+GO_BOOTSTRAP_ROOT=	${LOCALBASE}/go126
+SHEBANG_FILES=	lib/wasm/go_js_wasm_exec lib/wasm/go_wasip1_wasm_exec
 .endif
 
 SHEBANG_FILES?=	misc/wasm/go_js_wasm_exec misc/wasm/go_wasip1_wasm_exec
@@ -64,6 +71,7 @@ V4_DESC=	V3 instructions plus AVX512*
 V4_VARS=	GOAMD64=v4
 
 BOOTSTRAP_TAG=	go1.20
+GO_BOOTSTRAP_ROOT?=	${WRKDIR}/go-freebsd-${GOARCH_${ARCH}}${GOARM_${ARCH}}-bootstrap
 GO_SUFFIX=	${PKGNAMESUFFIX}
 
 GOARCH_aarch64=	arm64
@@ -93,7 +101,7 @@ pre-build:
 do-build:
 	cd ${WRKSRC}/src ; ${SETENV} \
 		XDG_CACHE_HOME=${WRKDIR} \
-		GOROOT_BOOTSTRAP=${WRKDIR}/go-freebsd-${GOARCH_${ARCH}}${GOARM_${ARCH}}-bootstrap \
+		GOROOT_BOOTSTRAP=${GO_BOOTSTRAP_ROOT} \
 		GOROOT=${WRKSRC} \
 		GOROOT_FINAL=${PREFIX}/go${GO_SUFFIX} \
 		GOBIN= \
