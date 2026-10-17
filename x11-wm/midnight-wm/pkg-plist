@@ -1,4 +1,6 @@
 bin/midnight-wm
+bin/midnightbsd-settings
+share/applications/midnightbsd-settings.desktop
 share/xsessions/midnight-wm.desktop
 share/midnight-wm/config.ini
 share/midnight-wm/MidnightBSDLogo.svg
