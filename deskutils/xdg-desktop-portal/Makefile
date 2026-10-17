@@ -1,6 +1,6 @@
 PORTNAME=	xdg-desktop-portal
 DISTVERSION=	1.20.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	deskutils
 
 MAINTAINER=	ports@MidnightBSD.org

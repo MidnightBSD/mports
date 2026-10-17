@@ -1,0 +1,17 @@
+[
+{ type: install
+  message: <<EOM
+The document portal requires fusefs and user mounts:
+  sysrc kld_list+=fusefs
+  kldload fusefs
+  sysctl vfs.usermount=1
+Persist vfs.usermount=1 in /etc/sysctl.conf.
+
+It also requires fdescfs with descriptor symlinks. Add to /etc/fstab:
+  fdescfs /dev/fd fdescfs rw,rdlnk 0 0
+Then mount /dev/fd if it is not already mounted. If it is already mounted,
+check its options before changing it. Restart the desktop session after
+installing the updated portal.
+EOM
+}
+]
