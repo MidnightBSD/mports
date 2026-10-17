@@ -1,6 +1,6 @@
 PORTNAME=	midnightbsd-desktop
 PORTVERSION=	2.6.7
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	core
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -15,6 +15,7 @@ LICENSE=	bsd2
 
 RUN_DEPENDS=	${LOCALBASE}/bin/iconv:converters/libiconv \
 		${LOCALBASE}/share/xsessions/xfce.desktop:x11-wm/xfce4 \
+		midnight-wm:x11-wm/midnight-wm \
 		abiword:editors/abiword \
 		file-roller:archivers/file-roller \
 		bash:shells/bash \
