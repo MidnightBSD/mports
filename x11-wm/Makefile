@@ -21,6 +21,7 @@
     SUBDIR += libwraster
     SUBDIR += marco
     SUBDIR += metacity
+    SUBDIR += midnight-wm
     SUBDIR += muffin
     SUBDIR += mutter
     SUBDIR += obconf
