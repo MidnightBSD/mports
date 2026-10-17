@@ -1,0 +1,10 @@
+bin/midnight-wm
+share/xsessions/midnight-wm.desktop
+share/midnight-wm/config.ini
+share/midnight-wm/MidnightBSDLogo.svg
+share/midnight-wm/MidnightBSDLogo22x22.png
+share/doc/midnight-wm/README.md
+share/doc/midnight-wm/LICENSE
+@dir share/doc/midnight-wm
+@dir share/midnight-wm
+@dir share/xsessions
