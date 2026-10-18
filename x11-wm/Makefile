@@ -26,6 +26,7 @@
     SUBDIR += mutter
     SUBDIR += obconf
     SUBDIR += openbox
+    SUBDIR += picom
     SUBDIR += plasma6-kdecoration
     SUBDIR += plasma6-kwin
     SUBDIR += plasma6-kwin-x11

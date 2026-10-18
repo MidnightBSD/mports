@@ -1,0 +1,12 @@
+bin/picom
+bin/picom-inspect
+bin/picom-trans
+@sample etc/xdg/picom.conf.sample
+include/picom/api.h
+include/picom/backend.h
+libdata/pkgconfig/picom-api.pc
+share/applications/picom.desktop
+%%DOCS%%share/man/man1/picom-inspect.1.gz
+%%DOCS%%share/man/man1/picom-trans.1.gz
+%%DOCS%%share/man/man1/picom.1.gz
+@dir include/picom
