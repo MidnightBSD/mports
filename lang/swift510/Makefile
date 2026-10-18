@@ -20,8 +20,8 @@ LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libxml2.so:textproc/libxml2 \
 		libzstd.so:archivers/zstd
 
-USES=		libedit ninja:build perl5 pkgconfig python:3.6+ \
-		shebangfix sqlite:3
+USES=		libedit ncurses:port ninja:build perl5 pkgconfig python:3.6+ \
+		shebangfix sqlite:port
 USE_GITHUB=	nodefault
 # The common tag which applies to most repos.
 tag=		swift-${DISTVERSION}-RELEASE
