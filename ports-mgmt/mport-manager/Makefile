@@ -1,5 +1,6 @@
 PORTNAME=	mport-manager
 PORTVERSION=	0.3.0
+PORTREVISION=	1
 MASTER_SITES=	GH
 CATEGORIES=	ports-mgmt sysutils
 
@@ -11,7 +12,7 @@ LICENSE=	bsd2
 
 RUN_DEPENDS+=	pkexec:sysutils/polkit
 
-USES=		gnome pkgconfig
+USES=		desktop-file-utils gnome pkgconfig
 USE_GITHUB=     yes
 GH_PROJECT=     mport-manager
 GH_ACCOUNT=     laffer1
@@ -32,6 +33,8 @@ pre-fake:
 		${FAKE_DESTDIR}${TRUE_PREFIX}/share/polkit-1/actions/org.midnightbsd.mport-manager.policy
 
 post-fake:
+	${INSTALL_DATA} ${FILESDIR}/mport-manager.desktop \
+		${FAKE_DESTDIR}${TRUE_PREFIX}/share/applications/mport-manager.desktop
 	${STRIP_CMD} ${FAKE_DESTDIR}${TRUE_PREFIX}/bin/mport-manager
 
 .include <bsd.port.mk>
