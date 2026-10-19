@@ -1,4 +1,5 @@
 bin/mport-manager
+etc/xdg/autostart/mport-manager-polkit-agent.desktop
 share/applications/mport-manager.desktop
 share/icons/hicolor/48x48/apps/mport-manager.png
 share/mport/icon.png

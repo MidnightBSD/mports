@@ -1,6 +1,6 @@
 PORTNAME=	mport-manager
 PORTVERSION=	0.3.0
-PORTREVISION=	1
+PORTREVISION=	2
 MASTER_SITES=	GH
 CATEGORIES=	ports-mgmt sysutils
 
@@ -11,6 +11,7 @@ WWW=		https://github.com/laffer1/mport-manager
 LICENSE=	bsd2
 
 RUN_DEPENDS+=	pkexec:sysutils/polkit
+RUN_DEPENDS+=	${LOCALBASE}/libexec/polkit-gnome-authentication-agent-1:sysutils/polkit-gnome
 
 USES=		desktop-file-utils gnome pkgconfig
 USE_GITHUB=     yes
@@ -35,6 +36,9 @@ pre-fake:
 post-fake:
 	${INSTALL_DATA} ${FILESDIR}/mport-manager.desktop \
 		${FAKE_DESTDIR}${TRUE_PREFIX}/share/applications/mport-manager.desktop
+	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/etc/xdg/autostart
+	${INSTALL_DATA} ${FILESDIR}/mport-manager-polkit-agent.desktop \
+		${FAKE_DESTDIR}${TRUE_PREFIX}/etc/xdg/autostart/mport-manager-polkit-agent.desktop
 	${STRIP_CMD} ${FAKE_DESTDIR}${TRUE_PREFIX}/bin/mport-manager
 
 .include <bsd.port.mk>
