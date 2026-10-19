@@ -1,5 +1,6 @@
 PORTNAME=	polkit
 DISTVERSION=	127
+PORTREVISION=	1
 CATEGORIES=	sysutils gnome
 
 MAINTAINER=	ports@MidnightBSD.org
