@@ -1,6 +1,6 @@
---- hacks/glx/Makefile.in.orig	2023-10-11 00:37:06 UTC
+--- hacks/glx/Makefile.in.orig	2026-10-20 17:24:41 UTC
 +++ hacks/glx/Makefile.in
-@@ -40,7 +40,7 @@ INSTALL		= @INSTALL@
+@@ -41,7 +41,7 @@ INSTALL		= @INSTALL@
  
  SHELL		= /bin/sh
  INSTALL		= @INSTALL@
@@ -9,3 +9,12 @@
  INSTALL_PROGRAM = @INSTALL_PROGRAM@
  INSTALL_SCRIPT  = @INSTALL_SCRIPT@
  INSTALL_SETUID	= $(INSTALL_PROGRAM) $(SUID_FLAGS)
+@@ -60,7 +60,7 @@ HACK_PRE	= $(LIBS) $(X_LIBS)
+ # Note: see comment in ../../driver/Makefile.in for explanation of X_LIBS, etc.
+ #
+ HACK_PRE	= $(LIBS) $(X_LIBS)
+-HACK_POST     = $(X_PRE_LIBS) $(XFT_LIBS) -lXt -lX11 -lXext $(X_EXTRA_LIBS) -lm
++HACK_POST     = $(X_PRE_LIBS) $(XFT_LIBS) -lXt -lX11 -lXext $(X_EXTRA_LIBS) -lm @INTLLIBS@
+ HACK_POST2	= @GL_LIBS@ @HACK_LIBS@ $(HACK_POST)
+ HACK_LIBS	= $(HACK_PRE)                       @FFMPEG_LIBS@ $(HACK_POST2)
+ PNG_LIBS	= $(HACK_PRE)            @PNG_LIBS@ @FFMPEG_LIBS@ $(HACK_POST2)
