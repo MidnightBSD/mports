@@ -4,6 +4,9 @@ lib/libmlogind.so.1.4.0
 share/mlogind/themes/default/background.jpg
 share/mlogind/themes/default/panel.png
 share/mlogind/themes/default/mlogind.theme
+share/mlogind/themes/loud/background.jpg
+share/mlogind/themes/loud/panel.png
+share/mlogind/themes/loud/mlogind.theme
 man/man1/mlogind.1.gz
 @sample etc/mlogind.conf.sample
 @sample etc/pam.d/mlogind.sample
