@@ -159,19 +159,28 @@
  int
  main (int argc, char **argv)
  {
-@@ -118,22 +255,48 @@ main (int argc, char **argv)
+@@ -118,22 +255,57 @@ main (int argc, char **argv)
  
                  if (ret) {
                          const char *runtime_dir = NULL;
 +#ifdef __FreeBSD__
-+                        gboolean    reaper = TRUE;
++                        const char *keep;
++                        gboolean    reaper;
 +
 +                        /*
 +                         * Become the reaper of the session's processes, so
 +                         * the ones left after the command exits can be
 +                         * stopped before the session is closed.
++                         *
++                         * MIDNIGHT_KEEP_SESSION_PROCESSES=1 opts out: they
++                         * keep running, but ConsoleKit may remove their
++                         * XDG_RUNTIME_DIR when the session closes.  The
++                         * variable is left set for the session's programs.
 +                         */
-+                        if (procctl (P_PID, getpid (), PROC_REAP_ACQUIRE, NULL) == -1) {
++                        keep = getenv ("MIDNIGHT_KEEP_SESSION_PROCESSES");
++                        reaper = keep == NULL || strcmp (keep, "1") != 0;
++                        if (reaper &&
++                            procctl (P_PID, getpid (), PROC_REAP_ACQUIRE, NULL) == -1) {
 +                                syslog (LOG_WARNING, "error becoming session process reaper: %m");
 +                                reaper = FALSE;
 +                        }
