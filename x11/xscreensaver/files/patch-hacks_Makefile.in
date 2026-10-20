@@ -1,0 +1,11 @@
+--- hacks/Makefile.in.orig	2026-10-10 18:58:05 UTC
++++ hacks/Makefile.in
+@@ -58,7 +58,7 @@ HACK_PRE	= $(LIBS) $(X_LIBS)
+ # Note: see comment in ../driver/Makefile.in for explanation of X_LIBS, etc.
+ #
+ HACK_PRE	= $(LIBS) $(X_LIBS)
+-HACK_POST     = $(X_PRE_LIBS) $(XFT_LIBS) -lXt -lX11 -lXext $(X_EXTRA_LIBS) -lm
++HACK_POST     = $(X_PRE_LIBS) $(XFT_LIBS) -lXt -lX11 -lXext $(X_EXTRA_LIBS) -lm @INTLLIBS@
+ HACK_LIBS	= $(HACK_PRE) @FFMPEG_LIBS@ @HACK_LIBS@ $(HACK_POST)
+ PNG_LIBS	= $(HACK_PRE) @PNG_LIBS@ @FFMPEG_LIBS@ @HACK_LIBS@ $(HACK_POST)
+ JPEG_LIBS	= @JPEG_LIBS@

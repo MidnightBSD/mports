@@ -1,6 +1,5 @@
 PORTNAME=	xscreensaver
-DISTVERSION=	6.15
-PORTREVISION=	1
+DISTVERSION=	6.17
 CATEGORIES=	x11
 MASTER_SITES=	http://www.jwz.org/xscreensaver/
 
@@ -22,8 +21,8 @@ RUN_DEPENDS=		giftopnm:graphics/netpbm \
 			p5-LWP-Protocol-https>0:www/p5-LWP-Protocol-https \
 			unix-selfauth-helper>0:security/unix-selfauth-helper
 
-USES=		cpe gettext gl gmake gnome jpeg localbase:ldflags perl5 \
-		pkgconfig shebangfix xorg
+USES=		autoreconf cpe gettext-runtime gettext-tools gl gmake gnome \
+		jpeg localbase:ldflags perl5 pkgconfig shebangfix xorg
 CPE_VENDOR=	xscreensaver_project
 USE_GL=		gl glu
 USE_GNOME=	cairo gdkpixbuf gtk30 intltool libxml2
@@ -73,7 +72,6 @@ XPLANET_DESC=		Add extra port astro/xplanet
 XSNOW_DESC=		Add extra port x11/xsnow
 
 FIREF_RUN_DEPENDS=		${FIREF_HACKBIN}:x11/fireflies
-NLS_USES=			gettext-runtime
 NLS_CONFIGURE_ENABLE=		nls
 SETUID_HACKS_CONFIGURE_WITH=	setuid-hacks
 WAYLAND_BUILD_DEPENDS=		wayland-protocols>0:graphics/wayland-protocols
@@ -101,9 +99,6 @@ post-build:
 post-patch-NSFW-off:
 	${REINPLACE_CMD} -e 's|Dick Pix|Cat Pix|; s|dick pics|cat pics|' \
 		${WRKSRC}/hacks/bsod.c
-
-pre-configure-NLS-on:
-	cd ${WRKSRC} && ${LOCALBASE}/bin/intltoolize -f -c
 
 post-install:
 	${INSTALL_DATA} ${FILESDIR}/x*.xml ${DATADIR}/config/
