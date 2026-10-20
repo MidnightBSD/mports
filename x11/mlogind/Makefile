@@ -6,7 +6,7 @@ CATEGORIES=	x11
 
 MAINTAINER=	ports@midnightbsd.org
 COMMENT=	MidnightBSD Graphical login manager for X11
-WWW=		http://github.com/laffer1/mlogind
+WWW=		https://github.com/MidnightBSD/mlogind
 
 LICENSE=	gpl2
 
