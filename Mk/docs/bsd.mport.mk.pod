@@ -978,9 +978,9 @@ List of Qt components, with USES=qt:5 or qt:6.
 
 List of KDE frameworks, with USES=kde:5 or kde:6.
 
-=item USE_GL, USE_SDL, USE_XFCE, USE_WX, USE_GNUSTEP
+=item USE_GL, USE_SDL, USE_XFCE, USE_WX, USE_GNUSTEP, USE_GERSHWIN
 
-Component lists for USES=gl, sdl, xfce, wx and gnustep.
+Component lists for USES=gl, sdl, xfce, wx, gnustep and gershwin.
 
 =item USE_PYTHON
 
