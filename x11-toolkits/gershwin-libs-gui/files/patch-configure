@@ -1,0 +1,11 @@
+--- configure.orig
++++ configure
+@@ -4156,7 +4156,7 @@
+ CONFIG_SYSTEM_INCL="$CPPFLAGS"
+ CONFIG_SYSTEM_LIB_DIR="$LDFLAGS"
+ case "$target_os" in
+-  freebsd* | openbsd* )
++  freebsd* | openbsd* | midnightbsd* )
+ 	      CPPFLAGS="$CPPFLAGS -I/usr/local/include"
+               LDFLAGS="$LDFLAGS -L/usr/local/lib";;
+   netbsd*)    CPPFLAGS="$CPPFLAGS -I/usr/pkg/include"
