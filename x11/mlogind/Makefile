@@ -1,7 +1,6 @@
 PORTNAME=	mlogind
+PORTVERSION=	1.4.1
 DISTVERSIONPREFIX=	v
-PORTVERSION=	1.4.0
-PORTREVISION=	0
 CATEGORIES=	x11
 
 MAINTAINER=	ports@midnightbsd.org
@@ -18,16 +17,16 @@ LIB_DEPENDS=	libpng.so:graphics/png \
 		libfontconfig.so:x11-fonts/fontconfig
 
 USES=		cmake compiler:c++11-lang cpe gnome jpeg pkgconfig xorg
-USE_GITHUB=     yes
-GH_PROJECT=     mlogind
-GH_ACCOUNT=     midnightbsd
+USE_GITHUB=	yes
+GH_PROJECT=	mlogind
+GH_ACCOUNT=	midnightbsd
 USE_GNOME=	librsvg2
 USE_XORG=	ice sm x11 xau xcb xdmcp xext xft xmu xorg-server xrandr \
 		xrender xt
 USE_RC_SUBR=	mlogind
 USE_LDCONFIG=	yes
 
-CMAKE_ARGS= -DBUILD_SLIMLOCK=no \
+CMAKE_ARGS=	-DBUILD_MLOGINLOCK=no \
 	-DBUILD_SHARED_LIBS=yes \
 	-DUSE_RSVG=yes
 
