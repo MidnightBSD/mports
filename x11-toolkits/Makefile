@@ -5,6 +5,8 @@
     SUBDIR += fltk
     SUBDIR += fox16
     SUBDIR += gdl
+    SUBDIR += gershwin-libs-back
+    SUBDIR += gershwin-libs-gui
     SUBDIR += gnome-pty-helper
     SUBDIR += gnustep-back
     SUBDIR += gnustep-gui

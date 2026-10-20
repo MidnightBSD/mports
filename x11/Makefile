@@ -25,6 +25,9 @@
     SUBDIR += fstobdf
     SUBDIR += fuzzel
     SUBDIR += gdm
+    SUBDIR += gershwin
+    SUBDIR += gershwin-terminal
+    SUBDIR += gershwin-windowmanager
     SUBDIR += gnome
     SUBDIR += gnome-console
     SUBDIR += gnome-desktop
