@@ -31,6 +31,8 @@
     SUBDIR += dotenv-linter
     SUBDIR += e2fsprogs-libuuid
     SUBDIR += findutils
+    SUBDIR += gershwin-assets
+    SUBDIR += gershwin-system
     SUBDIR += getopt
     SUBDIR += gnome-getting-started-docs
     SUBDIR += gnome-icon-theme

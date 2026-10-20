@@ -7,6 +7,7 @@
     SUBDIR += clearlooks-metacity
     SUBDIR += clearlooks-themes
     SUBDIR += fluxbox-tenr-styles-pack
+    SUBDIR += gershwin-eau-theme
     SUBDIR += gnome-backgrounds
     SUBDIR += gnome-icon-theme-symbolic
     SUBDIR += gnome-themes

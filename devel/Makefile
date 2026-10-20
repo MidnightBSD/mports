@@ -327,6 +327,8 @@
     SUBDIR += geany
     SUBDIR += gengetopt
     SUBDIR += genht
+    SUBDIR += gershwin-libdispatch
+    SUBDIR += gershwin-tools-make
     SUBDIR += gettext
     SUBDIR += gettext-lint
     SUBDIR += gettext-msghack

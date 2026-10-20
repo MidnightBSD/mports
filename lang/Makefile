@@ -35,6 +35,8 @@
     SUBDIR += gcc13
     SUBDIR += gcc14
     SUBDIR += gcc15
+    SUBDIR += gershwin-libobjc2
+    SUBDIR += gershwin-libs-base
     SUBDIR += ghc
     SUBDIR += gjs
     SUBDIR += gnat12
