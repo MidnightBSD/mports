@@ -1,0 +1,20 @@
+PORTNAME=	gershwin-systempreferences
+DISTVERSION=	20260129
+CATEGORIES=	deskutils gnustep
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	System Preferences application for Gershwin
+WWW=		https://github.com/gershwin-desktop/gershwin-systempreferences
+
+LICENSE=	gpl2
+
+USES=		gershwin
+CONFLICTS=	systempreferences
+USE_GERSHWIN=	back build
+USE_LDCONFIG=	${GNUSTEP_SYSTEM_LIBRARIES}
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	gershwin-desktop
+GH_TAGNAME=	8d49f50
+
+.include <bsd.port.mk>
