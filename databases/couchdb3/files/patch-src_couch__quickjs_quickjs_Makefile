@@ -1,0 +1,11 @@
+--- src/couch_quickjs/quickjs/Makefile.orig	2026-10-20 22:31:50 UTC
++++ src/couch_quickjs/quickjs/Makefile
+@@ -25,7 +25,7 @@
+ ifeq ($(shell uname -s),Darwin)
+ CONFIG_DARWIN=y
+ endif
+-ifeq ($(shell uname -s),FreeBSD)
++ifneq ($(filter FreeBSD MidnightBSD,$(shell uname -s)),)
+ CONFIG_FREEBSD=y
+ endif
+ # Windows cross compilation from Linux
