@@ -1,5 +1,5 @@
 PORTNAME=	mlogind
-PORTVERSION=	1.4.1
+PORTVERSION=	1.4.2
 DISTVERSIONPREFIX=	v
 CATEGORIES=	x11
 
@@ -30,21 +30,15 @@ CMAKE_ARGS=	-DBUILD_MLOGINLOCK=no \
 	-DBUILD_SHARED_LIBS=yes \
 	-DUSE_RSVG=yes
 
-OPTIONS_DEFINE=		UTF8 CONSOLEKIT
+OPTIONS_DEFINE=		CONSOLEKIT
 OPTIONS_DEFAULT=	CONSOLEKIT
 OPTIONS_SUB=	yes
 
-UTF8_DESC=	Support UTF-8 characters
 CONSOLEKIT_DESC=Enable support for consolekit
 
 .include <bsd.mport.options.mk>
 
 CMAKE_ARGS+=	-DUSE_PAM=yes
-
-.if ${PORT_OPTIONS:MUTF8}
-# patch taken from slim-unicode in Arch User Repository
-EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-utf8
-.endif
 
 .if ${PORT_OPTIONS:MCONSOLEKIT}
 CMAKE_ARGS+=	-DUSE_CONSOLEKIT=yes
