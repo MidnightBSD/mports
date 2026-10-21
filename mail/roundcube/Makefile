@@ -1,5 +1,5 @@
 PORTNAME=	roundcube
-DISTVERSION=	1.7.3
+DISTVERSION=	1.7.5
 PORTEPOCH=	1
 CATEGORIES?=	mail www
 MASTER_SITES=	https://github.com/roundcube/roundcubemail/releases/download/${DISTVERSION}/
@@ -14,6 +14,7 @@ LICENSE=	gpl3+
 LICENSE_FILE=	${WRKSRC}/docs/LICENSE.md
 
 USES=		cpe php:web,flavors
+IGNORE_WITH_PHP=	86
 
 NO_ARCH=	yes
 NO_BUILD=	yes
