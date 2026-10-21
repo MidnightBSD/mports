@@ -1752,6 +1752,7 @@ share/man/man1/apachecouchdb.1.gz
 %%WWWDIR%%/index.html
 @dir libexec/couchdb3/lib/couch-%%VERSION%%/priv/couch_cfile
 @dir libexec/couchdb3/lib/couch-%%VERSION%%/priv/couch_ejson_compare
+@dir libexec/couchdb3/lib/couch-%%VERSION%%/priv/couch_js
 @dir libexec/couchdb3/lib/couch-%%VERSION%%/priv/couch_js/102
 @dir(couchdb,couchdb,750) /var/db/couchdb3
 @dir(couchdb,couchdb,750) /var/log/couchdb3
