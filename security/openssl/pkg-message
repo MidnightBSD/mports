@@ -1,0 +1,14 @@
+[
+{ type: upgrade
+  maximum_version: "3.5.0"
+  message: <<EOM
+security/openssl has been updated from OpenSSL 3.0, which is end-of-life,
+to the OpenSSL 3.5 LTS branch. The former security/openssl35 port is now
+security/openssl.
+
+The shared library version changed (libcrypto.so.12 -> libcrypto.so.17).
+Rebuild all ports that depend on security/openssl, and replace
+DEFAULT_VERSIONS+=ssl=openssl35 with ssl=openssl in make.conf.
+EOM
+}
+]

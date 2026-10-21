@@ -1,6 +1,15 @@
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20261021:
+	security/openssl updated from OpenSSL 3.0 (end-of-life) to 3.5 LTS;
+	the security/openssl35 port was renamed to security/openssl.
+
+	The shared library version changed from libcrypto.so.12 to
+	libcrypto.so.17. If you use OpenSSL from ports, rebuild all ports
+	that depend on it. Users of DEFAULT_VERSIONS+=ssl=openssl35 must
+	change it to ssl=openssl.
+
 20261015:
 	sysutils/logstash8 now uses the Apache-2.0 OSS distribution. X-Pack
 	features, including centralized pipeline management and X-Pack
