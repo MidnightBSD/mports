@@ -38,7 +38,8 @@ if checkyesno kibana_syslog_output_enable; then
 	fi
 fi
 
-NODE="%%LOCALBASE%%/bin/node"
+# Match argv[0] from the upstream launcher, including its literal bin/.. path.
+NODE="%%WWWDIR%%/bin/../node/glibc-217/bin/node"
 
 required_files="${kibana_config}"
 _piddir="/var/run/${name}"
@@ -47,11 +48,10 @@ procname="${NODE}"
 
 command="/usr/sbin/daemon"
 command_args="-f ${kibana_syslog_output_flags} -p ${pidfile} -t ${name} \
-	/usr/bin/env BABEL_DISABLE_CACHE=1 NODE_ENV=production ${kibana_env} \
-	${NODE} --no-warnings --max-http-header-size=65536 \
-	%%WWWDIR%%/src/cli/dist serve \
+	/usr/bin/env BABEL_DISABLE_CACHE=1 KBN_PATH_CONF=${kibana_config%/*} ${kibana_env} \
+	%%WWWDIR%%/bin/kibana serve \
 	--config ${kibana_config} --log-file ${kibana_log} \
-	--xpack.reporting.enabled=false ${kibana_args}"
+	--xpack.reporting.enabled=false --xpack.screenshotting.enabled=false ${kibana_args}"
 
 kibana_start_precmd()
 {

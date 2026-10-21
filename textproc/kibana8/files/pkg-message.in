@@ -1,9 +1,24 @@
 [
 { type: install
   message: <<EOM
-NOTICE: kibana port now installs kibana-specific utilities
-as symbolic links into %%BINDIR%%.
+Kibana uses Elastic License 2.0 and requires Node.js 24.21.0 or newer in
+major version 24. Reporting and screenshotting are disabled on MidnightBSD.
+
+Configuration samples are installed in %%ETCDIR%%. Kibana-specific
+utilities are linked into %%BINDIR%%. See %%WWWDIR%%/README.MidnightBSD
+for the port's changes and upgrade requirements.
+EOM
+}
+{ type: upgrade
+  message: <<EOM
+Upgrade Elasticsearch to 8.19.23 before starting Kibana. Stop all old
+Kibana instances and take an Elasticsearch snapshot including the Kibana
+feature state before the saved-object migration. Preserve configuration
+and the Kibana data directory; reinstall third-party plugins for 8.19.23.
+
+This port now declares Elastic License 2.0, correcting its former Apache
+license metadata. Reporting and screenshotting remain disabled.
+See %%WWWDIR%%/README.MidnightBSD for details.
 EOM
 }
 ]
-

@@ -11,6 +11,17 @@ you update your ports collection, before attempting any port upgrades.
 	change it to ssl=openssl.
 
 20261015:
+	textproc/kibana8 now requires Node.js 24.21.0 or newer in major
+	version 24. Its license metadata is corrected to Elastic License
+	2.0, matching the upstream binary distribution. Reporting and
+	screenshotting are disabled because Chromium is unavailable.
+
+	Upgrade Elasticsearch to 8.19.23 first. Stop all Kibana instances
+	before upgrading and take an Elasticsearch snapshot including the
+	Kibana feature state before saved-object migration. Preserve the
+	existing configuration and data directory, review new samples, and
+	reinstall third-party plugins built for Kibana 8.19.23.
+
 	sysutils/logstash8 now uses the Apache-2.0 OSS distribution. X-Pack
 	features, including centralized pipeline management and X-Pack
 	monitoring, are no longer included. The elastic_integration filter
