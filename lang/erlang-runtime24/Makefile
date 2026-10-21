@@ -1,7 +1,7 @@
 PORTNAME=	erlang
 DISTVERSIONPREFIX=	OTP-
 DISTVERSION=	24.3.4.17
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	lang parallel java
 PKGNAMESUFFIX=	-runtime24
 DIST_SUBDIR=	erlang
@@ -86,9 +86,7 @@ WX_VARS=			USE_GL="gl glu" \
 CONFIGURE_ARGS+=	--disable-pgo
 .endif
 
-
 CFLAGS+=	-DMAP_NORESERVE=0
-
 
 .if ${ARCH} == i386
 MAKE_ARGS+=	ARCH=x86
