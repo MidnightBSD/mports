@@ -28,6 +28,7 @@
     SUBDIR += php83-snmp
     SUBDIR += php84-snmp
     SUBDIR += php85-snmp
+    SUBDIR += php86-snmp
     SUBDIR += prometheus-collectd-exporter
     SUBDIR += prometheus1
     SUBDIR += prometheus2

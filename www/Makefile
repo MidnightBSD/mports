@@ -118,6 +118,7 @@
     SUBDIR += mod_php82
     SUBDIR += mod_php83
     SUBDIR += mod_php85
+    SUBDIR += mod_php86
     SUBDIR += mod_security
     SUBDIR += mod_tls
     SUBDIR += mod_webauth
@@ -261,6 +262,8 @@
     SUBDIR += php84-tidy
     SUBDIR += php85-session
     SUBDIR += php85-tidy
+    SUBDIR += php86-session
+    SUBDIR += php86-tidy
     SUBDIR += phpbb3
     SUBDIR += plasma6-plasma-browser-integration
     SUBDIR += pmwiki

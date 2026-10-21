@@ -325,6 +325,14 @@
     SUBDIR += php85-xmlreader
     SUBDIR += php85-xmlwriter
     SUBDIR += php85-xsl
+    SUBDIR += php86-ctype
+    SUBDIR += php86-dom
+    SUBDIR += php86-enchant
+    SUBDIR += php86-simplexml
+    SUBDIR += php86-xml
+    SUBDIR += php86-xmlreader
+    SUBDIR += php86-xmlwriter
+    SUBDIR += php86-xsl
     SUBDIR += po4a
     SUBDIR += popup
     SUBDIR += pugixml
