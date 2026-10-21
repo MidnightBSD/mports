@@ -622,10 +622,9 @@ proxydeps_suggest_uses() {
 	# ssl
 	# When updating this, please also update the versions list in
 	# default-versions.mk and ssl.mk!
-	elif [ ${pkg} = "security/openssl" -o ${pkg} = "security/openssl111" \
-	  -o ${pkg} = "security/openssl31" -o ${pkg} = "security/openssl32" \
-	  -o ${pkg} = "security/openssl33" \
-	  -o ${pkg} = "security/libressl" -o ${pkg} = "security/libressl-devel" \
+	elif [ ${pkg} = "security/openssl" \
+	  -o ${pkg} = "security/openssl36" \
+	  -o ${pkg} = "security/libressl" \
 	  ]; then
 		warn "you need USES=ssl"
 	# Tcl
