@@ -1,8 +1,8 @@
 PORTNAME=	erlang
 DISTVERSIONPREFIX=	OTP-
 DISTVERSION=	25.3.2.20
+PORTREVISION=	1
 PORTEPOCH=	4
-PORTREVISION=	0
 CATEGORIES=	lang parallel java
 DIST_SUBDIR=	erlang
 
@@ -27,7 +27,7 @@ CONFIGURE_ARGS=	--enable-dirty-schedulers \
 		--enable-kernel-poll \
 		--enable-smp-support \
 		--enable-threads
-CONFIGURE_TARGET=     ${ARCH}-portbld-freebsd12.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 MAKE_ARGS=	all
 
 SUB_FILES=	pkg-message
