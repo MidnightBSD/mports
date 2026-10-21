@@ -2,6 +2,7 @@
 
 PORTNAME=	libgit2-glib
 PORTVERSION=	1.2.1
+PORTREVISION=	1
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -14,9 +15,9 @@ LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS+=	/usr/local/lib/libgit2.so.1.7.2:devel/libgit2
-BUILD_DEPENDS+= ${LOCALBASE}/lib/libcrypto.so.12:security/openssl
+BUILD_DEPENDS+= ${LOCALBASE}/lib/libcrypto.so.17:security/openssl
 LIB_DEPENDS=	libgit2.so:devel/libgit2
-RUN_DEPENDS+= ${LOCALBASE}/lib/libcrypto.so.12:security/openssl
+RUN_DEPENDS+= ${LOCALBASE}/lib/libcrypto.so.17:security/openssl
 
 USES=		compiler:c11 gnome localbase \
 		meson pkgconfig python:build ssl tar:xz vala:build

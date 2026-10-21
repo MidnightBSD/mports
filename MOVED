@@ -675,3 +675,4 @@ devel/hs-haddock||2026-10-02|Removed: Haddock is shipped as part of lang/ghc
 sysutils/beats6|sysutils/beats7|2026-10-15|Beats 6 is obsolete; use beats7 or beats8
 sysutils/logstash6||2026-10-15|Has expired: upstream EOL; migrate manually to sysutils/logstash8
 security/openssl111||2026-10-21|Removed: OpenSSL 1.1.1 has been EOL since 2023-09-11; use security/openssl
+security/openssl35|security/openssl|2026-10-21|OpenSSL 3.0 is EOL; security/openssl is now OpenSSL 3.5 LTS

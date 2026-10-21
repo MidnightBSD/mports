@@ -3,7 +3,7 @@ commercial-grade, full-featured, and Open Source toolkit implementing
 the Secure Sockets Layer (SSL v3) and Transport Layer Security (TLS v1,
 v1.1, v1.2, v1.3) protocols with full-strength cryptography world-wide.
 The project is managed by a worldwide community of volunteers that use
-the Internet to communicate, plan, and develop the OpenSSL tookit
+the Internet to communicate, plan, and develop the OpenSSL toolkit
 and its related documentation.
 
 OpenSSL is based on the excellent SSLeay library developed by Eric
