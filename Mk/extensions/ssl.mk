@@ -9,7 +9,9 @@
 #
 # DEFAULT_VERSIONS+=	ssl=<openssl variant>
 #
-# Variants being base, openssl, libressl, and libressl-devel.
+# When updating this, please also update the same list in default-versions.mk
+# and the checks for USES=ssl in qa.sh!
+# Variants being base, openssl, openssl36, libressl, and aws-lc.
 #
 # The Makefile sets these variables:
 # OPENSSLBASE		- "/usr" or ${LOCALBASE}

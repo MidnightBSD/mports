@@ -107,7 +107,9 @@ RUBY_DEFAULT?=		3.3
 RUST_DEFAULT?=		rust
 # Possible values: 4.16, 4.19, ... 
 SAMBA_DEFAULT?=		4.19
-# Possible values: base, openssl, openssl111, openssl31, libressl, libressl-devel
+# When updating this, please also update the same list in ssl.mk and the
+# checks for USES=ssl in qa.sh!
+# Possible values: base, openssl, openssl36, libressl, aws-lc
 .if !defined(SSL_DEFAULT)
 #	If no preference was set, check for an installed base version
 #	but give an installed port preference over it.
