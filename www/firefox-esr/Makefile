@@ -1,5 +1,5 @@
 PORTNAME=	firefox
-DISTVERSION=	140.17.0
+DISTVERSION=	153.5.1
 PORTEPOCH=	1
 CATEGORIES=	www wayland
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}esr/source \
@@ -17,14 +17,13 @@ LICENSE_COMB=	dual
 CONFLICTS_INSTALL=	firefox
 
 BUILD_DEPENDS=	nspr>=4.32:devel/nspr \
-		nss>=3.112:security/nss \
-		icu>=76.1,1:devel/icu \
+		nss>=3.125:security/nss \
 		libevent>=2.1.8:devel/libevent \
 		harfbuzz>=10.1.0:print/harfbuzz \
 		graphite2>=1.3.14:graphics/graphite2 \
 		png>=1.6.45:graphics/png \
 		dav1d>=1.0.0:multimedia/dav1d \
-		libvpx>=1.14.0:multimedia/libvpx \
+		libvpx>=1.15.0:multimedia/libvpx \
 		${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR} \
 		v4l_compat>0:multimedia/v4l_compat \
 		autoconf2.13:devel/autoconf2.13 \
@@ -40,7 +39,6 @@ LIB_DEPENDS+=	libvpx.so:multimedia/libvpx \
 		libstartup-notification-1.so:x11/startup-notification \
 		libnspr4.so:devel/nspr \
 		libnss3.so:security/nss \
-		libicui18n.so:devel/icu \
 		libharfbuzz.so:print/harfbuzz \
 		libgraphite2.so.3:graphics/graphite2 \
 		libpng16.so:graphics/png \
@@ -81,7 +79,6 @@ QMAKE_ARGS=	--enable-application=browser \
 		--disable-crashreporter \
 		--disable-debug \
 		--disable-debug-symbols \
-		--disable-dtrace \
 		--disable-jack \
 		--disable-profiling \
 		--disable-pulseaudio \
@@ -92,7 +89,6 @@ QMAKE_ARGS=	--enable-application=browser \
 		--disable-hardening \
 		--prefix=${PREFIX} \
 		--with-intl-api \
-		--with-system-icu \
 		--with-system-libevent \
 		--with-system-nspr \
 		--with-system-nss \
