@@ -87,6 +87,7 @@
     SUBDIR += php83-calendar
     SUBDIR += php84-calendar
     SUBDIR += php85-calendar
+    SUBDIR += php86-calendar
     SUBDIR += py-hf-xet
     SUBDIR += py-jiwer
     SUBDIR += py-laspy

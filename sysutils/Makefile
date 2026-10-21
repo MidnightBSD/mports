@@ -203,6 +203,8 @@
     SUBDIR += php84-posix
     SUBDIR += php85-fileinfo
     SUBDIR += php85-posix
+    SUBDIR += php86-fileinfo
+    SUBDIR += php86-posix
     SUBDIR += plasma-pass
     SUBDIR += plasma5-libksysguard
     SUBDIR += plasma6-discover

@@ -224,6 +224,8 @@
     SUBDIR += php84-sodium
     SUBDIR += php85-filter
     SUBDIR += php85-sodium
+    SUBDIR += php86-filter
+    SUBDIR += php86-sodium
     SUBDIR += pinentry
     SUBDIR += pinentry-curses
     SUBDIR += pinentry-efl
