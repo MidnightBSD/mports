@@ -137,17 +137,17 @@ post-patch:
 		${WRKSRC}/python/grass/script/setup.py
 
 post-install:
-	${RM} -rf ${FAKE_DESTDIR}${PREFIX}/${GRASS_INST_DIR}/demolocation/PERMANENT/.tmp/
+	${RM} -rf ${PREFIX}/${GRASS_INST_DIR}/demolocation/PERMANENT/.tmp/
 
 # STRIP PART
-	${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/${GRASS_INST_DIR}/bin/*
-	${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/${GRASS_INST_DIR}/driver/db/*
+	${STRIP_CMD} ${PREFIX}/${GRASS_INST_DIR}/bin/*
+	${STRIP_CMD} ${PREFIX}/${GRASS_INST_DIR}/driver/db/*
 .for i in clean_temp current_time_s_ms echo i.find lock run r.watershed/seg \
 	r.watershed/ram lister/vector lister/cell
-	${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/${GRASS_INST_DIR}/etc/${i}
+	${STRIP_CMD} ${PREFIX}/${GRASS_INST_DIR}/etc/${i}
 .endfor
-	${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/${GRASS_INST_DIR}/lib/*
-	${STRIP_CMD} ${FAKE_DESTDIR}${PREFIX}/${GRASS_INST_DIR}/utils/g.echo
+	${STRIP_CMD} ${PREFIX}/${GRASS_INST_DIR}/lib/*
+	${STRIP_CMD} ${PREFIX}/${GRASS_INST_DIR}/utils/g.echo
 
 # symlink grass8
 	${LN} -sf ${PORTNAME} \
