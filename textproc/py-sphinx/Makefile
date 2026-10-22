@@ -1,11 +1,9 @@
 PORTNAME=	sphinx
-PORTVERSION=	5.3.0
-PORTREVISION=	2
+PORTVERSION=	7.4.7
 PORTEPOCH=	1
 CATEGORIES=	textproc python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-DISTNAME=	Sphinx-${PORTVERSION}
 DIST_SUBDIR=	python
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,24 +11,25 @@ COMMENT=	Python documentation generator
 WWW=		https://www.sphinx-doc.org/
 
 LICENSE=	bsd2
-LICENSE_FILE=	${WRKSRC}/LICENSE
+LICENSE_FILE=	${WRKSRC}/LICENSE.rst
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}flit-core>=3.7:devel/py-flit-core@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinxcontrib-applehelp>=0:textproc/py-sphinxcontrib-applehelp@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sphinxcontrib-devhelp>=0:textproc/py-sphinxcontrib-devhelp@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sphinxcontrib-jsmath>=0:textproc/py-sphinxcontrib-jsmath@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sphinxcontrib-htmlhelp>=2.0.0:textproc/py-sphinxcontrib-htmlhelp@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}sphinxcontrib-serializinghtml>=1.1.5:textproc/py-sphinxcontrib-serializinghtml@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}sphinxcontrib-serializinghtml>=1.1.9:textproc/py-sphinxcontrib-serializinghtml@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sphinxcontrib-qthelp>=0:textproc/py-sphinxcontrib-qthelp@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}Jinja2>=3.0:devel/py-Jinja2@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pygments>=2.12:textproc/py-pygments@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}docutils>=0.14,1<0.22,1:textproc/py-docutils@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}snowballstemmer>=2.0:textproc/py-snowballstemmer@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}Babel>=2.9:devel/py-babel@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}alabaster>=0.7<0.8:textproc/py-alabaster@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}Jinja2>=3.1:devel/py-Jinja2@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pygments>=2.17:textproc/py-pygments@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}docutils>=0.20,1<0.22,1:textproc/py-docutils@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}snowballstemmer>=2.2:textproc/py-snowballstemmer@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}Babel>=2.13:devel/py-babel@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}alabaster>=0.7.14<0.8:textproc/py-alabaster@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}imagesize>=1.3:graphics/py-imagesize@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}requests>=2.5.0:www/py-requests@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}packaging>=21.0:devel/py-packaging@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}requests>=2.30.0:www/py-requests@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}packaging>=23.0:devel/py-packaging@${PY_FLAVOR} \
+		${PY_TOMLI} \
 		${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}html5lib>=0:www/py-html5lib@${PY_FLAVOR}
 
