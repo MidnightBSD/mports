@@ -586,7 +586,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		wasmtimer-0.4.3 \
 		web-sys-0.3.91 \
 		web-time-1.1.0 \
-		webpki-root-certs-1.0.7 \
+		webpki-root-certs-1.0.10 \
 		weezl-0.1.12 \
 		which-8.0.2 \
 		widestring-1.2.1 \

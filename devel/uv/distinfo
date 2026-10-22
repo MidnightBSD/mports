@@ -1,4 +1,4 @@
-TIMESTAMP = 1782788447
+TIMESTAMP = 1792692262
 SHA256 (rust/crates/adler2-2.0.1.crate) = 320119579fcad9c21884f5c4861d16174d0e06250625266f50fe6898340abefa
 SIZE (rust/crates/adler2-2.0.1.crate) = 13366
 SHA256 (rust/crates/aes-0.8.4.crate) = b169f7a6d4742236a0a00c541b845991d0ac43e546831af1249753ab4c3aa3a0
@@ -1175,8 +1175,8 @@ SHA256 (rust/crates/web-sys-0.3.91.crate) = 854ba17bb104abfb26ba36da9729addc7ce7
 SIZE (rust/crates/web-sys-0.3.91.crate) = 669788
 SHA256 (rust/crates/web-time-1.1.0.crate) = 5a6580f308b1fad9207618087a65c04e7a10bc77e02c8e84e9b00dd4b12fa0bb
 SIZE (rust/crates/web-time-1.1.0.crate) = 18026
-SHA256 (rust/crates/webpki-root-certs-1.0.7.crate) = f31141ce3fc3e300ae89b78c0dd67f9708061d1d2eda54b8209346fd6be9a92c
-SIZE (rust/crates/webpki-root-certs-1.0.7.crate) = 146732
+SHA256 (rust/crates/webpki-root-certs-1.0.10.crate) = 58ec80e73fd8baf57bf0d9615554c75348bda990d6d5bbeab964dd068319fecb
+SIZE (rust/crates/webpki-root-certs-1.0.10.crate) = 148663
 SHA256 (rust/crates/weezl-0.1.12.crate) = a28ac98ddc8b9274cb41bb4d9d4d5c425b6020c50c46f25559911905610b4a88
 SIZE (rust/crates/weezl-0.1.12.crate) = 46045
 SHA256 (rust/crates/which-8.0.2.crate) = 81995fafaaaf6ae47a7d0cc83c67caf92aeb7e5331650ae6ff856f7c0c60c459
