@@ -89,7 +89,6 @@ include/webkitgtk-%%API_VERSION%%/webkit/WebKitWebContext.h
 include/webkitgtk-%%API_VERSION%%/webkit/WebKitWebEditor.h
 include/webkitgtk-%%API_VERSION%%/webkit/WebKitWebExtension.h
 include/webkitgtk-%%API_VERSION%%/webkit/WebKitWebExtensionAutocleanups.h
-include/webkitgtk-%%API_VERSION%%/webkit/WebKitWebExtensionMatchPattern.h
 include/webkitgtk-%%API_VERSION%%/webkit/WebKitWebFormManager.h
 include/webkitgtk-%%API_VERSION%%/webkit/WebKitWebHitTestResult.h
 include/webkitgtk-%%API_VERSION%%/webkit/WebKitWebInspector.h
@@ -104,6 +103,7 @@ include/webkitgtk-%%API_VERSION%%/webkit/WebKitWebsiteDataAccessPermissionReques
 include/webkitgtk-%%API_VERSION%%/webkit/WebKitWebsiteDataManager.h
 include/webkitgtk-%%API_VERSION%%/webkit/WebKitWebsitePolicies.h
 include/webkitgtk-%%API_VERSION%%/webkit/WebKitWindowProperties.h
+include/webkitgtk-%%API_VERSION%%/webkit/WebKitXRPermissionRequest.h
 include/webkitgtk-%%API_VERSION%%/webkit2/webkit-web-extension.h
 include/webkitgtk-%%API_VERSION%%/webkit2/webkit2.h
 include/webkitgtk-%%API_VERSION%%/webkitdom/WebKitDOMAttr.h
@@ -233,6 +233,7 @@ libdata/pkgconfig/javascriptcoregtk-%%API_VERSION%%.pc
 libdata/pkgconfig/webkit2gtk-%%API_VERSION%%.pc
 libdata/pkgconfig/webkit2gtk-web-extension-%%API_VERSION%%.pc
 libexec/webkit2gtk-%%API_VERSION%%/MiniBrowser
+libexec/webkit2gtk-%%API_VERSION%%/WebKitGPUProcess
 libexec/webkit2gtk-%%API_VERSION%%/WebKitNetworkProcess
 libexec/webkit2gtk-%%API_VERSION%%/WebKitWebProcess
 libexec/webkit2gtk-%%API_VERSION%%/jsc
@@ -276,6 +277,7 @@ share/gir-1.0/WebKit2WebExtension-%%API_VERSION%%.gir
 %%DOCS%%share/doc/javascriptcoregtk-%%API_VERSION%%/callback.ClassHasPropertyFunction.html
 %%DOCS%%share/doc/javascriptcoregtk-%%API_VERSION%%/callback.ClassSetPropertyFunction.html
 %%DOCS%%share/doc/javascriptcoregtk-%%API_VERSION%%/callback.ExceptionHandler.html
+%%DOCS%%share/doc/javascriptcoregtk-%%API_VERSION%%/callback.Executor.html
 %%DOCS%%share/doc/javascriptcoregtk-%%API_VERSION%%/callback.OptionsFunc.html
 %%DOCS%%share/doc/javascriptcoregtk-%%API_VERSION%%/class.Class.html
 %%DOCS%%share/doc/javascriptcoregtk-%%API_VERSION%%/class.Context.html
@@ -311,6 +313,7 @@ share/gir-1.0/WebKit2WebExtension-%%API_VERSION%%.gir
 %%DOCS%%share/doc/javascriptcoregtk-%%API_VERSION%%/ctor.Value.new_null.html
 %%DOCS%%share/doc/javascriptcoregtk-%%API_VERSION%%/ctor.Value.new_number.html
 %%DOCS%%share/doc/javascriptcoregtk-%%API_VERSION%%/ctor.Value.new_object.html
+%%DOCS%%share/doc/javascriptcoregtk-%%API_VERSION%%/ctor.Value.new_promise.html
 %%DOCS%%share/doc/javascriptcoregtk-%%API_VERSION%%/ctor.Value.new_string.html
 %%DOCS%%share/doc/javascriptcoregtk-%%API_VERSION%%/ctor.Value.new_string_from_bytes.html
 %%DOCS%%share/doc/javascriptcoregtk-%%API_VERSION%%/ctor.Value.new_typed_array.html
@@ -526,6 +529,7 @@ share/gir-1.0/WebKit2WebExtension-%%API_VERSION%%.gir
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/class.WebsiteDataManager.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/class.WebsitePolicies.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/class.WindowProperties.html
+%%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/class.XRPermissionRequest.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/classes_hierarchy.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/const.EDITING_COMMAND_COPY.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/const.EDITING_COMMAND_CREATE_LINK.html
@@ -539,6 +543,7 @@ share/gir-1.0/WebKit2WebExtension-%%API_VERSION%%.gir
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/const.MAJOR_VERSION.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/const.MICRO_VERSION.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/const.MINOR_VERSION.html
+%%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/contributing.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/ctor.ApplicationInfo.new.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/ctor.ContextMenu.new.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/ctor.ContextMenu.new_with_items.html
@@ -613,6 +618,8 @@ share/gir-1.0/WebKit2WebExtension-%%API_VERSION%%.gir
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/enum.UserStyleLevel.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/enum.WebExtensionMode.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/enum.WebProcessTerminationReason.html
+%%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/enum.XRSessionMode.html
+%%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/environment-variables.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/error.DownloadError.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/error.FaviconDatabaseError.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/error.JavascriptError.html
@@ -623,12 +630,14 @@ share/gir-1.0/WebKit2WebExtension-%%API_VERSION%%.gir
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/error.SnapshotError.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/error.UserContentFilterError.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/error.UserMessageError.html
+%%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/error.WebExtensionMatchPatternError.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/flags.EditorTypingAttributes.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/flags.FindOptions.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/flags.HitTestResultContext.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/flags.InputHints.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/flags.SnapshotOptions.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/flags.WebsiteDataTypes.html
+%%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/flags.XRSessionFeatures.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/fonts.css
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/func.CHECK_VERSION.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/func.DECLARE_TYPE.html
@@ -701,6 +710,7 @@ share/gir-1.0/WebKit2WebExtension-%%API_VERSION%%.gir
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.ContextMenu.get_item_at_position.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.ContextMenu.get_items.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.ContextMenu.get_n_items.html
+%%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.ContextMenu.get_position.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.ContextMenu.get_user_data.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.ContextMenu.insert.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.ContextMenu.last.html
@@ -711,8 +721,10 @@ share/gir-1.0/WebKit2WebExtension-%%API_VERSION%%.gir
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.ContextMenu.set_user_data.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.ContextMenuItem.get_action.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.ContextMenuItem.get_gaction.html
+%%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.ContextMenuItem.get_gaction_target.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.ContextMenuItem.get_stock_action.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.ContextMenuItem.get_submenu.html
+%%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.ContextMenuItem.get_title.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.ContextMenuItem.is_separator.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.ContextMenuItem.set_submenu.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.CookieManager.add_cookie.html
@@ -1009,6 +1021,7 @@ share/gir-1.0/WebKit2WebExtension-%%API_VERSION%%.gir
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.Settings.get_javascript_can_access_clipboard.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.Settings.get_javascript_can_open_windows_automatically.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.Settings.get_load_icons_ignoring_image_load_setting.html
+%%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.Settings.get_math_font_family.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.Settings.get_media_content_types_requiring_hardware_support.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.Settings.get_media_playback_allows_inline.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.Settings.get_media_playback_requires_user_gesture.html
@@ -1019,6 +1032,7 @@ share/gir-1.0/WebKit2WebExtension-%%API_VERSION%%.gir
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.Settings.get_sans_serif_font_family.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.Settings.get_serif_font_family.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.Settings.get_user_agent.html
+%%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.Settings.get_webrtc_udp_ports_range.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.Settings.get_zoom_text_only.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.Settings.set_allow_file_access_from_file_urls.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.Settings.set_allow_modal_dialogs.html
@@ -1072,6 +1086,7 @@ share/gir-1.0/WebKit2WebExtension-%%API_VERSION%%.gir
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.Settings.set_javascript_can_access_clipboard.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.Settings.set_javascript_can_open_windows_automatically.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.Settings.set_load_icons_ignoring_image_load_setting.html
+%%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.Settings.set_math_font_family.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.Settings.set_media_content_types_requiring_hardware_support.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.Settings.set_media_playback_allows_inline.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.Settings.set_media_playback_requires_user_gesture.html
@@ -1083,6 +1098,7 @@ share/gir-1.0/WebKit2WebExtension-%%API_VERSION%%.gir
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.Settings.set_serif_font_family.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.Settings.set_user_agent.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.Settings.set_user_agent_with_application_details.html
+%%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.Settings.set_webrtc_udp_ports_range.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.Settings.set_zoom_text_only.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.URIRequest.get_http_headers.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.URIRequest.get_http_method.html
@@ -1236,6 +1252,7 @@ share/gir-1.0/WebKit2WebExtension-%%API_VERSION%%.gir
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.WebView.get_settings.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.WebView.get_snapshot.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.WebView.get_snapshot_finish.html
+%%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.WebView.get_theme_color.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.WebView.get_title.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.WebView.get_tls_info.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.WebView.get_uri.html
@@ -1251,8 +1268,10 @@ share/gir-1.0/WebKit2WebExtension-%%API_VERSION%%.gir
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.WebView.is_controlled_by_automation.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.WebView.is_editable.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.WebView.is_ephemeral.html
+%%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.WebView.is_immersive_mode_enabled.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.WebView.is_loading.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.WebView.is_playing_audio.html
+%%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.WebView.leave_immersive_mode.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.WebView.load_alternate_html.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.WebView.load_bytes.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.WebView.load_html.html
@@ -1336,6 +1355,15 @@ share/gir-1.0/WebKit2WebExtension-%%API_VERSION%%.gir
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.WindowProperties.get_scrollbars_visible.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.WindowProperties.get_statusbar_visible.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.WindowProperties.get_toolbar_visible.html
+%%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.XRPermissionRequest.get_consent_optional_features.html
+%%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.XRPermissionRequest.get_consent_required_features.html
+%%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.XRPermissionRequest.get_granted_features.html
+%%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.XRPermissionRequest.get_optional_features_requested.html
+%%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.XRPermissionRequest.get_required_features_requested.html
+%%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.XRPermissionRequest.get_security_origin.html
+%%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.XRPermissionRequest.get_session_mode.html
+%%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/method.XRPermissionRequest.set_granted_optional_features.html
+%%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/profiling.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/property.AutomationSession.id.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/property.ColorChooserRequest.rgba.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/property.Download.allow-overwrite.html
@@ -1428,6 +1456,7 @@ share/gir-1.0/WebKit2WebExtension-%%API_VERSION%%.gir
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/property.Settings.javascript-can-access-clipboard.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/property.Settings.javascript-can-open-windows-automatically.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/property.Settings.load-icons-ignoring-image-load-setting.html
+%%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/property.Settings.math-font-family.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/property.Settings.media-content-types-requiring-hardware-support.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/property.Settings.media-playback-allows-inline.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/property.Settings.media-playback-requires-user-gesture.html
@@ -1438,6 +1467,7 @@ share/gir-1.0/WebKit2WebExtension-%%API_VERSION%%.gir
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/property.Settings.sans-serif-font-family.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/property.Settings.serif-font-family.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/property.Settings.user-agent.html
+%%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/property.Settings.webrtc-udp-ports-range.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/property.Settings.zoom-text-only.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/property.URIRequest.uri.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/property.URIResponse.content-length.html
@@ -1474,6 +1504,7 @@ share/gir-1.0/WebKit2WebExtension-%%API_VERSION%%.gir
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/property.WebView.favicon.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/property.WebView.is-controlled-by-automation.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/property.WebView.is-ephemeral.html
+%%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/property.WebView.is-immersive-mode-enabled.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/property.WebView.is-loading.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/property.WebView.is-muted.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/property.WebView.is-playing-audio.html
@@ -1482,6 +1513,7 @@ share/gir-1.0/WebKit2WebExtension-%%API_VERSION%%.gir
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/property.WebView.page-id.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/property.WebView.related-view.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/property.WebView.settings.html
+%%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/property.WebView.theme-color.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/property.WebView.title.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/property.WebView.uri.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/property.WebView.user-content-manager.html
@@ -1512,6 +1544,7 @@ share/gir-1.0/WebKit2WebExtension-%%API_VERSION%%.gir
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/property.WindowProperties.scrollbars-visible.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/property.WindowProperties.statusbar-visible.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/property.WindowProperties.toolbar-visible.html
+%%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/remote-inspector.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/search.js
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/signal.AuthenticationRequest.authenticated.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/signal.AuthenticationRequest.cancelled.html
@@ -1632,6 +1665,7 @@ share/gir-1.0/WebKit2WebExtension-%%API_VERSION%%.gir
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/type_func.UserContentFilterError.quark.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/type_func.UserMessageError.quark.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/type_func.WebContext.get_default.html
+%%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/type_func.WebExtensionMatchPatternError.quark.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/type_func.WebsiteDataManager.set_memory_pressure_settings.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/vfunc.Download.decide_destination.html
 %%DOCS%%share/doc/webkit2gtk-%%API_VERSION%%/vfunc.InputMethodContext.committed.html
@@ -2172,6 +2206,7 @@ share/gir-1.0/WebKit2WebExtension-%%API_VERSION%%.gir
 %%DOCS%%share/doc/webkit2gtk-web-extension-%%API_VERSION%%/method.ContextMenu.get_item_at_position.html
 %%DOCS%%share/doc/webkit2gtk-web-extension-%%API_VERSION%%/method.ContextMenu.get_items.html
 %%DOCS%%share/doc/webkit2gtk-web-extension-%%API_VERSION%%/method.ContextMenu.get_n_items.html
+%%DOCS%%share/doc/webkit2gtk-web-extension-%%API_VERSION%%/method.ContextMenu.get_position.html
 %%DOCS%%share/doc/webkit2gtk-web-extension-%%API_VERSION%%/method.ContextMenu.get_user_data.html
 %%DOCS%%share/doc/webkit2gtk-web-extension-%%API_VERSION%%/method.ContextMenu.insert.html
 %%DOCS%%share/doc/webkit2gtk-web-extension-%%API_VERSION%%/method.ContextMenu.last.html
@@ -2182,8 +2217,10 @@ share/gir-1.0/WebKit2WebExtension-%%API_VERSION%%.gir
 %%DOCS%%share/doc/webkit2gtk-web-extension-%%API_VERSION%%/method.ContextMenu.set_user_data.html
 %%DOCS%%share/doc/webkit2gtk-web-extension-%%API_VERSION%%/method.ContextMenuItem.get_action.html
 %%DOCS%%share/doc/webkit2gtk-web-extension-%%API_VERSION%%/method.ContextMenuItem.get_gaction.html
+%%DOCS%%share/doc/webkit2gtk-web-extension-%%API_VERSION%%/method.ContextMenuItem.get_gaction_target.html
 %%DOCS%%share/doc/webkit2gtk-web-extension-%%API_VERSION%%/method.ContextMenuItem.get_stock_action.html
 %%DOCS%%share/doc/webkit2gtk-web-extension-%%API_VERSION%%/method.ContextMenuItem.get_submenu.html
+%%DOCS%%share/doc/webkit2gtk-web-extension-%%API_VERSION%%/method.ContextMenuItem.get_title.html
 %%DOCS%%share/doc/webkit2gtk-web-extension-%%API_VERSION%%/method.ContextMenuItem.is_separator.html
 %%DOCS%%share/doc/webkit2gtk-web-extension-%%API_VERSION%%/method.ContextMenuItem.set_submenu.html
 %%DOCS%%share/doc/webkit2gtk-web-extension-%%API_VERSION%%/method.DOMAttr.get_local_name.html
@@ -4116,6 +4153,7 @@ share/locale/id/LC_MESSAGES/WebKitGTK-%%API_VERSION%%.mo
 share/locale/it/LC_MESSAGES/WebKitGTK-%%API_VERSION%%.mo
 share/locale/ja/LC_MESSAGES/WebKitGTK-%%API_VERSION%%.mo
 share/locale/ka/LC_MESSAGES/WebKitGTK-%%API_VERSION%%.mo
+share/locale/kk/LC_MESSAGES/WebKitGTK-%%API_VERSION%%.mo
 share/locale/kn/LC_MESSAGES/WebKitGTK-%%API_VERSION%%.mo
 share/locale/ko/LC_MESSAGES/WebKitGTK-%%API_VERSION%%.mo
 share/locale/lt/LC_MESSAGES/WebKitGTK-%%API_VERSION%%.mo
