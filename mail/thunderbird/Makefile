@@ -1,9 +1,9 @@
 PORTNAME=	thunderbird
-DISTVERSION=	157.0.1
+DISTVERSION=	158.0.1
 PORTREVISION=	0
 CATEGORIES=	mail news net-im wayland
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}${DISTVERSIONSUFFIX}/source \
-		MOZILLA/${PORTNAME}/candidates/${DISTVERSION}${DISTVERSIONSUFFIX}-candidates/build2/source
+		MOZILLA/${PORTNAME}/candidates/${DISTVERSION}${DISTVERSIONSUFFIX}-candidates/build1/source
 DISTFILES=	${DISTNAME}.source${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,7 +15,7 @@ LICENSE=	MPL20
 CONFLICTS_INSTALL=	thunderbird-esr
 
 BUILD_DEPENDS=	nspr>=4.39:devel/nspr \
-		nss>=3.129:security/nss \
+		nss>=3.130:security/nss \
 		libevent>=2.1.8:devel/libevent \
 		harfbuzz>=10.1.0:print/harfbuzz \
 		graphite2>=1.3.14:graphics/graphite2 \
