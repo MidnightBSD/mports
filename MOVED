@@ -680,3 +680,6 @@ www/node23|www/node24|2026-10-22|Has expired: Node.js 23 reached its EoL on 2025
 www/node25|www/node26|2026-10-22|Has expired: Node.js 25 reached its EoL on 2026-06-01. Use Node.js 26 (www/node26) instead
 www/npm-node25|www/npm-node24|2026-10-22|Has expired: consumer of expired www/node25
 www/yarn-node25|www/yarn-node24|2026-10-22|Has expired: consumer of expired www/node25
+www/node20|www/node24|2026-10-22|Has expired: Node.js 20 reached its EoL on 2026-04-30. Use Node.js 24 (www/node24) instead
+www/npm-node20|www/npm-node24|2026-10-22|Has expired: consumer of expired www/node20
+www/yarn-node20|www/yarn-node24|2026-10-22|Has expired: consumer of expired www/node20

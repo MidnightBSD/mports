@@ -149,7 +149,7 @@ TCLTK_DEFAULT?=		8.6
 # Possible values: 6, 7
 VARNISH_DEFAULT?=	6
 
-# Possible value: 20, 22, 24, 26, lts, current
+# Possible value: 22, 24, 26, lts, current
 NODEJS_DEFAULT?=    lts
 
 .endif
