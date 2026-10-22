@@ -1,5 +1,5 @@
 PORTNAME=	tailscale
-PORTVERSION=	1.102.5
+PORTVERSION=	1.104.2
 DISTVERSIONPREFIX=	v
 CATEGORIES=	security
 
@@ -12,7 +12,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	ca_root_nss>0:security/ca_root_nss
 
-USES=		go:1.26,modules
+USES=		go:1.27,modules
 USES+=	cpe
 
 GO_MODULE=	github.com/tailscale/tailscale
