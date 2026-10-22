@@ -82,7 +82,7 @@ _INCLUDE_USES_GO_MK=	yes
 
 # When adding a version, please keep the comment in
 # Mk/components/default-versions.mk in sync.
-GO_VALID_VERSIONS=	1.23 1.24 1.25 1.26
+GO_VALID_VERSIONS=	1.23 1.24 1.25 1.26 1.27
 
 # Check arguments sanity
 .  if !empty(go_ARGS:N[1-9].[0-9][0-9]+:N[1-9].[0-9][0-9]:Nmodules:Nno_targets:Nrun)

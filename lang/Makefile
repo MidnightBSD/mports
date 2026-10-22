@@ -48,6 +48,7 @@
     SUBDIR += go124
     SUBDIR += go125
     SUBDIR += go126
+    SUBDIR += go127
     SUBDIR += groovy
     SUBDIR += gscheme
     SUBDIR += guile
