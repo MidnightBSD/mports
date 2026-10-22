@@ -144,6 +144,7 @@
     SUBDIR += npm-node20
     SUBDIR += npm-node22
     SUBDIR += npm-node24
+    SUBDIR += npm-node26
     SUBDIR += npm-node25
     SUBDIR += otter-browser
     SUBDIR += p5-Apache-LogFormat-Compiler
