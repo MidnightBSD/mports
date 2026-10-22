@@ -138,6 +138,7 @@
     SUBDIR += node20
     SUBDIR += node22
     SUBDIR += node24
+    SUBDIR += node26
     SUBDIR += npm
     SUBDIR += npm-node20
     SUBDIR += npm-node22
