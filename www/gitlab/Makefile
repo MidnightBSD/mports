@@ -28,7 +28,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 # textproc/rubygem-psych3 is required as ruby 3.1 applied an update to psych 4.0 which has breaking changes
 # mail/rubygem-net-pop is required as ruby 3.1 removed it
 #gitlab-zoekt-indexer>=0.16.0:textproc/gitlab-zoekt-indexer
-# Gitlab does not work with nodejs 24, but keep it here for a later upgrade
+# GitLab 18.x targets Node.js 22 (.tool-versions) and does not work with
+# Node.js 24; switch back to this line for a later upgrade
 # yarn${NODEJS_SUFFIX}>=1.10.0:www/yarn${NODEJS_SUFFIX}
 MY_DEPENDS=	gitaly>=${GITLAB_VERSION}:devel/gitaly \
 	gitlab-elasticsearch-indexer>=5.12.2:textproc/gitlab-elasticsearch-indexer \
@@ -38,7 +39,7 @@ MY_DEPENDS=	gitaly>=${GITLAB_VERSION}:devel/gitaly \
 	gitlab-workhorse>=${GITLAB_VERSION}:www/gitlab-workhorse \
 	gitlab-zoekt-indexer>=1.8.0:textproc/gitlab-zoekt-indexer \
 	redis>=6.2.11:databases/redis \
-	yarn-node20>=1.10.0:www/yarn-node20 \
+	yarn-node22>=1.10.0:www/yarn-node22 \
 	gtar>0:archivers/gtar \
 	bash>0:shells/bash \
 	rubygem-parser>=3.3.10.0:devel/rubygem-parser \
