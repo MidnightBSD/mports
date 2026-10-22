@@ -676,3 +676,7 @@ sysutils/beats6|sysutils/beats7|2026-10-15|Beats 6 is obsolete; use beats7 or be
 sysutils/logstash6||2026-10-15|Has expired: upstream EOL; migrate manually to sysutils/logstash8
 security/openssl111||2026-10-21|Removed: OpenSSL 1.1.1 has been EOL since 2023-09-11; use security/openssl
 security/openssl35|security/openssl|2026-10-21|OpenSSL 3.0 is EOL; security/openssl is now OpenSSL 3.5 LTS
+www/node23|www/node24|2026-10-22|Has expired: Node.js 23 reached its EoL on 2025-06-01. Use Node.js 24 (www/node24) instead
+www/node25|www/node26|2026-10-22|Has expired: Node.js 25 reached its EoL on 2026-06-01. Use Node.js 26 (www/node26) instead
+www/npm-node25|www/npm-node24|2026-10-22|Has expired: consumer of expired www/node25
+www/yarn-node25|www/yarn-node24|2026-10-22|Has expired: consumer of expired www/node25
