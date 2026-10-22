@@ -25,10 +25,26 @@ GH_ACCOUNT=	pypa
 
 SHEBANG_FILES=	src/pip/__init__.py
 
-# DOCS disabled: upstream dropped setup.py (build_sphinx is gone) and the docs
-# now require sphinx ~= 7.0 and towncrier < 24 (textproc/py-sphinx is 5.3.0,
-# textproc/py-towncrier is 25.x, which is incompatible with
-# sphinxcontrib-towncrier).
-# OPTIONS_DEFINE=	DOCS
+OPTIONS_DEFINE=	DOCS
+
+DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}furo>=0:textproc/py-furo@${PY_FLAVOR} \
+			${PYTHON_PKGNAMEPREFIX}myst-parser>=0:textproc/py-myst-parser@${PY_FLAVOR} \
+			${PYTHON_PKGNAMEPREFIX}sphinx>=7.0,1<8.0,1:textproc/py-sphinx@${PY_FLAVOR} \
+			${PYTHON_PKGNAMEPREFIX}sphinx-copybutton>=0:textproc/py-sphinx-copybutton@${PY_FLAVOR} \
+			${PYTHON_PKGNAMEPREFIX}sphinx-inline-tabs>=0:textproc/py-sphinx-inline-tabs@${PY_FLAVOR} \
+			${PYTHON_PKGNAMEPREFIX}sphinx-issues>=4.0:textproc/py-sphinx-issues@${PY_FLAVOR} \
+			${PYTHON_PKGNAMEPREFIX}sphinxcontrib-towncrier>=0.2.0a0:textproc/py-sphinxcontrib-towncrier@${PY_FLAVOR} \
+			${PYTHON_PKGNAMEPREFIX}towncrier>=0:textproc/py-towncrier@${PY_FLAVOR}
+DOCS_PORTDOCS=		*
+
+post-build-DOCS-on:
+	(cd ${WRKSRC} && ${SETENV} PYTHONPATH=${WRKSRC}/src \
+	${PYTHON_CMD} -m sphinx --tag html -c docs/html -b html \
+	docs/html docs/build/html)
+
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	(cd ${WRKSRC}/docs/build/html && \
+	${COPYTREE_SHARE} . ${FAKE_DESTDIR}${DOCSDIR} "! -name .buildinfo -and ! -name objects.inv")
 
 .include <bsd.port.mk>
