@@ -93,6 +93,7 @@ include/webkitgtk-%%API_VERSION%%/webkit/WebKitWebsiteDataAccessPermissionReques
 include/webkitgtk-%%API_VERSION%%/webkit/WebKitWebsiteDataManager.h
 include/webkitgtk-%%API_VERSION%%/webkit/WebKitWebsitePolicies.h
 include/webkitgtk-%%API_VERSION%%/webkit/WebKitWindowProperties.h
+include/webkitgtk-%%API_VERSION%%/webkit/WebKitXRPermissionRequest.h
 include/webkitgtk-%%API_VERSION%%/webkit/webkit-web-process-extension.h
 include/webkitgtk-%%API_VERSION%%/webkit/webkit.h
 lib/girepository-1.0/JavaScriptCore-%%API_VERSION%%.typelib
@@ -109,6 +110,7 @@ libdata/pkgconfig/javascriptcoregtk-%%API_VERSION%%.pc
 libdata/pkgconfig/webkitgtk-%%API_VERSION%%.pc
 libdata/pkgconfig/webkitgtk-web-process-extension-%%API_VERSION%%.pc
 libexec/webkitgtk-%%API_VERSION%%/MiniBrowser
+libexec/webkitgtk-%%API_VERSION%%/WebKitGPUProcess
 libexec/webkitgtk-%%API_VERSION%%/WebKitNetworkProcess
 libexec/webkitgtk-%%API_VERSION%%/WebKitWebProcess
 libexec/webkitgtk-%%API_VERSION%%/jsc
@@ -1653,6 +1655,7 @@ share/locale/id/LC_MESSAGES/WebKitGTK-%%API_VERSION%%.mo
 share/locale/it/LC_MESSAGES/WebKitGTK-%%API_VERSION%%.mo
 share/locale/ja/LC_MESSAGES/WebKitGTK-%%API_VERSION%%.mo
 share/locale/ka/LC_MESSAGES/WebKitGTK-%%API_VERSION%%.mo
+share/locale/kk/LC_MESSAGES/WebKitGTK-%%API_VERSION%%.mo
 share/locale/kn/LC_MESSAGES/WebKitGTK-%%API_VERSION%%.mo
 share/locale/ko/LC_MESSAGES/WebKitGTK-%%API_VERSION%%.mo
 share/locale/lt/LC_MESSAGES/WebKitGTK-%%API_VERSION%%.mo
