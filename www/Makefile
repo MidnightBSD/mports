@@ -143,7 +143,6 @@
     SUBDIR += npm-node20
     SUBDIR += npm-node22
     SUBDIR += npm-node24
-    SUBDIR += otter-browser
     SUBDIR += p5-Apache-LogFormat-Compiler
     SUBDIR += p5-CGI
     SUBDIR += p5-CGI-Ajax
@@ -344,7 +343,6 @@
     SUBDIR += py-quart
     SUBDIR += py-quart-trio
     SUBDIR += py-starlette
-    SUBDIR += py-qt5-webengine
     SUBDIR += py-qt6-webengine
     SUBDIR += py-requests
     SUBDIR += py-requests-aws4auth
@@ -372,11 +370,9 @@
     SUBDIR += py-wsaccel
     SUBDIR += py-yarl
     SUBDIR += qt5-webchannel
-    SUBDIR += qt5-webengine
     SUBDIR += qt5-webglplugin
     SUBDIR += qt5-websockets
     SUBDIR += qt5-websockets-qml
-    SUBDIR += qt5-webview
     SUBDIR += qt6-httpserver
     SUBDIR += qt6-webchannel
     SUBDIR += qt6-webengine

@@ -66,7 +66,6 @@
     SUBDIR += gstreamer1-validate
     SUBDIR += gstreamermm
     SUBDIR += intel-media-sdk
-    SUBDIR += jellyfin-media-player
     SUBDIR += kdemultimedia
     SUBDIR += kdemultimedia-ffmpegthumbs
     SUBDIR += kdenlive

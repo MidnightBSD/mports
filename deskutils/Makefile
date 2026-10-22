@@ -49,7 +49,6 @@ SUBDIR += jlj
 SUBDIR += kaddressbook
 SUBDIR += kalarm
 SUBDIR += kcharselect
-SUBDIR += kchmviewer
 SUBDIR += kdeconnect-kde
 SUBDIR += kdepim
 SUBDIR += kdepim-addons

@@ -680,3 +680,9 @@ www/node23|www/node24|2026-10-22|Has expired: Node.js 23 reached its EoL on 2025
 www/node25|www/node26|2026-10-22|Has expired: Node.js 25 reached its EoL on 2026-06-01. Use Node.js 26 (www/node26) instead
 www/npm-node25|www/npm-node24|2026-10-22|Has expired: consumer of expired www/node25
 www/yarn-node25|www/yarn-node24|2026-10-22|Has expired: consumer of expired www/node25
+www/qt5-webengine|www/qt6-webengine|2026-10-22|Has expired: Based on outdated Chromium (Qt 5.15). Use Qt 6 WebEngine (www/qt6-webengine) instead
+www/py-qt5-webengine|www/py-qt6-webengine|2026-10-22|Has expired: Depends on removed www/qt5-webengine. Use www/py-qt6-webengine instead
+www/qt5-webview|www/qt6-webview|2026-10-22|Has expired: Depends on removed www/qt5-webengine. Use www/qt6-webview instead
+www/otter-browser||2026-10-22|Has expired: Not ported to Qt 6, depends on removed www/qt5-webengine
+deskutils/kchmviewer|deskutils/uchmviewer|2026-10-22|Has expired: Development stalled and depends on removed www/qt5-webengine. Use deskutils/uchmviewer instead
+multimedia/jellyfin-media-player|multimedia/jellyfin-desktop|2026-10-22|Project renamed upstream and moved to Qt 6
