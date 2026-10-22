@@ -135,14 +135,13 @@
     SUBDIR += nghttp2
     SUBDIR += nginx
     SUBDIR += node
-    SUBDIR += node20
     SUBDIR += node22
     SUBDIR += node24
     SUBDIR += node26
     SUBDIR += npm
-    SUBDIR += npm-node20
     SUBDIR += npm-node22
     SUBDIR += npm-node24
+    SUBDIR += npm-node26
     SUBDIR += p5-Apache-LogFormat-Compiler
     SUBDIR += p5-CGI
     SUBDIR += p5-CGI-Ajax
@@ -573,7 +572,6 @@
     SUBDIR += xsp
     SUBDIR += yabb
     SUBDIR += yarn
-    SUBDIR += yarn-node20
     SUBDIR += yarn-node22
     SUBDIR += yarn-node24
     SUBDIR += youtube

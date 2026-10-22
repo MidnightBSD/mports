@@ -101,6 +101,7 @@ SUBDIR += spice-gtk
 SUBDIR += sysctlview
 SUBDIR += systempreferences
 SUBDIR += toolboxkit
+SUBDIR += uchmviewer
 SUBDIR += virt-manager
 SUBDIR += xcalendar
 SUBDIR += xdg-desktop-portal

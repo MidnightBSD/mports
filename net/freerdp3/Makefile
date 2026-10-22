@@ -1,15 +1,10 @@
 PORTNAME=	freerdp
-DISTVERSION=	3.15.0
-PORTREVISION=	2
+DISTVERSION=	3.32.2
 CATEGORIES=	net comms
-MASTER_SITES=	https://pub.freerdp.com/releases/ \
-		https://github.com/FreeRDP/FreeRDP/releases/download/${DISTVERSION}/
+MASTER_SITES=	https://pub.freerdp.com/releases/:freerdp \
+		https://github.com/FreeRDP/FreeRDP/releases/download/${DISTVERSION}/:freerdp
 PKGNAMESUFFIX=	3
-
-PATCH_SITES=	https://github.com/FreeRDP/FreeRDP/commit/
-# Fix realm usage for Heimdal: https://bugs.freebsd.org/286816
-PATCHFILES+=	8c2be5fd53501c129042ec8205ca2ff1bae90cda.patch:-p1
-PATCHFILES+=	374707d4fa609e5434f2166b5c11df655f6ff952.patch:-p1
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:freerdp
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free implementation of Remote Desktop Protocol
@@ -26,66 +21,75 @@ USES=		alias cmake compiler:c++11-lib cpe desktop-file-utils \
 BROKEN_SSL=	libressl-devel
 BROKEN_SSL_REASON_libressl-devel=	fails to compile: no member named 'alert_dispatch' in 'struct ssl3_state_st'
 
+# Bundled webview library for the WEBKIT AAD helper; FreeRDP fetches it with
+# FetchContent, which is disconnected, so provide it in the build tree.
+USE_GITHUB=	nodefault
+GH_TUPLE=	akallabeth:webview:2a0a130:webview/../.build/_deps/webview-src
 USE_LDCONFIG=	yes
 USE_XORG=	ice sm x11 xext
 INSTALLS_ICONS=	yes
 
-# FreeRDP needs its FreeBSD platform defaults on MidnightBSD: libepoll-shim
-# supplies the Wayland epoll API and OSS lives in the base system.
-CMAKE_ARGS+=	-DFREEBSD=TRUE -DOSS_HDR_NAME=sys/soundcard.h \
-		-DOSS_INCLUDE_DIRS=/usr/include
-CMAKE_ON=	CHANNEL_SERIAL CHANNEL_URBDRC_CLIENT RDTK_FORCE_STATIC_BUILD \
-		UWAC_FORCE_STATIC_BUILD WITH_BINARY_VERSIONING WITH_CHANNELS \
-		WITH_CLIENT_SDL_VERSIONED WITH_FREERDP_DEPRECATED \
-		WITH_FREERDP_DEPRECATED_COMMANDLINE \
+CMAKE_ON=	CHANNEL_RDP2TCP CHANNEL_SERIAL CHANNEL_URBDRC_CLIENT \
+		RDTK_FORCE_STATIC_BUILD UWAC_FORCE_STATIC_BUILD \
+		WITH_BINARY_VERSIONING WITH_CHANNELS WITH_CLIENT_SDL_VERSIONED \
+		WITH_FREERDP_DEPRECATED WITH_FREERDP_DEPRECATED_COMMANDLINE \
 		WITH_INSTALL_CLIENT_DESKTOP_FILES WITH_OPENSSL WITH_OSS \
 		WITH_WINPR_DEPRECATED WITH_ZLIB
-CMAKE_OFF=	CHANNEL_TSMF WITH_DSP_EXPERIMENTAL WITH_FUSE WITH_GPROF \
-		WITH_GSTREAMER_0_10 WITH_GSTREAMER_1_0 WITH_IPP WITH_LIBSYSTEMD \
-		WITH_MBEDTLS WITH_OPENCL WITH_OPENSLES WITH_PROFILER WITH_SAMPLE \
-		WITH_SANITIZE_ADDRESS WITH_SANITIZE_MEMORY WITH_SANITIZE_THREAD \
-		WITH_SERVER WITH_SERVER_CHANNELS WITH_SERVER_INTERFACE \
-		WITH_SMARTCARD_INSPECT WITH_THIRD_PARTY WITH_VALGRIND_MEMCHECK
+CMAKE_OFF=	CHANNEL_TSMF WITH_AAUDIO WITH_DSP_EXPERIMENTAL WITH_FUSE \
+		WITH_GPROF WITH_GSTREAMER_0_10 WITH_GSTREAMER_1_0 WITH_IPP \
+		WITH_LIBSYSTEMD WITH_MBEDTLS WITH_OPENCL WITH_OPENSLES \
+		WITH_PROFILER WITH_SAMPLE WITH_SANITIZE_ADDRESS \
+		WITH_SANITIZE_MEMORY WITH_SANITIZE_THREAD WITH_SERVER \
+		WITH_SERVER_CHANNELS WITH_SERVER_INTERFACE \
+		WITH_SMARTCARD_INSPECT WITH_THIRD_PARTY WITH_VALGRIND_MEMCHECK \
+		WITH_XDG_AAD_AUTH_HELPER
 
 PLIST_SUB+=	PATCHVERSION="${DISTVERSION}"
 PLIST_SUB+=	MAJORVERSION="${DISTVERSION:R:R}"
 
-OPTIONS_DEFINE=			ALSA BROKENFOCUS CUPS FAAC FAAD FDKAAC FFMPEG \
-				GSM ICU JPEG LAME MANPAGES OPENH264 OPUS PCSC \
-				PKCS11 PULSEAUDIO RDPECAM SDL2 SDL3 SOXR \
-				URIPARSER WAYLAND X11
+OPTIONS_DEFINE=			ALSA AOM BROKENFOCUS CUPS DAV1D FAAC FAAD \
+				FDKAAC FFMPEG FFMPEG_HWACCEL GSM ICU JPEG LAME \
+				MANPAGES OPENH264 OPUS PCSC PKCS11 PULSEAUDIO \
+				RDPECAM SDL2 SDL3 SNDIO SOXR URIPARSER WAYLAND \
+				X11 YUV
 OPTIONS_DEFINE_aarch64=		SIMD
 OPTIONS_DEFINE_amd64=		SIMD
 OPTIONS_DEFINE_armv7=		SIMD
 OPTIONS_DEFINE_i386=		SIMD
-OPTIONS_DEFAULT=		AAD CUPS FFMPEG GSSAPI_HEIMDAL ICU JSON_C \
-				KEYBOARD_LAYOUT MANPAGES RDPECAM SDL2 SDL3 \
-				SWSCALE TIMEZONE_FILE WAYLAND WEBKIT X11
+OPTIONS_DEFAULT=		AAD AOM CUPS DAV1D FFMPEG FFMPEG_HWACCEL \
+				GSSAPI_MIT ICU JPEG JPEG_CB JSON_C \
+				KEYBOARD_LAYOUT MANPAGES PNG RDPECAM SDL2 SDL3 \
+				SNDIO SWSCALE TIMEZONE_FILE WAYLAND WEBP X11 YUV
 OPTIONS_DEFAULT_aarch64=	SIMD
 OPTIONS_DEFAULT_amd64=		SIMD
 OPTIONS_DEFAULT_armv7=		SIMD
 OPTIONS_GROUP=			CLIPBOARD_IMAGE REQUIRE_JSON
 OPTIONS_GROUP_CLIPBOARD_IMAGE=	JPEG_CB PNG WEBP
 OPTIONS_GROUP_REQUIRE_JSON=	AAD KEYBOARD_LAYOUT TIMEZONE_FILE
-OPTIONS_RADIO=			GSSAPI JSON SCALE WEBVIEW
+OPTIONS_RADIO=			GSSAPI JSON WEBVIEW
 OPTIONS_RADIO_GSSAPI=		GSSAPI_HEIMDAL GSSAPI_MIT
-OPTIONS_RADIO_JSON=		CJSON JSON_C
-OPTIONS_RADIO_SCALE=		CAIRO SWSCALE
+OPTIONS_RADIO_JSON=		CJSON JANSSON JSON_C
 OPTIONS_RADIO_WEBVIEW=		WEBENGINE WEBKIT
+OPTIONS_SINGLE=			SCALE
+OPTIONS_SINGLE_SCALE=		CAIRO SWSCALE
 OPTIONS_SUB=			yes
 
-AAD_DESC=		Compile with support for Azure AD authentication (require SDL)
+AAD_DESC=		Compile with support for Azure AD authentication
+AOM_DESC=		Enable AV1 support for GFX channel encoding/decoding via AOM (experimental)
 BROKENFOCUS_DESC=	Work around focus bug in some WMs (PR \#254908)
 CAIRO_DESC=		Use CAIRO image library for screen resizing
 CJSON_DESC=		${JSON_DESC} via cJSON
-CLIPBOARD_IMAGE_DESC=	Add "to/from" BMP conversion support to clipboard (experimental)
+CLIPBOARD_IMAGE_DESC=	Add "to/from" BMP conversion support to clipboard
+DAV1D_DESC=		Use dav1d for decode AV1 (require AOM for encode, experimental)
 FDKAAC_DESC=		Support for FDK-AAC for sound and microphone redirection
+FFMPEG_HWACCEL_DESC=	Use FFMPEG hardware acceleration (experimental, require FFMPEG)
+JANSSON_DESC=		${JSON_DESC} via jansson
 JPEG_CB_DESC=		${JPEG_DESC}
 KEYBOARD_LAYOUT_DESC=	Use keyboard definitions from JSON file
 OPENH264_DESC=		H.264 video codec support via OpenH264
 PCSC_DESC=		Smart card support (smart card device redirection)
 PKCS11_DESC=		Use security/pkcs11-helper
-RDPECAM_DESC=		RDP webcam redirection (require FFMPEG and SWSCALE)
+RDPECAM_DESC=		RDP webcam redirection (require FFMPEG + CAIRO or SWSCALE)
 REQUIRE_JSON_DESC=	Options that require JSON
 SDL2_DESC=		Build FreeRDP SDL 2 client
 SDL3_DESC=		Build FreeRDP SDL 3 client
@@ -93,14 +97,19 @@ SWSCALE_DESC=		Use SWScale image library for screen resizing (recommended)
 TIMEZONE_FILE_DESC=	Support timezones as JSON resources (if OFF, compiled in is used)
 URIPARSER_DESC=		Use uriparser RFC 3986 URI parsing library to handle URIs
 WAYLAND_DESC=		Build FreeRDP Wayland client
+WEBENGINE_DESC=		AAD login popup browser helper via Qt6 WebEngine
+WEBKIT_DESC=		AAD login popup browser helper via WebKitGTK 6 (GTK 4)
 WEBVIEW_DESC=		Build with WebView support for AAD login popup browser
 X11_DESC=		Build FreeRDP X11 client
+YUV_DESC=		Use graphics/libyuv
 
-AAD_IMPLIES=		SDL3
 AAD_CMAKE_BOOL=		WITH_AAD
 
 ALSA_LIB_DEPENDS=	libasound.so:audio/alsa-lib
 ALSA_CMAKE_BOOL=	WITH_ALSA
+
+AOM_LIB_DEPENDS=	libaom.so:multimedia/aom
+AOM_CMAKE_BOOL=		WITH_AOM WITH_GFX_AV1
 
 BROKENFOCUS_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-focusbug.diff
 
@@ -115,6 +124,10 @@ CJSON_CMAKE_BOOL=	WITH_CJSON_REQUIRED
 CUPS_LIB_DEPENDS=	libcups.so:print/cups
 CUPS_CMAKE_BOOL=	WITH_CUPS
 
+DAV1D_IMPLIES=		AOM
+DAV1D_LIB_DEPENDS=	libdav1d.so:multimedia/dav1d
+DAV1D_CMAKE_BOOL=	WITH_DAV1D
+
 FAAC_LIB_DEPENDS=	libfaac.so:audio/faac
 FAAC_CMAKE_BOOL=	WITH_FAAC
 
@@ -126,7 +139,10 @@ FDKAAC_CMAKE_BOOL=	WITH_FDK_AAC
 
 FFMPEG_LIB_DEPENDS=	libavcodec.so:multimedia/ffmpeg \
 			libavutil.so:multimedia/ffmpeg
-FFMPEG_CMAKE_BOOL=	WITH_FFMPEG WITH_DSP_FFMPEG
+FFMPEG_CMAKE_BOOL=	WITH_FFMPEG WITH_DSP_FFMPEG WITH_VIDEO_FFMPEG
+
+FFMPEG_HWACCEL_IMPLIES=		FFMPEG
+FFMPEG_HWACCEL_CMAKE_BOOL=	WITH_FFMPEG_HWACCEL
 
 GSM_LIB_DEPENDS=	libgsm.so:audio/gsm
 GSM_CMAKE_BOOL=		WITH_GSM
@@ -137,6 +153,9 @@ GSSAPI_MIT_USES=	gssapi:mit
 ICU_LIB_DEPENDS=	libicuuc.so:devel/icu
 ICU_CMAKE_ON=		-DWITH_UNICODE_BUILTIN=OFF
 ICU_CMAKE_OFF=		-DWITH_UNICODE_BUILTIN=ON
+
+JANSSON_LIB_DEPENDS=	libjansson.so:devel/jansson
+JANSSON_CMAKE_BOOL=	WITH_JANSSON_REQUIRED
 
 JPEG_USES=		jpeg
 JPEG_CMAKE_BOOL=	WITH_JPEG
@@ -173,11 +192,9 @@ PNG_CMAKE_BOOL=		WINPR_UTILS_IMAGE_PNG
 PULSEAUDIO_LIB_DEPENDS=	libpulse.so:audio/pulseaudio
 PULSEAUDIO_CMAKE_BOOL=	WITH_PULSE
 
-RDPECAM_IMPLIES=	FFMPEG SWSCALE
+RDPECAM_IMPLIES=	FFMPEG
 RDPECAM_BUILD_DEPENDS=	${LOCALBASE}/include/linux/uvcvideo.h:multimedia/v4l_compat \
 			${LOCALBASE}/include/linux/videodev2.h:multimedia/v4l_compat
-RDPECAM_LIB_DEPENDS=	libv4l2.so:multimedia/libv4l \
-			libv4lconvert.so:multimedia/libv4l
 RDPECAM_CMAKE_BOOL=	CHANNEL_RDPECAM_CLIENT
 
 SDL2_USES=		sdl
@@ -189,6 +206,9 @@ SDL3_USE=		sdl=sdl3,ttf3,image3
 SDL3_CMAKE_BOOL=	WITH_CLIENT_SDL3 WITH_SDL_IMAGE_DIALOGS
 
 SIMD_CMAKE_BOOL=	WITH_SIMD
+
+SNDIO_LIB_DEPENDS=	libsndio.so:audio/sndio
+SNDIO_CMAKE_BOOL=	WITH_SNDIO
 
 SOXR_LIB_DEPENDS=	libsoxr.so:audio/libsoxr
 SOXR_CMAKE_BOOL=	WITH_SOXR
@@ -212,18 +232,17 @@ WAYLAND_LIB_DEPENDS=	libwayland-client.so:graphics/wayland \
 WAYLAND_RUN_DEPENDS=	wayland-scanner:graphics/wayland
 WAYLAND_CMAKE_BOOL=	WITH_WAYLAND
 
-_WEBENGINE_USES=	qt:5
-WEBENGINE_USE_QT=	core declarative gui location network printsupport \
-			webchannel webengine widgets buildtools:build qmake:build
-WEBENGINE_CMAKE_BOOL=	WITH_WEBVIEW_QT
-WEBENGINE_CMAKE_ON=	-DWITH_WEBVIEW:BOOL=ON
+_WEBENGINE_USES=	gl qt:6
+_WEBENGINE_USE_GL=	opengl
+_WEBENGINE_USE_QT=	base declarative positioning webchannel webengine
 
 _WEBKIT_LIB_DEPENDS=	libsoup-3.0.so:devel/libsoup3 \
 			libharfbuzz.so:print/harfbuzz \
-			libwebkit2gtk-4.1.so:www/webkit2-gtk@41
-_WEBKIT_USES=		gettext gnome
-WEBKIT_USE_GNOME=	atk cairo gdkpixbuf glib20 gtk30 pango
-WEBKIT_CMAKE_ON=	-DWITH_WEBVIEW:BOOL=ON
+			libwebkitgtk-6.0.so:www/webkit2-gtk@60 \
+			libgraphene-1.0.so:graphics/graphene \
+			libvulkan.so:graphics/vulkan-loader
+_WEBKIT_USES=		gnome
+_WEBKIT_USE_GNOME=	cairo gdkpixbuf glib20 gtk40 pango
 
 WEBP_LIB_DEPENDS=	libwebp.so:graphics/webp
 WEBP_CMAKE_BOOL=	WINPR_UTILS_IMAGE_WEBP
@@ -237,21 +256,33 @@ X11_CMAKE_ON=		-DWITH_X11:BOOL=ON -DWITH_XCURSOR:BOOL=ON \
 			-DWITH_XV:BOOL=ON
 X11_CMAKE_OFF=		-DWITH_X11:BOOL=OFF -DWITH_XKBFILE:BOOL=OFF
 
+YUV_LIB_DEPENDS=	libyuv.so:graphics/libyuv
+YUV_CMAKE_BOOL=		WITH_YUV
+
 .include <bsd.mport.options.mk>
 
-.if ${PORT_OPTIONS:MAAD}
-.  if ${PORT_OPTIONS:MWEBENGINE}
+# The AAD login popup is an out-of-process helper in libexec: WEBENGINE builds
+# freerdp-qt-aad-helper (Qt6), WEBKIT builds freerdp-webview-aad-helper.
+.if ${PORT_OPTIONS:MAAD} && ${PORT_OPTIONS:MWEBENGINE}
 USES+=		${_WEBENGINE_USES}
-USE_QT+=	${WEBENGINE_USE_QT}
-.  elif ${PORT_OPTIONS:MWEBKIT}
+USE_GL+=	${_WEBENGINE_USE_GL}
+USE_QT+=	${_WEBENGINE_USE_QT}
+CMAKE_ON+=	WITH_QT_AAD_AUTH_HELPER
+PLIST_SUB+=	WEBENGINE_AAD=""
+.else
+CMAKE_OFF+=	WITH_QT_AAD_AUTH_HELPER
+PLIST_SUB+=	WEBENGINE_AAD="@comment "
+.endif
+
+.if ${PORT_OPTIONS:MAAD} && ${PORT_OPTIONS:MWEBKIT}
 LIB_DEPENDS+=	${_WEBKIT_LIB_DEPENDS}
 USES+=		${_WEBKIT_USES}
-USE_GNOME+=	${WEBKIT_USE_GNOME}
-.  else
-CMAKE_OFF+=	WITH_WEBVIEW
-.  endif
+USE_GNOME+=	${_WEBKIT_USE_GNOME}
+CMAKE_ON+=	WITH_WEBVIEW_AAD_AUTH_HELPER
+PLIST_SUB+=	WEBKIT_AAD=""
 .else
-CMAKE_OFF+=	WITH_WEBVIEW
+CMAKE_OFF+=	WITH_WEBVIEW_AAD_AUTH_HELPER
+PLIST_SUB+=	WEBKIT_AAD="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MGSSAPI_HEIMDAL} || ${PORT_OPTIONS:MGSSAPI_MIT}
@@ -260,7 +291,7 @@ CMAKE_ON+=	WITH_KRB5
 CMAKE_OFF+=	WITH_KRB5
 .endif
 
-.if ${PORT_OPTIONS:MCJSON} || ${PORT_OPTIONS:MJSON_C}
+.if ${PORT_OPTIONS:MCJSON} || ${PORT_OPTIONS:MJANSSON} || ${PORT_OPTIONS:MJSON_C}
 CMAKE_ON+=	WITH_WINPR_JSON
 CMAKE_OFF+=	WITH_JSON_DISABLED
 PLIST_SUB+=	JSON=""
@@ -270,13 +301,9 @@ CMAKE_OFF+=	WITH_AAD WITH_WINPR_JSON
 PLIST_SUB+=	JSON="@comment "
 .endif
 
-post-patch:
+post-patch-GSM-on:
 	@${REINPLACE_CMD} -e 's|gsm/gsm.h|gsm.h|' \
 		${WRKSRC}/cmake/FindGSM.cmake \
 		${WRKSRC}/libfreerdp/codec/dsp.c
-
-pre-configure:
-	${CP} ${FILESDIR}/mntent.h ${WRKSRC}/winpr/include
-	${CP} ${FILESDIR}/mntent_compat.c ${WRKSRC}/channels/rdpdr/client
 
 .include <bsd.port.mk>
