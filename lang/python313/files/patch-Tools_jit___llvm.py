@@ -1,6 +1,6 @@
---- Tools/jit/_llvm.py.orig	2025-06-11 15:36:57 UTC
+--- Tools/jit/_llvm.py.orig	2026-10-21 13:48:20 UTC
 +++ Tools/jit/_llvm.py
-@@ -68,20 +68,7 @@ async def _find_tool(tool: str, *, echo: bool = False)
+@@ -70,20 +70,7 @@ async def _find_tool(tool: str, *, echo: bool = False)
  async def _find_tool(tool: str, *, echo: bool = False) -> str | None:
      # Unversioned executables:
      path = tool
@@ -22,7 +22,7 @@
  
  
  async def maybe_run(
-@@ -96,5 +83,5 @@ async def run(tool: str, args: typing.Iterable[str], e
+@@ -98,5 +85,5 @@ async def run(tool: str, args: typing.Iterable[str], e
      """Run an LLVM tool if it can be found. Otherwise, raise RuntimeError."""
      output = await maybe_run(tool, args, echo=echo)
      if output is None:

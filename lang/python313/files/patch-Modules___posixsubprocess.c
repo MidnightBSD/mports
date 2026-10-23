@@ -1,6 +1,6 @@
---- Modules/_posixsubprocess.c.orig	2022-03-23 16:12:04.000000000 -0400
-+++ Modules/_posixsubprocess.c	2022-04-18 10:42:48.781552000 -0400
-@@ -55,7 +55,7 @@
+--- Modules/_posixsubprocess.c.orig	2026-10-21 13:48:20 UTC
++++ Modules/_posixsubprocess.c
+@@ -61,7 +61,7 @@
  # endif
  #endif
  
@@ -9,7 +9,7 @@
  # define FD_DIR "/dev/fd"
  #else
  # define FD_DIR "/proc/self/fd"
-@@ -86,7 +86,7 @@
+@@ -115,7 +115,7 @@ _pos_int_from_ascii(const char *name)
  }
  
  
@@ -18,7 +18,7 @@
  /* When /dev/fd isn't mounted it is often a static directory populated
   * with 0 1 2 or entries for 0 .. 63 on FreeBSD, NetBSD, OpenBSD and DragonFlyBSD.
   * NetBSD and OpenBSD have a /proc fs available (though not necessarily
-@@ -336,7 +336,7 @@
+@@ -507,7 +507,7 @@ _close_open_fds_maybe_unsafe(int start_fd, int *fds_to
      ++start_fd;
  #endif
  
