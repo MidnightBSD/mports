@@ -1,0 +1,11 @@
+--- src/app/CMakeLists.txt.orig	2026-07-31 12:30:19 UTC
++++ src/app/CMakeLists.txt
+@@ -692,7 +692,7 @@
+ target_link_libraries(qgis QTSignal)
+ endif()
+ 
+-if (CMAKE_SYSTEM_NAME STREQUAL "FreeBSD")
++if (CMAKE_SYSTEM_NAME MATCHES "FreeBSD|MidnightBSD")
+   find_library(EXECINFO_LIBRARY NAMES execinfo)
+   target_link_libraries(qgis ${EXECINFO_LIBRARY})
+ endif()
