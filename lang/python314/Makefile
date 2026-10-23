@@ -1,6 +1,5 @@
 PORTNAME=	python
 DISTVERSION=	${PYTHON_DISTVERSION}
-PORTREVISION=	1
 CATEGORIES=	lang python
 MASTER_SITES=	PYTHON/ftp/python/${DISTVERSION:C/[a-z].*//}
 PKGNAMESUFFIX=	${PYTHON_SUFFIX}
@@ -134,6 +133,10 @@ post-patch:
 # disable detection of multiarch as it breaks with clang >= 13, which adds a
 # major.minor version number in -print-multiarch output, confusing Python
 	@${REINPLACE_CMD} -e 's|^\( *MULTIARCH=\).*--print-multiarch.*|\1|' ${WRKSRC}/configure
+# pathfix points LIBPC at PREFIX/libdata/pkgconfig, but PREFIX already
+# carries FAKE_DESTDIR during fake, so DESTDIR would be prepended twice
+	@${REINPLACE_CMD} -e 's|^LIBPC=.*|LIBPC=		$${prefix}/libdata/pkgconfig|' \
+		${WRKSRC}/Makefile.pre.in
 # Apply DISABLED_EXTENSIONS
 	@${ECHO_CMD} '*disabled*' > ${WRKSRC}/Modules/Setup.local
 .  for _module in ${DISABLED_EXTENSIONS}
@@ -166,7 +169,6 @@ post-install:
 		${STRIP_CMD} $$i; done								# Strip shared extensions
 	${INSTALL_DATA} ${WRKSRC}/Tools/gdb/libpython.py \
 		${PREFIX}/lib/libpython${PYTHON_VER}${ABIFLAGS}.so.1.0-gdb.py
-	-${CP} ${FAKE_DESTDIR}${PREFIX}/libdata/pkgconfig/*.pc ${PREFIX}/libdata/pkgconfig/
 
 _sigstorebundle=${DISTFILES}.sigstore
 ${_sigstorebundle}:
