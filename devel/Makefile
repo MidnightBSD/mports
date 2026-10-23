@@ -301,6 +301,7 @@
     SUBDIR += electron43
     SUBDIR += elfutils
     SUBDIR += epm
+    SUBDIR += eric7
     SUBDIR += erlang-unicode_util_compat
     SUBDIR += esbuild
     SUBDIR += evdev-proto

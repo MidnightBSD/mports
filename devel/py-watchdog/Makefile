@@ -1,6 +1,5 @@
 PORTNAME=	watchdog
-DISTVERSION=	4.0.2
-PORTREVISION=	1
+DISTVERSION=	6.0.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -26,7 +25,7 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}eventlet>0:net/py-eventlet@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}types-PyYAML>=6.0.12.12:devel/py-types-PyYAML@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	autoplist concurrent pep517 
+USE_PYTHON=	autoplist concurrent pep517
 
 # NotImplementedError: unsupported platform
 # site-packages/trio/_core/_run.py:2843: NotImplementedError
