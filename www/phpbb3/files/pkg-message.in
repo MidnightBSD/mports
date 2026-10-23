@@ -22,4 +22,20 @@ After configuring phpBB3 and ensuring that it is operational, you MUST
 remove or rename the install/ directory from %%PREFIX%%/%%PHPBBDIR%%.
 EOM
 }
+{ type: upgrade
+  message: <<EOM
+phpBB3 has been upgraded, but the database schema still has to be updated.
+
+The package reinstalls the install/ directory.  Before using the board,
+run the database updater, either from a shell in the board root:
+
+  cd %%PREFIX%%/%%PHPBBDIR%%
+  php bin/phpbbcli.php --safe-mode db:migrate
+
+or by browsing to http://localhost/%%PHPBBURL%%/install/app.php/update and
+selecting "Update database only".  Afterwards purge the cache from the
+Administration Control Panel, then remove or rename the install/
+directory from %%PREFIX%%/%%PHPBBDIR%% again.
+EOM
+}
 ]
