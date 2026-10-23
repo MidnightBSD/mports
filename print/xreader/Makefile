@@ -25,15 +25,14 @@ USE_XORG=	ice sm x11
 GLIB_SCHEMAS=	org.x.reader.gschema.xml
 INSTALLS_ICONS=	yes
 
-MATHJAX_DIR=	${LOCALBASE}/www/MathJax
 #MESON_ARGS=	-Dtests=false
+MESON_ARGS=	-Depub=false
 
-OPTIONS_DEFINE=	DBUS DJVU DVI EPUB HELP KEYRING PDF PS T1LIB TIFF XPS
+OPTIONS_DEFINE=	DBUS DJVU DVI HELP KEYRING PDF PS T1LIB TIFF XPS
 OPTIONS_DEFAULT=	DBUS DJVU HELP KEYRING PDF TIFF XPS
 OPTIONS_SUB=	yes
 
 DVI_DESC=	DVI format support
-EPUB_DESC=	EPUB e-book format support
 HELP_DESC=	Install help files
 KEYRING_DESC=	Password-protected document support
 T1LIB_DESC=	Type1 font support in DVI backend
@@ -49,12 +48,6 @@ DVI_LIB_DEPENDS=	libspectre.so:print/libspectre
 DVI_USES=		tex
 DVI_USE=		TEX=kpathsea
 DVI_MESON_ON=		-Ddvi=true
-
-EPUB_BUILD_DEPENDS=	${MATHJAX_DIR}/MathJax.js:www/mathjax
-EPUB_LIB_DEPENDS=	libwebkit2gtk-4.0.so:www/webkit2-gtk@40
-EPUB_RUN_DEPENDS=	${EPUB_BUILD_DEPENDS}
-EPUB_MESON_ON=		-Dmathjax-directory=${MATHJAX_DIR}
-EPUB_MESON_OFF=		-Depub=false
 
 HELP_RUN_DEPENDS=	yelp:x11/yelp
 HELP_MESON_ON=		-Dhelp_files=true
