@@ -19,6 +19,7 @@
     SUBDIR += claws-mail-att_remover
     SUBDIR += claws-mail-attachwarner
     SUBDIR += claws-mail-bogofilter
+    SUBDIR += claws-mail-bsfilter
     SUBDIR += claws-mail-clamd
     SUBDIR += claws-mail-dillo
     SUBDIR += claws-mail-fancy
