@@ -1,6 +1,6 @@
 PORTNAME=	devhelp
 PORTVERSION=	43.0
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME/sources/${PORTNAME}
 DIST_SUBDIR=	gnome
@@ -13,8 +13,7 @@ LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/LICENSES/GPL-3.0-or-later.txt
 
 BUILD_DEPENDS=	itstool:textproc/itstool
-LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup \
-		libwebkit2gtk-4.0.so:www/webkit2-gtk@40 \
+LIB_DEPENDS=	libwebkit2gtk-4.1.so:www/webkit2-gtk@41 \
 		libgedit-amtk-5.so:x11-toolkits/amtk
 
 PORTSCOUT=	limitw:1,even
