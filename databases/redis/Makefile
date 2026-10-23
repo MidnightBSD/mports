@@ -1,5 +1,6 @@
 PORTNAME=	redis
 DISTVERSION=	8.10.2
+PORTREVISION=	1
 CATEGORIES=	databases
 MASTER_SITES=	https://download.redis.io/releases/
 
@@ -50,18 +51,12 @@ PLIST_SUB=	REDIS_DBDIR=${REDIS_DBDIR} \
 
 OPTIONS_DEFINE=		JEMALLOC TLS
 OPTIONS_DEFAULT=	TLS
-OPTIONS_GROUP=		MODULES
-OPTIONS_GROUP_MODULES=	REDISBLOOM REDISJSON
 OPTIONS_SUB=		yes
 
 JEMALLOC_DESC=	Use jemalloc
-REDISBLOOM_DESC=	RedisBLOOM module
-REDISJSON_DESC=	RedisJSON module
 TLS_DESC=	Use TLS (openssl req.)
 
 JEMALLOC_MAKE_ENV=	USE_JEMALLOC=yes
-REDISBLOOM_LIB_DEPENDS=	redisbloom.so>=0:databases/redisbloom
-REDISJSON_LIB_DEPENDS=	librejson.so>=0:databases/redisjson
 TLS_USES=		ssl
 TLS_MAKE_ENV=		BUILD_TLS=yes
 
@@ -102,9 +97,9 @@ do-install:
 	${INSTALL_PROGRAM} ${BIN_FILES:C!^!${WRKSRC}/src/!} ${PREFIX}/bin/
 	${INSTALL_DATA} ${WRKDIR}/redis.conf ${PREFIX}/etc/redis.conf.sample
 	${INSTALL_DATA} ${WRKSRC}/sentinel.conf ${PREFIX}/etc/sentinel.conf.sample
-	${MKDIR} ${REDIS_LOGDIR} \
-		${REDIS_DBDIR} \
-		${REDIS_RUNDIR}
+	${MKDIR} ${FAKE_DESTDIR}${REDIS_LOGDIR} \
+		${FAKE_DESTDIR}${REDIS_DBDIR} \
+		${FAKE_DESTDIR}${REDIS_RUNDIR}
 
 do-test:
 	@cd ${WRKSRC} && ${TCLSH} tests/test_helper.tcl
