@@ -752,13 +752,9 @@ lib/libwx_%%GTKVER%%u_richtext-3.0.so.0.5.0
 lib/libwx_%%GTKVER%%u_stc-3.0.so
 lib/libwx_%%GTKVER%%u_stc-3.0.so.0
 lib/libwx_%%GTKVER%%u_stc-3.0.so.0.5.0
-%%WEBKIT%%lib/libwx_%%GTKVER%%u_webview-3.0.so
-%%WEBKIT%%lib/libwx_%%GTKVER%%u_webview-3.0.so.0
-%%WEBKIT%%lib/libwx_%%GTKVER%%u_webview-3.0.so.0.5.0
 lib/libwx_%%GTKVER%%u_xrc-3.0.so
 lib/libwx_%%GTKVER%%u_xrc-3.0.so.0
 lib/libwx_%%GTKVER%%u_xrc-3.0.so.0.5.0
-%%WEBKIT%%lib/wx/3.0/web-extensions/webkit2_extu-3.0.so
 lib/wx/include/%%GTKVER%%-unicode-3.0/wx/setup.h
 share/aclocal/wxwin30.m4
 share/bakefile/presets/wx30.bkl

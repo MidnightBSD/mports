@@ -1,7 +1,7 @@
 PORTNAME=	wx
 DISTVERSIONPREFIX=	v
 DISTVERSION=	3.0.5.1
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	https://github.com/wxWidgets/wxWidgets/releases/download/v${DISTVERSION}/
 PKGNAMESUFFIX=	${_SHORT_WX_VER}-${FLAVOR}
@@ -19,7 +19,6 @@ LIB_DEPENDS=	libexpat.so:textproc/expat2 \
 		libfreetype.so:print/freetype2 \
 		libharfbuzz.so:print/harfbuzz \
 		libpng.so:graphics/png \
-		libsoup-2.4.so:devel/libsoup \
 		libtiff.so:graphics/tiff
 
 USES=		compiler:c++11-lib gl gmake gnome iconv jpeg localbase \
@@ -46,7 +45,8 @@ CONFIGURE_ARGS=	--with-libpng=sys \
 		--enable-std_string \
 		--enable-graphics_ctx \
 		--enable-compat26 \
-		--enable-compat28
+		--enable-compat28 \
+		--disable-webview
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd13.4
 CONFIGURE_ENV=	X11BASE="${LOCALBASE}" \
 		ac_cv_header_sys_inotify_h=no
@@ -67,22 +67,17 @@ NOTIFY_LIB_DEPENDS=	libnotify.so:devel/libnotify
 MSPACK_CONFIGURE_WITH=	libmspack
 MSPACK_LIB_DEPENDS=	libmspack.so:archivers/libmspack
 
-WEBKIT_CONFIGURE_ENABLE=	webview
-WEBKIT_LIB_DEPENDS=	libwebkit2gtk-4.0.so:www/webkit2-gtk@40
-
 FLAVORS=	gtk3 gtk2
 FLAVOR?=	${FLAVORS:[1]}
 
 .if ${FLAVOR} == gtk3
 USE_GNOME+=	gtk30
 CONFIGURE_ARGS+=	--with-gtk=3
-OPTIONS_DEFINE+=	WEBKIT
-OPTIONS_DEFAULT+=	WEBKIT
 PLIST_SUB+=	GTK2="@comment "
 .else
 USE_GNOME+=	gtk20
 CONFIGURE_ARGS+=	--with-gtk
-PLIST_SUB+=	GTK2="" WEBKIT="@comment "
+PLIST_SUB+=	GTK2=""
 .endif
 PLIST_SUB+=	GTKVER=${FLAVOR}
 
