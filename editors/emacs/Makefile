@@ -1,6 +1,6 @@
 PORTNAME=	emacs
 DISTVERSION=	31.1
-PORTREVISION=	4
+PORTREVISION=	5
 PORTEPOCH=	3
 CATEGORIES=	editors
 MASTER_SITES=	GNU
@@ -255,8 +255,8 @@ XML_CONFIGURE_WITH=		xml2
 XPM_USE=			XORG=xpm
 XPM_CONFIGURE_WITH=		xpm
 XWIDGETS_IMPLIES=		GTK3
-XWIDGETS_LIB_DEPENDS=		libsoup-2.4.so:devel/libsoup \
-				libwebkit2gtk-4.0.so:www/webkit2-gtk@40
+XWIDGETS_LIB_DEPENDS=		libsoup-3.0.so:devel/libsoup3 \
+				libwebkit2gtk-4.1.so:www/webkit2-gtk@41
 XWIDGETS_USE=			XORG=xcomposite
 XWIDGETS_CONFIGURE_WITH=	xwidgets
 
