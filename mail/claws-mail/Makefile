@@ -1,5 +1,4 @@
 PORTNAME=	claws-mail
-PORTREVISION=	2
 CATEGORIES=	mail news
 
 COMMENT=	Lightweight and featureful GTK based e-mail and news client
@@ -22,23 +21,24 @@ RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss \
 		mime-support>0:misc/mime-support
 
 USES=		autoreconf compiler:c++11-lang cpe desktop-file-utils gettext \
-		gettext-tools gnome pathfix pkgconfig python shebangfix \
+		gettext-tools pathfix perl5 pkgconfig python shebangfix \
 		ssl xorg
-USE_GNOME=	cairo librsvg2
+USE_GNOME=	cairo gdkpixbufextra:run librsvg2
 USE_XORG=	ice sm
 SHEBANG_FILES=	tools/*.pl tools/*.py tools/tb2claws-mail
 
+CPPFLAGS+=	-DGDK_DISABLE_DEPRECATION_WARNINGS
+
+# The manual is only built when docbook-utils happens to be installed.
+CONFIGURE_ARGS+=	--disable-manual
+
 OPTIONS_DEFINE=		COMPFACE DEBUG DOCS ENCHANT IPV6 LDAP NLS STARTUP \
 			THEMES
-OPTIONS_DEFAULT=	COMPFACE ENCHANT GTK2 STARTUP THEMES
-OPTIONS_RADIO=		BRANCH
-OPTIONS_RADIO_BRANCH=	GTK2 GTK3
+OPTIONS_DEFAULT=	COMPFACE ENCHANT STARTUP THEMES
 OPTIONS_SUB=		yes
 
 COMPFACE_DESC=	X-Face support
 ENCHANT_DESC=	Spell checking support
-GTK2_DESC=	Build GTK2+ release
-GTK3_DESC=	Build GTK3+ release
 STARTUP_DESC=	Startup notification support
 THEMES_DESC=	Additional themes
 
@@ -63,21 +63,7 @@ STARTUP_CONFIGURE_ENABLE=	startup-notification
 
 THEMES_RUN_DEPENDS=	claws-mail-themes>0:x11-themes/claws-mail-themes
 
-.include <bsd.mport.options.mk>
-MASTER_OPTIONS=	${PORT_OPTIONS}
 .include "Makefile.claws"
-
-.if ${PORT_OPTIONS:MGTK2}
-USE_GNOME+=	gtk20
-
-PLIST_SUB+=	GTK2=""
-.else
-PLIST_SUB+=	GTK2="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MGTK3}
-USE_GNOME+=	gtk30
-.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
@@ -100,7 +86,7 @@ post-install:
 		${DATADIR})
 
 post-install-DOCS-on:
-	(cd ${WRKSRC} && ${INSTALL_DATA} NEWS README TODO ${FAKE_DESTDIR}${DOCSDIR})
+	(cd ${WRKSRC} && ${INSTALL_DATA} NEWS README ${FAKE_DESTDIR}${DOCSDIR})
 	${INSTALL_DATA} ${WRKSRC}/tools/README ${FAKE_DESTDIR}${DOCSDIR}/README.tools
 
 .include <bsd.port.mk>

@@ -7,5 +7,9 @@ LIB_DEPENDS=	libgdata.so:devel/libgdata
 
 CLAWS_PLUGINS_BUILD=	${PORTNAME}
 
+DEPRECATED=	Removed from Claws Mail upstream in 4.2.0
+EXPIRATION_DATE=	2027-01-31
+IGNORE=		removed from Claws Mail upstream in 4.2.0
+
 .include "../claws-mail/Makefile.claws"
 .include <bsd.port.mk>

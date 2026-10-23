@@ -1,3 +1,4 @@
+DISTVERSION=	${CLAWSVERSION}
 CATEGORIES?=	mail
 MASTER_SITES=	http://www.claws-mail.org/download.php?file=releases/
 
@@ -6,23 +7,29 @@ MAINTAINER=	ports@Midnightbsd.org
 LICENSE=	gpl3
 
 USES+=		autoreconf gettext-tools gmake iconv libtool pkgconfig tar:xz
+.if !defined(NO_GTK)
+USES+=		gnome
+USE_GNOME+=	gtk30
+.endif
 GNU_CONFIGURE=	yes
 
-CONFIGURE_ARGS=	${ICONV_CONFIGURE_ARG} --disable-dbus --disable-static
+CONFIGURE_ARGS+=	${ICONV_CONFIGURE_ARG} --disable-dbus --disable-static
 
 .include "${.CURDIR}/../claws-mail/Makefile.ver"
 .include "${.CURDIR}/../claws-mail/Makefile.claws.plugins"
 
 .for p in ${CLAWS_PLUGINS}
+.  if empty(CLAWS_PLUGINS_BUILD:M${p})
 CONFIGURE_ARGS+=	--disable-${p}-plugin
+.  endif
 .endfor
 
 .if defined(CLAWS_PLUGINS_BUILD)
-DISTNAME=	claws-mail-${PORTVERSION}
+DISTNAME=	claws-mail-${DISTVERSION}
 PKGNAMEPREFIX=	claws-mail-
 
-BUILD_DEPENDS+=	claws-mail>=${PORTVERSION}:mail/claws-mail
-RUN_DEPENDS+=	claws-mail>=${PORTVERSION}:mail/claws-mail
+BUILD_DEPENDS+=	claws-mail>=${DISTVERSION}:mail/claws-mail
+RUN_DEPENDS+=	claws-mail>=${DISTVERSION}:mail/claws-mail
 
 MASTERDIR=	${.CURDIR}/../claws-mail
 DESCR=		${.CURDIR}/pkg-descr
@@ -33,13 +40,12 @@ PKGMESSAGE=	${.CURDIR}/pkg-message
 CONFIGURE_ARGS+=	--disable-nls
 
 .  for p in ${CLAWS_PLUGINS_BUILD}
-CONFIGURE_ARGS:=	${CONFIGURE_ARGS:S|--disable-${p}-plugin||}
 PLIST_FILES+=	lib/claws-mail/plugins/${p:S|spam_|spam|}.so
 .  endfor
 
 do-build:
 .  for p in ${CLAWS_PLUGINS_BUILD}
-	(cd ${WRKSRC}/src/plugins/${p} && ${MAKE_CMD})
+	(cd ${WRKSRC}/src/plugins/${p} && ${DO_MAKE_BUILD})
 .  endfor
 
 do-install:

@@ -12,13 +12,17 @@
     SUBDIR += bogofilter-bdb
     SUBDIR += chk4mail
     SUBDIR += claws-mail
+    SUBDIR += claws-mail-acpi_notifier
     SUBDIR += claws-mail-address_keeper
     SUBDIR += claws-mail-archive
     SUBDIR += claws-mail-att_remover
     SUBDIR += claws-mail-attachwarner
+    SUBDIR += claws-mail-bogofilter
     SUBDIR += claws-mail-clamd
+    SUBDIR += claws-mail-fancy
     SUBDIR += claws-mail-fetchinfo
     SUBDIR += claws-mail-gdata
+    SUBDIR += claws-mail-keyword_warner
     SUBDIR += claws-mail-libravatar
     SUBDIR += claws-mail-litehtml_viewer
     SUBDIR += claws-mail-mailmbox
