@@ -1,0 +1,21 @@
+--- CMakeLists.txt.orig	2026-07-28 02:11:19 UTC
++++ CMakeLists.txt
+@@ -9,13 +9,15 @@ get_filename_component(binroot ${CMAKE_CURRENT_BINARY_
+ # Rust takes care of the different platform+profiles on its own,
+ # therefore we don't need to use separate target directories for different
+ # platform+profiles combinations.
+-get_filename_component(rust_binroot ${binroot}/.. ABSOLUTE)
++get_filename_component(rust_binroot ${CMAKE_CURRENT_BINARY_DIR} ABSOLUTE)
+ 
+ # Platform detection
+ if(APPLE)
+     set(OS "macos")
+-elseif(UNIX)
+-    set(OS "linux")
++elseif(CMAKE_SYSTEM_NAME MATCHES "FreeBSD|MidnightBSD")
++    set(OS "freebsd")
++# elseif(UNIX)
++#    set(OS "linux")
+ endif()
+ message(STATUS "OS detected: ${OS}")
+ 

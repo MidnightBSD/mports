@@ -495,6 +495,7 @@
     SUBDIR += raptor2
     SUBDIR += rarian
     SUBDIR += rasqal
+    SUBDIR += redisearch
     SUBDIR += redland
     SUBDIR += ripgrep
     SUBDIR += rubygem-actiontext-gitlab
