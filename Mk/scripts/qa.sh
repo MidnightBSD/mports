@@ -652,7 +652,7 @@ proxydeps_suggest_uses() {
 }
 
 proxydeps() {
-	local file dep_file dep_file_pkg already rc dep_lib_file dep_lib_files
+	local file dep_file dep_file_pkg dep_file_pkgnv already rc dep_lib_file dep_lib_files
 
 	rc=0
 
@@ -685,15 +685,17 @@ proxydeps() {
 				# If we don't already depend on it, and we don't provide it
 				if ! listcontains ${dep_file_pkg} "${LIB_RUN_DEPENDS} ${PKGORIGIN}"; then
 					# If the package has a flavor, check that the dependency is not on that particular flavor.
-					flavor=$(mport annotate -q -S "$(mport which -q "${dep_file}")" flavor)
-					if [ -n "${flavor}" ]; then
-						if listcontains ${dep_file_pkg}@${flavor} "${LIB_RUN_DEPENDS} ${PKGORIGIN}"; then
-							continue
-						fi
+					# mport which -q prints name-version but mport annotate
+					# matches the bare package name, so strip the version.
+					dep_file_pkgnv=$(mport which -q "${dep_file}")
+					flavor=$(mport annotate -q -S "${dep_file_pkgnv%-*}" flavor)
+					# Fall through on a match so the library is still
+					# recorded for the unused LIB_DEPENDS check below.
+					if [ -z "${flavor}" ] || ! listcontains ${dep_file_pkg}@${flavor} "${LIB_RUN_DEPENDS} ${PKGORIGIN}"; then
+						err "${file} is linked to ${dep_file} from ${dep_file_pkg} but it is not declared as a dependency"
+						proxydeps_suggest_uses ${dep_file_pkg} ${dep_file}
+						rc=1
 					fi
-					err "${file} is linked to ${dep_file} from ${dep_file_pkg} but it is not declared as a dependency"
-					proxydeps_suggest_uses ${dep_file_pkg} ${dep_file}
-					rc=1
 				fi
 			else
 				err "${file} is linked to ${dep_file} that does not belong to any package"
