@@ -19,7 +19,7 @@ share/man/man1/clamtk.1.gz
 %%SITE_PERL%%/ClamTk/Whitelist.pm
 share/applications/clamtk.desktop
 %%PORTDOCS%%%%DOCSDIR%%/CHANGES
-%%PORTDOCS%%%%DOCSDIR%%/DISCLAIMER
+%%PORTDOCS%%%%DOCSDIR%%/DISCLAIMER.md
 %%PORTDOCS%%%%DOCSDIR%%/README.md
 share/pixmaps/clamtk.png
 share/pixmaps/clamtk.xpm
