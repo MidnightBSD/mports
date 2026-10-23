@@ -1,0 +1,139 @@
+--- configure.orig	2026-10-21 05:55:12 UTC
++++ configure
+@@ -4202,6 +4202,7 @@ then
+     case $MACHDEP in
+ 	aix*) MACHDEP="aix";;
+ 	freebsd*) MACHDEP="freebsd";;
++	midnightbsd*) MACHDEP="midnightbsd";;
+ 	linux-android*) MACHDEP="android";;
+ 	linux*) MACHDEP="linux";;
+ 	cygwin*) MACHDEP="cygwin";;
+@@ -7239,8 +7240,10 @@ case $ac_sys_system in #(
+     MULTIARCH="" ;; #(
+   FreeBSD*) :
+     MULTIARCH="" ;; #(
++  MidnightBSD*) :
++    MULTIARCH="" ;; #(
+   *) :
+-    MULTIARCH=$($CC --print-multiarch 2>/dev/null)
++    MULTIARCH=
+  ;;
+ esac
+ 
+@@ -7813,7 +7816,7 @@ printf "%s\n" "#define Py_ENABLE_SHARED 1" >>confdefs.
+         PY3LIBRARY=libpython3.so
+       fi
+       ;;
+-    Linux*|GNU*|NetBSD*|FreeBSD*|DragonFly*|OpenBSD*|VxWorks*)
++    Linux*|GNU*|NetBSD*|MidnightBSD*|FreeBSD*|DragonFly*|OpenBSD*|VxWorks*)
+       LDLIBRARY='libpython$(LDVERSION).so'
+       BLDLIBRARY='-L. -lpython$(LDVERSION)'
+       RUNSHARED=LD_LIBRARY_PATH=`pwd`${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+@@ -14215,7 +14218,7 @@ then
+ 	Linux*|GNU*|QNX*|VxWorks*|Haiku*)
+ 		LDSHARED='$(CC) -shared'
+ 		LDCXXSHARED='$(CXX) -shared';;
+-	FreeBSD*)
++	MidnightBSD*|FreeBSD*)
+ 		if [ "`$CC -dM -E - </dev/null | grep __ELF__`" != "" ]
+ 		then
+ 			LDSHARED='$(CC) -shared'
+@@ -14305,7 +14308,7 @@ fi;;
+ 			CCSHARED="-fPIC"
+ 
+ fi;;
+-	FreeBSD*|NetBSD*|OpenBSD*|DragonFly*) CCSHARED="-fPIC";;
++	MidnightBSD*|FreeBSD*|NetBSD*|OpenBSD*|DragonFly*) CCSHARED="-fPIC";;
+ 	Haiku*) CCSHARED="-fPIC";;
+ 	OpenUNIX*|UnixWare*)
+ 		if test "$ac_cv_gcc_compat" = "yes"
+@@ -14368,7 +14371,7 @@ printf "%s\n" "#define THREAD_STACK_SIZE 0x$stack_size
+ 	OpenUNIX*|UnixWare*) LINKFORSHARED="-Wl,-Bexport";;
+ 	SCO_SV*) LINKFORSHARED="-Wl,-Bexport";;
+ 	ReliantUNIX*) LINKFORSHARED="-W1 -Blargedynsym";;
+-	FreeBSD*|NetBSD*|OpenBSD*|DragonFly*)
++	MidnightBSD*|FreeBSD*|NetBSD*|OpenBSD*|DragonFly*)
+ 		if [ "`$CC -dM -E - </dev/null | grep __ELF__`" != "" ]
+ 		then
+ 			LINKFORSHARED="-Wl,--export-dynamic"
+@@ -14838,9 +14841,9 @@ save_LIBS=$LIBS
+ 
+         CPPFLAGS="$CPPFLAGS $LIBUUID_CFLAGS"
+         LIBS="$LIBS $LIBUUID_LIBS"
+-               for ac_header in uuid/uuid.h
++               for ac_header in ignore_uuid/uuid.h
+ do :
+-  ac_fn_c_check_header_compile "$LINENO" "uuid/uuid.h" "ac_cv_header_uuid_uuid_h" "$ac_includes_default"
++  ac_fn_c_check_header_compile "$LINENO" "ignore_uuid/uuid.h" "ac_cv_header_uuid_uuid_h" "$ac_includes_default"
+ if test "x$ac_cv_header_uuid_uuid_h" = xyes
+ then :
+   printf "%s\n" "#define HAVE_UUID_UUID_H 1" >>confdefs.h
+@@ -14982,9 +14985,9 @@ save_LIBS=$LIBS
+ 
+         CPPFLAGS="$CPPFLAGS $LIBUUID_CFLAGS"
+         LIBS="$LIBS $LIBUUID_LIBS"
+-               for ac_header in uuid/uuid.h
++               for ac_header in ignore_uuid/uuid.h
+ do :
+-  ac_fn_c_check_header_compile "$LINENO" "uuid/uuid.h" "ac_cv_header_uuid_uuid_h" "$ac_includes_default"
++  ac_fn_c_check_header_compile "$LINENO" "ignore_uuid/uuid.h" "ac_cv_header_uuid_uuid_h" "$ac_includes_default"
+ if test "x$ac_cv_header_uuid_uuid_h" = xyes
+ then :
+   printf "%s\n" "#define HAVE_UUID_UUID_H 1" >>confdefs.h
+@@ -15121,7 +15124,7 @@ printf "%s\n" "yes" >&6; }
+ printf "%s\n" "yes" >&6; }
+                     have_uuid=yes
+       ac_cv_have_uuid_generate_time_safe=yes
+-      # The uuid.h file to include may be <uuid.h> *or* <uuid/uuid.h>.
++      # The uuid.h file to include may be <uuid.h> *or* <ignore_uuid/uuid.h>.
+       # Since pkg-config --cflags uuid may return -I/usr/include/uuid,
+       # it's possible to write '#include <uuid.h>' in _uuidmodule.c,
+       # assuming that the compiler flags are properly updated.
+@@ -15138,9 +15141,9 @@ then :
+ if test "x$have_uuid" = xmissing
+ then :
+ 
+-         for ac_header in uuid/uuid.h
++         for ac_header in ignore_uuid/uuid.h
+ do :
+-  ac_fn_c_check_header_compile "$LINENO" "uuid/uuid.h" "ac_cv_header_uuid_uuid_h" "$ac_includes_default"
++  ac_fn_c_check_header_compile "$LINENO" "ignore_uuid/uuid.h" "ac_cv_header_uuid_uuid_h" "$ac_includes_default"
+ if test "x$ac_cv_header_uuid_uuid_h" = xyes
+ then :
+   printf "%s\n" "#define HAVE_UUID_UUID_H 1" >>confdefs.h
+@@ -15238,7 +15241,7 @@ else case e in #(
+     #ifdef HAVE_UUID_H
+     #include <uuid.h>
+     #else
+-    #include <uuid/uuid.h>
++    #include <ignore_uuid/uuid.h>
+     #endif
+ 
+     #define ERR 1
+@@ -15304,7 +15307,7 @@ else case e in #(
+     #ifdef HAVE_UUID_H
+     #include <uuid.h>
+     #else
+-    #include <uuid/uuid.h>
++    #include <ignore_uuid/uuid.h>
+     #endif
+ 
+     #define ERR 1
+@@ -17674,7 +17677,7 @@ case $ac_sys_system in #(
+ fi
+ 
+ case $ac_sys_system in #(
+-  FreeBSD*) :
++  MidnightBSD*|FreeBSD*) :
+ 
+     if test -n "$PKG_CONFIG" && \
+     { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"x11\""; } >&5
+@@ -32431,7 +32434,7 @@ case $ac_sys_system in #(
+ 
+     py_cv_module__scproxy=n/a
+  ;; #(
+-  FreeBSD*) :
++  MidnightBSD*|FreeBSD*) :
+ 
+ 
+     py_cv_module__scproxy=n/a
