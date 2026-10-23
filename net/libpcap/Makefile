@@ -1,7 +1,7 @@
 PORTNAME=	libpcap
-PORTVERSION=	1.10.5
+PORTVERSION=	1.11.0
 CATEGORIES=	net
-MASTER_SITES=	http://www.tcpdump.org/release/
+MASTER_SITES=	https://www.tcpdump.org/release/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ubiquitous network traffic capture library
@@ -24,13 +24,12 @@ CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
 CFLAGS_amd64=	-fPIC
 PLIST_SUB+=	PORTVERSION=${PORTVERSION}
 
-OPTIONS_DEFINE=	IPV6 REMOTE
+OPTIONS_DEFINE=	REMOTE
 
 OPTIONS_SUB=	yes
 
 REMOTE_DESC=	Remote packet capture
 
-IPV6_CONFIGURE_ENABLE=	ipv6
 REMOTE_CONFIGURE_ENABLE=remote
 
 .include <bsd.port.mk>
