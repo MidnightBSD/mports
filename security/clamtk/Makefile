@@ -1,17 +1,14 @@
 PORTNAME=	clamtk
-PORTVERSION=	6.18
+PORTVERSION=	6.19
 DISTVERSIONPREFIX=v
 CATEGORIES=	security
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GTK front-end for Clam Antivirus
-WWW=		https://dave-theunsub.github.io/clamtk/
+WWW=		https://github.com/piposeimandi/clamtk/
 
 LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
-
-DEPRECATED=	Maintainer has retired
-EXPIRATION_DATE=2025-12-30
 
 RUN_DEPENDS=	p5-Locale-gettext>=1.05:devel/p5-Locale-gettext \
 		p5-Text-CSV>=0:textproc/p5-Text-CSV \
@@ -27,8 +24,8 @@ NO_BUILD=	yes
 USES=		gettext-runtime:run perl5 shebangfix
 USE_PERL5=	run
 USE_GITHUB=	yes
-GH_ACCOUNT=	dave-theunsub
-GH_TAGNAME=	1f026f0
+GH_ACCOUNT=	piposeimandi
+GH_TAGNAME=	32cc526
 SHEBANG_FILES=	clamtk
 
 LINGUAS=	`${LS} ${WRKSRC}/po/*.mo | ${XARGS} ${BASENAME} -s .mo`
@@ -42,20 +39,20 @@ post-patch:
 	@${REINPLACE_CMD} -e \
 		's|/usr/local|${LOCALBASE}|g ; \
 		 s|/usr/share|${PREFIX}/share|g ; \
-		 s|/var/lib/clamav|/var/db/clamav|g' ${WRKSRC}/lib/*.pm
+		 s|/var/lib/clamav|/var/db/clamav|g' ${WRKSRC}/lib/ClamTk/*.pm
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin
 	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${PREFIX}/share/man/man1
 	@${MKDIR} ${PREFIX}/${SITE_PERL_REL}/ClamTk
-	${INSTALL_DATA} ${WRKSRC}/lib/*.pm ${PREFIX}/${SITE_PERL_REL}/ClamTk
+	${INSTALL_DATA} ${WRKSRC}/lib/ClamTk/*.pm ${PREFIX}/${SITE_PERL_REL}/ClamTk
 	${INSTALL_DATA} ${WRKSRC}/${PORTNAME}.desktop ${PREFIX}/share/applications
 	${INSTALL_DATA} ${WRKSRC}/images/${PORTNAME}.png ${PREFIX}/share/pixmaps
 	${INSTALL_DATA} ${WRKSRC}/images/${PORTNAME}.xpm ${PREFIX}/share/pixmaps
 
 do-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
-.for file in CHANGES DISCLAIMER README.md
+.for file in CHANGES DISCLAIMER.md README.md
 	${INSTALL_DATA} ${WRKSRC}/${file} ${FAKE_DESTDIR}${DOCSDIR}
 .endfor
 
