@@ -32,6 +32,7 @@
     SUBDIR += claws-mail-pdf_viewer
     SUBDIR += claws-mail-perl
     SUBDIR += claws-mail-pgp
+    SUBDIR += claws-mail-plugins
     SUBDIR += claws-mail-rssyl
     SUBDIR += claws-mail-spam_report
     SUBDIR += claws-mail-spamassassin
