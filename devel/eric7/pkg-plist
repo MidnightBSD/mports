@@ -1,0 +1,12 @@
+share/applications/eric7_browser.desktop
+share/applications/eric7_ide.desktop
+share/applications/eric7_mpy.desktop
+share/applications/eric7_tray.desktop
+share/icons/hicolor/48x48/apps/eric.png
+share/icons/hicolor/48x48/apps/ericMPy.png
+share/icons/hicolor/48x48/apps/ericTray.png
+share/icons/hicolor/48x48/apps/ericWeb.png
+share/icons/hicolor/scalable/apps/eric.svg
+share/icons/hicolor/scalable/apps/ericMPy.svg
+share/icons/hicolor/scalable/apps/ericWeb.svg
+share/metainfo/eric7.appdata.xml

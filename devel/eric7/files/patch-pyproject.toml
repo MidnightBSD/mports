@@ -1,0 +1,18 @@
+--- pyproject.toml.orig	2026-10-02 13:54:47 UTC
++++ pyproject.toml
+@@ -1,13 +1,12 @@
+ [build-system]
+-requires = ["setuptools>=64.0.0", "wheel"]
++requires = ["setuptools>=63.1.0", "wheel"]
+ build-backend = "setuptools.build_meta"
+ 
+ [project]
+ name = "eric-ide"
+ description = "eric7 is an integrated development environment for the Python language."
+ readme = "docs/README.md"
+-license = "GPL-3.0-or-later"
+-license-files =  ["docs/LICENSE.txt"]
++license = {text = "GPL-3.0-or-later"}
+ authors = [
+     {name = "Detlev Offenbach", email = "detlev@die-offenbachs.de"},
+ ]
