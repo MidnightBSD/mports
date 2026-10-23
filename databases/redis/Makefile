@@ -1,6 +1,6 @@
 PORTNAME=	redis
 DISTVERSION=	8.10.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	databases
 MASTER_SITES=	https://download.redis.io/releases/
 
@@ -51,12 +51,23 @@ PLIST_SUB=	REDIS_DBDIR=${REDIS_DBDIR} \
 
 OPTIONS_DEFINE=		JEMALLOC TLS
 OPTIONS_DEFAULT=	TLS
+OPTIONS_GROUP=		MODULES
+OPTIONS_GROUP_MODULES=	REDISBLOOM REDISEARCH REDISJSON REDISTIMESERIES
 OPTIONS_SUB=		yes
 
 JEMALLOC_DESC=	Use jemalloc
+MODULES_DESC=	Modules (installed by separate ports)
+REDISBLOOM_DESC=	RedisBloom module
+REDISEARCH_DESC=	RediSearch module
+REDISJSON_DESC=	RedisJSON module
+REDISTIMESERIES_DESC=	RedisTimeSeries module
 TLS_DESC=	Use TLS (openssl req.)
 
 JEMALLOC_MAKE_ENV=	USE_JEMALLOC=yes
+REDISBLOOM_RUN_DEPENDS=		${LOCALBASE}/lib/redisbloom.so:databases/redisbloom
+REDISEARCH_RUN_DEPENDS=		${LOCALBASE}/lib/redisearch.so:textproc/redisearch
+REDISJSON_RUN_DEPENDS=		${LOCALBASE}/lib/librejson.so:databases/redisjson
+REDISTIMESERIES_RUN_DEPENDS=	${LOCALBASE}/lib/redistimeseries.so:databases/redistimeseries
 TLS_USES=		ssl
 TLS_MAKE_ENV=		BUILD_TLS=yes
 

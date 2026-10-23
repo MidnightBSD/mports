@@ -6,6 +6,12 @@
 
       To run redis from startup, add %%PORTNAME%%_enable="YES"
       in your /etc/rc.conf.
+
+      Modules are installed by separate ports (databases/redisbloom,
+      textproc/redisearch, databases/redisjson, databases/redistimeseries)
+      and are not loaded by default. To use one, add a line such as
+        loadmodule %%LOCALBASE%%/lib/redisbloom.so
+      to %%PREFIX%%/etc/%%PORTNAME%%.conf (rejson: librejson.so).
 EOM
 }
 ]
