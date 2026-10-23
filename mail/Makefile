@@ -20,6 +20,7 @@
     SUBDIR += claws-mail-attachwarner
     SUBDIR += claws-mail-bogofilter
     SUBDIR += claws-mail-clamd
+    SUBDIR += claws-mail-dillo
     SUBDIR += claws-mail-fancy
     SUBDIR += claws-mail-fetchinfo
     SUBDIR += claws-mail-gdata
