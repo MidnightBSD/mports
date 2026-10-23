@@ -10,18 +10,34 @@ All user configuration changes should go in file "user.conf". Modify
 it according to your needs and when you are done set the value of
 "user_configuration_complete" parameter to "yes".
 
-NOTE: Starting with version 5.0.0 configuration has been split into
-multiple files, which now reside in:
-
-%%ETCDIR%%
-
-If you had previous version installed, you can remove the old
-obsolete configuration file:
-
-%%PREFIX%%/etc/clamav-unofficial-sigs.conf
-
 To run the script periodically by cron, you also need to add it to
 your crontab.
+EOM
+}
+{ type: upgrade
+  maximum_version: "7.99"
+  message: <<EOM
+clamav-unofficial-sigs 8.0.0 ships a new master.conf (config_version 100).
+
+master.conf is not meant to be edited. If your copy differs from the
+installed sample it was left in place and still carries the 7.x defaults.
+Keep your changes in user.conf and replace master.conf with the new
+sample:
+
+  cp %%ETCDIR%%/master.conf.sample %%ETCDIR%%/master.conf
+
+The script's own --upgrade option is disabled in this package; upgrade
+with "mport upgrade" instead.
+
+Behavior changes in 8.0.0:
+- The Yara-Rules project databases are now disabled by default. With
+  remove_disabled_databases="yes" (the default) their files are removed
+  from the ClamAV database directory on the next run. Set
+  yararulesproject_enabled="yes" in user.conf to keep them.
+- The free MalwarePatrol product code is now 32. If user.conf still sets
+  malwarepatrol_product_code="8", change it to "32".
+- New optional sources ditekshen and twinclams are available (disabled
+  by default).
 EOM
 }
 ]

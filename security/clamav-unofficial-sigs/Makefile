@@ -1,5 +1,5 @@
 PORTNAME=	clamav-unofficial-sigs
-PORTVERSION=	7.2.5
+PORTVERSION=	8.0.0
 CATEGORIES=	security
 
 MAINTAINER=	ports@MidnightBSD.org
