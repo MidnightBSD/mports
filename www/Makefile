@@ -104,7 +104,6 @@
     SUBDIR += mediawiki144
     SUBDIR += mediawiki145
     SUBDIR += mhonarc
-    SUBDIR += midori
     SUBDIR += minio
     SUBDIR += minio-client
     SUBDIR += mod_dav_svn
