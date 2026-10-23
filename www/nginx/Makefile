@@ -111,10 +111,12 @@ GSSAPI_HEIMDAL_IMPLIES=	HTTP_AUTH_KRB5
 GSSAPI_MIT_IMPLIES=	HTTP_AUTH_KRB5
 
 # If the target is makesum, make sure that every distfile is fetched.
+# Pick one GSSAPI radio choice (HTTP_AUTH_KRB5 requires one) and drop
+# HTTPV3_LSSL, which conflicts with HTTPV3_BORING; neither adds distfiles.
 .if ${.TARGETS:Mmakesum}
-OPTIONS_DEFAULT=	${OPTIONS_DEFINE} ${OPTIONS_GROUP_HTTPGRP} \
+OPTIONS_DEFAULT=	${OPTIONS_DEFINE} ${OPTIONS_GROUP_HTTPGRP:NHTTPV3_LSSL} \
 	${OPTIONS_GROUP_MAILGRP} ${OPTIONS_GROUP_STREAMGRP} \
-	${OPTIONS_GROUP_THIRDPARTYGRP}
+	${OPTIONS_GROUP_THIRDPARTYGRP} GSSAPI_HEIMDAL
 .endif
 
 # Non-module options handling
