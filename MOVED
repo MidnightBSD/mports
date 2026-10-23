@@ -690,3 +690,5 @@ www/otter-browser||2026-10-22|Has expired: Not ported to Qt 6, depends on remove
 deskutils/kchmviewer|deskutils/uchmviewer|2026-10-22|Has expired: Development stalled and depends on removed www/qt5-webengine. Use deskutils/uchmviewer instead
 multimedia/jellyfin-media-player|multimedia/jellyfin-desktop|2026-10-22|Project renamed upstream and moved to Qt 6
 www/midori|www/raphael|2026-10-23|Has expired: Depends on WebKitGTK 4.0 and libsoup2, which WebKitGTK 2.52 no longer provides. Use www/raphael, the MidnightBSD fork of Midori
+devel/eric6|devel/eric7|2026-10-23|Has expired: Last Qt5 release (21.11), depends on removed www/py-qt5-webengine and does not start on Python 3.12. Use devel/eric7 instead
+german/eric6|devel/eric7|2026-10-23|Has expired: Translations for removed devel/eric6
