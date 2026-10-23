@@ -7,15 +7,15 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Claws Mail icon themes
 WWW=		https://www.claws-mail.org/themes.php
 
-LICENSE=	UNKNOWN
-LICENSE_NAME=	@${LICENSE_TEXT}
+LICENSE=	claws-themes
+LICENSE_NAME=	Various free licenses (GPLv2 to Public Domain)
 LICENSE_TEXT=	Licenses for the themes in this port range from GPLv2 \
 		to Public Domain. In all cases, these themes are free to use. \
 		Please read the licenses, if any, located in the root of each theme \
-		for other possible rescrictions.
+		for other possible restrictions.
 LICENSE_PERMS=	dist-mirror no-dist-sell pkg-mirror no-pkg-sell auto-accept
 
-USES-	tar:xz
+USES=		tar:xz
 
 NO_ARCH=	yes
 NO_BUILD=	yes
