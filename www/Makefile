@@ -34,6 +34,7 @@
     SUBDIR += clearsilver
     SUBDIR += codeigniter
     SUBDIR += corepack
+    SUBDIR += dillo2
     SUBDIR += dojo
     SUBDIR += drupal10
     SUBDIR += drupal7
