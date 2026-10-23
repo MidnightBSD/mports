@@ -709,7 +709,8 @@ proxydeps() {
 			awk '
 			BEGIN {section=0}
 			/^\// {section++}
-			!/^\// && section<=1 && ($3 ~ "^'${PREFIX}'" || $3 ~ "^'${LOCALBASE}'") {print $3}')
+			# Base system libraries match a PREFIX of /usr; skip them.
+			!/^\// && section<=1 && $3 !~ "^/usr/lib(32)?/" && ($3 ~ "^'${PREFIX}'" || $3 ~ "^'${LOCALBASE}'") {print $3}')
 		EOT
 	done <<-EOT
 	$(list_stagedir_elfs | \
