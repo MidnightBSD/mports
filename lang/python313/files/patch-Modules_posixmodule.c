@@ -1,6 +1,6 @@
---- Modules/posixmodule.c.orig	2025-12-05 11:06:33.000000000 -0500
-+++ Modules/posixmodule.c	2026-01-11 17:24:55.590459000 -0500
-@@ -313,7 +313,7 @@
+--- Modules/posixmodule.c.orig	2026-10-21 13:48:20 UTC
++++ Modules/posixmodule.c
+@@ -313,7 +313,7 @@ corresponding Unix manual entries for more information
  #endif
  
  #if defined(HAVE_SYS_XATTR_H)
@@ -9,7 +9,7 @@
  #    define USE_XATTRS
  #    include <linux/limits.h>  // Needed for XATTR_SIZE_MAX on musl libc.
  #  endif
-@@ -327,7 +327,7 @@
+@@ -327,7 +327,7 @@ corresponding Unix manual entries for more information
  #  include <sys/xattr.h>
  #endif
  
@@ -18,7 +18,7 @@
  #  ifdef HAVE_SYS_SOCKET_H
  #    include <sys/socket.h>
  #  endif
-@@ -345,7 +345,8 @@
+@@ -345,7 +345,8 @@ corresponding Unix manual entries for more information
      defined(__OpenBSD__)   || \
      defined(__FreeBSD__)   || \
      defined(__NetBSD__)    || \
@@ -28,7 +28,7 @@
  #  include <sys/sysctl.h>
  #endif
  
-@@ -11414,7 +11415,7 @@
+@@ -11489,7 +11490,7 @@ os_read_impl(PyObject *module, int fd, Py_ssize_t leng
      return buffer;
  }
  
@@ -37,7 +37,7 @@
                                  || defined(__APPLE__))) \
      || defined(HAVE_READV) || defined(HAVE_PREADV) || defined (HAVE_PREADV2) \
      || defined(HAVE_WRITEV) || defined(HAVE_PWRITEV) || defined (HAVE_PWRITEV2)
-@@ -11728,7 +11729,7 @@
+@@ -11804,7 +11805,7 @@ os_sendfile_impl(PyObject *module, int out_fd, int in_
                   Py_off_t sbytes, PyObject *headers, PyObject *trailers,
                   int flags)
  /*[clinic end generated code: output=81c4bcd143f5c82b input=b0d72579d4c69afa]*/
@@ -46,7 +46,7 @@
  /*[clinic input]
  os.sendfile
  
-@@ -11769,7 +11770,7 @@
+@@ -11845,7 +11846,7 @@ os_sendfile_impl(PyObject *module, int out_fd, int in_
      Py_ssize_t ret;
      int async_err = 0;
  
@@ -55,7 +55,7 @@
  #ifndef __APPLE__
      off_t sbytes;
  #endif
-@@ -15317,6 +15318,7 @@
+@@ -15422,6 +15423,7 @@ os_cpu_count_impl(PyObject *module)
  #elif defined(__DragonFly__) || \
        defined(__OpenBSD__)   || \
        defined(__FreeBSD__)   || \

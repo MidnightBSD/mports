@@ -1,6 +1,6 @@
---- Tools/jit/_targets.py.orig	2025-04-08 13:54:08 UTC
+--- Tools/jit/_targets.py.orig	2026-10-21 13:48:20 UTC
 +++ Tools/jit/_targets.py
-@@ -538,6 +538,9 @@ def get_target(host: str) -> _COFF | _ELF | _MachO:
+@@ -539,6 +539,9 @@ def get_target(host: str) -> _COFF | _ELF | _MachO:
      elif re.fullmatch(r"x86_64-.*-linux-gnu", host):
          args = ["-fpic"]
          target = _ELF(host, args=args, ghccc=True)

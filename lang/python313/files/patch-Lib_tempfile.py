@@ -1,4 +1,4 @@
---- Lib/tempfile.py.orig	2026-09-29 20:52:57 UTC
+--- Lib/tempfile.py.orig	2026-10-21 13:48:20 UTC
 +++ Lib/tempfile.py
 @@ -43,6 +43,7 @@ from random import Random as _Random
  import shutil as _shutil
@@ -8,7 +8,7 @@
  import sys as _sys
  import types as _types
  import weakref as _weakref
-@@ -277,16 +278,69 @@ def _dont_follow_symlinks(func, path, *args):
+@@ -273,16 +274,69 @@ def _dont_follow_symlinks(func, path, *args):
      elif not _os.path.islink(path):
          func(path, *args)
  
@@ -79,7 +79,7 @@
  # User visible interfaces.
  
  def gettempprefix():
-@@ -893,23 +947,42 @@ class TemporaryDirectory:
+@@ -893,8 +947,12 @@ class TemporaryDirectory:
              ignore_errors=self._ignore_cleanup_errors, delete=self._delete)
  
      @classmethod
@@ -91,9 +91,10 @@
 +            fullname = name
 +
 +        def onexc(func, path, exc, direntry=None, dir_fd=None):
-             if isinstance(exc, PermissionError):
+             # On DragonFly BSD, UF_NOUNLINK removal fails with EISDIR, not EPERM.
+             if isinstance(exc, (PermissionError, IsADirectoryError)):
                  if repeated and path == name:
-                     if ignore_errors:
+@@ -902,15 +960,30 @@ class TemporaryDirectory:
                          return
                      raise
  
@@ -128,7 +129,7 @@
                      except PermissionError:
                          # The PermissionError handler was originally added for
                          # FreeBSD in directories, but it seems that it is raised
-@@ -918,21 +991,27 @@ class TemporaryDirectory:
+@@ -919,21 +992,27 @@ class TemporaryDirectory:
                          # raise NotADirectoryError and mask the PermissionError.
                          # So we must re-raise the current PermissionError if
                          # path is not a directory.

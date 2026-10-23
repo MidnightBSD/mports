@@ -1,6 +1,6 @@
---- Misc/python-config.sh.in.orig	2018-07-13 21:07:16 UTC
+--- Misc/python-config.sh.in.orig	2026-10-21 13:48:20 UTC
 +++ Misc/python-config.sh.in
-@@ -15,7 +15,7 @@ fi
+@@ -21,7 +21,7 @@ installed_prefix ()
  # Returns the actual prefix where this script was installed to.
  installed_prefix ()
  {
