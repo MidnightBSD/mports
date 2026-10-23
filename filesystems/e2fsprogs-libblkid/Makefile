@@ -25,9 +25,9 @@ PKGDIR=		${.CURDIR}
 
 pre-build:
 	${MKDIR} ${WRKSRC}/lib/blkid/elfshared
-	cd ${WRKSRC}/util && ${MAKE_CMD} subst
+	cd ${WRKSRC}/util && ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${MAKE_CMD} subst
 
 post-build:
-	cd ${INSTALL_WRKSRC} && ${MAKE_CMD} check
+	cd ${INSTALL_WRKSRC} && ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${MAKE_CMD} check
 
 .include "${MASTERDIR}/Makefile"
