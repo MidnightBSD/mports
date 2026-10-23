@@ -34,6 +34,7 @@ LIB_DEPENDS=	libavif.so:graphics/libavif \
 		liblcms2.so:graphics/lcms2 \
 		libpng.so:graphics/png \
 		libsecret-1.so:security/libsecret \
+		libsoup-3.0.so:devel/libsoup3 \
 		libsysinfo.so:devel/libsysinfo \
 		libtasn1.so:security/libtasn1 \
 		libwebp.so:graphics/webp \
@@ -41,7 +42,7 @@ LIB_DEPENDS=	libavif.so:graphics/libavif \
 
 PORTSCOUT=	limitw:1,even
 
-FLAVORS=	60 41 40
+FLAVORS=	60 41
 FLAVOR?=	${FLAVORS:[1]}
 
 USES=		bison cmake compiler:c++23-lang cpe gettext gl gnome gperf \
@@ -83,18 +84,6 @@ JAVASCRIPTCORE_LIBRARY_VERSION=	1 7 8
 USE_GNOME+=	gtk30
 
 CMAKE_OFF+=	USE_GTK4
-.endif
-.if ${FLAVOR:M40}
-LIB_DEPENDS+=	libsoup-2.4.so:devel/libsoup
-
-CMAKE_ON+=	USE_SOUP2
-API_VERSION=	4.0
-WEBKIT_LIBRARY_VERSION=	37 71 8
-JAVASCRIPTCORE_LIBRARY_VERSION=	18 25 15
-.else
-LIB_DEPENDS+=	libsoup-3.0.so:devel/libsoup3
-.endif
-.if ${FLAVOR:M41}
 API_VERSION=	4.1
 WEBKIT_LIBRARY_VERSION=	0 21 4
 JAVASCRIPTCORE_LIBRARY_VERSION=	0 10 8
