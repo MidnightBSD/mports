@@ -23,7 +23,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}attrs>=21.3.0:devel/py-attrs@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}incremental>=21.3.0:devel/py-incremental@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}typing-extensions>=3.10.0:devel/py-typing-extensions@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}zope.interface>=5:devel/py-zope.interface@${PY_FLAVOR}
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cython-test-exception-raiser>=1.0.2<2:devel/py-cython-test-exception-raiser@${PY_FLAVOR} \
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cython-test-exception-raiser>=1.0.2:devel/py-cython-test-exception-raiser@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}hypothesis>=6.56:devel/py-hypothesis@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}PyHamcrest>=2:textproc/py-pyhamcrest@${PY_FLAVOR}
 
