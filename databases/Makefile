@@ -296,8 +296,9 @@
     SUBDIR += redis62
     SUBDIR += redis72
     SUBDIR += redis74
-    SUBDIR += redisjson
     SUBDIR += redisbloom
+    SUBDIR += redisjson
+    SUBDIR += redistimeseries
     SUBDIR += rrdtool
     SUBDIR += ruby-bdb
     SUBDIR += ruby-xapian
