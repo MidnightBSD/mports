@@ -40,7 +40,6 @@ lib/girepository-1.0/Gladeui-2.0.typelib
 %%GJS%%lib/glade/modules/libgladegjs.so
 lib/glade/modules/libgladegtk.so
 %%PYTHON%%lib/glade/modules/libgladepython.so
-%%WEBKIT%%lib/glade/modules/libgladewebkit2gtk.so
 lib/libgladeui-2.so
 lib/libgladeui-2.so.13
 lib/libgladeui-2.so.13.1.0
@@ -54,7 +53,6 @@ share/gir-1.0/Gladeui-2.0.gir
 %%DATADIR%%/catalogs/glade-catalog.dtd
 %%DATADIR%%/catalogs/gtk+.xml
 %%DATADIR%%/catalogs/gtkunixprint.xml
-%%WEBKIT%%%%DATADIR%%/catalogs/webkit2gtk.xml
 %%DATADIR%%/pixmaps/deprecated-16x16.png
 %%DATADIR%%/pixmaps/deprecated-22x22.png
 %%DATADIR%%/pixmaps/devhelp.png
