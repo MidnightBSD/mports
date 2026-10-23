@@ -233,7 +233,7 @@ post-build:
 # => do not add a -Bdynamic - but instead list the dynamic libraries
 # before the -Bstatic
 	cd ${WRKSRC}/e2fsck && ${RM} -f e2fsck \
-		&& ${MAKE_CMD} e2fsck V=1 \
+		&& ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${MAKE_CMD} e2fsck V=1 \
 		LIBS="-static-libgcc -lc -Bstatic ../lib/libsupport.a ../lib/libext2fs.a ../lib/libcom_err.a \
 		${_staticlibs} /usr/lib/libexecinfo.a /usr/lib/libelf.a \
 		${LOCALBASE}/lib/libblkid.a ${LOCALBASE}/lib/libuuid.a ${libintl} ../lib/libe2p.a " \
@@ -250,7 +250,7 @@ post-build:
 	    echo 'FAIL' ; echo '===>  e2fsck depends on:' ; echo "$$a" ; exit 1 ; fi
 # Update translation binary files
 .if ${PORT_OPTIONS:MNLS}
-	cd ${WRKSRC}/po && ${MAKE_CMD} update-gmo
+	cd ${WRKSRC}/po && ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${MAKE_CMD} update-gmo
 .endif
 # Build fsck(8) wrapper
 	${CC} ${CPPFLAGS} ${CFLAGS} ${LDFLAGS} -s ${LIBS} \
@@ -269,7 +269,7 @@ post-build:
 	cd ${WRKSRC}/tests && \
 		ulimit -t ${_check_timeout} && \
 		${MKDIR} ${WRKDIR}/tmp && \
-		${SETENV} e2fsprogs_inhibit_SIGINFO=1 BLKID_FILE=${WRKDIR}/tmp/blkid.tab SHELL=${_CHECK_SHELL} \
+		${SETENV} ${MAKE_ENV} e2fsprogs_inhibit_SIGINFO=1 BLKID_FILE=${WRKDIR}/tmp/blkid.tab SHELL=${_CHECK_SHELL} \
 		${MAKE_CMD} ${_check_target} ${_CHECK_JOBS} ${_checkaddargs} \
 	    || { head -n30000 ${WRKSRC}/tests/*.failed 2>/dev/null ; exit 1 ; }
 .else
