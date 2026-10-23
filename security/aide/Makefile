@@ -1,6 +1,5 @@
 PORTNAME=	aide
-PORTVERSION=	0.18.6
-PORTREVISION=	2
+PORTVERSION=	0.19.5
 CATEGORIES=	security
 MASTER_SITES=	https://github.com/aide/aide/releases/download/v${PORTVERSION}/
 
@@ -9,27 +8,38 @@ COMMENT=	File and directory integrity checker
 WWW=		https://aide.github.io/
 
 LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libmhash.so:security/mhash \
-		libpcre2-8.so:devel/pcre2 \
+LIB_DEPENDS=	libpcre2-8.so:devel/pcre2 \
 		libe2p.so:filesystems/e2fsprogs-core
 
-USES=		bison gmake localbase pkgconfig:build
+USES=		bison cpe gmake localbase pkgconfig:build
+CPE_VENDOR=	advanced_intrusion_detection_environment_project
+CPE_PRODUCT=	advanced_intrusion_detection_environment
 
 GNU_CONFIGURE=	yes
-GNU_CONFIGURE_MANPREFIX= ${PREFIX}/share
-CONFIGURE_ARGS+=--with-mhash \
-		--with-zlib \
+GNU_CONFIGURE_MANPREFIX=	${PREFIX}/share
+CONFIGURE_ARGS+=--with-zlib \
 		--with-posix-acl \
 		--with-e2fsattrs \
 		--with-config_file=${PREFIX}/etc/aide.conf
 CONFIGURE_ENV=	YACC="bison -y" \
-		POSIX_ACL_CFLAGS="-I/usr/include/sys" \
-		POSIX_ACL_LIBS="-L/usr/lib" \
-		MHASH_CFLAGS="-I${LOCALBASE}/include" \
-		MHASH_LIBS="-L${LOCALBASE}/lib -lmhash"
+		POSIX_ACL_CFLAGS="-I/usr/include" \
+		POSIX_ACL_LIBS="-L/usr/lib"
 
 LDFLAGS+=	-lpthread
+
+OPTIONS_RADIO=		CRYPT
+OPTIONS_RADIO_CRYPT=	GCRYPT NETTLE
+OPTIONS_DEFAULT=	GCRYPT
+
+GCRYPT_DESC=	Use GNU crypto library (libgcrypt) for hashsums
+NETTLE_DESC=	Use Nettle crypto library for hashsums
+
+GCRYPT_CONFIGURE_WITH=	gcrypt
+GCRYPT_LIB_DEPENDS=	libgcrypt.so:security/libgcrypt
+NETTLE_CONFIGURE_WITH=	nettle
+NETTLE_LIB_DEPENDS=	libnettle.so:security/nettle
 
 SUB_FILES=	pkg-message
 

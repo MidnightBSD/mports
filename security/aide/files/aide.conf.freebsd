@@ -72,7 +72,7 @@
 # details.)
 #
 
-database=file:///var/db/aide/databases/aide.db
+database_in=file:///var/db/aide/databases/aide.db
 database_out=file:///var/db/aide/databases/aide.db.new
 
 
@@ -91,13 +91,13 @@ database_out=file:///var/db/aide/databases/aide.db.new
 /kernel		R
 
 # /bin
-/bin		R-tiger-rmd160-sha1
+/bin		R
 
 # /dev
 /dev	 	L
 
 # /etc
-/etc			R-tiger-rmd160-sha1
+/etc			R
 /etc/aliases	 	L
 /etc/dumpdates		L
 /etc/motd		L
@@ -114,43 +114,43 @@ database_out=file:///var/db/aide/databases/aide.db.new
 =/home$			L-c
 
 # /lkm
-/lkm			R-tiger-rmd160-sha1
+/lkm			R
 
 # /root
-/root			R-tiger-rmd160-sha1
+/root			R
 /root/.history		L
 
 # /sbin
-/sbin			R-tiger-rmd160-sha1
+/sbin			R
 
 # /stand
-/stand			R-tiger-rmd160-sha1
+/stand			R
 
 # /usr/bin
-/usr/bin		R-tiger-rmd160-sha1
+/usr/bin		R
 
-/usr/include		R-tiger-rmd160-sha1
+/usr/include		R
 
-/usr/lib		R-tiger-rmd160-sha1
+/usr/lib		R
 
-/usr/libdata		R-tiger-rmd160-sha1
+/usr/libdata		R
 
-/usr/libexec		R-tiger-rmd160-sha1
+/usr/libexec		R
 
-/usr/local/bin		R-tiger-rmd160-sha1
+/usr/local/bin		R
 
 /usr/local/etc		L
 
-/usr/local/lib		R-tiger-rmd160-sha1
+/usr/local/lib		R
 
-/usr/local/libexec	R-tiger-rmd160-sha1
+/usr/local/libexec	R
 
-/usr/local/sbin		R-tiger-rmd160-sha1
+/usr/local/sbin		R
 
-/usr/local/share	R-tiger-rmd160-sha1
+/usr/local/share	R
 
-/usr/sbin		R-tiger-rmd160-sha1
+/usr/sbin		R
 
-/usr/share		R-tiger-rmd160-sha1
+/usr/share		R
 
 ###########################################
