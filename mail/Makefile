@@ -10,6 +10,7 @@
     SUBDIR += batv-milter
     SUBDIR += bogofilter
     SUBDIR += bogofilter-bdb
+    SUBDIR += bsfilter
     SUBDIR += chk4mail
     SUBDIR += claws-mail
     SUBDIR += claws-mail-acpi_notifier
