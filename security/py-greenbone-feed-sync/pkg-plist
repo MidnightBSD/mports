@@ -44,7 +44,7 @@ bin/greenbone-scapdata-sync
 %%PYTHON_SITELIBDIR%%/greenbone/tests/test_main.py
 %%PYTHON_SITELIBDIR%%/greenbone/tests/test_parser.py
 %%PYTHON_SITELIBDIR%%/greenbone/tests/test_rsync.py
-%%PYTHON_SITELIBDIR%%/greenbone_feed_sync-25.1.0.dist-info/LICENSE
+%%PYTHON_SITELIBDIR%%/greenbone_feed_sync-25.1.0.dist-info/licenses/LICENSE
 %%PYTHON_SITELIBDIR%%/greenbone_feed_sync-25.1.0.dist-info/METADATA
 %%PYTHON_SITELIBDIR%%/greenbone_feed_sync-25.1.0.dist-info/RECORD
 %%PYTHON_SITELIBDIR%%/greenbone_feed_sync-25.1.0.dist-info/WHEEL
