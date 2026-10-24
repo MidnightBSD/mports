@@ -174,7 +174,7 @@ bin/notus-subscriber
 %%PYTHON_SITELIBDIR%%/notus/tests/models/test_vulnerability.py
 %%PYTHON_SITELIBDIR%%/notus/tests/test_config.py
 %%PYTHON_SITELIBDIR%%/notus/tests/test_verifier.py
-%%PYTHON_SITELIBDIR%%/notus_scanner-22.6.5.dist-info/LICENSE
+%%PYTHON_SITELIBDIR%%/notus_scanner-22.6.5.dist-info/licenses/LICENSE
 %%PYTHON_SITELIBDIR%%/notus_scanner-22.6.5.dist-info/METADATA
 %%PYTHON_SITELIBDIR%%/notus_scanner-22.6.5.dist-info/RECORD
 %%PYTHON_SITELIBDIR%%/notus_scanner-22.6.5.dist-info/WHEEL
