@@ -13,6 +13,9 @@ WWW=		https://www.postgresql.org/
 
 LICENSE=	pgsql
 
+DEPRECATED=	PostgreSQL 14 reaches end of life on 2026-11-12; upgrade to PostgreSQL 15 or later
+EXPIRATION_DATE=	2026-11-12
+
 .if ${DISTVERSION:C/([0-9]*).*/\1/} >= 10
 CONFLICTS+=	${PORTNAME}9* ${PORTNAME}1[^${PORTVERSION:R:C/.*([0-9]$)/\\1/}]*
 .else
