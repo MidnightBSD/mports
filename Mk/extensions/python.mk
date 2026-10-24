@@ -20,7 +20,7 @@
 #			USES=python:3.11+	# Supports Python 3.11 or later
 #			USES=python:3.11-3.12	# Supports Python 3.11 to 3.12
 #			USES=python:-3.11	# Supports Python up to 3.11
-#			USES=python		# Supports 3.10+
+#			USES=python		# Supports 3.11+
 #
 # NOTE:	<version-spec> should be as specific as possible, matching the versions
 #	upstream declares support for, without being incorrect. In particular,
@@ -337,7 +337,7 @@ ZEROREGS_UNSAFE=	yes
 # What Python version and what Python interpreters are currently supported?
 # When adding a version, please keep the comment in
 # Mk/bsd.default-versions.mk in sync.
-_PYTHON_VERSIONS=		3.11 3.12 3.13 3.13t 3.14 3.15 3.10 2.7 # preferred first
+_PYTHON_VERSIONS=		3.11 3.12 3.13 3.13t 3.14 3.15 2.7 # preferred first
 _PYTHON_PORTBRANCH=		3.11		# ${_PYTHON_VERSIONS:[1]}
 _PYTHON_BASECMD=		${LOCALBASE:S;^${FAKE_DESTDIR};;}/bin/python
 _PYTHON_RELPORTDIR=		lang/python
@@ -445,7 +445,7 @@ DEV_ERROR+=		"USES=python:3 is no longer supported, use USES=python:3.11+ or an 
 _PYTHON_VERSION:=	${PYTHON_DEFAULT}
 
 .  if empty(_PYTHON_ARGS)
-_PYTHON_ARGS=	3.10+
+_PYTHON_ARGS=	3.11+
 .  endif
 
 # Validate Python version whether it meets the version restriction.

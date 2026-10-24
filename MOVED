@@ -693,3 +693,4 @@ www/midori|www/raphael|2026-10-23|Has expired: Depends on WebKitGTK 4.0 and libs
 devel/eric6|devel/eric7|2026-10-23|Has expired: Last Qt5 release (21.11), depends on removed www/py-qt5-webengine and does not start on Python 3.12. Use devel/eric7 instead
 german/eric6|devel/eric7|2026-10-23|Has expired: Translations for removed devel/eric6
 chinese/phpbb3-tw||2026-10-24|Has expired: phpBB 3.0 reached end of life in 2017. Use www/phpbb3 with a Traditional Chinese language pack instead
+lang/python310||2026-10-24|Has expired: Python 3.10 reached end of life in October 2026. Use lang/python312 or newer
