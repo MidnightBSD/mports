@@ -1,6 +1,6 @@
---- codex-rs/core/src/tools/runtimes/apply_patch.rs.orig
+--- codex-rs/core/src/tools/runtimes/apply_patch.rs.orig	2026-10-15 18:57:07 UTC
 +++ codex-rs/core/src/tools/runtimes/apply_patch.rs
-@@ -91,6 +91,16 @@
+@@ -92,6 +92,16 @@ impl ApplyPatchRuntime {
          if !attempt.sandbox_requested {
              return None;
          }
@@ -14,13 +14,13 @@
 +        )) {
 +            return None;
 +        }
-
+ 
          let permissions = effective_permission_profile(
              attempt.exec_server_permissions,
-@@ -178,14 +188,24 @@
+@@ -181,14 +191,24 @@ impl ToolRuntime<ApplyPatchRequest, ApplyPatchRuntimeO
+         let result = codex_apply_patch::apply_patch_with_options(
              &req.action.patch,
              ApplyPatchOptions {
-                 update_file_mode: req.action.update_file_mode(),
 -                // Only reject links when an otherwise-required sandbox was bypassed.
 -                // Executor-managed sandboxes can have SandboxType::None.
 -                follow_symlinks: attempt.sandbox_requested
