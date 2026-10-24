@@ -15,6 +15,9 @@
 # metricbeat_conffile (str):	metricbeat configuration file
 #				relative to ${metricbeat_conf}
 #				Default: metricbeat.yml
+# metricbeat_stop_timeout (int):	Seconds to wait after SIGTERM
+#				before sending SIGKILL
+#				Default: 15
 
 . /etc/rc.subr
 
@@ -28,24 +31,47 @@ load_rc_config $name
 : ${metricbeat_home:="%%DATADIR%%/metricbeat"}
 : ${metricbeat_logs:="/var/log/beats"}
 : ${metricbeat_data:="/var/db/beats/metricbeat"}
+: ${metricbeat_stop_timeout:="15"}
 
 # daemon
 start_precmd=metricbeat_prestart
+stop_cmd=metricbeat_stop
 command=/usr/sbin/daemon
 pidfile="/var/run/${name}"
-command_args="-frP ${pidfile} %%PREFIX%%/sbin/${name} ${metricbeat_flags} --path.config ${metricbeat_config} --path.home ${metricbeat_home} --path.data ${metricbeat_data} --path.logs ${metricbeat_logs} -c ${metricbeat_conffile}"
+child_pidfile="${pidfile}.child"
+command_args="-fr -P ${pidfile} -p ${child_pidfile} %%PREFIX%%/sbin/${name} ${metricbeat_flags} --path.config ${metricbeat_config} --path.home ${metricbeat_home} --path.data ${metricbeat_data} --path.logs ${metricbeat_logs} -c ${metricbeat_conffile}"
 
 metricbeat_prestart() {
 # Have to empty rc_flags so they don't get passed to daemon(8)
 	rc_flags=""
 }
 
-# metricbeat will refuse to quit if linprocfs is mounted, and sadly requires -9
-[ -f /compat/linux/proc/cpuinfo ] && stop_cmd=metricbeat_stop
-
+# daemon(8) forwards SIGTERM to the beat and stops restarting it.  A beat
+# still running after metricbeat_stop_timeout seconds (seen with linprocfs
+# mounted) is killed along with daemon(8), so that no orphaned beat keeps
+# the data path locked.
 metricbeat_stop() {
-	pkill -9 -F ${pidfile} > /dev/null 2>&1
-	pkill -9 -F ${pidfile}.child > /dev/null 2>&1
+	local _cpid _pids
+
+	_cpid=$(check_pidfile ${child_pidfile} %%PREFIX%%/sbin/${name})
+	# instances started without -p have no child pidfile
+	if [ -z "${_cpid}" -a -n "${rc_pid}" ]; then
+		_cpid=$(pgrep -P ${rc_pid})
+	fi
+	_pids=$(echo ${rc_pid} ${_cpid})
+	if [ -z "${_pids}" ]; then
+		_run_rc_notrunning
+		return 1
+	fi
+
+	echo "Stopping ${name}."
+	kill -TERM ${rc_pid:-${_cpid}}
+	if ! pwait -t ${metricbeat_stop_timeout} ${_pids} 2>/dev/null; then
+		echo "${name} did not exit after ${metricbeat_stop_timeout}s, sending SIGKILL."
+		kill -KILL ${_pids} 2>/dev/null
+		wait_for_pids ${_pids}
+	fi
+	rm -f ${pidfile} ${child_pidfile}
 }
 
 run_rc_command "$1"
