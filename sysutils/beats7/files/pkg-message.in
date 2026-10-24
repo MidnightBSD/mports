@@ -6,6 +6,21 @@ The modules.d and monitors.d files are now installed into
 
 See README file in %%ETCDIR%% for respective beat information.
 
+Metricbeat system metrics require an enabled system module. To enable it:
+
+  cp -n %%EXAMPLESDIR%%/metricbeat.modules.d/system.yml \
+    %%ETCDIR%%/metricbeat.modules.d/system.yml
+
+CPU, load and process metrics require linprocfs mounted at /compat/linux/proc.
+If it is not already mounted, add this line to /etc/fstab:
+
+  linprocfs /compat/linux/proc linprocfs rw 0 0
+
+Then create the mount point and mount it:
+
+  mkdir -p /compat/linux/proc
+  mount /compat/linux/proc
+
 See UPDATING file in ports top level directory for list of breaking changes.
 EOM
 }
