@@ -15,6 +15,9 @@
 # heartbeat_conffile (str):	heartbeat configuration file
 #				relative to ${heartbeat_conf}
 #				Default: heartbeat.yml
+# heartbeat_stop_timeout (int):	Seconds to wait after SIGTERM
+#				before sending SIGKILL
+#				Default: 15
 
 . /etc/rc.subr
 
@@ -28,17 +31,48 @@ load_rc_config $name
 : ${heartbeat_home:="%%DATADIR%%/heartbeat"}
 : ${heartbeat_logs:="/var/log/beats"}
 : ${heartbeat_data:="/var/db/beats/heartbeat"}
+: ${heartbeat_stop_timeout:="15"}
 
 
 # daemon
 start_precmd=heartbeat_prestart
+stop_cmd=heartbeat_stop
 command=/usr/sbin/daemon
 pidfile="/var/run/${name}"
-command_args="-frP ${pidfile} %%PREFIX%%/sbin/${name} ${heartbeat_flags} --path.config ${heartbeat_config} --path.home ${heartbeat_home} --path.data ${heartbeat_data} --path.logs ${heartbeat_logs} -c ${heartbeat_conffile}"
+child_pidfile="${pidfile}.child"
+command_args="-fr -P ${pidfile} -p ${child_pidfile} %%PREFIX%%/sbin/${name} ${heartbeat_flags} --path.config ${heartbeat_config} --path.home ${heartbeat_home} --path.data ${heartbeat_data} --path.logs ${heartbeat_logs} -c ${heartbeat_conffile}"
 
 heartbeat_prestart() {
 # Have to empty rc_flags so they don't get passed to daemon(8)
 	rc_flags=""
+}
+
+# daemon(8) forwards SIGTERM to the beat and stops restarting it.  A beat
+# still running after heartbeat_stop_timeout seconds (seen with linprocfs
+# mounted) is killed along with daemon(8), so that no orphaned beat keeps
+# the data path locked.
+heartbeat_stop() {
+	local _cpid _pids
+
+	_cpid=$(check_pidfile ${child_pidfile} %%PREFIX%%/sbin/${name})
+	# instances started without -p have no child pidfile
+	if [ -z "${_cpid}" -a -n "${rc_pid}" ]; then
+		_cpid=$(pgrep -P ${rc_pid})
+	fi
+	_pids=$(echo ${rc_pid} ${_cpid})
+	if [ -z "${_pids}" ]; then
+		_run_rc_notrunning
+		return 1
+	fi
+
+	echo "Stopping ${name}."
+	kill -TERM ${rc_pid:-${_cpid}}
+	if ! pwait -t ${heartbeat_stop_timeout} ${_pids} 2>/dev/null; then
+		echo "${name} did not exit after ${heartbeat_stop_timeout}s, sending SIGKILL."
+		kill -KILL ${_pids} 2>/dev/null
+		wait_for_pids ${_pids}
+	fi
+	rm -f ${pidfile} ${child_pidfile}
 }
 
 run_rc_command "$1"
