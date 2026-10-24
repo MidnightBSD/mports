@@ -1,6 +1,7 @@
 PORTNAME=	editorconfig-core-c
 PORTVERSION=	0.12.9
 DISTVERSIONPREFIX=	v
+PORTREVISION=	1
 CATEGORIES=	editors
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -19,8 +20,6 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	editorconfig
 
 USE_LDCONFIG=	yes
-
-CONFLICTS_INSTALL=	py*-editorconfig
 
 PLIST_SUB=	PORTVERSION=${PORTVERSION} \
 		SHLIB_MAJOR=${PORTVERSION:C/\..+//} \
