@@ -1,0 +1,6 @@
+--- Makefile.am.orig	2026-10-24 15:12:08 UTC
++++ Makefile.am
+@@ -27,2 +27,3 @@
+ minizip_includedir = $(includedir)/minizip
+ minizip_include_HEADERS = \
++	ints.h \
