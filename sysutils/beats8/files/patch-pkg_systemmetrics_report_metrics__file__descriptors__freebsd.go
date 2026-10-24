@@ -1,6 +1,6 @@
 --- pkg/systemmetrics/report/metrics_file_descriptors_freebsd.go.orig	1970-01-01 00:00:00 UTC
 +++ pkg/systemmetrics/report/metrics_file_descriptors_freebsd.go
-@@ -0,0 +1,58 @@
+@@ -0,0 +1,68 @@
 +// Licensed to Elasticsearch B.V. under one or more contributor
 +// license agreements. See the NOTICE file distributed with
 +// this work for additional information regarding copyright
@@ -23,12 +23,13 @@
 +package report
 +
 +import (
-+	"os"
 +	"syscall"
 +
 +	"github.com/elastic/beats/v7/pkg/systemmetrics/metric/system/process"
 +	"github.com/elastic/elastic-agent-libs/logp"
 +	"github.com/elastic/elastic-agent-libs/monitoring"
++	"github.com/elastic/go-sysinfo"
++	"github.com/elastic/go-sysinfo/types"
 +)
 +
 +func SetupLinuxBSDFDMetrics(logger *logp.Logger, reg *monitoring.Registry, processStats *process.Stats) {
@@ -40,8 +41,17 @@
 +		v.OnRegistryStart()
 +		defer v.OnRegistryFinished()
 +
-+		// linprocfs exposes descriptor entries for the current process.
-+		fds, err := os.ReadDir("/compat/linux/proc/self/fd")
++		self, err := sysinfo.Self()
++		if err != nil {
++			logger.Errorf("Error while retrieving self process: %v", err)
++			return
++		}
++		counter, ok := self.(types.OpenHandleCounter)
++		if !ok {
++			logger.Errorf("Self process provider does not support descriptor counts")
++			return
++		}
++		open, err := counter.OpenHandleCount()
 +		if err != nil {
 +			logger.Errorf("Error while retrieving open FDs information: %v", err)
 +			return
@@ -52,7 +62,7 @@
 +			return
 +		}
 +
-+		monitoring.ReportInt(v, "open", int64(len(fds)))
++		monitoring.ReportInt(v, "open", int64(open))
 +		monitoring.ReportNamespace(v, "limit", func() {
 +			monitoring.ReportInt(v, "hard", int64(limits.Max))
 +			monitoring.ReportInt(v, "soft", int64(limits.Cur))
