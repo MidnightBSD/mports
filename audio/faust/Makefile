@@ -1,6 +1,6 @@
 PORTNAME=	faust
 DISTVERSION=	2.85.5
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	audio devel
 MASTER_SITES=	https://github.com/grame-cncm/faust/releases/download/${DISTVERSION}/
 
@@ -11,8 +11,38 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Functional programming language for realtime audio signal processing
 WWW=		https://faust.grame.fr/
 
-LICENSE=	gpl2
-LICENSE_FILE=	${WRKSRC}/COPYING.txt
+# Covers the compiler and bundled source/templates, not every generated DSP.
+# Original notices and additional Faust/Bison permissions are in DOCSDIR/NOTICE.
+LICENSE=	Apache-2.0 CC-BY-4.0 agpl bsd bsd0 bsd3 gpl2+ gpl3 gpl3+ \
+		iscl lgpl+ lgpl2.1+ lgpl3 lgpl3+ mit publicdom unlicense \
+		AppleSample Espressif FaustArchitecture
+LICENSE_COMB=	multi
+LICENSE_NAME_AppleSample=	Apple sample code license
+LICENSE_NAME_Espressif=	Espressif MIT license (Espressif products only)
+LICENSE_NAME_FaustArchitecture=	Faust permissive sample architecture license
+LICENSE_FILE_Apache-2.0=	${FILESDIR}/LICENSE.Apache-2.0
+LICENSE_FILE_CC-BY-4.0=	${FILESDIR}/LICENSE.CC-BY-4.0
+LICENSE_FILE_agpl=	${PORTSDIR}/Templates/Licenses/agpl
+LICENSE_FILE_bsd=	${FILESDIR}/LICENSE.BSD
+LICENSE_FILE_bsd0=	${FILESDIR}/LICENSE.0BSD
+LICENSE_FILE_bsd3=	${FILESDIR}/LICENSE.BSD3
+LICENSE_FILE_gpl2+ =	${PORTSDIR}/Templates/Licenses/gpl2
+LICENSE_FILE_gpl3=	${PORTSDIR}/Templates/Licenses/gpl3
+LICENSE_FILE_gpl3+ =	${PORTSDIR}/Templates/Licenses/gpl3
+LICENSE_FILE_iscl=	${FILESDIR}/LICENSE.ISC
+LICENSE_FILE_lgpl+ =	${PORTSDIR}/Templates/Licenses/lgpl
+LICENSE_FILE_lgpl2.1+ =	${WRKSRC}/COPYING.txt
+LICENSE_FILE_lgpl3=	${PORTSDIR}/Templates/Licenses/lgpl3
+LICENSE_FILE_lgpl3+ =	${PORTSDIR}/Templates/Licenses/lgpl3
+LICENSE_FILE_mit=	${WRKSRC}/architecture/osclib/oscpack/LICENSE
+LICENSE_FILE_publicdom=	${FILESDIR}/LICENSE.PublicDomain
+LICENSE_FILE_unlicense=	${FILESDIR}/LICENSE.Unlicense
+LICENSE_FILE_AppleSample=	${FILESDIR}/LICENSE.AppleSample
+LICENSE_FILE_Espressif=	${FILESDIR}/LICENSE.Espressif
+LICENSE_FILE_FaustArchitecture=	${FILESDIR}/LICENSE.FaustArchitecture
+LICENSE_PERMS_AppleSample=dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+LICENSE_PERMS_Espressif=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+LICENSE_PERMS_FaustArchitecture=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 LLVM_VER=	19
 
@@ -70,6 +100,8 @@ post-install:
 	@${RM} -r ${PREFIX}/lib/faust
 	@${FIND} ${PREFIX} -name android | ${XARGS} ${RM} -r
 	${REINPLACE_CMD} -i '' -e 's| printsupport||g' ${PREFIX}/bin/faust2*
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${FILESDIR}/NOTICE ${DOCSDIR}/NOTICE
 
 post-install-HIGHLIGHT-on:
 	# 1) kate

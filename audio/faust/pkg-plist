@@ -1003,4 +1003,6 @@ share/gtksourceview-3.0/language-specs/faust.lang
 share/highlight/langDefs/dsp.lang
 share/man/man1/faust.1.gz
 %%HIGHLIGHT%%share/vim/vimfiles/syntax/faust.vim
+%%DOCSDIR%%/NOTICE
 @dir %%DATADIR%%/max-msp/py2max
+@dir %%DOCSDIR%%
