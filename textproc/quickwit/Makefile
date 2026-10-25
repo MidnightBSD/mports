@@ -1,23 +1,26 @@
 PORTNAME=	quickwit
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.8.2
-PORTREVISION=	7
+DISTVERSION=	0.9.3
 CATEGORIES=	textproc
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sub-second search & analytics engine on cloud storage
 WWW=		https://quickwit.io/
 
-LICENSE=	agpl
-LICENSE_FILE=	${WRKSRC}/LICENSE_AGPLv3.0.txt
+LICENSE=	Apache-2.0
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${LOCALBASE}/bin/protoc:devel/protobuf
+BUILD_DEPENDS=	${RUST_DEFAULT}>=1.96.0:lang/${RUST_DEFAULT} \
+		${LOCALBASE}/bin/protoc:devel/protobuf
 LIB_DEPENDS=	libzstd.so:archivers/zstd
 
 USES=			cargo pkgconfig
 USE_GITHUB=		yes
 GH_ACCOUNT=		quickwit-oss
 #GH_TUPLE=		quickwit-oss:rust-sasl:daca921:rust_sasl/cargo-crates/sasl2-sys
+CARGO_BUILDDEP=	no
+RUSTFLAGS+=	--cfg tokio_unstable
+
 CARGO_CARGOLOCK=	${WRKSRC}/${PORTNAME}/Cargo.lock
 CARGO_CARGOTOML=	${WRKSRC}/${PORTNAME}/Cargo.toml
 CARGO_INSTALL_PATH=	${PORTNAME}/quickwit-cli

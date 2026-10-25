@@ -1,6 +1,17 @@
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20261024:
+	textproc/quickwit has been updated from 0.8.2 to 0.9.3. Before
+	starting 0.9, back up the metastore and stop all 0.8.x nodes;
+	mixed-version clusters are not supported. PostgreSQL metastore
+	migrations run on first start, and rollback requires restoring
+	the backup. File-backed metastores require a copy of indexes/.
+
+	Ingest V2 is now the default at /api/v1/{index}/ingest. The
+	/api/v1/{index}/ingest-v2 route has been removed. Review the
+	packaged get-started/upgrade.md guide before upgrading.
+
 20261021:
 	security/openssl updated from OpenSSL 3.0 (end-of-life) to 3.5 LTS;
 	the security/openssl35 port was renamed to security/openssl.
