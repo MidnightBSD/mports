@@ -228,7 +228,7 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		wasm-bindgen-shared-0.2.101 \
 		web-sys-0.3.78 \
 		web-time-1.1.0 \
-		webpki-roots-1.0.2 \
+		webpki-roots-1.0.11 \
 		winapi-0.3.9 \
 		winapi-i686-pc-windows-gnu-0.4.0 \
 		winapi-util-0.1.11 \

@@ -1,4 +1,4 @@
-TIMESTAMP = 1778549090
+TIMESTAMP = 1792887739
 SHA256 (rust/crates/addr2line-0.24.2.crate) = dfbe277e56a376000877090da837660b4427aad530e3028d44e0bffe4f89a1c1
 SIZE (rust/crates/addr2line-0.24.2.crate) = 39015
 SHA256 (rust/crates/adler2-2.0.1.crate) = 320119579fcad9c21884f5c4861d16174d0e06250625266f50fe6898340abefa
@@ -459,8 +459,8 @@ SHA256 (rust/crates/web-sys-0.3.78.crate) = 77e4b637749ff0d92b8fad63aa1f7cff3cbe
 SIZE (rust/crates/web-sys-0.3.78.crate) = 642410
 SHA256 (rust/crates/web-time-1.1.0.crate) = 5a6580f308b1fad9207618087a65c04e7a10bc77e02c8e84e9b00dd4b12fa0bb
 SIZE (rust/crates/web-time-1.1.0.crate) = 18026
-SHA256 (rust/crates/webpki-roots-1.0.2.crate) = 7e8983c3ab33d6fb807cfcdad2491c4ea8cbc8ed839181c7dfd9c67c83e261b2
-SIZE (rust/crates/webpki-roots-1.0.2.crate) = 255109
+SHA256 (rust/crates/webpki-roots-1.0.11.crate) = f5f280bbb2b287bc8e7de7e3852945a0ff50d1bbcb5ed42b6c7a568c546df171
+SIZE (rust/crates/webpki-roots-1.0.11.crate) = 214596
 SHA256 (rust/crates/winapi-0.3.9.crate) = 5c839a674fcd7a98952e593242ea400abe93992746761e38641405d28b00f419
 SIZE (rust/crates/winapi-0.3.9.crate) = 1200382
 SHA256 (rust/crates/winapi-i686-pc-windows-gnu-0.4.0.crate) = ac3b87c63620426dd9b991e5ce0329eff545bccbbb34f3be09ff6fb6ab51b7b6
