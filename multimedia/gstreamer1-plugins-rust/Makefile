@@ -14,7 +14,9 @@ LICENSE_FILE_mit=	${WRKSRC}/LICENSE-MIT
 LICENSE_FILE_MPL20=	${WRKSRC}/LICENSE-MPL-2.0
 
 BUILD_DEPENDS=	cargo-cbuild:devel/cargo-c \
-		${PY_TOMLI}
+		${PY_TOMLI} \
+		${RUST_DEFAULT}>=1.92.0:lang/${RUST_DEFAULT}
+BUILD_RUN_DEPENDS=	gstreamer1-validate>=1.22:multimedia/gstreamer1-validate
 
 USES=		cargo gnome gstreamer meson pkgconfig python:build shebangfix ssl
 USE_GITLAB=	yes
@@ -33,6 +35,7 @@ MESON_ARGS=	-Ddoc=disabled -Dskia=disabled
 MESON_ARGS+=	-Dvvdec=disabled
 
 CARGO_BUILD=	no
+CARGO_BUILDDEP=	no
 CARGO_INSTALL=	no
 CARGO_TEST=	no
 
