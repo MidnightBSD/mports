@@ -1165,8 +1165,8 @@ CARGO_CRATES=	Inflector-0.11.4 \
 		web-sys-0.3.85 \
 		web-time-1.1.0 \
 		webbrowser-1.2.4 \
-		webpki-root-certs-1.0.5 \
-		webpki-roots-1.0.5 \
+		webpki-root-certs-1.0.11 \
+		webpki-roots-1.0.11 \
 		webrtc-0.20.3 \
 		weezl-0.1.12 \
 		wezterm-bidi-0.2.3 \
