@@ -722,10 +722,10 @@ CARGO_CRATES=	adler2-2.0.0 \
 		web_atoms-0.2.4 \
 		webkit2gtk-2.0.2 \
 		webkit2gtk-sys-2.0.2 \
-		webpki-root-certs-1.0.2 \
+		webpki-root-certs-1.0.11 \
 		webpki-roots-0.25.3 \
-		webpki-roots-0.26.2 \
-		webpki-roots-1.0.2 \
+		webpki-roots-0.26.11 \
+		webpki-roots-1.0.11 \
 		webview2-com-0.38.0 \
 		webview2-com-macros-0.8.0 \
 		webview2-com-sys-0.38.0 \

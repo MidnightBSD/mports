@@ -1,6 +1,7 @@
 PORTNAME=	artcraft
 DISTVERSIONPREFIX=	artcraft-v
 DISTVERSION=	0.41.0
+PORTREVISION=	1
 CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org
