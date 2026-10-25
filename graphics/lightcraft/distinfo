@@ -1,4 +1,4 @@
-TIMESTAMP = 1791734164
+TIMESTAMP = 1792887719
 SHA256 (rust/crates/ab_glyph-0.2.32.crate) = 01c0457472c38ea5bd1c3b5ada5e368271cb550be7a4ca4a0b4634e9913f6cc2
 SIZE (rust/crates/ab_glyph-0.2.32.crate) = 20967
 SHA256 (rust/crates/ab_glyph_rasterizer-0.1.10.crate) = 366ffbaa4442f4684d91e2cd7c5ea7c4ed8add41959a31447066e279e432b618
@@ -1087,8 +1087,8 @@ SHA256 (rust/crates/web-sys-0.3.106.crate) = 88261b9deccee56594c11a3460c462c41f5
 SIZE (rust/crates/web-sys-0.3.106.crate) = 682645
 SHA256 (rust/crates/web-time-1.1.0.crate) = 5a6580f308b1fad9207618087a65c04e7a10bc77e02c8e84e9b00dd4b12fa0bb
 SIZE (rust/crates/web-time-1.1.0.crate) = 18026
-SHA256 (rust/crates/webpki-roots-1.0.9.crate) = 7dcd9d09a39985f5344844e66b0c530a33843579125f23e21e9f0f220850f22a
-SIZE (rust/crates/webpki-roots-1.0.9.crate) = 217462
+SHA256 (rust/crates/webpki-roots-1.0.11.crate) = f5f280bbb2b287bc8e7de7e3852945a0ff50d1bbcb5ed42b6c7a568c546df171
+SIZE (rust/crates/webpki-roots-1.0.11.crate) = 214596
 SHA256 (rust/crates/weezl-0.1.12.crate) = a28ac98ddc8b9274cb41bb4d9d4d5c425b6020c50c46f25559911905610b4a88
 SIZE (rust/crates/weezl-0.1.12.crate) = 46045
 SHA256 (rust/crates/wgpu-30.0.1.crate) = 527ccdf43dd5b2e8676eed9984ce00e2bbb0a1b85b70c1969dcb6cd2eb55ab9e
