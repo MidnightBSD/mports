@@ -7,10 +7,9 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Various GStreamer plugins written in Rust
 WWW=		https://gitlab.freedesktop.org/gstreamer/gst-plugins-rs
 
-LICENSE=		Apache-2.0 lgpl2.1+ mit MPL20
+LICENSE=		Apache-2.0 mit MPL20
 LICENSE_COMB=		multi
 LICENSE_FILE_Apache-2.0=	${WRKSRC}/LICENSE-APACHE
-LICENSE_FILE_lgpl2.1+ =	${WRKSRC}/LICENSE-LGPLv2
 LICENSE_FILE_mit=	${WRKSRC}/LICENSE-MIT
 LICENSE_FILE_MPL20=	${WRKSRC}/LICENSE-MPL-2.0
 
