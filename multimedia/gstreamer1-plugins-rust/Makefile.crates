@@ -921,9 +921,9 @@ CARGO_CRATES=	addr2line-0.25.1 \
 		web-transport-trait-0.3.6 \
 		webm-iterable-0.6.4 \
 		webpki-0.22.4 \
-		webpki-root-certs-1.0.8 \
+		webpki-root-certs-1.0.11 \
 		webpki-roots-0.26.11 \
-		webpki-roots-1.0.8 \
+		webpki-roots-1.0.11 \
 		weezl-0.1.12 \
 		wgpu-29.0.3 \
 		wgpu-core-29.0.3 \

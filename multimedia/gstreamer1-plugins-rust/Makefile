@@ -1,6 +1,6 @@
 PORTNAME=	gstreamer1-plugins-rust
 DISTVERSION=	${_GST_VERSION}
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	multimedia
 
 MAINTAINER=	ports@MidnightBSD.org
