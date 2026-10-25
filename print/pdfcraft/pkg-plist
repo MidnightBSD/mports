@@ -22,6 +22,19 @@ share/mime/packages/ai.storyteller.pdfcraft.xml
 %%DOCSDIR%%/LICENSE-MIT
 %%DOCSDIR%%/NOTICE
 %%DOCSDIR%%/README.md
+%%DOCSDIR%%/licenses/CGATS_LICENSE.txt
+%%DOCSDIR%%/licenses/Hack-Regular.txt
+%%DOCSDIR%%/licenses/LICENSE-CMap.txt
+%%DOCSDIR%%/licenses/LICENSE-app-icon.txt
+%%DOCSDIR%%/licenses/LICENSE-lucide.txt
+%%DOCSDIR%%/licenses/LICENSE_FOXIT
+%%DOCSDIR%%/licenses/OFL-DancingScript.txt
+%%DOCSDIR%%/licenses/OFL-Inter.txt
+%%DOCSDIR%%/licenses/OFL-JetBrainsMono.txt
+%%DOCSDIR%%/licenses/OFL-NotoEmoji.txt
+%%DOCSDIR%%/licenses/UFL.txt
+%%DOCSDIR%%/licenses/emoji-icon-font-mit-license.txt
+@dir %%DOCSDIR%%/licenses
 @dir %%DATADIR%%/models
 @dir %%DATADIR%%
 @dir %%DOCSDIR%%

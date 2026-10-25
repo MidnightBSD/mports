@@ -1,6 +1,6 @@
 PORTNAME=	pdfcraft
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.8.0
+DISTVERSION=	0.13.0
 CATEGORIES=	print
 MASTER_SITES=	https://ocrs-models.s3-accelerate.amazonaws.com/:models \
 		https://creativecommons.org/licenses/by-sa/4.0/:modellicense
@@ -13,12 +13,30 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PDF editor and command-line tools
 WWW=		https://github.com/storytold/pdfcraft
 
-LICENSE=	mit CC-BY-SA-4.0
+LICENSE=	mit CC-BY-SA-4.0 iscl OFL11 bsd3 CC0-1.0 UFL BitstreamVera
 LICENSE_COMB=	multi
+LICENSE_NAME_UFL=	Ubuntu Font Licence 1.0
+LICENSE_NAME_BitstreamVera=	Bitstream Vera Font License
 LICENSE_FILE_mit=	${WRKSRC}/LICENSE-MIT
 LICENSE_FILE_CC-BY-SA-4.0=	${DISTDIR}/legalcode.txt
-LICENSE_DISTFILES_mit=	${DISTNAME}${EXTRACT_SUFX}
+LICENSE_FILE_iscl=	${WRKSRC}/assets/icons/LICENSE-lucide.txt
+LICENSE_FILE_OFL11=	${WRKSRC}/assets/fonts/OFL-Inter.txt
+LICENSE_FILE_bsd3=	${WRKSRC}/vendor/hayro-cmap/assets/LICENSE.txt
+LICENSE_FILE_CC0-1.0=	${WRKSRC}/vendor/hayro-interpret/assets/CGATS_LICENSE.txt
+LICENSE_FILE_UFL=	${EGUI_FONTS_DIR}/UFL.txt
+LICENSE_FILE_BitstreamVera=	${EGUI_FONTS_DIR}/Hack-Regular.txt
+LICENSE_PERMS_UFL=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+LICENSE_PERMS_BitstreamVera=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+LICENSE_DISTFILES_mit=	${DISTNAME}${EXTRACT_SUFX} \
+		rust/crates/epaint_default_fonts-0.36.2.crate
 LICENSE_DISTFILES_CC-BY-SA-4.0=	text-detection.rten text-recognition.rten legalcode.txt
+LICENSE_DISTFILES_iscl=	${DISTNAME}${EXTRACT_SUFX}
+LICENSE_DISTFILES_OFL11=	${DISTNAME}${EXTRACT_SUFX} \
+		rust/crates/epaint_default_fonts-0.36.2.crate
+LICENSE_DISTFILES_bsd3=	${DISTNAME}${EXTRACT_SUFX}
+LICENSE_DISTFILES_CC0-1.0=	${DISTNAME}${EXTRACT_SUFX}
+LICENSE_DISTFILES_UFL=	rust/crates/epaint_default_fonts-0.36.2.crate
+LICENSE_DISTFILES_BitstreamVera=	rust/crates/epaint_default_fonts-0.36.2.crate
 
 ONLY_FOR_ARCHS=	amd64
 ONLY_FOR_ARCHS_REASON=	Upstream FreeBSD build is tested only on x86_64
@@ -46,7 +64,13 @@ CARGO_BUILD_ARGS=	-p pdfcraft -p pdfcraft-cli
 CARGO_TEST_ARGS=	-p pdfcraft -p pdfcraft-cli
 CARGO_ENV+=	CARGO_PROFILE_RELEASE_LTO=false \
 		CARGO_PROFILE_RELEASE_CODEGEN_UNITS=16
+EGUI_FONTS_DIR=	${CARGO_VENDOR_DIR}/epaint_default_fonts-0.36.2/fonts
 WITHOUT_LTO=	yes
+
+post-patch:
+	${REINPLACE_CMD} \
+		-e 's|PathBuf::from("/etc/fonts")|PathBuf::from("${LOCALBASE}/etc/fonts")|' \
+		${WRKSRC}/crates/ui-egui/src/system_fonts/fontconfig.rs
 
 do-install:
 	${INSTALL_PROGRAM} ${CARGO_TARGET_DIR}/${CARGO_BUILD_TARGET}/release/pdfcraft \
@@ -61,7 +85,7 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/packaging/linux/ai.storyteller.pdfcraft.mime.xml \
 		${PREFIX}/share/mime/packages/ai.storyteller.pdfcraft.xml
 	${SED} -e 's/@VERSION@/${DISTVERSION}/g' \
-		-e 's/@DATE@/2026-10-14/g' \
+		-e 's/@DATE@/2026-10-23/g' \
 		${WRKSRC}/packaging/linux/ai.storyteller.pdfcraft.metainfo.xml.in \
 		> ${PREFIX}/share/metainfo/ai.storyteller.pdfcraft.metainfo.xml
 	(cd ${WRKSRC}/assets/app-icon && ${COPYTREE_SHARE} hicolor ${PREFIX}/share/icons/)
@@ -76,5 +100,21 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/README.md ${WRKSRC}/NOTICE \
 		${WRKSRC}/LICENSE-MIT ${WRKSRC}/LICENSE-APACHE \
 		${WRKSRC}/ATTRIBUTION.md ${DOCSDIR}/
+
+	${MKDIR} ${DOCSDIR}/licenses
+	${INSTALL_DATA} ${WRKSRC}/assets/icons/LICENSE-lucide.txt \
+		${WRKSRC}/assets/fonts/OFL-*.txt ${DOCSDIR}/licenses/
+	${INSTALL_DATA} ${WRKSRC}/assets/app-icon/LICENSE.txt \
+		${DOCSDIR}/licenses/LICENSE-app-icon.txt
+	${INSTALL_DATA} ${WRKSRC}/vendor/hayro-interpret/assets/LICENSE_FOXIT \
+		${WRKSRC}/vendor/hayro-interpret/assets/CGATS_LICENSE.txt \
+		${DOCSDIR}/licenses/
+	${INSTALL_DATA} ${WRKSRC}/vendor/hayro-cmap/assets/LICENSE.txt \
+		${DOCSDIR}/licenses/LICENSE-CMap.txt
+	${INSTALL_DATA} ${EGUI_FONTS_DIR}/Hack-Regular.txt \
+		${EGUI_FONTS_DIR}/UFL.txt \
+		${EGUI_FONTS_DIR}/emoji-icon-font-mit-license.txt ${DOCSDIR}/licenses/
+	${INSTALL_DATA} ${EGUI_FONTS_DIR}/OFL.txt \
+		${DOCSDIR}/licenses/OFL-NotoEmoji.txt
 
 .include <bsd.port.mk>
