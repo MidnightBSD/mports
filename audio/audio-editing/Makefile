@@ -1,5 +1,6 @@
 PORTNAME=	audio-editing
 PORTVERSION=	1.0
+PORTREVISION=	1
 CATEGORIES=	audio
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -27,4 +28,10 @@ RUN_DEPENDS=	audacity>0:audio/audacity \
 
 USES=		metaport
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if ${ARCH} == "amd64"
+RUN_DEPENDS+=	soundcraft>0:audio/soundcraft
+.endif
+
+.include <bsd.port.post.mk>
