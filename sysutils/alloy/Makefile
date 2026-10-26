@@ -1,6 +1,6 @@
 PORTNAME=	alloy
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.20.1
+DISTVERSION=	1.21.2
 CATEGORIES=	sysutils
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 LIB_DEPENDS=	libelf.so:devel/elfutils
 
 # no_targets: we supply do-build/do-install for the collector submodule.
-USES=		go:1.26,modules,no_targets
+USES=		go:1.27,modules,no_targets
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	grafana
@@ -29,6 +29,13 @@ USE_RC_SUBR=	${PORTNAME}
 GO_MODULE=	github.com/${GH_ACCOUNT}/${GH_PROJECT}
 GO_BUILDFLAGS=	-ldflags='-X github.com/grafana/alloy/internal/build.Version=${GH_TAGNAME}'
 
+# CVE-2026-111497: andybalholm/brotli before 1.2.7 mishandles invalid block
+# switches. Fetch the fixed module and require it in collector/ (the module
+# the binary is built from) before it is vendored. The module cache entry is
+# checked against GOSUMDB at fetch time, so the extract step can trust it
+# offline.
+GO_BROTLI_FIX=	github.com/andybalholm/brotli@v1.2.7
+
 # The main go.mod has "replace ./syntax => ./syntax".  go-post-fetch (800)
 # runs go mod download from DIST_SUBDIR and needs syntax/go.mod present.
 # post-fetch runs at priority 700, after do-fetch (500) downloads the tarball.
@@ -37,6 +44,8 @@ post-fetch:
 		${MKDIR} syntax; \
 		${TAR} -xzf ${DISTNAME}${EXTRACT_SUFX} ${PORTNAME}-${DISTVERSION}/syntax/go.mod; \
 		${CP} ${PORTNAME}-${DISTVERSION}/syntax/go.mod syntax/go.mod))
+	@(cd ${DISTDIR}/${DIST_SUBDIR}; ${SETENVI} ${WRK_ENV} ${GO_ENV} \
+		GOPROXY=${GO_GOPROXY} ${GO_CMD} mod download -x ${GO_BROTLI_FIX})
 
 # collector/ is a separate Go module with its own dependencies.  Download
 # them at fetch time; extract has no network access in poudriere.
@@ -57,6 +66,8 @@ _USES_extract+=	900:alloy-vendor-collector
 alloy-vendor-collector:
 	@${ECHO_MSG} "===> Vendoring collector submodule"; \
 	(cd ${WRKSRC}/collector && \
+		${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${GO_ENV} GOPROXY=${GO_MODCACHE} \
+		GONOSUMDB=${GO_BROTLI_FIX:C/@.*//} ${GO_CMD} get ${GO_BROTLI_FIX} && \
 		${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${GO_ENV} GOPROXY=${GO_MODCACHE} \
 		${GO_CMD} mod vendor -e)
 
