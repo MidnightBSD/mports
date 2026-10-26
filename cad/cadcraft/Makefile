@@ -1,16 +1,33 @@
 PORTNAME=	cadcraft
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.6.2
+DISTVERSION=	0.13.0
 CATEGORIES=	cad
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Computer-aided design and drafting application
 WWW=		https://github.com/storytold/cadcraft
 
-LICENSE=	mit Apache-2.0
-LICENSE_COMB=	dual
+LICENSE=	mit OFL11 UFL BitstreamVera AcadrustMPL20 CC0-1.0
+LICENSE_COMB=	multi
+LICENSE_NAME_AcadrustMPL20=	acadrust MPL 2.0 variant
+LICENSE_NAME_UFL=	Ubuntu Font Licence 1.0
+LICENSE_NAME_BitstreamVera=	Bitstream Vera Font License
 LICENSE_FILE_mit=	${WRKSRC}/LICENSE-MIT
-LICENSE_FILE_Apache-2.0=	${WRKSRC}/LICENSE-APACHE
+LICENSE_FILE_OFL11=	${EGUI_FONTS_DIR}/OFL.txt
+LICENSE_FILE_UFL=	${EGUI_FONTS_DIR}/UFL.txt
+LICENSE_FILE_BitstreamVera=	${EGUI_FONTS_DIR}/Hack-Regular.txt
+LICENSE_FILE_AcadrustMPL20=	${FILESDIR}/LICENSE-acadrust.txt
+LICENSE_FILE_CC0-1.0=	${WRKSRC_crate_krilla}/vendor/krilla/icc/LICENSE
+LICENSE_PERMS_AcadrustMPL20=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+LICENSE_PERMS_UFL=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+LICENSE_PERMS_BitstreamVera=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+LICENSE_DISTFILES_mit=	${DISTNAME}${EXTRACT_SUFX} \
+		rust/crates/epaint_default_fonts-0.36.2.crate
+LICENSE_DISTFILES_OFL11=	rust/crates/epaint_default_fonts-0.36.2.crate
+LICENSE_DISTFILES_UFL=	rust/crates/epaint_default_fonts-0.36.2.crate
+LICENSE_DISTFILES_BitstreamVera=	rust/crates/epaint_default_fonts-0.36.2.crate
+LICENSE_DISTFILES_AcadrustMPL20=	rust/crates/acadrust-0.6.5.crate
+LICENSE_DISTFILES_CC0-1.0=	storytold-craft-libs-6e7f28518dd1cb57e1624bdc269c3c14316b13ae_GH0.tar.gz
 
 ONLY_FOR_ARCHS=	amd64
 ONLY_FOR_ARCHS_REASON=	Upstream FreeBSD build is tested only on x86_64
@@ -39,7 +56,8 @@ CARGO_BUILD_ARGS=	-p cadcraft -p cadcraft-cli
 CARGO_TEST_ARGS=	-p cadcraft -p cadcraft-cli
 CARGO_ENV+=	CARGO_PROFILE_RELEASE_LTO=false \
 		CARGO_PROFILE_RELEASE_CODEGEN_UNITS=16 \
-		CADCRAFT_BUILD_SHA=00c7613f1af3c73f7157fa91d9fe2635c6f23c06
+		CADCRAFT_BUILD_SHA=1fcf654ea8414ea2ef052ca2b3b77411f2026f78
+EGUI_FONTS_DIR=	${CARGO_VENDOR_DIR}/epaint_default_fonts-0.36.2/fonts
 WITHOUT_LTO=	yes
 
 do-install:
@@ -54,12 +72,21 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/packaging/linux/ai.storyteller.cadcraft.mime.xml \
 		${PREFIX}/share/mime/packages/ai.storyteller.cadcraft.xml
 	${SED} -e 's/@VERSION@/${DISTVERSION}/g' \
-		-e 's/@DATE@/2026-10-12/g' \
+		-e 's/@DATE@/2026-10-25/g' \
 		${WRKSRC}/packaging/linux/ai.storyteller.cadcraft.metainfo.xml.in \
 		> ${PREFIX}/share/metainfo/ai.storyteller.cadcraft.metainfo.xml
 	(cd ${WRKSRC}/assets/app-icon && ${COPYTREE_SHARE} hicolor ${PREFIX}/share/icons/)
 	${INSTALL_DATA} ${WRKSRC}/README.md ${WRKSRC}/NOTICE \
 		${WRKSRC}/ATTRIBUTION.md ${WRKSRC}/LICENSE-MIT \
 		${WRKSRC}/LICENSE-APACHE ${DOCSDIR}/
+
+	${MKDIR} ${DOCSDIR}/licenses
+	${INSTALL_DATA} ${EGUI_FONTS_DIR}/Hack-Regular.txt \
+		${EGUI_FONTS_DIR}/OFL.txt ${EGUI_FONTS_DIR}/UFL.txt \
+		${EGUI_FONTS_DIR}/emoji-icon-font-mit-license.txt \
+		${FILESDIR}/LICENSE-acadrust.txt \
+		${FILESDIR}/THIRD-PARTY-NOTICES.txt ${DOCSDIR}/licenses/
+	${INSTALL_DATA} ${WRKSRC_crate_krilla}/vendor/krilla/icc/LICENSE \
+		${DOCSDIR}/licenses/LICENSE-ICC-CC0.txt
 
 .include <bsd.port.mk>
