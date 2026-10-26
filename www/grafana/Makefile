@@ -1,6 +1,7 @@
 PORTNAME=	grafana
 DISTVERSIONPREFIX=	v
 DISTVERSION=	13.2.4
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	https://dl.grafana.com/oss/release/ \
 		https://raw.githubusercontent.com/${GH_ACCOUNT}/${GH_PROJECT}/${DISTVERSIONFULL}/:gomod
@@ -95,10 +96,31 @@ GRAFANA_PROVISIONING=	access-control alerting dashboards datasources plugins sam
 
 NO_TEST=	yes
 
+# CVE-2026-111497: andybalholm/brotli before 1.2.7 mishandles invalid block
+# switches. grafana links it through pkg/tsdb/graphite,
+# pkg/tsdb/azuremonitor/loganalytics and arrow-go's parquet compression.
+# Fetch the fixed module, then raise the root module's requirement before the
+# dependencies are tidied and vendored. In workspace mode the build list is
+# the maximum over all go.work modules, so this also covers the v1.2.2
+# requirements in apps/dashboard and pkg/plugins. "go get" cannot be used:
+# it loads the full module graph, which needs cuelang.org/go v0.11.1 (replaced
+# by github.com/grafana/cue in pkg/codegen and so never fetched). "go mod
+# edit" does not load the graph, and the tidy step then records the go.sum
+# entries from the module cache. The cache entry is checked against GOSUMDB
+# at fetch time, so the extract step can trust it offline.
+GO_BROTLI_FIX=	github.com/andybalholm/brotli@v1.2.7
+
+post-fetch:
+	@(cd ${DISTDIR}/${DIST_SUBDIR}; ${SETENVI} ${WRK_ENV} ${GO_ENV} \
+		GOPROXY=${GO_GOPROXY} ${GO_CMD} mod download -x ${GO_BROTLI_FIX})
+
 post-extract:
+	@(cd ${GO_WRKSRC}; ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${GO_ENV} \
+		${GO_CMD} mod edit -require=${GO_BROTLI_FIX})
 	@${ECHO_MSG} "===> Tidying ${GO_MODNAME} dependencies";
 	@(cd ${GO_WRKSRC}; ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${GO_ENV} \
-		GOPROXY=${GO_MODCACHE} ${GO_CMD} mod tidy -e)
+		GOPROXY=${GO_MODCACHE} GONOSUMDB=${GO_BROTLI_FIX:C/@.*//} \
+		${GO_CMD} mod tidy -e)
 	@${ECHO_MSG} "===> Vendoring ${GO_MODNAME} dependencies";
 	@(cd ${GO_WRKSRC}; ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${GO_ENV} \
 		GOPROXY=${GO_MODCACHE} ${GO_CMD} work vendor -e)
