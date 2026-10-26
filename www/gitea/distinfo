@@ -1,3 +1,5 @@
-TIMESTAMP = 1672482187
-SHA256 (gitea-src-1.18.0.tar.gz) = 5f42af201d89bd2a21d8c47d15cc0a39b433a1dd86c6129e1aa20a53908a4c43
-SIZE (gitea-src-1.18.0.tar.gz) = 55508056
+TIMESTAMP = 1793028812
+SHA256 (gitea-src-28.2.0.tar.gz) = b8ad80f8a79ea42fa5cf52bdc3d5fd3457bb6abd6bd57cfcfab6a5ad4f31c3dc
+SIZE (gitea-src-28.2.0.tar.gz) = 70647717
+SHA256 (andybalholm-brotli-v1.2.7_GH0.tar.gz) = 49524b91593d6bc7e218cc98882fe9b57aae466e3b4c2f10aebee6909d8cc146
+SIZE (andybalholm-brotli-v1.2.7_GH0.tar.gz) = 1851993
