@@ -1,16 +1,26 @@
 PORTNAME=	soundcraft
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.6.1
+DISTVERSION=	0.13.1
 CATEGORIES=	audio
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Digital audio workstation and command-line tools
 WWW=		https://github.com/storytold/soundcraft
 
-LICENSE= mit Apache-2.0
-LICENSE_COMB= dual
-LICENSE_FILE_mit= ${WRKSRC}/LICENSE-MIT
-LICENSE_FILE_Apache-2.0= ${WRKSRC}/LICENSE-APACHE
+LICENSE=	mit MPL20 OFL11 UFL BitstreamVera
+LICENSE_COMB=	multi
+LICENSE_NAME_UFL=	Ubuntu Font Licence 1.0
+LICENSE_NAME_BitstreamVera=	Bitstream Vera Font License
+LICENSE_FILE_mit=	${WRKSRC}/LICENSE-MIT
+LICENSE_FILE_OFL11=	${EGUI_FONTS_DIR}/OFL.txt
+LICENSE_FILE_MPL20=	${WRKSRC_crate_symphonia}/LICENSE
+LICENSE_FILE_UFL=	${EGUI_FONTS_DIR}/UFL.txt
+LICENSE_FILE_BitstreamVera=	${EGUI_FONTS_DIR}/Hack-Regular.txt
+LICENSE_PERMS_UFL=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+LICENSE_PERMS_BitstreamVera=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+LICENSE_DISTFILES_MPL20=	${CARGO_CRATES:Msymphonia*:S|^|rust/crates/|:S|$|.crate|}
+LICENSE_DISTFILES_UFL=	rust/crates/epaint_default_fonts-0.36.2.crate
+LICENSE_DISTFILES_BitstreamVera=	rust/crates/epaint_default_fonts-0.36.2.crate
 
 ONLY_FOR_ARCHS=	amd64
 ONLY_FOR_ARCHS_REASON=	Upstream FreeBSD build is tested only on x86_64
@@ -22,7 +32,7 @@ LIB_DEPENDS=	libasound.so:audio/alsa-lib \
 		libvulkan.so:graphics/vulkan-loader \
 		libwayland-client.so:graphics/wayland \
 		libxkbcommon.so:x11/libxkbcommon
-RUN_DEPENDS= ${LOCALBASE}/lib/alsa-lib/libasound_module_pcm_oss.so:audio/alsa-plugins \
+RUN_DEPENDS=	${LOCALBASE}/lib/alsa-lib/libasound_module_pcm_oss.so:audio/alsa-plugins \
 		xdg-open:devel/xdg-utils \
 		zenity:x11/zenity
 
@@ -41,6 +51,7 @@ CARGO_BUILD_ARGS=	-p soundcraft -p soundcraft-cli
 CARGO_TEST_ARGS=	-p soundcraft -p soundcraft-cli
 CARGO_ENV+=	CARGO_PROFILE_RELEASE_LTO=false \
 		CARGO_PROFILE_RELEASE_CODEGEN_UNITS=16
+EGUI_FONTS_DIR=	${CARGO_VENDOR_DIR}/epaint_default_fonts-0.36.2/fonts
 WITHOUT_LTO=	yes
 
 do-install:
@@ -55,12 +66,23 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/packaging/linux/ai.storyteller.soundcraft.mime.xml \
 		${PREFIX}/share/mime/packages/ai.storyteller.soundcraft.xml
 	${SED} -e 's/@VERSION@/${DISTVERSION}/g' \
-		-e 's/@DATE@/2026-10-12/g' \
+		-e 's/@DATE@/2026-10-25/g' \
 		${WRKSRC}/packaging/linux/ai.storyteller.soundcraft.metainfo.xml.in \
 		> ${PREFIX}/share/metainfo/ai.storyteller.soundcraft.metainfo.xml
 	(cd ${WRKSRC}/assets/app-icon && ${COPYTREE_SHARE} hicolor ${PREFIX}/share/icons/)
 	${INSTALL_DATA} ${WRKSRC}/README.md ${WRKSRC}/NOTICE \
 		${WRKSRC}/ATTRIBUTION.md ${WRKSRC}/LICENSE-MIT \
 		${WRKSRC}/LICENSE-APACHE ${DOCSDIR}/
+
+	${MKDIR} ${DOCSDIR}/licenses
+	${INSTALL_DATA} ${EGUI_FONTS_DIR}/Hack-Regular.txt \
+		${EGUI_FONTS_DIR}/UFL.txt \
+		${EGUI_FONTS_DIR}/emoji-icon-font-mit-license.txt ${DOCSDIR}/licenses/
+	${INSTALL_DATA} ${EGUI_FONTS_DIR}/OFL.txt \
+		${DOCSDIR}/licenses/OFL-NotoEmoji.txt
+
+	${INSTALL_DATA} ${WRKSRC_crate_symphonia}/LICENSE \
+		${DOCSDIR}/licenses/MPL-2.0.txt
+	${INSTALL_DATA} ${FILESDIR}/symphonia-source.txt ${DOCSDIR}/licenses/
 
 .include <bsd.port.mk>
