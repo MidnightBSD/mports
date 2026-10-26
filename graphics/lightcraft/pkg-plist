@@ -12,8 +12,16 @@ share/applications/ai.storyteller.lightcraft.desktop
 %%DOCSDIR%%/OFL-biz-ud-pgothic.txt
 %%DOCSDIR%%/OFL-noto-sans-arabic.txt
 %%DOCSDIR%%/OFL-noto-sans-cjk-sc.txt
+%%DOCSDIR%%/OFL-noto-sans-georgian.txt
+%%DOCSDIR%%/OFL-noto-sans-thai.txt
 %%DOCSDIR%%/OFL-shippori-mincho.txt
 %%DOCSDIR%%/README.md
+%%DOCSDIR%%/licenses/Hack-Regular.txt
+%%DOCSDIR%%/licenses/LICENSE-CC-BY-4.0
+%%DOCSDIR%%/licenses/LICENSE-IJG
+%%DOCSDIR%%/licenses/OFL-NotoEmoji.txt
+%%DOCSDIR%%/licenses/UFL.txt
+%%DOCSDIR%%/licenses/emoji-icon-font-mit-license.txt
 share/icons/hicolor/128x128/apps/ai.storyteller.lightcraft.png
 share/icons/hicolor/16x16/apps/ai.storyteller.lightcraft.png
 share/icons/hicolor/24x24/apps/ai.storyteller.lightcraft.png
@@ -25,3 +33,5 @@ share/icons/hicolor/64x64/apps/ai.storyteller.lightcraft.png
 share/icons/hicolor/scalable/apps/ai.storyteller.lightcraft.svg
 share/metainfo/ai.storyteller.lightcraft.metainfo.xml
 share/mime/packages/ai.storyteller.lightcraft.xml
+@dir %%DOCSDIR%%/licenses
+@dir %%DOCSDIR%%
