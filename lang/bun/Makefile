@@ -2,6 +2,7 @@ PORTNAME=	bun
 DISTVERSIONPREFIX=	bun-v
 DISTVERSION=	1.3.13-93
 DISTVERSIONSUFFIX=	-g146a674cf6
+PORTREVISION=	1
 CATEGORIES=	lang
 MASTER_SITES=	GH \
 		https://github.com/oven-sh/zig/releases/download/autobuild-04e7f6ac1e009525bc00934f20199c68f04e0a24/:ovenzig \
@@ -216,6 +217,15 @@ post-extract:
 	@tar xzf ${DD}/bun-node-modules-${DISTVERSION}.tar.gz \
 		-C ${WRKSRC}
 
+# bun's fetch-cli applies patches/brotli/* to the brotli dep after extraction.
+# It uses `git apply`, which silently skips every file when the work dir sits
+# inside a git checkout (such as /usr/mports); do-build sets
+# GIT_CEILING_DIRECTORIES to stop the repository lookup at ${WRKDIR}.
+post-patch:
+	@${MKDIR} ${WRKSRC}/patches/brotli
+	${INSTALL_DATA} ${FILESDIR}/brotli-CVE-2026-111497.patch \
+		${WRKSRC}/patches/brotli/CVE-2026-111497.patch
+
 do-build:
 	@cd ${WRKSRC} && \
 		${SETENV} PATH=${LOCALBASE}/llvm21/bin:${LOCALBASE}/bin:/usr/bin:/bin \
@@ -224,6 +234,7 @@ do-build:
 		FREEBSD_SYSROOT=/ \
 		CARGO_HOME=${WRKDIR}/.cargo \
 		GIT_SHA=${DISTVERSIONSUFFIX:S/-g//} \
+		GIT_CEILING_DIRECTORIES=${WRKDIR} \
 		${WRKDIR}/bun-bootstrap/bun scripts/build.ts \
 			--os=freebsd \
 			--cacheDir=${BUN_CACHE_DIR} \
@@ -232,7 +243,7 @@ do-build:
 			-j${MAKE_JOBS_NUMBER}
 
 do-install:
-	${INSTALL_PROGRAM} ${BUN_BUILD_DIR}/bun ${STAGEDIR}${PREFIX}/bin/
+	${INSTALL_PROGRAM} ${BUN_BUILD_DIR}/bun ${PREFIX}/bin/
 
 do-test:
 	@${ECHO_CMD} "==> Running Bun version check..."

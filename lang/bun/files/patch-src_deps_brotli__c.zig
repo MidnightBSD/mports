@@ -1,0 +1,26 @@
+--- src/deps/brotli_c.zig.orig	2026-04-26 13:24:56 UTC
++++ src/deps/brotli_c.zig
+@@ -115,6 +115,7 @@ pub const BROTLI_DECODER_ERROR_FORMAT_DISTANCE: c_int 
+ pub const BROTLI_DECODER_ERROR_FORMAT_PADDING_1: c_int = -14;
+ pub const BROTLI_DECODER_ERROR_FORMAT_PADDING_2: c_int = -15;
+ pub const BROTLI_DECODER_ERROR_FORMAT_DISTANCE: c_int = -16;
++pub const BROTLI_DECODER_ERROR_FORMAT_BLOCK_SWITCH: c_int = -17;
+ pub const BROTLI_DECODER_ERROR_COMPOUND_DICTIONARY: c_int = -18;
+ pub const BROTLI_DECODER_ERROR_DICTIONARY_NOT_SET: c_int = -19;
+ pub const BROTLI_DECODER_ERROR_INVALID_ARGUMENTS: c_int = -20;
+@@ -142,6 +143,7 @@ pub const BrotliDecoderErrorCode = enum(c_int) {
+     FORMAT_PADDING_1 = -14,
+     FORMAT_PADDING_2 = -15,
+     FORMAT_DISTANCE = -16,
++    FORMAT_BLOCK_SWITCH = -17,
+     COMPOUND_DICTIONARY = -18,
+     DICTIONARY_NOT_SET = -19,
+     INVALID_ARGUMENTS = -20,
+@@ -174,6 +176,7 @@ pub const BrotliDecoderErrorCode2 = enum(c_int) {
+     ERROR_FORMAT_PADDING_1 = -14,
+     ERROR_FORMAT_PADDING_2 = -15,
+     ERROR_FORMAT_DISTANCE = -16,
++    ERROR_FORMAT_BLOCK_SWITCH = -17,
+     ERROR_COMPOUND_DICTIONARY = -18,
+     ERROR_DICTIONARY_NOT_SET = -19,
+     ERROR_INVALID_ARGUMENTS = -20,
