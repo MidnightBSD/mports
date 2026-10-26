@@ -17,4 +17,11 @@ share/icons/hicolor/32x32/apps/ai.storyteller.soundcraft.png
 share/icons/hicolor/16x16/apps/ai.storyteller.soundcraft.png
 share/metainfo/ai.storyteller.soundcraft.metainfo.xml
 share/mime/packages/ai.storyteller.soundcraft.xml
+%%DOCSDIR%%/licenses/Hack-Regular.txt
+%%DOCSDIR%%/licenses/UFL.txt
+%%DOCSDIR%%/licenses/emoji-icon-font-mit-license.txt
+%%DOCSDIR%%/licenses/OFL-NotoEmoji.txt
+%%DOCSDIR%%/licenses/MPL-2.0.txt
+%%DOCSDIR%%/licenses/symphonia-source.txt
+@dir %%DOCSDIR%%/licenses
 @dir %%DOCSDIR%%
