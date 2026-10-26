@@ -173,6 +173,7 @@
     SUBDIR += vapoursynth
     SUBDIR += vcdimager
     SUBDIR += vid.stab
+    SUBDIR += video-editing
     SUBDIR += vlc
     SUBDIR += vmaf
     SUBDIR += webcamd
