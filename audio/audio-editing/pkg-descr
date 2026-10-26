@@ -4,3 +4,6 @@ composition and notation, SoX for command-line sample conversion and effects,
 and common encode/decode libraries and utilities for MP3, FLAC, Opus, Vorbis,
 MP2, WavPack, AAC, sampled-sound files, resampling, time stretching, and
 LADSPA effects.
+
+On amd64, SoundCraft provides recording, multitrack editing, mixing, and
+command-line audio workflows.
