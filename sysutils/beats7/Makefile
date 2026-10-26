@@ -1,7 +1,7 @@
 PORTNAME=	beats
 DISTVERSIONPREFIX=	v
 DISTVERSION=	7.17.29
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	sysutils
 PKGNAMESUFFIX?=	7
 
@@ -54,6 +54,7 @@ HEARTBEAT_DISTFILES=		heartbeat-${DISTVERSION}-darwin-x86_64.tar.gz:heartbeat
 HEARTBEAT_VARS=			GO_TARGETS+=heartbeat
 METRICBEAT_MASTER_SITES=	https://artifacts.elastic.co/downloads/beats/metricbeat/:metricbeat
 METRICBEAT_DISTFILES=		metricbeat-${DISTVERSION}-darwin-x86_64.tar.gz:metricbeat
+METRICBEAT_RUN_DEPENDS=		lsof:sysutils/lsof
 METRICBEAT_VARS=		GO_TARGETS+=metricbeat
 PACKETBEAT_MASTER_SITES=	https://artifacts.elastic.co/downloads/beats/packetbeat/:packetbeat
 PACKETBEAT_DISTFILES=		packetbeat-${DISTVERSION}-darwin-x86_64.tar.gz:packetbeat
