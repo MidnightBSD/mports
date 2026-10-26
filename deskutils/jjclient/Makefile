@@ -1,5 +1,5 @@
 PORTNAME=	jjclient
-PORTVERSION=	2.0.2
+PORTVERSION=	2.1.0
 CATEGORIES=	deskutils
 
 MAINTAINER=	luke@midnightbsd.org
@@ -10,26 +10,28 @@ WWW=		https://www.justjournal.com \
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libxmlrpc.so:net/xmlrpc-c
+LIB_DEPENDS=	libcurl.so:ftp/curl \
+		libjansson.so:devel/jansson
+
+USES=		pkgconfig
+USE_GITHUB=	yes
+GH_PROJECT=	justjournal-client-unix
+GH_ACCOUNT=	JustJournal
+GH_TAGNAME=	${PORTVERSION}
+USE_CSTD=	c99
 
 FAKE_OPTS=	trueprefix
 
-USE_GITHUB=     yes
-GH_PROJECT=     justjournal-client-unix
-GH_ACCOUNT=     JustJournal
-GH_TAGNAME=     ${PORTVERSION}
-USE_CSTD=	c99
-
 CFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib -lxmlrpc_client -lxmlrpc -lxmlrpc_xmlparse -lxmlrpc_util
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 OPTIONS_DEFINE=	DOCS
-OPTIONS_SUB=    yes
+OPTIONS_SUB=	yes
 
 .include <bsd.mport.options.mk>
 
 post-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
-	${CP} ${WRKSRC}/README ${FAKE_DESTDIR}${DOCSDIR}/README
+	${CP} ${WRKSRC}/README.md ${FAKE_DESTDIR}${DOCSDIR}/README
 
 .include <bsd.port.mk>
