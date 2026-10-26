@@ -1,6 +1,13 @@
 bin/deckcraft
 bin/deckcraft-cli
 share/applications/ai.storyteller.deckcraft.desktop
+%%DOCSDIR%%/Hack-Regular.txt
+%%DOCSDIR%%/LICENSE-ICC.txt
+%%DOCSDIR%%/LICENSE-MPL20.txt
+%%DOCSDIR%%/NOTICE-Symphonia.txt
+%%DOCSDIR%%/OFL-egui.txt
+%%DOCSDIR%%/UFL.txt
+%%DOCSDIR%%/emoji-icon-font-mit-license.txt
 %%DOCSDIR%%/OFL-merriweather.txt
 %%DOCSDIR%%/OFL-open-sans.txt
 %%DOCSDIR%%/README.md
