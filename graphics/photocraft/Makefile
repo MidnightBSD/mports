@@ -1,16 +1,32 @@
 PORTNAME=	photocraft
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.8.2
+DISTVERSION=	0.16.0
 CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Layered photo editor and command-line tools
 WWW=		https://github.com/storytold/photocraft
 
-LICENSE=	mit Apache-2.0
-LICENSE_COMB=	dual
+LICENSE=	mit OFL11 iscl CC-BY-3.0 CC0-1.0 bsd3 SCOWL UFL BitstreamVera IJG
+LICENSE_COMB=	multi
+LICENSE_NAME_UFL=	Ubuntu Font Licence 1.0
+LICENSE_NAME_BitstreamVera=	Bitstream Vera Font License
+LICENSE_NAME_SCOWL=	SCOWL word list license
+LICENSE_NAME_IJG=	Independent JPEG Group License
 LICENSE_FILE_mit=	${WRKSRC}/LICENSE-MIT
-LICENSE_FILE_Apache-2.0=	${WRKSRC}/LICENSE-APACHE
+LICENSE_FILE_OFL11=	${WRKSRC}/assets/fonts/OFL-Inter.txt
+LICENSE_FILE_iscl=	${WRKSRC}/assets/icons/LICENSE-lucide.txt
+LICENSE_FILE_CC-BY-3.0=	${WRKSRC}/assets/icons/LICENSE-noun-magnetic-lasso.txt
+LICENSE_FILE_CC0-1.0=	${FILESDIR}/LICENSE-CC0-1.0
+LICENSE_FILE_bsd3=	${WRKSRC}/crates/algo/data/LICENSE-libfacedetection.txt
+LICENSE_FILE_SCOWL=	${WRKSRC}/assets/dict/LICENSE-SCOWL.txt
+LICENSE_FILE_UFL=	${EGUI_FONTS_DIR}/UFL.txt
+LICENSE_FILE_BitstreamVera=	${EGUI_FONTS_DIR}/Hack-Regular.txt
+LICENSE_FILE_IJG=	${FILESDIR}/LICENSE-IJG
+LICENSE_PERMS_UFL=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+LICENSE_PERMS_BitstreamVera=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+LICENSE_PERMS_SCOWL=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+LICENSE_PERMS_IJG=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 BUILD_DEPENDS=	cmake:devel/cmake-core \
 		rust>=1.95.0:lang/rust
@@ -30,8 +46,9 @@ MAKE_JOBS_NUMBER_LIMIT=	4
 CARGO_BUILD_ARGS=	-p photocraft -p photocraft-cli --features heif
 CARGO_TEST_ARGS=	-p photocraft -p photocraft-cli --features heif
 CARGO_BUILDDEP=	no
-CARGO_ENV+=	PHOTOCRAFT_BUILD_SHA=d43db3e153c76aefce9b32cef9099e458eaf17a8
+CARGO_ENV+=	PHOTOCRAFT_BUILD_SHA=b1794c6e0608ccfc887213dcf58398977c5cb75e
 CARGO_INSTALL=	no
+EGUI_FONTS_DIR=	${CARGO_VENDOR_DIR}/epaint_default_fonts-0.36.2/fonts
 
 do-install:
 	${INSTALL_PROGRAM} ${CARGO_TARGET_DIR}/${CARGO_BUILD_TARGET}/release/photocraft \
@@ -46,7 +63,7 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/packaging/linux/ai.storyteller.photocraft.mime.xml \
 		${PREFIX}/share/mime/packages/ai.storyteller.photocraft.xml
 	${SED} -e 's/@VERSION@/${DISTVERSION}/g' \
-		-e 's/@DATE@/2026-10-12/g' \
+		-e 's/@DATE@/2026-10-25/g' \
 		${WRKSRC}/packaging/linux/ai.storyteller.photocraft.metainfo.xml.in \
 		> ${PREFIX}/share/metainfo/ai.storyteller.photocraft.metainfo.xml
 	(cd ${WRKSRC}/assets/app-icon && ${COPYTREE_SHARE} hicolor ${PREFIX}/share/icons/)
@@ -60,5 +77,20 @@ do-install:
 		${WRKSRC}/assets/icons/LICENSE-noun-magnetic-lasso.txt \
 		${WRKSRC}/assets/icons/LICENSE-symmetry-axes.txt \
 		${DOCSDIR}/
+
+	${MKDIR} ${DOCSDIR}/licenses
+	${INSTALL_DATA} ${EGUI_FONTS_DIR}/Hack-Regular.txt \
+		${EGUI_FONTS_DIR}/UFL.txt \
+		${EGUI_FONTS_DIR}/emoji-icon-font-mit-license.txt ${DOCSDIR}/licenses/
+	${INSTALL_DATA} ${EGUI_FONTS_DIR}/OFL.txt \
+		${DOCSDIR}/licenses/OFL-NotoEmoji.txt
+	${INSTALL_DATA} ${FILESDIR}/LICENSE-IJG ${DOCSDIR}/licenses/
+	${INSTALL_DATA} ${FILESDIR}/LICENSE-CC0-1.0 \
+		${WRKSRC}/crates/algo/data/LICENSE-libfacedetection.txt \
+		${DOCSDIR}/licenses/
+	${INSTALL_DATA} ${FILESDIR}/LICENSE-X11-rgb \
+		${WRKSRC}/crates/ui-egui/src/LICENSE-solarized.txt \
+		${WRKSRC}/crates/ui-egui/src/i18n/LICENSE-translations.txt \
+		${DOCSDIR}/licenses/
 
 .include <bsd.port.mk>
