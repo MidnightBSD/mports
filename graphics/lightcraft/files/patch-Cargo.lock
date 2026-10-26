@@ -1,8 +1,20 @@
---- Cargo.lock.orig	2026-10-10 23:38:10 UTC
+--- Cargo.lock.orig	2026-10-25 13:26:32 UTC
 +++ Cargo.lock
-@@ -6194,9 +6194,9 @@
-
- [[package]]
+@@ -5271,3 +5271,3 @@
+  "rustls-pki-types",
+- "rustls-webpki 0.103.15",
++ "rustls-webpki 0.103.16",
+  "subtle",
+@@ -5328,5 +5328,5 @@
+ name = "rustls-webpki"
+-version = "0.103.15"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "f3c3cf1d8b1e7d4927e2d154c3fcb02979afb9939629c62cd9048d4f07b60ac2"
++version = "0.103.16"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "4443b1b6d39d7c663139942cc4558262562d2c84123bb6282ef177009ca8b281"
+ dependencies = [
+@@ -6379,5 +6379,5 @@
  name = "webpki-roots"
 -version = "1.0.9"
 -source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -11,5 +23,3 @@
 +source = "registry+https://github.com/rust-lang/crates.io-index"
 +checksum = "f5f280bbb2b287bc8e7de7e3852945a0ff50d1bbcb5ed42b6c7a568c546df171"
  dependencies = [
-  "rustls-pki-types",
- ]
