@@ -23,4 +23,16 @@ share/icons/hicolor/64x64/apps/ai.storyteller.wordcraft.png
 share/icons/hicolor/scalable/apps/ai.storyteller.wordcraft.svg
 share/metainfo/ai.storyteller.wordcraft.metainfo.xml
 share/mime/packages/ai.storyteller.wordcraft.mime.xml
+%%DOCSDIR%%/licenses/Hack-Regular.txt
+%%DOCSDIR%%/licenses/UFL.txt
+%%DOCSDIR%%/licenses/emoji-icon-font-mit-license.txt
+%%DOCSDIR%%/licenses/OFL-NotoEmoji.txt
+%%DOCSDIR%%/licenses/CC0-1.0.txt
+%%DOCSDIR%%/licenses/Unicode-3.0.txt
+%%DOCSDIR%%/licenses/NOTICE-craft-libs.txt
+%%DOCSDIR%%/licenses/LICENSE-krilla-MIT.txt
+%%DOCSDIR%%/licenses/LICENSE-krilla-APACHE.txt
+%%DOCSDIR%%/licenses/LICENSE-craft-i18n-MIT.txt
+%%DOCSDIR%%/licenses/ATTRIBUTION-craft-i18n.md
+@dir %%DOCSDIR%%/licenses
 @dir %%DOCSDIR%%
