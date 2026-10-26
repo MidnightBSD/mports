@@ -1,16 +1,26 @@
 PORTNAME=	filmcraft
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.6.0
+DISTVERSION=	0.13.0
 CATEGORIES=	multimedia
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Video editor and command-line tools
 WWW=		https://github.com/storytold/filmcraft
 
-LICENSE=	mit Apache-2.0
-LICENSE_COMB=	dual
+LICENSE=	mit OFL11 ArtCraftBrand UFL BitstreamVera MPL20
+LICENSE_COMB=	multi
+LICENSE_NAME_ArtCraftBrand=	ArtCraft Brand Terms
+LICENSE_NAME_UFL=	Ubuntu Font Licence 1.0
+LICENSE_NAME_BitstreamVera=	Bitstream Vera Font License
 LICENSE_FILE_mit=	${WRKSRC}/LICENSE-MIT
-LICENSE_FILE_Apache-2.0=	${WRKSRC}/LICENSE-APACHE
+LICENSE_FILE_OFL11=	${WRKSRC}/assets/fonts/OFL-Inter.txt
+LICENSE_FILE_ArtCraftBrand=	${WRKSRC}/docs/brand/LICENSE-brand.txt
+LICENSE_FILE_UFL=	${EGUI_FONTS_DIR}/UFL.txt
+LICENSE_FILE_BitstreamVera=	${EGUI_FONTS_DIR}/Hack-Regular.txt
+LICENSE_FILE_MPL20=	${FILESDIR}/LICENSE-MPL20.txt
+LICENSE_PERMS_ArtCraftBrand=	no-dist-mirror no-dist-sell no-pkg-mirror no-pkg-sell auto-accept
+LICENSE_PERMS_UFL=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+LICENSE_PERMS_BitstreamVera=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 BUILD_DEPENDS=	cmake:devel/cmake-core \
 		rust>=1.95.0:lang/rust
@@ -30,15 +40,16 @@ INSTALLS_ICONS=	yes
 USE_GITHUB=	yes
 GH_ACCOUNT=	storytold
 GH_PROJECT=	filmcraft craft-fonts:fonts
-GH_TAGNAME=	v0.6.0 abb83316d96aa59c1cf64784289e378fe9fa5695:fonts
+GH_TAGNAME=	v0.13.0 bfcbf714e45a3ea8e98f88ab2b7971372a576414:fonts
 
 MAKE_JOBS_NUMBER_LIMIT=	4
 CARGO_BUILD_ARGS=	-p filmcraft -p filmcraft-cli
 CARGO_TEST_ARGS=	-p filmcraft -p filmcraft-cli
 CARGO_BUILDDEP=	no
 CARGO_ENV+=	CRAFT_FONTS_DIR=${WRKSRC_fonts} CRAFT_FONTS_REQUIRED=1 \
-		FILMCRAFT_BUILD_SHA=2ff3f5e266838700c292a35aaf762e3d4dcef980
+		FILMCRAFT_BUILD_SHA=30536bc5d0ddf690f2181b7b97182db8658a6038
 CARGO_INSTALL=	no
+EGUI_FONTS_DIR=	${CARGO_VENDOR_DIR}/epaint_default_fonts-0.36.2/fonts
 
 do-install:
 	${INSTALL_PROGRAM} ${CARGO_TARGET_DIR}/${CARGO_BUILD_TARGET}/release/filmcraft \
@@ -53,7 +64,7 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/packaging/linux/ai.storyteller.filmcraft.mime.xml \
 		${PREFIX}/share/mime/packages/ai.storyteller.filmcraft.xml
 	${SED} -e 's/@VERSION@/${DISTVERSION}/g' \
-		-e 's/@DATE@/2026-10-11/g' \
+		-e 's/@DATE@/2026-10-25/g' \
 		${WRKSRC}/packaging/linux/ai.storyteller.filmcraft.metainfo.xml.in \
 		> ${PREFIX}/share/metainfo/ai.storyteller.filmcraft.metainfo.xml
 	(cd ${WRKSRC}/assets/app-icon && ${COPYTREE_SHARE} hicolor ${PREFIX}/share/icons/)
@@ -66,11 +77,15 @@ do-install:
 		${DOCSDIR}/
 	${INSTALL_DATA} ${WRKSRC_fonts}/ATTRIBUTION.md \
 		${DOCSDIR}/ATTRIBUTION-craft-fonts.md
-	${INSTALL_DATA} ${WRKSRC_fonts}/fonts/biz-ud-mincho/OFL.txt \
-		${DOCSDIR}/OFL-biz-ud-mincho.txt
-	${INSTALL_DATA} ${WRKSRC_fonts}/fonts/biz-ud-pgothic/OFL.txt \
-		${DOCSDIR}/OFL-biz-ud-pgothic.txt
-	${INSTALL_DATA} ${WRKSRC_fonts}/fonts/shippori-mincho/OFL.txt \
-		${DOCSDIR}/OFL-shippori-mincho.txt
+	for f in ${WRKSRC_fonts}/fonts/*/OFL.txt; do \
+		${INSTALL_DATA} "$$f" ${DOCSDIR}/OFL-$$(basename $$(dirname "$$f")).txt; \
+	done
+	${INSTALL_DATA} ${EGUI_FONTS_DIR}/UFL.txt \
+		${EGUI_FONTS_DIR}/Hack-Regular.txt \
+		${EGUI_FONTS_DIR}/emoji-icon-font-mit-license.txt ${DOCSDIR}/
+	${INSTALL_DATA} ${EGUI_FONTS_DIR}/OFL.txt ${DOCSDIR}/OFL-egui.txt
+	${INSTALL_DATA} ${WRKSRC}/docs/brand/LICENSE-brand.txt ${DOCSDIR}/
+	${INSTALL_DATA} ${FILESDIR}/LICENSE-MPL20.txt \
+		${FILESDIR}/NOTICE-Symphonia.txt ${DOCSDIR}/
 
 .include <bsd.port.mk>

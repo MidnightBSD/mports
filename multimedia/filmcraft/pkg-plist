@@ -1,6 +1,17 @@
 bin/filmcraft
 bin/filmcraft-cli
 share/applications/ai.storyteller.filmcraft.desktop
+%%DOCSDIR%%/Hack-Regular.txt
+%%DOCSDIR%%/LICENSE-MPL20.txt
+%%DOCSDIR%%/LICENSE-brand.txt
+%%DOCSDIR%%/NOTICE-Symphonia.txt
+%%DOCSDIR%%/OFL-egui.txt
+%%DOCSDIR%%/OFL-noto-sans-arabic.txt
+%%DOCSDIR%%/OFL-noto-sans-cjk-sc.txt
+%%DOCSDIR%%/OFL-noto-sans-georgian.txt
+%%DOCSDIR%%/OFL-noto-sans-thai.txt
+%%DOCSDIR%%/UFL.txt
+%%DOCSDIR%%/emoji-icon-font-mit-license.txt
 %%DOCSDIR%%/ATTRIBUTION-craft-fonts.md
 %%DOCSDIR%%/ATTRIBUTION.md
 %%DOCSDIR%%/LICENSE-APACHE

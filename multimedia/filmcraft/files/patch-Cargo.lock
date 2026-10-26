@@ -1,0 +1,30 @@
+--- Cargo.lock.orig	2026-10-25 13:26:28 UTC
++++ Cargo.lock
+@@ -5204,3 +5204,3 @@
+  "rustls-pki-types",
+- "rustls-webpki 0.103.15",
++ "rustls-webpki 0.103.16",
+  "subtle",
+@@ -5244,3 +5244,3 @@
+  "rustls-platform-verifier-android",
+- "rustls-webpki 0.103.15",
++ "rustls-webpki 0.103.16",
+  "security-framework",
+@@ -5300,5 +5300,5 @@
+ name = "rustls-webpki"
+-version = "0.103.15"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "f3c3cf1d8b1e7d4927e2d154c3fcb02979afb9939629c62cd9048d4f07b60ac2"
++version = "0.103.16"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "4443b1b6d39d7c663139942cc4558262562d2c84123bb6282ef177009ca8b281"
+ dependencies = [
+@@ -6668,5 +6668,5 @@
+ name = "webpki-root-certs"
+-version = "1.0.9"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "b96554aa2acc8ccdb7e1c9a58a7a68dd5d13bccc69cd124cb09406db612a1c9b"
++version = "1.0.11"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "e49d0e65abc00c142e8f9428da991da9f1a250c39be97459901eb12b9b49f62a"
+ dependencies = [
