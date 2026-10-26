@@ -1,3 +1,3 @@
-TIMESTAMP = 1765204447
-SHA256 (mattermost-10.11.8-linux-amd64.tar.gz) = d0d906bc2b93da82028b9a9f281e62e4e0070487f467750fe093db44609aaea7
-SIZE (mattermost-10.11.8-linux-amd64.tar.gz) = 567206277
+TIMESTAMP = 1793028450
+SHA256 (mattermost-10.11.25-linux-amd64.tar.gz) = 161f6d37f084d9c102266be66abc8a1a051645d44d0b84a01e7dcea39b7219bd
+SIZE (mattermost-10.11.25-linux-amd64.tar.gz) = 564034227
