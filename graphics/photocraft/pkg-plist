@@ -13,6 +13,16 @@ share/applications/ai.storyteller.photocraft.desktop
 %%DOCSDIR%%/OFL-Inter.txt
 %%DOCSDIR%%/OFL-JetBrainsMono.txt
 %%DOCSDIR%%/README.md
+%%DOCSDIR%%/licenses/Hack-Regular.txt
+%%DOCSDIR%%/licenses/LICENSE-CC0-1.0
+%%DOCSDIR%%/licenses/LICENSE-IJG
+%%DOCSDIR%%/licenses/LICENSE-X11-rgb
+%%DOCSDIR%%/licenses/LICENSE-libfacedetection.txt
+%%DOCSDIR%%/licenses/LICENSE-solarized.txt
+%%DOCSDIR%%/licenses/LICENSE-translations.txt
+%%DOCSDIR%%/licenses/OFL-NotoEmoji.txt
+%%DOCSDIR%%/licenses/UFL.txt
+%%DOCSDIR%%/licenses/emoji-icon-font-mit-license.txt
 share/icons/hicolor/128x128/apps/ai.storyteller.photocraft.png
 share/icons/hicolor/16x16/apps/ai.storyteller.photocraft.png
 share/icons/hicolor/24x24/apps/ai.storyteller.photocraft.png
@@ -24,3 +34,5 @@ share/icons/hicolor/64x64/apps/ai.storyteller.photocraft.png
 share/icons/hicolor/scalable/apps/ai.storyteller.photocraft.svg
 share/metainfo/ai.storyteller.photocraft.metainfo.xml
 share/mime/packages/ai.storyteller.photocraft.xml
+@dir %%DOCSDIR%%/licenses
+@dir %%DOCSDIR%%
