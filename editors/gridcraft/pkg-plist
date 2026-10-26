@@ -17,4 +17,9 @@ share/mime/packages/ai.storyteller.gridcraft.xml
 %%DOCSDIR%%/LICENSE-MIT
 %%DOCSDIR%%/NOTICE
 %%DOCSDIR%%/README.md
+%%DOCSDIR%%/licenses/Hack-Regular.txt
+%%DOCSDIR%%/licenses/UFL.txt
+%%DOCSDIR%%/licenses/emoji-icon-font-mit-license.txt
+%%DOCSDIR%%/licenses/OFL-NotoEmoji.txt
+@dir %%DOCSDIR%%/licenses
 @dir %%DOCSDIR%%
