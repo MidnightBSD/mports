@@ -113,11 +113,11 @@ CARGO_CRATES=	accesskit-0.24.1 \
 		crossbeam-epoch-0.9.21 \
 		crossbeam-utils-0.8.23 \
 		crunchy-0.2.4 \
-		crypto-bigint-0.7.5 \
+		crypto-bigint-0.7.6 \
 		crypto-common-0.1.7 \
 		crypto-common-0.2.2 \
 		crypto-primes-0.7.2 \
-		ctutils-0.4.2 \
+		ctutils-0.4.5 \
 		cursor-icon-1.2.0 \
 		curve25519-dalek-5.0.0 \
 		curve25519-dalek-derive-0.1.1 \
@@ -233,7 +233,6 @@ CARGO_CRATES=	accesskit-0.24.1 \
 		hashbrown-0.17.1 \
 		hayro-ccitt-0.3.0 \
 		hayro-jpeg2000-0.3.5 \
-		hayro-postscript-0.1.0 \
 		heck-0.5.0 \
 		hermit-abi-0.5.3 \
 		hex-0.4.3 \

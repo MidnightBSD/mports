@@ -1,6 +1,6 @@
 PORTNAME=	pdfcraft
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.13.0
+DISTVERSION=	0.14.0
 CATEGORIES=	print
 MASTER_SITES=	https://ocrs-models.s3-accelerate.amazonaws.com/:models \
 		https://creativecommons.org/licenses/by-sa/4.0/:modellicense
@@ -85,7 +85,7 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/packaging/linux/ai.storyteller.pdfcraft.mime.xml \
 		${PREFIX}/share/mime/packages/ai.storyteller.pdfcraft.xml
 	${SED} -e 's/@VERSION@/${DISTVERSION}/g' \
-		-e 's/@DATE@/2026-10-23/g' \
+		-e 's/@DATE@/2026-10-25/g' \
 		${WRKSRC}/packaging/linux/ai.storyteller.pdfcraft.metainfo.xml.in \
 		> ${PREFIX}/share/metainfo/ai.storyteller.pdfcraft.metainfo.xml
 	(cd ${WRKSRC}/assets/app-icon && ${COPYTREE_SHARE} hicolor ${PREFIX}/share/icons/)
