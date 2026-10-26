@@ -1,5 +1,5 @@
 PORTNAME=	gtkjj
-PORTVERSION=	2.0.2
+PORTVERSION=	2.1.0
 CATEGORIES=	deskutils
 
 MAINTAINER=	luke@midnightbsd.org
@@ -10,18 +10,19 @@ WWW=		https://www.justjournal.com \
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/../COPYING
 
-LIB_DEPENDS=	libxmlrpc_client.so:net/xmlrpc-c
+LIB_DEPENDS=	libcurl.so:ftp/curl \
+		libjansson.so:devel/jansson
 
 USES=		gnome pkgconfig
-USE_GITHUB=     yes
-GH_PROJECT=     justjournal-client-unix
-GH_ACCOUNT=     JustJournal
-GH_TAGNAME=     ${PORTVERSION}
-USE_CSTD=       c99
+USE_GITHUB=	yes
+GH_PROJECT=	justjournal-client-unix
+GH_ACCOUNT=	JustJournal
+GH_TAGNAME=	${PORTVERSION}
+USE_CSTD=	c99
 USE_GNOME=	gtk30
 
-CFLAGS+=        -I${LOCALBASE}/include
-LDFLAGS+=       -L${LOCALBASE}/lib -lxmlrpc_client -lxmlrpc -lxmlrpc_xmlparse
+CFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 WRKSRC_SUBDIR=	gtk
 
@@ -32,6 +33,6 @@ OPTIONS_SUB=	yes
 
 post-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
-	${CP} ${WRKSRC}/../README ${FAKE_DESTDIR}${DOCSDIR}/README
+	${CP} ${WRKSRC}/../README.md ${FAKE_DESTDIR}${DOCSDIR}/README
 
 .include <bsd.port.mk>
