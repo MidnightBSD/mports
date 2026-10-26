@@ -1,6 +1,6 @@
 PORTNAME=	anubis
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.25.0
+DISTVERSION=	1.28.2
 PORTREVISION=	0
 CATEGORIES=	www
 MASTER_SITES=	https://github.com/techarohq/${PORTNAME}/releases/download/${DISTVERSIONPREFIX}${DISTVERSION}/
@@ -14,7 +14,7 @@ WWW=		https://anubis.techaro.lol/
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:no_targets
+USES=		go:1.27+,no_targets
 USE_RC_SUBR=	${PORTNAME}
 
 MAKE_FLAGS=	VERSION=${DISTVERSION} GOFLAGS="-buildvcs=false"
