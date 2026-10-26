@@ -1,6 +1,25 @@
 bin/vectorcraft
 bin/vectorcraft-cli
 share/applications/ai.storyteller.vectorcraft.desktop
+%%DOCSDIR%%/ASSETS.md
+%%DOCSDIR%%/LICENSE-APACHE
+%%DOCSDIR%%/LICENSE-MIT
+%%DOCSDIR%%/NOTICE
+%%DOCSDIR%%/README.md
+%%DOCSDIR%%/licenses/CGATS_LICENSE.txt
+%%DOCSDIR%%/licenses/Hack-Regular.txt
+%%DOCSDIR%%/licenses/LICENSE-CMap.txt
+%%DOCSDIR%%/licenses/LICENSE-IJG
+%%DOCSDIR%%/licenses/LICENSE-app-icon.txt
+%%DOCSDIR%%/licenses/LICENSE-lucide.txt
+%%DOCSDIR%%/licenses/LICENSE_FOXIT
+%%DOCSDIR%%/licenses/OFL-Inter.txt
+%%DOCSDIR%%/licenses/OFL-JetBrainsMono.txt
+%%DOCSDIR%%/licenses/OFL-NotoEmoji.txt
+%%DOCSDIR%%/licenses/OFL-SourceSans3.txt
+%%DOCSDIR%%/licenses/OFL-SourceSerif4.txt
+%%DOCSDIR%%/licenses/UFL.txt
+%%DOCSDIR%%/licenses/emoji-icon-font-mit-license.txt
 share/icons/hicolor/128x128/apps/ai.storyteller.vectorcraft.png
 share/icons/hicolor/16x16/apps/ai.storyteller.vectorcraft.png
 share/icons/hicolor/24x24/apps/ai.storyteller.vectorcraft.png
@@ -12,3 +31,5 @@ share/icons/hicolor/64x64/apps/ai.storyteller.vectorcraft.png
 share/icons/hicolor/scalable/apps/ai.storyteller.vectorcraft.svg
 share/metainfo/ai.storyteller.vectorcraft.metainfo.xml
 share/mime/packages/ai.storyteller.vectorcraft.xml
+@dir %%DOCSDIR%%/licenses
+@dir %%DOCSDIR%%
