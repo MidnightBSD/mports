@@ -1,6 +1,6 @@
 PORTNAME=	beats
 DISTVERSIONPREFIX=	v
-DISTVERSION=	9.4.0
+DISTVERSION=	9.5.5
 CATEGORIES=	sysutils
 MASTER_SITES=	https://raw.githubusercontent.com/${GH_ACCOUNT}/${GH_PROJECT}/${DISTVERSIONFULL}/:gomod
 PKGNAMESUFFIX=	9
@@ -14,7 +14,7 @@ LICENSE=	Apache-2.0
 
 NO_TEST=	yes
 
-USES=		go:1.25+,modules
+USES=		go:1.26+,modules
 USE_GITHUB=	yes
 
 GH_ACCOUNT=	elastic
