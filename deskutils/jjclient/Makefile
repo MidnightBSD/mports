@@ -1,5 +1,5 @@
 PORTNAME=	jjclient
-PORTVERSION=	2.1.0
+PORTVERSION=	2.2.0
 CATEGORIES=	deskutils
 
 MAINTAINER=	luke@midnightbsd.org
@@ -13,17 +13,11 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libjansson.so:devel/jansson
 
-USES=		pkgconfig
+USES=		cmake pkgconfig
 USE_GITHUB=	yes
 GH_PROJECT=	justjournal-client-unix
 GH_ACCOUNT=	JustJournal
 GH_TAGNAME=	${PORTVERSION}
-USE_CSTD=	c99
-
-FAKE_OPTS=	trueprefix
-
-CFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
 
 OPTIONS_DEFINE=	DOCS
 OPTIONS_SUB=	yes
