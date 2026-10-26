@@ -1,6 +1,12 @@
 bin/effectcraft
 bin/effectcraft-cli
 share/applications/ai.storyteller.effectcraft.desktop
+%%DOCSDIR%%/Hack-Regular.txt
+%%DOCSDIR%%/LICENSE-MPL20.txt
+%%DOCSDIR%%/NOTICE-Symphonia.txt
+%%DOCSDIR%%/OFL-egui.txt
+%%DOCSDIR%%/UFL.txt
+%%DOCSDIR%%/emoji-icon-font-mit-license.txt
 %%DOCSDIR%%/OFL-Inter.txt
 %%DOCSDIR%%/LICENSE-MIT
 %%DOCSDIR%%/OFL-JetBrainsMono.txt

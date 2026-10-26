@@ -1,0 +1,8 @@
+Symphonia 0.5.5 by Philip Deljanov and contributors
+
+This application uses unmodified Symphonia source code under the Mozilla
+Public License 2.0. The complete license accompanies this notice in
+LICENSE-MPL20.txt. Source code is available from:
+https://github.com/pdeljanov/Symphonia/tree/v0.5.5
+https://crates.io/crates/symphonia/0.5.5
+The port distfiles also provide the Symphonia component source archives.
