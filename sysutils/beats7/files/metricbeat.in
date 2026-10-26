@@ -10,6 +10,8 @@
 # metricbeat_enable (bool):	Set to YES to enable metricbeat
 # 				Default: NO
 # metricbeat_flags (str):	Extra flags passed to metricbeat
+# metricbeat_env (str):	Environment variables passed to metricbeat
+#				Default: PATH includes base and local bin/sbin
 # metricbeat_config (str):	metricbeat configuration directory
 #				Default: ${PREFIX}/etc/beats
 # metricbeat_conffile (str):	metricbeat configuration file
@@ -26,6 +28,7 @@ rcvar=${name}_enable
 load_rc_config $name
 
 : ${metricbeat_enable:="NO"}
+: ${metricbeat_env:="PATH=/sbin:/bin:/usr/sbin:/usr/bin:%%LOCALBASE%%/sbin:%%LOCALBASE%%/bin"}
 : ${metricbeat_config:="%%ETCDIR%%"}
 : ${metricbeat_conffile:="metricbeat.yml"}
 : ${metricbeat_home:="%%DATADIR%%/metricbeat"}
