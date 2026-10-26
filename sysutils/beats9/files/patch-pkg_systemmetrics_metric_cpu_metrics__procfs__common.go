@@ -1,6 +1,6 @@
---- vendor/github.com/elastic/elastic-agent-system-metrics/metric/cpu/metrics_procfs_common.go.orig	2026-03-16 23:39:28 UTC
-+++ vendor/github.com/elastic/elastic-agent-system-metrics/metric/cpu/metrics_procfs_common.go
-@@ -31,7 +31,7 @@ func Get(m *Monitor) (CPUMetrics, error) {
+--- pkg/systemmetrics/metric/cpu/metrics_procfs_common.go.orig	2026-09-30 21:46:05 UTC
++++ pkg/systemmetrics/metric/cpu/metrics_procfs_common.go
+@@ -31,7 +31,7 @@
  func Get(m *Monitor) (CPUMetrics, error) {
  	procfs := m.Hostfs
  
@@ -9,7 +9,7 @@
  	fd, err := os.Open(path)
  	defer func() {
  		_ = fd.Close()
-@@ -45,7 +45,7 @@ func Get(m *Monitor) (CPUMetrics, error) {
+@@ -45,7 +45,7 @@
  		return CPUMetrics{}, fmt.Errorf("scanning stat file: %w", err)
  	}
  
