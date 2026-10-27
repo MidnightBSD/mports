@@ -1,5 +1,5 @@
 PORTNAME=	mistralai
-PORTVERSION=	2.6.0
+PORTVERSION=	3.5.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,10 +13,10 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>=0:devel/py-hatchling@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}eval-type-backport>=0.2.0:devel/py-eval-type-backport@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}httpx>=0.28.1:www/py-httpx@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}httpx2>=2.13.0:www/py-httpx2@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}jsonpath-python>=1.0.6:devel/py-jsonpath-python@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}opentelemetry-api>=1.33.1:devel/py-opentelemetry-api@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}opentelemetry-semantic-conventions>=0.60:devel/py-opentelemetry-semantic-conventions@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}opentelemetry-api>=1.33.1<2:devel/py-opentelemetry-api@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}opentelemetry-semantic-conventions>=0.61b0:devel/py-opentelemetry-semantic-conventions@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pydantic2>=2.11.2:devel/py-pydantic2@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}python-dateutil>=2.8.2:devel/py-python-dateutil@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}typing-inspection>=0.4.0:devel/py-typing-inspection@${PY_FLAVOR}
