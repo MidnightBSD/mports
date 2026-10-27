@@ -1,0 +1,2 @@
+Shared HTTP export utilities for OpenTelemetry's OTLP exporters. This package
+provides request handling, retry behavior, and aggregation helpers.
