@@ -1628,6 +1628,8 @@
     SUBDIR += py-openapi-spec-validator
     SUBDIR += py-opentelemetry-api
     SUBDIR += py-opentelemetry-exporter-credential-provider-gcp
+    SUBDIR += py-opentelemetry-exporter-http-transport
+    SUBDIR += py-opentelemetry-exporter-otlp-common
     SUBDIR += py-opentelemetry-exporter-otlp-proto-common
     SUBDIR += py-opentelemetry-exporter-otlp-proto-http
     SUBDIR += py-opentelemetry-proto
