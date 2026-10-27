@@ -1,10 +1,7 @@
 PORTNAME=	patch
-PORTVERSION=	2.7.6
-PORTREVISION=	2
+PORTVERSION=	2.8.1
 CATEGORIES=	devel
-MASTER_SITES=	GNU DEBIAN_POOL:dp
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
-		${PORTNAME}_${PORTVERSION}-7.debian${EXTRACT_SUFX}:dp
+MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU patch utility
@@ -12,15 +9,12 @@ WWW=		https://savannah.gnu.org/projects/patch/
 
 LICENSE=	gpl3+
 
-EXTRA_PATCHES=	${WRKDIR}/debian/patches/[^0]*.patch \
-		${WRKDIR}/debian/patches/0*.patch
-PATCH_STRIP=	-p1
-
 TEST_DEPENDS=	bash:shells/bash
 
 USES=		cpe charsetfix gmake tar:xz
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--program-prefix=g
+i386_CONFIGURE_ARGS=	--disable-year2038
 CPE_VENDOR=	gnu
 
 TEST_TARGET=	check

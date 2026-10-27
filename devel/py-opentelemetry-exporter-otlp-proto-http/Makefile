@@ -1,6 +1,5 @@
 PORTNAME=	opentelemetry-exporter-otlp-proto-http
-PORTVERSION=	1.42.1
-PORTREVISION=	1
+PORTVERSION=	1.45.1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -24,7 +23,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}googleapis-common-protos>=1.52<2:devel/py-go
 		${PYTHON_PKGNAMEPREFIX}requests>=2.7<3:www/py-requests@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}typing-extensions>=4.5.0:devel/py-typing-extensions@${PY_FLAVOR}
 
-USES=		python
+USES=		python:3.11+
 USE_PYTHON=	allflavors autoplist concurrent pep517
 
 NO_ARCH=	yes
