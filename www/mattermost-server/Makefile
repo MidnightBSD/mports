@@ -1,7 +1,7 @@
 PORTNAME=	mattermost
 DISTVERSIONPREFIX=	v
 DISTVERSION=	10.11.25
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	www
 PKGNAMESUFFIX=	-server
 
@@ -9,10 +9,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open source Slack-alternative in Golang and React
 WWW=		https://mattermost.org/
 
-LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/../LICENSE.txt
+LICENSE=	agpl Apache-2.0
+LICENSE_COMB=	multi
+LICENSE_FILE_Apache-2.0=	${WRKSRC}/../LICENSE.txt
 
-ONLY_FOR_ARCHS=	aarch64 amd64 armv6 armv7
+ONLY_FOR_ARCHS=	aarch64 amd64
 
 RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss \
 		mattermost-webapp>=${PORTVERSION}:www/mattermost-webapp
