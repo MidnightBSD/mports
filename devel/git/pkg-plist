@@ -78,6 +78,7 @@ libexec/git-core/git-fmt-merge-msg
 libexec/git-core/git-for-each-ref
 libexec/git-core/git-for-each-repo
 libexec/git-core/git-format-patch
+libexec/git-core/git-format-rev
 libexec/git-core/git-fsck
 libexec/git-core/git-fsck-objects
 libexec/git-core/git-fsmonitor--daemon
@@ -86,6 +87,7 @@ libexec/git-core/git-get-tar-commit-id
 libexec/git-core/git-grep
 libexec/git-core/git-hash-object
 libexec/git-core/git-help
+libexec/git-core/git-history
 libexec/git-core/git-hook
 libexec/git-core/git-http-backend
 %%CURL%%libexec/git-core/git-http-fetch
@@ -96,6 +98,7 @@ libexec/git-core/git-init
 libexec/git-core/git-init-db
 libexec/git-core/git-instaweb
 libexec/git-core/git-interpret-trailers
+libexec/git-core/git-last-modified
 libexec/git-core/git-log
 libexec/git-core/git-ls-files
 libexec/git-core/git-ls-remote
@@ -147,6 +150,7 @@ libexec/git-core/git-remote-fd
 libexec/git-core/git-repack
 libexec/git-core/git-replace
 libexec/git-core/git-replay
+libexec/git-core/git-repo
 libexec/git-core/git-request-pull
 libexec/git-core/git-rerere
 libexec/git-core/git-reset
@@ -184,6 +188,7 @@ libexec/git-core/git-update-ref
 libexec/git-core/git-update-server-info
 libexec/git-core/git-upload-archive
 libexec/git-core/git-upload-pack
+libexec/git-core/git-url-parse
 libexec/git-core/git-var
 libexec/git-core/git-verify-commit
 libexec/git-core/git-verify-pack
@@ -270,6 +275,7 @@ share/man/man1/git-fmt-merge-msg.1.gz
 share/man/man1/git-for-each-ref.1.gz
 share/man/man1/git-for-each-repo.1.gz
 share/man/man1/git-format-patch.1.gz
+share/man/man1/git-format-rev.1.gz
 share/man/man1/git-fsck-objects.1.gz
 share/man/man1/git-fsck.1.gz
 share/man/man1/git-fsmonitor--daemon.1.gz
@@ -278,6 +284,7 @@ share/man/man1/git-get-tar-commit-id.1.gz
 share/man/man1/git-grep.1.gz
 share/man/man1/git-hash-object.1.gz
 share/man/man1/git-help.1.gz
+share/man/man1/git-history.1.gz
 share/man/man1/git-hook.1.gz
 share/man/man1/git-http-backend.1.gz
 share/man/man1/git-http-fetch.1.gz
@@ -288,6 +295,7 @@ share/man/man1/git-init-db.1.gz
 share/man/man1/git-init.1.gz
 share/man/man1/git-instaweb.1.gz
 share/man/man1/git-interpret-trailers.1.gz
+share/man/man1/git-last-modified.1.gz
 share/man/man1/git-log.1.gz
 share/man/man1/git-ls-files.1.gz
 share/man/man1/git-ls-remote.1.gz
@@ -330,6 +338,7 @@ share/man/man1/git-remote.1.gz
 share/man/man1/git-repack.1.gz
 share/man/man1/git-replace.1.gz
 share/man/man1/git-replay.1.gz
+share/man/man1/git-repo.1.gz
 share/man/man1/git-request-pull.1.gz
 share/man/man1/git-rerere.1.gz
 share/man/man1/git-reset.1.gz
@@ -366,6 +375,7 @@ share/man/man1/git-update-ref.1.gz
 share/man/man1/git-update-server-info.1.gz
 share/man/man1/git-upload-archive.1.gz
 share/man/man1/git-upload-pack.1.gz
+share/man/man1/git-url-parse.1.gz
 share/man/man1/git-var.1.gz
 share/man/man1/git-verify-commit.1.gz
 share/man/man1/git-verify-pack.1.gz
@@ -383,6 +393,7 @@ share/man/man5/gitformat-bundle.5.gz
 share/man/man5/gitformat-chunk.5.gz
 share/man/man5/gitformat-commit-graph.5.gz
 share/man/man5/gitformat-index.5.gz
+share/man/man5/gitformat-loose.5.gz
 share/man/man5/gitformat-pack.5.gz
 share/man/man5/gitformat-signature.5.gz
 share/man/man5/githooks.5.gz
@@ -399,6 +410,7 @@ share/man/man5/gitweb.conf.5.gz
 share/man/man7/gitcli.7.gz
 share/man/man7/gitcore-tutorial.7.gz
 share/man/man7/gitcredentials.7.gz
+share/man/man7/gitdatamodel.7.gz
 share/man/man7/gitdiffcore.7.gz
 share/man/man7/giteveryday.7.gz
 share/man/man7/gitfaq.7.gz
@@ -926,6 +938,13 @@ share/man/man7/gitworkflows.7.gz
 %%DOCS%%%%DOCSDIR%%/RelNotes/2.5.4.adoc
 %%DOCS%%%%DOCSDIR%%/RelNotes/2.5.5.adoc
 %%DOCS%%%%DOCSDIR%%/RelNotes/2.5.6.adoc
+%%DOCS%%%%DOCSDIR%%/RelNotes/2.51.2.adoc
+%%DOCS%%%%DOCSDIR%%/RelNotes/2.52.0.adoc
+%%DOCS%%%%DOCSDIR%%/RelNotes/2.53.0.adoc
+%%DOCS%%%%DOCSDIR%%/RelNotes/2.54.0.adoc
+%%DOCS%%%%DOCSDIR%%/RelNotes/2.54.1.adoc
+%%DOCS%%%%DOCSDIR%%/RelNotes/2.55.0.adoc
+%%DOCS%%%%DOCSDIR%%/RelNotes/2.56.0.adoc
 %%DOCS%%%%DOCSDIR%%/RelNotes/2.6.0.adoc
 %%DOCS%%%%DOCSDIR%%/RelNotes/2.6.1.adoc
 %%DOCS%%%%DOCSDIR%%/RelNotes/2.6.2.adoc
@@ -975,6 +994,7 @@ share/man/man7/gitworkflows.7.gz
 %%DOCS%%%%DOCSDIR%%/cmds-userinterfaces.adoc
 %%DOCS%%%%DOCSDIR%%/config.adoc
 %%DOCS%%%%DOCSDIR%%/date-formats.adoc
+%%DOCS%%%%DOCSDIR%%/diff-algorithm-option.adoc
 %%DOCS%%%%DOCSDIR%%/diff-context-options.adoc
 %%DOCS%%%%DOCSDIR%%/diff-format.adoc
 %%DOCS%%%%DOCSDIR%%/diff-generate-patch.adoc
@@ -983,6 +1003,9 @@ share/man/man7/gitworkflows.7.gz
 %%DOCS%%%%DOCSDIR%%/docinfo.html
 %%DOCS%%%%DOCSDIR%%/everyday.html
 %%DOCS%%%%DOCSDIR%%/fetch-options.adoc
+%%DOCS%%%%DOCSDIR%%/for-each-ref-options.adoc
+%%DOCS%%%%DOCSDIR%%/format-patch-caveats.adoc
+%%DOCS%%%%DOCSDIR%%/format-patch-end-of-commit-message.adoc
 %%DOCS%%%%DOCSDIR%%/fsck-msgids.adoc
 %%DOCS%%%%DOCSDIR%%/git-add.adoc
 %%DOCS%%%%DOCSDIR%%/git-add.html
@@ -1096,6 +1119,8 @@ share/man/man7/gitworkflows.7.gz
 %%DOCS%%%%DOCSDIR%%/git-for-each-repo.html
 %%DOCS%%%%DOCSDIR%%/git-format-patch.adoc
 %%DOCS%%%%DOCSDIR%%/git-format-patch.html
+%%DOCS%%%%DOCSDIR%%/git-format-rev.adoc
+%%DOCS%%%%DOCSDIR%%/git-format-rev.html
 %%DOCS%%%%DOCSDIR%%/git-fsck-objects.adoc
 %%DOCS%%%%DOCSDIR%%/git-fsck-objects.html
 %%DOCS%%%%DOCSDIR%%/git-fsmonitor--daemon.adoc
@@ -1114,6 +1139,8 @@ share/man/man7/gitworkflows.7.gz
 %%DOCS%%%%DOCSDIR%%/git-hash-object.html
 %%DOCS%%%%DOCSDIR%%/git-help.adoc
 %%DOCS%%%%DOCSDIR%%/git-help.html
+%%DOCS%%%%DOCSDIR%%/git-history.adoc
+%%DOCS%%%%DOCSDIR%%/git-history.html
 %%DOCS%%%%DOCSDIR%%/git-hook.adoc
 %%DOCS%%%%DOCSDIR%%/git-hook.html
 %%DOCS%%%%DOCSDIR%%/git-http-backend.adoc
@@ -1134,6 +1161,8 @@ share/man/man7/gitworkflows.7.gz
 %%DOCS%%%%DOCSDIR%%/git-instaweb.html
 %%DOCS%%%%DOCSDIR%%/git-interpret-trailers.adoc
 %%DOCS%%%%DOCSDIR%%/git-interpret-trailers.html
+%%DOCS%%%%DOCSDIR%%/git-last-modified.adoc
+%%DOCS%%%%DOCSDIR%%/git-last-modified.html
 %%DOCS%%%%DOCSDIR%%/git-log.adoc
 %%DOCS%%%%DOCSDIR%%/git-log.html
 %%DOCS%%%%DOCSDIR%%/git-ls-files.adoc
@@ -1221,6 +1250,8 @@ share/man/man7/gitworkflows.7.gz
 %%DOCS%%%%DOCSDIR%%/git-replace.html
 %%DOCS%%%%DOCSDIR%%/git-replay.adoc
 %%DOCS%%%%DOCSDIR%%/git-replay.html
+%%DOCS%%%%DOCSDIR%%/git-repo.adoc
+%%DOCS%%%%DOCSDIR%%/git-repo.html
 %%DOCS%%%%DOCSDIR%%/git-request-pull.adoc
 %%DOCS%%%%DOCSDIR%%/git-request-pull.html
 %%DOCS%%%%DOCSDIR%%/git-rerere.adoc
@@ -1296,6 +1327,8 @@ share/man/man7/gitworkflows.7.gz
 %%DOCS%%%%DOCSDIR%%/git-upload-archive.html
 %%DOCS%%%%DOCSDIR%%/git-upload-pack.adoc
 %%DOCS%%%%DOCSDIR%%/git-upload-pack.html
+%%DOCS%%%%DOCSDIR%%/git-url-parse.adoc
+%%DOCS%%%%DOCSDIR%%/git-url-parse.html
 %%DOCS%%%%DOCSDIR%%/git-var.adoc
 %%DOCS%%%%DOCSDIR%%/git-var.html
 %%DOCS%%%%DOCSDIR%%/git-verify-commit.adoc
@@ -1326,6 +1359,8 @@ share/man/man7/gitworkflows.7.gz
 %%DOCS%%%%DOCSDIR%%/gitcredentials.html
 %%DOCS%%%%DOCSDIR%%/gitcvs-migration.adoc
 %%DOCS%%%%DOCSDIR%%/gitcvs-migration.html
+%%DOCS%%%%DOCSDIR%%/gitdatamodel.adoc
+%%DOCS%%%%DOCSDIR%%/gitdatamodel.html
 %%DOCS%%%%DOCSDIR%%/gitdiffcore.adoc
 %%DOCS%%%%DOCSDIR%%/gitdiffcore.html
 %%DOCS%%%%DOCSDIR%%/giteveryday.adoc
@@ -1340,6 +1375,8 @@ share/man/man7/gitworkflows.7.gz
 %%DOCS%%%%DOCSDIR%%/gitformat-commit-graph.html
 %%DOCS%%%%DOCSDIR%%/gitformat-index.adoc
 %%DOCS%%%%DOCSDIR%%/gitformat-index.html
+%%DOCS%%%%DOCSDIR%%/gitformat-loose.adoc
+%%DOCS%%%%DOCSDIR%%/gitformat-loose.html
 %%DOCS%%%%DOCSDIR%%/gitformat-pack.adoc
 %%DOCS%%%%DOCSDIR%%/gitformat-pack.html
 %%DOCS%%%%DOCSDIR%%/gitformat-signature.adoc
@@ -1432,6 +1469,7 @@ share/man/man7/gitworkflows.7.gz
 %%DOCS%%%%DOCSDIR%%/mergetools-diff.adoc
 %%DOCS%%%%DOCSDIR%%/mergetools-merge.adoc
 %%DOCS%%%%DOCSDIR%%/object-format-disclaimer.adoc
+%%DOCS%%%%DOCSDIR%%/pack-refs-options.adoc
 %%DOCS%%%%DOCSDIR%%/pretty-formats.adoc
 %%DOCS%%%%DOCSDIR%%/pretty-options.adoc
 %%DOCS%%%%DOCSDIR%%/pull-fetch-param.adoc
@@ -1467,10 +1505,13 @@ share/man/man7/gitworkflows.7.gz
 %%DOCS%%%%DOCSDIR%%/technical/bundle-uri.adoc
 %%DOCS%%%%DOCSDIR%%/technical/bundle-uri.html
 %%DOCS%%%%DOCSDIR%%/technical/commit-graph.adoc
+%%DOCS%%%%DOCSDIR%%/technical/commit-graph.html
 %%DOCS%%%%DOCSDIR%%/technical/directory-rename-detection.adoc
+%%DOCS%%%%DOCSDIR%%/technical/directory-rename-detection.html
 %%DOCS%%%%DOCSDIR%%/technical/hash-function-transition.adoc
 %%DOCS%%%%DOCSDIR%%/technical/hash-function-transition.html
 %%DOCS%%%%DOCSDIR%%/technical/large-object-promisors.adoc
+%%DOCS%%%%DOCSDIR%%/technical/large-object-promisors.html
 %%DOCS%%%%DOCSDIR%%/technical/long-running-process-protocol.adoc
 %%DOCS%%%%DOCSDIR%%/technical/long-running-process-protocol.html
 %%DOCS%%%%DOCSDIR%%/technical/multi-pack-index.adoc
@@ -1478,6 +1519,9 @@ share/man/man7/gitworkflows.7.gz
 %%DOCS%%%%DOCSDIR%%/technical/pack-heuristics.adoc
 %%DOCS%%%%DOCSDIR%%/technical/pack-heuristics.html
 %%DOCS%%%%DOCSDIR%%/technical/packfile-uri.adoc
+%%DOCS%%%%DOCSDIR%%/technical/packfile-uri.html
+%%DOCS%%%%DOCSDIR%%/technical/paint-down-to-common.adoc
+%%DOCS%%%%DOCSDIR%%/technical/paint-down-to-common.html
 %%DOCS%%%%DOCSDIR%%/technical/parallel-checkout.adoc
 %%DOCS%%%%DOCSDIR%%/technical/parallel-checkout.html
 %%DOCS%%%%DOCSDIR%%/technical/partial-clone.adoc
@@ -1489,8 +1533,11 @@ share/man/man7/gitworkflows.7.gz
 %%DOCS%%%%DOCSDIR%%/technical/reftable.adoc
 %%DOCS%%%%DOCSDIR%%/technical/reftable.html
 %%DOCS%%%%DOCSDIR%%/technical/remembering-renames.adoc
+%%DOCS%%%%DOCSDIR%%/technical/remembering-renames.html
 %%DOCS%%%%DOCSDIR%%/technical/repository-version.adoc
+%%DOCS%%%%DOCSDIR%%/technical/repository-version.html
 %%DOCS%%%%DOCSDIR%%/technical/rerere.adoc
+%%DOCS%%%%DOCSDIR%%/technical/rerere.html
 %%DOCS%%%%DOCSDIR%%/technical/scalar.adoc
 %%DOCS%%%%DOCSDIR%%/technical/scalar.html
 %%DOCS%%%%DOCSDIR%%/technical/send-pack-pipeline.adoc
@@ -1498,9 +1545,13 @@ share/man/man7/gitworkflows.7.gz
 %%DOCS%%%%DOCSDIR%%/technical/shallow.adoc
 %%DOCS%%%%DOCSDIR%%/technical/shallow.html
 %%DOCS%%%%DOCSDIR%%/technical/sparse-checkout.adoc
+%%DOCS%%%%DOCSDIR%%/technical/sparse-checkout.html
 %%DOCS%%%%DOCSDIR%%/technical/sparse-index.adoc
+%%DOCS%%%%DOCSDIR%%/technical/sparse-index.html
 %%DOCS%%%%DOCSDIR%%/technical/trivial-merge.adoc
 %%DOCS%%%%DOCSDIR%%/technical/trivial-merge.html
+%%DOCS%%%%DOCSDIR%%/technical/unambiguous-types.adoc
+%%DOCS%%%%DOCSDIR%%/technical/unambiguous-types.html
 %%DOCS%%%%DOCSDIR%%/technical/unit-tests.adoc
 %%DOCS%%%%DOCSDIR%%/technical/unit-tests.html
 %%DOCS%%%%DOCSDIR%%/trace2-target-values.adoc
@@ -1621,6 +1672,7 @@ share/git-core/templates/hooks/push-to-checkout.sample
 share/git-core/templates/hooks/sendemail-validate.sample
 share/git-core/templates/hooks/update.sample
 share/git-core/templates/info/exclude
+%%NLS%%share/locale/af/LC_MESSAGES/git.mo
 %%NLS%%share/locale/bg/LC_MESSAGES/git.mo
 %%NLS%%share/locale/ca/LC_MESSAGES/git.mo
 %%NLS%%share/locale/de/LC_MESSAGES/git.mo
@@ -1633,6 +1685,7 @@ share/git-core/templates/info/exclude
 %%NLS%%share/locale/it/LC_MESSAGES/git.mo
 %%NLS%%share/locale/ko/LC_MESSAGES/git.mo
 %%NLS%%share/locale/pl/LC_MESSAGES/git.mo
+%%NLS%%share/locale/pt_BR/LC_MESSAGES/git.mo
 %%NLS%%share/locale/pt_PT/LC_MESSAGES/git.mo
 %%NLS%%share/locale/ru/LC_MESSAGES/git.mo
 %%NLS%%share/locale/sv/LC_MESSAGES/git.mo
