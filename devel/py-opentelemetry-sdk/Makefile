@@ -1,6 +1,5 @@
 PORTNAME=	opentelemetry-sdk
-PORTVERSION=	1.42.1
-PORTREVISION=	1
+PORTVERSION=	1.45.1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -16,11 +15,11 @@ LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>=0:devel/py-hatchling@${PY_FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}opentelemetry-api>=${PORTVERSION}:devel/py-opentelemetry-api@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}opentelemetry-semantic-conventions>=0.63b${PORTVERSION:E}:devel/py-opentelemetry-semantic-conventions@${PY_FLAVOR} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}opentelemetry-api=1.45.1:devel/py-opentelemetry-api@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}opentelemetry-semantic-conventions=0.66b1:devel/py-opentelemetry-semantic-conventions@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}typing-extensions>=4.5.0:devel/py-typing-extensions@${PY_FLAVOR}
 
-USES=		python
+USES=		python:3.11+
 USE_PYTHON=	allflavors autoplist concurrent pep517
 
 NO_ARCH=	yes
