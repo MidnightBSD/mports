@@ -321,6 +321,7 @@
     SUBDIR += py-htmltools
     SUBDIR += py-httpbin
     SUBDIR += py-httpcore
+    SUBDIR += py-httpcore2
     SUBDIR += py-httplib2
     SUBDIR += py-httpx
     SUBDIR += py-httpx-sse
