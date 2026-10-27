@@ -2713,8 +2713,10 @@ do-package: ${TMPPLIST}
 	if [ -f ${PKGDEINSTALL} ]; then \
 		_LATE_MPORT_CREATE_ARGS="$${_LATE_MPORT_CREATE_ARGS} -j ${PKGDEINSTALL}"; \
 	fi; \
-	if [ -f ${PKGMESSAGE} ]; then \
-		_LATE_MPORT_CREATE_ARGS="$${_LATE_MPORT_CREATE_ARGS} -m ${PKGMESSAGE}"; \
+	_pkgmessage=$$(${SH} ${SCRIPTSDIR}/merge-pkg-messages.sh \
+		${WRKDIR}/.pkg-message.merged ${_PKGMESSAGES}) || exit 1; \
+	if [ -n "$${_pkgmessage}" ]; then \
+		_LATE_MPORT_CREATE_ARGS="$${_LATE_MPORT_CREATE_ARGS} -m $${_pkgmessage}"; \
 	fi; \
 	if ${MPORT_CREATE} ${MPORT_CREATE_ARGS} ; then \
 		${ECHO_MSG} "Created ${PKGFILE}"; \

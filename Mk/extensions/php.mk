@@ -365,7 +365,7 @@ add-plist-phpext:
 	@${ECHO_CMD} "{" >> ${PHP_EXT_PKGMESSAGE}
 	@${ECHO_CMD} "  message: <<EOD" >> ${PHP_EXT_PKGMESSAGE}
 	@${ECHO_CMD} "This file has been added to automatically load the installed extension:" >> ${PHP_EXT_PKGMESSAGE}
-	@${ECHO_CMD} "${PREFIX}/${PHP_EXT_INI_FILE}" >> ${PHP_EXT_PKGMESSAGE}
+	@${ECHO_CMD} "${PREFIX}/${PHP_EXT_INI_FILE:S/.sample$//}" >> ${PHP_EXT_PKGMESSAGE}
 	@${ECHO_CMD} "EOD" >> ${PHP_EXT_PKGMESSAGE}
 	@${ECHO_CMD} "  type: install" >> ${PHP_EXT_PKGMESSAGE}
 	@${ECHO_CMD} "}" >> ${PHP_EXT_PKGMESSAGE}
