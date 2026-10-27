@@ -1,5 +1,5 @@
 PORTNAME=	boto3
-PORTVERSION=	1.43.95
+PORTVERSION=	1.43.119
 CATEGORIES=	www python devel
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -22,9 +22,6 @@ USES=		python
 USE_PYTHON=	autoplist concurrent pep517 pytest
 
 NO_ARCH=	yes
-
-.if defined(MAGUS)
 NO_TEST=	yes
-.endif
 
 .include <bsd.port.mk>
