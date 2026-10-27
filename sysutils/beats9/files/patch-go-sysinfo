@@ -471,7 +471,7 @@
 +}
 --- vendor/github.com/elastic/go-sysinfo/providers/freebsd/process_freebsd_cgo.go.orig	2026-04-30 16:18:17 UTC
 +++ vendor/github.com/elastic/go-sysinfo/providers/freebsd/process_freebsd_cgo.go
-@@ -0,0 +1,386 @@
+@@ -0,0 +1,411 @@
 +// Licensed to Elasticsearch B.V. under one or more contributor
 +// license agreements. See the NOTICE file distributed with
 +// this work for additional information regarding copyright
@@ -529,6 +529,16 @@
 +    ++count;
 +  }
 +
++  return count;
++}
++
++unsigned int countOpenFileDescriptors(struct filestat_list *head) {
++  unsigned int count = 0;
++  struct filestat *fst;
++  STAILQ_FOREACH(fst, head, next) {
++    if (fst->fs_fd >= 0)
++      ++count;
++  }
 +  return count;
 +}
 +
@@ -811,15 +821,30 @@
 +}
 +
 +func (p *process) OpenHandleCount() (int, error) {
++	// Self and Process initially hold only a PID. Use fresh, local process
++	// information so concurrent callers do not share mutable kinfo data.
++	procs, err := getProcInfo(C.KERN_PROC_PID, p.pid)
++	if err != nil {
++		return 0, err
++	}
++	if len(procs) == 0 {
++		return 0, os.ErrNotExist
++	}
++	kinfo := procs[0].kinfo
++
 +	procstat := C.procstat_open_sysctl()
 +	if procstat == nil {
 +		return 0, errors.New("failed to open procstat sysctl")
 +	}
 +	defer C.procstat_close(procstat)
 +
-+	fs := C.procstat_getfiles(procstat, &p.kinfo, 0)
++	fs := C.procstat_getfiles(procstat, &kinfo, 0)
++	if fs == nil {
++		return 0, fmt.Errorf("failed to get files for process %d", p.pid)
++	}
 +	defer C.procstat_freefiles(procstat, fs)
-+	return int(C.countFileStats(fs)), nil
++	// Current/root directories and other pseudo handles are not descriptors.
++	return int(C.countOpenFileDescriptors(fs)), nil
 +}
 +
 +func (p *process) Environment() (map[string]string, error) {
