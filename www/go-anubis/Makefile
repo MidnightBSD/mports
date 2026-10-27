@@ -1,7 +1,7 @@
 PORTNAME=	anubis
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.28.2
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	https://github.com/techarohq/${PORTNAME}/releases/download/${DISTVERSIONPREFIX}${DISTVERSION}/
 PKGNAMEPREFIX=	go-
@@ -11,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Anti-scraper web proxy using browser-based proof-of-work challenges
 WWW=		https://anubis.techaro.lol/
 
-LICENSE=	bsd3
+LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		go:1.27+,no_targets
