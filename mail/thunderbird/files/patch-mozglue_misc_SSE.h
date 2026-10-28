@@ -3,19 +3,6 @@ Author: Christoph Moench-Tegeder <cmt@burggraben.net>
 
     disable SSE and friends in builds for legacy architectures
 
-diff --git gfx/thebes/moz.build gfx/thebes/moz.build
-index 71903756ea19..3591cc0f38e8 100644
---- gfx/thebes/moz.build
-+++ gfx/thebes/moz.build
-@@ -174,7 +174,7 @@ elif CONFIG["MOZ_WIDGET_TOOLKIT"] == "windows":
-     ]
- 
- # Are we targeting x86 or x64?  If so, build gfxAlphaRecoverySSE2.cpp.
--if CONFIG["INTEL_ARCHITECTURE"]:
-+if CONFIG["INTEL_ARCHITECTURE"] and CONFIG['TARGET_CPU'] == 'x86_64':
-     SOURCES += ["gfxAlphaRecoverySSE2.cpp"]
-     # The file uses SSE2 intrinsics, so it needs special compile flags on some
-     # compilers.
 diff --git mozglue/misc/SSE.h mozglue/misc/SSE.h
 index 0b87366a8043..af0a0b38d23c 100644
 --- mozglue/misc/SSE.h
