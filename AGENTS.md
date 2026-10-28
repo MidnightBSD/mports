@@ -112,6 +112,19 @@ A subagent call blocks the main agent, so main agent + 1 subagent is sequential 
 - For every port added or modified, create a dedicated branch and open a PR. Branch naming convention: `<category>/<portname>` (e.g., `devel/gh`). One port per branch/PR.
 - When `gh` (GitHub CLI) is available, prefer it for all GitHub operations: creating branches, opening PRs, checking PR status, and managing issues. Fall back to raw `git` and API calls only if `gh` is not installed.
 
+## Cleanup after PR merge
+
+When you learn that a PR you worked on has merged:
+
+- Verify the merge and identify local branches and worktrees created
+  for that PR.
+- Ask whether I want those specific branches and worktrees removed.
+- If I already requested cleanup, proceed without asking again.
+- Before removal, check for uncommitted changes, untracked files,
+  and commits not included in the merge. Preserve anything at risk
+  and report it.
+- Do not delete remote branches unless explicitly requested.
+
 ## Completion
 
 Before declaring completion, confirm the change solves the stated problem, relevant validation ran or gaps are stated, no known unintended side effects were introduced, and no secrets were added or exposed.
