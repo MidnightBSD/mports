@@ -1,6 +1,7 @@
 PORTNAME=	lean-ctx
 DISTVERSIONPREFIX=	v
 DISTVERSION=	3.11.4
+PORTREVISION=	1
 CATEGORIES=	ai # machine-learning
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -547,9 +548,9 @@ CARGO_CRATES=	adler2-2.0.1 \
 		wat-1.255.0 \
 		web-sys-0.3.104 \
 		web-time-1.1.0 \
-		webpki-root-certs-1.0.9 \
+		webpki-root-certs-1.0.11 \
 		webpki-roots-0.26.11 \
-		webpki-roots-1.0.9 \
+		webpki-roots-1.0.11 \
 		weezl-0.1.12 \
 		winapi-0.3.9 \
 		winapi-i686-pc-windows-gnu-0.4.0 \
