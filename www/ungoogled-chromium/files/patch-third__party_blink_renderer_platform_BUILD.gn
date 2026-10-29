@@ -1,6 +1,25 @@
---- third_party/blink/renderer/platform/BUILD.gn.orig	2026-08-13 07:41:05 UTC
+--- third_party/blink/renderer/platform/BUILD.gn.orig	2026-10-29 00:40:24 UTC
 +++ third_party/blink/renderer/platform/BUILD.gn
-@@ -2092,7 +2092,7 @@ static_library("test_support") {
+@@ -1797,7 +1797,6 @@
+     ":allow_discouraged_type",
+     ":blink_platform_public_deps",
+     ":platform_export",
+-    "//build/rust/crubit",
+     "//components/language_detection/core",
+     "//gpu/command_buffer/client:raster_interface",
+     "//media/capture:capture_lib",
+@@ -1825,8 +1824,8 @@
+   ]
+   deps = [
+     ":rustfft_ffi",
+-    "fonts:font_format_bindings",
+-    "fonts:ift_patcher_bindings",
++    "fonts:font_format",
++    "fonts:ift_patcher_rs",
+     "//base:base_static",
+     "//base/allocator:buildflags",
+     "//build:chromecast_buildflags",
+@@ -2097,7 +2096,7 @@
    ]
  
    # fuzzed_data_provider may not work with a custom toolchain.

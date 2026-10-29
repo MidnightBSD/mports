@@ -1,11 +1,12 @@
---- media/audio/sndio/sndio_output.cc.orig	2026-01-16 13:40:34 UTC
-+++ media/audio/sndio/sndio_output.cc
-@@ -0,0 +1,189 @@
+--- media/audio/sndio/sndio_output.cc.orig	2026-10-29 00:41:05 UTC
++++ media/audio/sndio/sndio_output.cc	2026-10-29 04:43:00 UTC
+@@ -0,0 +1,198 @@
 +// Copyright (c) 2012 The Chromium Authors. All rights reserved.
 +// Use of this source code is governed by a BSD-style license that can be
 +// found in the LICENSE file.
 +
 +#include "base/logging.h"
++#include "base/compiler_specific.h"
 +#include "base/time/time.h"
 +#include "base/time/default_tick_clock.h"
 +#include "media/audio/audio_manager_base.h"
@@ -168,7 +169,15 @@
 +    const base::TimeDelta delay = AudioTimestampHelper::FramesToTime(hw_delay,
 +	params.sample_rate());
 +    count = source->OnMoreData(delay, base::TimeTicks::Now(), {}, audio_bus.get());
-+    audio_bus->ToInterleaved<SignedInt16SampleTypeTraits>(count, reinterpret_cast<int16_t*>(buffer));
++    CHECK_GE(count, 0);
++    CHECK_LE(count, audio_bus->frames());
++    const size_t samples =
++        base::CheckMul(static_cast<size_t>(count), audio_bus->channels())
++            .ValueOrDie();
++    // Open() allocates space for all frames; only convert the returned frames.
++    auto dest_samples = UNSAFE_BUFFERS(
++        base::span(reinterpret_cast<int16_t*>(buffer), samples));
++    audio_bus->ToInterleavedPartial<SignedInt16SampleTypeTraits>(0u, dest_samples);
 +    if (count == 0) {
 +      // We have to submit something to the device
 +      count = audio_bus->frames();

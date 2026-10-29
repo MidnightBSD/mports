@@ -1,74 +1,67 @@
---- components/device_signals/core/common/linux/platform_utils_linux.cc.orig	2025-10-21 16:57:35 UTC
+--- components/device_signals/core/common/linux/platform_utils_linux.cc.orig	2026-10-26 21:13:13 UTC
 +++ components/device_signals/core/common/linux/platform_utils_linux.cc
-@@ -4,12 +4,23 @@
+@@ -3,12 +3,21 @@
+ // found in the LICENSE file.
  
  #include "components/device_signals/core/common/platform_utils.h"
- 
-+#include "build/build_config.h"
 +
++#include "build/build_config.h"
+ 
  #if defined(USE_GIO)
  #include <gio/gio.h>
  #endif  // defined(USE_GIO)
  #include <sys/stat.h>
 +#if !BUILDFLAG(IS_BSD)
  #include <sys/sysmacros.h>
-+#endif
- 
-+#if BUILDFLAG(IS_BSD)
-+#include <sys/types.h>
-+#include <sys/socket.h>
++#else
 +#include <ifaddrs.h>
 +#include <net/if_dl.h>
++#include <sys/socket.h>
++#include <sys/types.h>
 +#endif
-+
+ 
  #include <algorithm>
  #include <optional>
- #include <string>
-@@ -105,6 +116,7 @@ SettingValue GetScreenlockSecured() {
- // Implements the logic from the native host installation script. First find the
- // root device identifier, then locate its parent and get its type.
- SettingValue GetDiskEncrypted() {
-+#if !BUILDFLAG(IS_BSD)
+@@ -128,6 +137,8 @@
+ #if BUILDFLAG(IS_CHROMEOS)
+   // ChromeOS user partitions are always encrypted via cryptohome.
+   return SettingValue::ENABLED;
++#elif BUILDFLAG(IS_BSD)
++  return SettingValue::DISABLED;
+ #else
    struct stat info;
    // First figure out the device identifier. Fail fast if this fails.
-   if (stat("/", &info) != 0) {
-@@ -127,11 +139,35 @@ SettingValue GetDiskEncrypted() {
-     }
-     return SettingValue::UNKNOWN;
-   }
-+#endif
-   return SettingValue::DISABLED;
- }
+@@ -157,6 +168,29 @@
  
  std::vector<std::string> internal::GetMacAddressesImpl() {
    std::vector<std::string> result;
 +#if BUILDFLAG(IS_BSD)
 +  struct ifaddrs* ifa = nullptr;
-+
 +  if (getifaddrs(&ifa) != 0)
 +    return result;
 +
-+  struct ifaddrs* interface = ifa;
-+  for (; interface != nullptr; interface = interface->ifa_next) {
++  for (struct ifaddrs* interface = ifa; interface != nullptr;
++       interface = interface->ifa_next) {
 +    if (interface->ifa_addr == nullptr ||
 +        interface->ifa_addr->sa_family != AF_LINK) {
 +      continue;
 +    }
-+    struct sockaddr_dl* sdl =
-+        reinterpret_cast<struct sockaddr_dl*>(interface->ifa_addr);
-+    if (!sdl || sdl->sdl_alen != 6)
++    auto* sdl = reinterpret_cast<struct sockaddr_dl*>(interface->ifa_addr);
++    if (sdl->sdl_alen != 6)
 +      continue;
-+    char* link_address = static_cast<char*>(LLADDR(sdl));
++    const unsigned char* link_address =
++        reinterpret_cast<const unsigned char*>(LLADDR(sdl));
 +    result.push_back(base::StringPrintf(
-+        "%02x:%02x:%02x:%02x:%02x:%02x", link_address[0] & 0xff,
-+        link_address[1] & 0xff, link_address[2] & 0xff, link_address[3] & 0xff,
-+        link_address[4] & 0xff, link_address[5] & 0xff));
++        "%02x:%02x:%02x:%02x:%02x:%02x", link_address[0],
++        link_address[1], link_address[2], link_address[3], link_address[4],
++        link_address[5]));
 +  }
++  freeifaddrs(ifa);
 +#else
    base::DirReaderPosix reader("/sys/class/net");
    if (!reader.IsValid()) {
      return result;
-@@ -156,6 +192,7 @@ std::vector<std::string> internal::GetMacAddressesImpl
+@@ -181,6 +215,7 @@
                                &address);
      result.push_back(address);
    }

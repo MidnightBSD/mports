@@ -1,6 +1,6 @@
---- base/allocator/partition_allocator/src/partition_alloc/partition_alloc_forward.h.orig	2026-02-15 10:01:45 UTC
+--- base/allocator/partition_allocator/src/partition_alloc/partition_alloc_forward.h.orig	2026-10-26 21:13:13 UTC
 +++ base/allocator/partition_allocator/src/partition_alloc/partition_alloc_forward.h
-@@ -29,9 +29,13 @@ namespace internal {
+@@ -28,9 +28,13 @@
  // the second one 16. We could technically return something different for
  // malloc() and operator new(), but this would complicate things, and most of
  // our allocations are presumably coming from operator new() anyway.
@@ -8,9 +8,9 @@
 +constexpr size_t kAlignment = 8;
 +#else
  constexpr inline size_t kAlignment =
-     std::max(alignof(max_align_t),
-              static_cast<size_t>(__STDCPP_DEFAULT_NEW_ALIGNMENT__));
+     IntegralMax(alignof(max_align_t),
+                 static_cast<size_t>(__STDCPP_DEFAULT_NEW_ALIGNMENT__));
 +#endif
- static_assert(base::bits::HasSingleBit(kAlignment),
+ static_assert(std::has_single_bit(kAlignment),
                "Alignment must be power of two.");
  static_assert(kAlignment <= 16,

@@ -1,0 +1,24 @@
+--- components/web_package/rust/BUILD.gn.orig	2026-10-26 21:13:13 UTC
++++ components/web_package/rust/BUILD.gn
+@@ -8,6 +8,7 @@
+   crate_name = "web_package_rust"
+   crate_root = "lib.rs"
+   sources = [
++    "bridge.rs",
+     "constants.rs",
+     "http.rs",
+     "parser.rs",
+@@ -17,11 +18,8 @@
+ 
+   deps = [ "//components/cbor/rust:cbor" ]
+ 
+-  cpp_api_from_rust = {
+-    target_name = "web_package_rust_bindings"
+-    cpp_namespace = "web_package::rust"
+-    h_out = "${target_gen_dir}/web_package_rust.h"
+-  }
++  allow_unsafe = true
++  cxx_bindings = [ "bridge.rs" ]
+ }
+ 
+ rust_static_library("web_package_rust_unittests") {

@@ -1,4 +1,4 @@
---- base/threading/platform_thread_posix.cc.orig	2026-05-09 18:09:27 UTC
+--- base/threading/platform_thread_posix.cc.orig	2026-10-26 21:13:13 UTC
 +++ base/threading/platform_thread_posix.cc
 @@ -6,6 +6,9 @@
  
@@ -10,7 +10,7 @@
  #include <sched.h>
  #include <stddef.h>
  #include <stdint.h>
-@@ -80,6 +83,7 @@ void* ThreadFunc(void* params) {
+@@ -80,6 +83,7 @@
        base::DisallowSingleton();
      }
  
@@ -18,15 +18,15 @@
  #if PA_BUILDFLAG(USE_PARTITION_ALLOC_AS_MALLOC)
      partition_alloc::internal::StackTopRegistry::Get().NotifyThreadCreated();
  #endif
-@@ -93,6 +97,7 @@ void* ThreadFunc(void* params) {
+@@ -93,6 +97,7 @@
      // where they were created. This explicitly sets the priority of all new
      // threads.
-     PlatformThread::SetCurrentThreadType(thread_params->thread_type);
+     PlatformThread::SetDefaultThreadType(thread_params->thread_type);
 +#endif
    }
  
    ThreadIdNameManager::GetInstance()->RegisterThread(
-@@ -270,6 +275,10 @@ PlatformThreadId PlatformThreadBase::CurrentId() {
+@@ -270,6 +275,10 @@
  
  #elif BUILDFLAG(IS_POSIX) && BUILDFLAG(IS_AIX)
    return PlatformThreadId(pthread_self());
@@ -37,7 +37,7 @@
  #elif BUILDFLAG(IS_POSIX) && !BUILDFLAG(IS_AIX)
    return PlatformThreadId(reinterpret_cast<int64_t>(pthread_self()));
  #endif
-@@ -363,6 +372,9 @@ void PlatformThreadBase::Detach(PlatformThreadHandle t
+@@ -363,6 +372,9 @@
  
  // static
  bool PlatformThreadBase::CanChangeThreadType(ThreadType from, ThreadType to) {
@@ -47,7 +47,7 @@
    if (from >= to) {
      // Decreasing thread priority on POSIX is always allowed.
      return true;
-@@ -372,10 +384,15 @@ bool PlatformThreadBase::CanChangeThreadType(ThreadTyp
+@@ -372,10 +384,15 @@
    }
  
    return internal::CanLowerNiceTo(internal::ThreadTypeToNiceValue(to));
@@ -63,7 +63,7 @@
    // Mirrors SetCurrentThreadPriority()'s implementation.
    auto platform_specific_priority =
        internal::GetCurrentEffectiveThreadTypeForPlatformForTest();  // IN-TEST
-@@ -386,6 +403,7 @@ ThreadType PlatformThreadBase::GetCurrentEffectiveThre
+@@ -386,6 +403,7 @@
    int nice_value = internal::GetCurrentThreadNiceValue();
  
    return internal::NiceValueToThreadTypeForTest(nice_value);  // IN-TEST
