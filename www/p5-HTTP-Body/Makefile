@@ -1,5 +1,5 @@
 PORTNAME=	HTTP-Body
-PORTVERSION=	1.23
+PORTVERSION=	1.24
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:GETTY
@@ -20,5 +20,10 @@ TEST_DEPENDS=	p5-Test-Deep>=0:devel/p5-Test-Deep \
 
 USES=		perl5
 USE_PERL5=	configure
+
+post-patch:
+	# Keep patch backups out of MakeMaker's automatically installed modules.
+	@${MV} ${WRKSRC}/lib/HTTP/Body.pm.orig ${WRKDIR}/Body.pm.orig
+	@${MV} ${WRKSRC}/lib/HTTP/Body/MultiPart.pm.orig ${WRKDIR}/MultiPart.pm.orig
 
 .include <bsd.port.mk>
