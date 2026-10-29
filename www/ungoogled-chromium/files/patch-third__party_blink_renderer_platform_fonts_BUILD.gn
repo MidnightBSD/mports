@@ -1,0 +1,32 @@
+--- third_party/blink/renderer/platform/fonts/BUILD.gn.orig	2026-10-26 21:13:13 UTC
++++ third_party/blink/renderer/platform/fonts/BUILD.gn
+@@ -5,12 +5,10 @@
+ import("//build/rust/rust_static_library.gni")
+ 
+ rust_static_library("font_format") {
++  allow_unsafe = true  # Required by cxx FFI.
+   crate_root = "opentype/format_check.rs"
+   sources = [ crate_root ]
+-  cpp_api_from_rust = {
+-    target_name = "font_format_bindings"
+-    cpp_namespace = "font_format"
+-  }
++  cxx_bindings = [ crate_root ]
+   deps = [
+     "//third_party/rust/font_types/v0_12:lib",
+     "//third_party/rust/read_fonts/v0_43:lib",
+@@ -19,12 +17,10 @@
+ }
+ 
+ rust_static_library("ift_patcher_rs") {
++  allow_unsafe = true  # Required by cxx FFI.
+   crate_root = "ift/ift_patcher.rs"
+   sources = [ crate_root ]
+-  cpp_api_from_rust = {
+-    target_name = "ift_patcher_bindings"
+-    cpp_namespace = "ift_patcher_rs"
+-  }
++  cxx_bindings = [ crate_root ]
+   deps = [
+     "//third_party/rust/incremental_font_transfer/v0_7:lib",
+     "//third_party/rust/log/v0_4:lib",

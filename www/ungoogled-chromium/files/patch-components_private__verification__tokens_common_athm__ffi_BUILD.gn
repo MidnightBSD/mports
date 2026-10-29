@@ -1,0 +1,37 @@
+--- components/private_verification_tokens/common/athm_ffi/BUILD.gn.orig	2026-10-26 21:13:13 UTC
++++ components/private_verification_tokens/common/athm_ffi/BUILD.gn
+@@ -11,18 +11,18 @@
+   crate_root = "athm_ffi.rs"
+   sources = [
+     "athm_ffi.rs",
++    "cxx_bridge.rs",
+     "privacy_pass_client.rs",
+     "privacy_pass_common.rs",
+     "privacy_pass_issuer.rs",
+   ]
+-  cpp_api_from_rust = {
+-    target_name = "athm_ffi_bindings"
+-    cpp_namespace = "private_verification_tokens"
+-  }
++  cxx_bindings = [ "cxx_bridge.rs" ]
++  allow_unsafe = true
+   deps = [ "//third_party/anonymous_tokens:athm" ]
+   visibility = [
+     ":*",
+     "//components/private_verification_tokens/common:*",
++    "//chrome/browser/private_verification_tokens:*",
+   ]
+ }
+ 
+@@ -41,3 +41,11 @@
+     "//components/private_verification_tokens/common:*",
+   ]
+ }
++
++source_set("athm_ffi_bindings") {
++  sources = [ "athm_ffi.h" ]
++  public_deps = [
++    ":athm_ffi",
++    "//base",
++  ]
++}

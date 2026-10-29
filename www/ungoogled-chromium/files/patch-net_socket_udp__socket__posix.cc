@@ -1,6 +1,6 @@
---- net/socket/udp_socket_posix.cc.orig	2026-08-13 07:41:05 UTC
-+++ net/socket/udp_socket_posix.cc
-@@ -77,6 +77,10 @@
+--- net/socket/udp_socket_posix.cc.orig	2026-10-26 21:13:14 UTC
++++ net/socket/udp_socket_posix.cc	2026-10-29 03:50:57 UTC
+@@ -80,6 +80,10 @@
  #include "base/mac/mac_util.h"
  #endif  // BUILDFLAG(IS_MAC)
  
@@ -11,7 +11,7 @@
  namespace net {
  
  namespace {
-@@ -84,7 +88,7 @@ namespace {
+@@ -87,7 +91,7 @@
  constexpr int kBindRetries = 10;
  constexpr int kPortStart = 1024;
  constexpr int kPortEnd = 65535;
@@ -20,7 +20,7 @@
  // Maximum number of UDP packets that can be read at a time from recvmmsg.
  constexpr size_t kMaxMmsgMessages = 128;
  #endif
-@@ -181,7 +185,7 @@ uint32_t GetInterfaceForDestination(const IPAddress& d
+@@ -145,7 +149,7 @@
  }
  #endif  // BUILDFLAG(IS_MAC)
  
@@ -29,16 +29,29 @@
  // Helper for IPv4 SSM. Sets sin_len on macOS, no-op on Linux.
  group_source_req CreateIPv4SourceGroupRequest(const IPAddress& group_address,
                                                const IPAddress& source_address,
-@@ -495,7 +499,7 @@ base::expected<DatagramsMetadata, Error> UDPSocketPosi
-   CHECK_GT(maximum_packet_size, 0u);
-   CHECK_GE(buf_len, maximum_packet_size);
+@@ -305,6 +309,12 @@
+                                 base::checked_cast<int>(packet_count));
+   }
+ }
++
++}  // namespace
++#endif
++
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_BSD)
++namespace {
+ 
+ void RecordRecvMmsgPacketsRead(size_t packet_count) {
+   if (base::ShouldRecordSubsampledMetric(0.01)) {
+@@ -530,7 +540,7 @@
+   // when reading coalesced superpackets (e.g. UDP GRO).
+   CHECK_GE(buf_len, kMinimumReadMultipleBufferSize);
  
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_BSD)
-   base::expected<DatagramsMetadata, Error> nread =
-       InternalReadMultiple(buffer, buf_len, maximum_packet_size);
-   if (nread.has_value() || nread.error() != ERR_IO_PENDING) {
-@@ -777,12 +781,17 @@ int UDPSocketPosix::SetRecvTos() {
+   if (gro_status_ == GroStatus::kUnconfigured) {
+     if (base::FeatureList::IsEnabled(features::kEnableUdpGro)) {
+       ConfigureGroSocketOption();
+@@ -829,12 +839,17 @@
  #endif  // BUILDFLAG(IS_APPLE)
    }
  
@@ -57,7 +70,7 @@
    if (confirm) {
      sendto_flags_ |= MSG_CONFIRM;
    } else {
-@@ -803,7 +812,7 @@ int UDPSocketPosix::SetBroadcast(bool broadcast) {
+@@ -855,7 +870,7 @@
    DCHECK_CALLED_ON_VALID_THREAD(thread_checker_);
    int value = broadcast ? 1 : 0;
    int rv;
@@ -66,16 +79,16 @@
    // SO_REUSEPORT on OSX permits multiple processes to each receive
    // UDP multicast or broadcast datagrams destined for the bound
    // port.
-@@ -1011,7 +1020,7 @@ base::expected<DatagramsMetadata, Error> UDPSocketPosi
-   // This read API currently only supports connected UDP sockets.
-   CHECK(is_connected_);
-   CHECK(remote_address_);
--#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID)
+@@ -1175,6 +1190,8 @@
+   if (gro_status_ == GroStatus::kEnabled) {
+     return InternalReadMultipleWithGro(buffer, buf_len, maximum_packet_size);
+   }
++#endif
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_BSD)
    return InternalRecvMmsg(buffer, buf_len / maximum_packet_size,
                            maximum_packet_size);
  #else
-@@ -1019,7 +1028,7 @@ base::expected<DatagramsMetadata, Error> UDPSocketPosi
+@@ -1182,7 +1199,7 @@
  #endif
  }
  
@@ -84,7 +97,17 @@
  base::expected<DatagramsMetadata, Error> UDPSocketPosix::InternalRecvMmsg(
      IOBuffer* buffer,
      size_t num_messages,
-@@ -1315,7 +1324,7 @@ int UDPSocketPosix::DoBind(const IPEndPoint& address) 
+@@ -1277,6 +1294,9 @@
+   return datagrams;
+ }
+ 
++#endif
++
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID)
+ base::expected<DatagramsMetadata, Error>
+ UDPSocketPosix::InternalReadMultipleWithGro(IOBuffer* buffer,
+                                             size_t buf_len,
+@@ -1554,7 +1574,7 @@
  #if BUILDFLAG(IS_CHROMEOS)
    if (last_error == EINVAL)
      return ERR_ADDRESS_IN_USE;
@@ -93,7 +116,7 @@
    if (last_error == EADDRNOTAVAIL)
      return ERR_ADDRESS_IN_USE;
  #endif
-@@ -1415,7 +1424,7 @@ int UDPSocketPosix::LeaveGroup(const IPAddress& group_
+@@ -1654,7 +1674,7 @@
  int UDPSocketPosix::SetSourceGroupMembership(const IPAddress& group_address,
                                               const IPAddress& source_address,
                                               int option) const {
@@ -102,7 +125,7 @@
    return ERR_NOT_IMPLEMENTED;
  #else
    uint32_t interface_index = multicast_interface_;
-@@ -1441,6 +1450,10 @@ int UDPSocketPosix::SetSourceGroupMembership(const IPA
+@@ -1680,6 +1700,10 @@
  #endif
  }
  
@@ -113,7 +136,7 @@
  int UDPSocketPosix::JoinSourceGroup(const IPAddress& group_address,
                                      const IPAddress& source_address) const {
    DCHECK_CALLED_ON_VALID_THREAD(thread_checker_);
-@@ -1456,6 +1469,10 @@ int UDPSocketPosix::JoinSourceGroup(const IPAddress& g
+@@ -1695,6 +1719,10 @@
    return SetSourceGroupMembership(group_address, source_address,
                                    MCAST_JOIN_SOURCE_GROUP);
  }

@@ -1,6 +1,6 @@
---- v8/BUILD.gn.orig	2026-08-13 07:41:05 UTC
+--- v8/BUILD.gn.orig	2026-10-26 21:13:13 UTC
 +++ v8/BUILD.gn
-@@ -1052,6 +1052,8 @@ external_v8_defines = [
+@@ -1116,6 +1116,8 @@
    "V8_TARGET_OS_MACOS",
    "V8_TARGET_OS_WIN",
    "V8_TARGET_OS_CHROMEOS",
@@ -9,7 +9,7 @@
    "V8_TARGET_ARCH_ARM64",
    "V8_TARGET_ARCH_PPC64",
    "V8_TARGET_ARCH_MIPS64",
-@@ -1139,6 +1141,12 @@ if (target_os == "android") {
+@@ -1205,6 +1207,12 @@
  } else if (target_os == "chromeos") {
    enabled_external_v8_defines += [ "V8_HAVE_TARGET_OS" ]
    enabled_external_v8_defines += [ "V8_TARGET_OS_CHROMEOS" ]
@@ -22,7 +22,7 @@
  }
  
  # Some V8_TARGET_ARCH_ defines that affect Api constants (see usages of
-@@ -1824,7 +1832,7 @@ config("toolchain") {
+@@ -1901,7 +1909,7 @@
      # don't block compiler updates in Chromium. We'll resolve these when
      # rolling the compiler update into V8 instead.
      if (!build_with_chromium && v8_current_cpu != "ppc64" &&
@@ -31,30 +31,26 @@
        cflags += [ "-Wlifetime-safety-permissive" ]
      }
  
-@@ -1927,9 +1935,6 @@ config("strict_warnings") {
-       cflags += [ "-Wshorten-64-to-32" ]
+@@ -2005,7 +2013,6 @@
      }
-     cflags += [ "-Wmissing-field-initializers" ]
--    if (v8_current_cpu != "ppc64" && v8_current_cpu != "s390x") {
--      cflags += [ "-Wunnecessary-virtual-specifier" ]
--    }
+     cflags += [
+       "-Wmissing-field-initializers",
+-      "-Wunnecessary-virtual-specifier",
+     ]
    }
  }
- 
-@@ -2856,6 +2861,12 @@ template("run_mksnapshot") {
-       if (!v8_enable_builtins_profiling && v8_enable_builtins_reordering) {
-         args += [ "--reorder-builtins" ]
-       }
+@@ -3135,6 +3142,10 @@
+         # list of builtins with incompatible profiles.
+         "--abort-on-bad-builtin-profile-data",
+       ]
 +
 +      if (v8_current_cpu == "x86") {
-+        args -= [
-+          "--abort-on-bad-builtin-profile-data",
-+        ]
++        args -= [ "--abort-on-bad-builtin-profile-data" ]
 +      }
-     }
  
-     # This is needed to distinguish between generating code for the simulator
-@@ -7321,7 +7332,7 @@ v8_component("v8_libbase") {
+       if (!v8_enable_builtins_profiling && v8_enable_builtins_reordering) {
+         args += [ "--reorder-builtins" ]
+@@ -7648,7 +7659,7 @@
      }
    }
  
@@ -63,7 +59,7 @@
      sources += [
        "src/base/debug/stack_trace_posix.cc",
        "src/base/platform/platform-linux.cc",
-@@ -7332,6 +7343,18 @@ v8_component("v8_libbase") {
+@@ -7659,6 +7670,18 @@
        "dl",
        "rt",
      ]

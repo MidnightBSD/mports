@@ -1,14 +1,15 @@
 PORTNAME=	ungoogled-chromium
-PORTVERSION=	151.0.7922.169
+PORTVERSION=	156.0.8078.73
 PULSEMV=	16
 PULSEV=		${PULSEMV}.1
 UGVERSION=	${DISTVERSION}-1
-PORTREVISION=	1
 CATEGORIES=	www wayland
 MASTER_SITES=	https://commondatastorage.googleapis.com/chromium-browser-official/:goo \
-		https://freedesktop.org/software/pulseaudio/releases/:pulseaudio
+		https://freedesktop.org/software/pulseaudio/releases/:pulseaudio \
+		https://nerd.hu/distfiles/:external
 DISTFILES=	chromium-${DISTVERSION}-lite${EXTRACT_SUFX}:goo \
-		pulseaudio-${PULSEV}.tar.gz:pulseaudio
+		pulseaudio-${PULSEV}.tar.gz:pulseaudio \
+		TypeScript-${TSV}-vendor.tar.gz:external
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	ungoogled-software
@@ -88,9 +89,16 @@ LIB_DEPENDS=	libatk-bridge-2.0.so:accessibility/at-spi2-core \
 RUN_DEPENDS=	xdg-open:devel/xdg-utils \
 		noto-basic>0:x11-fonts/noto-basic
 
-USES=		bison compiler:c++17-lang cpe desktop-file-utils gl go:no_targets \
+USES=		bison compiler:c++17-lang cpe desktop-file-utils gl go:1.26,no_targets \
 		gmake gnome iconv:wchar_t jpeg localbase:ldflags ninja perl5 \
 		pkgconfig python:build qt:5 shebangfix tar:xz xorg
+
+TSV=		7.0.2
+ESBUILD_VERSION=	0.28.2
+
+GH_TUPLE=	microsoft:TypeScript:v${TSV}:typescript/typescript \
+		evanw:esbuild:v${ESBUILD_VERSION}:esbuild/esbuild \
+		golang:sys:c0bba94af5f8:esbuildsys/esbuild/vendor/golang.org/x/sys
 
 CPE_VENDOR=	google
 CPE_PRODUCT=	chrome
@@ -193,7 +201,6 @@ CUPS_LIB_DEPENDS=	libcups.so:print/cups
 CUPS_VARS=		GN_ARGS+=use_cups=true
 CUPS_VARS_OFF=		GN_ARGS+=use_cups=false
 
-DEBUG_BUILD_DEPENDS=	esbuild:devel/esbuild
 DEBUG_VARS=		BUILDTYPE=Debug \
 			GN_ARGS+=is_debug=true \
 			GN_ARGS+=is_component_build=false \
@@ -253,7 +260,12 @@ IGNORE=		you have selected HEIMDAL_BASE but do not have Heimdal installed in bas
 .endif
 
 LLVM_DEFAULT=		22
-BUILD_DEPENDS+=		clang${LLVM_DEFAULT}:devel/llvm${LLVM_DEFAULT}
+BUILD_DEPENDS+=		clang${LLVM_DEFAULT}:devel/llvm${LLVM_DEFAULT} \
+			${LOCALBASE}/llvm${LLVM_DEFAULT}/lib/python${PYTHON_VER}/site-packages/clang/cindex.py:devel/llvm${LLVM_DEFAULT}
+GN_ARGS+=		clang_base_path="${LOCALBASE}/llvm${LLVM_DEFAULT}" \
+			clang_version="${LLVM_DEFAULT}" \
+			v8_metagen_libclang_so="${LOCALBASE}/llvm${LLVM_DEFAULT}/lib/libclang.so" \
+			v8_metagen_libclang_bindings_dir="${LOCALBASE}/llvm${LLVM_DEFAULT}/lib/python${PYTHON_VER}/site-packages"
 BINARY_ALIAS+=		cpp=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/clang-cpp \
 			cc=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/clang \
 			c++=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/clang++ \
@@ -309,7 +321,7 @@ GN_ARGS+=	enable_rust=true \
 		rustc_version="${RUSTC_VERSION}"
 
 # go
-MAKE_ENV+=	GOCACHE=${WRKDIR}/go-cache
+MAKE_ENV+=	GOCACHE=${WRKDIR}/go-cache GOTOOLCHAIN=local
 
 pre-everything::
 	@${ECHO_MSG}
@@ -329,6 +341,22 @@ pre-patch:
 		domain_substitution.list -c ${WRKSRC}/domsubcache.tar.gz ${WRKSRC}
 
 pre-configure:
+	@${MKDIR} ${WRKSRC}/third_party/cpython3/host/bin
+	@${LN} -sf ${PYTHON_CMD} ${WRKSRC}/third_party/cpython3/host/bin/python3
+	@${MKDIR} ${WRKSRC}/third_party/typescript/linux-amd64/src/lib
+	@${CP} ${WRKSRC}/typescript/tsc/internal/bundled/libs/*.d.ts \
+		${WRKSRC}/third_party/typescript/linux-amd64/src/lib/
+	cd ${WRKSRC}/typescript/tsc && ${SETENV} ${MAKE_ENV} \
+		${GO_CMD} build -p ${MAKE_JOBS_NUMBER} -mod=vendor -tags=noembed \
+		-o ${WRKSRC}/third_party/typescript/linux-amd64/src/lib/tsc ./cmd/tsgo
+	@${PRINTF} '%s\n' \
+		'# golang.org/x/sys v0.0.0-20220715151400-c0bba94af5f8' \
+		'## explicit' 'golang.org/x/sys/internal/unsafeheader' \
+		'golang.org/x/sys/unix' 'golang.org/x/sys/windows' \
+		> ${WRKSRC}/esbuild/vendor/modules.txt
+	cd ${WRKSRC}/esbuild && ${SETENV} ${MAKE_ENV} \
+		${GO_CMD} build -p ${MAKE_JOBS_NUMBER} -mod=vendor \
+		-o ${WRKSRC}/third_party/devtools-frontend/src/third_party/esbuild/esbuild ./cmd/esbuild
 	# We used to remove bundled libraries to be sure that chromium uses
 	# system libraries and not shipped ones.
 	# cd ${WRKSRC} && ${PYTHON_CMD} \
@@ -357,6 +385,7 @@ do-configure:
 	cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} CC=${CC} CXX=${CXX} LD=${CXX} \
 		READELF=${READELF} AR=${AR} NM=${NM} ${PYTHON_CMD} \
 		./tools/gn/bootstrap/bootstrap.py ${GN_BOOTSTRAP_FLAGS}
+	${LN} -sf ${WRKSRC}/out/${BUILDTYPE}/gn ${BINARY_LINKDIR}/gn
 	cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} ./out/${BUILDTYPE}/gn \
 		gen --args='${GN_ARGS}' out/${BUILDTYPE}
 
