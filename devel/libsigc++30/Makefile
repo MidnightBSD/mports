@@ -1,5 +1,6 @@
 PORTNAME=	libsigc++
 DISTVERSION=	3.8.1
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	https://github.com/libsigcplusplus/libsigcplusplus/releases/download/${DISTVERSION}/
 PKGNAMESUFFIX=	30
