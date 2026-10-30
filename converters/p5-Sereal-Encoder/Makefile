@@ -1,5 +1,5 @@
 PORTNAME=	Sereal-Encoder
-PORTVERSION=	5.006
+PORTVERSION=	5.011
 CATEGORIES=	converters perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:YVES
@@ -13,7 +13,7 @@ LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 LIB_DEPENDS=	libzstd.so:archivers/zstd
-TEST_DEPENDS=	p5-Sereal-Decoder>=5.000:converters/p5-Sereal-Decoder \
+TEST_DEPENDS=	p5-Sereal-Decoder>=${PORTVERSION}:converters/p5-Sereal-Decoder \
 		p5-Test-Deep>=0:devel/p5-Test-Deep \
 		p5-Test-Differences>=0,1:devel/p5-Test-Differences \
 		p5-Test-LongString>=0:devel/p5-Test-LongString \
@@ -29,6 +29,6 @@ MAKE_JOBS_UNSAFE=	yes
 PORTSCOUT=	limit:^[0-9\.]*$$
 
 post-install:
-	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Sereal/Encoder/Encoder.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${TRUE_PREFIX}/${SITE_ARCH_REL}/auto/Sereal/Encoder/Encoder.so
 
 .include <bsd.port.mk>
