@@ -1,5 +1,5 @@
 PORTNAME=	DBD-Pg
-PORTVERSION=	3.21.1
+PORTVERSION=	3.21.2
 CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:TURNSTEP
@@ -19,12 +19,10 @@ RUN_DEPENDS=	p5-DBI>=1.614:databases/p5-DBI
 USES=		perl5 pgsql
 USE_PERL5=	configure
 
-# 3.21.1 calls plan() twice in t/03dbmethod.t, t/10_pg_error_field.t and
-# t/30unicode.t when no PostgreSQL server is reachable, so the suite dies
-# instead of skipping.
+# Keep tests disabled until the suite is validated against a PostgreSQL server.
 NO_TEST=	yes
 
 post-install:
-	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/DBD/Pg/Pg.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${TRUE_PREFIX}/${SITE_ARCH_REL}/auto/DBD/Pg/Pg.so
 
 .include <bsd.port.mk>
