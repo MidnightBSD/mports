@@ -862,6 +862,7 @@
     SUBDIR += p5-ExtUtils-CChecker
     SUBDIR += p5-ExtUtils-Config
     SUBDIR += p5-ExtUtils-Depends
+    SUBDIR += p5-ExtUtils-HasCompiler
     SUBDIR += p5-ExtUtils-Helpers
     SUBDIR += p5-ExtUtils-InstallPaths
     SUBDIR += p5-ExtUtils-MakeMaker
