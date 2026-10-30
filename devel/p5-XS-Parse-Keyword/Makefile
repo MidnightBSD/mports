@@ -1,5 +1,5 @@
 PORTNAME=	XS-Parse-Keyword
-PORTVERSION=	0.49
+PORTVERSION=	0.50
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:PEVANS
@@ -22,6 +22,6 @@ USES=		perl5
 USE_PERL5=	modbuild
 
 post-install:
-	${STRIP_CMD} ${PREFIX}/lib/perl5/site_perl/auto/XS/Parse/Keyword/Keyword.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${TRUE_PREFIX}/lib/perl5/site_perl/auto/XS/Parse/Keyword/Keyword.so
 
 .include <bsd.port.mk>
