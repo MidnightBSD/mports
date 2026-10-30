@@ -1,5 +1,5 @@
 PORTNAME=	Test2-Plugin-Cover
-PORTVERSION=	0.000027
+PORTVERSION=	0.000030
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:EXODIST
@@ -21,6 +21,6 @@ USES=		perl5
 USE_PERL5=	configure
 
 post-install:
-	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Test2/Plugin/Cover/Cover.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${TRUE_PREFIX}/${SITE_ARCH_REL}/auto/Test2/Plugin/Cover/Cover.so
 
 .include <bsd.port.mk>
