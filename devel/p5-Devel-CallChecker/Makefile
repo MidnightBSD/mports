@@ -1,7 +1,8 @@
 PORTNAME=	Devel-CallChecker
-PORTVERSION=	0.009
+PORTVERSION=	0.010
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
+MASTER_SITE_SUBDIR=	CPAN:SHINGO
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -18,5 +19,8 @@ TEST_DEPENDS=	p5-Test-Pod>=1:devel/p5-Test-Pod \
 
 USES=		perl5
 USE_PERL5=	modbuild
+
+post-install:
+	${STRIP_CMD} ${PREFIX}/${SITE_PERL_REL}/auto/Devel/CallChecker/CallChecker.so
 
 .include <bsd.port.mk>
