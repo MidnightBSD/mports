@@ -1,7 +1,7 @@
 PORTNAME=	amaranth
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.5.8
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	cad python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -40,7 +40,7 @@ OPTIONS_DEFINE=	DOCS EXAMPLES
 do-install: # workaround for https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=272771
 	@${MKDIR} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
 	@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PEP517_INSTALL_CMD}
-	@${PYTHON_CMD} -B ${PORTSDIR}/Mk/Scripts/strip_RECORD.py \
+	@${PYTHON_CMD} -B ${PORTSDIR}/Mk/scripts/strip_RECORD.py \
 		${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/${PORTNAME:C|[-_]+|_|g}-${DISTVERSION:S/-/.post/}*.dist-info/RECORD >> ${_PYTHONPKGLIST}
 	@${REINPLACE_CMD} \
 		-e '/\.pyc$$/d' \
@@ -55,7 +55,7 @@ do-install: # workaround for https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=2
 		-e 's|^${PYTHONPREFIX_SITELIBDIR}/../../../sbin/|sbin/|' \
 		-e 's|^${PYTHONPREFIX_SITELIBDIR}/../../../share/|share/|' \
 			${_PYTHONPKGLIST}
-	@cd ${FAKE_DESTDIR}${PREFIX} && ${FIND} lib -name '*.pyc' >> ${_PYTHONPKGLIST}
+	@cd ${FAKE_DESTDIR}${TRUE_PREFIX} && ${FIND} lib -name '*.pyc' >> ${_PYTHONPKGLIST}
 
 do-install-DOCS-on:
 	@cd ${WRKSRC}/docs && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${DOCSDIR}
