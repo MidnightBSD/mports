@@ -1,5 +1,6 @@
 PORTNAME=	gtk-doc
 DISTVERSION=	1.36.1
+PORTREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -28,7 +29,10 @@ MESON_ARGS=	-Dyelp_manual=false
 
 NO_ARCH=	yes
 TEST_ENV=	CC=${CC}
-BINARY_ALIAS=	python3=${PYTHON_CMD}
+
+post-patch:
+	@${REINPLACE_CMD} -e "s|find_installation('python3'|find_installation('${PYTHON_CMD}'|" \
+		${WRKSRC}/meson.build
 
 post-install:
 	${PYTHON_CMD:S,${FAKE_DESTDIR},,} ${PYTHON_LIBDIR}/compileall.py \
