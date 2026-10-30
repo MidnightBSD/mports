@@ -1,30 +1,33 @@
---- components/cbor/BUILD.gn.orig	2026-08-31 10:59:09 UTC
+--- components/cbor/BUILD.gn.orig	2026-10-26 21:13:13 UTC
 +++ components/cbor/BUILD.gn
-@@ -12,7 +12,7 @@ buildflag_header("buildflags") {
+@@ -12,7 +12,11 @@
    # TODO(crbug.com/535682335): Remove `USE_CBOR_RUST` buildflag entirely,
    # unconditionally enable Rust CBOR parser, and drop `is_cronet_build` check
    # once Cronet supports Crubit dependencies.
 -  flags = [ "USE_CBOR_RUST=!$is_cronet_build" ]
-+  flags = [ "USE_CBOR_RUST=false" ]
++  if (is_bsd) {
++    flags = [ "USE_CBOR_RUST=false" ]
++  } else {
++    flags = [ "USE_CBOR_RUST=!$is_cronet_build" ]
++  }
  }
  
- component("cbor") {
-@@ -37,12 +37,12 @@ component("cbor") {
+ source_set("cbor_headers") {
+@@ -48,7 +52,7 @@
      "//base",
    ]
  
 -  if (!is_cronet_build) {
--    public_deps = [
--      "//build/rust/crubit",
--      "//components/cbor/rust:cbor_rust_bindings",
--    ]
--  }
-+#  if (!is_cronet_build) {
-+#    public_deps = [
-+#      "//build/rust/crubit",
-+#      "//components/cbor/rust:cbor_rust_bindings",
-+#    ]
-+#  }
- }
- 
- source_set("unit_tests") {
++  if (!is_cronet_build && !is_bsd) {
+     deps += [
+       "//build/rust/crubit",
+       "//components/cbor/rust:cbor_rust_bindings",
+@@ -91,7 +95,7 @@
+     "//testing/gtest",
+     "//third_party/fuzztest",
+   ]
+-  if (!is_cronet_build) {
++  if (!is_cronet_build && !is_bsd) {
+     deps += [
+       "//components/cbor/rust:cbor_rust_bindings",
+       "//components/cbor/rust:cbor_rust_unittests",

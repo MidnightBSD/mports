@@ -1,26 +1,26 @@
---- base/rand_util_posix.cc.orig	2026-08-12 09:02:10 UTC
+--- base/rand_util_posix.cc.orig	2026-10-26 21:13:13 UTC
 +++ base/rand_util_posix.cc
-@@ -24,7 +24,7 @@
- #include "build/build_config.h"
- #include "third_party/boringssl/src/include/openssl/rand.h"
+@@ -31,7 +31,7 @@
+ #include "base/system/sys_info.h"
+ #endif  // BUILDFLAG(IS_MAC)
  
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
 +#if (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)) && !BUILDFLAG(IS_BSD)
  #include "third_party/lss/linux_syscall_support.h"
- #elif BUILDFLAG(IS_MAC)
- #include <sys/random.h>
-@@ -36,6 +36,7 @@ namespace base {
+ #endif  // BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
  
- namespace {
+@@ -41,6 +41,7 @@
+ 
+ #if !BUILDFLAG(IS_APPLE)
  
 +#if !BUILDFLAG(IS_BSD)
  #if BUILDFLAG(IS_AIX)
  // AIX has no 64-bit support for O_CLOEXEC.
  static constexpr int kOpenFlags = O_RDONLY;
-@@ -60,8 +61,9 @@ class URandomFd {
-  private:
-   const int fd_;
+@@ -67,8 +68,9 @@
  };
+ 
+ #endif  // !BUILDFLAG(IS_APPLE)
 +#endif
  
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID)
@@ -28,7 +28,7 @@
  
  bool KernelSupportsGetRandom() {
    return base::SysInfo::KernelVersionNumber::Current() >=
-@@ -114,6 +116,7 @@ bool UseBoringSSLForRandBytes() {
+@@ -121,6 +123,7 @@
  namespace {
  
  void RandBytesInternal(span<uint8_t> output, bool avoid_allocation) {
@@ -36,25 +36,26 @@
    // The BoringSSL experiment takes priority over everything else.
    if (!avoid_allocation && internal::UseBoringSSLForRandBytes()) {
      // BoringSSL's RAND_bytes always returns 1. Any error aborts the program.
-@@ -146,6 +149,9 @@ void RandBytesInternal(span<uint8_t> output, bool avoi
-   const int urandom_fd = GetUrandomFD();
+@@ -151,6 +154,9 @@
    const bool success = ReadFromFD(urandom_fd, as_writable_chars(output));
    CHECK(success);
+ #endif  // BUILDFLAG(IS_MAC)
 +#else
 +  arc4random_buf(output.data(), output.size());
 +#endif
  }
  
  }  // namespace
-@@ -165,9 +171,11 @@ void RandBytes(span<uint8_t> output) {
-   RandBytesInternal(output, /*avoid_allocation=*/false);
+@@ -171,10 +177,12 @@
  }
  
+ #if !BUILDFLAG(IS_APPLE)
 +#if !BUILDFLAG(IS_BSD)
  int GetUrandomFD() {
    static NoDestructor<URandomFd> urandom_fd;
    return urandom_fd->fd();
  }
 +#endif
+ #endif  // !BUILDFLAG(IS_APPLE)
  
  }  // namespace base

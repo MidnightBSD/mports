@@ -1,0 +1,13 @@
+--- google_apis/BUILD.gn.orig	2026-10-26 21:13:13 UTC
++++ google_apis/BUILD.gn
+@@ -165,6 +165,10 @@
+     "google_api_keys.h",
+   ]
+ 
++  if (is_bsd) {
++    sources += [ "environment_api_key.h" ]
++  }
++
+   configs += [
+     ":key_defines",
+     "//build/config/compiler:wexit_time_destructors",

@@ -1,11 +1,12 @@
---- media/audio/sndio/sndio_input.cc.orig	2026-01-14 08:33:23 UTC
-+++ media/audio/sndio/sndio_input.cc
-@@ -0,0 +1,202 @@
+--- media/audio/sndio/sndio_input.cc.orig	2026-10-29 00:41:05 UTC
++++ media/audio/sndio/sndio_input.cc	2026-10-29 04:43:00 UTC
+@@ -0,0 +1,209 @@
 +// Copyright 2013 The Chromium Authors. All rights reserved.
 +// Use of this source code is governed by a BSD-style license that can be
 +// found in the LICENSE file.
 +
 +#include "base/logging.h"
++#include "base/compiler_specific.h"
 +#include "media/base/audio_bus.h"
 +#include "media/base/audio_sample_types.h"
 +#include "media/base/audio_timestamp_helper.h"
@@ -194,7 +195,13 @@
 +      params.sample_rate());
 +
 +    // push into bus
-+    audio_bus->FromInterleaved<SignedInt16SampleTypeTraits>(reinterpret_cast<int16_t*>(buffer), nframes);
++    const size_t samples =
++        base::CheckMul(static_cast<size_t>(nframes), audio_bus->channels())
++            .ValueOrDie();
++    // The buffer holds one full interleaved block allocated in Open().
++    auto source_samples = UNSAFE_BUFFERS(
++        base::span(reinterpret_cast<const int16_t*>(buffer), samples));
++    audio_bus->FromInterleaved<SignedInt16SampleTypeTraits>(source_samples);
 +
 +
 +    // invoke callback

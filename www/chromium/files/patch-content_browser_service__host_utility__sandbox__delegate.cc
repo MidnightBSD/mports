@@ -1,4 +1,4 @@
---- content/browser/service_host/utility_sandbox_delegate.cc.orig	2026-08-12 09:02:10 UTC
+--- content/browser/service_host/utility_sandbox_delegate.cc.orig	2026-10-26 21:13:13 UTC
 +++ content/browser/service_host/utility_sandbox_delegate.cc
 @@ -24,7 +24,7 @@
  #include "sandbox/policy/sandbox_type.h"
@@ -9,7 +9,7 @@
  #include "media/gpu/buildflags.h"
  #include "media/media_buildflags.h"
  #endif  // BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
-@@ -75,10 +75,10 @@ UtilitySandboxedProcessLauncherDelegate::
+@@ -77,10 +77,10 @@
        sandbox_type_ == sandbox::mojom::Sandbox::kOnDeviceModelExecution ||
        sandbox_type_ == sandbox::mojom::Sandbox::kCdm ||
        sandbox_type_ == sandbox::mojom::Sandbox::kPrintCompositor ||
@@ -20,9 +20,9 @@
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
        sandbox_type_ == sandbox::mojom::Sandbox::kShapeDetection ||
- #if BUILDFLAG(ALLOW_OOP_VIDEO_DECODER)
+ #if BUILDFLAG(ENABLE_OOP_VIDEO_DECODER)
        sandbox_type_ == sandbox::mojom::Sandbox::kHardwareVideoDecoding ||
-@@ -93,11 +93,11 @@ UtilitySandboxedProcessLauncherDelegate::
+@@ -95,12 +95,12 @@
        sandbox_type_ == sandbox::mojom::Sandbox::kNearby ||
  #endif  // BUILDFLAG(IS_CHROMEOS)
  #if BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || \
@@ -30,16 +30,17 @@
 +    BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
        sandbox_type_ == sandbox::mojom::Sandbox::kScreenAI ||
        sandbox_type_ == sandbox::mojom::Sandbox::kPrintBackend ||
+       sandbox_type_ == sandbox::mojom::Sandbox::kPlatformRuntime ||
  #endif
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_CHROMEOS)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
        sandbox_type_ == sandbox::mojom::Sandbox::kOnDeviceTranslation ||
  #endif
        sandbox_type_ == sandbox::mojom::Sandbox::kAudio ||
-@@ -154,15 +154,15 @@ ZygoteCommunication* UtilitySandboxedProcessLauncherDe
-       sandbox_type_ == sandbox::mojom::Sandbox::kNearby ||
- #endif  // BUILDFLAG(IS_CHROMEOS)
-       sandbox_type_ == sandbox::mojom::Sandbox::kAudio ||
+@@ -165,16 +165,16 @@
+       // other hook-based types) rather than the pre-sandboxed generic zygote.
+       sandbox_type_ == sandbox::mojom::Sandbox::kXrCompositing ||
+ #endif
 -#if BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX)
 +#if BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
        sandbox_type_ == sandbox::mojom::Sandbox::kShapeDetection ||
@@ -49,6 +50,7 @@
 +    BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
        sandbox_type_ == sandbox::mojom::Sandbox::kPrintBackend ||
        sandbox_type_ == sandbox::mojom::Sandbox::kScreenAI ||
+       sandbox_type_ == sandbox::mojom::Sandbox::kPlatformRuntime ||
  #endif
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)

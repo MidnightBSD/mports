@@ -1,6 +1,6 @@
---- ui/base/ui_base_features.h.orig	2026-08-31 10:59:09 UTC
-+++ ui/base/ui_base_features.h
-@@ -152,7 +152,7 @@ COMPONENT_EXPORT(UI_BASE_FEATURES)
+--- ui/base/ui_base_features.h.orig	2026-10-26 21:13:14 UTC
++++ ui/base/ui_base_features.h	2026-10-29 13:32:31 UTC
+@@ -155,7 +155,7 @@
  BASE_DECLARE_FEATURE(kWaylandExternalBeginFrameSource);
  #endif  // BUILDFLAG(IS_OZONE)
  
@@ -9,3 +9,12 @@
  COMPONENT_EXPORT(UI_BASE_FEATURES)
  BASE_DECLARE_FEATURE(kGlobalShortcutsPortalPreferredTrigger);
  #endif
+@@ -347,7 +347,7 @@
+ COMPONENT_EXPORT(UI_BASE_FEATURES)
+ BASE_DECLARE_FEATURE(kDarkModeSurfaceTokens);
+ 
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+ // When enabled, reads the system accent color from the xdg-desktop-portal (the
+ // org.freedesktop.appearance "accent-color" setting) and applies it as the
+ // NativeTheme user color.
