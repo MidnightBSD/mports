@@ -1,5 +1,6 @@
 PORTNAME=	aiohttp
 PORTVERSION=	3.14.3
+PORTREVISION=	1
 CATEGORIES=	www python
 MASTER_SITES=	PYPI \
 		https://github.com/aio-libs/aiohttp/releases/download/v${PORTVERSION}/
@@ -25,7 +26,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}aiohappyeyeballs>=2.5.0:net/py-aiohappyeyeba
 		${PYTHON_PKGNAMEPREFIX}propcache>=0.2.0:devel/py-propcache@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}yarl>=1.17.0<2.0:www/py-yarl@${PY_FLAVOR}
 
-USES=		cpe python
+USES=		cpe pkgconfig python
 USE_PYTHON=	allflavors autoplist concurrent cython pep517
 
 NO_TEST=	yes
