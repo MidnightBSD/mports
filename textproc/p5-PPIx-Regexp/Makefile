@@ -1,5 +1,5 @@
 PORTNAME=	PPIx-Regexp
-DISTVERSION=	0.091
+DISTVERSION=	0.092
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:WYANT
@@ -13,7 +13,7 @@ LICENSE=	artistic gpl
 LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
-RUN_DEPENDS=	p5-PPI>=0:textproc/p5-PPI \
+RUN_DEPENDS=	p5-PPI>=1.238:textproc/p5-PPI \
 		p5-Task-Weaken>=0:devel/p5-Task-Weaken
 
 USES=		perl5
