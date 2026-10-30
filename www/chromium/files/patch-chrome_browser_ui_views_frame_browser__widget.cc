@@ -1,6 +1,6 @@
---- chrome/browser/ui/views/frame/browser_widget.cc.orig	2026-08-31 10:59:09 UTC
-+++ chrome/browser/ui/views/frame/browser_widget.cc
-@@ -47,7 +47,7 @@
+--- chrome/browser/ui/views/frame/browser_widget.cc.orig	2026-10-29 00:40:24 UTC
++++ chrome/browser/ui/views/frame/browser_widget.cc	2026-10-29 12:53:50 UTC
+@@ -51,7 +51,7 @@
  #include "ui/aura/window.h"
  #endif
  
@@ -9,7 +9,7 @@
  #include "ui/linux/linux_ui.h"
  #endif
  
-@@ -86,7 +86,7 @@ class ThemeChangedObserver : public views::WidgetObser
+@@ -88,7 +88,7 @@
  };
  
  bool IsUsingLinuxSystemTheme(Profile* profile) {
@@ -18,7 +18,7 @@
    return ThemeServiceFactory::GetForProfile(profile)->UsingSystemTheme();
  #else
    return false;
-@@ -163,7 +163,7 @@ void BrowserWidget::InitBrowserWidget() {
+@@ -167,7 +167,7 @@
  #endif
    }
  
@@ -27,25 +27,25 @@
    params.startup_id =
        BrowserInitState::From(browser)->create_params().startup_id;
  #endif
-@@ -209,7 +209,7 @@ void BrowserWidget::InitBrowserWidget() {
- 
-   Init(std::move(params));
+@@ -227,7 +227,7 @@
+                                 base::Unretained(this)));
+   }
  
 -#if BUILDFLAG(IS_LINUX)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
    SelectNativeTheme();
  #else
    SetNativeTheme(ui::NativeTheme::GetInstanceForNativeUi());
-@@ -493,7 +493,7 @@ void BrowserWidget::OnMenuClosed() {
+@@ -544,7 +544,7 @@
  }
  
  void BrowserWidget::SelectNativeTheme() {
 -#if BUILDFLAG(IS_LINUX)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
-   // Use the regular NativeTheme instance if running incognito mode, regardless
-   // of system theme (gtk, qt etc).
+   // Use the regular NativeTheme instance if running incognito mode or
+   // enterprise isolated mode, regardless of system theme (gtk, qt etc).
    ui::NativeTheme* native_theme = ui::NativeTheme::GetInstanceForNativeUi();
-@@ -534,7 +534,7 @@ void BrowserWidget::OnTouchUiChanged() {
+@@ -591,7 +591,7 @@
  bool BrowserWidget::RegenerateFrameOnThemeChange(
      BrowserThemeChangeType theme_change_type) {
    bool need_regenerate = false;

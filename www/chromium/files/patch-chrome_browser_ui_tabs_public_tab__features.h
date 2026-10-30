@@ -1,7 +1,15 @@
---- chrome/browser/ui/tabs/public/tab_features.h.orig	2026-08-31 10:59:09 UTC
+--- chrome/browser/ui/tabs/public/tab_features.h.orig	2026-10-26 21:13:13 UTC
 +++ chrome/browser/ui/tabs/public/tab_features.h
-@@ -161,7 +161,7 @@ class TabContextualizationController;
+@@ -261,14 +261,14 @@
+ class TabContextualizationController;
  }  // namespace lens
+ 
+-#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ namespace metrics {
+ class DesktopSessionDurationObserver;
+ }  // namespace metrics
+ #endif
  
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
 -    BUILDFLAG(IS_CHROMEOS)
@@ -9,7 +17,7 @@
  namespace wallet {
  class ChromeWalletablePassClient;
  }  // namespace wallet
-@@ -593,7 +593,7 @@ class TabFeatures {
+@@ -772,7 +772,7 @@
        page_context_eligibility_helper_;
  
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
@@ -18,12 +26,19 @@
    std::unique_ptr<wallet::ChromeWalletablePassClient> walletable_pass_client_;
  #endif
  
-@@ -605,7 +605,7 @@ class TabFeatures {
+@@ -783,13 +783,13 @@
+   std::unique_ptr<skills::SkillsUpdateObserver> skills_update_observer_;
  #endif  //  !BUILDFLAG(IS_ANDROID)
+ 
+-#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+   std::unique_ptr<metrics::DesktopSessionDurationObserver>
+       desktop_session_duration_observer_;
+ #endif
  
  #if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN) || \
 -    BUILDFLAG(IS_CHROMEOS)
 +    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
    std::unique_ptr<enterprise_reporting::SaasUsageNavigationObserver>
        saas_usage_navigation_observer_;
- #endif  // BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN)
+   std::unique_ptr<HatsHelper> hats_helper_;

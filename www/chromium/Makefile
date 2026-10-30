@@ -1,5 +1,5 @@
 PORTNAME=	chromium
-PORTVERSION=	152.0.7977.75
+PORTVERSION=	156.0.8078.79
 PULSEMV=	16
 PULSEV=		${PULSEMV}.1
 CATEGORIES=	www wayland
@@ -7,11 +7,10 @@ MASTER_SITES=	https://commondatastorage.googleapis.com/chromium-browser-official
 		https://nerd.hu/distfiles/:external \
 		https://freedesktop.org/software/pulseaudio/releases/:pulseaudio
 DISTFILES=	${DISTNAME}-lite${EXTRACT_SUFX} \
-		pulseaudio-${PULSEV}.tar.gz:pulseaudio
+		pulseaudio-${PULSEV}.tar.gz:pulseaudio \
+		TypeScript-${TSV}-vendor.tar.gz:external
 
 USE_GITHUB=	nodefault
-GH_TUPLE=	rollup:rollup:v4.60.4:rollup/rollup \
-		evanw:esbuild:v${_ESBUILD_VERSION:sh}:esbuild/esbuild
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Google web browser based on WebKit
@@ -33,7 +32,6 @@ BUILD_DEPENDS=	bash:shells/bash \
 		${PYTHON_PKGNAMEPREFIX}Jinja2>0:devel/py-Jinja2@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}ply>0:devel/py-ply@${PY_FLAVOR} \
 		bindgen:devel/rust-bindgen-cli \
-		esbuild:devel/esbuild \
 		gperf:devel/gperf \
 		flock:sysutils/flock \
 		node:www/node \
@@ -85,21 +83,16 @@ LIB_DEPENDS=	libatk-bridge-2.0.so:accessibility/at-spi2-core \
 RUN_DEPENDS=	xdg-open:devel/xdg-utils \
 		noto-basic>0:x11-fonts/noto-basic
 
-USES=		bison cargo compiler:c++17-lang cpe desktop-file-utils gl gmake \
-		go:no_targets gnome iconv:wchar_t jpeg localbase:ldflags ninja perl5 \
+USES=		bison compiler:c++17-lang cpe desktop-file-utils gl go:1.26,no_targets \
+		gmake gnome iconv:wchar_t jpeg localbase:ldflags ninja perl5 \
 		pkgconfig python:build qt:5 shebangfix tar:xz xorg
 
-WITHOUT_FBSD10_FIX=	Yes
+TSV=		7.0.2
+ESBUILD_VERSION=	0.28.2
 
-CARGO_CARGOTOML=	${WRKSRC}/rollup/rust/Cargo.toml
-CARGO_CARGOLOCK=	${WRKSRC}/rollup/rust/Cargo.lock
-CARGO_TARGET_DIR=	${WRKSRC}/rollup/rust/target
-
-CARGO_INSTALL=		No
-CARGO_BUILD=		No
-CARGO_TEST=		No
-
-_ESBUILD_VERSION=	${MAKE} -C ${PORTSDIR}/devel/esbuild -V DISTVERSION
+GH_TUPLE=	microsoft:TypeScript:v${TSV}:typescript/typescript \
+		evanw:esbuild:v${ESBUILD_VERSION}:esbuild/esbuild \
+		golang:sys:c0bba94af5f8:esbuildsys/esbuild/vendor/golang.org/x/sys
 
 CPE_VENDOR=	google
 CPE_PRODUCT=	chrome
@@ -124,7 +117,8 @@ BINARY_ALIAS=	python3=${PYTHON_CMD} \
 # Some parts don't have use_system_* flag, and can be turned on/off by using
 # replace_gn_files.py script, some parts just turned on/off for target host
 # OS "target_os == is_bsd", like libusb, libpci.
-GN_ARGS+=	clang_use_chrome_plugins=false \
+GN_ARGS+=	chrome_pgo_phase=0 \
+		clang_use_chrome_plugins=false \
 		enable_backup_ref_ptr_support=false \
 		enable_hangout_services_extension=true \
 		enable_remoting=false \
@@ -156,11 +150,11 @@ GN_ARGS+=	clang_use_chrome_plugins=false \
 # use_system_minigbm
 GN_BOOTSTRAP_FLAGS=	--no-clean --no-rebuild --skip-generate-buildfiles
 
-# FreeBSD Chromium Api Key
-# Set up Google API keys, see http://www.chromium.org/developers/how-tos/api-keys .
-# Note: these are for FreeBSD use ONLY. For your own distribution,
-# please get your own set of keys.
-GN_ARGS+=	google_api_key="AIzaSyBsp9n41JLW8jCokwn7vhoaMejDFRd1mp8"
+# GOOGLE_API_KEY may be supplied in the build environment; the generated
+# header keeps its value out of GN arguments and compiler command lines.
+# Chromium also supports GOOGLE_API_KEY in the runtime environment.
+GN_ARGS+=	use_official_google_api_keys=false \
+		google_api_key=""
 
 SUB_FILES=	chromium-browser.desktop chrome
 SUB_LIST+=	COMMENT="${COMMENT}"
@@ -253,7 +247,12 @@ IGNORE=		you have selected HEIMDAL_BASE but do not have Heimdal installed in bas
 .endif
 
 LLVM_DEFAULT=		22
-BUILD_DEPENDS+=		clang${LLVM_DEFAULT}:devel/llvm${LLVM_DEFAULT}
+BUILD_DEPENDS+=		clang${LLVM_DEFAULT}:devel/llvm${LLVM_DEFAULT} \
+			${LOCALBASE}/llvm${LLVM_DEFAULT}/lib/python${PYTHON_VER}/site-packages/clang/cindex.py:devel/llvm${LLVM_DEFAULT}
+GN_ARGS+=		clang_base_path="${LOCALBASE}/llvm${LLVM_DEFAULT}" \
+			clang_version="${LLVM_DEFAULT}" \
+			v8_metagen_libclang_so="${LOCALBASE}/llvm${LLVM_DEFAULT}/lib/libclang.so" \
+			v8_metagen_libclang_bindings_dir="${LOCALBASE}/llvm${LLVM_DEFAULT}/lib/python${PYTHON_VER}/site-packages"
 BINARY_ALIAS+=		cpp=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/clang-cpp \
 			cc=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/clang \
 			c++=${LOCALBASE}/llvm${LLVM_DEFAULT}/bin/clang++ \
@@ -307,7 +306,7 @@ GN_ARGS+=	enable_rust=true \
 		rustc_version="${RUSTC_VERSION}"
 
 # go
-MAKE_ENV+=	GOCACHE=${WRKDIR}/go-cache
+MAKE_ENV+=	GOCACHE=${WRKDIR}/go-cache GOTOOLCHAIN=local
 
 pre-everything::
 	@${ECHO_MSG}
@@ -318,6 +317,24 @@ pre-everything::
 	@${ECHO_MSG}
 
 pre-configure:
+	@${PYTHON_CMD} ${FILESDIR}/generate-api-key.py \
+		${WRKSRC}/google_apis/environment_api_key.h
+	@${MKDIR} ${WRKSRC}/third_party/cpython3/host/bin
+	@${LN} -sf ${PYTHON_CMD} ${WRKSRC}/third_party/cpython3/host/bin/python3
+	@${MKDIR} ${WRKSRC}/third_party/typescript/linux-amd64/src/lib
+	@${CP} ${WRKSRC}/typescript/tsc/internal/bundled/libs/*.d.ts \
+		${WRKSRC}/third_party/typescript/linux-amd64/src/lib/
+	cd ${WRKSRC}/typescript/tsc && ${SETENV} ${MAKE_ENV} \
+		${GO_CMD} build -p ${MAKE_JOBS_NUMBER} -mod=vendor -tags=noembed \
+		-o ${WRKSRC}/third_party/typescript/linux-amd64/src/lib/tsc ./cmd/tsgo
+	@${PRINTF} '%s\n' \
+		'# golang.org/x/sys v0.0.0-20220715151400-c0bba94af5f8' \
+		'## explicit' 'golang.org/x/sys/internal/unsafeheader' \
+		'golang.org/x/sys/unix' 'golang.org/x/sys/windows' \
+		> ${WRKSRC}/esbuild/vendor/modules.txt
+	cd ${WRKSRC}/esbuild && ${SETENV} ${MAKE_ENV} \
+		${GO_CMD} build -p ${MAKE_JOBS_NUMBER} -mod=vendor \
+		-o ${WRKSRC}/third_party/devtools-frontend/src/third_party/esbuild/esbuild ./cmd/esbuild
 	# We used to remove bundled libraries to be sure that chromium uses
 	# system libraries and not shipped ones.
 	# cd ${WRKSRC} && ${PYTHON_CMD} \
@@ -341,34 +358,12 @@ pre-configure:
 		${WRKSRC}/build/rust/rust_bindgen.gni \
 		${WRKSRC}/build/rust/rust_bindgen_generator.gni
 
-pre-build:
-	@${CARGO_CARGO_RUN} build \
-		--manifest-path ${CARGO_CARGOTOML} \
-		--verbose \
-		--verbose \
-		${CARGO_BUILD_ARGS}
-	# mports' cargo.mk always sets CARGO_BUILD_TARGET, so cargo writes the
-	# artifact under the target triple rather than straight into
-	# ${CARGO_TARGET_DIR}/release as FreeBSD's port assumes.
-	(cd ${WRKSRC}/third_party/devtools-frontend/src/node_modules/@rollup && \
-		mkdir -p rollup-freebsd && \
-		cp ${CARGO_TARGET_DIR}/${CARGO_BUILD_TARGET}/release/libbindings_napi.so \
-			rollup-freebsd/rollup.freebsd.node && \
-		echo '{ "main": "./rollup.freebsd.node" }' \
-			> rollup-freebsd/package.json)
-
 do-configure:
-	(cd ${WRKSRC}/esbuild && \
-		${LOCALBASE}/bin/node scripts/esbuild.js \
-		/usr/local/bin/esbuild --neutral && \
-		rm -rf ${WRKSRC}/third_party/devtools-frontend/src/node_modules/esbuild && \
-		ln -sf ${WRKSRC}/esbuild/npm/esbuild \
-		${WRKSRC}/third_party/devtools-frontend/src/node_modules/esbuild \
-	)
 	# GN generator bootstrapping and generating ninja files
 	cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} CC=${CC} CXX=${CXX} LD=${CXX} \
 		READELF=${READELF} AR=${AR} NM=${NM} ${PYTHON_CMD} \
 		./tools/gn/bootstrap/bootstrap.py ${GN_BOOTSTRAP_FLAGS}
+	${LN} -sf ${WRKSRC}/out/${BUILDTYPE}/gn ${BINARY_LINKDIR}/gn
 	cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} ./out/${BUILDTYPE}/gn \
 		gen --args='${GN_ARGS}' out/${BUILDTYPE}
 
@@ -380,10 +375,8 @@ do-configure:
 	@${MKDIR} ${WRKSRC}/third_party/rust-toolchain/bin
 	${LN} -sf ${LOCALBASE}/bin/rustc ${WRKSRC}/third_party/rust-toolchain/bin/rustc
 
-	# Setup esbuild dependency
-	${LN} -sf ${LOCALBASE}/bin/esbuild ${WRKSRC}/third_party/devtools-frontend/src/third_party/esbuild/esbuild
-
 	# Setup gperf dependency
+	@${MKDIR} ${WRKSRC}/third_party/gperf/cipd/bin
 	${LN} -sf ${LOCALBASE}/bin/gperf ${WRKSRC}/third_party/gperf/cipd/bin/gperf
 
 	# Setup buildtools/freebsd
