@@ -1,6 +1,7 @@
 PORTNAME=	corepack
 PORTVERSION=	0.34.5
 DISTVERSIONPREFIX=	v
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	https://github.com/nodejs/corepack/releases/download/v${PORTVERSION}/
 DIST_SUBDIR=	corepack/${PORTVERSION}
@@ -22,6 +23,7 @@ NO_WRKSUBDIR=	yes
 do-install:
 	${MKDIR} ${PREFIX}/lib/node_modules/
 	cd ${WRKSRC}/package/ && ${COPYTREE_SHARE} . ${PREFIX}/lib/node_modules/corepack/
+	${CHMOD} ${BINMODE} ${PREFIX}/lib/node_modules/corepack/dist/*.js
 	${LN} -s ../lib/node_modules/corepack/dist/corepack.js ${PREFIX}/bin/corepack
 
 .include <bsd.port.mk>
