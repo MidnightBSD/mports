@@ -1,6 +1,6 @@
 PORTNAME=	libsecret
 PORTVERSION=	0.21.8.2
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	security gnome
 MASTER_SITES=	GNOME
 
@@ -15,6 +15,7 @@ LICENSE_FILE_gpl2+ =	${WRKSRC}/COPYING.TESTS
 LICENSE_FILE_lgpl2.1+ =	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gi-docgen>0:textproc/py-gi-docgen@${PY_FLAVOR} \
+		dbus-run-session:devel/dbus \
 		docbook-xsl>=0:textproc/docbook-xsl
 LIB_DEPENDS=	libgcrypt.so:security/libgcrypt \
 		libgpg-error.so:security/libgpg-error
