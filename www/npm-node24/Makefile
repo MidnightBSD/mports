@@ -1,6 +1,6 @@
 PORTNAME=	npm
 PORTVERSION=	11.8.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www
 MASTER_SITES=	FREEBSD_LOCAL/sunpoet
 PKGNAMESUFFIX=	${NODEJS_SUFFIX}
@@ -40,6 +40,10 @@ post-patch:
 
 do-install:
 	cd ${WRKSRC}/ && ${COPYTREE_SHARE} . ${PREFIX}/
+	${CHMOD} ${BINMODE} ${PREFIX}/lib/node_modules/npm/bin/npm-cli.js \
+		${PREFIX}/lib/node_modules/npm/bin/npx-cli.js \
+		${PREFIX}/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js \
+		${PREFIX}/lib/node_modules/npm/node_modules/node-gyp/gyp/gyp
 	${ECHO_CMD} 'python=${PYTHON_CMD}' > ${PREFIX}/etc/npmrc
 	${PYTHON_CMD} -m compileall -d ${TRUE_PREFIX}/lib/node_modules/npm/node_modules/node-gyp/gyp -f ${PREFIX}/lib/node_modules/npm/node_modules/node-gyp/gyp -o 0 -o 1
 
