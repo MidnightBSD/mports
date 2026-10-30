@@ -1,6 +1,6 @@
 PORTNAME=	adwaita-icon-theme
 DISTVERSION=	51.0
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	x11-themes gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -12,6 +12,7 @@ WWW=		https://gitlab.gnome.org/GNOME/adwaita-icon-theme
 LICENSE=	lgpl3 CC-BY-SA-3.0
 LICENSE_COMB=	dual
 
+BUILD_DEPENDS=	gtk-update-icon-cache:graphics/gtk-update-icon-cache
 RUN_DEPENDS=	adwaita-icon-theme-legacy>0:x11-themes/adwaita-icon-theme-legacy
 
 NO_ARCH=	yes
