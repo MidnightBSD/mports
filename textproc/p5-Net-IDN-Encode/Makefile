@@ -1,7 +1,8 @@
 PORTNAME=	Net-IDN-Encode
-PORTVERSION=	2.500
+PORTVERSION=	2.502
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
+MASTER_SITE_SUBDIR=	CPAN:RRWO
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,5 +16,8 @@ BUILD_DEPENDS=	p5-Test-NoWarnings>=0:devel/p5-Test-NoWarnings
 
 USES=		perl5
 USE_PERL5=	modbuild
+
+post-install:
+	${STRIP_CMD} ${FAKE_DESTDIR}${TRUE_PREFIX}/${SITE_PERL_REL}/auto/Net/IDN/Punycode/Punycode.so
 
 .include <bsd.port.mk>
