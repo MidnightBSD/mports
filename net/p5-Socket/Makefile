@@ -1,5 +1,5 @@
 PORTNAME=	Socket
-PORTVERSION=	2.041
+PORTVERSION=	2.043
 CATEGORIES=	net perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:PEVANS
@@ -14,8 +14,8 @@ LICENSE_COMB=	dual
 
 PORTSCOUT=	limit:^[0-9\.]*$$
 
-USE_PERL5=	configure
 USES=		perl5
+USE_PERL5=	configure
 
 post-install:
 	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Socket/Socket.so
