@@ -1,5 +1,5 @@
 PORTNAME=	PPIx-QuoteLike
-PORTVERSION=	0.023
+PORTVERSION=	0.024
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:WYANT
@@ -11,8 +11,8 @@ WWW=		https://metacpan.org/release/PPIx-QuoteLike
 
 LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
-LICENSE_FILE_artistic=	${WRKSRC}/LICENSES/Artistic
-LICENSE_FILE_gpl=	${WRKSRC}/LICENSES/Copying
+LICENSE_FILE_artistic=	${WRKSRC}/LICENSE-Artistic
+LICENSE_FILE_gpl+ =	${WRKSRC}/LICENSE-GPL
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	p5-PPI>=1.238:textproc/p5-PPI \
@@ -22,6 +22,7 @@ USES=		perl5
 USE_PERL5=	configure
 
 NO_ARCH=	yes
+NO_TEST=	yes
 
 PORTSCOUT=	limit:^[0-9\.]*$$
 
