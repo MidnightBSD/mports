@@ -116,7 +116,25 @@ NODE_MODULES_TARBALL=	${DISTDIR}/${DIST_SUBDIR}/${_DISTFILE_NODE_MODULES}
 
 YARN_NPM_URL=	https://registry.npmjs.org/@yarnpkg/cli-dist/-/cli-dist-${NPM_VER}.tgz
 
-pre-fetch: electron-fetch-node-package-manager electron-fetch-node-modules electron-archive-node-modules
+# The Electron source tarball as USE_GITHUB names it. electron-fetch-node-modules
+# needs it to read package.json/yarn.lock, but pre-fetch runs before do-fetch, so
+# it has to be fetched explicitly here rather than assumed present.
+ELECTRON_SRC_TGZ=	${DISTDIR}/${DIST_SUBDIR}/${DISTNAME}.tar.gz
+ELECTRON_SRC_URL=	https://codeload.github.com/${GH_ACCOUNT}/${GH_PROJECT}/tar.gz/${DISTVERSIONFULL}?dummy=/${DISTNAME}.tar.gz
+
+pre-fetch: electron-fetch-node-package-manager electron-fetch-source \
+	electron-fetch-node-modules electron-archive-node-modules
+
+electron-fetch-source:
+	@if [ -f ${ELECTRON_SRC_TGZ} ]; then \
+		${ECHO_MSG} "===>  Using prefetched ${DISTNAME}.tar.gz"; \
+	else \
+		${ECHO_MSG} "===>  Fetching ${DISTNAME}.tar.gz"; \
+		${MKDIR} ${DISTDIR}/${DIST_SUBDIR}; \
+		${SETENV} ${FETCH_ENV} ${FETCH_CMD} ${FETCH_BEFORE_ARGS} \
+			-o ${ELECTRON_SRC_TGZ} "${ELECTRON_SRC_URL}" \
+			${FETCH_AFTER_ARGS}; \
+	fi
 
 electron-fetch-node-package-manager:
 	@if [ -f ${YARN_TGZ} ]; then \
