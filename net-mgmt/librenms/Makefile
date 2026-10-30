@@ -1,6 +1,6 @@
 PORTNAME=	librenms
 PORTVERSION=	26.2.0
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	net-mgmt
 MASTER_SITES=	FREEBSD_LOCAL/dvl:vendor
@@ -19,9 +19,10 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}psutil>0:sysutils/py-psutil@${PY_FLAVOR} \
 		bash:shells/bash \
 		dot:graphics/graphviz \
 		rrdtool:databases/rrdtool \
-		snmpget:net-mgmt/net-snmp
+		snmpget:net-mgmt/net-snmp \
+		sudo:security/sudo
 
-USES=		cpe php python shebangfix sudo
+USES=		cpe php python shebangfix
 USE_GITHUB=	yes
 # php hash/json/openssl extension is required but it's statically linked in default php
 USE_PHP=	ctype curl dom fileinfo filter gd iconv ldap mbstring mysqli \
