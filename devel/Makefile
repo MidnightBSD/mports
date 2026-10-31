@@ -1075,6 +1075,7 @@
     SUBDIR += p5-Sub-Info
     SUBDIR += p5-Sub-Install
     SUBDIR += p5-Sub-Name
+    SUBDIR += p5-Sub-Override
     SUBDIR += p5-Sub-Quote
     SUBDIR += p5-Sub-Uplevel
     SUBDIR += p5-SUPER
