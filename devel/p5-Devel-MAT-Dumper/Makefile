@@ -1,5 +1,5 @@
 PORTNAME=	Devel-MAT-Dumper
-PORTVERSION=	0.51
+PORTVERSION=	0.52
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:PEVANS
@@ -15,5 +15,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		perl5
 USE_PERL5=	modbuild
+
+post-install:
+	${STRIP_CMD} ${PREFIX}/${SITE_PERL_REL}/auto/Devel/MAT/Dumper/Dumper.so
 
 .include <bsd.port.mk>
