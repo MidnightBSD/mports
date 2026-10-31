@@ -1,7 +1,8 @@
 PORTNAME=	Lingua-JA-Moji
-PORTVERSION=	0.60
+PORTVERSION=	0.63
 CATEGORIES=	japanese perl5
 MASTER_SITES=	CPAN
+MASTER_SITE_SUBDIR=	CPAN:BKB
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension to handle many kinds of Japanese characters
