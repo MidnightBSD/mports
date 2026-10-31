@@ -1,5 +1,5 @@
 PORTNAME=	Xapian
-PORTVERSION=	2.0.0.0
+PORTVERSION=	2.1.0.0
 CATEGORIES=	databases perl5
 MASTER_SITES=	https://oligarchy.co.uk/xapian/${PORTVERSION:R}/ \
 		LOCAL/sunpoet
