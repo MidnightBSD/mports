@@ -1,5 +1,6 @@
 PORTNAME=	IO-Handle-Util
 PORTVERSION=	0.02
+PORTREVISION=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -7,7 +8,8 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension for working with IO::Handle like objects
 
-LICENSE=	unknown
+LICENSE=	artistic gpl+
+LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	\
