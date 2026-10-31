@@ -1,0 +1,14 @@
+[
+{ type: install
+  message: <<EOM
+To load the module at boot, add this to /boot/loader.conf:
+
+    intel_rapl_load="YES"
+
+The upstream writable power controls have known limitations: large power
+limits can wrap, concurrent changes can overwrite one another, and some
+time-window values can be calculated incorrectly. Exercise caution when
+changing these controls. See intel_rapl(4) for usage.
+EOM
+}
+]

@@ -113,6 +113,7 @@
     SUBDIR += intel-nvmupdate-10g
     SUBDIR += intel-nvmupdate-40g
     SUBDIR += intel-undervolt
+    SUBDIR += intel_rapl-kmod
     SUBDIR += ipdbtools
     SUBDIR += ipmitool
     SUBDIR += isc-cron
