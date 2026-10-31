@@ -1,6 +1,5 @@
 PORTNAME=	xapian-core
-PORTVERSION=	2.0.0
-PORTREVISION=	1
+PORTVERSION=	2.1.0
 PORTEPOCH=	1
 CATEGORIES=	databases
 MASTER_SITES=	https://oligarchy.co.uk/xapian/${PORTVERSION}/ \
@@ -13,6 +12,8 @@ WWW=		https://xapian.org/
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+LIB_DEPENDS=	libicuuc.so:devel/icu
+
 USES=		compiler:c++17-lang libtool tar:xz
 USES+=	cpe
 CPE_VENDOR=	xapian
@@ -20,6 +21,9 @@ CPE_VENDOR=	xapian
 CONFIGURE_ARGS=	ac_cv_func_snprintf=snprintf
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
+
+# The upstream check suite reported failures on MidnightBSD 4.0.9.
+NO_TEST=	yes
 USE_CXXSTD=	c++17
 USE_LDCONFIG=	yes
 
