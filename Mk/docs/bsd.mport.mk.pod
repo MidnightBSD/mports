@@ -990,7 +990,10 @@ USES=python.
 =item USE_PERL5
 
 Phases perl is needed in (build, run, configure, modbuild, ...), with
-USES=perl5.
+USES=perl5.  The Perl port follows C<PERL5_DEFAULT>, which can be set
+through C<DEFAULT_VERSIONS+=perl5=5.42> in F<make.conf>.  On current
+MidnightBSD releases the default is Perl 5.42; the Perl dependency
+requires at least the version recorded by the selected port.
 
 =item USE_RUBY, USE_PHP, USE_LINUX
 
