@@ -1,5 +1,6 @@
 PORTNAME=	Test-Memory-Cycle
 PORTVERSION=	1.06
+PORTREVISION=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -7,7 +8,8 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Check for memory leaks and circular memory references
 
-LICENSE=	unknown
+LICENSE=	artistic2
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	p5-Devel-Cycle>=0:devel/p5-Devel-Cycle \
