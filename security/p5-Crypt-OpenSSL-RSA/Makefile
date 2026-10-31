@@ -1,7 +1,8 @@
 PORTNAME=	Crypt-OpenSSL-RSA
-PORTVERSION=	0.35
+PORTVERSION=	0.41
 CATEGORIES=	security perl5
 MASTER_SITES=	CPAN
+MASTER_SITE_SUBDIR=	CPAN:TIMLEGGE
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -21,6 +22,6 @@ USES=		perl5 ssl
 USE_PERL5=	configure
 
 post-install:
-	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Crypt/OpenSSL/RSA/RSA.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${TRUE_PREFIX}/${SITE_ARCH_REL}/auto/Crypt/OpenSSL/RSA/RSA.so
 
 .include <bsd.port.mk>
