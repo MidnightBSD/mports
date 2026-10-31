@@ -43,10 +43,12 @@ USE_PERL5?=	run build
 PERL_BRANCH?=		${PERL_VERSION:C/\.[0-9]+$//}
 
 .if ${OSVERSION} > 302000
-PERL_PORT?=     perl5.40
-_DEFAULT_PERL_VERSION=	5.40.5
-_DEFAULT_PERL_BRANCH= 5.40
-.include "${PORTSDIR}/lang/perl5.40/version.mk"
+PERL_PORT?=		perl${PERL5_DEFAULT}
+.include "${PORTSDIR}/lang/${PERL_PORT}/version.mk"
+_DEFAULT_PERL_VERSION=	${PERL_VERSION}
+_DEFAULT_PERL_BRANCH=	${PERL5_DEFAULT}
+# MidnightBSD 4.0 package metadata retains only one bound of a range.
+PERL5_DEPEND=	perl5>=${PERL_VERSION}
 .elif ${OSVERSION} > 301006
 PERL_PORT?=		perl${PERL_BRANCH}
 _DEFAULT_PERL_VERSION=	5.36.1

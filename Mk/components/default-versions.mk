@@ -80,7 +80,7 @@ PERL5_DEFAULT?=		5.32
 PERL5_DEFAULT?=		5.36
 .endif
 .if ${OSVERSION} > 302000
-PERL5_DEFAULT?=         5.40
+PERL5_DEFAULT?=         5.42
 .  elif !defined(PERL5_DEFAULT)
 .    if !defined(_PERL5_FROM_BIN)
 _PERL5_FROM_BIN!=       ${LOCALBASE}/bin/perl -e 'printf "%vd\n", $$^V;'
