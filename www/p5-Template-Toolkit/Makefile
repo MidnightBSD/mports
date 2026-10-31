@@ -1,5 +1,5 @@
 PORTNAME=	Template-Toolkit
-PORTVERSION=	3.102
+PORTVERSION=	3.106
 CATEGORIES=	www textproc perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:TODDR
@@ -15,6 +15,7 @@ LICENSE_COMB=	dual
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	p5-AppConfig>=1.56:devel/p5-AppConfig
 TEST_DEPENDS=	p5-Date-Calc>=0:devel/p5-Date-Calc \
+		p5-Test-LeakTrace>=0:devel/p5-Test-LeakTrace \
 		p5-Image-Size>=0:graphics/p5-Image-Size \
 		p5-Pod-POM>=0:textproc/p5-Pod-POM
 
@@ -41,6 +42,6 @@ POD_POM_BUILD_DEPENDS=		p5-Pod-POM>=0:textproc/p5-Pod-POM
 POD_POM_RUN_DEPENDS=		p5-Pod-POM>=0:textproc/p5-Pod-POM
 
 post-install:
-	${STRIP_CMD} ${PREFIX}/${SITE_ARCH_REL}/auto/Template/Stash/XS/XS.so
+	${STRIP_CMD} ${FAKE_DESTDIR}${TRUE_PREFIX}/${SITE_ARCH_REL}/auto/Template/Stash/XS/XS.so
 
 .include <bsd.port.mk>
