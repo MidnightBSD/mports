@@ -12,6 +12,7 @@ bin/pmat-diff
 %%PERL5_MAN3%%/Devel::MAT::Tool::Roots.3.gz
 %%PERL5_MAN3%%/Devel::MAT::Tool::Show.3.gz
 %%PERL5_MAN3%%/Devel::MAT::Tool::Stack.3.gz
+%%PERL5_MAN3%%/Devel::MAT::Tool::Tools.3.gz
 %%PERL5_MAN3%%/Devel::MAT::Tool::Strtab.3.gz
 %%PERL5_MAN3%%/Devel::MAT::UserGuide.3.gz
 %%PERL5_MAN3%%/Devel::MAT::Graph.3.gz
