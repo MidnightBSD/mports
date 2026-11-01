@@ -19,6 +19,7 @@ USE_RC_SUBR=	leonardo
 USERS=		leonardo
 GROUPS=		leonardo
 
+SUB_FILES=	leonardo.yaml.sample
 SUB_LIST=	JAVA="${JAVA}"
 
 post-patch:
@@ -37,7 +38,7 @@ do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/bin/leonardo \
 		${PREFIX}/bin/leonardo
 	${MKDIR} ${PREFIX}/etc/leonardo
-	${INSTALL_DATA} ${FILESDIR}/leonardo.yaml.sample \
+	${INSTALL_DATA} ${WRKDIR}/leonardo.yaml.sample \
 		${PREFIX}/etc/leonardo/
 	${INSTALL_DATA} ${FILESDIR}/api-keys.yaml.sample \
 		${PREFIX}/etc/leonardo/
