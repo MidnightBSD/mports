@@ -1,5 +1,5 @@
 PORTNAME=	antigravity
-DISTVERSION=	1.1.22
+DISTVERSION=	1.4.12
 CATEGORIES=	ai linux
 MASTER_SITES=	https://storage.googleapis.com/antigravity-public/antigravity-cli/${DISTVERSION}-${BUILD_ID}/linux-x64/
 DISTNAME=	cli_linux_x64
@@ -24,7 +24,7 @@ ONLY_FOR_ARCHS=		amd64
 ONLY_FOR_ARCHS_REASON=	Only Linux x86_64 binary is provided upstream
 
 # Upstream publishes releases under a build-specific path component.
-BUILD_ID=	5711547746615296
+BUILD_ID=	4768735748292608
 
 NO_BUILD=	yes
 
