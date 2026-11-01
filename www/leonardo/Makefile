@@ -21,6 +21,15 @@ GROUPS=		leonardo
 
 SUB_LIST=	JAVA="${JAVA}"
 
+post-patch:
+# The Gradle launcher derives APP_HOME from its own location, which would be
+# ${PREFIX} once installed into bin/.  Pin it to the real install location
+# and default JAVA_HOME to the JDK selected by the framework.
+	@${REINPLACE_CMD} \
+		-e 's|^MAX_FD=maximum|APP_HOME=${PREFIX}/share/java/leonardo; &|' \
+		-e 's|^if \[ -n "$$JAVA_HOME" \] ; then|: $${JAVA_HOME:=${JAVA_HOME}}; &|' \
+		${WRKSRC}/bin/leonardo
+
 do-install:
 	${MKDIR} ${PREFIX}/share/java/leonardo/lib
 	${INSTALL_DATA} ${WRKSRC}/lib/*.jar \
@@ -36,8 +45,7 @@ do-install:
 post-install:
 	@${ECHO_MSG} ""
 	@${ECHO_MSG} "===> Leonardo installed."
-	@${ECHO_MSG} "     1. Copy ${PREFIX}/etc/leonardo/leonardo.yaml.sample to"
-	@${ECHO_MSG} "        ${PREFIX}/etc/leonardo/leonardo.yaml and edit it."
+	@${ECHO_MSG} "     1. Edit ${PREFIX}/etc/leonardo/leonardo.yaml."
 	@${ECHO_MSG} "     2. Copy ${PREFIX}/etc/leonardo/api-keys.yaml.sample to"
 	@${ECHO_MSG} "        /var/leonardo/config/api-keys.yaml, add your keys,"
 	@${ECHO_MSG} "        then chmod 0600 the file."
