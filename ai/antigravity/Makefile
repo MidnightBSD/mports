@@ -3,7 +3,7 @@ DISTVERSION=	1.4.12
 CATEGORIES=	ai linux
 MASTER_SITES=	https://storage.googleapis.com/antigravity-public/antigravity-cli/${DISTVERSION}-${BUILD_ID}/linux-x64/
 DISTNAME=	cli_linux_x64
-DIST_SUBDIR=	antigravity
+DIST_SUBDIR=	antigravity/${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Google Antigravity agentic coding CLI (via Linux emulation)
