@@ -694,3 +694,6 @@ devel/eric6|devel/eric7|2026-10-23|Has expired: Last Qt5 release (21.11), depend
 german/eric6|devel/eric7|2026-10-23|Has expired: Translations for removed devel/eric6
 chinese/phpbb3-tw||2026-10-24|Has expired: phpBB 3.0 reached end of life in 2017. Use www/phpbb3 with a Traditional Chinese language pack instead
 lang/python310||2026-10-24|Has expired: Python 3.10 reached end of life in October 2026. Use lang/python312 or newer
+sysutils/uefi-edk2-bhyve-devel|sysutils/edk2@bhyve|2026-11-02|Development firmware consolidated into the edk2 bhyve flavor
+sysutils/uefi-edk2-bhyve|sysutils/edk2@bhyve|2026-11-02|Use the bhyve flavor of sysutils/edk2
+sysutils/uefi-edk2-bhyve-csm||2026-11-02|Obsolete CSM firmware requires old edk2 and GCC 4.8; no replacement
