@@ -1,11 +1,17 @@
 PORTNAME=	grub2-bhyve
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.40
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	sysutils
+
+PATCH_SITES+=	https://github.com/grehan-freebsd/grub2-bhyve/commit/
+PATCHFILES+=	b080876e0711ee9d7a9c86661df173d98f2d0845.diff:-p1 \
+		a2a1a8f716a00a8f42b36a8b91ac5b3e2328d39c.diff:-p1 \
+		91f06e5daab48d0242d397f67d38c3410e173c15.diff:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Grub-emu loader for bhyve
+WWW=		https://github.com/grehan-freebsd/grub2-bhyve
 
 LICENSE=	gpl3
 
@@ -16,25 +22,23 @@ ONLY_FOR_ARCHS=	amd64
 SSP_UNSAFE=	yes
 USE_GITHUB=	yes
 GH_ACCOUNT=	grehan-freebsd
-USES=		bison gmake
-USE_GCC=	yes
+USES=		bison compiler:c11 gmake
+USE_CSTD=	gnu11
+USE_GCC=	yes:build
 PLIST_FILES=	sbin/grub-bhyve
+PIE_UNSAFE=	yes
 MAKE_JOBS_UNSAFE=	yes
-CONFIGURE_ARGS=	--with-platform=emu CC=${CC} LEX=${LOCALBASE}/bin/flex \
+GNU_CONFIGURE=	yes
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd10.4
+CONFIGURE_ARGS=	--with-platform=emu CPP="" LEX=${LOCALBASE}/bin/flex \
 		--enable-grub-mount=no --enable-grub-mkfont=no \
-		--enable-grub-emu-sdl=no --disable-nls --disable-werror \
-		--host=${ARCH}-portbld-freebsd10.4 --build=${ARCH}-portbld-freebsd10.4
+		--enable-grub-emu-sdl=no --disable-nls --disable-werror
 
 post-patch:
 	@${REINPLACE_CMD} -e "s/libintl\.h/I_do_not_want_libintl.h/g" ${WRKSRC}/configure
 	@${REINPLACE_CMD} -e "s/-lintl//g" ${WRKSRC}/grub-core/Makefile.in
 
-do-configure:
-	@ cd ${WRKSRC}/ && ./configure ${CONFIGURE_ARGS}
-
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/grub-core/grub-emu ${FAKE_DESTDIR}${LOCALBASE}/sbin/grub-bhyve
+	${INSTALL_PROGRAM} ${WRKSRC}/grub-core/grub-emu ${PREFIX}/sbin/grub-bhyve
 
 .include <bsd.port.mk>
-
-RUN_DEPENDS:=	${RUN_DEPENDS:Ngcc*}
