@@ -16,7 +16,8 @@ BROKEN_i386=	fails to build: rustc-LLVM ERROR: out of memory
 
 BUILD_DEPENDS=	${RUST_DEFAULT}>=1.95.0:lang/${RUST_DEFAULT} \
 		gn>=2345:devel/gn \
-		protoc:devel/protobuf
+		protoc:devel/protobuf \
+		rg:textproc/ripgrep
 LIB_DEPENDS=	libzstd.so:archivers/zstd \
 		libasound.so:audio/alsa-lib \
 		libdbus-1.so:devel/dbus \
