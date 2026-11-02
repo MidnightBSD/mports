@@ -797,6 +797,7 @@
     SUBDIR += p5-Data-Binary
     SUBDIR += p5-Data-Compare
     SUBDIR += p5-Data-Dump
+    SUBDIR += p5-Data-Dump-Streamer
     SUBDIR += p5-Data-Dumper
     SUBDIR += p5-Data-Dumper-Concise
     SUBDIR += p5-Data-IEEE754
@@ -1091,6 +1092,7 @@
     SUBDIR += p5-Term-ReadKey
     SUBDIR += p5-Term-ReadLine-Gnu
     SUBDIR += p5-Term-ReadLine-Perl
+    SUBDIR += p5-Term-Screen
     SUBDIR += p5-Term-Table
     SUBDIR += p5-Test-API
     SUBDIR += p5-Test-Assertions
@@ -1187,6 +1189,7 @@
     SUBDIR += p5-Time-Piece
     SUBDIR += p5-Time-modules
     SUBDIR += p5-TimeDate
+    SUBDIR += p5-Tree-Trie
     SUBDIR += p5-Type-Tiny
     SUBDIR += p5-Type-Tiny-XS
     SUBDIR += p5-Types-Serialiser
@@ -2676,6 +2679,7 @@
     SUBDIR += samurai
     SUBDIR += sbt
     SUBDIR += scons
+    SUBDIR += schilybase
     SUBDIR += sdbus-cpp
     SUBDIR += sdl12
     SUBDIR += sdl12-compat
@@ -2693,6 +2697,7 @@
     SUBDIR += simpleini
     SUBDIR += skalibs
     SUBDIR += slf4j
+    SUBDIR += smake
     SUBDIR += sonar-ant-task
     SUBDIR += sonar-scanner-cli
     SUBDIR += sonarqube-community

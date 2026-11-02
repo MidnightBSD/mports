@@ -5,6 +5,7 @@
     SUBDIR += bsh
     SUBDIR += bun
     SUBDIR += chaiscript
+    SUBDIR += chez-scheme
     SUBDIR += cjs
     SUBDIR += clover
     SUBDIR += cython

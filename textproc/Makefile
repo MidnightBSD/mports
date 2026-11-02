@@ -281,6 +281,7 @@
     SUBDIR += p5-YAML
     SUBDIR += p5-YAML-LibYAML
     SUBDIR += p5-YAML-PP
+    SUBDIR += p5-YAML-Syck
     SUBDIR += p5-YAML-Tiny
     SUBDIR += p5-libxml
     SUBDIR += pdfoutline
