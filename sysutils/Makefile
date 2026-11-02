@@ -366,6 +366,7 @@
     SUBDIR += usbhid-dump
     SUBDIR += usbutils
     SUBDIR += userboot-freebsd
+    SUBDIR += virt-firmware
     SUBDIR += vixie-cron
     SUBDIR += vm-bhyve
     SUBDIR += vm-bhyve-zcomp
