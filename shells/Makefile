@@ -2,6 +2,7 @@
 
     SUBDIR += 44bsd-csh
     SUBDIR += antibody
+    SUBDIR += atuin
     SUBDIR += bash
     SUBDIR += bash-completion
     SUBDIR += bash-completion-freebsd
