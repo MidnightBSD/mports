@@ -6,6 +6,11 @@ DBPass: changeme
 
 Machine: vm-current
 DoneWaitPeriod: 600
+# 0: divide host CPUs by magus.pl -j worker count (minimum one job).
+# A positive value overrides that per-worker cap. Lower port/make.conf caps
+# and MAKE_JOBS_UNSAFE remain effective. Applies to build and test jobs;
+# this is not a hard CPU/memory limit and does not reserve phase slots.
+MakeJobsPerWorker: 0
 # Wall clock limit, in seconds, for a single make target.  A port that hangs
 # (a deadlocked test suite, a configure script waiting on stdin) is killed off
 # along with everything it spawned instead of wedging the worker.  MakeTimeouts

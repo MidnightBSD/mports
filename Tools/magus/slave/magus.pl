@@ -41,6 +41,7 @@ use lib "$FindBin::Bin/../../lib";
 use Magus;
 use Magus::App::Logger;
 use Magus::App::Slave::Worker;
+use Magus::BuildJobs;
 
 use Sys::Syslog;
 use POSIX qw(setsid :sys_wait_h sigprocmask SIG_BLOCK SIG_UNBLOCK SIG_SETMASK SIGCHLD);
@@ -117,10 +118,18 @@ sub X { }
 our (%opts, $run);
 getopts('fvj:', \%opts);
   
-$opts{j} ||= 1;
+$opts{j} = 1 unless defined $opts{j};
+our $MakeJobsPerWorker;
+my $cpu_count = Magus::BuildJobs->cpu_count;
+$MakeJobsPerWorker = Magus::BuildJobs->limit(
+  $opts{j}, $Magus::Config{MakeJobsPerWorker}, $cpu_count || 1,
+);
 %WorkerIDs = map { $_ => 1 } 1 .. $opts{j};
 
 $Logger = Magus::App::Logger->new(verbose => $opts{v});
+$Logger->info("Unable to detect CPU count; using one build job per worker")
+  unless $cpu_count || $Magus::Config{MakeJobsPerWorker};
+$Logger->info("Using up to $MakeJobsPerWorker build jobs per worker ($opts{j} workers)");
 
 daemonize() unless $opts{f};
 
@@ -231,6 +240,7 @@ sub start_child {
     Magus::App::Slave::Worker->run(
       lock 	=> $lock, 
       worker_id => $worker_id,
+      make_jobs_limit => $MakeJobsPerWorker,
       logger    => $Logger,
     ); 
     exit(0);
