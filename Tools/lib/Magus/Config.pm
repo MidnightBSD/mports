@@ -56,6 +56,7 @@ sub load_config {
         Machine        => hostname(),
         DoneWaitPeriod => 200,
         MakeTimeout    => 86400,
+        MakeJobsPerWorker => 0,
         MakeTimeouts   => { test => 7200 },
         ChrootTarBall  => '/usr/magus/os.tar.xz',
         DistfilesRoot  => '/mnt/magus/distfiles',

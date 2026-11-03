@@ -279,7 +279,10 @@ sub run_make_phase {
       $chroot->do_chroot();
       chdir($port->origin);
     
-      my $test = Magus::PortTest->new(port => $port, chroot => $chroot);
+      my $test = Magus::PortTest->new(
+        port => $port, chroot => $chroot,
+        make_jobs_limit => $self->{make_jobs_limit},
+      );
 
       $self->log->info("Running $phase phase for $port");
 

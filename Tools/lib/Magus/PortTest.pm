@@ -202,8 +202,25 @@ sub check_for_skip {
   
   chdir($self->{port}->origin) || die "Couldn't chdir to " . $self->{port}->origin . ": $!\n";
   
-  my $ignore = length $flavor ? `$MAKE -V IGNORE FLAVOR=$flavor` : make_var('IGNORE');
-  chomp($ignore);
+  # Read the existing port/make.conf limit in the same invocation as IGNORE.
+  # A command-line cap below must never raise an administrator's lower cap.
+  my @cmd = ($MAKE, '-V', 'IGNORE', '-V', '${MAKE_JOBS_NUMBER_LIMIT}');
+  push @cmd, "FLAVOR=$flavor" if length $flavor;
+  local $SIG{CHLD} = 'DEFAULT';
+  open(my $fh, '-|', @cmd) or die "Couldn't query port build settings: $!\n";
+  my $ignore = <$fh>;
+  my $existing_limit = <$fh>;
+  close($fh) or die "Couldn't query port build settings (exit $?)\n";
+  die "Incomplete port build settings\n" unless defined($ignore) && defined($existing_limit);
+  chomp($ignore, $existing_limit);
+  if (defined $self->{make_jobs_limit}) {
+    die "Invalid worker make jobs limit\n"
+      unless $self->{make_jobs_limit} =~ /\A[1-9][0-9]*\z/;
+    if ($existing_limit =~ /\A[1-9][0-9]*\z/
+        && $existing_limit < $self->{make_jobs_limit}) {
+      $self->{make_jobs_limit} = $existing_limit;
+    }
+  }
   
   if ($ignore) {
     $results->{skips} = [{
@@ -310,6 +327,8 @@ sub _run_make {
   chdir($self->{port}->origin) || die "Couldn't chdir to " . $self->{port}->origin . ": $!\n";
 
   my @cmd = ($MAKE, 'LANG=C.UTF-8', 'LC_ALL=C.UTF-8', $target);
+  push @cmd, "MAKE_JOBS_NUMBER_LIMIT=$self->{make_jobs_limit}"
+    if defined $self->{make_jobs_limit};
   push(@cmd, "FLAVOR=$flavor") if length $flavor;
 
   my $timeout = $self->_timeout_for($target);
