@@ -114,7 +114,7 @@ CREATE TABLE ports (
   pkgname varchar(128),
   version varchar(32) not null,
   description text,
-  license varchar(64),
+  license text,
   www text,
   status varchar(32) not null default 'untested',
   updated timestamp without time zone not null default now(),
