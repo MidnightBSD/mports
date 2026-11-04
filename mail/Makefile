@@ -1,4 +1,4 @@
-    COMMENT = Electronic mail utilities
+COMMENT = Electronic mail utilities
 
     SUBDIR += abook
     SUBDIR += adcomplain
@@ -158,6 +158,7 @@
     SUBDIR += rubygem-actionmailbox-gitlab
     SUBDIR += rubygem-actionmailer-gitlab
     SUBDIR += rubygem-actionmailer4
+    SUBDIR += rubygem-actionmailer81
     SUBDIR += rubygem-email_reply_trimmer
     SUBDIR += rubygem-email_validator
     SUBDIR += rubygem-gitlab-mail_room
