@@ -1,0 +1,32 @@
+PKGNAMEPREFIX=	postgresql-
+PORTNAME=	libpgeasy
+PORTVERSION=	3.0.4
+PORTREVISION=	3
+CATEGORIES=	databases
+MASTER_SITES=	PGSQL/projects/gborg/pgeasy/stable
+DIST_SUBDIR=	postgresql
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Easy-to-use C interface to PostgreSQL
+WWW=		https://www.postgresql.org/docs/7.2/static/pgeasy.html
+
+LICENSE=	unknown
+
+OPTIONS_DEFINE=	DOCS EXAMPLES
+
+USES+=		gmake libtool pgsql
+USE_LDCONFIG=	YES
+GNU_CONFIGURE=	YES
+DOCSDIR=	${PREFIX}/share/doc/postgresql/${PORTNAME}
+EXAMPLESDIR=	${PREFIX}/share/examples/postgresql/${PORTNAME}
+INSTALL_TARGET=	install-strip
+
+post-install-EXAMPLES-on:
+	@${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/examples/* ${FAKE_DESTDIR}${EXAMPLESDIR}
+
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/docs/libpgeasy.html ${FAKE_DESTDIR}${DOCSDIR}
+
+.include <bsd.port.mk>

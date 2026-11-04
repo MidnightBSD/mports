@@ -1,0 +1,28 @@
+PORTNAME=	avahi
+PORTVERSION=	0.8
+DISTVERSIONSUFFIX=	-23.el9
+PORTREVISION=	8
+CATEGORIES=	net linux
+PKGNAMESUFFIX=	-libs
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Libraries for Avahi (Rocky Linux ${LINUX_DIST_VER})
+WWW=		https://www.avahi.org/
+
+LICENSE=	lgpl2.1+
+
+SKIP_FAKE_ALL=  yes
+
+USES=		cpe linux:rl9
+USE_LDCONFIG=	yes
+USE_LINUX=	dbuslibs libevent
+USE_LINUX_RPM=	yes
+WANT_LINUX32=	yes
+
+LIB_DISTNAMES=	${PORTNAME}${PKGNAMESUFFIX}-${DISTVERSIONFULL} \
+		${PORTNAME}-glib-${DISTVERSIONFULL}
+
+CONFLICTS=	linux-c6-${PORTNAME}${PKGNAMESUFFIX} linux-c7-${PORTNAME}${PKGNAMESUFFIX}
+DESCR=		${PORTSDIR}/${PKGCATEGORY}/${PORTNAME}/pkg-descr
+
+.include <bsd.port.mk>

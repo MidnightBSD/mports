@@ -1,0 +1,18 @@
+--- swift-corelibs-foundation/CMakeLists.txt.orig	2026-09-11 17:14:03 UTC
++++ swift-corelibs-foundation/CMakeLists.txt
+@@ -99,13 +99,13 @@
+   endif()
+ 
+   install(TARGETS CoreFoundation CFXMLInterface
+-    DESTINATION lib/swift_static/$<LOWER_CASE:${CMAKE_SYSTEM_NAME}>)
++    DESTINATION lib/swift_static/$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},MidnightBSD>,freebsd,$<LOWER_CASE:${CMAKE_SYSTEM_NAME}>>)
+ 
+   if(BUILD_NETWORKING)
+     set_property(GLOBAL APPEND PROPERTY Foundation_EXPORTS
+       CFURLSessionInterface)
+     install(TARGETS CFURLSessionInterface
+-      DESTINATION lib/swift_static/$<LOWER_CASE:${CMAKE_SYSTEM_NAME}>)
++      DESTINATION lib/swift_static/$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},MidnightBSD>,freebsd,$<LOWER_CASE:${CMAKE_SYSTEM_NAME}>>)
+   endif()
+ endif()
+ 

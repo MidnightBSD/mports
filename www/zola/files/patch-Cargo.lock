@@ -1,0 +1,13 @@
+--- Cargo.lock.orig	2025-07-14 21:15:35 UTC
++++ Cargo.lock
+@@ -5232,8 +5232,8 @@ name = "webpki-roots"
+ [[package]]
+ name = "webpki-roots"
+-version = "1.0.1"
++version = "1.0.11"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "8782dd5a41a24eed3a4f40b606249b3e236ca61adf1f25ea4d45c73de122b502"
++checksum = "f5f280bbb2b287bc8e7de7e3852945a0ff50d1bbcb5ed42b6c7a568c546df171"
+ dependencies = [
+  "rustls-pki-types",
+ ]

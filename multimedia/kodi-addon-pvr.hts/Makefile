@@ -1,0 +1,19 @@
+PORTNAME=	pvr.hts
+DISTVERSION=	22.8.1
+DISTVERSIONSUFFIX=	-Piers
+CATEGORIES=	multimedia
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Tvheadend PVR addon for Kodi
+WWW=		https://github.com/kodi-pvr/pvr.hts
+
+LICENSE=	gpl2+
+
+LIB_DEPENDS=	libpugixml.so:textproc/pugixml
+
+USES=		cmake:noninja compiler:c++17-lang kodi
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	kodi-pvr
+
+.include <bsd.port.mk>

@@ -1,0 +1,43 @@
+PORTNAME=	accelerate
+DISTVERSION=	1.12.0
+PORTREVISION=	2
+CATEGORIES=	ai # machine-learning
+MASTER_SITES=	PYPI
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	PyTorch: simple way to launch, train, use PyTorch models on any device
+WWW=		https://huggingface.co/docs/accelerate/index \
+		https://github.com/huggingface/accelerate
+
+LICENSE=	Apache-2.0
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BUILD_DEPENDS=	${PY_SETUPTOOLS} \
+		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}huggingface-hub>=0.21.0:ai/py-huggingface-hub@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}packaging>=20.0:devel/py-packaging@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}psutil>0:sysutils/py-psutil@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pytorch>=2.0.0:ai/py-pytorch@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}safetensors>=0.4.3:ai/py-safetensors@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pyyaml>0:devel/py-pyyaml@${PY_FLAVOR}
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}bitsandbytes>=0:ai/py-bitsandbytes@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}datasets>=0:ai/py-datasets@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}diffusers>=0:ai/py-diffusers@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}evaluate>=0:ai/py-evaluate@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}parameterized>0:devel/py-parameterized@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}scikit-learn>=0:science/py-scikit-learn@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}scipy>=0:science/py-scipy@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}timm>=0:ai/py-timm@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}torchdata>=0.8.0:ai/py-torchdata@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}torchvision>0:ai/py-torchvision@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}tqdm>0:misc/py-tqdm@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}transformers>=0:ai/py-transformers@${PY_FLAVOR}
+
+USES=		python
+USE_PYTHON=	pep517 autoplist pytest # tests fail because they depend on the module 'transformers' that depends on 'accelerate' and isn't yet ported
+
+NO_ARCH=	yes
+
+.include <bsd.port.mk>

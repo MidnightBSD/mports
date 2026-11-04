@@ -1,0 +1,32 @@
+sys.platform is midnightbsdN here, so none of the host_os freebsd
+tests match and MidnightBSD falls through every platform branch. That
+loses the FREEBSD define, STAT_ST_BLOCKSIZE, the sunacl check and
+sendfile detection, and configure aborts with
+"sendfile support not found but it was requested".
+
+Normalise host_os so the existing freebsd branches apply.
+
+--- source3/wscript.orig
++++ source3/wscript
+@@ -159,6 +159,10 @@
+     # Check for inotify support (Skip if we are SunOS)
+     #NOTE: illumos provides sys/inotify.h but is not an exact match for linux
+     host_os = sys.platform
++    # MidnightBSD is FreeBSD-derived, but sys.platform reports midnightbsdN,
++    # which none of the freebsd tests below match. Normalise it so they do.
++    if host_os.rfind('midnightbsd') > -1:
++        host_os = host_os.replace('midnightbsd', 'freebsd')
+     if host_os.rfind('sunos') == -1:
+         conf.CHECK_HEADERS('sys/inotify.h')
+         if conf.env.HAVE_SYS_INOTIFY_H:
+@@ -443,6 +447,10 @@
+     # FIXME: these should be tests for features, but the old build system just
+     # checks for OSes.
+     host_os = sys.platform
++    # MidnightBSD is FreeBSD-derived, but sys.platform reports midnightbsdN,
++    # which none of the freebsd tests below match. Normalise it so they do.
++    if host_os.rfind('midnightbsd') > -1:
++        host_os = host_os.replace('midnightbsd', 'freebsd')
+     Logs.info("building on %s" % host_os)
+ 
+     # Python doesn't have case switches... :/

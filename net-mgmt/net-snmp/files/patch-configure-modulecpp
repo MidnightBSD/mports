@@ -1,0 +1,11 @@
+--- configure.orig
++++ configure
+@@ -22459,7 +22459,7 @@
+ $as_echo_n "checking for and configuring mib modules to use... " >&6; }
+
+ # set up the CPP command
+-MODULECPP="$CPP $PARTIALTARGETFLAGS $CPPFLAGS -DNETSNMP_FEATURE_CHECKING -I${srcdir}/include -I${srcdir}/agent/mibgroup"
++MODULECPP="$CPP $PARTIALTARGETFLAGS -I${srcdir}/include -I${srcdir}/agent/mibgroup $CPPFLAGS -DNETSNMP_FEATURE_CHECKING"
+ if test "x$enable_mfd_rewrites" = "xyes"; then
+   MODULECPP="$MODULECPP -DNETSNMP_ENABLE_MFD_REWRITES"
+ fi

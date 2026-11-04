@@ -1,0 +1,13 @@
+--- make/Images.gmk.orig
++++ make/Images.gmk
+@@ -76,8 +76,8 @@
+     /jdk.localedata/** \
+     #
+ 
+-JLINK_TOOL := $(JLINK) -J-Djlink.debug=true \
+-    --module-path $(call PathList, $(JMODS_DIRS)) \
++JLINK_TOOL := $(JLINK) -J-Djlink.debug=true -J-XX:TieredStopAtLevel=1 -J-XX:+UseSerialGC \
++    --module-path $(call PathList, $(JMODS_DIRS)) \
+     --endian $(OPENJDK_TARGET_CPU_ENDIAN) \
+     --release-info $(BASE_RELEASE_FILE) \
+     --order-resources=$(call CommaList, $(JLINK_ORDER_RESOURCES)) \

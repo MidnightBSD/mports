@@ -1,0 +1,9 @@
+rfc8785 is a pure-Python implementation of RFC 8785, the JSON
+Canonicalization Scheme (JCS).
+
+JCS defines a deterministic serialization of JSON data, allowing the
+same logical document to always produce the same byte sequence.  This
+makes JSON documents suitable for hashing and cryptographic signing.
+
+The module has no runtime dependencies and exposes a small API modeled
+on the standard library json module.

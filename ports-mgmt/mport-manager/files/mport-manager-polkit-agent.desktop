@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=PolicyKit Authentication Agent
+Comment=Authenticate package management requests in Midnight Workspace
+Exec=/usr/local/libexec/polkit-gnome-authentication-agent-1
+TryExec=/usr/local/libexec/polkit-gnome-authentication-agent-1
+OnlyShowIn=MidnightWorkspace;
+NoDisplay=true

@@ -1,0 +1,7 @@
+--- crates/desktop/artcraft/Cargo.toml.orig	2026-09-26 11:14:22 UTC
++++ crates/desktop/artcraft/Cargo.toml
+@@ -17,3 +17,3 @@
+ [lib]
+ name = "artcraft_app_lib"
+-crate-type = ["staticlib", "cdylib", "rlib"]
++crate-type = ["rlib"]

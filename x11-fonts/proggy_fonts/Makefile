@@ -1,0 +1,43 @@
+# Created by: Leland Wang <llwang@infor.org>
+
+PORTNAME=	proggy_fonts
+PORTVERSION=	1.0
+CATEGORIES=	x11-fonts
+MASTER_SITES=	http://upperbounds.net/download/
+DISTFILES=	ProggyClean.pcf.zip ProggySquare.pcf.zip \
+		ProggySmall.pcf.zip ProggyTiny.pcf.zip	\
+		ProggyCleanSZ.pcf.zip ProggySquareSZ.pcf.zip \
+		ProggyTinySZ.pcf.zip ProggyCleanSZBP.pcf.zip \
+		ProggyCleanCP.pcf.zip CodingFontTobi.pcf.zip \
+		Opti.pcf.gz OptiSmall.pcf.gz SpeedyPCF.zip \
+		PixelCarnageMono.pcf.gz WebbySmall.pcf.zip \
+		WebbyCaps.pcf.zip
+EXTRACT_ONLY=	ProggyClean.pcf.zip ProggySquare.pcf.zip \
+		ProggySmall.pcf.zip ProggyTiny.pcf.zip	\
+		ProggyCleanSZ.pcf.zip ProggySquareSZ.pcf.zip \
+		ProggyTinySZ.pcf.zip ProggyCleanSZBP.pcf.zip \
+		ProggyCleanCP.pcf.zip CodingFontTobi.pcf.zip \
+		SpeedyPCF.zip WebbySmall.pcf.zip \
+		WebbyCaps.pcf.zip
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	The perfect monospaced bitmap programming fonts
+WWW=		http://upperbounds.net/
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/Licence.txt
+
+ALREADY_UNZIP=	${DISTDIR}/Opti.pcf.gz ${DISTDIR}/OptiSmall.pcf.gz \
+	        ${DISTDIR}/PixelCarnageMono.pcf.gz
+
+USES=		fonts xorg zip
+USE_XORG=	x11
+NO_WRKSUBDIR=	yes
+NO_BUILD=	yes
+
+do-install:
+	@${MKDIR} ${FONTSDIR}
+	${CP} ${ALREADY_UNZIP} ${WRKSRC}
+	${INSTALL_DATA} ${WRKSRC}/*.pcf* ${FONTSDIR}
+
+.include <bsd.port.mk>

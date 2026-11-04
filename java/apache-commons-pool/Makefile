@@ -1,0 +1,44 @@
+PORTNAME=	commons-pool
+PORTVERSION=	2.11.1
+CATEGORIES=	java devel
+MASTER_SITES=	APACHE_COMMONS_BINARIES
+PKGNAMEPREFIX=	apache-
+DISTNAME=	${PORTNAME}2-${PORTVERSION}-bin
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Apache Commons Object-pooling API
+WWW=		https://commons.apache.org/proper/commons-pool/
+
+LICENSE=	Apache-2.0
+
+OPTIONS_DEFINE=	DOCS
+
+USES=		java
+JAVA_VERSION=	8+
+NO_BUILD=	yes
+NO_ARCH=	yes
+
+WRKSRC=		${WRKDIR}/${PORTNAME}2-${PORTVERSION}
+
+JARFILE=	${PORTNAME}2-${PORTVERSION}.jar
+DOCFILES=	LICENSE.txt \
+		NOTICE.txt \
+		RELEASE-NOTES.txt
+
+PORTDOCS=	*
+PLIST_FILES=	${JAVAJARDIR}/${PORTNAME}.jar \
+		${JAVAJARDIR}/${JARFILE}
+
+.include <bsd.mport.options.mk>
+
+do-install:
+	${INSTALL_DATA} ${WRKSRC}/${JARFILE} ${JAVAJARDIR}
+	${LN} -sf ${JARFILE} ${JAVAJARDIR}/${PORTNAME}.jar
+.if ${PORT_OPTIONS:MDOCS}
+	cd ${WRKSRC} && ${COPYTREE_SHARE} apidocs ${DOCSDIR}
+.for FILE in ${DOCFILES}
+	${INSTALL_MAN} ${WRKSRC}/${FILE} ${DOCSDIR}
+.endfor
+.endif
+
+.include <bsd.port.mk>

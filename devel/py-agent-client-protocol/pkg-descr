@@ -1,0 +1,2 @@
+agent-client-protocol provides typed models, helpers, and stdio transports
+for building clients and agents that speak the Agent Client Protocol.
