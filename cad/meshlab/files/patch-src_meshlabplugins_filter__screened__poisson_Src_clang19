@@ -1,0 +1,42 @@
+--- src/meshlabplugins/filter_screened_poisson/Src/MultiGridOctreeData.h.orig	2020-05-08 15:47:30 UTC
++++ src/meshlabplugins/filter_screened_poisson/Src/MultiGridOctreeData.h
+@@ -338,7 +338,7 @@ public:
+ 	Data& operator[]( const OctNode< TreeNodeData >* node ) { return _data[ node->nodeData.nodeIndex ]; }
+ 	Data* operator()( const OctNode< TreeNodeData >* node ) { return ( node==NULL || node->nodeData.nodeIndex>=(int)_sz ) ? NULL : &_data[ node->nodeData.nodeIndex ]; }
+ 	const Data* operator()( const OctNode< TreeNodeData >* node ) const { return ( node==NULL || node->nodeData.nodeIndex>=(int)_sz ) ? NULL : &_data[ node->nodeData.nodeIndex ]; }
+-	int index( const OctNode< TreeNodeData >* node ) const { return ( !node || node->nodeData.nodeIndex<0 || node->nodeData.nodeIndex>=(int)this->_data.size() ) ? -1 : node->nodeData.nodeIndex; }
++	int index( const OctNode< TreeNodeData >* node ) const { return ( !node || node->nodeData.nodeIndex<0 || node->nodeData.nodeIndex>=(int)this->_sz ) ? -1 : node->nodeData.nodeIndex; }
+ protected:
+ 	size_t _sz;
+ 	void _resize( size_t sz ){ DeletePointer( _data ) ; if( sz ) _data = NewPointer< Data >( sz ) ; else _data = NullPointer( Data ) ; _sz = sz; }
+--- src/meshlabplugins/filter_screened_poisson/Src/PlyVertexMini.h.orig	2020-05-08 15:47:30 UTC
++++ src/meshlabplugins/filter_screened_poisson/Src/PlyVertexMini.h
+@@ -68,7 +68,7 @@ public:
+         PlyOrientedVertex( void ) { ; }
+         PlyOrientedVertex( Point3D< Real > p , Point3D< Real > n ) : point(p) , normal(n) { ; }
+         PlyOrientedVertex operator + ( PlyOrientedVertex p ) const { return PlyOrientedVertex( point+p.point , normal+p.normal ); }
+-        PlyOrientedVertex operator - ( PlyOrientedVertex p ) const { return PlyOrientedVertex( point-p.value , normal-p.normal ); }
++        PlyOrientedVertex operator - ( PlyOrientedVertex p ) const { return PlyOrientedVertex( point-p.point , normal-p.normal ); }
+         template< class _Real > PlyOrientedVertex operator * ( _Real s ) const { return PlyOrientedVertex( point*s , normal*s ); }
+         template< class _Real > PlyOrientedVertex operator / ( _Real s ) const { return PlyOrientedVertex( point/s , normal/s ); }
+         PlyOrientedVertex& operator += ( PlyOrientedVertex p ) { point += p.point , normal += p.normal ; return *this; }
+@@ -97,7 +97,7 @@ public:
+                 }
+ 
+                 _PlyColorVertex operator + ( _PlyColorVertex p ) const { return _PlyColorVertex( point+p.point , color+p.color ); }
+-                _PlyColorVertex operator - ( _PlyColorVertex p ) const { return _PlyColorVertex( point-p.value , color-p.color ); }
++                _PlyColorVertex operator - ( _PlyColorVertex p ) const { return _PlyColorVertex( point-p.point , color-p.color ); }
+                 template< class _Real > _PlyColorVertex operator * ( _Real s ) const { return _PlyColorVertex( point*s , color*s ); }
+                 template< class _Real > _PlyColorVertex operator / ( _Real s ) const { return _PlyColorVertex( point/s , color/s ); }
+                 _PlyColorVertex& operator += ( _PlyColorVertex p ) { point += p.point , color += p.color ; return *this; }
+--- src/meshlabplugins/filter_screened_poisson/Src/SparseMatrix.inl.orig	2020-05-08 15:47:30 UTC
++++ src/meshlabplugins/filter_screened_poisson/Src/SparseMatrix.inl
+@@ -195,7 +195,7 @@ void SparseMatrix<T>::SetRowSize( int row , int count
+ template<class T>
+ void SparseMatrix<T>::SetZero()
+ {
+-	Resize(this->m_N, this->m_M);
++	Resize(rows, _maxEntriesPerRow);
+ }
+ 
+ template<class T>

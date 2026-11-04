@@ -1,0 +1,37 @@
+--- components/web_package/BUILD.gn.orig	2026-10-26 21:13:13 UTC
++++ components/web_package/BUILD.gn
+@@ -39,7 +39,9 @@
+   visibility = [ ":*" ]
+   public = []
+   sources = [
++    "rust/bridge.h",
+     "signed_web_bundles/integrity_block_parser.cc",
++    "signed_web_bundles/rust/bridge.h",
+     "signed_web_bundles/signed_web_bundle_signature_verifier.cc",
+     "signed_web_bundles/signed_web_bundle_utils.cc",
+     "web_bundle_parser.cc",
+@@ -51,8 +53,8 @@
+     "//components/base32",
+     "//components/cbor",
+     "//components/web_package/mojom",
+-    "//components/web_package/rust:web_package_rust_bindings",
+-    "//components/web_package/signed_web_bundles/rust:signed_web_bundles_rust_bindings",
++    "//components/web_package/rust:web_package_rust",
++    "//components/web_package/signed_web_bundles/rust:signed_web_bundles_rust",
+     "//mojo/public/cpp/bindings",
+     "//net",
+     "//services/network/public/mojom",
+@@ -111,11 +113,12 @@
+   sources = [
+     "signed_web_bundles/ecdsa_p256_sha256_signature.cc",
+     "signed_web_bundles/ed25519_signature.cc",
++    "signed_web_bundles/rust/bridge.h",
+   ]
+   deps = [
+     ":mojom_mapped_types_headers",
+     "//base",
+-    "//components/web_package/signed_web_bundles/rust:signed_web_bundles_rust_bindings",
++    "//components/web_package/signed_web_bundles/rust:signed_web_bundles_rust",
+     "//crypto",
+     "//mojo/public/cpp/bindings",
+   ]

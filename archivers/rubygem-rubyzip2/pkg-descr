@@ -1,0 +1,2 @@
+RubyZip is a Ruby library for reading and writing ZIP archives.
+This port keeps the 2.x series available for applications that require it.

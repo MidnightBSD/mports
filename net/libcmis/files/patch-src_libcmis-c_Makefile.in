@@ -1,0 +1,9 @@
+--- src/libcmis-c/Makefile.in.orig
++++ src/libcmis-c/Makefile.in
+@@ -91,4 +91,5 @@ build_triplet = @build@
+ host_triplet = @host@
+ @ENABLE_VISIBILITY_TRUE@am__append_1 = -fvisibility=hidden
+-@ENABLE_VISIBILITY_TRUE@am__append_2 = -DLIBCMIS_C_VISIBILITY
++# Export imported libcmis exception RTTI for libcxxrt type matching.
++@ENABLE_VISIBILITY_TRUE@am__append_2 = -DLIBCMIS_C_VISIBILITY -DLIBCMIS_VISIBILITY
+ subdir = src/libcmis-c

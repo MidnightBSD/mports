@@ -1,0 +1,47 @@
+    COMMENT = X11 window managers
+
+    SUBDIR += afterstep
+    SUBDIR += awesome
+    SUBDIR += blackbox
+    SUBDIR += cage
+    SUBDIR += chamfer
+    SUBDIR += compiz
+    SUBDIR += compton
+    SUBDIR += emwm
+    SUBDIR += enlightenment
+    SUBDIR += fluxbox
+    SUBDIR += fvwm2
+    SUBDIR += hikari
+    SUBDIR += hs-xmonad
+    SUBDIR += i3
+    SUBDIR += icewm
+    SUBDIR += labwc
+    SUBDIR += libcompizconfig
+    SUBDIR += libdockapp
+    SUBDIR += libwraster
+    SUBDIR += marco
+    SUBDIR += metacity
+    SUBDIR += midnight-wm
+    SUBDIR += muffin
+    SUBDIR += mutter
+    SUBDIR += obconf
+    SUBDIR += openbox
+    SUBDIR += picom
+    SUBDIR += plasma6-kdecoration
+    SUBDIR += plasma6-kwin
+    SUBDIR += plasma6-kwin-x11
+    SUBDIR += ratpoison
+    SUBDIR += sway
+    SUBDIR += twm
+    SUBDIR += windowmaker
+    SUBDIR += wmii
+    SUBDIR += wmii-devel
+    SUBDIR += xcompmgr
+    SUBDIR += xfce4
+    SUBDIR += xfce4-desktop
+    SUBDIR += xfce4-panel
+    SUBDIR += xfce4-session
+    SUBDIR += xfce4-wm
+    SUBDIR += yeahwm
+
+.include <bsd.port.subdir.mk>

@@ -1,0 +1,17 @@
+PORTNAME=	declarative_policy
+PORTVERSION=	2.1.0
+CATEGORIES=	security rubygems
+MASTER_SITES=	RG
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Authorization framework with a declarative DSL
+WWW=		https://gitlab.com/gitlab-org/declarative-policy
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE.txt
+
+USES=		gem
+
+NO_ARCH=	yes
+
+.include <bsd.port.mk>

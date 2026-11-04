@@ -1,0 +1,33 @@
+PORTNAME=	ibsh
+PORTVERSION=	0.3e
+PORTREVISION=	1
+CATEGORIES=	shells
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Restricted unix shell
+WWW=		http://ibsh.sourceforge.net/
+
+LICENSE=	gpl2+
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+USES=		dos2unix gmake
+ALL_TARGET=	ibsh
+INSTALL_TARGET=	ibsh_install
+MAKE_ARGS=	CC="${CC}" PREFIX="${FAKE_DESTDIR}${TRUE_PREFIX}"
+
+SUB_FILES=	pkg-message
+PORTDOCS=	AUTHORS BUGS CONTRIBUTORS COPYING COPYRIGHT ChangeLog \
+		INSTALL README TODO VERSION
+
+OPTIONS_DEFINE=	DOCS
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|PATH_MAX|PATH_MAXb|g' ${WRKSRC}/delbadfiles.c ${WRKSRC}/ibsh.h
+	@${REINPLACE_CMD} -e 's|/etc/ibsh|${PREFIX}/etc/ibsh|g' ${WRKSRC}/ibsh.h
+
+post-install-DOCS-on:
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${FAKE_DESTDIR}${DOCSDIR}
+
+.include <bsd.port.mk>

@@ -1,0 +1,30 @@
+#!/bin/sh
+
+# Initialize the history database on fresh installs.
+# INN requires history index files (history.dir, history.hash/pag, etc.)
+# that are created by makedbz from the empty history file.
+
+case $2 in
+    POST-INSTALL)
+	DBDIR="%%DBDIR%%"
+	NEWSBASE="%%NEWSBASE%%"
+	DBZ_FILES="%%DBZ_FILES%%"
+
+	if [ ! -f ${DBDIR}/history.dir ]; then
+		echo "===>  Creating empty history database"
+		cd ${DBDIR}
+		if [ ! -f history ]; then
+			touch history
+		fi
+		chown news:news history
+		chmod 644 history
+		su -fm news -c "${NEWSBASE}/bin/makedbz -i"
+		for s in ${DBZ_FILES}; do
+			mv history.n.${s} history.${s}
+			cp -p history.${s} history.${s}.sample
+		done
+		cp -p history.dir history.dir.sample
+	fi
+	;;
+esac
+exit 0

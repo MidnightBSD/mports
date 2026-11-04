@@ -1,0 +1,11 @@
+--- build/autoconf/config.guess.bak	2020-10-14 05:34:41.000000000 -0400
++++ build/autoconf/config.guess	2021-12-29 13:48:18.948203000 -0500
+@@ -254,7 +254,7 @@
+ 	echo "$UNAME_MACHINE_ARCH"-unknown-libertybsd"$UNAME_RELEASE"
+ 	exit ;;
+     *:MidnightBSD:*:*)
+-	echo "$UNAME_MACHINE"-unknown-midnightbsd"$UNAME_RELEASE"
++	echo "$UNAME_MACHINE"-unknown-freebsd11.4
+ 	exit ;;
+     *:ekkoBSD:*:*)
+ 	echo "$UNAME_MACHINE"-unknown-ekkobsd"$UNAME_RELEASE"

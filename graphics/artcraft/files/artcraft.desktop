@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=ArtCraft
+Comment=Create AI images and videos
+Exec=artcraft
+Icon=artcraft
+Categories=Graphics;2DGraphics;
+Terminal=false

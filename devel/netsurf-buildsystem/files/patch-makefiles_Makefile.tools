@@ -1,0 +1,47 @@
+--- makefiles/Makefile.tools.orig	2019-06-23 18:20:17.000000000 -0400
++++ makefiles/Makefile.tools	2020-12-09 02:23:33.655705000 -0500
+@@ -109,6 +109,26 @@
+     CFLAGS := $(CFLAGS) -I$(GCCSDK_INSTALL_ENV)/include -I/usr/local/include
+     CXXFLAGS := $(CXXFLAGS) -I$(GCCSDK_INSTALL_ENV)/include -I/usr/local/include
+     LDFLAGS := $(LDFLAGS) -L$(GCCSDK_INSTALL_ENV)/lib -L/usr/local/lib
++
++    PKGCONFIG ?= PKG_CONFIG_PATH="$(PREFIX)/libdata/pkgconfig:$(PKG_CONFIG_PATH)" pkgconf
++  endif
++
++  ifeq ($(findstring midnightbsd,$(HOST)),midnightbsd)
++    # Building on+for MidnightBSD
++    CFLAGS := $(CFLAGS) -I$(GCCSDK_INSTALL_ENV)/include -I/usr/local/include
++    CXXFLAGS := $(CXXFLAGS) -I$(GCCSDK_INSTALL_ENV)/include -I/usr/local/include
++    LDFLAGS := $(LDFLAGS) -L$(GCCSDK_INSTALL_ENV)/lib -L/usr/local/lib
++
++    PKGCONFIG ?= PKG_CONFIG_PATH="$(PREFIX)/libdata/pkgconfig:$(PKG_CONFIG_PATH)" pkgconf
++  endif
++
++  ifeq ($(findstring dragonfly,$(HOST)),dragonfly)
++    # Building on+for DragonFly BSD
++    CFLAGS := $(CFLAGS) -I$(GCCSDK_INSTALL_ENV)/include -I/usr/local/include
++    CXXFLAGS := $(CXXFLAGS) -I$(GCCSDK_INSTALL_ENV)/include -I/usr/local/include
++    LDFLAGS := $(LDFLAGS) -L$(GCCSDK_INSTALL_ENV)/lib -L/usr/local/lib
++
++    PKGCONFIG ?= PKG_CONFIG_PATH="$(PREFIX)/libdata/pkgconfig:$(PKG_CONFIG_PATH)" pkgconf
+   endif
+ 
+   ifeq ($(findstring arwin,$(HOST)),arwin)
+@@ -130,7 +150,7 @@
+   endif
+ 
+   # Search the path for the compiler
+-  toolpath_ := $(shell /bin/which $(CC__))
++  toolpath_ := $(shell /usr/bin/which $(CC__))
+   ifeq ($(toolpath_),)
+     toolpath_ := /opt/netsurf/$(HOST)/cross/bin/
+     CC__  := $(toolpath_)$(HOST)-gcc
+@@ -141,7 +161,7 @@
+     toolpath_ := $(dir $(CC__))
+     toolprefix_ := $(subst :,/,$(dir $(subst -,/,$(subst /,:,$(CC__)))))
+     ifeq ($(origin AR),default)
+-      AR__ := $(toolprefix_)-ar
++      AR__ := $(shell /usr/bin/which ar)
+     endif
+     ifeq ($(origin CXX),default)
+       CXX__ := $(toolprefix_)-g++
