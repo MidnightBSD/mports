@@ -1,3 +1,0 @@
-Run 'R CMD check' from 'R' and capture the results of the individual checks.
-Supports running checks in the background, timeouts, pretty printing and
-comparing check results.

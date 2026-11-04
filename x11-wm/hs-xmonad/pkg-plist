@@ -1,4 +1,0 @@
-share/man/man1/xmonad.1.gz
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/build
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/xmonad-config.cabal
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/xmonad.hs

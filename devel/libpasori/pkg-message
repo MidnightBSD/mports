@@ -1,7 +1,0 @@
-[
-{ type: install
-  message: <<EOM
-Place your FeliCa card on PaSoRi before executing commands.
-EOM
-}
-]

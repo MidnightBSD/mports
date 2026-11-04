@@ -1,3 +1,0 @@
-This package is an extension to testthat that enables parameterized unit testing
-in R. Parameterized unit tests are often easier to read and more reliable, since
-they follow the DNRY (do not repeat yourself) rule.

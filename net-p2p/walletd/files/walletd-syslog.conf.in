@@ -1,2 +1,0 @@
-# $FreeBSD$
-/var/log/walletd.log                          600  20     *  @T00     J   /var/run/walletd.pid

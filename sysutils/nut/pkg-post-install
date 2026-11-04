@@ -1,3 +1,0 @@
-#!/bin/sh -
-
-pw groupmod -n dialer -m nut

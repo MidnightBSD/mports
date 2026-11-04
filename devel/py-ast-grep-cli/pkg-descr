@@ -1,3 +1,0 @@
-ast-grep is a structural search and rewrite tool for source code. It
-matches code using abstract syntax trees instead of plain text, making
-it useful for code-aware search, linting, and codemods.
