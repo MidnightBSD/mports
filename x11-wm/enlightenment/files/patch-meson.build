@@ -1,0 +1,11 @@
+--- meson.build.orig	2023-04-01 13:35:48.434420000 -0400
++++ meson.build	2023-04-01 13:36:45.134512000 -0400
+@@ -99,7 +99,7 @@
+ 
+ openbsd      = host_machine.system().startswith('openbsd')
+ netbsd       = host_machine.system().startswith('netbsd')
+-freebsd      = host_machine.system().startswith('freebsd')
++freebsd      = host_machine.system().startswith('freebsd') or host_machine.system().startswith('midnightbsd')
+ suid_cflags  = []
+ suid_ldflags = []
+ dep_crypt    = []

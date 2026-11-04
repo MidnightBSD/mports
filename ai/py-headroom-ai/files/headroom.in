@@ -1,0 +1,47 @@
+#!/bin/sh
+
+# PROVIDE: headroom
+# REQUIRE: LOGIN
+# KEYWORD: shutdown
+#
+# Add these lines to /etc/rc.conf to enable headroom:
+#
+# headroom_enable="YES"
+# headroom_api_key="..."
+#
+# Optional settings:
+# headroom_host="127.0.0.1"
+# headroom_port="8787"
+# headroom_user="nobody"
+# headroom_log="/var/log/headroom.log"
+# headroom_args="proxy --host ${headroom_host} --port ${headroom_port}"
+
+. /etc/rc.subr
+
+name=headroom
+rcvar=headroom_enable
+
+load_rc_config ${name}
+
+: ${headroom_enable:="NO"}
+: ${headroom_host:="127.0.0.1"}
+: ${headroom_port:="8787"}
+: ${headroom_user:="nobody"}
+: ${headroom_pidfile:="/var/run/${name}.pid"}
+: ${headroom_log:="/var/log/${name}.log"}
+: ${headroom_args:="proxy --host ${headroom_host} --port ${headroom_port}"}
+
+pidfile=${headroom_pidfile}
+procname="%%PREFIX%%/bin/headroom"
+command="/usr/sbin/daemon"
+command_args="-f -t ${name} -p ${pidfile} -o ${headroom_log} /usr/bin/env ${headroom_env} ${procname} ${headroom_args}"
+
+start_precmd=headroom_precmd
+
+headroom_precmd()
+{
+	touch ${headroom_log} ${pidfile}
+	chown ${headroom_user} ${headroom_log} ${pidfile}
+}
+
+run_rc_command "$1"

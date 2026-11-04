@@ -1,0 +1,19 @@
+PORTNAME=	hyperframe
+PORTVERSION=	6.0.0
+PORTREVISION=	1
+CATEGORIES=	www python
+MASTER_SITES=	PYPI
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Python module that decodes binary streams into HTTP/2 frames
+WWW=		https://hyper.rtfd.org/
+
+LICENSE=	mit
+
+USES?=		python
+USE_PYTHON=	allflavors autoplist concurrent distutils
+
+NO_ARCH=	yes
+
+.include <bsd.port.mk>

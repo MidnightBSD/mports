@@ -1,0 +1,28 @@
+--- configure.orig
++++ configure
+@@ -6376,7 +6376,7 @@
+ # This is just for configuring. Later, in config.make, INCLUDE_FLAGS
+ # goes in CONFIG_SYSTEM_INCL and LIBS goes in CONFIG_SYSTEM_LIBS
+ case "$target_os" in
+-  freebsd* | openbsd* )
++  freebsd* | openbsd* | midnightbsd* )
+ 	        CPPFLAGS="$CPPFLAGS -I/usr/local/include"
+ 		LDFLAGS="$LDFLAGS -L/usr/local/lib";;
+   netbsd*)	CPPFLAGS="$CPPFLAGS -I/usr/pkg/include"
+@@ -11866,7 +11866,7 @@
+ else $as_nop
+   cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+-[#include "$srcdir/config/config.kvmopen.c"])
++#include "$srcdir/config/config.kvmopen.c"
+ _ACEOF
+ if ac_fn_c_try_run "$LINENO"
+ then :
+@@ -11937,6 +11937,7 @@
+   case "$target_os" in
+     freebsd2*)	enable_fake_main=yes;;
+     freebsd*)	;;
++    midnightbsd*)	;;
+     kfreebsd*)	enable_fake_main=yes;;
+     netbsd*)	enable_fake_main=yes;;
+     openbsd*)	enable_fake_main=yes;;

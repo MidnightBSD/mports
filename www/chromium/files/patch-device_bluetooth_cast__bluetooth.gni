@@ -1,0 +1,11 @@
+--- device/bluetooth/BUILD.gn.orig	2026-10-26 21:13:13 UTC
++++ device/bluetooth/BUILD.gn
+@@ -7,7 +7,7 @@
+ import("//device/bluetooth/emulation/buildflags.gni")
+ 
+ declare_args() {
+-  use_bluez = (is_linux && !is_castos && use_dbus) || is_chromeos
++  use_bluez = use_dbus && !is_bsd
+ }
+ 
+ if (is_android) {

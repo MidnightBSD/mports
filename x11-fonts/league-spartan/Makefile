@@ -1,0 +1,27 @@
+# Created by: Florian Limberger <flo@snakeoilproductions.net>
+
+PORTNAME=	league-spartan
+DISTVERSION=	2.220
+CATEGORIES=	x11-fonts
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Revival of ATF\'s classic Spartan
+
+LICENSE=	OFL11
+LICENSE_FILE=	${WRKSRC}/ofl.markdown
+
+USES=		fonts
+USE_GITHUB=	yes
+GH_ACCOUNT=	theleagueof
+GH_TAGNAME=	c350408b
+
+NO_ARCH=	yes
+NO_BUILD=	yes
+
+PLIST_FILES=	${FONTSDIR}/LeagueSpartan-Bold.otf
+
+do-install:
+	${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/LeagueSpartan-Bold.otf ${FONTSDIR}
+
+.include <bsd.port.mk>

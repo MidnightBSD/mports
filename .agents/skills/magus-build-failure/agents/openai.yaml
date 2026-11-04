@@ -1,0 +1,9 @@
+interface:
+  display_name: "Magus Build Failure"
+  short_description: "Fix mports failures from Magus logs"
+  default_prompt: "Use $magus-build-failure to diagnose and fix a failing mports build from a Magus port ID."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "magus"
+      description: "MidnightBSD Magus build cluster logs and analysis"

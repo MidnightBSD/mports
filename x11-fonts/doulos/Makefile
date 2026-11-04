@@ -1,0 +1,31 @@
+PORTNAME=	DoulosSIL
+PORTVERSION=	4.112
+CATEGORIES=	x11-fonts
+MASTER_SITES=	http://scripts.sil.org/cms/scripts/render_download.php?&format=file&media_id=${MEDIA_ID}&filename=/ \
+		FREEBSD_LOCAL/bf
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Doulos SIL TrueType font collection
+
+LICENSE=	OFL11
+
+USES=		fonts zip
+
+MEDIA_ID=	${DISTNAME}${EXTRACT_SUFX}
+NO_BUILD=	yes
+
+PLIST_FILES=	${FONTSDIR}/${PORTNAME}-R.ttf
+
+OPTIONS_DEFINE=	DOCS
+
+PORTDOCS=	FONTLOG.txt OFL-FAQ.txt OFL.txt README.txt
+
+SUB_FILES=	pkg-message
+
+do-install:
+	@${MKDIR} ${FONTSDIR}
+	@(cd ${WRKSRC} ; ${INSTALL_DATA} *.ttf ${FONTSDIR})
+	@${MKDIR} ${DOCSDIR}
+	@(cd ${WRKSRC} ; ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR})
+
+.include <bsd.port.mk>

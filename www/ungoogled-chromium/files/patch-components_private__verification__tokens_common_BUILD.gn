@@ -1,0 +1,11 @@
+--- components/private_verification_tokens/common/BUILD.gn.orig	2026-10-26 21:13:13 UTC
++++ components/private_verification_tokens/common/BUILD.gn
+@@ -198,7 +198,7 @@
+   ]
+ }
+ 
+-# ATHM (Anonymous Tokens with Hidden Metadata): Crubit bindings over
++# ATHM (Anonymous Tokens with Hidden Metadata): CXX bindings over
+ # //third_party/anonymous_tokens:athm and the C++ that calls it.
+ if (enable_rust) {
+   source_set("privacy_pass_athm_batch_request") {

@@ -1,0 +1,22 @@
+--- include/meson.build.orig	2023-03-29 08:55:03.000000000 -0400
++++ include/meson.build	2023-09-11 18:42:45.161309000 -0400
+@@ -278,7 +278,7 @@
+ supports_wscons = false
+ csrg_based = false
+ 
+-if host_machine.system() == 'freebsd' or host_machine.system() == 'dragonfly'
++if host_machine.system() == 'midnightbsd' or host_machine.system() == 'dragonfly'
+   supports_pccons = true
+   supports_pcvt = true
+   supports_syscons = true
+@@ -377,8 +377,8 @@
+ xorg_data.set('HAVE_SYS_KD_H', cc.has_header('sys/kd.h') ? '1' : false)
+ xorg_data.set('HAVE_SYS_VT_H', cc.has_header('sys/vt.h') ? '1' : false)
+ 
+-if host_machine.system() == 'freebsd' or host_machine.system() == 'dragonfly'
+-    if host_machine.cpu_family() == 'x86' or host_machine.cpu_family() == 'x86_64'
++if host_machine.system() == 'midnightbsd' or host_machine.system() == 'dragonfly'
++    if host_machine.cpu_family() == 'x86' or host_machine.cpu_family() == 'x86_64' or host_machine.cpu_family() == 'aarch64'
+         xorg_data.set('USE_DEV_IO', '1')
+     endif
+ elif host_machine.system() == 'netbsd'

@@ -1,0 +1,36 @@
+PORTNAME=	meson-python
+DISTVERSION=	0.18.0
+PORTEPOCH=	1
+CATEGORIES=	devel python
+MASTER_SITES=	PYPI
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTNAME=	meson_python-${DISTVERSION}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Meson Python build backend (PEP-517)
+WWW=		https://github.com/mesonbuild/meson-python
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BUILD_DEPENDS=	meson-${PYTHON_VER}:devel/meson@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}packaging>=23.2:devel/py-packaging@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pyproject-metadata>=0.9.0:devel/py-pyproject-metadata@${PY_FLAVOR} \
+		${PY_TOMLI}
+RUN_DEPENDS=	meson-${PYTHON_VER}:devel/meson@${PY_FLAVOR} \
+		patchelf>0:sysutils/patchelf \
+		${PYTHON_PKGNAMEPREFIX}packaging>=23.2:devel/py-packaging@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pyproject-metadata>=0.9.0:devel/py-pyproject-metadata@${PY_FLAVOR} \
+		${PY_TOMLI}
+
+USES=		python
+USE_PYTHON=	allflavors autoplist concurrent pep517
+
+MAKE_ENV+=	MESON=meson-${PYTHON_VER}
+
+# tarball has UTF-8 filenames
+EXTRACT_CMD=	env LANG=C.UTF-8 LC_ALL=C.UTF-8 ${TAR}
+NO_ARCH=	yes
+NO_TEST=	yes
+
+.include <bsd.port.mk>
