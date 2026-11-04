@@ -1,4 +1,4 @@
-COMMENT = Text processing utilities (does not include desktop publishing)
+    COMMENT = Text processing utilities (does not include desktop publishing)
 
     SUBDIR += R-cran-DT
     SUBDIR += R-cran-R.rsp
