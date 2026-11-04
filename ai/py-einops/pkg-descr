@@ -1,3 +1,0 @@
-einops provides flexible and powerful tensor operations for readable and
-reliable code.
-It supports numpy, pytorch, tensorflow, jax, and others.

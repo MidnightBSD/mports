@@ -1,2 +1,0 @@
-sagemaker-mlflow is an AWS plugin for MLflow that integrates MLflow tracking
-and model registry with Amazon SageMaker.

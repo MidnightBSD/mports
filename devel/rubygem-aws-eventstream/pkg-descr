@@ -1,2 +1,0 @@
-rubygem-aws-eventstream is an Amazon Web Services event stream library which
-decodes and encodes binary stream under 'vnd.amazon.event-stream' content-type.

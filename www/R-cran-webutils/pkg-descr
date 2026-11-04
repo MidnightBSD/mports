@@ -1,3 +1,0 @@
-Parses http request data in application/json, multipart/form-data, or
-application/x-www-form-urlencoded format. Includes example of hosting and
-parsing html form data in R using either 'httpuv' or 'Rhttpd'.

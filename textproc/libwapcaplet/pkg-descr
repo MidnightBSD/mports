@@ -1,3 +1,0 @@
-LibWapcaplet is a string internment library, written in C.
-It provides reference counted string interment and rapid string comparison
-functionality.
