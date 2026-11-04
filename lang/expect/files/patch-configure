@@ -1,0 +1,20 @@
+--- configure.orig	2019-02-22 09:49:32.199229000 -0500
++++ configure	2019-02-22 09:50:06.703175000 -0500
+@@ -6563,7 +6563,7 @@
+ 		;;
+ 	    esac
+ 	    ;;
+-	FreeBSD-*)
++	MidnightBSD-*|FreeBSD-*)
+ 	    # This configuration from FreeBSD Ports.
+ 	    SHLIB_CFLAGS="-fPIC"
+ 	    SHLIB_LD="${CC} -shared"
+@@ -7150,7 +7150,7 @@
+ 	    BSD/OS*) ;;
+ 	    CYGWIN_*) ;;
+ 	    IRIX*) ;;
+-	    NetBSD-*|FreeBSD-*|OpenBSD-*) ;;
++	    NetBSD-*|MidnightBSD-*|FreeBSD-*|OpenBSD-*) ;;
+ 	    Darwin-*) ;;
+ 	    SCO_SV-3.2*) ;;
+ 	    windows) ;;

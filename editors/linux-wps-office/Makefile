@@ -1,0 +1,63 @@
+PORTNAME=	wps-office
+DISTVERSION=	11.1.0.10161
+PORTREVISION=	1
+CATEGORIES=	editors linux
+MASTER_SITES=	https://wdl1.pcfg.cache.wpscdn.com/wpsdl/wpsoffice/download/linux/10161/
+PKGNAMEPREFIX=	linux-
+DISTNAME=	${PORTNAME}-${PORTVERSION}.XA-1.x86_64
+EXTRACT_SUFX=	.rpm
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Complete office suite with PDF editor
+WWW=		https://www.wps.com/
+
+LICENSE=	commercial
+LICENSE_NAME=	End User License Agreement
+LICENSE_TEXT=	See: https://www.wps.com/eula
+LICENSE_PERMS=	no-auto-accept no-dist-mirror no-dist-sell no-pkg-mirror no-pkg-sell
+
+ONLY_FOR_ARCHS=	amd64
+
+CONFLICTS_INSTALL=	linux-wps-office-zh_CN
+
+USES=		desktop-file-utils gnome linux shebangfix
+USE_LINUX=	imageformats-libs pulseaudio-libs xorglibs
+
+SHEBANG_FILES=	usr/bin/et \
+		usr/bin/wpp \
+		usr/bin/wps \
+		usr/bin/wpspdf
+
+NO_BUILD=	yes
+NO_WRKSUBDIR=	yes
+PLIST_SUB=	LINUXBASE=${LINUXBASE}
+
+WPS_BINS=	et wpp wps wpspdf
+WPS_DESK=	et wpp wps pdf prometheus
+
+post-patch:
+.for d in ${WPS_DESK}
+	@${REINPLACE_CMD} -i '' -e 's|/usr/bin|${PREFIX}/bin|' ${WRKSRC}/opt/kingsoft/${PORTNAME}/desktops/${PORTNAME}-${d}.desktop
+.endfor
+.for b in ${WPS_BINS}
+	@${REINPLACE_CMD} -e 's|gInstallPath=/opt|gInstallPath=${LINUXBASE}/opt|' ${WRKSRC}/usr/bin/${b}
+.endfor
+
+do-install:
+.for s in 16 20 24 32 40 48 60 64 72 80 96 128 256 512
+	${MKDIR} ${PREFIX}/share/icons/hicolor/${s}x${s}/apps
+	${INSTALL_DATA} ${WRKSRC}/usr/share/icons/hicolor/${s}x${s}/mimetypes/*.png \
+		${PREFIX}/share/icons/hicolor/${s}x${s}/apps/
+.endfor
+.for d in ${WPS_DESK}
+	${INSTALL_DATA} ${WRKSRC}/opt/kingsoft/${PORTNAME}/desktops/${PORTNAME}-${d}.desktop \
+		${DESKTOPDIR}
+.endfor
+	${MKDIR} ${LINUXBASE}
+	(cd ${WRKSRC} && ${COPYTREE_SHARE} opt ${LINUXBASE})
+.for b in ${WPS_BINS}
+	${INSTALL_SCRIPT} ${WRKSRC}/usr/bin/${b} ${PREFIX}/bin
+	${CHMOD} +x ${LINUXBASE}/opt/kingsoft/wps-office/office6/${b}
+.endfor
+
+.include <bsd.port.mk>

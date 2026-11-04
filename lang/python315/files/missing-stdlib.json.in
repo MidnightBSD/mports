@@ -1,0 +1,5 @@
+{
+    "_gdbm": "Standard library module '_gdbm' is packaged separately, install it with: mport install py%%PYTHON_SUFFIX%%-gdbm",
+    "_sqlite3": "Standard library module '_sqlite3' is packaged separately, install it with: mport install py%%PYTHON_SUFFIX%%-sqlite3",
+    "_tkinter": "Standard library module '_tkinter' is packaged separately, install it with: mport install py%%PYTHON_SUFFIX%%-tkinter"
+}

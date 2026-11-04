@@ -1,0 +1,22 @@
+PORTNAME=	snaky_hash
+PORTVERSION=	2.0.3
+CATEGORIES=	devel rubygems
+MASTER_SITES=	RG
+PKGNAMESUFFIX=	-gitlab
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Hashie::Mash joint to make \#snakelife better
+WWW=		https://gitlab.com/oauth-xx/snaky_hash
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE.txt
+
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	rubygem-hashie-gitlab>=0.1.0<6:devel/rubygem-hashie-gitlab \
+		rubygem-version_gem>=1.1.8<3:devel/rubygem-version_gem
+
+USES=		gem
+
+NO_ARCH=	yes
+
+.include <bsd.port.mk>

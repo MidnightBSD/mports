@@ -1,0 +1,24 @@
+PORTNAME=	lowdown
+PORTVERSION=	2.0.4
+CATEGORIES=	textproc
+MASTER_SITES=	https://kristaps.bsd.lv/lowdown/snapshots/
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Simple Markdown translator
+WWW=		https://kristaps.bsd.lv/lowdown/
+
+LICENSE=	iscl
+
+BUILD_DEPENDS=	${LOCALBASE}/lib/libdiff.a:textproc/libdiff
+LDFLAGS+=	-lmd
+MAKE_ARGS=	LDFLAGS="${LDFLAGS}" MANDIR=${PREFIX}/share/man
+
+HAS_CONFIGURE=	yes
+CONFIGURE_ARGS=	PREFIX="${PREFIX}"
+INSTALL_TARGET=	install install_libs
+
+post-install:
+	${STRIP_CMD} ${PREFIX}/bin/${PORTNAME}
+	${STRIP_CMD} ${PREFIX}/bin/${PORTNAME}-diff
+
+.include <bsd.port.mk>

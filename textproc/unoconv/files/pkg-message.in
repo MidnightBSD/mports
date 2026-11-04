@@ -1,0 +1,13 @@
+[
+{ type: install
+  message: <<EOM
+Universal Office Converter (unoconv) has been installed.
+
+For Document conversions is needed that is LibreOffice or OpenOffice installed
+
+editors/libreoffice
+
+editors/openoffice*
+EOM
+}
+]

@@ -1,0 +1,11 @@
+--- Makefiles/filerunner.desktop.orig	2021-09-27 11:24:14.683761000 -0700
++++ Makefiles/filerunner.desktop	2021-09-27 11:25:45.130081000 -0700
+@@ -1,6 +1,6 @@
+ [Desktop Entry]
+-Name=filerunner
+-Comment=A very configureable two pane file manager with FTP SFTP and adb cabability.
++Name=Filerunner
++Comment=A very configurable 2 pane file manager with FTP SFTP and adb cabability.
+ Exec=fr
+ MimeType=inode/directory;
+ Icon=filerunner

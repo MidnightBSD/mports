@@ -1,0 +1,60 @@
+PORTNAME=	phpldapadmin
+PORTVERSION=	1.2.6.2
+CATEGORIES=	net www
+PKGNAMESUFFIX=	${PHP_PKGNAMESUFFIX}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	PHP application to administer LDAP over the web
+
+LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+USES=		cpe php:web,flavors tar:tgz
+USE_PHP=	gettext ldap openssl pcre session xml iconv hash
+USE_GITHUB=	yes
+GH_ACCOUNT=	leenooks
+GH_PROJECT=	phpLDAPadmin
+
+NO_ARCH=	yes
+NO_BUILD=	yes
+CPE_VENDOR=	deon_george
+
+OPTIONS_DEFINE=	MCRYPT
+
+MCRYPT_DESC=	Use pecl-mcrypt for password hashing
+MCRYPT_USE=	PHP=mcrypt
+
+.include <bsd.mport.options.mk>
+
+GROUPS?=	${WWWGRP}
+CFGDIR=		config
+CFGFILE=	config.php
+
+PLIST=		${WRKDIR}/plist
+
+SUB_LIST+=	PKGNAME=${PKGNAME}
+SUB_FILES+=	pkg-message
+
+.SILENT:
+
+.include <bsd.port.pre.mk>
+
+post-patch:
+	cd ${WRKSRC} ;							    \
+	${FIND} . ! -type d ! -name .cvsignore ! -name .gitignore	    \
+	    ! -name *.orig | ${SORT} |				    \
+	    ${SED} -e "s!^\.!${WWWDIR_REL}!"			>${PLIST} ;
+
+do-install:
+	cd ${WRKSRC} ;					 \
+	for src in $$( ${FIND} . ! -name .cvsignore	 \
+		! -name .gitignore ! -name *.orig ) ; do \
+	    dst=${WWWDIR}$${src#.} ;		 \
+	    if ${TEST} -d $$src ; then			 \
+		${MKDIR} $$dst ;			 \
+	    else					 \
+		${INSTALL_DATA} $$src $$dst ;		 \
+	    fi						 \
+	done
+
+.include <bsd.port.post.mk>

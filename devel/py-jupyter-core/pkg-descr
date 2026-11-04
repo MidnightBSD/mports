@@ -1,0 +1,2 @@
+Jupyter core package. A base package on which Jupyter projects rely for
+configuration, application classes, command discovery, and runtime paths.

@@ -1,0 +1,66 @@
+--- configure.orig	2020-03-14 10:00:56.752402000 -0400
++++ configure	2020-03-14 10:02:24.104604000 -0400
+@@ -1080,6 +1080,9 @@
+ 	fi
+ 	RANLIB="@#ranlib not needed"
+ 	;;
++    MidnightBSD)
++	appendvar PTHREAD_LDFLAGS -pthread
++	;;
+     OpenBSD)
+ 	appendvar PTHREAD_LDFLAGS -pthread
+ 	;;
+@@ -1670,7 +1673,7 @@
+     SunOS|AIX|OSF1)
+ 	DCC_LOGGER="\$DCC_LIBEXEC/logger -p \${DCC_ERROR_LOG_FACILITY-mail.err} -t \${LOGGER_TAG-DCC}"
+ 		;;
+-    BSD/OS|FreeBSD|DragonFly|Darwin|Linux|OpenBSD|NetBSD)
++    BSD/OS|MidnightBSD|FreeBSD|DragonFly|Darwin|Linux|OpenBSD|NetBSD)
+ 	DCC_LOGGER="logger -s -p \${DCC_ERROR_LOG_FACILITY-mail.err} -t \${LOGGER_TAG-DCC}"
+ 		;;
+     *)
+@@ -1759,7 +1762,7 @@
+ # ls -ifC1 does not work on files on Solaris, so assume only Linux and
+ #   BSD related systems have it
+ case "$TARGET_SYS" in
+-    BSD/OS|FreeBSD|DragonFly|Darwin|Linux|OpenBSD|NetBSD) LS_F="f";;
++    BSD/OS|MidnightBSD|FreeBSD|DragonFly|Darwin|Linux|OpenBSD|NetBSD) LS_F="f";;
+     *) LS_F="";;
+ esac
+ 
+@@ -1959,7 +1962,7 @@
+ 	MANX='$(MAN0)'
+ 	MANXFILE="$MAN8AS8"
+ 	;;
+-    FreeBSD|DragonFly)
++    MidnightBSD|FreeBSD|DragonFly)
+ 	# default to /usr/local/man/man8 and use nroff files
+ 	mancat=man
+ 	MANX='$(MANGZ)'
+@@ -2146,7 +2149,7 @@
+ 
+ # choose between `su` and `su -`
+ case "$TARGET_SYS" in
+-    Linux|BSD/OS|FreeBSD|NetBSD|DragonFly)
++    Linux|BSD/OS|MidnightBSD|FreeBSD|NetBSD|DragonFly)
+ 	# `su -` is required on Linux and desirable where it works
+ 	# clear $TERM because some too smart by half systems spew /etc/motd
+ 	DCC_SU="TERM= su -";;
+@@ -3389,7 +3392,7 @@
+ 	DCC_OWN=daemon
+ 	DCC_GRP=daemon
+ 	;;
+-    FreeBSD|NetBSD)
++    MidnightBSD|FreeBSD|NetBSD)
+ 	DCC_OWN=root
+ 	DCC_GRP=wheel
+ 	;;
+@@ -3821,7 +3824,7 @@
+ EOF
+ 	fi
+ 	;;
+-    FreeBSD|DragonFly)
++    MidnightBSD|FreeBSD|DragonFly)
+ 	# allow file descriptors larger than FD_SETSIZE
+ 	if test "$ac_cv_func_poll" = yes; then
+ 	    cat >> confdefs.h <<\EOF

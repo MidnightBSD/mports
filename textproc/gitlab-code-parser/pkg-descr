@@ -1,0 +1,3 @@
+Rust-based code parser used by GitLab for syntax highlighting and code
+intelligence features. Provides C bindings (libparser_c_bindings) consumed
+by gitlab-elasticsearch-indexer and other GitLab components.

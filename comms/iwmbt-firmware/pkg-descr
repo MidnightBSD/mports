@@ -1,0 +1,4 @@
+Firmware for the Intel Wireless 8260/8265 chip based Bluetooth USB devices.
+To be downloaded with iwmbtfw(8).
+
+See also: https://packages.debian.org/firmware-iwlwifi

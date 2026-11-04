@@ -1,0 +1,22 @@
+PORTNAME=	json
+PORTVERSION=	2.13.2
+PORTREVISION=	1
+CATEGORIES=	devel rubygems
+MASTER_SITES=	RG
+PKGNAMESUFFIX=	-gitlab
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	JSON implementation as a Ruby extension in C
+WWW=		https://ruby.github.io/json/ \
+		https://github.com/ruby/json/releases
+
+LICENSE=	bsd2 ruby
+LICENSE_COMB=	dual
+LICENSE_FILE_bsd2=${WRKSRC}/BSDL
+LICENSE_FILE_ruby=	${WRKSRC}/COPYING
+
+USES=		gem
+USES+=	cpe
+CPE_VENDOR=	ruby-lang
+
+.include <bsd.port.mk>

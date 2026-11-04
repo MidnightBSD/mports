@@ -1,0 +1,37 @@
+PORTNAME=	admesh
+DISTVERSIONPREFIX=	v
+DISTVERSION=	0.98.5
+PORTREVISION=	3
+CATEGORIES=	cad
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Program for processing STL triangulated solid meshes
+WWW=		https://launchpad.net/admesh
+
+LICENSE=	gpl2+
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+USES=		autoreconf libtool
+USES+=	cpe
+CPE_VENDOR=	${PORTNAME}_project
+USE_GITHUB=	yes
+GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
+USE_LDCONFIG=	yes
+
+OPTIONS_DEFINE=	DOCS
+
+PORTDOCS=	*
+
+PLIST_FILES=	bin/admesh \
+		include/admesh/stl.h \
+		lib/libadmesh.so \
+		lib/libadmesh.so.1 \
+		lib/libadmesh.so.1.0.0 \
+		libdata/pkgconfig/libadmesh.pc \
+		share/man/man1/admesh.1.gz
+
+do-install-DOCS-on:
+	@${RM} ${FAKE_DESTDIR}${DOCSDIR}/COPYING
+
+.include <bsd.port.mk>
