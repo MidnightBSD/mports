@@ -1,2 +1,0 @@
-pytest-socket is a plugin to use with Pytest to disable or restrict socket calls
-during tests to ensure network calls are prevented.

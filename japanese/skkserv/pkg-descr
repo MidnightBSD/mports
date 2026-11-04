@@ -1,4 +1,0 @@
-SKK (Simple Kana Kanji Convertor) is a very fast and efficient Japanese input
-method system, written in emacs-lisp.
-
-This package is the skk-jisyo server.

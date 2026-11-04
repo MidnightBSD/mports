@@ -1,4 +1,0 @@
-JsRegex converts Ruby's native regular expressions
-for JavaScript, taking care of various
-incompatibilities and returning warnings for
-unsolvable differences.
