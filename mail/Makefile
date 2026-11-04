@@ -159,6 +159,7 @@
     SUBDIR += rubygem-actionmailbox81
     SUBDIR += rubygem-actionmailer-gitlab
     SUBDIR += rubygem-actionmailer4
+    SUBDIR += rubygem-actionmailer81
     SUBDIR += rubygem-email_reply_trimmer
     SUBDIR += rubygem-email_validator
     SUBDIR += rubygem-gitlab-mail_room
