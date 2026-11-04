@@ -4,11 +4,11 @@
  
     $INPATH         = $OUTPATH.$PROEXT;
  }
--elsif ( $platform =~ m/freebsd/ ) 
-+elsif ( $platform =~ m/freebsd|midnightbsd/ ) 
+-elsif ( $platform =~ m/freebsd/ )
++elsif ( $platform =~ m/freebsd|midnightbsd/ )
  {     $BIG_SVX        = "TRUE";
        $COM            = "@COM_IS@";
-       $COMPATH        = '@COMPATH@' . '/bin'; 
+       $COMPATH        = '@COMPATH@' . '/bin';
 @@ -1072,7 +1072,7 @@
                          $L.$USR_DT.$LIB.
                          $L.$USR_OPENWIN.$LIB;

@@ -1,6 +1,6 @@
 PORTNAME=	apache-openoffice
 PORTVERSION=	${AOOVERSION}
-PORTREVISION=	2
+PORTREVISION=	0
 CATEGORIES=	editors java
 MASTER_SITES=	https://dlcdn.apache.org/openoffice/${PORTVERSION}/source/ \
 		https://archive.apache.org/dist/openoffice/${PORTVERSION}/source/ \
@@ -14,7 +14,7 @@ PKGNAMEPREFIX=		${LANG_PKGNAME}-
 PKGNAMESUFFIX=		-${LANG_SUFFIX}
 .endif
 DISTFILES=	${AOOSRC} ${EXTSRC}:extsrc ${PYTHON_DISTFILE}:sf \
-		${GCC_EXTRA_DISTFILES:C/.*/&:sf/g}
+		${EXTRA_DISTFILES:C/.*/&:sf/g}
 DIST_SUBDIR=	openoffice
 EXTRACT_ONLY=	${AOOSRC}
 
@@ -79,7 +79,6 @@ LIB_DEPENDS=								\
 		libexpat.so:textproc/expat2				\
 		libhunspell-1.7.so:textproc/hunspell			\
 		libhyphen.so:textproc/hyphen				\
-		libtextcat.so:textproc/libtextcat			\
 		libmythes-1.2.so:textproc/mythes			\
 		librdf.so:textproc/redland				\
 		libserf-1.so:www/serf					\
@@ -112,10 +111,10 @@ CONFLICTS_INSTALL=	apache-openoffice-devel
 
 AOOVERSION1=	4
 AOOVERSION2=	1
-AOOVERSION3=	15
+AOOVERSION3=	17
 # From solenv/inc/minor.mk SOURCEREVISION LAST_MINOR BUILD
-AOOTAG=		AOO4115m2\(Build:9813\)
-GITREVISION=	5f13fa0070
+AOOTAG=		AOO4117m2\(Build:9818\)
+GITREVISION=	49c05bc6fd
 EXTSRC=		ApacheOpenOffice.ext_sources.${AOOVERSION1}.x.x.20150707.tar.gz
 
 AOOVERSION=	${AOOVERSION1}.${AOOVERSION2}.${AOOVERSION3}
@@ -138,7 +137,7 @@ CPE_VENDOR=	apache
 
 OPTIONS_DEFINE=		CRASHDUMP CUPS DBGUTIL DEBUG GNOME \
 			SDK WIKI_PUBLISHER
-OPTIONS_DEFAULT=	CUPS GNOME WIKI_PUBLISHER
+OPTIONS_DEFAULT=	CUPS GNOME
 CRASHDUMP_DESC=		Enable crashdumps, you also need to set WITH_DEBUG_PORTS+=${PKGORIGIN}
 DBGUTIL_DESC=		Enable assertions, object counting. (non-production)
 DEBUG_DESC=		Compile with -O0, you also need to set WITH_DEBUG_PORTS+=${PKGORIGIN}
@@ -162,6 +161,8 @@ GNOME_LIB_DEPENDS=		libdbus-1.so:devel/dbus \
 SDK_CONFIGURE_ENABLE=		odk
 SDK_DISTFILES=			unowinreg.dll:unoreg
 
+# commons-httpclient replacement by Apache HttpComponents requires new java
+WIKI_PUBLISHER_BROKEN=		CVE-2012-6153 MITM
 WIKI_PUBLISHER_CONFIGURE_ENABLE=	wiki-publisher
 WIKI_PUBLISHER_CONFIGURE_WITH=						\
 	commons-codec-jar=${JAVALIBDIR}/commons-codec.jar		\
@@ -193,7 +194,9 @@ CONFIGURE_ARGS+=	--enable-symbols
 .include <${FILESDIR}/Makefile.localized>
 
 PYTHON_DISTFILE=	38c84292658ed4456157195f1c9bcbe1-Python-2.7.18.tgz
-GCC_EXTRA_DISTFILES=	d6eef4b4cacb2183f2bf265a5a03a354-boost_1_55_0.tar.bz2 \
+EXTRA_DISTFILES=	d6eef4b4cacb2183f2bf265a5a03a354-boost_1_55_0.tar.bz2 \
+			e3738abd0d3ce1870dc1fd1f22bba5b1-icu4c-4_2_1-src.tgz \
+			128cfc86ed5953e57fe0f5ae98b62c2e-libtextcat-2.2.tar.gz \
 			d62650a6f908e85643e557a236ea989c-vigra1.6.0.tar.gz
 
 .if ${CHOSEN_COMPILER_TYPE} == clang
@@ -260,7 +263,6 @@ CONFIGURE_ARGS+=							\
 			--with-jdk-home=${JAVA_HOME}			\
 			--with-system-jpeg				\
 			--with-junit=${JAVALIBDIR}/junit.jar		\
-			--with-system-libtextcat			\
 			--disable-kde					\
 			--disable-kde4					\
 			--with-system-libxml				\
@@ -317,7 +319,7 @@ do-extract-SDK-on:
 post-extract:
 	${TAR} -C ${WRKSUBDIR} -xzf ${DISTDIR}/${DIST_SUBDIR}/${EXTSRC}
 	${CP} ${DISTDIR}/${DIST_SUBDIR}/${PYTHON_DISTFILE} ${WRKSUBDIR}/ext_sources/${PYTHON_DISTFILE}
-.for f in ${GCC_EXTRA_DISTFILES}
+.for f in ${EXTRA_DISTFILES}
 	${CP} ${DISTDIR}/${DIST_SUBDIR}/${f} ${WRKSUBDIR}/ext_sources/${f}
 .endfor
 	${CP} ${FILESDIR}/freebsd-aoo-intro.png \
@@ -335,34 +337,14 @@ post-patch:
 	${REINPLACE_CMD} -e '/^mkdir -p/,$$d' ${CREATE_TREE}
 	# Teach the embedded ICU's config.guess about MidnightBSD so that
 	# ICU's own configure step recognizes the platform during the build.
-	${CAT} ${FILESDIR}/icu-midnightbsd.patch >> ${WRKSRC}/icu/icu4c-4_0_1-src.patch
+	${CAT} ${FILESDIR}/icu-midnightbsd.patch >> ${WRKSRC}/icu/icu4c-4_2_1-src.patch
 	# Same fix for embedded Python 2.7.18.
 	${CAT} ${FILESDIR}/python-midnightbsd.patch >> ${WRKSRC}/python/python-freebsd.patch
 	# MidnightBSD config.guess fix for xmlsec1: copy patch into module directory
 	# so it is picked up by PATCH_FILES in libxmlsec/makefile.mk.
 	${CP} ${FILESDIR}/xmlsec-midnightbsd.patch ${WRKSRC}/libxmlsec/xmlsec1-midnightbsd.patch
-.if ${CHOSEN_COMPILER_TYPE} == gcc
-	# g++49 -Os sometimes leaves inline class methods undefined,
-	# affects fmgridif.cxx and ColumnControl.cxx
-	# See: <https://gcc.gnu.org/bugzilla/show_bug.cgi?id=65009>
-	if [ ${CXX} = g++49  ]; then \
-		${REINPLACE_CMD} -e "s/ := -Os/ := -Os -fno-devirtualize -fno-devirtualize-speculatively/" ${WRKSRC}/solenv/gbuild/platform/freebsd.mk; \
-		${REINPLACE_CMD} -e "s/=-Os /=-Os -fno-devirtualize -fno-devirtualize-speculatively /" ${WRKSRC}/solenv/inc/unxfbsdi.mk; \
-	fi
-.elif ${ARCH} == i386 && ${CHOSEN_COMPILER_TYPE} == clang
-	# autodoc and uno (bridgetest) core dump when built with with -Os
-	# on i386, affects file.cxx and bridgetest.cxx (at least).
-	# Using -O2 optimiztion works, and -Os is essentially -O2 with out
-	# loop unrolling.
-	# Changing optimization in just unxfbsdi.mk is sufficient to get
-	# a successful build, but change it in both places to avoid the
-	# possibility of obscure runtime problems, which is likely
-	# since this seems to be a generic bug in code generation for
-	# exception handling.
-	# See: <https://llvm.org/bugs/show_bug.cgi?id=24792>
-	${REINPLACE_CMD} -e "s/=-Os /=-O2 -fno-unroll-loops /" ${WRKSRC}/solenv/inc/unxfbsdi.mk
-	${REINPLACE_CMD} -e "s/ := -Os/ := -O2 -fno-unroll-loops/" ${WRKSRC}/solenv/gbuild/platform/freebsd.mk
-.endif
+	# Same fix for the bundled libtextcat 2.2.
+	${CAT} ${FILESDIR}/libtextcat-midnightbsd.patch >> ${WRKSRC}/libtextcat/libtextcat-2.2.patch
 
 # Verify that lucene was built with the CONTRIB option instead of
 # failing mysteriously during the build
