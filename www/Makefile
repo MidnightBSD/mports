@@ -1,4 +1,4 @@
-    COMMENT = Ports related to the World Wide Web
+COMMENT = Ports related to the World Wide Web
 
     SUBDIR += R-cran-RgoogleMaps
     SUBDIR += R-cran-Rook
@@ -516,6 +516,7 @@
     SUBDIR += rubygem-rackup10
     SUBDIR += rubygem-rails-gitlab
     SUBDIR += rubygem-rails4
+    SUBDIR += rubygem-rails81
     SUBDIR += rubygem-railties-gitlab
     SUBDIR += rubygem-railties4
     SUBDIR += rubygem-railties72
