@@ -1,5 +1,6 @@
 PORTNAME=	actionview
 PORTVERSION=	4.2.11.3
+PORTREVISION=	1
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	4
@@ -13,7 +14,8 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
-RUN_DEPENDS=	rubygem-activesupport4>=${PORTVERSION}:devel/rubygem-activesupport4 \
+RUN_DEPENDS=	rubygem-nokogiri>=1.19.5:textproc/rubygem-nokogiri \
+		rubygem-activesupport4>=${PORTVERSION}:devel/rubygem-activesupport4 \
 		rubygem-builder>=3.1<4:devel/rubygem-builder \
 		rubygem-erubis>=2.7.0<2.8:www/rubygem-erubis \
 		rubygem-rails-dom-testing1>=1.0.5<2:textproc/rubygem-rails-dom-testing1 \
