@@ -26,6 +26,10 @@ EOM
 }
 { type: upgrade
   message: <<EOM
+Solr 9.11 changes the JWT Authentication Plugin's blockUnknown default
+to true. Deployments using JWT authentication should review security.json
+and explicitly configure blockUnknown if anonymous access is required.
+
 If you update, make sure you update your %%LOCALBASE%%/etc/solr.in.sh
 The LOG4J_PROPS has changed.
 If you would like to change logging, copy:

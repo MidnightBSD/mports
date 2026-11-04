@@ -1,6 +1,6 @@
---- bin/solr.orig	2024-08-06 17:02:34 UTC
+--- bin/solr.orig	2026-09-10 01:03:45 UTC
 +++ bin/solr
-@@ -2027,13 +2027,20 @@ function start_solr() {
+@@ -1471,13 +1471,20 @@
      fi
  
      # no lsof on cygwin though
@@ -22,7 +22,7 @@
          if [ -z "${running:-}" ]; then
            slept=$((loops * 2))
            if [ $slept -lt $SOLR_START_WAIT ]; then
-@@ -2052,7 +2059,7 @@ function start_solr() {
+@@ -1496,7 +1503,7 @@
        done) &
        spinner $!
      else
