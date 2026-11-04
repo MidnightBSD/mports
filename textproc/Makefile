@@ -500,6 +500,7 @@
     SUBDIR += redland
     SUBDIR += ripgrep
     SUBDIR += rubygem-actiontext-gitlab
+    SUBDIR += rubygem-actiontext81
     SUBDIR += rubygem-asciidoctor
     SUBDIR += rubygem-asciidoctor-include-ext
     SUBDIR += rubygem-asciidoctor-kroki
