@@ -1,3 +1,0 @@
-SageMaker MLOps package provides high-level orchestration capabilities
-for Amazon SageMaker workflows, including pipeline definitions, step
-implementations, and model building utilities.

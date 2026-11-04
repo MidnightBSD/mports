@@ -1,4 +1,0 @@
-bin/agrep
-man/man1/agrep.1.gz
-%%DOCSDIR%%/agrep.algorithms
-@dirrm %%DOCSDIR%%

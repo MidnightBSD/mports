@@ -1,5 +1,5 @@
 PORTNAME=	rails-html-sanitizer
-PORTVERSION=	1.6.2
+PORTVERSION=	1.7.2
 CATEGORIES=	textproc rubygems
 MASTER_SITES=	RG
 
@@ -10,9 +10,9 @@ WWW=		https://github.com/rails/rails-html-sanitizer
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
-RUN_DEPENDS=	rubygem-loofah>=2.21<3:textproc/rubygem-loofah \
+RUN_DEPENDS=	rubygem-loofah>=2.25.3<3:textproc/rubygem-loofah \
 		rubygem-nokogiri>=1.15.7<2:textproc/rubygem-nokogiri
-BUILD_DEPENDS+=	rubygem-loofah>=2.21<3:textproc/rubygem-loofah \
+BUILD_DEPENDS+=	rubygem-loofah>=2.25.3<3:textproc/rubygem-loofah \
 		rubygem-nokogiri>=1.15.7<2:textproc/rubygem-nokogiri
 
 USES=		cpe gem

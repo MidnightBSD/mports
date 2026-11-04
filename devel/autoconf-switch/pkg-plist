@@ -1,7 +1,0 @@
-bin/autoconf
-bin/autoheader
-bin/autom4te
-bin/autoreconf
-bin/autoscan
-bin/autoupdate
-bin/ifnames

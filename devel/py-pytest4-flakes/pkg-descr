@@ -1,3 +1,0 @@
-pytest plugin to check source code with pyflakes.
-
-WWW: https://github.com/fschulze/pytest-flakes

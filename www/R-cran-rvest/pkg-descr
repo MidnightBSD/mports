@@ -1,2 +1,0 @@
-Wrappers around the XML and httr packages to make it easy to download,
-then manipulate, both html and xml.

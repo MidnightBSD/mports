@@ -1,2 +1,0 @@
-Feature::Compat::Try is written in preparation for when perl will gain true
-native syntax support for try/catch control flow.
