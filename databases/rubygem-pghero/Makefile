@@ -1,5 +1,6 @@
 PORTNAME=	pghero
 PORTVERSION=	3.7.0
+PORTREVISION=	1
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 
@@ -11,7 +12,7 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
-RUN_DEPENDS=	rubygem-activerecord71>=7.1:databases/rubygem-activerecord71
+RUN_DEPENDS=	rubygem-activerecord81>=8.1.4.1:databases/rubygem-activerecord81
 
 USES=		cpe gem
 
