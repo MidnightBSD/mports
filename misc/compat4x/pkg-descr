@@ -1,0 +1,10 @@
+This package allows you to install the compat4x libraries on your
+system, so you can use legacy FreeBSD binaries that depend on them.
+
+Ports usage example:
+
+--
+.include <bsd.port.pre.mk>
+
+LIB_DEPENDS+=	c.4:${PORTSDIR}/misc/compat4x
+--

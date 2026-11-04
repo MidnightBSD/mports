@@ -1,0 +1,10 @@
+--- os/os-freebsd.h.orig	2024-12-17 04:20:00.298593000 -0500
++++ os/os-freebsd.h	2024-12-17 04:20:59.175821000 -0500
+@@ -19,7 +19,6 @@
+ #define FIO_USE_GENERIC_INIT_RANDOM_STATE
+ #define FIO_HAVE_CHARDEV_SIZE
+ #define FIO_HAVE_FS_STAT
+-#define FIO_HAVE_TRIM
+ #define FIO_HAVE_GETTID
+ #define FIO_HAVE_CPU_AFFINITY
+ #define FIO_HAVE_SHM_ATTACH_REMOVED

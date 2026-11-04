@@ -1,0 +1,17 @@
+--- Makefile.orig	2026-01-10 16:00:53 UTC
++++ Makefile
+@@ -298,6 +298,14 @@ endif
+ endif
+ endif
+ 
++ifeq (midnightbsd,$(D2U_OS))
++ifdef ENABLE_NLS
++        CFLAGS_OS     = -I/usr/local/include
++        LDFLAGS_EXTRA = -L/usr/local/lib
++        LIBS_EXTRA    = -lintl
++endif
++endif
++
+ ifeq (darwin,$(D2U_OS))
+ ifdef ENABLE_NLS
+         CFLAGS_OS     = -I/usr/local/include

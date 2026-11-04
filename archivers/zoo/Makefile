@@ -1,0 +1,28 @@
+PORTNAME=	zoo
+PORTVERSION=	2.10.1
+PORTREVISION=	5
+CATEGORIES=	archivers
+MASTER_SITES=	ftp://ftp.kiarchive.ru/pub/unix/arcers/ \
+		FREEBSD_LOCAL/ehaupt
+DISTNAME=	zoo-2.10pl1
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Manipulate archives of files in compressed form
+
+LICENSE=	other
+
+USES=		cpe
+
+CPE_VENDOR=	zoo_project
+
+NO_WRKSUBDIR=	yes
+ALL_TARGET=	bsdansi
+MAKEFILE=	makefile
+
+do-install:
+.for f in fiz zoo
+	${INSTALL_PROGRAM} ${WRKSRC}/${f} ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/${f}.1 ${PREFIX}/share/man/man1
+.endfor
+
+.include <bsd.port.mk>

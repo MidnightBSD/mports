@@ -1,0 +1,13 @@
+--- swift/tools/SourceKit/CMakeLists.txt.orig	2024-06-06 04:26:30 UTC
++++ swift/tools/SourceKit/CMakeLists.txt
+@@ -96,7 +96,9 @@
+   ${SOURCEKIT_BINARY_DIR}/tools/SourceKit/include
+ )
+ 
+-if(NOT "${CMAKE_SYSTEM_NAME}" STREQUAL "Darwin")
++if("${CMAKE_SYSTEM_NAME}" STREQUAL "MidnightBSD")
++  set(SOURCEKIT_DEFAULT_TARGET_SDK "FREEBSD")
++elseif(NOT "${CMAKE_SYSTEM_NAME}" STREQUAL "Darwin")
+   string(TOUPPER "${CMAKE_SYSTEM_NAME}" SOURCEKIT_DEFAULT_TARGET_SDK)
+ endif()
+ 

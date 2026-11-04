@@ -1,0 +1,34 @@
+PORTNAME=	baobab
+PORTVERSION=	50.0
+PORTREVISION=	0
+CATEGORIES=	deskutils gnome
+MASTER_SITES=	GNOME
+DIST_SUBDIR=	gnome
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	GNOME graphical directory tree analyzer
+WWW=		https://apps.gnome.org/Baobab/
+
+LICENSE=	gpl2+
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+PORTSCOUT=	limit:^50\.
+
+BUILD_DEPENDS=	itstool:textproc/itstool
+LIB_DEPENDS=	libgraphene-1.0.so:graphics/graphene
+
+USES=		desktop-file-utils gettext gnome meson pkgconfig \
+		python:build tar:xz vala:build
+USE_GNOME=	cairo glib20 gtk40 libadwaita
+USE_GNOME+=	gtk-update-icon-cache
+INSTALLS_ICONS=	yes
+
+BINARY_ALIAS=	python3=${PYTHON_CMD}
+
+GLIB_SCHEMAS=	org.gnome.baobab.gschema.xml
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|MimeType=inode/directory;|MimeType=|g' \
+		${WRKSRC}/data/org.gnome.baobab.desktop.in
+
+.include <bsd.port.mk>

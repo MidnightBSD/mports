@@ -1,0 +1,37 @@
+--- Makefile.orig	2004-05-29 10:27:21.000000000 -0400
++++ Makefile	2020-12-22 12:18:17.439968000 -0500
+@@ -4,7 +4,8 @@
+ RMCMD	= rm -f
+ INSTALL = install
+ 
+-prefix	= /usr/local
++prefix  = ${PREFIX}
++etcdir	= $(prefix)/etc
+ sbindir	= $(prefix)/sbin
+ 
+ SUBDIRS	= ipaddr strpdate
+@@ -21,20 +22,20 @@
+ $(RC):
+ 	if [ "$(SYSTEM)" = "Darwin" ]; then \
+ 		sed "s/@logbase@/system.log/" $(IN) > $(RC) ; \
+-	elif [ "$(SYSTEM)" = "FreeBSD" ]; then \
++	elif [ "$(SYSTEM)" = "MidnightBSD" ]; then \
+ 		sed "s/@logbase@/security/" $(IN) > $(RC) ; \
+ 	fi
+ 
+ install: $(RC)
+ 	@for subdir in $(SUBDIRS); do (cd $$subdir && make install) ; done
+ 	@[ -d $(sbindir) ] || mkdir -vp $(sbindir)
+-	$(INSTALL) -c -m 700 -o root $(PROGRAM) $(sbindir)
+-	$(INSTALL) -c -m 600 -o root $(RC) $(HOME)/.$(RC).sample
++	$(INSTALL) -c -m 700 $(PROGRAM) $(sbindir)
++	$(INSTALL) -c -m 600 $(RC) $(etcdir)/$(RC).sample
+ 
+ uninstall:
+ 	@for subdir in $(SUBDIRS); do (cd $$subdir && make uninstall) ; done
+ 	-$(RMCMD) $(sbindir)/$(PROGRAM)
+-	-$(RMCMD) $(HOME)/.$(RC).sample
++	-$(RMCMD) $(etcdir)/$(RC).sample
+ 
+ clean:
+ 	-$(RMCMD) *~ *.bak

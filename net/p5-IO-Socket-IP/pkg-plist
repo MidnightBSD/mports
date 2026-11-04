@@ -1,0 +1,12 @@
+%%SITE_PERL%%/IO/Socket/IP.pm
+%%PERL5_MAN3%%/IO::Socket::IP.3.gz
+@dirrmtry %%SITE_PERL%%/IO/Socket
+@dirrmtry %%SITE_PERL%%/IO
+@dirrmtry %%SITE_ARCH%%/auto/IO/Socket/IP
+@dirrmtry %%SITE_ARCH%%/auto/IO/Socket
+@dirrmtry %%SITE_ARCH%%/auto/IO
+@dirrmtry %%SITE_ARCH%%/auto
+@dirrmtry %%SITE_ARCH%%
+@dirrmtry %%SITE_PERL%%
+@dirrmtry lib/perl5/site_perl
+@dirrmtry lib/perl5

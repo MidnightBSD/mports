@@ -1,0 +1,24 @@
+[
+{
+  type: install
+  message: <<EOM
+Run "agy" to start the Antigravity CLI.  On first run it will prompt you to
+sign in with a Google account.
+
+The auto-updater is disabled by this port; update through mports instead.
+
+To suppress invalid syscall messages in the kernel log while running agy(1),
+add the following to /etc/sysctl.conf:
+
+    compat.linux.debug=0
+
+Or apply it immediately without rebooting:
+
+    sysctl compat.linux.debug=0
+
+If you are installing linux emulation for this port,
+    sysrc linux_enable=YES
+    service linux start
+EOM
+}
+]

@@ -1,0 +1,502 @@
+/*-
+Copyright (C) 2008, 2010, 2011, 2013, 2014, 2022 Lucas Holt All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions
+are met:
+1. Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY AUTHOR AND CONTRIBUTORS ``AS IS'' AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED.  IN NO EVENT SHALL AUTHOR OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+SUCH DAMAGE.
+*/
+
+#include <iostream>
+#include <pqxx/pqxx>
+#include <cstring>
+#include <string>
+
+using namespace std;
+using namespace pqxx;
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <err.h>
+
+#include <sys/types.h>
+#include <sha256.h>
+
+#include <ucl.h>
+
+#include "sqlite3.h"
+
+const char *CONFIG_FILE = "/usr/magus/config.yaml";
+
+struct MagusConfig {
+    string db_host;
+    string db_name;
+    string db_user;
+    string db_pass;
+};
+
+MagusConfig load_config(const char *);
+string config_string(const ucl_object_t *, const char *, const char *);
+
+/* SQLITE3 */
+sqlite3* open_indexdb(int);
+void close_indexdb(sqlite3 *);
+int exec_indexdb(sqlite3 *, const char *, ...);
+void create_indexdb(sqlite3 *);
+void load_depends(sqlite3_stmt *, connection &, int, const char *, const char *);
+
+int
+main(int argc, char *argv[])
+{
+    char query_def[2048];
+    int runid;
+    sqlite3 *db = NULL;
+    sqlite3_stmt *stmt;
+    sqlite3_stmt *depends_stmt = NULL;
+    char *fileHash;
+    char *filePath;
+
+    if (argc != 3)
+    {
+        fprintf( stderr, "Usage: %s <run id> <files>\n", argv[0] );
+        exit(1);
+    }
+
+    runid = atoi(argv[1]);
+    if (runid < 1)
+    {
+        fprintf( stderr, "Invalid run id %d\n", runid);
+        exit(1);
+    }
+
+    MagusConfig config = load_config(CONFIG_FILE);
+
+    try {
+
+    string connect_string = "dbname=" + config.db_name +
+        " user=" + config.db_user +
+        " host=" + config.db_host +
+        " port=5432";
+
+    if (!config.db_pass.empty())
+        connect_string += " password=" + config.db_pass;
+
+    connection C(connect_string);
+    connection C2(connect_string);
+
+    if (C.is_open()) {
+		cout << "We are connected to " << C.dbname() << endl;
+    } else {
+		cout << "We are not connected! Check username and password." << endl;
+		return -1;
+    }
+
+    if (!C2.is_open()) {
+		cout << "Secondary connection failed! Check username and password." << endl;
+		return -1;
+    }
+
+    snprintf(query_def, sizeof(query_def),
+      "select pkgname, name, license, description, CONCAT(CONCAT_WS( '-', pkgname, version),'.mport'), version, restricted from ports where run=%d AND status!='internal' AND status!='untested' AND status!='fail' ORDER BY pkgname;", runid);
+
+    nontransaction N(C);
+
+    result R(N.exec(string(query_def)));
+
+    if (!R.empty()) 
+    {
+   
+	   cout << "Init index db file" << endl; 
+        db = open_indexdb(runid);
+        create_indexdb(db);
+        exec_indexdb(db, "BEGIN TRANSACTION");
+
+        if (sqlite3_prepare_v2(db,
+            "INSERT INTO depends (pkg, version, d_pkg, d_version) VALUES(?,?,?,?)",
+            -1, &depends_stmt, 0) != SQLITE_OK)
+        {
+            errx(1, "Could not prepare statement");
+        }
+
+	for (result::const_iterator row = R.begin(); row != R.end(); ++row)
+        {
+	    filePath = NULL;
+	    fileHash = NULL;
+	    try {
+
+		string ln = row[0].as(string()) + ": " + row[1].as(string()) + " " +  row[2].as(string()) + " " + row[3].as(string()) + " " + row[5].as(string()) + " " + row[4].as(string());
+		if (asprintf(&filePath, "%s/%s", argv[2], row[4].as(string()).c_str()) == -1)
+			errx(1, "Could not allocate file path");
+		fileHash = SHA256_File(filePath, NULL);
+		if (fileHash == NULL)
+		{
+			fprintf(stderr, "Could not locate file %s\n", filePath);
+			free(filePath);
+			filePath = NULL;
+			continue;
+		}
+
+		if (row[6].as(bool()))
+		{
+			fprintf(stderr, "File %s is restricted and will be removed.\n", filePath);
+			unlink(filePath);
+			free(fileHash);
+			free(filePath);
+			fileHash = NULL;
+			filePath = NULL;
+			continue;
+		}
+
+           {
+               if (sqlite3_prepare_v2(db,
+                   "INSERT INTO packages (pkg, version, license, comment, bundlefile, hash, type) VALUES(?,?,?,?,?,?,?)",
+                   -1, &stmt, 0) != SQLITE_OK)
+               {
+                   errx(1, "Could not prepare statement");
+               }
+               sqlite3_bind_text(stmt, 1, row[0].as(string()).c_str(), row[0].as(string()).length(), SQLITE_TRANSIENT);
+               sqlite3_bind_text(stmt, 2, row[5].as(string()).c_str(), row[5].as(string()).length(), SQLITE_TRANSIENT);
+               sqlite3_bind_text(stmt, 3, row[2].as(string()).c_str(), row[2].as(string()).length(), SQLITE_TRANSIENT);
+               sqlite3_bind_text(stmt, 4, row[3].as(string()).c_str(), row[3].as(string()).length(), SQLITE_TRANSIENT);
+               sqlite3_bind_text(stmt, 5, row[4].as(string()).c_str(), row[4].as(string()).length(), SQLITE_TRANSIENT);
+               sqlite3_bind_text(stmt, 6, fileHash, strlen(fileHash), SQLITE_TRANSIENT);
+               sqlite3_bind_int(stmt, 7, 0); // TODO: handle system packages?
+
+               if (sqlite3_step(stmt) != SQLITE_DONE)
+                    errx(1,"Could not execute query");
+               sqlite3_reset(stmt);
+               sqlite3_finalize(stmt);
+               free(filePath);
+               free(fileHash);
+               filePath = NULL;
+               fileHash = NULL;
+
+               if (sqlite3_prepare_v2(db, "INSERT INTO aliases (alias, pkg) VALUES(?,?)", -1, &stmt, 0) != SQLITE_OK)
+               {
+                   errx(1, "Could not prepare statement");
+               }
+
+               sqlite3_bind_text(stmt, 1, row[1].as(string()).c_str(), row[1].as(string()).length(), SQLITE_TRANSIENT);
+               sqlite3_bind_text(stmt, 2, row[0].as(string()).c_str(), row[0].as(string()).length(), SQLITE_TRANSIENT);
+
+               if (sqlite3_step(stmt) != SQLITE_DONE)
+                   errx(1,"Could not execute query");
+               sqlite3_reset(stmt);
+               sqlite3_finalize(stmt);
+
+               puts(ln.c_str());
+
+               load_depends(depends_stmt, C2, runid, row[0].as(string()).c_str(), row[5].as(string()).c_str());
+           }
+	    } catch (const std::exception &e) {
+		fprintf(stderr, "Skipping port %s: %s\n",
+		    row[0].as(string()).c_str(), e.what());
+		free(filePath);
+		free(fileHash);
+		continue;
+	    }
+        }
+        printf("\n");
+    } else {
+	    cerr << "Empty resultset" << endl;
+    }
+
+    printf("Load the mirrors list\n");
+    result R2(N.exec("SELECT country, url FROM mirrors order by country"));
+    if (!R2.empty())
+    {
+        for (result::const_iterator c = R2.begin(); c != R2.end(); ++c)
+        {
+           if (sqlite3_prepare_v2(db, "INSERT INTO mirrors (country, mirror) VALUES(?,?)", -1, &stmt, 0) != SQLITE_OK)
+           {
+               errx(1, "Could not prepare statement");
+           }
+           string country = c[0].as(string());
+           cout << country << endl;
+           string url = c[1].as(string());
+           cout << url << endl;
+           sqlite3_bind_text(stmt, 1, country.c_str(), country.length(), SQLITE_TRANSIENT);
+           sqlite3_bind_text(stmt, 2, url.c_str(), url.length(), SQLITE_TRANSIENT);
+
+           if (sqlite3_step(stmt) != SQLITE_DONE)
+               errx(1, "Could not execute query");
+           sqlite3_reset(stmt);
+           sqlite3_finalize(stmt);
+        }
+    }
+
+    printf("Load the MOVED list\n");
+    snprintf(query_def, sizeof(query_def), "SELECT port, moved_to, why, date FROM moved where run=%d order by id", runid);
+    result R3(N.exec(string(query_def)));
+    if (!R3.empty())
+    {
+        for (result::const_iterator c = R3.begin(); c != R3.end(); ++c)
+        {
+           if (sqlite3_prepare_v2(db, "INSERT INTO moved (port, moved_to, why, date) VALUES(?,?,?,?)", -1, &stmt, 0) != SQLITE_OK)
+           {
+               errx(1, "Could not prepare statement");
+           }
+           string port = c[0].as(string());
+           cout << port << endl;
+           string moved_to = c[1].as(string());
+           cout << moved_to << endl;
+           string why = c[2].as(string());
+           string date = c[3].as(string());
+           sqlite3_bind_text(stmt, 1, port.c_str(), port.length(), SQLITE_TRANSIENT);
+           sqlite3_bind_text(stmt, 2, moved_to.c_str(), moved_to.length(), SQLITE_TRANSIENT);
+           sqlite3_bind_text(stmt, 3, why.c_str(), why.length(), SQLITE_TRANSIENT);
+           sqlite3_bind_text(stmt, 4, date.c_str(), date.length(), SQLITE_TRANSIENT);
+
+           if (sqlite3_step(stmt) != SQLITE_DONE)
+               errx(1, "Could not execute query");
+           sqlite3_reset(stmt);
+           sqlite3_finalize(stmt);
+        }
+    }
+
+    printf("Load default versions\n");
+    snprintf(query_def, sizeof(query_def),
+      "SELECT name, version FROM default_versions WHERE run=%d ORDER BY name", runid);
+    result R5(N.exec(string(query_def)));
+    unsigned int default_count = 0;
+    for (result::const_iterator c = R5.begin(); c != R5.end(); ++c)
+    {
+        if (sqlite3_prepare_v2(db,
+            "INSERT INTO default_versions (name, version) VALUES(?,?)",
+            -1, &stmt, 0) != SQLITE_OK)
+        {
+            errx(1, "Could not prepare default version statement");
+        }
+
+        string name = c[0].as(string());
+        string version = c[1].as(string());
+        sqlite3_bind_text(stmt, 1, name.c_str(), name.length(), SQLITE_TRANSIENT);
+        sqlite3_bind_text(stmt, 2, version.c_str(), version.length(), SQLITE_TRANSIENT);
+
+        if (sqlite3_step(stmt) != SQLITE_DONE)
+            errx(1, "Could not insert default version");
+        sqlite3_finalize(stmt);
+        default_count++;
+    }
+    if (default_count != 4) {
+        fprintf(stderr,
+            "Warning: run %d has %u default versions; expected 4\n",
+            runid, default_count);
+    }
+
+	printf("Load ALIASES not included in current run\n");
+	snprintf(query_def, sizeof(query_def), "select distinct(pkgname, name, moved_to), pkgname, name, moved.moved_to from ports inner join runs on ports.run = runs.id left join moved on moved.port = ports.name where moved.run = %d and ports.run < %d and moved.port not in (SELECT name from ports where run = %d) and runs.arch = (select arch from runs where id = %d) group by pkgname, name, moved_to order by pkgname, name, moved_to;", runid, runid, runid, runid);
+	result R4(N.exec(string(query_def)));
+	if (!R4.empty())
+	{
+		for (result::const_iterator c = R4.begin(); c != R4.end(); ++c)
+		{
+			if (sqlite3_prepare_v2(db, "INSERT INTO aliases (alias, pkg) VALUES(?,?)", -1, &stmt, 0) != SQLITE_OK)
+			{
+				errx(1, "Could not prepare statement");
+			}
+
+			sqlite3_bind_text(stmt, 1, c[2].as(string()).c_str(), c[2].as(string()).length(), SQLITE_TRANSIENT);
+			sqlite3_bind_text(stmt, 2, c[1].as(string()).c_str(), c[1].as(string()).length(), SQLITE_TRANSIENT);
+
+			if (sqlite3_step(stmt) != SQLITE_DONE)
+				errx(1, "Could not execute query");
+			sqlite3_reset(stmt);
+			sqlite3_finalize(stmt);
+		}
+	}
+
+    if (db != NULL && depends_stmt != NULL)
+    {
+        sqlite3_finalize(depends_stmt);
+        exec_indexdb(db, "COMMIT");
+        close_indexdb(db);
+    }
+
+    printf("Mark run blessed\n");
+    N.exec0(
+        "UPDATE runs "
+        "SET blessed = true, status = 'complete' "
+        "WHERE id = " +
+        pqxx::to_string(runid));
+
+    } catch (const std::exception &e) {
+        fprintf(stderr, "magus-bless failed: %s\n", e.what());
+        return 1;
+    }
+
+    return 0;
+}
+
+MagusConfig
+load_config(const char *path)
+{
+    struct ucl_parser *parser;
+    ucl_object_t *root;
+    MagusConfig config;
+
+    parser = ucl_parser_new(0);
+    if (parser == NULL)
+        errx(1, "Could not create config parser");
+
+    if (!ucl_parser_add_file(parser, path))
+        errx(1, "Could not parse %s: %s", path, ucl_parser_get_error(parser));
+
+    root = ucl_parser_get_object(parser);
+    if (root == NULL)
+        errx(1, "Could not load %s", path);
+
+    config.db_host = config_string(root, "DBHost", "localhost");
+    config.db_name = config_string(root, "DBName", "magus");
+    config.db_user = config_string(root, "DBUser", "magus");
+    config.db_pass = config_string(root, "DBPass", "");
+
+    ucl_object_unref(root);
+    ucl_parser_free(parser);
+
+    return config;
+}
+
+string
+config_string(const ucl_object_t *root, const char *key, const char *default_value)
+{
+    const ucl_object_t *obj;
+    const char *value;
+
+    obj = ucl_object_lookup(root, key);
+    if (obj == NULL)
+        return string(default_value);
+
+    value = ucl_object_tostring(obj);
+    if (value == NULL)
+        errx(1, "Config key %s must be a string", key);
+
+    return string(value);
+}
+
+sqlite3*
+open_indexdb(int runid)
+{
+    sqlite3 *db = NULL;
+    char *filename = NULL;
+
+    asprintf(&filename, "index.db");
+    if (filename == NULL)
+    {
+         errx(1, "Could not malloc filename");
+    }
+    unlink(filename);
+    if (sqlite3_open(filename, &db) != SQLITE_OK) {
+        errx(1, "Could not open index db: %s", sqlite3_errmsg(db));
+    }
+    free(filename);
+    return db;
+}
+
+void
+close_indexdb(sqlite3 *db)
+{
+	sqlite3_exec(db, "VACUUM", 0, 0, 0);
+	sqlite3_close(db);
+}
+
+
+int
+exec_indexdb(sqlite3 *db, const char *fmt, ...)
+{
+  va_list args;
+  char *sql;
+  int sqlcode;
+
+  va_start(args, fmt);
+
+  sql = sqlite3_vmprintf(fmt, args);
+
+  va_end(args);
+
+  if (sql == NULL)
+    errx(1,"Couldn't allocate memory for sql statement");
+
+  sqlcode = sqlite3_exec(db, sql, 0, 0, 0);
+  /* if we get an error code, we want to run it again in some cases */
+    if (sqlcode == SQLITE_BUSY || sqlcode == SQLITE_LOCKED) {
+    if (sqlite3_exec(db, sql, 0, 0, 0) != SQLITE_OK) {
+      sqlite3_free(sql);
+      errx(1, "%s", sqlite3_errmsg(db));
+    }
+  } else if (sqlcode != SQLITE_OK) {
+    sqlite3_free(sql);
+    errx(1, "%s", sqlite3_errmsg(db));
+  }
+
+  sqlite3_free(sql);
+
+  return 0;
+}
+
+void
+create_indexdb(sqlite3 *db)
+{
+	exec_indexdb(db, "CREATE TABLE IF NOT EXISTS mirrors (country text NOT NULL, mirror text NOT NULL)");
+	exec_indexdb(db, "CREATE INDEX mirrors_country on mirrors(country)");
+	exec_indexdb(db, "CREATE TABLE IF NOT EXISTS packages (pkg text NOT NULL, version text NOT NULL, license text NOT NULL, comment text NOT NULL, bundlefile text NOT NULL, hash text NOT NULL, type int NOT NULL)");
+	exec_indexdb(db, "CREATE INDEX packages_pkg ON packages (pkg)"); /* should be unique */
+	exec_indexdb(db, "CREATE TABLE IF NOT EXISTS aliases (alias text NOT NULL, pkg text NOT NULL)");
+	exec_indexdb(db, "CREATE TABLE IF NOT EXISTS depends (pkg text NOT NULL, version text NOT NULL, d_pkg text NOT NULL, d_version text NOT NULL)");
+	exec_indexdb(db, "CREATE TABLE IF NOT EXISTS moved (port text NOT NULL, moved_to text, why text, date text)");
+	exec_indexdb(db, "CREATE TABLE IF NOT EXISTS default_versions (name text PRIMARY KEY, version text NOT NULL)");
+}
+
+void
+load_depends(sqlite3_stmt *stmt, connection & C, int runid, const char *pkg_name, const char *version)
+{
+	printf("---->\tProcessing dependencies for %s - %s\n", pkg_name, version);
+
+    if (C.is_open())
+    {
+	    nontransaction N(C);
+	    result R(N.exec(
+		"SELECT distinct p2.pkgname, p2.version from ports as p1 "
+		"left join depends d on p1.id = d.port "
+		"left join ports p2 on d.dependency = p2.id "
+		"where p2.run = $1 and p1.run = $2 "
+		"and ((p1.status = 'pass' or p1.status = 'warn') "
+		"and (p2.status = 'pass' or p2.status = 'warn')) "
+		"and p1.pkgname = $3 and p1.version = $4 "
+		"and d.type in ('run','lib','pkg')",
+		pqxx::params{runid, runid, pkg_name, version}));
+
+		if (!R.empty()) 
+		{
+			for (result::const_iterator row = R.begin(); row != R.end(); ++row) 
+			{
+					sqlite3_bind_text(stmt, 1, pkg_name, strlen(pkg_name), SQLITE_TRANSIENT);
+					sqlite3_bind_text(stmt, 2, version, strlen(version), SQLITE_TRANSIENT);
+					sqlite3_bind_text(stmt, 3, row[0].as(string()).c_str(), row[0].as(string()).length(), SQLITE_TRANSIENT);
+					sqlite3_bind_text(stmt, 4, row[1].as(string()).c_str(), row[1].as(string()).length(), SQLITE_TRANSIENT);
+
+					if (sqlite3_step(stmt) != SQLITE_DONE)
+						errx(1,"Could not execute query");
+					sqlite3_reset(stmt);
+					sqlite3_clear_bindings(stmt);
+			}
+		}
+	}
+}

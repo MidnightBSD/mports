@@ -1,0 +1,24 @@
+--- components/web_package/signed_web_bundles/rust/BUILD.gn.orig	2026-10-26 21:13:13 UTC
++++ components/web_package/signed_web_bundles/rust/BUILD.gn
+@@ -8,6 +8,7 @@
+   crate_name = "signed_web_bundles_rust"
+   crate_root = "lib.rs"
+   sources = [
++    "bridge.rs",
+     "constants.rs",
+     "integrity_block.rs",
+     "signature_verifier.rs",
+@@ -15,11 +16,8 @@
+     crate_root,
+   ]
+ 
+-  cpp_api_from_rust = {
+-    target_name = "signed_web_bundles_rust_bindings"
+-    cpp_namespace = "web_package::signed_web_bundles::rust"
+-    h_out = "${target_gen_dir}/signed_web_bundles_rust.h"
+-  }
++  allow_unsafe = true
++  cxx_bindings = [ "bridge.rs" ]
+ 
+   deps = [
+     "//components/cbor/rust:cbor",

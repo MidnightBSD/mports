@@ -1,0 +1,23 @@
+PORTNAME=	screensaver.stars
+PORTVERSION=	22.0.2.20260227
+DISTVERSIONSUFFIX=	-Piers
+CATEGORIES=	multimedia
+
+MAINTAINER=	rozhuk.im@gmail.com
+COMMENT=	Starfield screensaver for Kodi
+WWW=		https://github.com/xbmc/screensaver.stars
+
+LICENSE=	gpl2+
+
+USES=		cmake compiler:c++14-lang gl kodi
+USE_GITHUB=	yes
+GH_ACCOUNT=	xbmc
+GH_TAGNAME=	ae42ef16913225bbe78ad45a52732f451678436d
+USE_CXXSTD=	c++14
+USE_GL=		egl gl glu
+
+PLIST_SUB=	SOVERSION=${PORTVERSION}
+
+CMAKE_ARGS=	-DADDONS_TO_BUILD=${PORTNAME}
+
+.include <bsd.port.mk>

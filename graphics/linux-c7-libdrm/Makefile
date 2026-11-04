@@ -1,0 +1,23 @@
+PORTNAME=	libdrm
+PORTVERSION=	2.4.97
+DISTVERSIONSUFFIX=	-2.el7
+CATEGORIES=	graphics linux
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Interface to kernel Direct Rendering Module (Linux CentOS ${LINUX_DIST_VER})
+WWW=		https://dri.freedesktop.org/
+
+LICENSE=	mit
+
+SKIP_FAKE_ALL=  yes
+
+USES=		linux:c7
+USE_LDCONFIG=	yes
+USE_LINUX=	libpciaccess
+USE_LINUX_RPM=	yes
+
+DESCR=		${.CURDIR}/../${PORTNAME}/pkg-descr
+
+OPTIONS_DEFINE=	DOCS
+
+.include <bsd.port.mk>

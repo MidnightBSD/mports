@@ -1,0 +1,11 @@
+--- lib/Makefile.am.orig	2017-09-10 02:25:20 UTC
++++ lib/Makefile.am
+@@ -62,7 +62,7 @@ libbt_HEADERS = 	Application.hh					\
+ 			Util.hh						\
+ 			XDG.hh
+ 
+-libbt_la_LIBADD =	$(XFT_LIBS) $(XEXT_LIBS) $(X11_LIBS)
++libbt_la_LIBADD =	$(XFT_LIBS) $(XEXT_LIBS) $(X11_LIBS) $(LTLIBINTL)
+ 
+ pkgconfigdir = 		$(libdir)/pkgconfig
+ nodist_pkgconfig_DATA =	libbt.pc

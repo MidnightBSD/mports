@@ -1,0 +1,24 @@
+PORTNAME=	orafce
+DISTVERSIONPREFIX=	VERSION_
+DISTVERSION=	4_16_7
+CATEGORIES=	databases
+PKGNAMEPREFIX=	postgresql-
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Oracle's compatibility functions and packages for PostgreSQL
+WWW=		https://github.com/orafce/orafce
+
+LICENSE=	bsd0
+LICENSE_FILE=	${WRKSRC}/COPYRIGHT.orafce
+
+USES=		gmake pgsql
+
+LLD_UNSAFE=	yes
+WANT_PGSQL=	server
+
+USE_GITHUB=	yes
+
+post-install:
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/postgresql/orafce.so
+
+.include <bsd.port.mk>

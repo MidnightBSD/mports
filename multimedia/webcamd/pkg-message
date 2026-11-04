@@ -1,0 +1,20 @@
+[
+{ type: install
+  message: <<EOM
+1) add webcamd_enable="YES"
+
+to your /etc/rc.conf
+
+2) Please restart devd to start webcamd
+
+	# service devd restart
+
+3) Optionally add a user to the "webcamd" group
+
+	# pw groupmod webcamd -m <username>
+
+4) If webcamd still did not start, consult the installed webcamd rc.d
+script for more help and instructions on how to start webcamd.
+EOM
+}
+]
