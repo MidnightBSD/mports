@@ -1,0 +1,24 @@
+[
+{ type: install
+  message: <<EOM
+This security backport requires mini_magick 5.1 or later whenever Active
+Storage invokes ImageMagick. Older MiniMagick versions fail closed.
+Choose a compatible MiniMagick version in the application's Gemfile before
+using ImageMagick-backed analysis or transformations.
+
+FFmpeg analysis and previews now restrict input formats. Applications that
+need additional formats must review config.active_storage.ffmpeg_allowed_formats.
+EOM
+},
+{ type: upgrade
+  message: <<EOM
+This security backport requires mini_magick 5.1 or later whenever Active
+Storage invokes ImageMagick. Older MiniMagick versions fail closed.
+Choose a compatible MiniMagick version in the application's Gemfile before
+using ImageMagick-backed analysis or transformations.
+
+FFmpeg analysis and previews now restrict input formats. Applications that
+need additional formats must review config.active_storage.ffmpeg_allowed_formats.
+EOM
+}
+]
