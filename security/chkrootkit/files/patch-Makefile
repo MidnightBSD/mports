@@ -1,0 +1,9 @@
+--- Makefile.orig	2025-11-21 18:34:11 UTC
++++ Makefile
+@@ -50,4 +50,2 @@ ifpromisc:   ifpromisc.c
+-	@if [ -f "/usr/include/linux/if.h" ]; then \
+-		${CC} ${CFLAGS} ${LDFLAGS}  -D_FILE_OFFSET_BITS=64 -o $@ ifpromisc.c ; \
+-		strip $@ ;\
+-	fi
++	${CC} ${CFLAGS} ${LDFLAGS}  -D_FILE_OFFSET_BITS=64 -o $@ ifpromisc.c
++	@strip $@

@@ -1,0 +1,36 @@
+PORTNAME=	pyusb
+PORTVERSION=	1.3.1
+PORTREVISION=	2
+DISTVERSIONPREFIX=	v
+CATEGORIES=	devel python
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Python wrapper around libusb
+WWW=		https://pyusb.github.io/pyusb/
+
+LICENSE=	bsd3
+
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools-scm>0:devel/py-setuptools-scm@${PY_FLAVOR}
+
+USES=		python
+USE_PYTHON=	autoplist concurrent distutils
+
+USE_GITHUB=	yes
+
+MAKE_ENV=	SETUPTOOLS_SCM_PRETEND_VERSION=${PORTVERSION}
+NO_ARCH=	yes
+
+PORTDOCS=	*.rst
+
+OPTIONS_DEFINE=	DOCS
+
+do-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/docs/,} ${FAKE_DESTDIR}${DOCSDIR}
+
+test: extract
+	@(cd ${WRKSRC}/tests && ${PYTHON_CMD} testall.py)
+
+.include <bsd.port.mk>

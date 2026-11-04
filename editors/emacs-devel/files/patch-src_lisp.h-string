@@ -1,0 +1,9 @@
+--- src/lisp.h.orig	2025-05-15 18:36:15 UTC
++++ src/lisp.h
+@@ -1581,7 +1581,7 @@ INLINE bool
+     struct Lisp_String *next;
+     GCALIGNED_UNION_MEMBER
+   } u;
+-};
++} GCALIGNED_STRUCT;
+ static_assert (GCALIGNED (struct Lisp_String));

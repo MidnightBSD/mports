@@ -1,0 +1,32 @@
+--- SConscript.orig	2024-06-09 00:00:00 UTC
++++ SConscript
+@@ -19,10 +19,7 @@
+ import subprocess
+ import sys
+ import time
+-try:
+-    from setuptools import sysconfig
+-except:
+-    from distutils import sysconfig
++import sysconfig
+ import SCons
+ 
+ # scons does not like targets that come and go (if cleaning, if python,
+@@ -265,8 +265,8 @@
+ # Hosting information ends here
+ 
+ 
+-PYTHON_SYSCONFIG_IMPORT = 'from distutils import sysconfig'
++PYTHON_SYSCONFIG_IMPORT = 'import sysconfig'
+ 
+ # Utility productions
+ 
+ 
+@@ -1539,6 +1536,6 @@
+ # Set up configuration for target Python
+ 
+-PYTHON_LIBDIR_CALL = 'sysconfig.get_python_lib()'
++PYTHON_LIBDIR_CALL = "sysconfig.get_path('purelib')"
+ 
+ PYTHON_CONFIG_NAMES = ['SO']  # Now a fairly degenerate list
+ PYTHON_CONFIG_QUOTED = ["'%s'" % s for s in PYTHON_CONFIG_NAMES]

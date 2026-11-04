@@ -1,0 +1,43 @@
+PORTNAME=	paje
+PORTVERSION=	1.97
+PORTREVISION=	7
+CATEGORIES=	science gnustep
+MASTER_SITES=	SF/${PORTNAME}/Releases
+DISTNAME=	Paje_${PORTVERSION}
+EXTRACT_SUFX=	.tar.gz.gz
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Generic visualization tool for GNUstep (Gantt chart and more)
+WWW=		http://www-id.imag.fr/Logiciels/paje/
+
+LICENSE=	lgpl2.1
+
+USES=		gnustep
+USE_GNUSTEP=	gui base back build
+
+WRKSRC=		${WRKDIR}/${DISTNAME}
+
+CPPFLAGS+=	-Wno-error=incompatible-function-pointer-types
+
+post-patch:
+	${REINPLACE_CMD} -e 's|^GNUSTEP_INSTALLATION_DOMAIN|#GNUSTEP_INSTALLATION_DOMAIN|' \
+		${WRKSRC}/GNUmakefile
+
+post-install:
+	${STRIP_CMD} ${PREFIX}/GNUstep/System/Applications/Paje.app/Paje \
+		${PREFIX}/GNUstep/System/Library/Bundles/Paje/AggregatingFilter.bundle/AggregatingFilter \
+		${PREFIX}/GNUstep/System/Library/Bundles/Paje/ContainerFilter.bundle/ContainerFilter \
+		${PREFIX}/GNUstep/System/Library/Bundles/Paje/EntityTypeFilter.bundle/EntityTypeFilter \
+		${PREFIX}/GNUstep/System/Library/Bundles/Paje/FieldFilter.bundle/FieldFilter \
+		${PREFIX}/GNUstep/System/Library/Bundles/Paje/FileReader.bundle/FileReader \
+		${PREFIX}/GNUstep/System/Library/Bundles/Paje/General.bundle/General \
+		${PREFIX}/GNUstep/System/Library/Bundles/Paje/ImbricationFilter.bundle/ImbricationFilter \
+		${PREFIX}/GNUstep/System/Library/Bundles/Paje/OrderFilter.bundle/OrderFilter \
+		${PREFIX}/GNUstep/System/Library/Bundles/Paje/PajeEventDecoder.bundle/PajeEventDecoder \
+		${PREFIX}/GNUstep/System/Library/Bundles/Paje/PajeSimulator.bundle/PajeSimulator \
+		${PREFIX}/GNUstep/System/Library/Bundles/Paje/ReductionFilter.bundle/ReductionFilter \
+		${PREFIX}/GNUstep/System/Library/Bundles/Paje/SpaceTimeViewer.bundle/SpaceTimeViewer \
+		${PREFIX}/GNUstep/System/Library/Bundles/Paje/StatViewer.bundle/StatViewer \
+		${PREFIX}/GNUstep/System/Library/Bundles/Paje/StorageController.bundle/StorageController
+
+.include <bsd.port.mk>

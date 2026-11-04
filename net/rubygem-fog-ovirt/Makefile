@@ -1,0 +1,24 @@
+PORTNAME=	fog-ovirt
+PORTVERSION=	2.0.3
+CATEGORIES=	net rubygems
+MASTER_SITES=	RG
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Module for the 'fog' gem to support oVirt platform
+WWW=		https://github.com/fog/fog-ovirt
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE.md
+
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	rubygem-activesupport60>=0:devel/rubygem-activesupport60 \
+		rubygem-fog-core>=0:devel/rubygem-fog-core \
+		rubygem-fog-json>=0:devel/rubygem-fog-json \
+		rubygem-fog-xml>=0:textproc/rubygem-fog-xml \
+		rubygem-ovirt-engine-sdk>=4.3.1:net/rubygem-ovirt-engine-sdk
+
+USES=		gem
+
+NO_ARCH=	yes
+
+.include <bsd.port.mk>

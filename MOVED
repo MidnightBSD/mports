@@ -1,0 +1,699 @@
+#
+# MOVED - a list of (recently) moved or removed ports
+#
+# Each entry consists of a single line containing the following four
+# fields in the order named, separated with the pipe (`|') character:
+#
+#     Port:	A port that was moved (category/portname).
+#     Moved to:	Where the port was moved to, or which port users
+#		can and should migrate to (category/portname).
+#		Blank indicates that the port was deleted.
+#     Date:	When the moving or the removal was done (YYYY-MM-DD,
+#		in EST/EDT).
+#     Why:	The reason why the port was moved or removed.
+#
+# Keep this list sorted in the chronological order.  New entries must
+# be added at the tail.
+#
+# If previously removed port gets restored, make sure to delete the relevant
+# line.  If a port is copied to a new location and the old location is kept
+# (e.g. upgraded to a later version), don't record it here.
+#
+# Port|Moved to|Date|Why
+devel/subversion-perl|devel/p5-subversion|2009-04-08|Renamed
+devel/subversion-python|devel/py-subversion|2009-04-08|Renamed
+security/pecl-hash||2009-05-01|Hash is built into PHP now.
+security/ca-roots||2009-12-28|Makes certain false security guarantees
+security/cyrus-sasl||2009-12-28|Old, insecure, and dead.
+shells/mudsh||2009-12-28|Project disappeared from the Internet.
+shells/perlsh|shells/psh|2009-12-28|Correct project name
+www/joomla||2009-12-28|Joomla 1.0.x is too old and insecure
+www/apache20||2010-01-23|Getting old.
+net/ztelnet||2010-01-23|ztelnet is broken on GCC 4.
+devel/gnome-build||2010-01-23|No longer needed for gnome.
+multimedia/libdts|multimedia/libdca|2010-02-28|safer name
+databases/p5-DBD-mysql60||2010-03-12|mysql 6 is gone, so is this
+math/libgmp4|math/gmp|2010-05-07|libgmp4 to gmp 5.0
+lang/gcc42-withgcjawt||2010-05-07|broken
+security/xmlsec||2010-05-08|broken on current for years
+deskutils/egroupware||2010-06-04|deleted
+lang/gcc43||2010-07-29|GCC 4.4 replaces it.
+lang/gcc-objc||2010-07-30|no longer necessary
+x11-drivers/xf86-input-elo2300||2010-08-01|not maintained upstream
+www/thttpd-st||2010-08-13|broken on current
+databases/pecl-PDO|php5-pdo|2010-11-10|part of php now
+net-p2p/limewire||2010-11-11|dead software, use frostwire
+devel/cvstrac||2010-11-13|hasn't worked for a long time
+shells/tcsh-bofh||2010-11-13|files not available anymore
+multimedia/x264-gtk||2010-12-14|no longer valid
+lang/python30||2010-12-14|removed.  not backwards compatible and broken
+x11-drivers/xf86-video-cyrix||2010-12-17|Not compatible with current x.org
+net/zniper||2011-05-28|Dead upstream.
+dns/bind96||2011-05-28|Security vulnerability, EOL
+mail/linux-thunderbird3|mail/linux-thunderbird5|2011-08-01|Security update
+net/samba3|net/samba34|2011-08-07|EOL
+net/samba33|net/samba34|2011-08-07|EOL
+net-mgmt/tas||2011-09-5|Not available upstream
+dns/bind97|dns/bind98|2011-09-16|Time to move forward
+dns/bind918|dns/bind920|2026-09-08|BIND 9.18 is end-of-life
+www/linux-firefox-devel|www/linux-firefox36|2011-09-16|Move to numbered directory
+www/linux-firefox5|www/linux-firefox6|2011-09-16|it's 6.0 now
+print/ghostscript-gpl|print/ghostscript8|2012-08-08|use version number
+print/ghostscript-gpl-nox11|print/ghostscript8-nox11|2012-08-08|use version
+print/ghostscript-afpl||2012-08-08|old version, not distributable anyway
+audio/libmusicbrainz||2013-07-13|old version, not maintined
+www/eaccelerator||2013-07-16|not working with newer PHP releases
+sysutils/ciso|sysutils/ciso-manager|2014-09-13|go to maintained version
+lang/ruby19|lang/ruby22|2015-06-21|updating to latest ruby release
+sysutils/mport-manager|ports-mgmt/mport-manager|2016-03-01|moving to ports directory
+net/php55-ldap||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+net/php55-soap||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+net/php55-sockets||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+net/php55-xmlrpc||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+security/php55-filter||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+security/php55-hash||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+security/php55-mcrypt||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+security/php55-openssl||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+sysutils/php55-fileinfo||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+sysutils/php55-posix||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+textproc/php55-ctype||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+textproc/php55-dom||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+textproc/php55-enchant||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+textproc/php55-pspell||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+textproc/php55-simplexml||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+textproc/php55-wddx||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+textproc/php55-xml||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+textproc/php55-xmlreader||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+textproc/php55-xmlwriter||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+textproc/php55-xsl||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+www/mod_php55||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+www/php55-opcache||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+www/php55-session||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+www/php55-tidy||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+databases/php55-dba||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+databases/php55-interbase||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+databases/php55-mssql||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+databases/php55-mysql||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+databases/php55-mysqli||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+databases/php55-odbc||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+databases/php55-pdo||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+databases/php55-pdo_dblib||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+databases/php55-pdo_firebird||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+databases/php55-pdo_mysql||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+databases/php55-pdo_odbc||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+databases/php55-pdo_pgsql||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+databases/php55-pdo_sqlite||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+databases/php55-pgsql||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+databases/php55-redis||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+databases/php55-sqlite3||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+databases/php55-sybase_ct||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+devel/php55-gettext||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+devel/php55-json||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+devel/php55-pcntl||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+devel/php55-readline||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+devel/php55-shmop||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+devel/php55-sysvmsg||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+devel/php55-sysvsem||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+archivers/php55-bz2||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+archivers/php55-phar||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+archivers/php55-zip||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+archivers/php55-zlib||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+converters/php55-iconv||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+converters/php55-mbstring||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+converters/php55-recode||2016-10-21|Has expired: EOL upstream since 21 Jul 2016
+devel/git-subversion|devel/git|2020-07-24|Subversion enabled by default in devel/git
+archivers/php73-bz2|archivers/php74-bz2|2022-01-26|Has expired: Security support ended on 2021-12-06
+archivers/php73-zlib|archivers/php74-zlib|2022-01-26|Has expired: Security support ended on 2021-12-06
+archivers/php73-zip|archivers/php74-zip|2022-01-26|Has expired: Security support ended on 2021-12-06
+archivers/php73-phar|archivers/php74-phar|2022-01-26|Has expired: Security support ended on 2021-12-06
+math/php73-gmp|math/php74-gmp|2022-01-26|Has expired: Security support ended on 2021-12-06
+math/php73-bcmath|math/php74-bcmath|2022-01-26|Has expired: Security support ended on 2021-12-06
+net-mgmt/php73-snmp|net-mgmt/php74-snmp|2022-01-26|Has expired: Security support ended on 2021-12-06
+converters/php73-iconv|converters/php74-iconv|2022-01-26|Has expired: Security support ended on 2021-12-06
+converters/php73-mbstring|converters/php74-mbstring|2022-01-26|Has expired: Security support ended on 2021-12-06
+converters/php73-recode||2022-01-26|Has expired: Security support ended on 2021-12-06
+lang/php73|lang/php74|2022-01-26|Has expired: Security support ended on 2021-12-06
+lang/php73-extensions|lang/php74-extensions|2022-01-26|Has expired: Security support ended on 2021-12-06
+sysutils/php73-posix|sysutils/php74-posix|2022-01-26|Has expired: Security support ended on 2021-12-06
+sysutils/php73-fileinfo|sysutils/php74-fileinfo|2022-01-26|Has expired: Security support ended on 2021-12-06
+textproc/php73-xmlreader|textproc/php74-xmlreader|2022-01-26|Has expired: Security support ended on 2021-12-06
+textproc/php73-ctype|textproc/php74-ctype|2022-01-26|Has expired: Security support ended on 2021-12-06
+textproc/php73-simplexml|textproc/php74-simplexml|2022-01-26|Has expired: Security support ended on 2021-12-06
+textproc/php73-xsl|textproc/php74-xsl|2022-01-26|Has expired: Security support ended on 2021-12-06
+textproc/php73-dom|textproc/php74-dom|2022-01-26|Has expired: Security support ended on 2021-12-06
+textproc/php73-xml|textproc/php74-xml|2022-01-26|Has expired: Security support ended on 2021-12-06
+textproc/php73-enchant|textproc/php74-enchant|2022-01-26|Has expired: Security support ended on 2021-12-06
+textproc/php73-pspell|textproc/php74-pspell|2022-01-26|Has expired: Security support ended on 2021-12-06
+textproc/php73-xmlwriter|textproc/php74-xmlwriter|2022-01-26|Has expired: Security support ended on 2021-12-06
+textproc/php73-wddx||2022-01-26|Has expired: Security support ended on 2021-12-06
+ftp/php73-curl|ftp/php74-curl|2022-01-26|Has expired: Security support ended on 2021-12-06
+ftp/php73-ftp|ftp/php74-ftp|2022-01-26|Has expired: Security support ended on 2021-12-06
+devel/php73-shmop|devel/php74-shmop|2022-01-26|Has expired: Security support ended on 2021-12-06
+devel/php73-readline|devel/php74-readline|2022-01-26|Has expired: Security support ended on 2021-12-06
+devel/php73-sysvsem|devel/php74-sysvsem|2022-01-26|Has expired: Security support ended on 2021-12-06
+devel/php73-sysvmsg|devel/php74-sysvmsg|2022-01-26|Has expired: Security support ended on 2021-12-06
+devel/php73-pcntl|devel/php74-pcntl|2022-01-26|Has expired: Security support ended on 2021-12-06
+devel/php73-tokenizer|devel/php74-tokenizer|2022-01-26|Has expired: Security support ended on 2021-12-06
+devel/php73-json|devel/php74-json|2022-01-26|Has expired: Security support ended on 2021-12-06
+devel/php73-sysvshm|devel/php74-sysvshm|2022-01-26|Has expired: Security support ended on 2021-12-06
+devel/php73-gettext|devel/php74-gettext|2022-01-26|Has expired: Security support ended on 2021-12-06
+devel/php73-intl|devel/php74-intl|2022-01-26|Has expired: Security support ended on 2021-12-06
+www/php73-opcache|www/php74-opcache|2022-01-26|Has expired: Security support ended on 2021-12-06
+www/mod_php73|www/mod_php74|2022-01-26|Has expired: Security support ended on 2021-12-06
+www/php73-tidy|www/php74-tidy|2022-01-26|Has expired: Security support ended on 2021-12-06
+www/php73-session|www/php74-session|2022-01-26|Has expired: Security support ended on 2021-12-06
+graphics/php73-gd|graphics/php74-gd|2022-01-26|Has expired: Security support ended on 2021-12-06
+graphics/php73-exif|graphics/php74-exif|2022-01-26|Has expired: Security support ended on 2021-12-06
+security/php73-sodium|security/php74-sodium|2022-01-26|Has expired: Security support ended on 2021-12-06
+security/php73-openssl|security/php74-openssl|2022-01-26|Has expired: Security support ended on 2021-12-06
+security/php73-filter|security/php74-filter|2022-01-26|Has expired: Security support ended on 2021-12-06
+security/php73-hash||2022-01-26|Has expired: Security support ended on 2021-12-06
+databases/php73-pdo_dblib|databases/php74-pdo_dblib|2022-01-26|Has expired: Security support ended on 2021-12-06
+databases/php73-pdo|databases/php74-pdo|2022-01-26|Has expired: Security support ended on 2021-12-06
+databases/php73-dba|databases/php74-dba|2022-01-26|Has expired: Security support ended on 2021-12-06
+databases/php73-pgsql|databases/php74-pgsql|2022-01-26|Has expired: Security support ended on 2021-12-06
+databases/php73-odbc|databases/php74-odbc|2022-01-26|Has expired: Security support ended on 2021-12-06
+databases/php73-interbase||2022-01-26|Has expired: Security support ended on 2021-12-06
+databases/php73-pdo_sqlite|databases/php74-pdo_sqlite|2022-01-26|Has expired: Security support ended on 2021-12-06
+databases/php73-sqlite3|databases/php74-sqlite3|2022-01-26|Has expired: Security support ended on 2021-12-06
+databases/php73-pdo_pgsql|databases/php74-pdo_pgsql|2022-01-26|Has expired: Security support ended on 2021-12-06
+databases/php73-pdo_odbc|databases/php74-pdo_odbc|2022-01-26|Has expired: Security support ended on 2021-12-06
+databases/php73-mysqli|databases/php74-mysqli|2022-01-26|Has expired: Security support ended on 2021-12-06
+databases/php73-pdo_mysql|databases/php74-pdo_mysql|2022-01-26|Has expired: Security support ended on 2021-12-06
+databases/php73-pdo_firebird|databases/php74-pdo_firebird|2022-01-26|Has expired: Security support ended on 2021-12-06
+misc/php73-calendar|misc/php74-calendar|2022-01-26|Has expired: Security support ended on 2021-12-06
+mail/php73-imap|mail/php74-imap|2022-01-26|Has expired: Security support ended on 2021-12-06
+net/php73-sockets|net/php74-sockets|2022-01-26|Has expired: Security support ended on 2021-12-06
+misc/php74-calendar|misc/php80-calendar|2022-12-25|Has expired: Security support ended on 2022-11-22
+graphics/php74-gd|graphics/php80-gd|2022-12-25|Has expired: Security support ended on 2022-11-22
+graphics/php74-exif|graphics/php80-exif|2022-12-25|Has expired: Security support ended on 2022-11-22
+textproc/php74-xmlreader|textproc/php80-xmlreader|2022-12-25|Has expired: Security support ended on 2022-11-22
+textproc/php74-simplexml|textproc/php80-simplexml|2022-12-25|Has expired: Security support ended on 2022-11-22
+textproc/php74-enchant|textproc/php80-enchant|2022-12-25|Has expired: Security support ended on 2022-11-22
+textproc/php74-xml|textproc/php80-xml|2022-12-25|Has expired: Security support ended on 2022-11-22
+textproc/php74-xmlwriter|textproc/php80-xmlwriter|2022-12-25|Has expired: Security support ended on 2022-11-22
+textproc/php74-pspell|textproc/php80-pspell|2022-12-25|Has expired: Security support ended on 2022-11-22
+textproc/php74-ctype|textproc/php80-ctype|2022-12-25|Has expired: Security support ended on 2022-11-22
+textproc/php74-dom|textproc/php80-dom|2022-12-25|Has expired: Security support ended on 2022-11-22
+textproc/php74-xsl|textproc/php80-xsl|2022-12-25|Has expired: Security support ended on 2022-11-22
+mail/php74-imap|mail/php80-imap|2022-12-25|Has expired: Security support ended on 2022-11-22
+databases/php74-odbc|databases/php80-odbc|2022-12-25|Has expired: Security support ended on 2022-11-22
+databases/php74-pdo_dblib|databases/php80-pdo_dblib|2022-12-25|Has expired: Security support ended on 2022-11-22
+databases/php74-dba|databases/php80-dba|2022-12-25|Has expired: Security support ended on 2022-11-22
+databases/php74-pdo|databases/php80-pdo|2022-12-25|Has expired: Security support ended on 2022-11-22
+databases/php74-pdo_firebird|databases/php80-pdo_firebird|2022-12-25|Has expired: Security support ended on 2022-11-22
+databases/php74-pgsql|databases/php80-pgsql|2022-12-25|Has expired: Security support ended on 2022-11-22
+databases/php74-mysqli|databases/php80-mysqli|2022-12-25|Has expired: Security support ended on 2022-11-22
+databases/php74-pdo_pgsql|databases/php80-pdo_pgsql|2022-12-25|Has expired: Security support ended on 2022-11-22
+databases/php74-pdo_odbc|databases/php80-pdo_odbc|2022-12-25|Has expired: Security support ended on 2022-11-22
+databases/php74-pdo_mysql|databases/php80-pdo_mysql|2022-12-25|Has expired: Security support ended on 2022-11-22
+databases/php74-pdo_sqlite|databases/php80-pdo_sqlite|2022-12-25|Has expired: Security support ended on 2022-11-22
+databases/php74-sqlite3|databases/php80-sqlite3|2022-12-25|Has expired: Security support ended on 2022-11-22
+security/php74-sodium|security/php80-sodium|2022-12-25|Has expired: Security support ended on 2022-11-22
+security/php74-filter|security/php80-filter|2022-12-25|Has expired: Security support ended on 2022-11-22
+security/php74-openssl||2022-12-25|Has expired: Security support ended on 2022-11-22
+net-mgmt/php74-snmp|net-mgmt/php80-snmp|2022-12-25|Has expired: Security support ended on 2022-11-22
+net/php74-ldap|net/php80-ldap|2022-12-25|Has expired: Security support ended on 2022-11-22
+net/php74-sockets|net/php80-sockets|2022-12-25|Has expired: Security support ended on 2022-11-22
+net/php74-xmlrpc||2022-12-25|Has expired: Security support ended on 2022-11-22
+net/php74-soap|net/php80-soap|2022-12-25|Has expired: Security support ended on 2022-11-22
+converters/php74-mbstring|converters/php80-mbstring|2022-12-25|Has expired: Security support ended on 2022-11-22
+converters/php74-iconv|converters/php80-iconv|2022-12-25|Has expired: Security support ended on 2022-11-22
+lang/php74-extensions|lang/php80-extensions|2022-12-25|Has expired: Security support ended on 2022-11-22
+lang/php74|lang/php80|2022-12-25|Has expired: Security support ended on 2022-11-22
+archivers/php74-zip|archivers/php80-zip|2022-12-25|Has expired: Security support ended on 2022-11-22
+archivers/php74-zlib|archivers/php80-zlib|2022-12-25|Has expired: Security support ended on 2022-11-22
+archivers/php74-bz2|archivers/php80-bz2|2022-12-25|Has expired: Security support ended on 2022-11-22
+archivers/php74-phar|archivers/php80-phar|2022-12-25|Has expired: Security support ended on 2022-11-22
+ftp/php74-ftp|ftp/php80-ftp|2022-12-25|Has expired: Security support ended on 2022-11-22
+ftp/php74-curl|ftp/php80-curl|2022-12-25|Has expired: Security support ended on 2022-11-22
+sysutils/php74-posix|sysutils/php80-posix|2022-12-25|Has expired: Security support ended on 2022-11-22
+sysutils/php74-fileinfo|sysutils/php80-fileinfo|2022-12-25|Has expired: Security support ended on 2022-11-22
+math/php74-bcmath|math/php80-bcmath|2022-12-25|Has expired: Security support ended on 2022-11-22
+math/php74-gmp|math/php80-gmp|2022-12-25|Has expired: Security support ended on 2022-11-22
+www/php74-opcache|www/php80-opcache|2022-12-25|Has expired: Security support ended on 2022-11-22
+www/mod_php74|www/mod_php80|2022-12-25|Has expired: Security support ended on 2022-11-22
+www/php74-tidy|www/php80-tidy|2022-12-25|Has expired: Security support ended on 2022-11-22
+www/php74-session|www/php80-session|2022-12-25|Has expired: Security support ended on 2022-11-22
+devel/php74-shmop|devel/php80-shmop|2022-12-25|Has expired: Security support ended on 2022-11-22
+devel/php74-sysvsem|devel/php80-sysvsem|2022-12-25|Has expired: Security support ended on 2022-11-22
+devel/php74-json||2022-12-25|Has expired: Security support ended on 2022-11-22
+devel/php74-sysvmsg|devel/php80-sysvmsg|2022-12-25|Has expired: Security support ended on 2022-11-22
+devel/php74-intl|devel/php80-intl|2022-12-25|Has expired: Security support ended on 2022-11-22
+devel/php74-tokenizer|devel/php80-tokenizer|2022-12-25|Has expired: Security support ended on 2022-11-22
+devel/php74-ffi|devel/php80-ffi|2022-12-25|Has expired: Security support ended on 2022-11-22
+devel/php74-pcntl|devel/php80-pcntl|2022-12-25|Has expired: Security support ended on 2022-11-22
+devel/php74-sysvshm|devel/php80-sysvshm|2022-12-25|Has expired: Security support ended on 2022-11-22
+devel/php74-gettext|devel/php80-gettext|2022-12-25|Has expired: Security support ended on 2022-11-22
+devel/php74-readline|devel/php80-readline|2022-12-25|Has expired: Security support ended on 2022-11-22
+devel/hadoop||2023-04-02|Broken with modern openssl
+devel/p5-IO-stringy|devel/p5-IO-Stringy|2023-04-02|Renamed
+dns/knot2|dns/knot3|2023-04-05|knot2 EOL
+chat/xchat||2023-04-28|EOL app
+textproc/scrollkeeper||2023-05-4|No longer used and fails to build
+mod_perl2|ap24-mod_perl2||Apache version specific
+www/spdylay||2023-08-22|Has expired: SPDY is deprecated, use HTTP/2 instead
+x11-toolkits/libsexy||2023-08-29|Depends on EOLed gtk+20, not depended on in the ports tree
+multimedia/quvi09||2023-06-30|Has expired: Deprecated upstream, please consider using www/yt-dlp
+multimedia/quvi||2023-06-30|Has expired: Deprecated upstream, please consider using www/yt-dlp
+multimedia/libquvi09||2023-06-30|Has expired: Deprecated upstream, please consider using www/yt-dlp
+multimedia/libquvi||2023-06-30|Has expired: Deprecated upstream, please consider using www/yt-dlp
+multimedia/libquvi-scripts09||2023-06-30|Has expired: Deprecated upstream, please consider using www/yt-dlp
+multimedia/libquvi-scripts||2023-06-30|Has expired: Deprecated upstream, please consider using www/yt-dlp
+devel/libopensync022||2023-08-30|Abandonware, website disappeared
+devel/libdlna||2023-08-30|Has expired: Abandonware, development discontinued
+audio/libaacplus||2023-08-30|Has expired: Abandoned upstream, no new release since 2011
+lang/ruby27|lang/ruby30|2023-08-30|Please migrate to newer versions. Ruby 2.7 will reach its EoL on April 12, 2023
+www/py-WebTest|www/py-webtest|2023-09-07|Use lowercase PORTNAME and path
+devel/liboobs||2023-09-08|Gnome dependency not used anymore
+x11/gnome3|x11/gnome|2023-09-08|GNOME has moved past version 3. Prepare for update
+sysutils/hal||2023-09-08|Has been abandonned upstream long ago, replacement have now hit the ports tree almost everywhere
+sysutils/hal-info||2023-09-08|Has no use without hal which has been removed
+x11-servers/xephyr|x11-servers/xorg-server@xephyr|2022-08-02|Merged into flavorized version
+x11-servers/xorg-nestserver|x11-servers/xorg-server@xnest|2022-08-02|Merged into the flavorized version
+x11-servers/xorg-vfbserver|x11-servers/xorg-server@xvfb|2022-08-02|Merged into the flavorized version
+x11-servers/xorg-dmx||2022-08-02|Discontinued upstream
+x11/libdmx||2023-04-25|Upstream removed support for Xdmx server
+www/varnish4|www/varnish6|2023-10-19|Has expired: End of life upstream, users are recommended to upgrade to 6.x or higher
+databases/redis5|databases/redis62|2023-10-19|Has expired: EOLed upstream
+www/tomcat10|www/tomcat101|2023-06-30|Has expired: EOLd, potential security issues (https://tomcat.apache.org/tomcat-10.0-eol.html), use www/tomcat101 instead
+science/cfitsio|astro/cfitsio|2023-11-03|moved to astro
+www/polipo||2023-11-05|End of life
+lang/rust168|lang/rust169|2023-11-05|updated to 1.69
+emulators/rtc||2023-11-07|Broken on MidnightBSD and FreeBSD
+lang/spidermonkey24|lang/spidermonkey78|2023-11-07|Has expired: Uses Python 2.7 which is EOLed upstream
+lang/spidermonkey68|lang/spidermonkey78|2023-11-07|Replaced by a more recent version
+databases/pgtune||2023-11-09|Not updated for 13 years, website gone last remains in https://git.postgresql.org/gitweb/?p=pgtune.git;a=summary
+x11-toolkits/p5-Gtk2||2023-11-10|Unused by any ports, very old
+multimedia/ffmpeg0||2023-11-11|Has expired: vulnerable and old version; use multimedia/ffmpeg instead
+www/yarn-node14||2023-05-28|Has expired: Requires upstream EOL node14
+www/npm-node14||2023-05-28|Has expired: Requires upstream EOL www/node14
+www/node14||2023-05-28|Has expired: Consider using www/node16 or later as Upstream EOL on 2023-04-30
+devel/rust-bindgen|devel/rust-bindgen-cli|2023-01-22|Renamed upstream
+comms/py-qt5-sensors|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+comms/py-qt5-serialport|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+databases/py-qt5-sql|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+devel/py-qt5-core|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+devel/py-qt5-dbus|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+devel/py-qt5-dbussupport|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+devel/py-qt5-designer|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+devel/py-qt5-designerplugin|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+devel/py-qt5-help|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+devel/py-qt5-location|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+devel/py-qt5-positioning|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+devel/py-qt5-remoteobjects|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+devel/py-qt5-test|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+graphics/py-qt5-svg|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+lang/py-qt5-qml|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+misc/py-qt5-demo|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+multimedia/py-qt5-multimedia|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+multimedia/py-qt5-multimediawidgets|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+net/py-qt5-network|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+print/py-qt5-printsupport|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+textproc/py-qt5-xml|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+textproc/py-qt5-xmlpatterns|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+www/py-qt5-webchannel|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+www/py-qt5-webkit|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+www/py-qt5-webkitwidgets|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+www/py-qt5-websockets|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+x11-toolkits/py-qt5-gui|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+x11-toolkits/py-qt5-quick|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+x11-toolkits/py-qt5-quick3d|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+x11-toolkits/py-qt5-quickwidgets|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+x11-toolkits/py-qt5-widgets|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+x11-fonts/vtfontcvt-ng||2023-11-22|no longer useful on any supported releases; use vtfontcvt(8) instead
+print/freetype|print/freetype2|2022-06-08|Has been replaced long ago by freetype2
+devel/ORBit2||2022-03-15|Gnome2 library unused anymore
+games/quake3|games/ioquake3|2023-12-09|quake3 native broken, use ioquake3 instead
+lang/perl5.30|lang/perl5.36|2023-12-27|5.30 is EOL
+lang/perl5.32|lang/perl5.36|2023-12-27|5.32 is EOL
+devel/llvm40|devel/llvm90|2023-12-27|4 is EOL
+devel/llvm70|devel/llvm90|2023-12-27|7 is EOL
+www/py-txrequests|www/py-requests-futures|2024-03-06|Has expired: Use www/py-requests-futures as upstream is unmaintained since 2018
+devel/py-gitdb2|devel/py-gitdb|2022-05-22|Remove obsoleted port. Use devel/py-gitdb instead
+devel/py-smmap2|devel/py-smmap|2022-05-22|Remove obsoleted port. Use devel/py-smmap instead
+games/gnome-taquin||2024-03-21|Has expired: BROKEN for more than a year and no upstream activity for more than 2 years
+devel/spirv-tools|graphics/spirv-tools|2024-03-21|Moved to a better category, aligning with glslang and shaderc
+emulators/advacemame||2024-04-08|Unmaintained
+devel/py-setuptools_scm|devel/py-setuptools-scm|2024-02-29|Package name changed
+math/p5-Math-BigRat|math/p5-Math-BigInt|2024-01-01|Subsumed into math/p5-Math-BigInt
+databases/postgresql11-pltcl|databases/postgresql12-pltcl|2023-12-31|Has expired: Security support ended on 2023-11-09
+databases/postgresql11-docs|databases/postgresql12-docs|2023-12-31|Has expired: Security support ended on 2023-11-09
+databases/postgresql11-plperl|databases/postgresql12-plperl|2023-12-31|Has expired: Security support ended on 2023-11-09
+databases/postgresql11-server|databases/postgresql12-server|2023-12-31|Has expired: Security support ended on 2023-11-09
+databases/postgresql11-plpython|databases/postgresql12-plpython|2023-12-31|Has expired: Security support ended on 2023-11-09
+databases/postgresql11-contrib|databases/postgresql12-contrib|2023-12-31|Has expired: Security support ended on 2023-11-09
+databases/postgresql11-client|databases/postgresql12-client|2023-12-31|Has expired: Security support ended on 2023-11-09
+databases/postgresql11-pgtcl|databases/postgresql12-pgtcl|2023-12-31|Has expired: Security support ended on 2023-11-09
+sysutils/py-ansible-base||2024-05-09|Has expired: Depends on expired security/py-pycrypto
+www/py-httpx013|www/py-httpx|2024-05-09|Has expired: Old repo-copy needed for deprecated textproc/py-googletrans
+security/py-pycrypto|security/py-pycryptodome|2022-12-31|Has expired: Unmaintained, obsolete, and contains security vulnerabilities. Use security/py-pycryptodome instead
+textproc/py-googletrans||2024-05-12|Has expired: Umaintained for over 3 years, depends on old www/py-httpx013
+math/eigen2||2024-05-14|Has expired: No longer available upstream, no consumers in ports
+graphics/php80-exif|graphics/php81-exif|2023-12-31|Has expired: Security support ended on 2023-11-26
+graphics/php80-gd|graphics/php81-gd|2023-12-31|Has expired: Security support ended on 2023-11-26
+mail/php80-imap|mail/php81-imap|2023-12-31|Has expired: Security support ended on 2023-11-26
+devel/php80-ffi|devel/php81-ffi|2023-12-31|Has expired: Security support ended on 2023-11-26
+devel/php80-gettext|devel/php81-gettext|2023-12-31|Has expired: Security support ended on 2023-11-26
+devel/php80-sysvshm|devel/php81-sysvshm|2023-12-31|Has expired: Security support ended on 2023-11-26
+devel/php80-tokenizer|devel/php81-tokenizer|2023-12-31|Has expired: Security support ended on 2023-11-26
+devel/php80-intl|devel/php81-intl|2023-12-31|Has expired: Security support ended on 2023-11-26
+devel/php80-pcntl|devel/php81-pcntl|2023-12-31|Has expired: Security support ended on 2023-11-26
+devel/php80-sysvsem|devel/php81-sysvsem|2023-12-31|Has expired: Security support ended on 2023-11-26
+devel/php80-sysvmsg|devel/php81-sysvmsg|2023-12-31|Has expired: Security support ended on 2023-11-26
+devel/php80-readline|devel/php81-readline|2023-12-31|Has expired: Security support ended on 2023-11-26
+devel/php80-shmop|devel/php81-shmop|2023-12-31|Has expired: Security support ended on 2023-11-26
+archivers/php80-zlib|archivers/php81-zlib|2023-12-31|Has expired: Security support ended on 2023-11-26
+archivers/php80-phar|archivers/php81-phar|2023-12-31|Has expired: Security support ended on 2023-11-26
+archivers/php80-bz2|archivers/php81-bz2|2023-12-31|Has expired: Security support ended on 2023-11-26
+archivers/php80-zip|archivers/php81-zip|2023-12-31|Has expired: Security support ended on 2023-11-26
+misc/php80-calendar|misc/php81-calendar|2023-12-31|Has expired: Security support ended on 2023-11-26
+textproc/php80-enchant|textproc/php81-enchant|2023-12-31|Has expired: Security support ended on 2023-11-26
+textproc/php80-pspell|textproc/php81-pspell|2023-12-31|Has expired: Security support ended on 2023-11-26
+textproc/php80-xmlwriter|textproc/php81-xmlwriter|2023-12-31|Has expired: Security support ended on 2023-11-26
+textproc/php80-xmlreader|textproc/php81-xmlreader|2023-12-31|Has expired: Security support ended on 2023-11-26
+textproc/php80-xsl|textproc/php81-xsl|2023-12-31|Has expired: Security support ended on 2023-11-26
+textproc/php80-dom|textproc/php81-dom|2023-12-31|Has expired: Security support ended on 2023-11-26
+textproc/php80-simplexml|textproc/php81-simplexml|2023-12-31|Has expired: Security support ended on 2023-11-26
+textproc/php80-ctype|textproc/php81-ctype|2023-12-31|Has expired: Security support ended on 2023-11-26
+textproc/php80-xml|textproc/php81-xml|2023-12-31|Has expired: Security support ended on 2023-11-26
+converters/php80-mbstring|converters/php81-mbstring|2023-12-31|Has expired: Security support ended on 2023-11-26
+converters/php80-iconv|converters/php81-iconv|2023-12-31|Has expired: Security support ended on 2023-11-26
+security/php80-sodium|security/php81-sodium|2023-12-31|Has expired: Security support ended on 2023-11-26
+security/php80-filter|security/php81-filter|2023-12-31|Has expired: Security support ended on 2023-11-26
+net-mgmt/php80-snmp|net-mgmt/php81-snmp|2023-12-31|Has expired: Security support ended on 2023-11-26
+lang/php80-extensions|lang/php81-extensions|2023-12-31|Has expired: Security support ended on 2023-11-26
+lang/php80|lang/php81|2023-12-31|Has expired: Security support ended on 2023-11-26
+www/php80-opcache|www/php81-opcache|2023-12-31|Has expired: Security support ended on 2023-11-26
+www/php80-tidy|www/php81-tidy|2023-12-31|Has expired: Security support ended on 2023-11-26
+www/php80-session|www/php81-session|2023-12-31|Has expired: Security support ended on 2023-11-26
+www/mod_php80|www/mod_php81|2023-12-31|Has expired: Security support ended on 2023-11-26
+ftp/php80-curl|ftp/php81-curl|2023-12-31|Has expired: Security support ended on 2023-11-26
+ftp/php80-ftp|ftp/php81-ftp|2023-12-31|Has expired: Security support ended on 2023-11-26
+sysutils/php80-fileinfo|sysutils/php81-fileinfo|2023-12-31|Has expired: Security support ended on 2023-11-26
+sysutils/php80-posix|sysutils/php81-posix|2023-12-31|Has expired: Security support ended on 2023-11-26
+math/php80-bcmath|math/php81-bcmath|2023-12-31|Has expired: Security support ended on 2023-11-26
+math/php80-gmp|math/php81-gmp|2023-12-31|Has expired: Security support ended on 2023-11-26
+net/php80-ldap|net/php81-ldap|2023-12-31|Has expired: Security support ended on 2023-11-26
+net/php80-soap|net/php81-soap|2023-12-31|Has expired: Security support ended on 2023-11-26
+net/php80-sockets|net/php81-sockets|2023-12-31|Has expired: Security support ended on 2023-11-26
+databases/php80-dba|databases/php81-dba|2023-12-31|Has expired: Security support ended on 2023-11-26
+databases/php80-pdo|databases/php81-pdo|2023-12-31|Has expired: Security support ended on 2023-11-26
+databases/php80-pdo_dblib|databases/php81-pdo_dblib|2023-12-31|Has expired: Security support ended on 2023-11-26
+databases/php80-sqlite3|databases/php81-sqlite3|2023-12-31|Has expired: Security support ended on 2023-11-26
+databases/php80-pdo_pgsql|databases/php81-pdo_pgsql|2023-12-31|Has expired: Security support ended on 2023-11-26
+databases/php80-pdo_firebird|databases/php81-pdo_firebird|2023-12-31|Has expired: Security support ended on 2023-11-26
+databases/php80-pgsql|databases/php81-pgsql|2023-12-31|Has expired: Security support ended on 2023-11-26
+databases/php80-pdo_odbc|databases/php81-pdo_odbc|2023-12-31|Has expired: Security support ended on 2023-11-26
+databases/php80-pdo_sqlite|databases/php81-pdo_sqlite|2023-12-31|Has expired: Security support ended on 2023-11-26
+databases/php80-odbc|databases/php81-odbc|2023-12-31|Has expired: Security support ended on 2023-11-26
+databases/php80-mysqli|databases/php81-mysqli|2023-12-31|Has expired: Security support ended on 2023-11-26
+databases/php80-pdo_mysql|databases/php81-pdo_mysql|2023-12-31|Has expired: Security support ended on 2023-11-26
+www/youtube_dl|www/yt-dlp|2024-04-01|Has expired: Many extractors are brokena and upstream can't keep up
+textproc/kibana7|textproc/kibana8|2023-11-02|Has expired: Depends on EOL NodeJS 16
+textproc/elasticsearch6|textproc/elasticsearch7|2023-01-01|Has expired: No longer maintained and supported
+mail/gmime2|mail/gmime26|2024-05-30|Not used anymore overcome by gnime26
+mail/gmime24-sharp||2024-05-30|Has expired: Use mail/gmime26 or mail/gmime30
+mail/gmime24||2024-05-30|Has expired: Use mail/gmime26 or mail/gmime30
+audio/espeak|audio/espeak-ng|2024-05-30|Switch to fork of (stale) original repository
+audio/celt||2024-05-30|Has expired: Deprecated and considered obsolete by upstream in 2016 in favour of (lib)opus
+print/ghostscript9-x11||2023-03-31|Has expired: Released over 10 years ago and unsupported by upstream, consider print/ghostscript9-agpl-x11
+print/ghostscript9-base||2023-03-31|Has expired: Released over 10 years ago and unsupported by upstream, consider print/ghostscript9-agpl-base
+print/ghostscript8-base||2023-06-30|Has expired: Obsolete and unsupported upstream, consider using a more recent version
+print/ghostscript8-x11||2023-06-30|Has expired: Obsolete and unsupported upstream
+www/joomla3|www/joomla4|2023-08-30|Has expired: EOL upstream
+textproc/raptor||2024-06-03|Has expired: No new release in 10+ years and superseded by 2.0-branch, consider using textproc/raptor2
+lang/rust170|lang/rust|2024-06-06|Moved to standard location as support for old MidnightBSD has dropped
+lang/rust169|lang/rust|2024-06-06|EOL
+devel/glslang|graphics/glslang|2024-06-10|Moved to graphics
+mail/libspf||2023-12-31|Has expired: Abandonware, last commit upstream 14 years ago. Consider migrating to mail/libspf2
+graphics/giblib||2024-07-18|Has expired: Last release in 2004, abandoned upstream, not used, website disappeared
+sysutils/sysrc||2024-07-23|Has expired: Migrated into src
+lang/go119|lang/go120|2024-07-23|Has expired: Upstream EOL reached on 2023-09-06
+security/f-prot||2024-07-31|Has expired: F-Prot Antivirus reached end-of-life on July 31, 2021
+lang/perl5.36|lang/perl5.38|2024-07-31|Updated default to 5.38, removed old version
+security/l0phtcrack||2024-07-31|Has expired: Obsolete, Microsoft LANMAN and NT password hashes are deprecated
+security/vnccrack||2024-07-31|Has expired: Outdated and abandoned, last release in 2008. Upstream is at 2.1 while version in ports is 1.0.0
+www/varnish6|www/varnish7|2023-08-08|Has expired: Unsupported version upstream, consider migrating to www/varnish7
+devel/llvm10|devel/llvm11|2024-08-08|Has expired: No longer supported by upstream
+devel/llvm90|devel/llvm11|2024-08-08|Has expired: No longer supported by upstream
+databases/mysql55-server|databases/mysql80-server|2024-08-12|Has expired: Upstream support ended on December 2018
+databases/mysql55-client|databases/mysql80-client|2024-08-12|Has expired: Upstream support ended on December 2018
+databases/mysql56-server|databases/mysql80-server|2024-08-12|Has expired: Upstream support ended in February 2021
+databases/mysql56-client|databases/mysql80-client|2024-08-12|Has expired: Upstream support ended in February 2021
+databases/mysql57-server|databases/mysql80-server|2024-08-12|Has expired: Upstream support ended in October 2019
+databases/mysql57-client|databases/mysql80-client|2024-08-12|Has expired: Upstream support ended in October 2019
+databases/percona57-pam-for-mysql||2024-08-12|Has expired: Upstream EOL reaches on 2023-10-01
+databases/percona57-server||2024-08-12|Has expired: Upstream EOL reaches on 2023-10-01
+databases/percona57-client||2024-08-12|Has expired: Upstream EOL reaches on 2023-10-01
+graphics/vkd3d||2024-08-13|No consumers in ports
+dns/ares||2024-08-29|Has expired: Deprecated upstream as of March 12, 2023
+www/transmission-web|net-p2p/transmission-components@daemon|2024-09-04|Moved to the daemon flavor
+net-p2p/transmission-cli|net-p2p/transmission-components@cli|2024-09-04|Moved for metaport
+net-p2p/transmission-daemon|net-p2p/transmission-components@daemon|2024-09-04|Moved for metaport
+net-p2p/transmission-gtk|net-p2p/transmission-components@gtk|2024-09-04|Moved for metaport
+net-p2p/transmission-qt|net-p2p/transmission-components@qt|2024-09-04|Moved for metaport
+net-p2p/transmission-utils|net-p2p/transmission-components@utils|2024-09-04|Moved for metaport
+www/mod_auth_openid||2024-09-24|Has expired: Depends on expired devel/libopkele
+devel/libopkele||2024-09-24|Has expired: Last upstream release was in 2009
+databases/py-sqlalchemy13||2024-10-14|Has expired: Upstream makred EOL in Release Status
+net/p5-MaxMind-DB-Writer||2024-10-22|Has expired: This is the final release. This distribution is no longer being developed
+www/py-django32||2024-12-04|Has expired: Django 3.2 is now in Extended Support, receives security fixes only and will reach End-Of-Life in April 2024. Upgrade to a later Django version. See https://www.djangoproject.com/download/
+lang/ruby30|lang/ruby32|2024-12-07|Has expired, move to ruby 3.2
+games/2048-qt||2024-12-21|Has expired: Unmaintained, last upstream release in 2016
+databases/mongodb36|databases/mongodb50|2025-01-02|Has expired: Upstream EOL reached on 2021-04-30
+x11-fonts/fontmatrix||2025-01-02|Has expired: Depends on deprecated www/qt5-webkit
+www/qt5-webkit||2025-01-02|Has expired: No longer actively maintained, increasing security concerns
+net/opal||2025-01-02|Has expired: Very outdated, current version in tree was released back in 2013 and upstream is still active
+net-im/ekigal||2025-01-02|Has expired: Very outdated, current version in tree was released back in 2013 and upstream is dead
+math/py-gmpy|math/py-gmpy2|2025--1-02|Has expired: EOLd, use math/py-gmpy2 instead
+graphics/opencv-core|graphics/opencv|2025-01-07|Reintegrated into a simple, maintainable port
+lang/gcc8|lang/gcc11|2025-01-07|Has expired: Unsupported by upstream. Use GCC 11 or newer instead
+lang/gcc9|lang/gcc11|2025-01-07|Has expired: Unsupported by upstream. Use GCC 11 or newer instead
+lang/gcc10|lang/gcc11|2025-01-07|Has expired: Unsupported by upstream. Use GCC 11 or newer instead
+net/openldap24-client|net/openldap25-client|2025-01-13|Has expired: No longer supported by upstream.  Please use a newer version of OpenLDAP instead
+net/openldap24-server|net/openldap25-server|2023-01-13|Has expired: No longer supported by upstream.  Please use a newer version of OpenLDAP instead
+databases/postgresql12-contrib||2025-01-21|Has expired: PostgreSQL-12 is end-of-life
+databases/postgresql12-client||2025-01-21|Has expired: PostgreSQL-12 is end-of-life
+databases/postgresql12-plperl||2025-01-21|Has expired: PostgreSQL-12 is end-of-life
+databases/postgresql12-pltcl||2025-01-21|Has expired: PostgreSQL-12 is end-of-life
+databases/postgresql12-plpython||2025-01-21|Has expired: PostgreSQL-12 is end-of-life
+databases/postgresql12-docs||2025-01-21|Has expired: PostgreSQL-12 is end-of-life
+databases/postgresql12-pgtcl||2025-01-21|Removed, PostgreSQL-12 is end-of-life
+databases/postgresql12-server||2025-01-21|Has expired: PostgreSQL-12 is end-of-life
+databases/ldb20||2025-02-18|Has expired: Outdated and not necessary for any supported version of Samba
+databases/ntdb||2025-02-23|Has expired: Outdated and not necessary for any supported version of Samba
+databases/tdb1|databases/tdb1410|2025-02-23|Update to 1.4.x
+databases/libgda5-mdb||2025-02-27|Has expired: Broken since 2021
+www/subsonic-standalone||2025-02-28|Has expired: Abandonware, no longer maintained upstream as of 2019
+devel/py-dateutil|devel/py-python-dateutil|2025-03-23|Move devel/py-dateutil to devel/py-python-dateutil
+devel/sonarqube|devel/sonarqube-community|2025-03-28|Old version expired, switch to community
+java/bouncycastle15|java/bouncycastle|2025-04-03|deleted old version, moved this here.
+sysutils/linux-crashplan||2025-05-09|broken for awhile
+net-p2p/frost||2025-05-18|Has expired: Outdated version and unsupported upstream
+misc/buffer|misc/mbuffer|2025-05-22|Has expired: No upstream updates since 1995.  Switch to misc/mbuffer
+www/linux-opera||2025-05-24|Long EOL presto engine version. 
+www/ytdl|www/yt-dlp|2025-06-17|ytdl doesn't work and is archived upstream, www/yt-dlp be used instead
+multimedia/schroedinger||2025-06-21|Has expired: Abandoned legacy video codec, upstream is dead and last release was back in 2012
+converters/p5-Jcode|japanese/p5-Jcode|2025-06-24|Moved categories
+lang/python38|lang/python39|2025-06-25|Has expired: Reached end-of-life in October 2024
+sysutils/datadog-agent||2025-07-23|Has expired: broken/unfetchable
+sysutils/datadog-integrations||2025-07-23|Has expired: broken/unfetchable
+devel/py-gobject3|devel/py-pygobject|2025-07-25|Use proper upstream package name
+devel/pygobject3-common|devel/pygobject-common|2025-07-25|Match devel/py-pygobject, use proper upstream name
+archivers/untar||2025-07-29|Superceded by bsdtar/libarchive
+archivers/xpk||2025-08-04|Has expired: Unmaintained, upstream last release in 2002
+devel/anjuta|devel/gnome-builder|2025-08-20|Has expired: Unmaintained, upstream WWW owned by gambling site, use devel/gnome-builder
+devel/libvolume_id||2025-08-25|Dead upstream, no consumers in the mports tree
+devel/motor||2025-08-26|Not maintained
+lang/gcc48|lang/gcc11|2025-08-27|No longer used in mports
+devel/llvm11|devel/llvm12|2025-09-11|deprecated and unused in mports
+www/zend-framework||2025-11-10|Has expired: Deprecated by upstream, and moved to Laminas Project
+www/tidy-devel|www/tidy-html5|2025-11-10|Has expired: no more dev at SF, replaced by www/tidy-html5
+www/tidy-lib|www/tidy-html5|2025-11-10|Has expired: no more dev at SF, replaced by www/tidy-html5
+net-p2p/shx||2025-12-09|Has expired: Obsolete protocol that has been superseded by many others
+lang/gcc11|lang/gcc12|2025-12-09|Has expired: End-of-life upstream since mid 2024, newer versions available
+audio/libnjb||2025-12-09|Has expired: Abandoned upstream, no new release since 2011
+sysutils/ffs2recover||2025-12-13|Broken and not updated on current/4.0
+multimedia/win32-codecs||2025-12-15|Has expired: Obsolete and users are recommended to utilize ffmpeg insteaa
+sysutils/screen49|sysutils/screen|2025-12-15|Has expired: Multiple CVEs
+sysutils/screen50|sysutils/screen|2025-12-15|Moved to screen after removal of screen49
+net/zebra||2025-12-16|Has expired: Abandoned upstream, last release in 2005. Consider migrating to net/frr8 or net/bird2
+graphics/php81-exif|graphics/php82-exif|2023-12-31|Has expired: Security support ended on 2025-12-17
+graphics/php81-gd|graphics/php82-gd|2023-12-31|Has expired: Security support ended on 2025-12-17
+mail/php81-imap|mail/php82-imap|2023-12-31|Has expired: Security support ended on 2025-12-17
+devel/php81-ffi|devel/php82-ffi|2023-12-31|Has expired: Security support ended on 2025-12-17
+devel/php81-gettext|devel/php82-gettext|2023-12-31|Has expired: Security support ended on 2025-12-17
+devel/php81-sysvshm|devel/php82-sysvshm|2023-12-31|Has expired: Security support ended on 2025-12-17
+devel/php81-tokenizer|devel/php82-tokenizer|2023-12-31|Has expired: Security support ended on 2025-12-17
+devel/php81-intl|devel/php82-intl|2023-12-31|Has expired: Security support ended on 2025-12-17
+devel/php81-pcntl|devel/php82-pcntl|2023-12-31|Has expired: Security support ended on 2025-12-17
+devel/php81-sysvsem|devel/php82-sysvsem|2023-12-31|Has expired: Security support ended on 2025-12-17
+devel/php81-sysvmsg|devel/php82-sysvmsg|2023-12-31|Has expired: Security support ended on 2025-12-17
+devel/php81-readline|devel/php82-readline|2023-12-31|Has expired: Security support ended on 2025-12-17
+devel/php81-shmop|devel/php82-shmop|2023-12-31|Has expired: Security support ended on 2025-12-17
+archivers/php81-zlib|archivers/php82-zlib|2023-12-31|Has expired: Security support ended on 2025-12-17
+archivers/php81-phar|archivers/php82-phar|2023-12-31|Has expired: Security support ended on 2025-12-17
+archivers/php81-bz2|archivers/php82-bz2|2023-12-31|Has expired: Security support ended on 2025-12-17
+archivers/php81-zip|archivers/php82-zip|2023-12-31|Has expired: Security support ended on 2025-12-17
+misc/php81-calendar|misc/php82-calendar|2023-12-31|Has expired: Security support ended on 2025-12-17
+textproc/php81-enchant|textproc/php82-enchant|2023-12-31|Has expired: Security support ended on 2025-12-17
+textproc/php81-pspell|textproc/php82-pspell|2023-12-31|Has expired: Security support ended on 2025-12-17
+textproc/php81-xmlwriter|textproc/php82-xmlwriter|2023-12-31|Has expired: Security support ended on 2025-12-17
+textproc/php81-xmlreader|textproc/php82-xmlreader|2023-12-31|Has expired: Security support ended on 2025-12-17
+textproc/php81-xsl|textproc/php82-xsl|2023-12-31|Has expired: Security support ended on 2025-12-17
+textproc/php81-dom|textproc/php82-dom|2023-12-31|Has expired: Security support ended on 2025-12-17
+textproc/php81-simplexml|textproc/php82-simplexml|2023-12-31|Has expired: Security support ended on 2025-12-17
+textproc/php81-ctype|textproc/php82-ctype|2023-12-31|Has expired: Security support ended on 2025-12-17
+textproc/php81-xml|textproc/php82-xml|2023-12-31|Has expired: Security support ended on 2025-12-17
+converters/php81-mbstring|converters/php82-mbstring|2023-12-31|Has expired: Security support ended on 2025-12-17
+converters/php81-iconv|converters/php82-iconv|2023-12-31|Has expired: Security support ended on 2025-12-17
+security/php81-sodium|security/php82-sodium|2023-12-31|Has expired: Security support ended on 2025-12-17
+security/php81-filter|security/php82-filter|2023-12-31|Has expired: Security support ended on 2025-12-17
+net-mgmt/php81-snmp|net-mgmt/php82-snmp|2023-12-31|Has expired: Security support ended on 2025-12-17
+lang/php81-extensions|lang/php82-extensions|2023-12-31|Has expired: Security support ended on 2025-12-17
+lang/php81|lang/php82|2023-12-31|Has expired: Security support ended on 2025-12-17
+www/php81-opcache|www/php82-opcache|2023-12-31|Has expired: Security support ended on 2025-12-17
+www/php81-tidy|www/php82-tidy|2023-12-31|Has expired: Security support ended on 2025-12-17
+www/php81-session|www/php82-session|2023-12-31|Has expired: Security support ended on 2025-12-17
+www/mod_php80|www/mod_php81|2023-12-31|Has expired: Security support ended on 2025-12-17
+ftp/php81-curl|ftp/php82-curl|2023-12-31|Has expired: Security support ended on 2025-12-17
+ftp/php81-ftp|ftp/php82-ftp|2023-12-31|Has expired: Security support ended on 2025-12-17
+sysutils/php81-fileinfo|sysutils/php82-fileinfo|2023-12-31|Has expired: Security support ended on 2025-12-17
+sysutils/php81-posix|sysutils/php82-posix|2023-12-31|Has expired: Security support ended on 2025-12-17
+math/php81-bcmath|math/php82-bcmath|2023-12-31|Has expired: Security support ended on 2025-12-17
+math/php81-gmp|math/php82-gmp|2023-12-31|Has expired: Security support ended on 2025-12-17
+net/php81-ldap|net/php82-ldap|2023-12-31|Has expired: Security support ended on 2025-12-17
+net/php81-soap|net/php82-soap|2023-12-31|Has expired: Security support ended on 2025-12-17
+net/php81-sockets|net/php82-sockets|2023-12-31|Has expired: Security support ended on 2025-12-17
+databases/php81-dba|databases/php82-dba|2023-12-31|Has expired: Security support ended on 2025-12-17
+databases/php81-pdo|databases/php82-pdo|2023-12-31|Has expired: Security support ended on 2025-12-17
+databases/php81-pdo_dblib|databases/php82-pdo_dblib|2023-12-31|Has expired: Security support ended on 2025-12-17
+databases/php81-sqlite3|databases/php82-sqlite3|2023-12-31|Has expired: Security support ended on 2025-12-17
+databases/php81-pdo_pgsql|databases/php82-pdo_pgsql|2023-12-31|Has expired: Security support ended on 2025-12-17
+databases/php81-pdo_firebird|databases/php82-pdo_firebird|2023-12-31|Has expired: Security support ended on 2025-12-17
+databases/php81-pgsql|databases/php82-pgsql|2023-12-31|Has expired: Security support ended on 2025-12-17
+databases/php81-pdo_odbc|databases/php82-pdo_odbc|2023-12-31|Has expired: Security support ended on 2025-12-17
+databases/php81-pdo_sqlite|databases/php82-pdo_sqlite|2023-12-31|Has expired: Security support ended on 2025-12-17
+databases/php81-odbc|databases/php82-odbc|2023-12-31|Has expired: Security support ended on 2025-12-17
+databases/php81-mysqli|databases/php82-mysqli|2023-12-31|Has expired: Security support ended on 2025-12-17
+databases/php81-pdo_mysql|databases/php82-pdo_mysql|2023-12-31|Has expired: Security support ended on 2025-12-17
+net/libutp|net-p2p/libutp|2025-12-17|Moved to a more adequated category
+lang/go120|lang/go123|2025-12-18|Upstream EOL soon
+science/gtamsanalyzer||2025-12-19|Has expired: Upstream unmaintained as last release was in 2004
+java/netbeans8|java/netbeans|2025-12-23|Very old version removed
+sysutils/tracker-miners||2025-12-26|Retired upstream
+sysutils/tracker||2025-12-26|Replaced long ago by tracker3 and now tinysparql
+lang/spidermonkey115|lang/spidermonkey128|2025-12-28|Removed out of date version no longer in use.
+databases/firebird25|databases/firebird30|2025-12-29|Migrate to suppported firebird release
+devel/llvm16|devel/llvm17|2025-12-30|unused and removed
+devel/swig30|devel/swig|2025-12-30|swig 3 replaced by 4
+databases/mongodb50|databases/mongodb60|2026-01-07|Has expired: EOL from October 2024, see https://www.mongodb.com/legal/support-policy/lifecycles, please use databases/mongodb60
+mail/cclient|mail/panda-cclient|2026-01-07|Has expired: Last upstream release was in 2007 so use the fork mail/panda-cclient
+sysutils/gksu||2026-01-09|Has expired: Abandonware, depending on gconf2, use pkexec instead from policykit
+net/samba413|net/samba416|2026-01-10|Move to a supported samba
+lang/python39|lang/python311|2026-01-11|Python 3.9 is EOL, switch to 3.11
+multimedia/dirac||2026-01-11|No longer maintaned.  Use ffmpeg to decode files.
+lang/rust186|lang/rust|2026-01-16|Migrated and updated rust port
+devcpu-data-amd|cpu-microcode-amd|2026-01-19|reorganized cpu microcode 
+devcpu-data-intel|cpu-microcode-intel|2026-01-19|reorganized cpu microcode 
+lang/ruby31|lang/ruby32|2026-01-27|ruby 3.1 is EOL, move to 3.2
+security/openssl31|security/openssl36|2026-01-27|openssl 3.1 is eol. move to 3.6
+audio/spotify-tui||2026-01-28|Has expired: dead upstream and doesn't build
+lang/cython3|lang/cython|2026-02-04|Remove obsoleted port. Use lang/cython instead
+security/gpgme-cpp|security/gpgmepp|2026-02-09|Gpgme C++ bindings have been split into a separate project
+security/gpgme-qt@qt5|security/qgpgme@qt5|2026-02-09|Gpgme Qt5 bindings have been split into a separate project
+security/gpgme-qt@qt6|security/qgpgme@qt6|2026-02-09|Gpgme Qt6 bindings have been split into a separate project
+sysutils/system-tools-backends||2026-02-18|No longer used
+textproc/opensearch-dashboards213||2025-09-02|Has expired: Depends on expired www/npm-node18
+textproc/opensearch-dashboards210||2025-09-02|Has expired: Depends on expired www/npm-node18
+textproc/opensearch-dashboards216||2025-09-02|Has expired: Depends on expired www/npm-node18
+www/yarn-node18|www/yarn-node22|2026-03-01|Has expired: Depeneds on expired www/node18. Node.js 18.* has reached its EoL on 2025-04-30
+www/npm-node18|www/npm-node22|2026-03-01|Has expired: Depeneds on expired www/node18. Node.js 18.* has reached its EoL on 2025-04-30
+www/node18|www/node22|2026-03-01|Has expired: Node.js 18.* has reached its EoL on 2025-04-30. Use Node.js 22.* (www/node22) instead
+lang/go121|lang/go125|2026-03-14|Has reached EOL. Use lang/go125 instead.
+textproc/mdocml|textproc/mandoc|2026-03-17|Upstream reanamed
+graphics/librsvg2|graphics/librsvg2-rust|2026-05-16|Superseded by Rust-based librsvg2; LIBRSVG2_DEFAULT=rust
+editors/linux-vscode||2026-05-30|Does not work
+devel/p5-Test2-Suite|devel/p5-Test-Simple|2026-06-29|Remove obsoleted port, merged into devel/p5-Test-Simple
+misc/linux-claude|misc/claude-code|2026-07-07|Make it easier to find despite breaking conventions
+misc/chatgpt-shell-cli|ai/chatgpt-shell-cli|2026-07-09|Move to new ai category
+misc/claude-code|ai/claude-code|2026-07-09|Move to new ai category
+misc/claude-code-legacy|ai/claude-code-legacy|2026-07-09|Move to new ai category
+misc/clawhub|ai/clawhub|2026-07-09|Move to new ai category
+misc/codex|ai/codex|2026-07-09|Move to new ai category
+misc/gemini-cli|ai/gemini-cli|2026-07-09|Move to new ai category
+misc/github-copilot-cli|ai/github-copilot-cli|2026-07-09|Move to new ai category
+misc/grok-cli|ai/grok-cli|2026-07-09|Move to new ai category
+misc/lean-ctx|ai/lean-ctx|2026-07-09|Move to new ai category
+misc/llama-cpp|ai/llama-cpp|2026-07-09|Move to new ai category
+misc/ollama|ai/ollama|2026-07-09|Move to new ai category
+misc/onnx|ai/onnx|2026-07-09|Move to new ai category
+misc/openclaw|ai/openclaw|2026-07-09|Move to new ai category
+misc/py-anthropic|ai/py-anthropic|2026-07-09|Move to new ai category
+misc/py-datasets|ai/py-datasets|2026-07-09|Move to new ai category
+misc/py-google-genai|ai/py-google-genai|2026-07-09|Move to new ai category
+misc/py-headroom-ai|ai/py-headroom-ai|2026-07-09|Move to new ai category
+misc/py-huggingface-hub|ai/py-huggingface-hub|2026-07-09|Move to new ai category
+misc/py-langchain|ai/py-langchain|2026-07-09|Move to new ai category
+misc/py-langchain-anthropic|ai/py-langchain-anthropic|2026-07-09|Move to new ai category
+misc/py-langchain-core|ai/py-langchain-core|2026-07-09|Move to new ai category
+misc/py-langchain-google-genai|ai/py-langchain-google-genai|2026-07-09|Move to new ai category
+misc/py-langchain-openai|ai/py-langchain-openai|2026-07-09|Move to new ai category
+misc/py-langchain-tests|ai/py-langchain-tests|2026-07-09|Move to new ai category
+misc/py-langchain-text-splitters|ai/py-langchain-text-splitters|2026-07-09|Move to new ai category
+misc/py-langgraph|ai/py-langgraph|2026-07-09|Move to new ai category
+misc/py-langgraph-checkpoint|ai/py-langgraph-checkpoint|2026-07-09|Move to new ai category
+misc/py-langgraph-prebuilt|ai/py-langgraph-prebuilt|2026-07-09|Move to new ai category
+misc/py-langgraph-sdk|ai/py-langgraph-sdk|2026-07-09|Move to new ai category
+misc/py-langsmith|ai/py-langsmith|2026-07-09|Move to new ai category
+misc/py-litellm|ai/py-litellm|2026-07-09|Move to new ai category
+misc/py-litellm-proxy-extras|ai/py-litellm-proxy-extras|2026-07-09|Move to new ai category
+misc/py-llm|ai/py-llm|2026-07-09|Move to new ai category
+misc/py-mistral-common|ai/py-mistral-common|2026-07-09|Move to new ai category
+misc/py-mistral-vibe|ai/py-mistral-vibe|2026-07-09|Move to new ai category
+misc/py-onnxruntime|ai/py-onnxruntime|2026-07-09|Move to new ai category
+misc/py-openai|ai/py-openai|2026-07-09|Move to new ai category
+misc/py-openai-whisper|ai/py-openai-whisper|2026-07-09|Move to new ai category
+misc/py-pytorch|ai/py-pytorch|2026-07-09|Move to new ai category
+misc/py-torchvision|ai/py-torchvision|2026-07-09|Move to new ai category
+misc/pytorch|ai/pytorch|2026-07-09|Move to new ai category
+misc/zeroclaw|ai/zeroclaw|2026-07-09|Move to new ai category
+lang/perl5.38|lang/perl5.40|2026-07-10|Has expired: EOL upstream, use lang/perl5.40 or lang/perl5.42
+databases/postgresql13-client|databases/postgresql14-client|2026-07-15|PostgreSQL 13 is no longer supported; use PostgreSQL 14.
+databases/postgresql13-contrib|databases/postgresql14-contrib|2026-07-15|PostgreSQL 13 is no longer supported; use PostgreSQL 14.
+databases/postgresql13-docs|databases/postgresql14-docs|2026-07-15|PostgreSQL 13 is no longer supported; use PostgreSQL 14.
+databases/postgresql13-pgtcl|databases/postgresql14-pgtcl|2026-07-15|PostgreSQL 13 is no longer supported; use PostgreSQL 14.
+databases/postgresql13-plperl|databases/postgresql14-plperl|2026-07-15|PostgreSQL 13 is no longer supported; use PostgreSQL 14.
+databases/postgresql13-plpython|databases/postgresql14-plpython|2026-07-15|PostgreSQL 13 is no longer supported; use PostgreSQL 14.
+databases/postgresql13-pltcl|databases/postgresql14-pltcl|2026-07-15|PostgreSQL 13 is no longer supported; use PostgreSQL 14.
+databases/postgresql13-server|databases/postgresql14-server|2026-07-15|PostgreSQL 13 is no longer supported; use PostgreSQL 14.
+mail/thunderbird-freebsd|mail/thunderbird|2026-07-30|Use native thunderbird
+net/samba416|net/samba419|2026-08-31|Samba 4.16 is obsolete; use samba419 or samba423.
+devel/electron28|devel/electron42|2026-09-03|Electron 28 has been EOL since 2024-06-11 and was a prebuilt FreeBSD 12 binary; use electron42.
+devel/hs-haddock||2026-10-02|Removed: Haddock is shipped as part of lang/ghc
+sysutils/beats6|sysutils/beats7|2026-10-15|Beats 6 is obsolete; use beats7 or beats8
+sysutils/logstash6||2026-10-15|Has expired: upstream EOL; migrate manually to sysutils/logstash8
+security/openssl111||2026-10-21|Removed: OpenSSL 1.1.1 has been EOL since 2023-09-11; use security/openssl
+security/openssl35|security/openssl|2026-10-21|OpenSSL 3.0 is EOL; security/openssl is now OpenSSL 3.5 LTS
+www/node23|www/node24|2026-10-22|Has expired: Node.js 23 reached its EoL on 2025-06-01. Use Node.js 24 (www/node24) instead
+www/node25|www/node26|2026-10-22|Has expired: Node.js 25 reached its EoL on 2026-06-01. Use Node.js 26 (www/node26) instead
+www/npm-node25|www/npm-node24|2026-10-22|Has expired: consumer of expired www/node25
+www/yarn-node25|www/yarn-node24|2026-10-22|Has expired: consumer of expired www/node25
+www/node20|www/node24|2026-10-22|Has expired: Node.js 20 reached its EoL on 2026-04-30. Use Node.js 24 (www/node24) instead
+www/npm-node20|www/npm-node24|2026-10-22|Has expired: consumer of expired www/node20
+www/yarn-node20|www/yarn-node24|2026-10-22|Has expired: consumer of expired www/node20
+www/qt5-webengine|www/qt6-webengine|2026-10-22|Has expired: Based on outdated Chromium (Qt 5.15). Use Qt 6 WebEngine (www/qt6-webengine) instead
+www/py-qt5-webengine|www/py-qt6-webengine|2026-10-22|Has expired: Depends on removed www/qt5-webengine. Use www/py-qt6-webengine instead
+www/qt5-webview|www/qt6-webview|2026-10-22|Has expired: Depends on removed www/qt5-webengine. Use www/qt6-webview instead
+www/otter-browser||2026-10-22|Has expired: Not ported to Qt 6, depends on removed www/qt5-webengine
+deskutils/kchmviewer|deskutils/uchmviewer|2026-10-22|Has expired: Development stalled and depends on removed www/qt5-webengine. Use deskutils/uchmviewer instead
+multimedia/jellyfin-media-player|multimedia/jellyfin-desktop|2026-10-22|Project renamed upstream and moved to Qt 6
+www/midori|www/raphael|2026-10-23|Has expired: Depends on WebKitGTK 4.0 and libsoup2, which WebKitGTK 2.52 no longer provides. Use www/raphael, the MidnightBSD fork of Midori
+devel/eric6|devel/eric7|2026-10-23|Has expired: Last Qt5 release (21.11), depends on removed www/py-qt5-webengine and does not start on Python 3.12. Use devel/eric7 instead
+german/eric6|devel/eric7|2026-10-23|Has expired: Translations for removed devel/eric6
+chinese/phpbb3-tw||2026-10-24|Has expired: phpBB 3.0 reached end of life in 2017. Use www/phpbb3 with a Traditional Chinese language pack instead
+lang/python310||2026-10-24|Has expired: Python 3.10 reached end of life in October 2026. Use lang/python312 or newer
+sysutils/uefi-edk2-bhyve-devel|sysutils/edk2@bhyve|2026-11-02|Development firmware consolidated into the edk2 bhyve flavor
+sysutils/uefi-edk2-bhyve|sysutils/edk2@bhyve|2026-11-02|Use the bhyve flavor of sysutils/edk2
+sysutils/uefi-edk2-bhyve-csm||2026-11-02|Obsolete CSM firmware requires old edk2 and GCC 4.8; no replacement

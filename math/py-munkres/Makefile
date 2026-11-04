@@ -1,0 +1,20 @@
+PORTNAME=	munkres
+PORTVERSION=	1.1.4
+PORTREVISION=	1
+CATEGORIES=	math python
+MASTER_SITES=	PYPI
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Munkres implementation for Python
+WWW=		https://software.clapper.org/munkres/ \
+		https://github.com/bmc/munkres
+
+LICENSE=	Apache-2.0
+
+USES=		python
+USE_PYTHON=	autoplist concurrent distutils
+
+NO_ARCH=	yes
+
+.include <bsd.port.mk>

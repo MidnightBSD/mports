@@ -1,0 +1,11 @@
+--- CMakeLists.txt.orig	2023-03-04 17:32:55 UTC
++++ CMakeLists.txt
+@@ -358,7 +358,7 @@ if(NOT WIN32)
+ 	include(cmakescripts/FindTurboJPEG.cmake)
+ endif()
+ 
+-if(NOT CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
++if(NOT CMAKE_SYSTEM_NAME MATCHES "MidnightBSD")
+ 	set(LIBDL dl)
+ endif()
+ 

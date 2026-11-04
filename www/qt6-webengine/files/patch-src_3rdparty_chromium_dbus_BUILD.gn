@@ -1,0 +1,10 @@
+--- src/3rdparty/chromium/dbus/BUILD.gn.orig	2025-11-06 16:28:09 UTC
++++ src/3rdparty/chromium/dbus/BUILD.gn
+@@ -50,3 +50,6 @@ component("dbus") {
+   public_configs = [ "//build/config/linux/dbus" ]
+-  configs += [ "//build/config/compiler:wexit_time_destructors" ]
++  configs += [
++    "//build/config/compiler:wexit_time_destructors",
++    "//build/config/linux/dbus",
++  ]
+ }

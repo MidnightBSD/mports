@@ -1,0 +1,111 @@
+PORTNAME=	atslog
+PORTVERSION=	2.1.1
+PORTREVISION=	4
+CATEGORIES=	comms
+MASTER_SITES=	BERLIOS
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Software for collecting and analyzing calls from different PBX models
+WWW=		http://www.atslog.com/en/about/
+
+LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+USES=		perl5 shebangfix
+SHEBANG_FILES=	data/sql/install-sql.pl \
+		include/atslogcleardb.pl.in include/atslogdb.pl.in
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--localstatedir=/var
+
+USE_RC_SUBR=	${PORTNAME}d
+PLIST_SUB=	WWWOWN="${WWWOWN}" WWWGRP="${WWWGRP}"
+
+SUB_FILES=	pkg-message
+
+PORTDOCS=	CHANGES ChangeLog DEINSTALL INSTALL TODO UPDATING USAGE
+
+OPTIONS_DEFINE=		EXAMPLES LIBWRAP WWW WWWGD DOCS
+OPTIONS_DEFAULT=	LIBWRAP MYSQL WWW WWWGD
+OPTIONS_MULTI=		DB
+OPTIONS_MULTI_DB=	PGSQL MYSQL
+OPTIONS_SUB=		yes
+
+LIBWRAP_DESC=	Enable TCP wrapper support
+WWW_DESC=	Install web interface
+WWWGD_DESC=	Graphic reports
+
+MYSQL_USES=		mysql
+MYSQL_BUILD_DEPENDS=	${DBD_MYSQL}
+MYSQL_RUN_DEPENDS=	${DBD_MYSQL}
+
+PGSQL_USES=		pgsql
+PGSQL_BUILD_DEPENDS=	p5-DBD-Pg>=0:databases/p5-DBD-Pg
+PGSQL_RUN_DEPENDS=	p5-DBD-Pg>=0:databases/p5-DBD-Pg
+
+LIBWRAP_CONFIGURE_OFF=	--disable-libwrap
+
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MWWW}
+USES+=		php:web
+.if ${PORT_OPTIONS:MWWWGD}
+USE_PHP+=	gd
+.endif
+.if ${PORT_OPTIONS:MMYSQL}
+USE_PHP+=	mysqli
+.endif
+.if ${PORT_OPTIONS:MPGSQL}
+USE_PHP+=	pgsql
+.endif
+.endif
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|createsqltables.|${DATADIR}/sql/createsqltables.|g' \
+	    -e 's|data.sql|${DATADIR}/sql/data.sql|' ${WRKSRC}/data/sql/install-sql.pl
+
+do-install:
+	${INSTALL_PROGRAM} ${WRKSRC}/${USE_RC_SUBR}/${USE_RC_SUBR} ${PREFIX}/bin
+	@${MKDIR} ${PREFIX}/share/man/ru.KOI8-R/man8
+.for i in ${USE_RC_SUBR} ${PORTNAME}master
+	${INSTALL_MAN} ${WRKSRC}/man/en/${i}.8 ${PREFIX}/share/man/man8
+	${INSTALL_MAN} ${WRKSRC}/man/ru.KOI8-R/${i}.8 ${PREFIX}/share/man/ru.KOI8-R/man8
+.endfor
+	${INSTALL_DATA} ${WRKSRC}/include/${PORTNAME}.conf.default ${PREFIX}/etc/${PORTNAME}.conf.sample
+	${INSTALL_DATA} ${WRKSRC}/include/${PORTNAME}.conf.default.rus ${PREFIX}/etc/${PORTNAME}.conf.rus.sample
+.for i in atslogcleardb.pl atslogdb.pl atslogmaster
+	${INSTALL_SCRIPT} ${WRKSRC}/include/${i} ${PREFIX}/bin
+.endfor
+	@${MKDIR} ${DATADIR}/lang
+	(cd ${WRKSRC}/include && \
+	${FIND} lang -type f ! -iregex ".*Makefile" -exec \
+		${INSTALL_DATA} {} "${DATADIR}/{}" \;)
+	@${MKDIR} ${EXAMPLESDIR}/textlogs
+	(cd ${WRKSRC}/data && \
+	${FIND} textlogs -type f -exec \
+		${INSTALL_DATA} {} "${EXAMPLESDIR}/{}" \;)
+	@${MKDIR} ${DATADIR}/sql
+	(cd ${WRKSRC}/data && \
+	${FIND} sql -type f -iregex ".*\.sql" -exec \
+		${INSTALL_DATA} {} "${DATADIR}/{}" \;)
+	${INSTALL_SCRIPT} ${WRKSRC}/data/sql/install-sql.pl ${DATADIR}/sql
+	@${MKDIR} ${PREFIX}/libexec/${PORTNAME}
+	(cd ${WRKSRC}/libexec && \
+	${FIND} -E . -type f ! -iregex ".*\.(sh|orig)" -exec \
+		${INSTALL_DATA} {} "${PREFIX}/libexec/${PORTNAME}/{}" \;)
+	${INSTALL_SCRIPT} ${WRKSRC}/libexec/genindex.sh ${PREFIX}/libexec/${PORTNAME}
+
+	@${MKDIR} ${WWWDIR}
+	cd ${WRKSRC}/www && \
+	${FIND} . -type d ! -empty -exec \
+		${MKDIR} "${WWWDIR}/{}" \; && \
+	${FIND} -E . -type f ! -iregex "(.*Makefile|.*\.orig)" -exec \
+		${INSTALL_DATA} {} "${WWWDIR}/{}" \;
+	${MV} ${WWWDIR}/include/config.inc.php.default ${WWWDIR}/include/config.inc.php.sample
+
+do-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+.for i in ${PORTDOCS}
+	${INSTALL_DATA} ${WRKSRC}/${i} ${FAKE_DESTDIR}${DOCSDIR}
+.endfor
+
+.include <bsd.port.mk>

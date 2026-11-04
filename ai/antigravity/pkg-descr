@@ -1,0 +1,9 @@
+Antigravity CLI is Google's command-line coding agent, powered by the Gemini
+family of models with optional support for other backends.  It runs the
+Antigravity agent harness in the terminal: reading and editing files, running
+commands, driving a browser, and orchestrating multi-step tasks.
+
+This port installs the official Linux x86_64 binary via MidnightBSD's Linux
+emulation layer (Rocky Linux 9 / glibc).  The wrapper script disables the
+built-in auto-updater so that the installed files stay under mport control;
+use the port to move to a newer version.

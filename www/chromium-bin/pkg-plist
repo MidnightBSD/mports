@@ -1,0 +1,658 @@
+bin/chromedriver
+bin/chrome
+libdata/ldconfig/chromium
+man/man1/chrome.1.gz
+%%DATADIR%%/chrome_200_percent.pak
+%%DATADIR%%/protoc
+%%DATADIR%%/v8_context_snapshot.bin
+%%DATADIR%%/icudtl.dat
+%%DATADIR%%/libEGL.so
+%%DATADIR%%/locales/id.pak
+%%DATADIR%%/locales/de.pak
+%%DATADIR%%/locales/gu.pak
+%%DATADIR%%/locales/ja.pak.info
+%%DATADIR%%/locales/kn.pak.info
+%%DATADIR%%/locales/ja.pak
+%%DATADIR%%/locales/am.pak
+%%DATADIR%%/locales/bg.pak.info
+%%DATADIR%%/locales/pt-BR.pak.info
+%%DATADIR%%/locales/fa.pak
+%%DATADIR%%/locales/vi.pak
+%%DATADIR%%/locales/te.pak.info
+%%DATADIR%%/locales/ru.pak
+%%DATADIR%%/locales/hi.pak.info
+%%DATADIR%%/locales/kn.pak
+%%DATADIR%%/locales/uk.pak
+%%DATADIR%%/locales/he.pak
+%%DATADIR%%/locales/ml.pak
+%%DATADIR%%/locales/cs.pak
+%%DATADIR%%/locales/sk.pak.info
+%%DATADIR%%/locales/ru.pak.info
+%%DATADIR%%/locales/sr.pak
+%%DATADIR%%/locales/ko.pak.info
+%%DATADIR%%/locales/pl.pak
+%%DATADIR%%/locales/tr.pak.info
+%%DATADIR%%/locales/te.pak
+%%DATADIR%%/locales/ca.pak.info
+%%DATADIR%%/locales/fi.pak.info
+%%DATADIR%%/locales/ca.pak
+%%DATADIR%%/locales/pt-BR.pak
+%%DATADIR%%/locales/lv.pak.info
+%%DATADIR%%/locales/bn.pak.info
+%%DATADIR%%/locales/zh-TW.pak.info
+%%DATADIR%%/locales/fil.pak.info
+%%DATADIR%%/locales/lv.pak
+%%DATADIR%%/locales/en-US.pak.info
+%%DATADIR%%/locales/bn.pak
+%%DATADIR%%/locales/el.pak
+%%DATADIR%%/locales/es-419.pak
+%%DATADIR%%/locales/ro.pak
+%%DATADIR%%/locales/fr.pak
+%%DATADIR%%/locales/bg.pak
+%%DATADIR%%/locales/sr.pak.info
+%%DATADIR%%/locales/sl.pak.info
+%%DATADIR%%/locales/da.pak.info
+%%DATADIR%%/locales/ko.pak
+%%DATADIR%%/locales/uk.pak.info
+%%DATADIR%%/locales/fi.pak
+%%DATADIR%%/locales/pl.pak.info
+%%DATADIR%%/locales/fa.pak.info
+%%DATADIR%%/locales/id.pak.info
+%%DATADIR%%/locales/hu.pak.info
+%%DATADIR%%/locales/hi.pak
+%%DATADIR%%/locales/ml.pak.info
+%%DATADIR%%/locales/mr.pak.info
+%%DATADIR%%/locales/th.pak.info
+%%DATADIR%%/locales/pt-PT.pak
+%%DATADIR%%/locales/es.pak.info
+%%DATADIR%%/locales/et.pak
+%%DATADIR%%/locales/hu.pak
+%%DATADIR%%/locales/zh-CN.pak
+%%DATADIR%%/locales/ro.pak.info
+%%DATADIR%%/locales/es.pak
+%%DATADIR%%/locales/hr.pak
+%%DATADIR%%/locales/nl.pak.info
+%%DATADIR%%/locales/en-US.pak
+%%DATADIR%%/locales/hr.pak.info
+%%DATADIR%%/locales/cs.pak.info
+%%DATADIR%%/locales/sv.pak
+%%DATADIR%%/locales/it.pak
+%%DATADIR%%/locales/sv.pak.info
+%%DATADIR%%/locales/ta.pak
+%%DATADIR%%/locales/de.pak.info
+%%DATADIR%%/locales/am.pak.info
+%%DATADIR%%/locales/th.pak
+%%DATADIR%%/locales/et.pak.info
+%%DATADIR%%/locales/ms.pak
+%%DATADIR%%/locales/el.pak.info
+%%DATADIR%%/locales/nb.pak.info
+%%DATADIR%%/locales/vi.pak.info
+%%DATADIR%%/locales/zh-TW.pak
+%%DATADIR%%/locales/it.pak.info
+%%DATADIR%%/locales/pt-PT.pak.info
+%%DATADIR%%/locales/zh-CN.pak.info
+%%DATADIR%%/locales/he.pak.info
+%%DATADIR%%/locales/fr.pak.info
+%%DATADIR%%/locales/lt.pak
+%%DATADIR%%/locales/ar.pak
+%%DATADIR%%/locales/ms.pak.info
+%%DATADIR%%/locales/mr.pak
+%%DATADIR%%/locales/da.pak
+%%DATADIR%%/locales/fil.pak
+%%DATADIR%%/locales/sw.pak.info
+%%DATADIR%%/locales/nl.pak
+%%DATADIR%%/locales/ar.pak.info
+%%DATADIR%%/locales/en-GB.pak.info
+%%DATADIR%%/locales/sk.pak
+%%DATADIR%%/locales/sl.pak
+%%DATADIR%%/locales/nb.pak
+%%DATADIR%%/locales/sw.pak
+%%DATADIR%%/locales/es-419.pak.info
+%%DATADIR%%/locales/ta.pak.info
+%%DATADIR%%/locales/gu.pak.info
+%%DATADIR%%/locales/tr.pak
+%%DATADIR%%/locales/lt.pak.info
+%%DATADIR%%/locales/en-GB.pak
+%%DATADIR%%/resources/inspector/layers/layers.js
+%%DATADIR%%/resources/inspector/layers/layers_module.js
+%%DATADIR%%/resources/inspector/layers/layers-legacy.js
+%%DATADIR%%/resources/inspector/toolbox.html
+%%DATADIR%%/resources/inspector/ui/ui-legacy.js
+%%DATADIR%%/resources/inspector/ui/ui.js
+%%DATADIR%%/resources/inspector/lighthouse_test_runner/lighthouse_test_runner_module.js
+%%DATADIR%%/resources/inspector/input/input-legacy.js
+%%DATADIR%%/resources/inspector/input/input.js
+%%DATADIR%%/resources/inspector/input/input_module.js
+%%DATADIR%%/resources/inspector/data_grid/data_grid-legacy.js
+%%DATADIR%%/resources/inspector/data_grid/data_grid.js
+%%DATADIR%%/resources/inspector/data_grid/data_grid_module.js
+%%DATADIR%%/resources/inspector/console_test_runner/console_test_runner_module.js
+%%DATADIR%%/resources/inspector/js_app.js
+%%DATADIR%%/resources/inspector/integration_test_runner.html
+%%DATADIR%%/resources/inspector/ndb_app.js
+%%DATADIR%%/resources/inspector/javascript_metadata/javascript_metadata_module.js
+%%DATADIR%%/resources/inspector/javascript_metadata/javascript_metadata.js
+%%DATADIR%%/resources/inspector/javascript_metadata/javascript_metadata-legacy.js
+%%DATADIR%%/resources/inspector/sources/sources-legacy.js
+%%DATADIR%%/resources/inspector/sources/sources.js
+%%DATADIR%%/resources/inspector/sources/sources_module.js
+%%DATADIR%%/resources/inspector/common/common.js
+%%DATADIR%%/resources/inspector/common/common-legacy.js
+%%DATADIR%%/resources/inspector/mobile_throttling/mobile_throttling.js
+%%DATADIR%%/resources/inspector/mobile_throttling/mobile_throttling-legacy.js
+%%DATADIR%%/resources/inspector/layers_test_runner/layers_test_runner_module.js
+%%DATADIR%%/resources/inspector/har_importer/har_importer_module.js
+%%DATADIR%%/resources/inspector/har_importer/har_importer.js
+%%DATADIR%%/resources/inspector/har_importer/har_importer-legacy.js
+%%DATADIR%%/resources/inspector/elements/elements.js
+%%DATADIR%%/resources/inspector/elements/elements_module.js
+%%DATADIR%%/resources/inspector/elements/elements-legacy.js
+%%DATADIR%%/resources/inspector/js_app.html
+%%DATADIR%%/resources/inspector/inline_editor/inline_editor.js
+%%DATADIR%%/resources/inspector/inline_editor/inline_editor_module.js
+%%DATADIR%%/resources/inspector/inline_editor/inline_editor-legacy.js
+%%DATADIR%%/resources/inspector/timeline_model/timeline_model.js
+%%DATADIR%%/resources/inspector/timeline_model/timeline_model-legacy.js
+%%DATADIR%%/resources/inspector/timeline_model/timeline_model_module.js
+%%DATADIR%%/resources/inspector/sdk_test_runner/sdk_test_runner_module.js
+%%DATADIR%%/resources/inspector/browser_debugger/browser_debugger-legacy.js
+%%DATADIR%%/resources/inspector/browser_debugger/browser_debugger_module.js
+%%DATADIR%%/resources/inspector/browser_debugger/browser_debugger.js
+%%DATADIR%%/resources/inspector/screencast/screencast-legacy.js
+%%DATADIR%%/resources/inspector/screencast/screencast.js
+%%DATADIR%%/resources/inspector/Tests.js
+%%DATADIR%%/resources/inspector/cookie_table/cookie_table_module.js
+%%DATADIR%%/resources/inspector/cookie_table/cookie_table.js
+%%DATADIR%%/resources/inspector/cookie_table/cookie_table-legacy.js
+%%DATADIR%%/resources/inspector/js_profiler/js_profiler_module.js
+%%DATADIR%%/resources/inspector/cm/cm.js
+%%DATADIR%%/resources/inspector/cm/cm_module.js
+%%DATADIR%%/resources/inspector/worker_main/worker_main.js
+%%DATADIR%%/resources/inspector/worker_main/worker_main-legacy.js
+%%DATADIR%%/resources/inspector/extensions_test_runner/extensions_test_runner_module.js
+%%DATADIR%%/resources/inspector/test_runner/test_runner.js
+%%DATADIR%%/resources/inspector/node_debugger/node_debugger_module.js
+%%DATADIR%%/resources/inspector/animation/animation.js
+%%DATADIR%%/resources/inspector/animation/animation-legacy.js
+%%DATADIR%%/resources/inspector/animation/animation_module.js
+%%DATADIR%%/resources/inspector/sources_test_runner/sources_test_runner_module.js
+%%DATADIR%%/resources/inspector/cpu_profiler_test_runner/cpu_profiler_test_runner_module.js
+%%DATADIR%%/resources/inspector/protocol_client/protocol_client-legacy.js
+%%DATADIR%%/resources/inspector/protocol_client/protocol_client.js
+%%DATADIR%%/resources/inspector/application_test_runner/application_test_runner_module.js
+%%DATADIR%%/resources/inspector/worker_app.js
+%%DATADIR%%/resources/inspector/emulation/emulation-legacy.js
+%%DATADIR%%/resources/inspector/emulation/emulation.js
+%%DATADIR%%/resources/inspector/protocol_monitor/protocol_monitor.js
+%%DATADIR%%/resources/inspector/protocol_monitor/protocol_monitor_module.js
+%%DATADIR%%/resources/inspector/protocol_monitor/protocol_monitor-legacy.js
+%%DATADIR%%/resources/inspector/node_app.html
+%%DATADIR%%/resources/inspector/data_grid_test_runner/data_grid_test_runner_module.js
+%%DATADIR%%/resources/inspector/css_overview/css_overview-legacy.js
+%%DATADIR%%/resources/inspector/css_overview/css_overview.js
+%%DATADIR%%/resources/inspector/css_overview/css_overview_module.js
+%%DATADIR%%/resources/inspector/media/media_module.js
+%%DATADIR%%/resources/inspector/media/media-legacy.js
+%%DATADIR%%/resources/inspector/media/media.js
+%%DATADIR%%/resources/inspector/performance_monitor/performance_monitor.js
+%%DATADIR%%/resources/inspector/performance_monitor/performance_monitor-legacy.js
+%%DATADIR%%/resources/inspector/performance_monitor/performance_monitor_module.js
+%%DATADIR%%/resources/inspector/devtools_app.js
+%%DATADIR%%/resources/inspector/security_test_runner/security_test_runner_module.js
+%%DATADIR%%/resources/inspector/changes/changes-legacy.js
+%%DATADIR%%/resources/inspector/changes/changes.js
+%%DATADIR%%/resources/inspector/changes/changes_module.js
+%%DATADIR%%/resources/inspector/search/search.js
+%%DATADIR%%/resources/inspector/search/search-legacy.js
+%%DATADIR%%/resources/inspector/search/search_module.js
+%%DATADIR%%/resources/inspector/web_audio/web_audio.js
+%%DATADIR%%/resources/inspector/web_audio/web_audio-legacy.js
+%%DATADIR%%/resources/inspector/web_audio/web_audio_module.js
+%%DATADIR%%/resources/inspector/heap_snapshot_model/heap_snapshot_model.js
+%%DATADIR%%/resources/inspector/heap_snapshot_model/heap_snapshot_model_module.js
+%%DATADIR%%/resources/inspector/heap_snapshot_model/heap_snapshot_model-legacy.js
+%%DATADIR%%/resources/inspector/heap_profiler_test_runner/heap_profiler_test_runner_module.js
+%%DATADIR%%/resources/inspector/lighthouse_worker.js
+%%DATADIR%%/resources/inspector/event_listeners/event_listeners-legacy.js
+%%DATADIR%%/resources/inspector/event_listeners/event_listeners.js
+%%DATADIR%%/resources/inspector/event_listeners/event_listeners_module.js
+%%DATADIR%%/resources/inspector/object_ui/object_ui_module.js
+%%DATADIR%%/resources/inspector/object_ui/object_ui-legacy.js
+%%DATADIR%%/resources/inspector/object_ui/object_ui.js
+%%DATADIR%%/resources/inspector/coverage/coverage.js
+%%DATADIR%%/resources/inspector/coverage/coverage_module.js
+%%DATADIR%%/resources/inspector/coverage/coverage-legacy.js
+%%DATADIR%%/resources/inspector/worker_app.html
+%%DATADIR%%/resources/inspector/js_main/js_main.js
+%%DATADIR%%/resources/inspector/js_main/js_main-legacy.js
+%%DATADIR%%/resources/inspector/network/network.js
+%%DATADIR%%/resources/inspector/network/network_module.js
+%%DATADIR%%/resources/inspector/network/network-legacy.js
+%%DATADIR%%/resources/inspector/issues/issues.js
+%%DATADIR%%/resources/inspector/issues/issues-legacy.js
+%%DATADIR%%/resources/inspector/issues/issues_module.js
+%%DATADIR%%/resources/inspector/toolbox_bootstrap/toolbox_bootstrap.js
+%%DATADIR%%/resources/inspector/formatter/formatter-legacy.js
+%%DATADIR%%/resources/inspector/formatter/formatter.js
+%%DATADIR%%/resources/inspector/formatter/formatter_module.js
+%%DATADIR%%/resources/inspector/ndb_app.html
+%%DATADIR%%/resources/inspector/wasmparser_worker_entrypoint.js
+%%DATADIR%%/resources/inspector/accessibility_test_runner/accessibility_test_runner_module.js
+%%DATADIR%%/resources/inspector/devtools_extension_api.js
+%%DATADIR%%/resources/inspector/sdk/sdk.js
+%%DATADIR%%/resources/inspector/sdk/wasm_source_map/pkg/wasm_source_map_bg.wasm
+%%DATADIR%%/resources/inspector/sdk/sdk-legacy.js
+%%DATADIR%%/resources/inspector/heap_snapshot_worker_entrypoint.js
+%%DATADIR%%/resources/inspector/diff/diff-legacy.js
+%%DATADIR%%/resources/inspector/diff/diff.js
+%%DATADIR%%/resources/inspector/diff/diff_module.js
+%%DATADIR%%/resources/inspector/RuntimeInstantiator.js
+%%DATADIR%%/resources/inspector/integration_test_runner.js
+%%DATADIR%%/resources/inspector/perf_ui/perf_ui_module.js
+%%DATADIR%%/resources/inspector/perf_ui/perf_ui.js
+%%DATADIR%%/resources/inspector/perf_ui/perf_ui-legacy.js
+%%DATADIR%%/resources/inspector/heap_snapshot_worker/heap_snapshot_worker_module.js
+%%DATADIR%%/resources/inspector/heap_snapshot_worker/heap_snapshot_worker.js
+%%DATADIR%%/resources/inspector/heap_snapshot_worker/heap_snapshot_worker-legacy.js
+%%DATADIR%%/resources/inspector/network_test_runner/network_test_runner_module.js
+%%DATADIR%%/resources/inspector/toolbox.js
+%%DATADIR%%/resources/inspector/node_app.js
+%%DATADIR%%/resources/inspector/text_utils/text_utils.js
+%%DATADIR%%/resources/inspector/text_utils/text_utils-legacy.js
+%%DATADIR%%/resources/inspector/settings/settings.js
+%%DATADIR%%/resources/inspector/settings/settings_module.js
+%%DATADIR%%/resources/inspector/settings/settings-legacy.js
+%%DATADIR%%/resources/inspector/persistence/persistence.js
+%%DATADIR%%/resources/inspector/persistence/persistence-legacy.js
+%%DATADIR%%/resources/inspector/elements_test_runner/elements_test_runner_module.js
+%%DATADIR%%/resources/inspector/workspace/workspace-legacy.js
+%%DATADIR%%/resources/inspector/workspace/workspace.js
+%%DATADIR%%/resources/inspector/timeline/timeline_module.js
+%%DATADIR%%/resources/inspector/timeline/timeline-legacy.js
+%%DATADIR%%/resources/inspector/timeline/timeline.js
+%%DATADIR%%/resources/inspector/host/host.js
+%%DATADIR%%/resources/inspector/host/host-legacy.js
+%%DATADIR%%/resources/inspector/Images/accelerometer-front.svg
+%%DATADIR%%/resources/inspector/Images/ic_warning_black_18dp.svg
+%%DATADIR%%/resources/inspector/Images/cssoverview_icons_2x.png
+%%DATADIR%%/resources/inspector/Images/resourcePlainIcon.png
+%%DATADIR%%/resources/inspector/Images/chromeLeft.png
+%%DATADIR%%/resources/inspector/Images/accelerometer-bottom.png
+%%DATADIR%%/resources/inspector/Images/largeIcons.svg
+%%DATADIR%%/resources/inspector/Images/profileIcon.png
+%%DATADIR%%/resources/inspector/Images/smallIcons.svg
+%%DATADIR%%/resources/inspector/Images/logpoint-disabled.svg
+%%DATADIR%%/resources/inspector/Images/profileGroupIcon.png
+%%DATADIR%%/resources/inspector/Images/resizeHorizontal.png
+%%DATADIR%%/resources/inspector/Images/resizeDiagonal_2x.png
+%%DATADIR%%/resources/inspector/Images/chromeDisabledSelect_2x.png
+%%DATADIR%%/resources/inspector/Images/resourcePlainIconSmall.png
+%%DATADIR%%/resources/inspector/Images/touchCursor.png
+%%DATADIR%%/resources/inspector/Images/resourceDocumentIconSmall.png
+%%DATADIR%%/resources/inspector/Images/logpoint.svg
+%%DATADIR%%/resources/inspector/Images/chromeRight.png
+%%DATADIR%%/resources/inspector/Images/chromeSelect.png
+%%DATADIR%%/resources/inspector/Images/checker.png
+%%DATADIR%%/resources/inspector/Images/resizeVertical_2x.png
+%%DATADIR%%/resources/inspector/Images/accelerometer-left.png
+%%DATADIR%%/resources/inspector/Images/radioDot-dark-theme.png
+%%DATADIR%%/resources/inspector/Images/checkboxCheckmark.svg
+%%DATADIR%%/resources/inspector/Images/mediumIcons.svg
+%%DATADIR%%/resources/inspector/Images/breakpoint-conditional-disabled.svg
+%%DATADIR%%/resources/inspector/Images/resourceDocumentIcon.png
+%%DATADIR%%/resources/inspector/Images/resizeVertical.png
+%%DATADIR%%/resources/inspector/Images/searchPrev.png
+%%DATADIR%%/resources/inspector/Images/whatsnew.png
+%%DATADIR%%/resources/inspector/Images/chromeMiddle.png
+%%DATADIR%%/resources/inspector/Images/resourceCSSIcon.png
+%%DATADIR%%/resources/inspector/Images/breakpoint-disabled.svg
+%%DATADIR%%/resources/inspector/Images/profileSmallIcon.png
+%%DATADIR%%/resources/inspector/Images/speech.png
+%%DATADIR%%/resources/inspector/Images/treeoutlineTriangles.svg
+%%DATADIR%%/resources/inspector/Images/breakpoint.svg
+%%DATADIR%%/resources/inspector/Images/securityIcons.svg
+%%DATADIR%%/resources/inspector/Images/nodeIcon.png
+%%DATADIR%%/resources/inspector/Images/radioDot.png
+%%DATADIR%%/resources/inspector/Images/resourcesTimeGraphIcon.png
+%%DATADIR%%/resources/inspector/Images/toolbarResizerVertical.png
+%%DATADIR%%/resources/inspector/Images/accelerometer-top.png
+%%DATADIR%%/resources/inspector/Images/navigationControls_2x.png
+%%DATADIR%%/resources/inspector/Images/popoverArrows.png
+%%DATADIR%%/resources/inspector/Images/navigationControls.png
+%%DATADIR%%/resources/inspector/Images/lighthouse_logo.svg
+%%DATADIR%%/resources/inspector/Images/resizeHorizontal_2x.png
+%%DATADIR%%/resources/inspector/Images/touchCursor_2x.png
+%%DATADIR%%/resources/inspector/Images/ic_info_black_18dp.svg
+%%DATADIR%%/resources/inspector/Images/accelerometer-back.svg
+%%DATADIR%%/resources/inspector/Images/searchNext.png
+%%DATADIR%%/resources/inspector/Images/errorWave.svg
+%%DATADIR%%/resources/inspector/Images/accelerometer-right.png
+%%DATADIR%%/resources/inspector/Images/chromeSelect_2x.png
+%%DATADIR%%/resources/inspector/Images/resourceJSIcon.png
+%%DATADIR%%/resources/inspector/Images/breakpoint-conditional.svg
+%%DATADIR%%/resources/inspector/Images/chromeDisabledSelect.png
+%%DATADIR%%/resources/inspector/Images/resizeDiagonal.png
+%%DATADIR%%/resources/inspector/Images/chevrons.svg
+%%DATADIR%%/resources/inspector/accessibility/accessibility.js
+%%DATADIR%%/resources/inspector/accessibility/accessibility-legacy.js
+%%DATADIR%%/resources/inspector/accessibility/accessibility_module.js
+%%DATADIR%%/resources/inspector/components/components.js
+%%DATADIR%%/resources/inspector/components/components-legacy.js
+%%DATADIR%%/resources/inspector/console/console-legacy.js
+%%DATADIR%%/resources/inspector/console/console.js
+%%DATADIR%%/resources/inspector/console/console_module.js
+%%DATADIR%%/resources/inspector/devtools_app.html
+%%DATADIR%%/resources/inspector/device_mode_test_runner/device_mode_test_runner_module.js
+%%DATADIR%%/resources/inspector/bindings_test_runner/bindings_test_runner_module.js
+%%DATADIR%%/resources/inspector/lighthouse/lighthouse_module.js
+%%DATADIR%%/resources/inspector/lighthouse/lighthouse.js
+%%DATADIR%%/resources/inspector/lighthouse/lighthouse-legacy.js
+%%DATADIR%%/resources/inspector/inspector_main/inspector_main.js
+%%DATADIR%%/resources/inspector/inspector_main/inspector_main-legacy.js
+%%DATADIR%%/resources/inspector/console_counters/console_counters.js
+%%DATADIR%%/resources/inspector/console_counters/console_counters-legacy.js
+%%DATADIR%%/resources/inspector/profiler/profiler_module.js
+%%DATADIR%%/resources/inspector/profiler/profiler-legacy.js
+%%DATADIR%%/resources/inspector/profiler/profiler.js
+%%DATADIR%%/resources/inspector/source_frame/source_frame_module.js
+%%DATADIR%%/resources/inspector/source_frame/source_frame-legacy.js
+%%DATADIR%%/resources/inspector/source_frame/source_frame.js
+%%DATADIR%%/resources/inspector/.htaccess
+%%DATADIR%%/resources/inspector/extensions/extensions-legacy.js
+%%DATADIR%%/resources/inspector/extensions/extensions.js
+%%DATADIR%%/resources/inspector/cm_headless/cm_headless.js
+%%DATADIR%%/resources/inspector/worker_service/worker_service.js
+%%DATADIR%%/resources/inspector/lighthouse_worker/lighthouse_worker_module.js
+%%DATADIR%%/resources/inspector/help/help-legacy.js
+%%DATADIR%%/resources/inspector/help/help_module.js
+%%DATADIR%%/resources/inspector/help/help.js
+%%DATADIR%%/resources/inspector/formatter_worker/formatter_worker-legacy.js
+%%DATADIR%%/resources/inspector/formatter_worker/formatter_worker.js
+%%DATADIR%%/resources/inspector/main/main.js
+%%DATADIR%%/resources/inspector/main/main-legacy.js
+%%DATADIR%%/resources/inspector/formatter_worker_entrypoint.js
+%%DATADIR%%/resources/inspector/cm_modes/cm_modes_module.js
+%%DATADIR%%/resources/inspector/cm_modes/cm_modes.js
+%%DATADIR%%/resources/inspector/root.js
+%%DATADIR%%/resources/inspector/security/security_module.js
+%%DATADIR%%/resources/inspector/security/security.js
+%%DATADIR%%/resources/inspector/security/security-legacy.js
+%%DATADIR%%/resources/inspector/root/root.js
+%%DATADIR%%/resources/inspector/root/root-legacy.js
+%%DATADIR%%/resources/inspector/wasmparser_worker/wasmparser_worker.js
+%%DATADIR%%/resources/inspector/quick_open/quick_open-legacy.js
+%%DATADIR%%/resources/inspector/quick_open/quick_open.js
+%%DATADIR%%/resources/inspector/quick_open/quick_open_module.js
+%%DATADIR%%/resources/inspector/snippets/snippets_module.js
+%%DATADIR%%/resources/inspector/snippets/snippets.js
+%%DATADIR%%/resources/inspector/snippets/snippets-legacy.js
+%%DATADIR%%/resources/inspector/workspace_diff/workspace_diff-legacy.js
+%%DATADIR%%/resources/inspector/workspace_diff/workspace_diff.js
+%%DATADIR%%/resources/inspector/workspace_diff/workspace_diff_module.js
+%%DATADIR%%/resources/inspector/layer_viewer/layer_viewer_module.js
+%%DATADIR%%/resources/inspector/layer_viewer/layer_viewer.js
+%%DATADIR%%/resources/inspector/layer_viewer/layer_viewer-legacy.js
+%%DATADIR%%/resources/inspector/text_editor/text_editor-legacy.js
+%%DATADIR%%/resources/inspector/text_editor/text_editor_module.js
+%%DATADIR%%/resources/inspector/text_editor/text_editor.js
+%%DATADIR%%/resources/inspector/dom_extension/dom_extension.js
+%%DATADIR%%/resources/inspector/platform/platform.js
+%%DATADIR%%/resources/inspector/inspector.html
+%%DATADIR%%/resources/inspector/coverage_test_runner/coverage_test_runner_module.js
+%%DATADIR%%/resources/inspector/devices/devices_module.js
+%%DATADIR%%/resources/inspector/devices/devices.js
+%%DATADIR%%/resources/inspector/node_main/node_main.js
+%%DATADIR%%/resources/inspector/node_main/node_main-legacy.js
+%%DATADIR%%/resources/inspector/emulated_devices/iPhone5-portrait.svg
+%%DATADIR%%/resources/inspector/emulated_devices/google-nexus-5-vertical-default-1x.png
+%%DATADIR%%/resources/inspector/emulated_devices/google-nexus-5x-vertical-keyboard-2x.png
+%%DATADIR%%/resources/inspector/emulated_devices/google-nexus-5-horizontal-keyboard-1x.png
+%%DATADIR%%/resources/inspector/emulated_devices/iPhone6-portrait.svg
+%%DATADIR%%/resources/inspector/emulated_devices/iPhone5-landscape.svg
+%%DATADIR%%/resources/inspector/emulated_devices/google-nexus-5-vertical-navigation-2x.png
+%%DATADIR%%/resources/inspector/emulated_devices/google-nexus-5-horizontal-default-1x.png
+%%DATADIR%%/resources/inspector/emulated_devices/google-nexus-5x-horizontal-keyboard-1x.png
+%%DATADIR%%/resources/inspector/emulated_devices/google-nexus-5-horizontal-navigation-1x.png
+%%DATADIR%%/resources/inspector/emulated_devices/Nexus5X-landscape.svg
+%%DATADIR%%/resources/inspector/emulated_devices/Nexus5X-portrait.svg
+%%DATADIR%%/resources/inspector/emulated_devices/MotoG4-portrait.svg
+%%DATADIR%%/resources/inspector/emulated_devices/google-nexus-5x-vertical-navigation-2x.png
+%%DATADIR%%/resources/inspector/emulated_devices/google-nexus-5-vertical-keyboard-1x.png
+%%DATADIR%%/resources/inspector/emulated_devices/google-nexus-5x-horizontal-navigation-2x.png
+%%DATADIR%%/resources/inspector/emulated_devices/google-nexus-5x-horizontal-default-1x.png
+%%DATADIR%%/resources/inspector/emulated_devices/iPad-landscape.svg
+%%DATADIR%%/resources/inspector/emulated_devices/google-nexus-5x-vertical-default-2x.png
+%%DATADIR%%/resources/inspector/emulated_devices/google-nexus-5-horizontal-default-2x.png
+%%DATADIR%%/resources/inspector/emulated_devices/google-nexus-5x-horizontal-keyboard-2x.png
+%%DATADIR%%/resources/inspector/emulated_devices/iPad-portrait.svg
+%%DATADIR%%/resources/inspector/emulated_devices/google-nexus-5-horizontal-navigation-2x.png
+%%DATADIR%%/resources/inspector/emulated_devices/iPhone6-landscape.svg
+%%DATADIR%%/resources/inspector/emulated_devices/google-nexus-5x-vertical-navigation-1x.png
+%%DATADIR%%/resources/inspector/emulated_devices/iPhone6Plus-landscape.svg
+%%DATADIR%%/resources/inspector/emulated_devices/google-nexus-5-vertical-default-2x.png
+%%DATADIR%%/resources/inspector/emulated_devices/google-nexus-5x-vertical-keyboard-1x.png
+%%DATADIR%%/resources/inspector/emulated_devices/google-nexus-5-horizontal-keyboard-2x.png
+%%DATADIR%%/resources/inspector/emulated_devices/iPhone6Plus-portrait.svg
+%%DATADIR%%/resources/inspector/emulated_devices/google-nexus-5-vertical-navigation-1x.png
+%%DATADIR%%/resources/inspector/emulated_devices/emulated_devices_module.js
+%%DATADIR%%/resources/inspector/emulated_devices/google-nexus-5x-vertical-default-1x.png
+%%DATADIR%%/resources/inspector/emulated_devices/Nexus6P-portrait.svg
+%%DATADIR%%/resources/inspector/emulated_devices/MotoG4-landscape.svg
+%%DATADIR%%/resources/inspector/emulated_devices/Nexus6P-landscape.svg
+%%DATADIR%%/resources/inspector/emulated_devices/google-nexus-5-vertical-keyboard-2x.png
+%%DATADIR%%/resources/inspector/emulated_devices/google-nexus-5x-horizontal-default-2x.png
+%%DATADIR%%/resources/inspector/emulated_devices/google-nexus-5x-horizontal-navigation-1x.png
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/th.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/zh-HK.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/vi.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/hr.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/ca.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/ko.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/en-US.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/pt-PT.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/sv.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/sk.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/nl.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/zh.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/ta.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/sr.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/te.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/fil.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/fr.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/es.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/lt.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/ro.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/uk.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/sr-Latn.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/id.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/ar.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/ar-XB.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/es-419.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/pl.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/ja.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/hu.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/en-XL.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/el.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/en-GB.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/cs.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/lv.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/fi.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/tr.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/de.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/ru.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/he.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/bg.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/da.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/it.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/pt.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/zh-TW.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/no.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/hi.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/en-XA.json
+%%DATADIR%%/resources/inspector/third_party/lighthouse/locales/sl.json
+%%DATADIR%%/resources/inspector/shell.js
+%%DATADIR%%/resources/inspector/color_picker/color_picker-legacy.js
+%%DATADIR%%/resources/inspector/color_picker/color_picker.js
+%%DATADIR%%/resources/inspector/color_picker/color_picker_module.js
+%%DATADIR%%/resources/inspector/browser_sdk/browser_sdk-legacy.js
+%%DATADIR%%/resources/inspector/browser_sdk/browser_sdk.js
+%%DATADIR%%/resources/inspector/resources/resources_module.js
+%%DATADIR%%/resources/inspector/resources/resources.js
+%%DATADIR%%/resources/inspector/resources/resources-legacy.js
+%%DATADIR%%/resources/inspector/devtools_compatibility.js
+%%DATADIR%%/resources/inspector/bindings/bindings-legacy.js
+%%DATADIR%%/resources/inspector/bindings/bindings.js
+%%DATADIR%%/resources/inspector/performance_test_runner/performance_test_runner_module.js
+%%DATADIR%%/resources/inspector/inspector.js
+%%DATADIR%%/resources/inspector/services/services-legacy.js
+%%DATADIR%%/resources/inspector/services/services.js
+%%DATADIR%%/resources/inspector/axe_core_test_runner/axe_core_test_runner_module.js
+%%DATADIR%%/resources/inspector/dagre_layout/dagre_layout_module.js
+%%DATADIR%%/headless_lib.pak
+%%DATADIR%%/chrome_100_percent.pak
+%%DATADIR%%/mksnapshot
+%%DATADIR%%/libVkICD_mock_icd.so
+%%DATADIR%%/chrome
+%%DATADIR%%/chrome-wrapper
+%%DATADIR%%/libvk_swiftshader.so
+%%DATADIR%%/swiftshader/libGLESv2.so
+%%DATADIR%%/swiftshader/libEGL.so
+%%DATADIR%%/snapshot_blob.bin
+%%DATADIR%%/product_logo_48.png
+%%DATADIR%%/resources.pak
+%%DATADIR%%/libGLESv2.so
+share/icons/hicolor/256x256/apps/chrome.png
+share/icons/hicolor/22x22/apps/chrome.png
+share/icons/hicolor/128x128/apps/chrome.png
+share/icons/hicolor/48x48/apps/chrome.png
+share/icons/hicolor/64x64/apps/chrome.png
+share/icons/hicolor/24x24/apps/chrome.png
+share/applications/chromium-browser.desktop
+@dir %%DATADIR%%/locales
+@dir %%DATADIR%%/resources/inspector/layers
+@dir %%DATADIR%%/resources/inspector/ui
+@dir %%DATADIR%%/resources/inspector/lighthouse_test_runner
+@dir %%DATADIR%%/resources/inspector/input
+@dir %%DATADIR%%/resources/inspector/data_grid
+@dir %%DATADIR%%/resources/inspector/console_test_runner
+@dir %%DATADIR%%/resources/inspector/javascript_metadata
+@dir %%DATADIR%%/resources/inspector/sources
+@dir %%DATADIR%%/resources/inspector/common
+@dir %%DATADIR%%/resources/inspector/mobile_throttling
+@dir %%DATADIR%%/resources/inspector/layers_test_runner
+@dir %%DATADIR%%/resources/inspector/har_importer
+@dir %%DATADIR%%/resources/inspector/elements
+@dir %%DATADIR%%/resources/inspector/inline_editor
+@dir %%DATADIR%%/resources/inspector/timeline_model
+@dir %%DATADIR%%/resources/inspector/sdk_test_runner
+@dir %%DATADIR%%/resources/inspector/browser_debugger
+@dir %%DATADIR%%/resources/inspector/screencast
+@dir %%DATADIR%%/resources/inspector/cookie_table
+@dir %%DATADIR%%/resources/inspector/js_profiler
+@dir %%DATADIR%%/resources/inspector/cm
+@dir %%DATADIR%%/resources/inspector/worker_main
+@dir %%DATADIR%%/resources/inspector/extensions_test_runner
+@dir %%DATADIR%%/resources/inspector/test_runner
+@dir %%DATADIR%%/resources/inspector/node_debugger
+@dir %%DATADIR%%/resources/inspector/animation
+@dir %%DATADIR%%/resources/inspector/sources_test_runner
+@dir %%DATADIR%%/resources/inspector/cpu_profiler_test_runner
+@dir %%DATADIR%%/resources/inspector/protocol_client
+@dir %%DATADIR%%/resources/inspector/application_test_runner
+@dir %%DATADIR%%/resources/inspector/emulation
+@dir %%DATADIR%%/resources/inspector/protocol_monitor
+@dir %%DATADIR%%/resources/inspector/data_grid_test_runner
+@dir %%DATADIR%%/resources/inspector/css_overview
+@dir %%DATADIR%%/resources/inspector/media
+@dir %%DATADIR%%/resources/inspector/performance_monitor
+@dir %%DATADIR%%/resources/inspector/security_test_runner
+@dir %%DATADIR%%/resources/inspector/changes
+@dir %%DATADIR%%/resources/inspector/search
+@dir %%DATADIR%%/resources/inspector/web_audio
+@dir %%DATADIR%%/resources/inspector/heap_snapshot_model
+@dir %%DATADIR%%/resources/inspector/heap_profiler_test_runner
+@dir %%DATADIR%%/resources/inspector/event_listeners
+@dir %%DATADIR%%/resources/inspector/object_ui
+@dir %%DATADIR%%/resources/inspector/coverage
+@dir %%DATADIR%%/resources/inspector/js_main
+@dir %%DATADIR%%/resources/inspector/network
+@dir %%DATADIR%%/resources/inspector/issues
+@dir %%DATADIR%%/resources/inspector/toolbox_bootstrap
+@dir %%DATADIR%%/resources/inspector/formatter
+@dir %%DATADIR%%/resources/inspector/accessibility_test_runner
+@dir %%DATADIR%%/resources/inspector/sdk/wasm_source_map/pkg
+@dir %%DATADIR%%/resources/inspector/sdk/wasm_source_map
+@dir %%DATADIR%%/resources/inspector/sdk
+@dir %%DATADIR%%/resources/inspector/diff
+@dir %%DATADIR%%/resources/inspector/perf_ui
+@dir %%DATADIR%%/resources/inspector/heap_snapshot_worker
+@dir %%DATADIR%%/resources/inspector/network_test_runner
+@dir %%DATADIR%%/resources/inspector/text_utils
+@dir %%DATADIR%%/resources/inspector/settings
+@dir %%DATADIR%%/resources/inspector/persistence
+@dir %%DATADIR%%/resources/inspector/elements_test_runner
+@dir %%DATADIR%%/resources/inspector/workspace
+@dir %%DATADIR%%/resources/inspector/timeline
+@dir %%DATADIR%%/resources/inspector/host
+@dir %%DATADIR%%/resources/inspector/Images
+@dir %%DATADIR%%/resources/inspector/accessibility
+@dir %%DATADIR%%/resources/inspector/components
+@dir %%DATADIR%%/resources/inspector/console
+@dir %%DATADIR%%/resources/inspector/device_mode_test_runner
+@dir %%DATADIR%%/resources/inspector/bindings_test_runner
+@dir %%DATADIR%%/resources/inspector/lighthouse
+@dir %%DATADIR%%/resources/inspector/inspector_main
+@dir %%DATADIR%%/resources/inspector/console_counters
+@dir %%DATADIR%%/resources/inspector/profiler
+@dir %%DATADIR%%/resources/inspector/source_frame
+@dir %%DATADIR%%/resources/inspector/extensions
+@dir %%DATADIR%%/resources/inspector/cm_headless
+@dir %%DATADIR%%/resources/inspector/worker_service
+@dir %%DATADIR%%/resources/inspector/lighthouse_worker
+@dir %%DATADIR%%/resources/inspector/help
+@dir %%DATADIR%%/resources/inspector/formatter_worker
+@dir %%DATADIR%%/resources/inspector/main
+@dir %%DATADIR%%/resources/inspector/cm_modes
+@dir %%DATADIR%%/resources/inspector/security
+@dir %%DATADIR%%/resources/inspector/root
+@dir %%DATADIR%%/resources/inspector/wasmparser_worker
+@dir %%DATADIR%%/resources/inspector/quick_open
+@dir %%DATADIR%%/resources/inspector/snippets
+@dir %%DATADIR%%/resources/inspector/workspace_diff
+@dir %%DATADIR%%/resources/inspector/layer_viewer
+@dir %%DATADIR%%/resources/inspector/text_editor
+@dir %%DATADIR%%/resources/inspector/dom_extension
+@dir %%DATADIR%%/resources/inspector/platform
+@dir %%DATADIR%%/resources/inspector/coverage_test_runner
+@dir %%DATADIR%%/resources/inspector/devices
+@dir %%DATADIR%%/resources/inspector/node_main
+@dir %%DATADIR%%/resources/inspector/emulated_devices
+@dir %%DATADIR%%/resources/inspector/third_party/lighthouse/locales
+@dir %%DATADIR%%/resources/inspector/third_party/lighthouse
+@dir %%DATADIR%%/resources/inspector/third_party
+@dir %%DATADIR%%/resources/inspector/color_picker
+@dir %%DATADIR%%/resources/inspector/browser_sdk
+@dir %%DATADIR%%/resources/inspector/resources
+@dir %%DATADIR%%/resources/inspector/bindings
+@dir %%DATADIR%%/resources/inspector/performance_test_runner
+@dir %%DATADIR%%/resources/inspector/services
+@dir %%DATADIR%%/resources/inspector/axe_core_test_runner
+@dir %%DATADIR%%/resources/inspector/dagre_layout
+@dir %%DATADIR%%/resources/inspector
+@dir %%DATADIR%%/resources
+@dir %%DATADIR%%/swiftshader
+@dir %%DATADIR%%
+@dir share/icons/hicolor/256x256/apps
+@dir share/icons/hicolor/256x256
+@dir share/icons/hicolor/22x22/apps
+@dir share/icons/hicolor/22x22
+@dir share/icons/hicolor/128x128/apps
+@dir share/icons/hicolor/128x128
+@dir share/icons/hicolor/48x48/apps
+@dir share/icons/hicolor/48x48
+@dir share/icons/hicolor/64x64/apps
+@dir share/icons/hicolor/64x64
+@dir share/icons/hicolor/24x24/apps
+@dir share/icons/hicolor/24x24
+@dir share/icons/hicolor
+@dir share/icons

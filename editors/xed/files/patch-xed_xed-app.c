@@ -1,0 +1,10 @@
+--- xed/xed-app.c.orig
++++ xed/xed-app.c
+@@ -36,0 +37 @@
++#include <glib.h>
+@@ -42 +43 @@
+-#if PYGOBJECT_MAJOR_VERSION > 3 || (PYGOBJECT_MAJOR_VERSION == 3 && PYGOBJECT_MINOR_VERSION > 50)
++#if GLIB_CHECK_VERSION(2, 80, 0)
+@@ -1000 +1001 @@
+-#if PYGOBJECT_MAJOR_VERSION > 3 || (PYGOBJECT_MAJOR_VERSION == 3 && PYGOBJECT_MINOR_VERSION > 50)
++#if GLIB_CHECK_VERSION(2, 80, 0)

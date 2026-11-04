@@ -1,0 +1,44 @@
+PORTNAME=	torchaudio
+DISTVERSIONPREFIX=	v
+DISTVERSION=	2.11.0
+CATEGORIES=	ai python # machine-learning
+MASTER_SITES=	https://downloads.sourceforge.net/project/sox/sox/14.4.2/:sox
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTFILES=	sox-14.4.2.tar.bz2:sox
+EXTRACT_ONLY=	${GH_ACCOUNT}-${GH_PROJECT}-${DISTVERSIONFULL}_GH0.tar.gz
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	PyTorch-based audio signal processing and machine learning library
+WWW=		https://pytorch.org/audio/stable/index.html \
+		https://github.com/pytorch/audio
+
+LICENSE=	bsd2
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BUILD_DEPENDS=	${PY_SETUPTOOLS} \
+		${PYTHON_PKGNAMEPREFIX}pytorch>0:ai/py-pytorch@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR} \
+		cmake:devel/cmake-core \
+		ninja:devel/ninja \
+		pybind11>0:devel/pybind11
+LIB_DEPENDS=	libabsl_symbolize.so:devel/abseil \
+		libprotobuf.so:devel/protobuf
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytorch>0:ai/py-pytorch@${PY_FLAVOR}
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}soundfile>0:audio/py-SoundFile@${PY_FLAVOR}
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}torchcodec>0:multimedia/py-torchcodec@${PY_FLAVOR}
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}expecttest>0:devel/py-expecttest@${PY_FLAVOR}
+
+USES=		python
+USE_PYTHON=	pep517 autoplist pytest
+
+MAKE_ENV=	USE_FFMPEG=0 # ffmpeg integration is broken or unavailable, see https://github.com/pytorch/audio/issues/3716
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	pytorch
+GH_PROJECT=	audio
+
+TEST_ENV=	${MAKE_ENV} PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
+
+# tests as of 2.11.0: 592 passed, 4 failed, 473 skipped (segfault in rnnt_pipeline_test upstream issue)
+
+.include <bsd.port.mk>

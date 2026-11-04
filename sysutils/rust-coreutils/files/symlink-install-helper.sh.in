@@ -1,0 +1,2 @@
+#!/bin/sh
+for i in $(%%GREP%% -o '".*"' %%CARGO_TARGET_DIR%%/*/build/coreutils-*/out/uutils_map.rs | %%SED%% 's/"//g'| %%SED%% 's/$/ /g'| %%TR%% -d '\n'| %%TR%% -d '\r'); do %%RLN%% %%FAKE_DESTDIR%%%%PREFIX%%/bin/%%BINPREFIX%%coreutils %%FAKE_DESTDIR%%%%PREFIX%%/bin/%%BINPREFIX%%${i}; done

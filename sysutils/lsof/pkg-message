@@ -1,0 +1,12 @@
+[
+{ type: install
+  message: <<EOD
+NOTE: Due to the way the BSD build clusters make packages,
+you may see a warning similar to the following:
+
+lsof: WARNING: compiled for x release ; this is y release.
+
+You can ignore if using pre-built packages. 
+EOD
+}
+]

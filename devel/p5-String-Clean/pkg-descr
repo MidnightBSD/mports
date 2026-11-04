@@ -1,0 +1,3 @@
+String::Clean::XSS - Clean up for Cross Site Scripting (XSS)
+
+Clean strings to protect from XSS attacks.

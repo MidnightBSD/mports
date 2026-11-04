@@ -1,0 +1,11 @@
+--- libjsonevt/config.sub.orig	2019-04-02 08:10:42.395970000 -0400
++++ libjsonevt/config.sub	2019-04-02 08:11:09.500221000 -0400
+@@ -1243,7 +1243,7 @@
+ 	      | -nindy* | -vxsim* | -vxworks* | -ebmon* | -hms* | -mvs* \
+ 	      | -clix* | -riscos* | -uniplus* | -iris* | -rtu* | -xenix* \
+ 	      | -hiux* | -386bsd* | -knetbsd* | -mirbsd* | -netbsd* \
+-	      | -openbsd* | -solidbsd* \
++	      | -openbsd* | -solidbsd* | -midnightbsd* \
+ 	      | -ekkobsd* | -kfreebsd* | -freebsd* | -riscix* | -lynxos* \
+ 	      | -bosx* | -nextstep* | -cxux* | -aout* | -elf* | -oabi* \
+ 	      | -ptx* | -coff* | -ecoff* | -winnt* | -domain* | -vsta* \
