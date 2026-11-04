@@ -1,3 +1,0 @@
-Mojo::IOLoop::Delay adds flow-control helpers to Mojo::Promise,
-which can help you avoid deep nested closures that often result
-from continuation-passing style.

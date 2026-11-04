@@ -1,4 +1,0 @@
-@mode 0755
-bin/crowdsec-firewall-bouncer
-@mode 0600
-@sample %%ETCDIR%%/crowdsec-firewall-bouncer.yaml.sample

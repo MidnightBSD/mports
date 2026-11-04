@@ -1,2 +1,0 @@
-OpenStruct subclass that returns nested hash attributes
-as RecursiveOpenStructs.

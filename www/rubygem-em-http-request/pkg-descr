@@ -1,3 +1,0 @@
-EM-HTTP-Request is an EventMachine based asynchronous HTTP client. It
-supports parallel request execution, keep-alive and pipelining, redirects,
-compressed responses, streaming uploads, proxies, basic auth, and OAuth.
