@@ -1,6 +1,0 @@
-include/xcb/xcb_errors.h
-lib/libxcb-errors.a
-lib/libxcb-errors.so
-lib/libxcb-errors.so.0
-lib/libxcb-errors.so.0.0.0
-libdata/pkgconfig/xcb-errors.pc

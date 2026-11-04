@@ -1,5 +1,0 @@
-Kibana provides a browser based analytics and search interface for
-Elasticsearch, including visualizations and dashboards. This port packages
-the Elastic License 2.0 distribution.
-
-Use Kibana 8.x with the matching Elasticsearch 8.x release.
