@@ -1,2 +1,0 @@
-A simple package with utilities to check whether version numbers match PEP 440,
-the Python version identification specification.

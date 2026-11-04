@@ -1,2 +1,0 @@
-xmpp-client is a simple XMPP client written in pure Go. It supports the OTR
-protocol.

@@ -1,5 +1,0 @@
-include/gnu/regex.h
-include/gnuregex.h
-lib/libgnuregex.a
-lib/libgnuregex.so
-lib/libgnuregex.so.6

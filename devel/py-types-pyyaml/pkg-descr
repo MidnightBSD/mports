@@ -1,2 +1,0 @@
-This is a PEP 561 type stub package for the PyYAML package. It can be used by
-type checkers to check code that uses PyYAML.

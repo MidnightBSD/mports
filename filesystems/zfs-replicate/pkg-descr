@@ -1,2 +1,0 @@
-Advanced ZFS replication script to replicate zfs datasets/volumes between hosts
-(or between pools on the same host) via incremental snapshots.
