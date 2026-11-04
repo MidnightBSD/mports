@@ -1,0 +1,11 @@
+bin/xconfig
+etc/X11/cardDetect/XF86Config.vmware
+etc/X11/cardDetect/XF86Config.virtualbox
+etc/X11/cardDetect/XF86Config.scfb
+etc/X11/cardDetect/XF86Config.vesa
+etc/X11/cardDetect/XF86Config.qemu
+share/licenses/xconfig-0.99/LICENSE
+share/licenses/xconfig-0.99/bsd2
+share/licenses/xconfig-0.99/catalog.mk
+@dir etc/X11/cardDetect
+@dir etc/X11

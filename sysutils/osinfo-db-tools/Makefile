@@ -1,0 +1,22 @@
+PORTNAME=	osinfo-db-tools
+DISTVERSION=	1.12.0
+PORTREVISION=	3
+CATEGORIES=	sysutils
+MASTER_SITES=	https://releases.pagure.org/libosinfo/
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Tools for managing the osinfo database
+WWW=		https://libosinfo.org/
+
+LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+LIB_DEPENDS=	libjson-glib-1.0.so:devel/json-glib \
+		libsoup-2.4.so:devel/libsoup
+
+USES=		gettext gnome libarchive meson pkgconfig tar:xz
+USE_GNOME=	glib20 intltool libxml2
+
+NO_TEST=	yes
+
+.include <bsd.port.mk>

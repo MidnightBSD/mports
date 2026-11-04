@@ -1,0 +1,35 @@
+PORTNAME=	libgsf
+DISTVERSION=	1.14.58
+CATEGORIES=	devel
+MASTER_SITES=	GNOME
+DIST_SUBDIR=	gnome
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT?=	Extensible i/o abstraction for dealing with structured file formats
+WWW=		https://gitlab.gnome.org/GNOME/libgsf/
+
+LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+USES=		cpe gmake gnome libtool localbase pathfix pkgconfig tar:xz
+CPE_VENDOR=	gnome
+USE_GNOME=	gdkpixbuf glib20 libxml2 introspection:build
+USE_LDCONFIG=	yes
+
+GNU_CONFIGURE=	yes
+
+CONFIGURE_ARGS=	--enable-introspection
+
+INSTALL_TARGET=	install-strip
+
+PLIST_SUB+=	LIBMINORVER=${DISTVERSION:E} \
+		LIBSHORTVER=${DISTVERSION:R:S/.//}
+
+OPTIONS_DEFINE=	NLS
+OPTIONS_DEFAULT=NLS
+OPTIONS_SUB=	yes
+
+NLS_USES=		gettext
+NLS_CONFIGURE_ENABLE=	nls
+
+.include <bsd.port.mk>

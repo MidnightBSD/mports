@@ -1,0 +1,29 @@
+--- configure.orig	2019-05-10 19:26:05.817673000 -0400
++++ configure	2019-05-10 19:26:41.958002000 -0400
+@@ -3821,7 +3821,7 @@
+ 
+         linux="yes"
+ 		;;
+-	freebsd*)
++	freebsd*|midnightbsd*)
+ 		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: none needed" >&5
+ $as_echo "none needed" >&6; }
+ 
+@@ -3905,7 +3905,7 @@
+ 
+         linux="yes"
+ 		;;
+-    freebsd*)
++    freebsd*|midnightbsd*)
+         { $as_echo "$as_me:${as_lineno-$LINENO}: result: none needed" >&5
+ $as_echo "none needed" >&6; }
+ 
+@@ -5616,7 +5616,7 @@
+ $as_echo_n "checking if more special flags are required for pthreads... " >&6; }
+         flag=no
+         case ${host_os} in
+-            aix* | freebsd* | darwin*) flag="-D_THREAD_SAFE";;
++            aix* | midnightbsd* | freebsd* | darwin*) flag="-D_THREAD_SAFE";;
+             osf* | hpux*) flag="-D_REENTRANT";;
+             solaris*)
+             if test "$GCC" = "yes"; then

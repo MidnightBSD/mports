@@ -1,0 +1,7 @@
+TIMESTAMP = 1790880800
+SHA256 (ghc-9.12.4-src.tar.xz) = 02d1ee5080acf00e135b93b238f09015b06ff27254cde59669cf57c42c2bee43
+SIZE (ghc-9.12.4-src.tar.xz) = 33698416
+SHA256 (ghc-9.6.7-boot-amd64-freebsd.tar.xz) = d55285c5998f3f040f52e159bc3b381ddd969a64670bf6630838fde2a84eb7c6
+SIZE (ghc-9.6.7-boot-amd64-freebsd.tar.xz) = 125512852
+SHA256 (hadrian-9.12.4-boot.tar.gz) = a3daf842aff14280661d6becd4add5f9438dffee0e7488acf5fc4ec681304909
+SIZE (hadrian-9.12.4-boot.tar.gz) = 2618711

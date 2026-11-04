@@ -1,0 +1,15 @@
+--- meson.build.orig
++++ meson.build
+@@ -25,5 +25,11 @@
+ gudev = dependency ('gudev-1.0', version: gudev_version, required : get_option('gudev'))
+ libevdev = dependency ('libevdev', version: libevdev_version)
+-hidapi = dependency ('hidapi-hidraw')
++# hidapi-hidraw is Linux-specific.  MidnightBSD's hidapi package provides
++# the portable libusb backend as hidapi instead.
++if host_machine.system() == 'linux'
++  hidapi = dependency ('hidapi-hidraw')
++else
++  hidapi = dependency ('hidapi')
++endif
+ 
+ config_h = configuration_data()

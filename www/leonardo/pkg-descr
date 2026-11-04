@@ -1,0 +1,5 @@
+Leonardo is an S3-compatible object storage server that turns a POSIX
+filesystem directory into an S3 endpoint.  It implements the AWS S3
+REST API for buckets and objects, including multipart uploads,
+versioning, object locking, lifecycle policies, ACLs, presigned URLs,
+SigV4 and SigV2 authentication, and more.

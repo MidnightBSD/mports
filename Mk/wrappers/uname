@@ -1,0 +1,42 @@
+#!/bin/mksh
+
+args=`getopt amnr $*`
+if [ $? != 0 ]
+then
+         echo 'Usage: uname -[arn]'
+         exit 2
+fi
+           set -- $args
+           # You cannot use the set command with a backquoted getopt directly,
+           # since the exit code from getopt would be shadowed by those of set,
+           # which is zero by definition.
+           for i
+           do
+                   case "$i"
+                   in
+                           -a|-r|-m|-n)
+                                   sflags="${i#-}$sflags";
+                                   shift;;
+                           --)
+                                   shift; break;;
+                   esac
+           done
+#           echo single-char flags: "'"$sflags"'"
+#           echo oarg is "'"$oarg"'"
+
+if [ -z $sflags ]; then
+        echo "FreeBSD"
+else
+if [ $sflags == 'm' ]; then
+        /usr/bin/uname -m
+fi
+if [ $sflags == 'n' ]; then
+        /usr/bin/uname -n
+fi
+if [ $sflags == 'r' ]; then
+        echo '11.4-RELEASE'
+fi
+if [ $sflags == 'a' ]; then
+        echo "FreeBSD `/usr/bin/uname -n` 11.4-RELEASE FreeBSD 11.4-RELEASE GENERIC `/usr/bin/uname -m`"
+fi
+fi

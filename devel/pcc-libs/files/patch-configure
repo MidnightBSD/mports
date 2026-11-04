@@ -1,0 +1,38 @@
+--- configure.orig	2014-12-06 05:06:59.000000000 -0500
++++ configure	2022-12-27 00:39:55.826075000 -0500
+@@ -1976,7 +1976,7 @@
+ 	case "$target_cpu" in
+ 	    i?86) targmach=i386 ;;
+ 	    powerpc) targmach=powerpc endian=big ;;
+-	    x86_64) targmach=amd64 ;;
++	    amd64) targmach=amd64 ;;
+ 	esac
+ 	;;
+ 
+@@ -1991,7 +1991,8 @@
+ 	targos=freebsd
+ 	case "$target_cpu" in
+ 	    i386) targmach=i386 ;;
+-	    x86_64) targmach=amd64 ;;
++	    amd64) targmach=amd64 ;;
++	    x86_64|amd64) targmach=amd64 ;;
+ 	esac
+ 	;;
+ 
+@@ -2000,7 +2001,7 @@
+ 	case "$target_cpu" in
+ 	    i?86) targmach=i386 ;;
+ 	    powerpc*) targmach=powerpc endian=big ;;
+-	    x86_64) targmach=amd64 ;;
++	    amd64) targmach=amd64 ;;
+ 	esac
+ 	;;
+ 
+@@ -2009,6 +2010,7 @@
+ 	case "$target_cpu" in
+ 	    i?86) targmach=i386 ;;
+ 	    sparc64) targmach=sparc64 endian=big ;;
++	    x86_64|amd64) targmach=amd64 ;;
+ 	esac
+ 	;;
+ 

@@ -1,0 +1,24 @@
+# Created by: Martin Jackson <mhjacks@swbell.net>
+
+PORTNAME=	pyasn1
+PORTVERSION=	0.4.7
+PORTREVISION=	2
+CATEGORIES=	devel python
+MASTER_SITES=	PYPI
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	ASN.1 toolkit for Python
+
+LICENSE=	bsd2
+LICENSE_FILE=	${WRKSRC}/LICENSE.rst
+
+NO_ARCH=	yes
+USES=		python
+USES+=	cpe
+USE_PYTHON=	allflavors autoplist distutils
+
+do-test:
+	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test
+
+.include <bsd.port.mk>

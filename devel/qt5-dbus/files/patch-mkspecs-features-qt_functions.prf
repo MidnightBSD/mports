@@ -1,0 +1,11 @@
+--- mkspecs/features/qt_functions.prf.orig	2019-10-05 14:54:51.393977000 -0400
++++ mkspecs/features/qt_functions.prf	2019-10-05 14:55:01.033030000 -0400
+@@ -191,7 +191,7 @@
+             libs = bins
+             deppath.CONFIG = always_prepend
+             deppath.name = PATH
+-        } else:contains(QMAKE_HOST.os, Linux|FreeBSD|OpenBSD|NetBSD|DragonFly|SunOS|HP-UX|QNX|GNU) {
++        } else:contains(QMAKE_HOST.os, Linux|MidnightBSD|FreeBSD|OpenBSD|NetBSD|DragonFly|SunOS|HP-UX|QNX|GNU) {
+             deppath.name = LD_LIBRARY_PATH
+         } else:contains(QMAKE_HOST.os, Haiku) {
+             deppath.name = LIBRARY_PATH
