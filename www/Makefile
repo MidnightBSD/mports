@@ -1,4 +1,4 @@
-    COMMENT = Ports related to the World Wide Web
+COMMENT = Ports related to the World Wide Web
 
     SUBDIR += R-cran-RgoogleMaps
     SUBDIR += R-cran-Rook
@@ -380,6 +380,7 @@
     SUBDIR += qt6-websockets
     SUBDIR += qt6-webview
     SUBDIR += raphael
+    SUBDIR += rubygem-action_text-trix81
     SUBDIR += rubygem-actioncable-gitlab
     SUBDIR += rubygem-actioncable72
     SUBDIR += rubygem-actioncable80
