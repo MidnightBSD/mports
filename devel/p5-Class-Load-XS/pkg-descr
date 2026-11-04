@@ -1,2 +1,0 @@
-Class::Load::XS provides an XS implementation for portions of Class::Load. See
-Class::Load for API details.

@@ -1,3 +1,0 @@
-courieruserinfo is a utility for retrieving user account information.
-Account information is accessed through the courier-authlib authentication
-library.

@@ -1,8 +1,0 @@
-[
-{ type: install
-  message: <<EOM
-Joystick support is untested and it is unknown if it works.
-
-EOM
-}
-]
