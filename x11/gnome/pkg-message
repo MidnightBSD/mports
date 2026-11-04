@@ -1,7 +1,0 @@
-[
-{ type: install
-  message: <<EOM
-Congratulations!  GNOME has been successfully installed on your system.
-EOM
-}
-]

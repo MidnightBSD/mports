@@ -1,4 +1,0 @@
-bin/autossh
-%%EXAMPLESDIR%%/autossh.host
-%%EXAMPLESDIR%%/rscreen
-share/man/man1/autossh.1.gz

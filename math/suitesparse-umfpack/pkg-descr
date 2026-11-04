@@ -1,3 +1,0 @@
-This port installs the module UMFPACK of SuiteSparse.
-
-UMFPACK is a set of routines solving sparse linear systems via LU factorization.

@@ -1,7 +1,0 @@
-
- $MidnightBSD$
- MidnightBSD Additions
-
- Makefile
-*.mk
--tab 4

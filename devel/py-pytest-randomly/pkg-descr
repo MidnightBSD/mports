@@ -1,2 +1,0 @@
-Pytest plugin to randomly order tests and control random.seed. (Also available
-for nose).

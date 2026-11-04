@@ -1,6 +1,0 @@
-%%SITE_PERL%%/DDS.pm
-%%SITE_PERL%%/Data/Dump/Streamer.pm
-%%SITE_PERL%%/Data/Dump/Streamer/_/Printers.pm
-%%SITE_PERL%%/auto/Data/Dump/Streamer/Streamer.so
-%%PERL5_MAN3%%/DDS.3.gz
-%%PERL5_MAN3%%/Data::Dump::Streamer.3.gz
