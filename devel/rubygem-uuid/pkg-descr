@@ -1,0 +1,2 @@
+rubygem-uuid is a UUID generator for Ruby applications.
+It can create UUID values using MAC address and timestamp data.

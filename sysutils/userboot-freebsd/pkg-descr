@@ -1,0 +1,2 @@
+A copy of the userboot.so from FreeBSD 10 for use with
+bhyve. This allows you to boot FreeBSD images on MidnightBSD.

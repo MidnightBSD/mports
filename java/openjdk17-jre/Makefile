@@ -1,0 +1,10 @@
+PKGNAMESUFFIX=	${JDK_MAJOR_VERSION}-jre
+
+COMMENT=	Java Runtime Environment ${JDK_MAJOR_VERSION}
+
+BUILD_JRE=	yes
+MASTERDIR=	${.CURDIR}/../openjdk17
+
+MAKE_JOBS_UNSAFE=yes
+
+.include "${MASTERDIR}/Makefile"

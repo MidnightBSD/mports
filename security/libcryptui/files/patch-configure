@@ -1,0 +1,42 @@
+--- configure.orig	2015-03-23 09:47:46 UTC
++++ configure
+@@ -17539,7 +17539,11 @@ if test $GPGME_CONFIG != "failed" ; then
+-	if test "$major" -eq "$req_major"; then
+-		if test "$minor" -ge "$req_minor"; then
+-			if test "$micro" -ge "$req_micro"; then
+-				ok="yes"
+-			fi
+-		fi
+-	fi
++	if test "$major" -gt "$req_major"; then
++		ok="yes"
++	elif test "$major" -eq "$req_major"; then
++		if test "$minor" -gt "$req_minor"; then
++			ok="yes"
++		elif test "$minor" -eq "$req_minor"; then
++			if test "$micro" -ge "$req_micro"; then
++				ok="yes"
++			fi
++		fi
++	fi
+--- configure.ac.orig	2015-03-23 09:46:56 UTC
++++ configure.ac
+@@ -150,7 +150,11 @@ if test $GPGME_CONFIG != "failed" ; then
+-	if test "$major" -eq "$req_major"; then
+-		if test "$minor" -ge "$req_minor"; then
+-			if test "$micro" -ge "$req_micro"; then
+-				ok="yes"
+-			fi
+-		fi
+-	fi
++	if test "$major" -gt "$req_major"; then
++		ok="yes"
++	elif test "$major" -eq "$req_major"; then
++		if test "$minor" -gt "$req_minor"; then
++			ok="yes"
++		elif test "$minor" -eq "$req_minor"; then
++			if test "$micro" -ge "$req_micro"; then
++				ok="yes"
++			fi
++		fi
++	fi

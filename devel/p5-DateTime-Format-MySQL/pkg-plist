@@ -1,0 +1,9 @@
+%%SITE_PERL%%/DateTime/Format/MySQL.pm
+%%PERL5_MAN3%%/DateTime::Format::MySQL.3.gz
+@dir %%SITE_PERL%%/DateTime/Format
+@dir %%SITE_PERL%%/DateTime
+@dir %%SITE_ARCH%%/auto/DateTime/Format/MySQL
+@dir %%SITE_ARCH%%/auto/DateTime/Format
+@dir %%SITE_ARCH%%/auto/DateTime
+@dir %%SITE_ARCH%%/auto
+@dir %%SITE_PERL%%

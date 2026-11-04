@@ -1,0 +1,19 @@
+--- lib/versions.orig	2025-02-24 00:32:40 UTC
++++ lib/versions
+@@ -57,6 +57,7 @@ versions_osName() {
+       esac
+       ;;
+     FreeBSD) os_name_='FreeBSD' ;;
++    MidnightBSD) os_name_='MidnightBSD' ;;
+     Linux) os_name_='Linux' ;;
+     SunOS)
+       os_name_='SunOS'
+@@ -85,7 +86,7 @@ versions_osVersion() {
+     Darwin)
+       os_version_=`/usr/bin/sw_vers -productVersion`
+       ;;
+-    FreeBSD)
++    FreeBSD|MidnightBSD)
+       os_version_=`expr "${os_release_}" : '\([0-9]*\.[0-9]*\)-.*'`
+       ;;
+     Linux)

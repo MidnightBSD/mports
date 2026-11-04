@@ -1,0 +1,29 @@
+--- src/couch/rebar.config.script.orig	2026-10-07 00:23:19 UTC
++++ src/couch/rebar.config.script
+@@ -247,12 +247,14 @@ CouchJSEnv = case SMVsn of
+     "1.8.5" ->
+         [
+             {"CFLAGS", JS_CFLAGS},
+-            {"LDFLAGS", JS_LDFLAGS}
++            {"LDFLAGS", JS_LDFLAGS},
++            {"ERL_LDFLAGS", ""}
+         ];
+     _ ->
+         [
+             {"CXXFLAGS", JS_CFLAGS},
+-            {"LDFLAGS", JS_LDFLAGS}
++            {"LDFLAGS", JS_LDFLAGS},
++            {"ERL_LDFLAGS", ""}
+         ]
+ end.
+ 
+@@ -282,7 +284,8 @@ IcuBsdEnv = [{"CFLAGS", "-DXP_UNIX -I/usr/local/includ
+ IcuDarwinEnv = [{"CFLAGS", "-DXP_UNIX " ++ IcuIncludePath},
+                 {"LDFLAGS", IcuLibPath}].
+ IcuBsdEnv = [{"CFLAGS", "-DXP_UNIX -I/usr/local/include"},
+-             {"LDFLAGS", "-L/usr/local/lib"}].
++             {"LDFLAGS", "-L/usr/local/lib"},
++             {"ERL_LDFLAGS", ""}].
+ IcuWinEnv = [{"CFLAGS", "$DRV_CFLAGS /DXP_WIN"},
+              {"LDFLAGS", "$LDFLAGS icuin.lib icudt.lib icuuc.lib"}].
+ 

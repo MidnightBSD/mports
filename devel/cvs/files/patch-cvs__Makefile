@@ -1,0 +1,16 @@
+--- ../cvs-build/cvs/Makefile.orig	2012-09-05 19:25:43.000000000 -0700
++++ ../cvs-build/cvs/Makefile	2021-01-02 17:11:22.159883000 -0800
+@@ -29,10 +29,10 @@
+ 	 -I/usr/include/gnu \
+ 	 -I${CVSDIR}/lib -I${CVSDIR}/diff -I.
+ 
+-DPADD=	${LIBCVS} ${LIBDIFF} ${LIBGNUREGEX} ${LIBMD} ${LIBCRYPT} ${LIBZ}
+-LDADD=	${LIBCVS} ${LIBDIFF} -lgnuregex -lmd -lcrypt -lz
++DPADD=	${LIBCVS} ${LIBDIFF} ${LIBMD} ${LIBCRYPT} ${LIBZ}
++LDADD=	${LIBCVS} ${LIBDIFF} -lmd -lcrypt -lz
+ 
+-.if ${MK_KERBEROS_SUPPORT} != "no"
++.if defined(KERBEROS_SUPPORT)
+ CFLAGS+= -DHAVE_GSSAPI -DENCRYPTION
+ LDADD+= -lgssapi -lkrb5 -lhx509 -lasn1 -lcrypto -lroken -lcrypt -lcom_err
+ DPADD+= ${LIBGSSAPI} ${LIBKRB5} ${LIBHX509} ${LIBASN1} ${LIBCRYPTO} ${LIBROKEN}

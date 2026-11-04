@@ -1,0 +1,26 @@
+PORTNAME=	opennebula
+PORTVERSION=	7.0.2
+CATEGORIES=	net rubygems
+MASTER_SITES=	RG
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Libraries needed to talk to OpenNebula
+WWW=		https://opennebula.io/ \
+		https://github.com/OpenNebula/one
+
+LICENSE=	Apache-2.0
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	rubygem-ipaddress>=0:net/rubygem-ipaddress \
+		rubygem-json>=0:devel/rubygem-json \
+		rubygem-nokogiri>=0:textproc/rubygem-nokogiri \
+		rubygem-parse-cron>=0:textproc/rubygem-parse-cron \
+		rubygem-treetop>=0:devel/rubygem-treetop \
+		rubygem-xmlrpc>=0:net/rubygem-xmlrpc
+
+USES=		gem
+
+NO_ARCH=	yes
+
+.include <bsd.port.mk>

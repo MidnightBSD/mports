@@ -1,0 +1,27 @@
+--- Makefile.orig	2021-11-29 13:34:10.000000000 -0500
++++ Makefile	2023-02-14 17:05:56.079085000 -0500
+@@ -417,7 +417,7 @@
+ # =========================================================
+ # make install is validated only for the following targets
+ # =========================================================
+-ifneq (,$(filter Linux Darwin GNU/kFreeBSD GNU Haiku OpenBSD FreeBSD NetBSD DragonFly SunOS CYGWIN% , $(UNAME)))
++ifneq (,$(filter Linux Darwin GNU/kFreeBSD GNU Haiku OpenBSD FreeBSD MidnightBSD NetBSD DragonFly SunOS CYGWIN% , $(UNAME)))
+ 
+ DESTDIR     ?=
+ # directory variables: GNU conventions prefer lowercase
+@@ -437,13 +437,13 @@
+ mandir      ?= $(datarootdir)/man
+ man1dir     ?= $(mandir)/man1
+ 
+-ifneq (,$(filter $(UNAME),FreeBSD NetBSD DragonFly))
++ifneq (,$(filter $(UNAME),MidnightBSD FreeBSD NetBSD DragonFly))
+ PKGCONFIGDIR ?= $(PREFIX)/libdata/pkgconfig
+ else
+ PKGCONFIGDIR ?= $(LIBDIR)/pkgconfig
+ endif
+ 
+-ifneq (,$(filter $(UNAME),OpenBSD FreeBSD NetBSD DragonFly SunOS))
++ifneq (,$(filter $(UNAME),OpenBSD MidnightBSD FreeBSD NetBSD DragonFly SunOS))
+ MANDIR  ?= $(PREFIX)/man/man1
+ else
+ MANDIR  ?= $(man1dir)

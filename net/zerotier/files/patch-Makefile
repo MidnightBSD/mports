@@ -1,0 +1,15 @@
+--- Makefile.orig	2019-09-05 14:02:16.000000000 -0400
++++ Makefile	2020-03-14 16:09:47.190298000 -0400
+@@ -11,8 +11,10 @@
+ endif
+ 
+ ifeq ($(OSTYPE),FreeBSD)
+-	CC=clang
+-	CXX=clang++
++	ZT_BUILD_PLATFORM=7
++	include make-bsd.mk
++endif
++ifeq ($(OSTYPE),MidnightBSD)
+ 	ZT_BUILD_PLATFORM=7
+ 	include make-bsd.mk
+ endif

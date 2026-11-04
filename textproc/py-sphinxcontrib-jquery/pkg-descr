@@ -1,0 +1,5 @@
+sphinxcontrib-jquery is a Sphinx extension that includes jQuery in
+documentation projects. It is needed for compatibility with newer
+Sphinx releases that no longer bundle jQuery.
+
+WWW: https://github.com/sphinx-contrib/jquery

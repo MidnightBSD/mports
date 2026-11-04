@@ -1,0 +1,190 @@
+PORTNAME=	cyrus-sasl
+PORTVERSION=	2.1.28
+CATEGORIES=	security
+MASTER_SITES=	https://github.com/cyrusimap/cyrus-sasl/releases/download/${PORTNAME}-${PORTVERSION}/
+
+MAINTAINER=	ports@MidnightBSD.org
+
+LICENSE=	bsd4
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+USES+=		gmake
+USE_LDCONFIG=	yes
+USES+=		ssl
+GNU_CONFIGURE=	yes
+
+CONFIGURE_ARGS+=--sysconfdir=${PREFIX}/etc \
+		--with-configdir=${PREFIX}/lib/sasl2:${PREFIX}/etc/sasl2 \
+		--with-plugindir=${PREFIX}/lib/sasl2 \
+		--with-dbpath=${SASLDB_DIR}/sasldb2 \
+		--with-lib-subdir=lib \
+		--with-pkgconfigdir=${PREFIX}/libdata/pkgconfig \
+		--includedir=${PREFIX}/include \
+		--enable-static \
+		--with-rc4=openssl \
+		--with-sphinx-build=no
+CONFIGURE_ARGS+=--disable-anon \
+		--disable-cram \
+		--disable-digest \
+		--disable-gssapi \
+		--disable-krb4 \
+		--disable-login \
+		--disable-ntlm \
+		--disable-otp \
+		--disable-plain \
+		--disable-scram \
+		--disable-srp \
+		--with-dblib=none
+CONFIGURE_ARGS+=${CYRUS_CONFIGURE_ARGS}
+CONFIGURE_ENV=	CC_FOR_BUILD="${CC}"
+MAKE_ENV+=	INSTALL_STRIP_FLAG=${STRIP}
+
+DOCSDIR=	${PREFIX}/share/doc/cyrus-sasl2
+
+CPE_VENDOR=	cmu
+
+SASLAUTHD_RUNPATH?=	/var/run/saslauthd
+
+CYRUS_USER?=	cyrus
+CYRUS_GROUP?=	cyrus
+
+CYRUS_SASL2_DIR=${MASTERDIR}/../../security/cyrus-sasl2
+DISTINFO_FILE=	${CYRUS_SASL2_DIR}/distinfo
+PATCHDIR=	${CYRUS_SASL2_DIR}/files
+
+.if defined(PKGNAMESUFFIX)
+CYRUS_BUILD_TARGET?=	${PKGNAMESUFFIX:S/^-//}
+.else
+CYRUS_BUILD_TARGET?=	${PORTNAME}
+.endif
+
+.if ${CYRUS_BUILD_TARGET} != "cyrus-sasl" && ${CYRUS_BUILD_TARGET} != "saslauthd"
+
+INSTALL_WRKSRC=	${WRKSRC}/plugins
+LIB_DEPENDS=	libsasl2.so:security/cyrus-sasl2
+USES+=		libtool:build
+
+PLIST_FILES+=	lib/sasl2/lib${CYRUS_BUILD_TARGET}.a \
+		lib/sasl2/lib${CYRUS_BUILD_TARGET}.so \
+		lib/sasl2/lib${CYRUS_BUILD_TARGET}.so.3 \
+		lib/sasl2/lib${CYRUS_BUILD_TARGET}.so.3.0.0
+
+.endif
+
+.include <bsd.port.pre.mk>
+
+.if ${OPENSSLBASE} == /usr
+CONFIGURE_ARGS+=--with-openssl=yes
+.else
+CONFIGURE_ARGS+=--with-openssl=${OPENSSLBASE}
+.endif
+
+.if ${ARCH} == "amd64"
+CPPFLAGS+=	-fPIC
+.endif
+
+.if ${PORT_OPTIONS:MSASLDB_IN_VAR}
+SASLDB_DIR=	/var/db/sasl2
+.else
+SASLDB_DIR=	${PREFIX}/etc
+.endif
+
+.if ${CYRUS_BUILD_TARGET} == "cyrus-sasl"
+
+.if ${PORT_OPTIONS:MBDB1}
+SASLDB_NAME=	sasldb2.db
+.elif ${PORT_OPTIONS:MBDB}
+SASLDB_NAME=	sasldb2
+.elif ${PORT_OPTIONS:MGDBM} || ${PORT_OPTIONS:MLMDB}
+SASLDB_NAME=	sasldb2
+.else
+SASLDB=	"@comment "
+.endif
+
+SUB_FILES=	pkg-deinstall pkg-install pkg-message
+SUB_LIST=	CYRUS_USER=${CYRUS_USER} CYRUS_GROUP=${CYRUS_GROUP} \
+		SASLDB_DIR=${SASLDB_DIR} SASLDB_NAME=${SASLDB_NAME}
+
+PLIST_SUB+=	PREFIX=${PREFIX} \
+		SASLDB=${SASLDB}
+PORTDOCS=	*
+
+post-install-DOCS-on:
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	cd ${WRKSRC}/doc && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${DOCSDIR} \
+		"! ( -path */html/_sources* -o -name .buildinfo \
+		-o -name Makefile -o -name Makefile.in \
+		-o -name Makefile.in.bak -o -name Makefile.am \
+		-o -name NTMakefile -o -name .cvsignore )"
+.for f in ${DOCS}
+	@${INSTALL_DATA} ${WRKSRC}/${f} ${FAKE_DESTDIR}${DOCSDIR}
+.endfor
+	@${INSTALL_DATA} ${FILESDIR}/Sendmail.README ${FAKE_DESTDIR}${DOCSDIR}
+
+.elif ${CYRUS_BUILD_TARGET} == "saslauthd"
+
+.if ${PORT_OPTIONS:MOPENLDAP}
+.if defined(WITH_OPENLDAP_VER)
+WANT_OPENLDAP_VER=	${WITH_OPENLDAP_VER}
+.endif
+.endif
+
+.if ${SASLAUTHD_RUNPATH} != /var/run/saslauthd
+RUNPATH=	"@comment "
+.endif
+
+PLIST_SUB+=	PREFIX=${PREFIX} \
+		RUNPATH=${RUNPATH}
+PORTDOCS=	*
+
+SUB_LIST+=	SASLAUTHD_RUNPATH=${SASLAUTHD_RUNPATH}
+
+do-build:
+	cd ${WRKSRC}/include && gmake
+	cd ${WRKSRC}/common && gmake
+#.if ${PORT_OPTIONS:MBDB1} || ${PORT_OPTIONS:MBDB} || ${PORT_OPTIONS:MGDBM}
+	cd ${WRKSRC}/sasldb && gmake
+#.endif
+	cd ${WRKSRC}/saslauthd && gmake
+	cd ${WRKSRC}/saslauthd && gmake saslcache
+	cd ${WRKSRC}/saslauthd && gmake testsaslauthd
+
+post-install:
+	@${INSTALL_PROGRAM} ${WRKSRC}/saslauthd/saslcache \
+		${FAKE_DESTDIR}${TRUE_PREFIX}/sbin/saslcache
+	@${INSTALL_PROGRAM} ${WRKSRC}/saslauthd/testsaslauthd \
+		${FAKE_DESTDIR}${TRUE_PREFIX}/sbin/testsaslauthd
+.if ${SASLAUTHD_RUNPATH} != /var/run/saslauthd
+	@${ECHO_MSG} ""
+	@${ECHO_MSG} "SASLAUTHD_RUNPATH was specified."
+	@${ECHO_MSG} "Make sure you create ${SASLAUTHD_RUNPATH}."
+	@${ECHO_MSG} ""
+.else
+	@${MKDIR} ${FAKE_DESTDIR}/var/run/saslauthd
+.endif
+
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/${DOCSDIR_REL}/saslauthd
+.for file in ${DOCS}
+	@${INSTALL_DATA} ${WRKSRC}/saslauthd/${file} \
+		${FAKE_DESTDIR}${TRUE_PREFIX}/${DOCSDIR_REL}/saslauthd
+.endfor
+
+.else		# plugin
+
+LIBTOOL=	${LOCALBASE}/bin/libtool
+
+post-patch:
+	@${REINPLACE_CMD} \
+		-e "/^LIBTOOL=/s|\$$(top_builddir)/libtool|${LIBTOOL}|g" \
+		${WRKSRC}/configure
+
+do-build:
+	cd ${WRKSRC}/include && gmake
+	cd ${WRKSRC}/common && gmake
+	cd ${WRKSRC}/lib && gmake libobj.la
+	cd ${WRKSRC}/plugins && gmake
+
+.endif
+
+.include <bsd.port.post.mk>

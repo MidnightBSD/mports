@@ -1,0 +1,28 @@
+--- CMakeLists.txt.orig	2025-05-12 12:06:01.000000000 -0400
++++ CMakeLists.txt	2025-05-22 16:06:05.280046000 -0400
+@@ -112,7 +112,7 @@
+     elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Linux") # Android does not link to libpthread nor librt, so this is fine
+         list(APPEND PLATFORM_LIBS dl m Threads::Threads rt)
+         list (APPEND AWS_COMMON_OS_SRC "source/linux/*.c") # OS specific includes
+-    elseif(CMAKE_SYSTEM_NAME STREQUAL "FreeBSD")
++    elseif(CMAKE_SYSTEM_NAME STREQUAL "MidnightBSD")
+         list(APPEND PLATFORM_LIBS dl m thr execinfo)
+         list (APPEND AWS_COMMON_OS_SRC "source/platform_fallback_stubs/system_info.c")
+     elseif(CMAKE_SYSTEM_NAME STREQUAL "NetBSD")
+@@ -185,7 +185,6 @@
+         )
+ 
+ add_library(${PROJECT_NAME} ${COMMON_SRC})
+-aws_set_common_properties(${PROJECT_NAME} NO_WEXTRA)
+ aws_prepare_symbol_visibility_args(${PROJECT_NAME} "AWS_COMMON")
+ target_compile_options(${PROJECT_NAME} PUBLIC ${PLATFORM_CFLAGS})
+ 
+@@ -202,7 +201,7 @@
+ 
+ #apple source already includes the definitions we want, and setting this posix source
+ #version causes it to revert to an older version. So don't turn it on there, we don't need it.
+-if (UNIX AND NOT APPLE AND NOT ${CMAKE_SYSTEM_NAME} MATCHES FreeBSD|OpenBSD)
++if (UNIX AND NOT APPLE AND NOT ${CMAKE_SYSTEM_NAME} MATCHES FreeBSD|OpenBSD|MidnightBSD)
+     #this only gets applied to aws-c-common (not its consumers).
+     target_compile_definitions(${PROJECT_NAME} PRIVATE -D_POSIX_C_SOURCE=200809L -D_XOPEN_SOURCE=500)
+ endif()

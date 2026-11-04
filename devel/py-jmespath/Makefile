@@ -1,0 +1,21 @@
+# Created by: Alexey V. Degtyarev <alexey@renatasystems.org>
+
+PORTNAME=	jmespath
+PORTVERSION=	0.10.0
+PORTREVISION=	1
+CATEGORIES=	devel python
+MASTER_SITES=	PYPI
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	JSON Matching Expressions
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE.txt
+
+USES=		python
+USE_PYTHON=	autoplist concurrent distutils
+
+NO_ARCH=	yes
+
+.include <bsd.port.mk>

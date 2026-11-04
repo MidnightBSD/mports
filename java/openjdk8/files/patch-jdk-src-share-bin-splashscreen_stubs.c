@@ -1,0 +1,16 @@
+--- jdk/src/share/bin/splashscreen_stubs.c.orig
++++ jdk/src/share/bin/splashscreen_stubs.c
+@@ -61,11 +61,11 @@
+ #define INVOKEV(name) _INVOKE(name, ,;)
+ 
+ int     DoSplashLoadMemory(void* pdata, int size) {
+-    INVOKE(SplashLoadMemory, NULL)(pdata, size);
++    INVOKE(SplashLoadMemory, 0)(pdata, size);
+ }
+ 
+ int     DoSplashLoadFile(const char* filename) {
+-    INVOKE(SplashLoadFile, NULL)(filename);
++    INVOKE(SplashLoadFile, 0)(filename);
+ }
+ 
+ void    DoSplashInit(void) {
