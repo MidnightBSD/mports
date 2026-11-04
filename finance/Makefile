@@ -1,0 +1,25 @@
+    COMMENT = Monetary, financial and related applications
+
+    SUBDIR += R-cran-lmtest
+    SUBDIR += R-cran-plm
+    SUBDIR += R-cran-strucchange
+    SUBDIR += R-cran-timeDate
+    SUBDIR += expense
+    SUBDIR += hs-hledger-web
+    SUBDIR += hs-hledger
+    SUBDIR += hs-hledger-ui
+    SUBDIR += libofx
+    SUBDIR += prestashop
+    SUBDIR += py-bitcoin
+    SUBDIR += py-pycoin
+    SUBDIR += py-stripe
+    SUBDIR += py-vatnumber
+    SUBDIR += py-ystockquote
+    SUBDIR += qtbitcointrader
+    SUBDIR += quickfix
+    SUBDIR += rubygem-money
+    SUBDIR += sql-ledger
+    SUBDIR += venice
+    SUBDIR += weberp
+
+.include <bsd.port.subdir.mk>

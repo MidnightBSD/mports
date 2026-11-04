@@ -1,0 +1,43 @@
+PORTNAME=	git-modes
+DISTVERSION=	1.4.2
+PORTEPOCH=	1
+CATEGORIES=	devel elisp
+PKGNAMESUFFIX=	${EMACS_PKGNAMESUFFIX}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	GNU Emacs modes for Git-related files
+WWW=		https://github.com/magit/git-modes
+
+LICENSE=	gpl3
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BUILD_DEPENDS=	compat.el${EMACS_PKGNAMESUFFIX}>=29.1.4.1:misc/compat.el@${EMACS_FLAVOR}
+RUN_DEPENDS=	compat.el${EMACS_PKGNAMESUFFIX}>=29.1.4.1:misc/compat.el@${EMACS_FLAVOR} \
+		git:devel/git
+
+USES=		emacs gmake
+USE_GITHUB=	yes
+GH_ACCOUNT=	magit
+
+MAKE_ENV+=	LOAD_PATH="-L ${PREFIX}/${EMACS_VERSION_SITE_LISPDIR}/compat"
+MAKE_JOBS_UNSAFE=	yes
+
+NO_ARCH=	yes
+
+PLIST_SUB=	ELISPDIR=${_ELISPDIR}
+PORTDOCS=	README.org
+
+OPTIONS_DEFINE=	DOCS
+
+_ELISPDIR=	${EMACS_VERSION_SITE_LISPDIR}/${PORTNAME}
+
+do-install:
+	@${MKDIR} ${PREFIX}/${_ELISPDIR}
+	${INSTALL_DATA} ${WRKSRC}/*.el ${WRKSRC}/*.elc \
+		${PREFIX}/${_ELISPDIR}
+
+do-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README.org ${FAKE_DESTDIR}${DOCSDIR}
+
+.include <bsd.port.mk>

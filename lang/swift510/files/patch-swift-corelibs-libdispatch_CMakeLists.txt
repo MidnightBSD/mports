@@ -1,0 +1,29 @@
+--- swift-corelibs-libdispatch/CMakeLists.txt.orig	2023-06-15 00:55:45 UTC
++++ swift-corelibs-libdispatch/CMakeLists.txt
+@@ -101,7 +101,7 @@
+ 
+ option(ENABLE_DTRACE "enable dtrace support" "")
+ 
+-if(CMAKE_SYSTEM_NAME STREQUAL Darwin OR CMAKE_SYSTEM_NAME STREQUAL FreeBSD)
++if(CMAKE_SYSTEM_NAME STREQUAL Darwin OR CMAKE_SYSTEM_NAME STREQUAL FreeBSD OR CMAKE_SYSTEM_NAME STREQUAL MidnightBSD)
+   set(ENABLE_INTERNAL_PTHREAD_WORKQUEUES_DEFAULT OFF)
+ else()
+   set(ENABLE_INTERNAL_PTHREAD_WORKQUEUES_DEFAULT ON)
+@@ -237,7 +237,7 @@
+   set(ENABLE_DTRACE_DEFAULT OFF)
+ endif()
+ 
+-if(CMAKE_SYSTEM_NAME STREQUAL FreeBSD)
++if(CMAKE_SYSTEM_NAME STREQUAL FreeBSD OR CMAKE_SYSTEM_NAME STREQUAL MidnightBSD)
+   add_compile_definitions($<$<OR:$<COMPILE_LANGUAGE:C>,$<COMPILE_LANGUAGE:CXX>>:_WITH_DPRINTF>)
+ endif()
+ 
+@@ -274,7 +274,7 @@
+ 
+ 
+ if(ENABLE_SWIFT)
+-  set(INSTALL_TARGET_DIR "${CMAKE_INSTALL_LIBDIR}/swift$<$<NOT:$<BOOL:${BUILD_SHARED_LIBS}>>:_static>/$<LOWER_CASE:${CMAKE_SYSTEM_NAME}>" CACHE PATH "Path where the libraries will be installed")
++  set(INSTALL_TARGET_DIR "${CMAKE_INSTALL_LIBDIR}/swift$<$<NOT:$<BOOL:${BUILD_SHARED_LIBS}>>:_static>/$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},MidnightBSD>,freebsd,$<LOWER_CASE:${CMAKE_SYSTEM_NAME}>>" CACHE PATH "Path where the libraries will be installed")
+   set(INSTALL_DISPATCH_HEADERS_DIR "${CMAKE_INSTALL_LIBDIR}/swift$<$<NOT:$<BOOL:${BUILD_SHARED_LIBS}>>:_static>/dispatch" CACHE PATH "Path where the headers will be installed for libdispatch")
+   set(INSTALL_BLOCK_HEADERS_DIR "${CMAKE_INSTALL_LIBDIR}/swift$<$<NOT:$<BOOL:${BUILD_SHARED_LIBS}>>:_static>/Block" CACHE PATH "Path where the headers will be installed for the blocks runtime")
+   set(INSTALL_OS_HEADERS_DIR "${CMAKE_INSTALL_LIBDIR}/swift$<$<NOT:$<BOOL:${BUILD_SHARED_LIBS}>>:_static>/os" CACHE PATH "Path where the os/ headers will be installed")

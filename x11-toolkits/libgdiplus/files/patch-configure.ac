@@ -1,0 +1,10 @@
+--- configure.ac.orig
++++ configure.ac
+@@ -30 +30 @@
+-AC_PATH_PROG(CMAKE, [cmake], [no], [$PATH:/Applications/CMake.app/Contents/bin:/usr/local/bin])
++AC_PATH_PROG(CMAKE, [DISABLEDcmake], [no], [$PATH:/Applications/CMake.app/Contents/bin:/usr/local/bin])
+@@ -78,2 +78,2 @@
+-	PANGO_LIBS="`$PKG_CONFIG --libs pangocairo `"
+-	PANGO_CFLAGS="`$PKG_CONFIG --cflags pangocairo `"
++	PANGO_LIBS="`$PKG_CONFIG --libs pangocairo pangoft2`"
++	PANGO_CFLAGS="`$PKG_CONFIG --cflags pangocairo pangoft2`"

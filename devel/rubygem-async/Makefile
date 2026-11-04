@@ -1,0 +1,27 @@
+PORTNAME=	async
+PORTVERSION=	2.39.0
+CATEGORIES=	devel rubygems
+MASTER_SITES=	RG
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Modern asynchronous I/O framework for Ruby
+WWW=		https://socketry.github.io/async/ \
+		https://github.com/socketry/async
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/license.md
+
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	rubygem-console>=1.29<2:devel/rubygem-console \
+		rubygem-fiber-annotation>=0:devel/rubygem-fiber-annotation \
+		rubygem-io-event>=1.11<2:devel/rubygem-io-event \
+		rubygem-metrics>=0.12<1:devel/rubygem-metrics \
+		rubygem-traces>=0.18<1:devel/rubygem-traces
+
+BROKEN=		requires Ruby 3.3 or later; MidnightBSD provides Ruby 3.2
+
+USES=		gem
+
+NO_ARCH=	yes
+
+.include <bsd.port.mk>

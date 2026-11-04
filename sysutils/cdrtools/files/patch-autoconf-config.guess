@@ -1,0 +1,13 @@
+--- autoconf/config.guess.orig	2019-04-06 10:59:01.908410000 -0400
++++ autoconf/config.guess	2019-12-31 13:03:33.351060000 -0500
+@@ -844,6 +844,10 @@
+ 	UNAME_PROCESSOR=`/usr/bin/uname -p`
+ 	echo "$UNAME_PROCESSOR"-unknown-freebsd"`echo "$UNAME_RELEASE"|sed -e 's/[-(].*//'`"
+ 	exit ;;
++    *:MidnightBSD:*:*)
++	UNAME_PROCESSOR=`/usr/bin/uname -p`
++	echo "$UNAME_PROCESSOR"-unknown-midnightbsd"`echo "$UNAME_RELEASE"|sed -e 's/[-(].*//'`"
++        exit ;;
+     i*:CYGWIN*:*)
+ 	echo "$UNAME_MACHINE"-pc-cygwin
+ 	exit ;;

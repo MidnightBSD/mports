@@ -1,0 +1,18 @@
+--- meson.build.orig	2026-03-26 08:02:51 UTC
++++ meson.build
+@@ -64,6 +64,6 @@ is_linux = host_machine.system() == 'linux'
+ is_linux = host_machine.system() == 'linux'
+ is_dragonfly = host_machine.system() == 'dragonfly'
+-is_freebsd = host_machine.system() == 'freebsd'
++is_freebsd = host_machine.system() == 'freebsd' or host_machine.system() == 'midnightbsd'
+ is_netbsd = host_machine.system() == 'netbsd'
+ is_openbsd = host_machine.system() == 'openbsd'
+ 
+@@ -72,6 +72,6 @@
+ thread_dep = dependency('threads')
+ fmt = dependency('fmt', version : ['>=8.1.1'], fallback : ['fmt', 'fmt_dep'])
+-spdlog = dependency('spdlog', version : ['>=1.15.2'], fallback : ['spdlog', 'spdlog_dep'], default_options : ['std_format=disabled', 'tests=disabled'])
++spdlog = dependency('spdlog', version : ['>=1.15.0'], fallback : ['spdlog', 'spdlog_dep'], default_options : ['std_format=disabled', 'tests=disabled'])
+ wayland_client = dependency('wayland-client')
+ wayland_cursor = dependency('wayland-cursor')
+ wayland_protos = dependency('wayland-protocols')

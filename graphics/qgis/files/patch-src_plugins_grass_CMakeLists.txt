@@ -1,0 +1,11 @@
+--- src/plugins/grass/CMakeLists.txt.orig	2026-07-31 12:30:19 UTC
++++ src/plugins/grass/CMakeLists.txt
+@@ -115,7 +115,7 @@
+       ${OPENPTY_LIBRARY}
+     )
+ 
+-    if (CMAKE_SYSTEM_NAME STREQUAL "FreeBSD")
++    if (CMAKE_SYSTEM_NAME MATCHES "FreeBSD|MidnightBSD")
+       target_link_libraries(plugin_grass${GRASS_BUILD_VERSION} ulog)
+     endif()
+ 

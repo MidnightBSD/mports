@@ -1,0 +1,9 @@
+%%SITE_PERL%%/meta.pm
+%%PERL5_MAN3%%/meta.3.gz
+%%SITE_PERL%%/auto/meta/meta.so
+@dir %%PERL5_MAN3%%
+@dir %%SITE_PERL%%/man
+@dir %%SITE_PERL%%/auto/meta
+@dir %%SITE_PERL%%/auto
+@dir %%SITE_PERL%%
+@dir lib/perl5

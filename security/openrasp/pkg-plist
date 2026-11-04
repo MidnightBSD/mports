@@ -1,0 +1,7 @@
+%%DATADIR%%/rasp.jar
+%%DATADIR%%/rasp-engine.jar
+%%DATADIR%%/conf/openrasp.yml
+%%DATADIR%%/plugins/official.js
+@dir %%DATADIR%%/conf
+@dir %%DATADIR%%/plugins
+@dir %%DATADIR%%

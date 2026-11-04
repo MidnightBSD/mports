@@ -1,0 +1,8 @@
+--- src/nvcore/CMakeLists.txt.orig	2026-07-06 10:24:00 UTC
++++ src/nvcore/CMakeLists.txt
+@@ -40,5 +40,5 @@ TARGET_LINK_LIBRARIES(nvcore ${LIBS})
+ # On NetBSD and FreeBSD backtrace() is provided by libexecinfo, not libc.
+-if (CMAKE_SYSTEM_NAME MATCHES "NetBSD" OR CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
++if (CMAKE_SYSTEM_NAME MATCHES "NetBSD" OR CMAKE_SYSTEM_NAME MATCHES "FreeBSD" OR CMAKE_SYSTEM_NAME MATCHES "MidnightBSD")
+      TARGET_LINK_LIBRARIES(nvcore execinfo)
+ endif()

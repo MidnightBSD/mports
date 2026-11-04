@@ -1,0 +1,11 @@
+--- swiftpm/Sources/PackageDescription/CMakeLists.txt.orig	2026-09-11 17:14:03 UTC
++++ swiftpm/Sources/PackageDescription/CMakeLists.txt
+@@ -49,7 +49,7 @@
+     "SHELL:-no-toolchain-stdlib-rpath")
+   set_target_properties(PackageDescription PROPERTIES
+     BUILD_WITH_INSTALL_RPATH TRUE
+-    INSTALL_RPATH "$ORIGIN/../../$<LOWER_CASE:${CMAKE_SYSTEM_NAME}>")
++    INSTALL_RPATH "$ORIGIN/../../$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},MidnightBSD>,freebsd,$<LOWER_CASE:${CMAKE_SYSTEM_NAME}>>")
+ endif()
+ 
+ install(FILES

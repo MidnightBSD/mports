@@ -1,0 +1,8 @@
+--- scripts/CMakeLists.txt.orig	2026-06-01 00:00:00 UTC
++++ scripts/CMakeLists.txt
+@@ -139,4 +139,4 @@
+-IF(CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
++IF(CMAKE_SYSTEM_NAME MATCHES "FreeBSD|MidnightBSD")
+   SET (PERL_PATH "/usr/local/bin/perl")
+ ELSE()
+   SET (PERL_PATH "/usr/bin/perl")

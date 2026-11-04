@@ -1,0 +1,30 @@
+PORTNAME=	lld
+PORTVERSION=	20.1.8
+DISTVERSIONSUFFIX=	-3.el9
+CATEGORIES=	devel linux
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	The LLVM Linker for LLVM suite (Rocky Linux ${LINUX_DIST_VER})
+WWW=		http://llvm.org
+
+LICENSE=	gpl2+
+
+SKIP_FAKE_CHECK=        (.*sdpscanner|.*\.(so|20.1)$)
+
+USES=		cpe linux:rl9
+USE_LDCONFIG=	yes
+USE_LINUX=	elfutils-libelf python3
+USE_LINUX_RPM=	yes
+WANT_LINUX32=yes
+
+BIN_DISTNAMES=	${PORTNAME}-${DISTVERSIONFULL}
+LIB_DISTNAMES=	${PORTNAME}-devel-${DISTVERSIONFULL} \
+		${PORTNAME}-libs-${DISTVERSIONFULL}
+# src rpm is missing
+SRC_DISTFILES=
+
+DOCSDIR=	${PREFIX}/usr/share/doc/${PORTNAME}${PKGNAMESUFFIX}-${PORTVERSION}
+
+PLIST_SUB=	LIBVERSION=${PORTVERSION:R} BINVERSION=${PORTVERSION:R:R}
+
+.include <bsd.port.mk>
