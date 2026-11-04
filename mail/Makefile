@@ -1,4 +1,4 @@
-COMMENT = Electronic mail utilities
+    COMMENT = Electronic mail utilities
 
     SUBDIR += abook
     SUBDIR += adcomplain
