@@ -380,6 +380,7 @@
     SUBDIR += qt6-websockets
     SUBDIR += qt6-webview
     SUBDIR += raphael
+    SUBDIR += rubygem-action_text-trix81
     SUBDIR += rubygem-actioncable-gitlab
     SUBDIR += rubygem-actioncable72
     SUBDIR += rubygem-actioncable80
