@@ -1,5 +1,0 @@
-A pure Python implementation of multicast DNS service discovery.
-
-Compatible with:
-- Bonjour
-- Avahi

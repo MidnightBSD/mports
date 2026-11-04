@@ -1,2 +1,0 @@
-Coverband is a Rack middleware for measuring production code usage in Ruby
-applications, including line-of-code runtime coverage.

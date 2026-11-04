@@ -1,2 +1,0 @@
-@postexec sysrc dbus_enable=YES
-@postexec sysrc mlogind_enable=YES

@@ -1,4 +1,0 @@
-This package contains GLX utilities from Mesa.
-
-It includes glxinfo, which prints OpenGL driver capabilities, and glxgears,
-which draws rotating gears and prints frames per second.
