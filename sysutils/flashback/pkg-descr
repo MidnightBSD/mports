@@ -1,5 +1,0 @@
-FlashBack is a backup program for MidnightBSD, FreeBSD, Linux and Mac OS X.
-It uses a web interface for administration, and can backup any path on
-a schedule to a tarball.
-
-Author: Lucas Holt

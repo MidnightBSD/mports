@@ -1,4 +1,0 @@
-MemCache Client
-
-memcache-client is a pure Ruby client for memcached. It is nearly
-a drop-in replacement for Ruby MemCache (databases/ruby-memcache).

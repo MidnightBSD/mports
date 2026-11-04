@@ -1,2 +1,0 @@
-This module scans potential modules used by perl programs, using line-by-line
-analysis and elaborate heuristics.

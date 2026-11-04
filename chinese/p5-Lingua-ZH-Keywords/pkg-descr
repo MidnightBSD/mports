@@ -1,2 +1,0 @@
-This module extracts keywords from Chinese text,
-which requires Lingua::ZH::TaBE.

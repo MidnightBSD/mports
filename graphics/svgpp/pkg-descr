@@ -1,3 +1,0 @@
-SVG++ library can be thought of as a framework, containing parsers for
-various SVG syntaxes, adapters that simplify handling of parsed data,
-and a lot of other utilities and helpers for the most common tasks.
