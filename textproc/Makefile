@@ -1,4 +1,4 @@
-    COMMENT = Text processing utilities (does not include desktop publishing)
+COMMENT = Text processing utilities (does not include desktop publishing)
 
     SUBDIR += R-cran-DT
     SUBDIR += R-cran-R.rsp
@@ -500,6 +500,7 @@
     SUBDIR += redland
     SUBDIR += ripgrep
     SUBDIR += rubygem-actiontext-gitlab
+    SUBDIR += rubygem-actiontext81
     SUBDIR += rubygem-asciidoctor
     SUBDIR += rubygem-asciidoctor-include-ext
     SUBDIR += rubygem-asciidoctor-kroki
