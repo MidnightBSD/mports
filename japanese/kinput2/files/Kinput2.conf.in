@@ -1,5 +1,0 @@
-CCDEF_DIR = $(LIBDIR)/ccdef
-
-TRANSPORTDEFS = 
-
-#include "Kinput2_im.conf"

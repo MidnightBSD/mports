@@ -1,3 +1,0 @@
-Pytest plugin providing a fixture interface for freezegun.
-
-This is a dropin replacement for py-pytest-freezegun.

@@ -1,6 +1,0 @@
-include/argp.h
-lib/libargp.a
-lib/libargp.so
-lib/libargp.so.1
-lib/libargp.so.%%PORTVERSION%%
-libdata/pkgconfig/libargp.pc
