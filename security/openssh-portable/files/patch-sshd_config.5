@@ -1,0 +1,59 @@
+--- sshd_config.5.orig	2026-04-25 16:05:26.905238000 -0700
++++ sshd_config.5	2026-04-25 16:16:59.050604000 -0700
+@@ -789,7 +789,9 @@ This was formerly named HostbasedAcceptedKeyTypes.
+ .Qq ssh -Q HostbasedAcceptedAlgorithms .
+ This was formerly named HostbasedAcceptedKeyTypes.
+ .It Cm HostbasedAuthentication
+-Specifies whether rhosts or /etc/hosts.equiv authentication together
++Specifies whether rhosts or
++.Pa /etc/hosts.equiv
++authentication together
+ with successful public key client host authentication is allowed
+ (host-based authentication).
+ The default is
+@@ -1489,7 +1491,7 @@ The default is
+ or
+ .Cm no .
+ The default is
+-.Cm prohibit-password .
++.Cm no .
+ .Pp
+ If this option is set to
+ .Cm prohibit-password
+@@ -1535,6 +1537,15 @@ The default is
+ .Cm ethernet .
+ The default is
+ .Cm no .
++Note that if
++.Cm ChallengeResponseAuthentication
++is
++.Cm yes ,
++the root user may be allowed in with its password even if
++.Cm PermitRootLogin is set to
++.Cm prohibit-password
++or
++.Cm without-password .
+ .Pp
+ Independent of this setting, the permissions of the selected
+ .Xr tun 4
+@@ -2062,12 +2073,19 @@ The default is
+ .Xr sshd 8
+ as a non-root user.
+ The default is
++.Cm yes ,
++unless
++.Nm sshd
++was built without PAM support, in which case the default is
+ .Cm no .
+ .It Cm VersionAddendum
+ Optionally specifies additional text to append to the SSH protocol banner
+ sent by the server upon connection.
+ The default is
+-.Cm none .
++.Cm %%SSH_VERSION_FREEBSD_PORT%% .
++The value
++.Cm none
++may be used to disable this.
+ .It Cm X11DisplayOffset
+ Specifies the first display number available for
+ .Xr sshd 8 Ns 's

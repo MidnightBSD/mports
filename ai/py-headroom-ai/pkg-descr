@@ -1,0 +1,3 @@
+Headroom compresses and optimizes LLM context before requests are sent
+to providers. It includes a CLI, Python library support, and a proxy
+mode for placing Headroom between LLM clients and upstream APIs.

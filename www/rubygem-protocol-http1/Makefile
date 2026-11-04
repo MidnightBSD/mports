@@ -1,0 +1,21 @@
+PORTNAME=	protocol-http1
+PORTVERSION=	0.39.0
+CATEGORIES=	www rubygems
+MASTER_SITES=	RG
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Low level implementation of the HTTP/1 protocol
+WWW=		https://socketry.github.io/protocol-http1/ \
+		https://github.com/socketry/protocol-http1
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/license.md
+
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	rubygem-protocol-http>=0.62:www/rubygem-protocol-http
+
+USES=		gem
+
+NO_ARCH=	yes
+
+.include <bsd.port.mk>

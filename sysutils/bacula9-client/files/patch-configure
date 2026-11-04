@@ -1,0 +1,29 @@
+--- configure.orig	2020-05-02 16:38:21.835899000 -0400
++++ configure	2020-05-02 16:39:21.392140000 -0400
+@@ -7032,7 +7032,7 @@
+     i*86 )
+       # Not sure whether the presence of OpenBSD here was a mistake.
+       # Let's accept both of them until this is cleared up.
+-      lt_cv_deplibs_check_method='file_magic (FreeBSD|OpenBSD|DragonFly)/i[3-9]86 (compact )?demand paged shared library'
++      lt_cv_deplibs_check_method='file_magic (MidnightBSD|FreeBSD|OpenBSD|DragonFly)/i[3-9]86 (compact )?demand paged shared library'
+       lt_cv_file_magic_cmd=/usr/bin/file
+       lt_cv_file_magic_test_file=`echo /usr/lib/libc.so.*`
+       ;;
+@@ -16945,7 +16945,7 @@
+ fi
+ fi
+ 
+-if test $HAVE_UNAME=yes -a x`uname -s` = xFreeBSD
++if test $HAVE_UNAME=yes -a x`uname -s` = xMidnightBSD
+ then
+ 
+ 
+@@ -17166,7 +17166,7 @@
+ elif test $HAVE_UNAME=yes -a x`uname -s` = xGNU
+ then
+         DISTNAME=hurd
+-elif test $HAVE_UNAME=yes -a x`uname -s` = xFreeBSD
++elif test $HAVE_UNAME=yes -a x`uname -s` = xMidnightBSD
+ then
+         DISTNAME=freebsd
+ elif test $HAVE_UNAME=yes -a x`uname -s` = xNetBSD

@@ -1,0 +1,30 @@
+PORTNAME=	litellm-proxy-extras
+DISTVERSION=	0.4.74
+CATEGORIES=	ai python
+MASTER_SITES=	PYPI
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTNAME=	${PORTNAME:S/-/_/g}-${DISTVERSION}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Additional files for the LiteLLM Proxy
+WWW=		https://github.com/BerriAI/litellm
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}uv-build>=0.11.8:devel/py-uv-build@${PY_FLAVOR}
+
+USES=		python
+USE_PYTHON=	autoplist pep517
+
+NO_ARCH=	yes
+
+PORTDOCS=	README.md
+
+OPTIONS_DEFINE=	DOCS
+
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_MAN} ${PORTDOCS:S|^|${WRKSRC}/|} ${FAKE_DESTDIR}${DOCSDIR}
+
+.include <bsd.port.mk>

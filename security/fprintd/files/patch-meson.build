@@ -1,0 +1,8 @@
+--- meson.build.orig
++++ meson.build
+@@ -120,3 +120,4 @@
+ elif (host_machine.system() == 'freebsd' or
+       host_machine.system() == 'openbsd' or
+-      host_machine.system() == 'dragonfly')
++      host_machine.system() == 'dragonfly' or
++      host_machine.system() == 'midnightbsd')

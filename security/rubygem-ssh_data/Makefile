@@ -1,0 +1,20 @@
+PORTNAME=	ssh_data
+PORTVERSION=	2.0.0
+CATEGORIES=	security rubygems
+MASTER_SITES=	RG
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Library for parsing SSH certificates
+WWW=		https://github.com/github/ssh_data
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE.md
+
+BUILD_DEPENDS=	rubygem-base64>=0.1<1:converters/rubygem-base64
+RUN_DEPENDS=	rubygem-base64>=0.1<1:converters/rubygem-base64
+
+USES=		gem
+
+NO_ARCH=	yes
+
+.include <bsd.port.mk>

@@ -1,0 +1,12 @@
+--- Samba/source/config.guess.orig	2023-10-21 19:00:34 UTC
++++ Samba/source/config.guess
+@@ -766,6 +766,9 @@ EOF
+     *:FreeBSD:*:*)
+ 	echo ${UNAME_MACHINE}-unknown-freebsd`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'`
+ 	exit ;;
++    *:MidnightBSD:*:*)
++	echo ${UNAME_MACHINE}-unknown-freebsd12.4
++	exit ;;
+     i*:CYGWIN*:*)
+ 	echo ${UNAME_MACHINE}-pc-cygwin
+ 	exit ;;

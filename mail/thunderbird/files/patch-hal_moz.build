@@ -1,0 +1,16 @@
+Enable the gamepad interface on MidnightBSD/FreeBSD: dom/gamepad builds
+LinuxGamepad.cpp for OS_ARCH FreeBSD, which pulls in mozilla/UdevLib.h,
+but hal only exports that header on Linux. Export it on FreeBSD too so the
+build resolves. OS_TARGET is "FreeBSD" on MidnightBSD.
+
+--- hal/moz.build.orig
++++ hal/moz.build
+@@ -19,7 +19,7 @@ EXPORTS.mozilla += [
+     "HalWakeLockInformation.h",
+ ]
+
+-if CONFIG["OS_TARGET"] == "Linux":
++if CONFIG["OS_TARGET"] == "Linux" or CONFIG["OS_TARGET"] == "FreeBSD":
+     EXPORTS.mozilla += [
+         "linux/UdevLib.h",
+     ]

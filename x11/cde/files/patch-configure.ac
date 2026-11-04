@@ -1,0 +1,12 @@
+--- configure.ac.orig	2021-11-30 19:54:11.356382000 -0800
++++ configure.ac	2021-11-30 20:19:10.923347000 -0800
+@@ -305,9 +305,6 @@
+ AC_PATH_XTRA
+ 
+ dnl check some compiler flags
+-C_FLAG_CHECK([-Wno-format-truncation])
+-CXX_FLAG_CHECK([-Wno-format-truncation])
+-
+ C_FLAG_CHECK([-fno-strict-aliasing])
+ CXX_FLAG_CHECK([-fno-strict-aliasing])
+ 
