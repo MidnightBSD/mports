@@ -1,0 +1,13 @@
+--- src/Makefile.in.orig
++++ src/Makefile.in
+@@ -613,3 +613,3 @@
+ geany_SOURCES = main.c
+-geany_LDADD = libgeany.la $(GTK_LIBS) $(INTLLIBS) $(am__append_5)
++geany_LDADD = libgeany.la $(GTK_LIBS) $(INTLLIBS) $(LIBICONV) $(am__append_5)
+ geany_LDFLAGS = $(am__append_1) $(am__append_9)
+@@ -668,4 +668,4 @@
+ libgeany_la_LIBADD = $(top_builddir)/scintilla/liblexilla.la \
+ 	$(top_builddir)/scintilla/libscintilla.la \
+ 	$(builddir)/tagmanager/libtagmanager.la @GTK_LIBS@ \
+-	$(MAC_INTEGRATION_LIBS) $(INTLLIBS) $(am__append_7)
++	$(MAC_INTEGRATION_LIBS) $(INTLLIBS) $(LIBICONV) $(am__append_7)

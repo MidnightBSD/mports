@@ -1,0 +1,90 @@
+PORTNAME=	libpeas
+PORTVERSION=	1.38.1
+CATEGORIES=	devel gnome
+MASTER_SITES=	GNOME
+PKGNAMESUFFIX=	1
+DIST_SUBDIR=	gnome
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT?=	Gobject-based plugins engine (Peas 1.0 API)
+WWW=		https://gitlab.gnome.org/GNOME/libpeas
+
+LICENSE=	lgpl2.1+
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+LIBPEAS_SLAVE?=	no
+
+.if ${LIBPEAS_SLAVE} == no
+TEST_DEPENDS=	Xvfb:x11-servers/xorg-server@xvfb
+.endif
+
+USES=		cpe gettext gnome meson pathfix pkgconfig tar:xz \
+		vala:build
+USE_GNOME=	introspection libxml2
+CPE_VENDOR=	gnome
+
+MESON_ARGS=	-Dglade_catalog=false \
+		-Dlua51=false
+
+.if ${LIBPEAS_SLAVE} == no
+LIBPEAS_TEST_DISPLAY?=	:100
+
+do-test:
+	@${LOCALBASE}/bin/Xvfb ${LIBPEAS_TEST_DISPLAY} -screen 0 1280x1024x24 \
+		>${WRKDIR}/xvfb.log 2>&1 & \
+		xvfb_pid=$$!; \
+		trap 'kill $$xvfb_pid' EXIT INT TERM; \
+		sleep 1; \
+		cd ${TEST_WRKSRC} && ${SETENVI} ${WRK_ENV} ${TEST_ENV} \
+		DISPLAY=${LIBPEAS_TEST_DISPLAY} ${MAKE_CMD} ${MAKE_FLAGS} \
+		${MAKEFILE} ${TEST_ARGS:C,^${DESTDIRNAME}=.*,,g} ${TEST_TARGET}
+
+USE_GNOME+=	gtk30
+USE_LDCONFIG=	yes
+INSTALLS_ICONS=	yes
+
+MESON_ARGS+=	-Dvapi=true \
+		-Dpython3=false
+PLIST=		${.CURDIR}/pkg-plist
+
+OPTIONS_DEFINE=	DEMOS DOCS
+OPTIONS_SUB=	yes
+
+DOCS_USES=		python
+DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gi-docgen>0:textproc/py-gi-docgen@${PY_FLAVOR}
+DOCS_MESON_TRUE=	gtk_doc
+
+DEMOS_DESC=		Build demo programs
+DEMOS_MESON_TRUE=	demos
+.endif
+
+pre-build:
+# XXX DISABLE_MAKE_JOBS build fails on 12.2/13.0 i386
+	${DO_MAKE_BUILD} -C ${BUILD_WRKSRC} \
+		tests/libpeas/plugins/embedded/embedded-resources.h
+
+.if ${LIBPEAS_SLAVE} == python
+LIB_DEPENDS+=	libpeas-1.0.so:devel/libpeas1
+NO_TEST=	yes
+
+USES+=		python
+USE_PYTHON=	flavors
+USE_GNOME+=	pygobject3
+MESON_ARGS+=	-Dpython3=true \
+		-Dgtk_doc=false \
+		-Ddemos=false \
+		-Dvapi=false
+ALL_TARGET=	loaders/python3/libpython3loader.so
+
+post-patch:
+	${REINPLACE_CMD} -e "s|dependency('python3'|dependency('python-${PYTHON_VER}'|" \
+		-e "s|dependency('python3-embed'|dependency('python-${PYTHON_VER}-embed'|" \
+		${WRKSRC}/meson.build
+
+do-install:
+	${MKDIR} ${PREFIX}/lib/libpeas-1.0/loaders/
+	${INSTALL_PROGRAM} ${INSTALL_WRKSRC}/loaders/python3/libpython3loader.so \
+		${PREFIX}/lib/libpeas-1.0/loaders/
+.endif
+
+.include <bsd.port.mk>

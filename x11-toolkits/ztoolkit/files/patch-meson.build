@@ -1,0 +1,11 @@
+--- meson.build.orig	2025-12-28 17:46:57.182725000 -0500
++++ meson.build	2025-12-28 17:47:08.475119000 -0500
+@@ -45,7 +45,7 @@
+   os_darwin = true
+ elif host_machine.system() == 'linux'
+   os_linux = true
+-elif host_machine.system() == 'freebsd'
++elif host_machine.system() == 'midnightbsd'
+   os_freebsd = true
+ elif host_machine.system() == 'windows'
+   os_windows = true

@@ -1,0 +1,32 @@
+PORTNAME=	gdscpp
+DISTVERSION=	g20200611
+CATEGORIES=	cad
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	C++ library to create and read GDSII file
+WWW=		https://github.com/judefdiv/gdscpp
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+USES=		cmake compiler:c++17-lang
+USE_LDCONFIG=	yes
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	judefdiv
+GH_TAGNAME=	20018e1
+
+CMAKE_ON=	BUILD_SHARED_LIBS
+
+PLIST_FILES=	bin/gdscpp \
+		include/gdscpp/gdsCpp.hpp \
+		include/gdscpp/gdsForge.hpp \
+		include/gdscpp/gdsParser.hpp \
+		lib/libgds.so
+
+do-install:
+	${INSTALL_PROGRAM} ${BUILD_WRKSRC}/${PORTNAME} ${PREFIX}/bin
+	${INSTALL_LIB} ${BUILD_WRKSRC}/libgds.so ${PREFIX}/lib
+	cd ${WRKSRC}/include && ${COPYTREE_SHARE} ${PORTNAME} ${PREFIX}/include
+
+.include <bsd.port.mk>

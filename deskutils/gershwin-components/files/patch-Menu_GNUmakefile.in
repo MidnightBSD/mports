@@ -1,0 +1,11 @@
+--- Menu/GNUmakefile.in.orig
++++ Menu/GNUmakefile.in
+@@ -96,7 +96,7 @@
+ 	ADDITIONAL_OBJCFLAGS = -Wall -Wextra -O2 -fobjc-runtime=gnustep-2.0 -fobjc-arc -Wno-unused-parameter -D_GNU_SOURCE
+ 	ADDITIONAL_CPPFLAGS = @DBUS_CFLAGS@
+ endif
+-ifeq ($(UNAME_S),FreeBSD)
++ifneq ($(filter FreeBSD MidnightBSD,$(UNAME_S)),)
+ 	ADDITIONAL_OBJCFLAGS = -Wall -Wextra -O2 -fobjc-runtime=gnustep-2.0 -fobjc-arc -Wno-unused-parameter -D_BSD_SOURCE
+ 	ADDITIONAL_CPPFLAGS = @DBUS_CFLAGS@
+ endif

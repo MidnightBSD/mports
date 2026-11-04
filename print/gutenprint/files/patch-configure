@@ -1,0 +1,122 @@
+# this is a workaround for a broken gimptool-2.0 (uses wrong plugin dir
+# when installing plugins)
+--- configure.orig	2020-12-07 02:16:32 UTC
++++ configure
+@@ -5695,7 +5695,7 @@ darwin* | rhapsody*)
+   lt_cv_deplibs_check_method=pass_all
+   ;;
+ 
+-freebsd* | dragonfly*)
++midnightbsd* | freebsd* | dragonfly*)
+   if echo __ELF__ | $CC -E - | $GREP __ELF__ > /dev/null; then
+     case $host_cpu in
+     i*86 )
+@@ -9407,7 +9407,7 @@ $as_echo_n "checking whether the $compil
+   hardcode_minus_L=no
+   hardcode_shlibpath_var=unsupported
+   inherit_rpath=no
+-  link_all_deplibs=unknown
++  link_all_deplibs=no
+   module_cmds=
+   module_expsym_cmds=
+   old_archive_from_new_cmds=
+@@ -9706,7 +9706,7 @@ _LT_EOF
+ 	wlarc=
+       else
+ 	archive_cmds='$CC -shared $pic_flag $libobjs $deplibs $compiler_flags $wl-soname $wl$soname -o $lib'
+-	archive_expsym_cmds='$CC -shared $pic_flag $libobjs $deplibs $compiler_flags $wl-soname $wl$soname $wl-retain-symbols-file $wl$export_symbols -o $lib'
++	archive_expsym_cmds='echo "{ global:" > $lib-ver~		 sed -e "s|$|;|" < $export_symbols >> $lib-ver~	 echo "local: *; };" >> $lib-ver~$CC -shared $pic_flag $libobjs $deplibs $compiler_flags $wl-soname $wl$soname $wl-version-script $wl$lib-ver -o $lib'
+       fi
+       ;;
+ 
+@@ -9725,7 +9725,7 @@ _LT_EOF
+ _LT_EOF
+       elif $LD --help 2>&1 | $GREP ': supported targets:.* elf' > /dev/null; then
+ 	archive_cmds='$CC -shared $pic_flag $libobjs $deplibs $compiler_flags $wl-soname $wl$soname -o $lib'
+-	archive_expsym_cmds='$CC -shared $pic_flag $libobjs $deplibs $compiler_flags $wl-soname $wl$soname $wl-retain-symbols-file $wl$export_symbols -o $lib'
++	archive_expsym_cmds='echo "{ global:" > $lib-ver~		 sed -e "s|$|;|" < $export_symbols >> $lib-ver~	 echo "local: *; };" >> $lib-ver~$CC -shared $pic_flag $libobjs $deplibs $compiler_flags $wl-soname $wl$soname $wl-version-script $wl$lib-ver -o $lib'
+       else
+ 	ld_shlibs=no
+       fi
+@@ -9754,7 +9754,7 @@ _LT_EOF
+ 	  if $LD --help 2>&1 | $GREP ': supported targets:.* elf' > /dev/null; then
+ 	    hardcode_libdir_flag_spec='$wl-rpath $wl$libdir'
+ 	    archive_cmds='$CC -shared $libobjs $deplibs $compiler_flags $wl-soname $wl$soname -o $lib'
+-	    archive_expsym_cmds='$CC -shared $libobjs $deplibs $compiler_flags $wl-soname $wl$soname $wl-retain-symbols-file $wl$export_symbols -o $lib'
++	    archive_expsym_cmds='echo "{ global:" > $lib-ver~		 sed -e "s|$|;|" < $export_symbols >> $lib-ver~	 echo "local: *; };" >> $lib-ver~$CC -shared $libobjs $deplibs $compiler_flags $wl-soname $wl$soname $wl-version-script $wl$lib-ver -o $lib'
+ 	  else
+ 	    ld_shlibs=no
+ 	  fi
+@@ -9772,7 +9772,7 @@ _LT_EOF
+     *)
+       if $LD --help 2>&1 | $GREP ': supported targets:.* elf' > /dev/null; then
+ 	archive_cmds='$CC -shared $pic_flag $libobjs $deplibs $compiler_flags $wl-soname $wl$soname -o $lib'
+-	archive_expsym_cmds='$CC -shared $pic_flag $libobjs $deplibs $compiler_flags $wl-soname $wl$soname $wl-retain-symbols-file $wl$export_symbols -o $lib'
++	archive_expsym_cmds='echo "{ global:" > $lib-ver~		 sed -e "s|$|;|" < $export_symbols >> $lib-ver~	 echo "local: *; };" >> $lib-ver~$CC -shared $pic_flag $libobjs $deplibs $compiler_flags $wl-soname $wl$soname $wl-version-script $wl$lib-ver -o $lib'
+       else
+ 	ld_shlibs=no
+       fi
+@@ -10210,7 +10210,7 @@ fi
+       ;;
+ 
+     # FreeBSD 3 and greater uses gcc -shared to do shared libraries.
+-    freebsd* | dragonfly*)
++midnightbsd* |     freebsd* | dragonfly*)
+       archive_cmds='$CC -shared $pic_flag -o $lib $libobjs $deplibs $compiler_flags'
+       hardcode_libdir_flag_spec='-R$libdir'
+       hardcode_direct=yes
+@@ -10420,7 +10420,7 @@ $as_echo "$lt_cv_irix_exported_symbol" >
+ 	hardcode_direct_absolute=yes
+ 	if test -z "`echo __ELF__ | $CC -E - | $GREP __ELF__`"; then
+ 	  archive_cmds='$CC -shared $pic_flag -o $lib $libobjs $deplibs $compiler_flags'
+-	  archive_expsym_cmds='$CC -shared $pic_flag -o $lib $libobjs $deplibs $compiler_flags $wl-retain-symbols-file,$export_symbols'
++	  archive_expsym_cmds='echo "{ global:" > $lib-ver~		 sed -e "s|$|;|" < $export_symbols >> $lib-ver~	 echo "local: *; };" >> $lib-ver~$CC -shared $pic_flag -o $lib $libobjs $deplibs $compiler_flags $wl-version-script,$lib-ver'
+ 	  hardcode_libdir_flag_spec='$wl-rpath,$libdir'
+ 	  export_dynamic_flag_spec='$wl-E'
+ 	else
+@@ -11255,7 +11255,7 @@ dgux*)
+   shlibpath_var=LD_LIBRARY_PATH
+   ;;
+ 
+-freebsd* | dragonfly*)
++midnightbsd* | freebsd* | dragonfly*)
+   # DragonFly does not have aout.  When/if they implement a new
+   # versioning mechanism, adjust this.
+   if test -x /usr/bin/objformat; then
+@@ -11269,7 +11269,7 @@ freebsd* | dragonfly*)
+   version_type=freebsd-$objformat
+   case $version_type in
+     freebsd-elf*)
+-      library_names_spec='$libname$release$shared_ext$versuffix $libname$release$shared_ext$major $libname$shared_ext'
++      library_names_spec='$libname$release$shared_ext$versuffix  $libname$release$shared_ext$major	 $libname$shared_ext'			 soname_spec='$libname$release$shared_ext$major'
+       soname_spec='$libname$release$shared_ext$major'
+       need_version=no
+       need_lib_prefix=no
+@@ -12401,7 +12401,7 @@ striplib=
+ old_striplib=
+ { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether stripping libraries is possible" >&5
+ $as_echo_n "checking whether stripping libraries is possible... " >&6; }
+-if test -n "$STRIP" && $STRIP -V 2>&1 | $GREP "GNU strip" >/dev/null; then
++if test -n "$STRIP" && $STRIP -V 2>&1 | $GREP "strip" >/dev/null; then
+   test -z "$old_striplib" && old_striplib="$STRIP --strip-debug"
+   test -z "$striplib" && striplib="$STRIP --strip-unneeded"
+   { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+@@ -15324,8 +15324,7 @@ else
+   if test x${BUILD_GIMP2} = xyes ; then
+     { $as_echo "$as_me:${as_lineno-$LINENO}: checking for GIMP 2.0 plug-in directory" >&5
+ $as_echo_n "checking for GIMP 2.0 plug-in directory... " >&6; }
+-    GIMPTOOL2_OUTPUT=`$GIMPTOOL2_CHECK --dry-run --install-${PLUG_IN_PATH} print | tail -n 1`
+-    GIMP2_PLUGIN_DIR=`echo "$GIMPTOOL2_OUTPUT" | cut -d ' ' -f 3 | tr -d "\'"`
++    GIMP2_PLUGIN_DIR=`$GIMPTOOL2_CHECK --gimpplugindir`/plug-ins
+     { $as_echo "$as_me:${as_lineno-$LINENO}: result: $GIMP2_PLUGIN_DIR" >&5
+ $as_echo "$GIMP2_PLUGIN_DIR" >&6; }
+     if test "x$NO_PKGCONFIG_PATHS" = x; then
+@@ -18629,7 +18628,7 @@ _ACEOF
+ 
+ if test x$ac_compiler_gnu = "xyes"; then
+ 
+-  for stp_ac_arg in -Wall -Wcast-align -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wnested-externs -Wwrite-strings -Werror-implicit-function-declaration -Winline -Wformat=2 -finline-limit=131072 -Wformat -Werror=format-security -D_POSIX_C_SOURCE=200809L -std=c99 ; do
++  for stp_ac_arg in -Wall -Wcast-align -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wnested-externs -Wwrite-strings -Werror-implicit-function-declaration -Winline -Wformat=2 -finline-limit=131072 -Wformat -Werror=format-security -D_POSIX_C_SOURCE=200809L ; do
+ 
+   { $as_echo "$as_me:${as_lineno-$LINENO}: checking if ${CC} supports ${stp_ac_arg}" >&5
+ $as_echo_n "checking if ${CC} supports ${stp_ac_arg}... " >&6; }

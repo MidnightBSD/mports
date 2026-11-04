@@ -1,0 +1,10 @@
+--- src/meson.build.orig	2026-02-07 06:29:30 UTC
++++ src/meson.build
+@@ -108,6 +108,7 @@
+ 	cflags += ['-DHAS_INOTIFY']
+ elif (
+ 	host_system == 'freebsd'
++	or host_system == 'midnightbsd'
+ 	or host_system == 'netbsd'
+ 	or host_system == 'dragonfly'
+ 	or host_system == 'openbsd'

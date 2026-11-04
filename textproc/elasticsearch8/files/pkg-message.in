@@ -1,0 +1,39 @@
+[
+{ type: install
+  message: <<EOM
+Configuration samples are installed in %%ETCDIR%%.
+
+OpenJDK 21 or newer is required. To select another installed JDK, set
+elasticsearch_java_home in /etc/rc.conf, for example:
+
+elasticsearch_java_home="%%LOCALBASE%%/openjdk25"
+
+Production bootstrap checks require at least 65535 open file descriptors.
+Set the service login class's openfiles limit and kern.maxfilesperproc
+accordingly; kern.maxfiles must also be large enough.
+
+If bootstrap.memory_lock is enabled, allow sufficient locked memory and set
+security.bsd.unprivileged_mlock=1. For a jail, enforce_statfs=1 is recommended.
+
+Native machine learning is disabled on MidnightBSD. The BSD native backend
+uses the system zstd library and BSD process resource limits for its sandbox.
+
+Install plugins with the elasticsearch-plugin utility supplied by this port.
+Package files are owned by root:wheel. Ensure plugin-created configuration
+files and the elasticsearch.keystore are accessible to the elasticsearch user.
+EOM
+}
+{ type: upgrade
+  message: <<EOM
+Elasticsearch 8.19 requires OpenJDK 21 or newer with this port's BSD native
+backend. Review your service's elasticsearch_java_home setting before restart.
+
+Before upgrading older 8.x installations, review the upstream 8.19 migration
+notes, including AWS SDK v2 changes affecting EC2 discovery and S3 repositories:
+https://www.elastic.co/guide/en/elasticsearch/reference/8.19/migrating-8.19.html
+
+Upgrading to the current Elasticsearch 9 port requires passing through 8.19 first. Keep a
+snapshot before any cluster upgrade; an in-place downgrade is unsupported.
+EOM
+}
+]

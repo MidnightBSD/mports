@@ -1,0 +1,2 @@
+A simple database migration system for SQLite, in pre-release.
+It provides a CLI and Python API for applying schema changes.

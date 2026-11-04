@@ -1,0 +1,11 @@
+--- configure.orig
++++ configure
+@@ -3941,7 +3941,7 @@
+ # Add target OS directories as necessary
+ #--------------------------------------------------------------------
+ case "$target_os" in
+-  freebsd* | openbsd* )
++  freebsd* | openbsd* | midnightbsd* )
+ 	      CPPFLAGS="-I/usr/pkg/include $CPPFLAGS"
+               LDFLAGS="-L/usr/pkg/lib $LDFLAGS";;
+   netbsd*)    CPPFLAGS="-I/usr/pkg/include $CPPFLAGS"

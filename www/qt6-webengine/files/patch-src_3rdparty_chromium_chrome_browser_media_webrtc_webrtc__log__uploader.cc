@@ -1,0 +1,11 @@
+--- src/3rdparty/chromium/chrome/browser/media/webrtc/webrtc_log_uploader.cc.orig	2026-02-26 14:39:03 UTC
++++ src/3rdparty/chromium/chrome/browser/media/webrtc/webrtc_log_uploader.cc
+@@ -105,7 +105,7 @@ std::string GetLogUploadProduct() {
+   const char product[] = "Chrome";
+ #elif BUILDFLAG(IS_MAC)
+   const char product[] = "Chrome_Mac";
+-#elif BUILDFLAG(IS_LINUX)
++#elif BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ #if !defined(ADDRESS_SANITIZER)
+   const char product[] = "Chrome_Linux";
+ #else

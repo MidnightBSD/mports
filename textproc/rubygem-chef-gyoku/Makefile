@@ -1,0 +1,21 @@
+PORTNAME=	chef-gyoku
+PORTVERSION=	1.5.0
+CATEGORIES=	textproc rubygems
+MASTER_SITES=	RG
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Gyoku translates Ruby Hashes to XML
+WWW=		https://github.com/chef/chef-gyoku
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
+
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	rubygem-builder>=2.1.2:devel/rubygem-builder \
+		rubygem-rexml>=3.4<4:textproc/rubygem-rexml
+
+USES=		gem
+
+NO_ARCH=	yes
+
+.include <bsd.port.mk>

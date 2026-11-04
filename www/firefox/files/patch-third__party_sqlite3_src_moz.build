@@ -1,0 +1,12 @@
+--- third_party/sqlite3/src/moz.build.orig	2023-06-08 22:35:48 UTC
++++ third_party/sqlite3/src/moz.build
+@@ -92,7 +92,8 @@ DEFINES['SQLITE_TEMP_FILE_PREFIX'] = '"m
+ 
+ # Enabling sqlite math functions
+ DEFINES['SQLITE_ENABLE_MATH_FUNCTIONS'] = True
+-if CONFIG["OS_TARGET"] == "Linux" or CONFIG["OS_TARGET"] == "Android":
++if CONFIG["OS_TARGET"] == "Linux" or CONFIG["OS_TARGET"] == "Android" or \
++        CONFIG["OS_TARGET"] == "FreeBSD" or CONFIG["OS_TARGET"] == "DragonFly":
+     OS_LIBS += [
+         "m"
+     ]
