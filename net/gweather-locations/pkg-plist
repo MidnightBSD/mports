@@ -1,0 +1,157 @@
+lib/gweather-locations/Locations.bin
+share/gweather-locations/Locations.xml
+share/gweather-locations/locations.dtd
+share/locale/ab/LC_MESSAGES/gweather-locations.mo
+share/locale/ang/LC_MESSAGES/gweather-locations.mo
+share/locale/ar/LC_MESSAGES/gweather-locations.mo
+share/locale/as/LC_MESSAGES/gweather-locations.mo
+share/locale/ast/LC_MESSAGES/gweather-locations.mo
+share/locale/az/LC_MESSAGES/gweather-locations.mo
+share/locale/be/LC_MESSAGES/gweather-locations.mo
+share/locale/be@latin/LC_MESSAGES/gweather-locations.mo
+share/locale/bg/LC_MESSAGES/gweather-locations.mo
+share/locale/bn/LC_MESSAGES/gweather-locations.mo
+share/locale/bn_IN/LC_MESSAGES/gweather-locations.mo
+share/locale/br/LC_MESSAGES/gweather-locations.mo
+share/locale/bs/LC_MESSAGES/gweather-locations.mo
+share/locale/ca/LC_MESSAGES/gweather-locations.mo
+share/locale/ca@valencia/LC_MESSAGES/gweather-locations.mo
+share/locale/crh/LC_MESSAGES/gweather-locations.mo
+share/locale/cs/LC_MESSAGES/gweather-locations.mo
+share/locale/cy/LC_MESSAGES/gweather-locations.mo
+share/locale/da/LC_MESSAGES/gweather-locations.mo
+share/locale/de/LC_MESSAGES/gweather-locations.mo
+share/locale/dz/LC_MESSAGES/gweather-locations.mo
+share/locale/el/LC_MESSAGES/gweather-locations.mo
+share/locale/en@shaw/LC_MESSAGES/gweather-locations.mo
+share/locale/en_CA/LC_MESSAGES/gweather-locations.mo
+share/locale/en_GB/LC_MESSAGES/gweather-locations.mo
+share/locale/eo/LC_MESSAGES/gweather-locations.mo
+share/locale/es/LC_MESSAGES/gweather-locations.mo
+share/locale/et/LC_MESSAGES/gweather-locations.mo
+share/locale/eu/LC_MESSAGES/gweather-locations.mo
+share/locale/fa/LC_MESSAGES/gweather-locations.mo
+share/locale/fi/LC_MESSAGES/gweather-locations.mo
+share/locale/fr/LC_MESSAGES/gweather-locations.mo
+share/locale/fur/LC_MESSAGES/gweather-locations.mo
+share/locale/ga/LC_MESSAGES/gweather-locations.mo
+share/locale/gd/LC_MESSAGES/gweather-locations.mo
+share/locale/gl/LC_MESSAGES/gweather-locations.mo
+share/locale/gu/LC_MESSAGES/gweather-locations.mo
+share/locale/he/LC_MESSAGES/gweather-locations.mo
+share/locale/hi/LC_MESSAGES/gweather-locations.mo
+share/locale/hr/LC_MESSAGES/gweather-locations.mo
+share/locale/hu/LC_MESSAGES/gweather-locations.mo
+share/locale/id/LC_MESSAGES/gweather-locations.mo
+share/locale/is/LC_MESSAGES/gweather-locations.mo
+share/locale/it/LC_MESSAGES/gweather-locations.mo
+share/locale/ja/LC_MESSAGES/gweather-locations.mo
+share/locale/ka/LC_MESSAGES/gweather-locations.mo
+share/locale/kab/LC_MESSAGES/gweather-locations.mo
+share/locale/kk/LC_MESSAGES/gweather-locations.mo
+share/locale/kn/LC_MESSAGES/gweather-locations.mo
+share/locale/ko/LC_MESSAGES/gweather-locations.mo
+share/locale/ku/LC_MESSAGES/gweather-locations.mo
+share/locale/kw/LC_MESSAGES/gweather-locations.mo
+share/locale/ky/LC_MESSAGES/gweather-locations.mo
+share/locale/lt/LC_MESSAGES/gweather-locations.mo
+share/locale/lv/LC_MESSAGES/gweather-locations.mo
+share/locale/mai/LC_MESSAGES/gweather-locations.mo
+share/locale/mg/LC_MESSAGES/gweather-locations.mo
+share/locale/mk/LC_MESSAGES/gweather-locations.mo
+share/locale/ml/LC_MESSAGES/gweather-locations.mo
+share/locale/mn/LC_MESSAGES/gweather-locations.mo
+share/locale/mr/LC_MESSAGES/gweather-locations.mo
+share/locale/ms/LC_MESSAGES/gweather-locations.mo
+share/locale/nb/LC_MESSAGES/gweather-locations.mo
+share/locale/nds/LC_MESSAGES/gweather-locations.mo
+share/locale/ne/LC_MESSAGES/gweather-locations.mo
+share/locale/nl/LC_MESSAGES/gweather-locations.mo
+share/locale/nn/LC_MESSAGES/gweather-locations.mo
+share/locale/oc/LC_MESSAGES/gweather-locations.mo
+share/locale/or/LC_MESSAGES/gweather-locations.mo
+share/locale/pa/LC_MESSAGES/gweather-locations.mo
+share/locale/pl/LC_MESSAGES/gweather-locations.mo
+share/locale/pt/LC_MESSAGES/gweather-locations.mo
+share/locale/pt_BR/LC_MESSAGES/gweather-locations.mo
+share/locale/ro/LC_MESSAGES/gweather-locations.mo
+share/locale/ru/LC_MESSAGES/gweather-locations.mo
+share/locale/rw/LC_MESSAGES/gweather-locations.mo
+share/locale/si/LC_MESSAGES/gweather-locations.mo
+share/locale/sk/LC_MESSAGES/gweather-locations.mo
+share/locale/sl/LC_MESSAGES/gweather-locations.mo
+share/locale/sq/LC_MESSAGES/gweather-locations.mo
+share/locale/sr/LC_MESSAGES/gweather-locations.mo
+share/locale/sr@latin/LC_MESSAGES/gweather-locations.mo
+share/locale/sv/LC_MESSAGES/gweather-locations.mo
+share/locale/ta/LC_MESSAGES/gweather-locations.mo
+share/locale/te/LC_MESSAGES/gweather-locations.mo
+share/locale/th/LC_MESSAGES/gweather-locations.mo
+share/locale/tr/LC_MESSAGES/gweather-locations.mo
+share/locale/ug/LC_MESSAGES/gweather-locations.mo
+share/locale/uk/LC_MESSAGES/gweather-locations.mo
+share/locale/uz/LC_MESSAGES/gweather-locations.mo
+share/locale/vi/LC_MESSAGES/gweather-locations.mo
+share/locale/zh_CN/LC_MESSAGES/gweather-locations.mo
+share/locale/zh_HK/LC_MESSAGES/gweather-locations.mo
+share/locale/zh_TW/LC_MESSAGES/gweather-locations.mo
+share/pkgconfig/gweather-locations.pc
+@dir lib/gweather-locations
+@dir share/gweather-locations
+@dir share/locale/ab/LC_MESSAGES
+@dir share/locale/ab
+@dir share/locale/ang/LC_MESSAGES
+@dir share/locale/ang
+@dir share/locale/as/LC_MESSAGES
+@dir share/locale/as
+@dir share/locale/ast/LC_MESSAGES
+@dir share/locale/ast
+@dir share/locale/be@latin/LC_MESSAGES
+@dir share/locale/be@latin
+@dir share/locale/bn_IN/LC_MESSAGES
+@dir share/locale/bn_IN
+@dir share/locale/ca@valencia/LC_MESSAGES
+@dir share/locale/ca@valencia
+@dir share/locale/crh/LC_MESSAGES
+@dir share/locale/crh
+@dir share/locale/dz/LC_MESSAGES
+@dir share/locale/dz
+@dir share/locale/en@shaw/LC_MESSAGES
+@dir share/locale/en@shaw
+@dir share/locale/fur/LC_MESSAGES
+@dir share/locale/fur
+@dir share/locale/gd/LC_MESSAGES
+@dir share/locale/gd
+@dir share/locale/kab/LC_MESSAGES
+@dir share/locale/kab
+@dir share/locale/kk/LC_MESSAGES
+@dir share/locale/kk
+@dir share/locale/ku/LC_MESSAGES
+@dir share/locale/ku
+@dir share/locale/kw/LC_MESSAGES
+@dir share/locale/kw
+@dir share/locale/ky/LC_MESSAGES
+@dir share/locale/ky
+@dir share/locale/mai/LC_MESSAGES
+@dir share/locale/mai
+@dir share/locale/mg/LC_MESSAGES
+@dir share/locale/mg
+@dir share/locale/mr/LC_MESSAGES
+@dir share/locale/mr
+@dir share/locale/nds/LC_MESSAGES
+@dir share/locale/nds
+@dir share/locale/oc/LC_MESSAGES
+@dir share/locale/oc
+@dir share/locale/rw/LC_MESSAGES
+@dir share/locale/rw
+@dir share/locale/si/LC_MESSAGES
+@dir share/locale/si
+@dir share/locale/sr@latin/LC_MESSAGES
+@dir share/locale/sr@latin
+@dir share/locale/te/LC_MESSAGES
+@dir share/locale/te
+@dir share/locale/ug/LC_MESSAGES
+@dir share/locale/ug
+@dir share/locale/zh_HK/LC_MESSAGES
+@dir share/locale/zh_HK
+@dir share/pkgconfig

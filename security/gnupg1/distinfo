@@ -1,0 +1,5 @@
+TIMESTAMP = 1536531821
+SHA256 (gnupg-1.4.23.tar.bz2) = c9462f17e651b6507848c08c430c791287cd75491f8b5a8b50c6ed46b12678ba
+SIZE (gnupg-1.4.23.tar.bz2) = 3749353
+SHA256 (gnupg-1.4.23.tar.bz2.sig) = 5e7ecebefcfbdf5d0445813f23ae4405671e63af1a8a8e61bdde660f42d159fa
+SIZE (gnupg-1.4.23.tar.bz2.sig) = 310

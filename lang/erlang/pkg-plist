@@ -1,0 +1,12 @@
+bin/ct_run
+bin/dialyzer
+bin/epmd
+bin/erl
+bin/erl_call
+bin/erlc
+bin/escript
+bin/run_erl
+bin/snmpc
+bin/to_erl
+bin/typer
+%%FOP%%etc/man.d/erlang.conf

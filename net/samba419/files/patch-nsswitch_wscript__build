@@ -1,0 +1,16 @@
+Same host_os normalisation as source3/wscript, so the winbind NSS
+plugin is built on MidnightBSD.
+
+--- nsswitch/wscript_build.orig
++++ nsswitch/wscript_build
+@@ -2,6 +2,10 @@
+ from waflib import Utils
+ import sys
+ host_os = sys.platform
++# MidnightBSD is FreeBSD-derived, but sys.platform reports midnightbsdN,
++# which none of the freebsd tests below match. Normalise it so they do.
++if host_os.rfind('midnightbsd') > -1:
++    host_os = host_os.replace('midnightbsd', 'freebsd')
+ 
+ bld.SAMBA_BINARY('nsstest',
+ 		 source='nsstest.c',

@@ -1,0 +1,2 @@
+Intel RAPL kernel module provides package power measurements and power limit
+controls through sysctl on supported Intel processors.

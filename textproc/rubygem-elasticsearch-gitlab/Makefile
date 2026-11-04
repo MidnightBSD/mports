@@ -1,0 +1,25 @@
+PORTNAME=	elasticsearch
+PORTVERSION=	7.17.11
+CATEGORIES=	textproc rubygems
+MASTER_SITES=	RG
+PKGNAMESUFFIX=	-gitlab
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Ruby integrations for Elasticsearch
+WWW=		https://github.com/elastic/elasticsearch-ruby
+
+LICENSE=	Apache-2.0
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	rubygem-elasticsearch-api-gitlab>=${PORTVERSION}<${PORTVERSION}.99:textproc/rubygem-elasticsearch-api-gitlab \
+		rubygem-elasticsearch-transport-gitlab>=${PORTVERSION}<${PORTVERSION}.99:textproc/rubygem-elasticsearch-transport-gitlab
+
+USES=		gem
+
+NO_ARCH=	yes
+
+post-install:
+	${RM} ${STAGEDIR}${PREFIX}/bin/elastic_ruby_console
+
+.include <bsd.port.mk>

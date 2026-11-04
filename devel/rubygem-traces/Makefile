@@ -1,0 +1,18 @@
+PORTNAME=	traces
+PORTVERSION=	0.18.2
+CATEGORIES=	devel rubygems
+MASTER_SITES=	RG
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Application instrumentation and tracing
+WWW=		https://socketry.github.io/traces/ \
+		https://github.com/socketry/traces
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/license.md
+
+USES=		gem
+
+NO_ARCH=	yes
+
+.include <bsd.port.mk>

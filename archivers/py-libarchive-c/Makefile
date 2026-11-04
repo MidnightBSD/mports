@@ -1,0 +1,21 @@
+PORTNAME=	libarchive-c
+PORTVERSION=	5.3
+CATEGORIES=	archivers python
+MASTER_SITES=	PYPI
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTNAME=	${PORTNAME:S/-/_/}-${PORTVERSION}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Python interface to libarchive
+WWW=		https://github.com/Changaco/python-libarchive-c
+
+LICENSE=	lgpl+
+LICENSE_FILE=	${WRKSRC}/LICENSE.md
+
+USES=		python
+USE_PYTHON=	autoplist distutils pytest
+
+NO_ARCH=	yes
+NO_TEST=	yes
+
+.include <bsd.port.mk>

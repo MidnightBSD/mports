@@ -1,0 +1,24 @@
+SoundCraft embeds Symphonia audio decoders under MPL 2.0.
+
+The unmodified corresponding source for each bundled Symphonia component
+is available from these immutable crates.io archives:
+
+https://static.crates.io/crates/symphonia/symphonia-0.6.1.crate
+https://static.crates.io/crates/symphonia-bundle-flac/symphonia-bundle-flac-0.6.1.crate
+https://static.crates.io/crates/symphonia-bundle-mp3/symphonia-bundle-mp3-0.6.1.crate
+https://static.crates.io/crates/symphonia-codec-aac/symphonia-codec-aac-0.6.1.crate
+https://static.crates.io/crates/symphonia-codec-adpcm/symphonia-codec-adpcm-0.6.1.crate
+https://static.crates.io/crates/symphonia-codec-alac/symphonia-codec-alac-0.6.1.crate
+https://static.crates.io/crates/symphonia-codec-pcm/symphonia-codec-pcm-0.6.1.crate
+https://static.crates.io/crates/symphonia-codec-vorbis/symphonia-codec-vorbis-0.6.1.crate
+https://static.crates.io/crates/symphonia-common/symphonia-common-0.6.1.crate
+https://static.crates.io/crates/symphonia-core/symphonia-core-0.6.1.crate
+https://static.crates.io/crates/symphonia-format-caf/symphonia-format-caf-0.6.1.crate
+https://static.crates.io/crates/symphonia-format-isomp4/symphonia-format-isomp4-0.6.1.crate
+https://static.crates.io/crates/symphonia-format-mkv/symphonia-format-mkv-0.6.1.crate
+https://static.crates.io/crates/symphonia-format-ogg/symphonia-format-ogg-0.6.1.crate
+https://static.crates.io/crates/symphonia-format-riff/symphonia-format-riff-0.6.1.crate
+https://static.crates.io/crates/symphonia-metadata/symphonia-metadata-0.6.1.crate
+
+The port distinfo records and verifies each archive checksum.
+See MPL-2.0.txt in this directory for the full license.

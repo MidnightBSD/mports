@@ -1,0 +1,21 @@
+PORTNAME=	jmk-x11-fonts
+PORTVERSION=	3.0
+PORTREVISION=	6
+CATEGORIES=	x11-fonts
+MASTER_SITES=	http://nikolas.us.to/jmkfonts/
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Jim Knoble's font package for X
+
+LICENSE=	gpl2
+
+BUILD_DEPENDS=	bdftopcf:x11-fonts/bdftopcf \
+		mkfontscale>=0:x11-fonts/mkfontscale
+
+USES=		fonts imake
+
+do-install:
+	@${MKDIR} ${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/*.pcf.gz ${FONTSDIR}
+
+.include <bsd.port.mk>

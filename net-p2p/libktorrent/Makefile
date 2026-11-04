@@ -1,0 +1,25 @@
+PORTNAME=	libktorrent
+DISTVERSION=	${KDE_APPLICATIONS_VERSION}
+CATEGORIES=	net-p2p kde kde-applications
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Torrent library from KTorrent project
+WWW=		https://ktorrent.org/
+
+BUILD_DEPENDS=	${LOCALBASE}/include/boost/concept_check.hpp:devel/boost-libs
+LIB_DEPENDS=	libgcrypt.so:security/libgcrypt \
+		libgmp.so:math/gmp \
+		libqca-qt6.so:devel/qca@qt6
+
+USES=		cmake compiler:c++11-lang gettext gl kde:6 qt:6 ssl tar:xz xorg
+USE_GL=		gl opengl
+USE_KDE=	archive completion config coreaddons crash i18n jobwidgets kio \
+		service solid widgetsaddons windowsystem \
+		ecm:build
+USE_QT=		base
+USE_XORG=	x11
+USE_LDCONFIG=	yes
+
+OPTIONS_DEFINE=	DOCS
+
+.include <bsd.port.mk>

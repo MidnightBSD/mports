@@ -1,0 +1,27 @@
+PORTNAME=	omniauth
+PORTVERSION=	2.1.4
+PORTREVISION=	2
+CATEGORIES=	security rubygems
+MASTER_SITES=	RG
+# this port is a replacement for rubygem-omniauth which fixes depedency conflicts
+# normally suffix gitlab is used, but that package already exists, so use gl here
+PKGNAMESUFFIX=	-gl
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Generalized Rack framework for multiple-provider authentication
+WWW=		https://github.com/omniauth/omniauth
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE.md
+
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	rubygem-hashie-gitlab>=3.4.6:devel/rubygem-hashie-gitlab \
+		rubygem-logger-gitlab>=0:devel/rubygem-logger-gitlab \
+		rubygem-rack-gitlab>=2.2.3:www/rubygem-rack-gitlab \
+		rubygem-rack-protection-gitlab>=0:www/rubygem-rack-protection-gitlab
+
+USES=		cpe gem
+
+NO_ARCH=	yes
+
+.include <bsd.port.mk>

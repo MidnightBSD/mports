@@ -1,0 +1,3 @@
+bin/sdl-config.pl
+%%SITE_PERL%%/Alien/SDL.pm
+%%SITE_PERL%%/Alien/SDL/ConfigData.pm

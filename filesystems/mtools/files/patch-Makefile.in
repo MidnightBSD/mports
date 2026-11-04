@@ -1,0 +1,5 @@
+--- Makefile.in.orig	2025-05-19 14:41:54 UTC
++++ Makefile.in
+@@ -270 +270 @@ install-scripts: $(DESTDIR)$(bindir)/mtools$(EXEEXT)
+-		$(INSTALL_PROGRAM) $(srcdir)/scripts/$$j $(DESTDIR)$(bindir)/$$j ; \
++		$(INSTALL) -m 555 $(srcdir)/scripts/$$j $(DESTDIR)$(bindir)/$$j ; \

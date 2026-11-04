@@ -1,0 +1,11 @@
+--- CMakeLists.txt.orig	2025-12-19 18:51:36.419563000 -0500
++++ CMakeLists.txt	2025-12-19 18:52:37.064821000 -0500
+@@ -643,7 +643,7 @@
+         set(BIND_8_COMPAT 1)
+     endif()
+     check_include_file("resolv.h"       HAVE_RESOLV_H)
+-    if(CMAKE_SYSTEM_NAME STREQUAL FreeBSD AND EXISTS /usr/include/resolv.h)
++    if(CMAKE_SYSTEM_NAME STREQUAL MidnightBSD AND EXISTS /usr/include/resolv.h)
+         # This hack because check_include_file() can't find "resolv.h" on FreeBSD.
+         set(HAVE_RESOLV_H 1)
+     endif()

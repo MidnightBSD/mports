@@ -1,0 +1,21 @@
+PORTNAME=	google-apis-iam_v1
+PORTVERSION=	0.79.0
+CATEGORIES=	devel rubygems
+MASTER_SITES=	RG
+PKGNAMESUFFIX=	-gitlab
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Simple REST client for IAM API V1
+WWW=		https://github.com/googleapis/google-api-ruby-client/tree/main/generated/google-apis-iam_v1
+
+LICENSE=	Apache-2.0
+LICENSE_FILE=	${WRKSRC}/LICENSE.md
+
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	rubygem-google-apis-core-gitlab>=0.15.0<2.0:devel/rubygem-google-apis-core-gitlab
+
+USES=		gem
+
+NO_ARCH=	yes
+
+.include <bsd.port.mk>

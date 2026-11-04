@@ -1,0 +1,9 @@
+--- pyproject.toml.orig	2026-09-15 13:32:31 UTC
++++ pyproject.toml
+@@ -1,5 +1,5 @@
+ [build-system]
+-requires = ["Cython>=3.2.9,<3.3", "setuptools"]
++requires = ["Cython>=3.2.9,<3.4", "setuptools"]
+ 
+ [tool.cibuildwheel]
+ build-verbosity = 1

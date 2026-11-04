@@ -1,0 +1,11 @@
+#!/usr/bin/perl
+
+use Cwd;
+
+$cwd = getcwd;
+
+$file = $cwd . '/' . $ARGV[0];
+$file2 = $file;
+$file2 =~ s/mports/ports/;
+
+system("diff", $file, $file2);
