@@ -1,0 +1,11 @@
+--- src/libuv-1.44.2/configure.orig	2024-11-29 06:43:05 UTC
++++ src/libuv-1.44.2/configure
+@@ -15005,7 +15005,7 @@ else
+ fi
+
+  if case $host_os in
+-  *freebsd*) true ;;
++  *freebsd* | *midnightbsd*) true ;;
+   *) false ;;
+ esac; then
+   FREEBSD_TRUE=

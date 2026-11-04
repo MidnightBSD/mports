@@ -1,0 +1,10 @@
+--- llvm-project/compiler-rt/lib/cfi/CMakeLists.txt.orig	2024-05-24 18:46:43 UTC
++++ llvm-project/compiler-rt/lib/cfi/CMakeLists.txt
+@@ -1,6 +1,6 @@
+ add_compiler_rt_component(cfi)
+ 
+-if(OS_NAME MATCHES "Linux" OR OS_NAME MATCHES "FreeBSD" OR OS_NAME MATCHES "NetBSD")
++if(OS_NAME MATCHES "Linux" OR OS_NAME MATCHES "FreeBSD" OR OS_NAME MATCHES "MidnightBSD" OR OS_NAME MATCHES "NetBSD")
+   set(CFI_SOURCES
+     cfi.cpp
+     )

@@ -1,0 +1,50 @@
+PORTNAME=	zola
+DISTVERSIONPREFIX=	v
+DISTVERSION=	0.21.0
+PORTREVISION=	1
+CATEGORIES=	www
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Fast static site generator
+WWW=		https://www.getzola.org/
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+NOT_FOR_ARCHS=	i386
+NOT_FOR_ARCHS_REASON=	the ring crate requires SSE2 instruction on intel cpu
+
+LIB_DEPENDS=	libonig.so:devel/oniguruma \
+		libsass.so:textproc/libsass
+
+USES=		cargo ssl
+USE_GITHUB=	yes
+GH_ACCOUNT=	getzola
+
+MAKE_ENV=	CARGO_PROFILE_RELEASE_LTO=off
+
+PLIST_FILES=	bin/zola \
+		etc/bash_completion.d/zola.bash \
+		share/fish/completions/zola.fish \
+		share/zsh/site-functions/_zola
+PORTDOCS=	*
+
+OPTIONS_DEFINE=	DOCS
+
+post-install:
+	${STRIP_CMD} ${PREFIX}/bin/zola
+	@${MKDIR} ${PREFIX}/etc/bash_completion.d \
+		${PREFIX}/share/fish/completions \
+		${PREFIX}/share/zsh/site-functions
+	${PREFIX}/bin/zola completion bash > \
+		${PREFIX}/etc/bash_completion.d/zola.bash
+	${PREFIX}/bin/zola completion fish > \
+		${PREFIX}/share/fish/completions/zola.fish
+	${PREFIX}/bin/zola completion zsh > \
+		${PREFIX}/share/zsh/site-functions/_zola
+
+post-install-DOCS-on:
+	@cd ${WRKSRC}/docs && \
+		${COPYTREE_SHARE} . ${FAKE_DESTDIR}${DOCSDIR}
+
+.include <bsd.port.mk>

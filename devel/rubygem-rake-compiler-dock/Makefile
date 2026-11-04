@@ -1,0 +1,19 @@
+PORTNAME=	rake-compiler-dock
+PORTVERSION=	1.11.0
+CATEGORIES=	devel rubygems
+MASTER_SITES=	RG
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Cross compiler environment for building Windows binary gems
+WWW=		https://github.com/rake-compiler/rake-compiler-dock
+
+LICENSE=	mit
+
+NO_ARCH=	yes
+USES=		gem shebangfix
+
+SHEBANG_FILES=	build/runas
+
+PLIST_FILES=	bin/rake-compiler-dock
+
+.include <bsd.port.mk>

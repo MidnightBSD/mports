@@ -1,0 +1,38 @@
+PORTNAME=	gexiv2
+PORTVERSION=	0.16.2
+CATEGORIES=	graphics
+MASTER_SITES=	GNOME
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	GObject-based wrapper around Exiv2 library
+WWW=		https://wiki.gnome.org/Projects/gexiv2
+
+LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+LIB_DEPENDS=	libexiv2.so:graphics/exiv2
+
+USES=		compiler:c++17-lang gnome libtool:build meson pathfix pkgconfig \
+		python:build tar:xz vala:build
+USE_GNOME=	glib20 introspection:build pygobject3
+USE_LDCONFIG=	yes
+BINARY_WRAPPERS=	gm4
+BINARY_ALIAS=	python3=${PYTHON_CMD}
+
+USE_CXXSTD=	c++17
+
+OPTIONS_DEFINE=		DOCS
+OPTIONS_SUB=		yes
+DOCS_BUILD_DEPENDS=	gtkdoc-scan:textproc/gtk-doc
+DOCS_MESON_ON=	-Dgtk_doc=true
+
+.include <bsd.mport.options.mk>
+
+pre-install:
+	@${MKDIR} ${PREFIX}/share/vala/vapi
+
+post-install:
+	${STRIP_CMD} ${PREFIX}/lib/libgexiv2-0.16.so
+	-${RM} -r ${PREFIX}/lib/python*
+
+.include <bsd.port.mk>

@@ -1,0 +1,22 @@
+--- pp.ml.orig	2018-01-11 09:30:26 UTC
++++ pp.ml
+@@ -107 +107 @@ let fmtfontsyles fs =
+-      (fun f1 f2 -> Stdlib.compare (as_fontstyle f1) (as_fontstyle f2))
++      (fun f1 f2 -> Pervasives.compare (as_fontstyle f1) (as_fontstyle f2))
+--- package.ml.orig	2018-01-11 09:30:26 UTC
++++ package.ml
+@@ -1380 +1380 @@ let finalize_alter names =
+-         (fun (_,o1) (_,o2) -> Stdlib.compare o1 o2)) ys in
++         (fun (_,o1) (_,o2) -> Pervasives.compare o1 o2)) ys in
+--- ultra.ml.orig	2018-01-11 09:30:26 UTC
++++ ultra.ml
+@@ -296 +296 @@ let cost fs =
+-    (fun ((_,j1),_) ((i2,_),_) -> Stdlib.compare (j1:int) i2)
++    (fun ((_,j1),_) ((i2,_),_) -> Pervasives.compare (j1:int) i2)
+--- foot.ml.orig	2018-01-11 09:30:26 UTC
++++ foot.ml
+@@ -101,2 +101,2 @@ let print_notes () =
+-        (fun (((m1:int),(a1:int)),_) ((m2,a2),_) -> match Stdlib.compare a1 a2 with
+-        | 0 ->  Stdlib.compare m1 m2
++        (fun (((m1:int),(a1:int)),_) ((m2,a2),_) -> match Pervasives.compare a1 a2 with
++        | 0 ->  Pervasives.compare m1 m2

@@ -1,0 +1,21 @@
+--- lib/vm-base.orig	2026-09-15 15:53:00 UTC
++++ lib/vm-base
+@@ -27,6 +27,18 @@ VERSION_BSD=$(uname -K)
+ VERSION=1.6-devel
+ VERSION_INT=106001
+ VERSION_BSD=$(uname -K)
++
++# MidnightBSD reports its own version from uname -K (400004 on 4.0), but every
++# version test below compares against __FreeBSD_version values. Translate to
++# the FreeBSD base that each MidnightBSD release derives from, otherwise all
++# feature checks fail and UEFI guests are refused outright.
++if [ "$(uname -s)" = "MidnightBSD" ]; then
++    if [ ${VERSION_BSD} -ge 400000 ]; then
++        VERSION_BSD=1300000
++    else
++        VERSION_BSD=1204000
++    fi
++fi
+ PATH=${PATH}:/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin
+ 
+ . /etc/rc.subr

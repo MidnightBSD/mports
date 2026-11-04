@@ -1,0 +1,11 @@
+--- src/Gui/CMakeLists.txt.orig	2026-07-01 13:44:31 UTC
++++ src/Gui/CMakeLists.txt
+@@ -112,7 +112,7 @@ else(MSVC)
+     set(FreeCADGui_LIBS
+         FreeCADApp
+         ${Boost_LIBRARIES}
+-        ${OPENGL_gl_LIBRARY}
++        ${OPENGL_gl_LIBRARY} -L${CMAKE_INSTALL_PREFIX}/lib
+         ${3DCONNEXION_LINKFLAGS}
+     )
+ endif(MSVC)

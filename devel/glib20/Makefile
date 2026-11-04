@@ -1,0 +1,172 @@
+PORTNAME=	glib
+DISTVERSION=	2.90.0
+PORTREVISION=	0
+PORTEPOCH=	2
+CATEGORIES=	devel
+MASTER_SITES=	GNOME
+DIST_SUBDIR=	gnome
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Some useful routines of C programming (current stable version)
+WWW=		https://www.gtk.org/
+
+LICENSE=	lgpl
+
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}packaging>0:devel/py-packaging@${PY_FLAVOR}
+LIB_DEPENDS=	libffi.so:devel/libffi \
+		libinotify.so:devel/libinotify \
+		libpcre2-8.so:devel/pcre2
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}packaging>0:devel/py-packaging@${PY_FLAVOR}
+
+FLAVORS=	default bootstrap
+FLAVOR?=	${FLAVORS:[1]}
+FLAVORS_SUB=	yes
+
+SKIP_FAKE_CHECK=	libdata/ldconfig/glib-bootstrap
+
+default_EXTRACT_DEPENDS=	${LOCALBASE}/gobject-introspection-bootstrap/bin/g-ir-scanner:devel/gobject-introspection@bootstrap
+default_BUILD_DEPENDS=	git:devel/git
+default_USES=		trigger
+
+bootstrap_PKGNAMESUFFIX=	-bootstrap
+
+NO_TEST=	yes
+
+# iconv:wchar_t - our iconv in base doesn't support utf-8 -> wchar_t (boooo)
+# (wchar_t is used by glibmm, rawtherapee triggered this)
+USES=		compiler:c11 cpe gettext gnome iconv:wchar_t localbase:ldflags \
+		meson perl5 pkgconfig python tar:xz ${${FLAVOR}_USES}
+USE_LDCONFIG=	yes
+USE_PERL5=	build
+#USE_PYTHON=	py3kplist
+TRIGGERS=	gio-modules glib-schemas
+MESON_ARGS=	-Db_lundef=false \
+		-Ddefault_library=both \
+		-Dinstalled_tests=false \
+		-Dlibelf=disabled \
+		-Dlibmount=disabled \
+		-Druntime_dir=/var/run \
+		-Dselinux=disabled \
+		-Dsysprof=disabled \
+		-Dsystemtap=disabled \
+		-Dxattr=false \
+		-Dtests=false
+BINARY_ALIAS=	python3=${PYTHON_CMD}
+PORTSCOUT=	limitw:1,even
+CPE_VENDOR=	gnome
+
+CONFLICTS_INSTALL=	p5-Giovanni
+
+_LIBVERSION=	0.${DISTVERSION:R:E}00.${DISTVERSION:E}
+PLIST_SUB=	LIBVERSION=${_LIBVERSION}
+
+OPTIONS_DEFINE=		DOCS FAM_ALTBACKEND MANPAGES NLS
+OPTIONS_DEFAULT=	MANPAGES
+OPTIONS_SUB=		yes
+
+DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gi-docgen>0:textproc/py-gi-docgen@${PY_FLAVOR}
+DOCS_IMPLIES=		MANPAGES
+DOCS_MESON_TRUE=	documentation
+
+FAM_ALTBACKEND_DESC=	Alternate file monitor backend
+
+MANPAGES_BUILD_DEPENDS=	rst2man:textproc/py-docutils
+MANPAGES_MESON_ENABLED=	man-pages
+
+# doesn't build yet
+MESON_ARGS+=	-Ddtrace=disabled
+
+NO_TEST=	yes
+
+.if ${FLAVOR:U} == bootstrap
+MAKE_ENV+= LD_LIBRARY_PATH=${LOCALBASE}/glib-bootstrap/lib
+LDFLAGS+= -L/usr/local/glib-bootstrap/lib -L/usr/local/lib
+MESON_ARGS+=	-Dintrospection=disabled -Ddocumentation=false -Dman-pages=disabled
+OPTIONS_DEFINE=
+PREFIX=		${LOCALBASE}/glib-bootstrap
+PLIST_SUB+=	PORTDOCS='@comment ' NLS='@comment ' MANPAGES='@comment '
+PLIST_FILES+=	/usr/local/libdata/ldconfig/glib-bootstrap
+.else
+MAKE_ENV+= LD_LIBRARY_PATH=${LOCALBASE}/glib-bootstrap/lib
+BINARY_ALIAS+=	g-ir-scanner=${LOCALBASE}/gobject-introspection-bootstrap/bin/g-ir-scanner
+MESON_ARGS+=	-Dintrospection=enabled
+.endif
+
+.if exists(/usr/include/sys/inotify.h)
+MESON_ARGS+=	-Dfile_monitor_backend='inotify'
+.else
+MESON_ARGS+=	-Dfile_monitor_backend='libinotify-kqueue'
+.endif
+
+.if ${FLAVOR:U} == default
+post-extract:
+	${CP} -r ${LOCALBASE}/gobject-introspection-bootstrap/libdata/pkgconfig ${PKGCONFIG_LINKDIR}
+	${CP} ${LOCALBASE}/glib-bootstrap/libdata/pkgconfig/*.pc ${PKGCONFIG_LINKDIR}
+.endif
+
+pre-build:
+	${MKDIR} ${LOCALBASE}/glib-bootstrap
+
+pre-configure-FAM_ALTBACKEND-on:
+	@${REINPLACE_CMD} -e 's|kqueue-helper.c|kqueue_fnm.c|g ; \
+		s|.*kqueue-missing.c.*||g ; \
+		s|.*dep-list.c.*||g' \
+		${WRKSRC}/gio/kqueue/meson.build
+	@${CP} -f ${FILESDIR}/gkqueuefilemonitor.c ${WRKSRC}/gio/kqueue/gkqueuefilemonitor.c
+	@${CP} ${FILESDIR}/kqueue_fnm.c ${WRKSRC}/gio/kqueue/kqueue_fnm.c
+	@${CP} ${FILESDIR}/kqueue_fnm.h ${WRKSRC}/gio/kqueue/kqueue_fnm.h
+
+post-patch:
+	${REINPLACE_CMD} -e 's|@PYTHON@|${PYTHON_CMD}|g' \
+		${WRKSRC}/gio/gdbus-2.0/codegen/gdbus-codegen.in \
+		${WRKSRC}/glib/gtester-report.in \
+		${WRKSRC}/gobject/glib-genmarshal.in \
+		${WRKSRC}/gobject/glib-mkenums.in
+	${REINPLACE_CMD} -e '/inotify_init1/d' \
+		-e '/inotify.h/d' \
+		${WRKSRC}/meson.build
+	${REINPLACE_CMD} -e 's|kfreebsd|midnightbsd|g' \
+		${WRKSRC}/glib/gnulib/gl_cv_func_printf_infinite/meson.build \
+		${WRKSRC}/glib/gnulib/gl_cv_func_printf_infinite_long_double/meson.build
+	${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|' \
+		${WRKSRC}/gio/xdgmime/xdgmime.c \
+		${WRKSRC}/glib/gutils.c \
+		${WRKSRC}/glib/tests/utils-unisolated.c
+
+CODEGENDIR=	${PREFIX}/share/glib-2.0/codegen
+
+post-install-DOCS-on:
+# this doc file gets created conditionally, so instead of adding another
+# PLIST_SUB item just create an empty file if it is missing
+	${TOUCH} ${FAKE_DESTDIR}${DOCSDIR}-2.0/const.VA_COPY_AS_ARRAY.html
+
+post-install:
+	@${MKDIR} ${PREFIX}/share/GConf/gsettings
+	@${MKDIR} ${PREFIX}/lib/gio/modules
+# generates .py[co] files for installed modules
+# if that's not done, ${PYTHON_SITELIBDIR}/gps will be polluted
+# with these files when module is imported from root user
+	@${FIND} ${PREFIX} -name \*.pyc -delete
+	(cd ${PREFIX} && \
+	python${PYTHON_VER} ${PYTHON_LIBDIR}/compileall.py \
+		-d ${CODEGENDIR:S;${FAKE_DESTDIR};;} -f ${CODEGENDIR:S;${PREFIX}/;;} && \
+	${PYTHON_CMD} -O ${PYTHON_LIBDIR}/compileall.py \
+		-d ${CODEGENDIR:S;${FAKE_DESTDIR};;} -f ${CODEGENDIR:S;${PREFIX}/;;})
+	# install bash completion regardless if bash is present
+	@${MKDIR} ${PREFIX}/share/bash-completion/completions
+.for file in gapplication gdbus gio gresource gsettings
+	${INSTALL_DATA} ${WRKSRC}/gio/completion/${file} \
+		${PREFIX}/share/bash-completion/completions/
+.endfor
+	-${RM} -r ${PREFIX}/libexec/installed-tests
+.if ${FLAVOR:U} == bootstrap
+	${MKDIR} ${PREFIX}/libdata/ldconfig
+#	-${CP} ${FAKE_DESTDIR}${LOCALBASE}/libdata/ldconfig/glib-bootstrap ${PREFIX}/libdata/ldconfig/glib-bootstrap
+	${LN} -sf ${FAKE_DESTDIR}${LOCALBASE}/libdata/ldconfig/glib-bootstrap ${PREFIX}/libdata/ldconfig/glib-bootstrap
+.endif
+
+
+pre-test:
+	${LOCALBASE}/bin/dbus-uuidgen > /var/lib/dbus/machine-id
+
+.include <bsd.port.mk>

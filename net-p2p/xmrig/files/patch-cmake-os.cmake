@@ -1,0 +1,11 @@
+--- cmake/os.cmake.orig	2025-05-18 14:57:38.744155000 -0400
++++ cmake/os.cmake	2025-05-18 14:58:00.585125000 -0400
+@@ -15,7 +15,7 @@
+         set(XMRIG_OS_ANDROID ON)
+     elseif(CMAKE_SYSTEM_NAME MATCHES "Linux")
+         set(XMRIG_OS_LINUX ON)
+-    elseif(CMAKE_SYSTEM_NAME STREQUAL FreeBSD OR CMAKE_SYSTEM_NAME STREQUAL DragonFly)
++    elseif(CMAKE_SYSTEM_NAME STREQUAL FreeBSD OR CMAKE_SYSTEM_NAME STREQUAL DragonFly OR CMAKE_SYSTEM_NAME STREQUAL MidnightBSD)
+         set(XMRIG_OS_FREEBSD ON)
+     endif()
+ endif()

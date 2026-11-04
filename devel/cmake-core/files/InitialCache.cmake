@@ -1,0 +1,12 @@
+# TODO: Add TEST option to enable regression tests. The tests require
+# additional packages to be installed and a small amount of patching
+# to account for our local changes.
+set(BUILD_TESTING OFF CACHE BOOL
+    "Build the testing tree.")
+
+# Use base libarchive instead of the ports or bundled version, because
+# libpkg links against base.
+set(LibArchive_INCLUDE_DIR "/usr/include" CACHE PATH
+    "Directory where LibArchive headers are located.")
+set(LibArchive_LIBRARY "/usr/lib/libarchive.so" CACHE PATH
+    "LibArchive library to link against.")

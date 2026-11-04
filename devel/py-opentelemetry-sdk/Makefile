@@ -1,0 +1,27 @@
+PORTNAME=	opentelemetry-sdk
+PORTVERSION=	1.45.1
+CATEGORIES=	devel python
+MASTER_SITES=	PYPI
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTNAME=	opentelemetry_sdk-${PORTVERSION}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	OpenTelemetry Python SDK
+WWW=		https://github.com/open-telemetry/opentelemetry-python/tree/main/opentelemetry-sdk \
+		https://github.com/open-telemetry/opentelemetry-python \
+		https://opentelemetry.io/
+
+LICENSE=	Apache-2.0
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>=0:devel/py-hatchling@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}opentelemetry-api=1.45.1:devel/py-opentelemetry-api@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}opentelemetry-semantic-conventions=0.66b1:devel/py-opentelemetry-semantic-conventions@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}typing-extensions>=4.5.0:devel/py-typing-extensions@${PY_FLAVOR}
+
+USES=		python:3.11+
+USE_PYTHON=	allflavors autoplist concurrent pep517
+
+NO_ARCH=	yes
+
+.include <bsd.port.mk>

@@ -1,0 +1,18 @@
+--- libraries/lib-wx-wrappers/CMakeLists.txt.orig	2023-06-08 09:17:02.000000000 -0400
++++ libraries/lib-wx-wrappers/CMakeLists.txt	2023-10-04 11:20:50.000000000 -0400
+@@ -25,7 +25,7 @@
+       FileDialog/mac/FileDialogPrivate.mm
+       FileDialog/mac/FileDialogPrivate.h
+    >
+-   $<$<PLATFORM_ID:Linux,FreeBSD,OpenBSD,CYGWIN>:
++   $<$<PLATFORM_ID:Linux,MidnightBSD,FreeBSD,OpenBSD,CYGWIN>:
+       FileDialog/gtk/FileDialogPrivate.cpp
+       FileDialog/gtk/FileDialogPrivate.h
+    >
+@@ -42,5 +42,5 @@
+ 
+ audacity_library( lib-wx-wrappers "${SOURCES}" "${LIBRARIES}"
+    ""
+-   "$<$<PLATFORM_ID:Linux,FreeBSD,OpenBSD,NetBSD,CYGWIN>:PkgConfig::GTK>"
++   "$<$<PLATFORM_ID:Linux,MidnightBSD,FreeBSD,OpenBSD,NetBSD,CYGWIN>:PkgConfig::GTK>"
+ )

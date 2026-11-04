@@ -1,0 +1,11 @@
+--- swift-corelibs-foundation/Sources/Tools/plutil/CMakeLists.txt.orig	2026-09-11 17:14:03 UTC
++++ swift-corelibs-foundation/Sources/Tools/plutil/CMakeLists.txt
+@@ -28,7 +28,7 @@
+ endif()
+ 
+ set_target_properties(plutil PROPERTIES
+-  INSTALL_RPATH "$ORIGIN/../lib/swift/$<LOWER_CASE:${CMAKE_SYSTEM_NAME}>")
++  INSTALL_RPATH "$ORIGIN/../lib/swift/$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},MidnightBSD>,freebsd,$<LOWER_CASE:${CMAKE_SYSTEM_NAME}>>")
+ 
+ 
+ set_property(GLOBAL APPEND PROPERTY Foundation_EXPORTS plutil)

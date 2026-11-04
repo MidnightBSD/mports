@@ -1,0 +1,80 @@
+#!/bin/sh
+#
+# PROVIDE: leonardo
+# REQUIRE: NETWORKING LOGIN DAEMON
+# KEYWORD: shutdown
+#
+# Add the following lines to /etc/rc.conf to enable leonardo:
+#
+# leonardo_enable="YES"
+# leonardo_config="%%PREFIX%%/etc/leonardo/leonardo.yaml"  # path to config file
+# leonardo_java_opts=""                                     # extra JVM flags
+# leonardo_flags=""                                         # extra application args
+#
+. /etc/rc.subr
+
+name="leonardo"
+desc="Leonardo S3-compatible object storage server"
+rcvar="${name}_enable"
+
+load_rc_config $name
+
+: ${leonardo_enable:="NO"}
+: ${leonardo_user:="leonardo"}
+: ${leonardo_group:="leonardo"}
+: ${leonardo_config:="%%PREFIX%%/etc/leonardo/leonardo.yaml"}
+: ${leonardo_java_opts:="-XX:+UseG1GC -XX:MaxRAMPercentage=75.0 --enable-native-access=ALL-UNNAMED"}
+: ${leonardo_flags:=""}
+: ${leonardo_basedir:="/var/leonardo"}
+: ${leonardo_log:="/var/log/leonardo/leonardo.log"}
+
+leonardo_libdir="%%PREFIX%%/share/java/leonardo/lib"
+
+pidfile="/var/run/${name}.pid"
+command="%%JAVA%%"
+procname="%%JAVA%%"
+
+# Leonardo is a Micronaut application: the operator config file is passed via
+# the micronaut.config.files system property.  Build the classpath explicitly
+# so no shell glob or quoting is left to chance.
+leonardo_classpath()
+{
+	local _cp _jar
+	_cp=""
+	for _jar in ${leonardo_libdir}/*.jar; do
+		_cp="${_cp:+${_cp}:}${_jar}"
+	done
+	echo "${_cp}"
+}
+
+command_args="${leonardo_java_opts} \
+	-Dmicronaut.config.files=file:${leonardo_config} \
+	-cp $(leonardo_classpath) \
+	org.midnightbsd.leonardo.app.LeonardoApplication \
+	${leonardo_flags}"
+
+start_precmd="${name}_prestart"
+start_cmd="${name}_start"
+
+leonardo_prestart()
+{
+	if [ ! -r "${leonardo_config}" ]; then
+		err 1 "Configuration file ${leonardo_config} not found."
+	fi
+	install -d -o ${leonardo_user} -g ${leonardo_group} -m 0750 ${leonardo_basedir}
+	install -d -o ${leonardo_user} -g ${leonardo_group} -m 0750 ${leonardo_basedir}/config
+	install -d -o ${leonardo_user} -g ${leonardo_group} -m 0750 ${leonardo_basedir}/tmp
+	install -d -o ${leonardo_user} -g ${leonardo_group} -m 0750 ${leonardo_basedir}/logs
+	install -d -o ${leonardo_user} -g ${leonardo_group} -m 0750 /var/log/leonardo
+}
+
+leonardo_start()
+{
+	check_startmsgs && echo "Starting ${name}."
+	cd ${leonardo_basedir} && \
+	/usr/sbin/daemon -f -u ${leonardo_user} -p ${pidfile} \
+		-o ${leonardo_log} -t ${name} \
+		${command} ${command_args}
+}
+
+run_rc_command "$1"

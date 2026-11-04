@@ -1,0 +1,44 @@
+--- src/llvm/cmake/config.guess.orig	2016-06-04 10:22:28 UTC
++++ src/llvm/cmake/config.guess
+@@ -795,20 +795,34 @@ EOF
+     *:BSD/OS:*:*)
+ 	echo ${UNAME_MACHINE}-unknown-bsdi${UNAME_RELEASE}
+ 	exit ;;
+-    *:FreeBSD:*:*)
++    *:MidnightBSD:*:*)
+ 	UNAME_PROCESSOR=`/usr/bin/uname -p`
+ 	case ${UNAME_PROCESSOR} in
+ 	    amd64)
+-		echo x86_64-unknown-freebsd`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'` ;;
++		echo x86_64-unknown-freebsd13.4 ;;
+ 	    *)
+-		echo ${UNAME_PROCESSOR}-unknown-freebsd`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'` ;;
++		echo ${UNAME_PROCESSOR}-unknown-freebsd13.4 ;;
+ 	esac
+ 	exit ;;
+-    i*:CYGWIN*:*)
+-	echo ${UNAME_MACHINE}-pc-cygwin
++    amd64:CYGWIN*:*:* | x86_64:CYGWIN*:*:*)
++	echo x86_64-unknown-cygwin
+ 	exit ;;
+-    *:MINGW*:*)
+-	echo ${UNAME_MACHINE}-pc-mingw32
++    p*:CYGWIN*:*)
++	echo powerpcle-unknown-cygwin
++	exit ;;
++    prep*:SunOS:5.*:*)
++	echo powerpcle-unknown-solaris2`echo ${UNAME_RELEASE}|sed -e 's/[^.]*//'`
++	exit ;;
++    *:GNU:*:*)
++	# the GNU system
++	echo `echo ${UNAME_MACHINE}|sed -e 's,[-/].*$,,'`-unknown-gnu`echo ${UNAME_RELEASE}|sed -e 's,/.*$,,'`
++	exit ;;
++    *:GNU/*:*:*)
++	# other systems with GNU libc and userland
++	echo ${UNAME_MACHINE}-unknown-`echo ${UNAME_SYSTEM} | sed 's,^[^/]*/,,' | tr '[A-Z]' '[a-z]'``echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'`-gnu
++	exit ;;
++    i*86:Minix:*:*)
++	echo ${UNAME_MACHINE}-pc-minix
+ 	exit ;;
+     *:MSYS*:*)
+ 	echo ${UNAME_MACHINE}-pc-msys

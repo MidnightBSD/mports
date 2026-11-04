@@ -1,0 +1,24 @@
+#!/bin/sh
+
+case "$2" in
+POST-DEINSTALL) ;;
+*) exit 0 ;;
+esac
+
+prefix=${PKG_PREFIX:-/usr/local}
+gemini_dir="${prefix}/lib/node_modules/@google/gemini-cli"
+lockfile="${prefix}/package-lock.json"
+
+# Gemini CLI can self-update outside mport, leaving unmanaged files behind.
+if [ -d "${gemini_dir}" ]; then
+	rm -rf "${gemini_dir}"
+fi
+
+if [ -f "${lockfile}" ] && grep -q '"@google/gemini-cli"' "${lockfile}"; then
+	rm -f "${lockfile}"
+fi
+
+rmdir "${prefix}/lib/node_modules/@google" 2>/dev/null || :
+rmdir "${prefix}/lib/node_modules" 2>/dev/null || :
+
+exit 0

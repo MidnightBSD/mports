@@ -1,0 +1,9 @@
+--- platforms/desktop-shared/Makefile.common.orig	2023-03-04 20:16:03 UTC
++++ platforms/desktop-shared/Makefile.common
+@@ -1,5 +1,5 @@
+ 
+-CXX = g++
++#CXX = g++
+ #CXX = clang++
+ 
+ EXE = gearsystem

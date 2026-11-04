@@ -1,0 +1,10 @@
+--- swift-corelibs-foundation/Sources/BlocksRuntime/CMakeLists.txt.orig	2026-09-11 17:14:03 UTC
++++ swift-corelibs-foundation/Sources/BlocksRuntime/CMakeLists.txt
+@@ -11,5 +11,5 @@
+ add_library(BlocksRuntime::BlocksRuntime ALIAS BlocksRuntime)
+ 
+ install(TARGETS BlocksRuntime
+-  ARCHIVE DESTINATION lib/swift$<$<NOT:$<BOOL:${BUILD_SHARED_LIBS}>>:_static>/$<LOWER_CASE:${CMAKE_SYSTEM_NAME}>
+-  LIBRARY DESTINATION lib/swift$<$<NOT:$<BOOL:${BUILD_SHARED_LIBS}>>:_static>/$<LOWER_CASE:${CMAKE_SYSTEM_NAME}>)
++  ARCHIVE DESTINATION lib/swift$<$<NOT:$<BOOL:${BUILD_SHARED_LIBS}>>:_static>/$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},MidnightBSD>,freebsd,$<LOWER_CASE:${CMAKE_SYSTEM_NAME}>>
++  LIBRARY DESTINATION lib/swift$<$<NOT:$<BOOL:${BUILD_SHARED_LIBS}>>:_static>/$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},MidnightBSD>,freebsd,$<LOWER_CASE:${CMAKE_SYSTEM_NAME}>>)

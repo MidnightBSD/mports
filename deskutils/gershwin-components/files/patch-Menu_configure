@@ -1,0 +1,29 @@
+--- Menu/configure.orig
++++ Menu/configure
+@@ -45,7 +45,7 @@
+ 
+ # Platform-specific library paths
+ case "$OS" in
+-    FreeBSD)
++    FreeBSD|MidnightBSD)
+         DBUS_LIBS="-L/usr/local/lib -ldbus-1"
+         ;;
+     *)
+@@ -87,7 +87,7 @@
+             DBUS_CFLAGS="$DBUS_CFLAGS -I/usr/lib/dbus-1.0/include"
+         fi
+         ;;
+-    FreeBSD)
++    FreeBSD|MidnightBSD)
+         # FreeBSD typically uses /usr/local
+         if [ -z "$DBUS_CFLAGS" ]; then
+             DBUS_CFLAGS="-I/usr/local/include/dbus-1.0 -I/usr/local/include"
+@@ -115,7 +115,7 @@
+             echo "  Fedora/RHEL:   sudo dnf install dbus-devel"
+             echo "  Arch Linux:    sudo pacman -S dbus"
+             ;;
+-        FreeBSD)
++        FreeBSD|MidnightBSD)
+             echo "Please install DBUS:"
+             echo "  sudo pkg install dbus"
+             ;;

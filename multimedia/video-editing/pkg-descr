@@ -1,0 +1,12 @@
+Video production tools for editing footage, compositing motion graphics,
+preparing still images and audio, transcoding media, and inspecting and
+previewing the results.
+
+The default suite combines FilmCraft, EffectCraft, PhotoCraft, SoundCraft,
+FFmpeg, MediaInfo, and mpv. Audacity, Kdenlive, and VectorCraft are optional.
+Craft applications can be deselected individually.
+
+Each application retains its own license and distribution terms. The
+FilmCraft and EffectCraft recipes apply ArtCraft brand restrictions that
+prohibit mirroring or selling their packages, so these dependencies require
+local source builds. This meta port bundles no application code or assets.

@@ -1,0 +1,25 @@
+--- Makefile.orig	2025-03-05 12:58:51 UTC
++++ Makefile
+@@ -367,5 +367,5 @@ ifeq ($(ENABLE_READLINE),1)
+ CXXFLAGS += -DYOSYS_ENABLE_READLINE
+-ifeq ($(OS), $(filter $(OS),FreeBSD OpenBSD NetBSD))
++ifeq ($(OS), $(filter $(OS),FreeBSD MidnightBSD OpenBSD NetBSD))
+ CXXFLAGS += -I/usr/local/include
+ endif
+ LIBS += -lreadline
+@@ -399,7 +399,7 @@ ifeq ($(OS), MINGW)
+ CXXFLAGS += -Ilibs/dlfcn-win32
+ endif
+ LIBS += $(shell PKG_CONFIG_PATH=$(PKG_CONFIG_PATH) $(PKG_CONFIG) --silence-errors --libs libffi || echo -lffi)
+-ifneq ($(OS), $(filter $(OS),FreeBSD OpenBSD NetBSD MINGW))
++ifneq ($(OS), $(filter $(OS),FreeBSD MidnightBSD OpenBSD NetBSD MINGW))
+ LIBS += -ldl
+ endif
+ endif
+@@ -418,5 +418,5 @@ ifeq ($(ENABLE_TCL),1)
+ TCL_VERSION ?= tcl$(shell bash -c "tclsh <(echo 'puts [info tclversion]')")
+-ifeq ($(OS), $(filter $(OS),FreeBSD OpenBSD NetBSD))
++ifeq ($(OS), $(filter $(OS),FreeBSD MidnightBSD OpenBSD NetBSD))
+ # BSDs usually use tcl8.6, but the lib is named "libtcl86"
+ TCL_INCLUDE ?= /usr/local/include/$(TCL_VERSION)
+ TCL_LIBS ?= -l$(subst .,,$(TCL_VERSION))
