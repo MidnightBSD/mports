@@ -1,0 +1,12 @@
+--- meson.build.orig	2023-07-17 13:31:41.492076000 -0400
++++ meson.build	2023-07-17 13:32:23.339682000 -0400
+@@ -229,6 +229,9 @@
+ 
+   libc_feature_defines = []
+ 
++elif system == 'midnightbsd'
++  libc_feature_defines = []
++
+ elif system == 'darwin'
+   # See issue #2592
+   libc_feature_defines += [

@@ -1,0 +1,11 @@
+--- scripts/CMakeLists.txt.orig
++++ scripts/CMakeLists.txt
+@@ -136,7 +136,7 @@
+   ENDFOREACH()
+ ENDIF()
+ 
+-IF(CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
++IF(CMAKE_SYSTEM_NAME MATCHES "^(FreeBSD|MidnightBSD)$")
+   SET (PERL_PATH "/usr/local/bin/perl")
+ ELSE()
+   SET (PERL_PATH "/usr/bin/perl")

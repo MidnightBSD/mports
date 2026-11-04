@@ -1,0 +1,9 @@
+eric is a full featured Python editor and IDE, written in Python. It is
+based on the cross platform Qt GUI toolkit (PyQt6), integrating the highly
+flexible QScintilla editor control. It is designed to be usable as an
+everyday quick and dirty editor as well as a professional project
+management tool integrating many advanced features Python offers the
+professional coder. eric includes a plug-in system, which allows easy
+extension of the IDE functionality with plug-ins downloadable from the net.
+
+This is eric7, the PyQt6 based successor of eric6.

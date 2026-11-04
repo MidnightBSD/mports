@@ -1,0 +1,39 @@
+PORTNAME=	znc-clientbuffer
+DISTVERSIONPREFIX=	v
+DISTVERSION=	1.0.48
+PORTREVISION=	1
+CATEGORIES=	irc
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Client specific buffers module for ZNC
+WWW=		https://wiki.znc.in/Clientbuffer
+
+LICENSE=	Apache-2.0
+
+BUILD_DEPENDS=	znc:irc/znc
+RUN_DEPENDS=	znc:irc/znc
+
+# znc-buildmod drives cmake, and znc's own ZNCConfig.cmake requires PkgConfig.
+USES=		pkgconfig
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	CyberShadow
+
+ALL_TARGET=	clientbuffer.so
+MAKE_JOBS_UNSAFE=	yes
+
+PLIST_FILES=	lib/znc/clientbuffer.so
+
+PORTDOCS=		README.md
+
+OPTIONS_DEFINE=	DOCS
+
+do-install:
+	${MKDIR} ${PREFIX}/lib/znc
+	${INSTALL_PROGRAM} ${WRKSRC}/clientbuffer.so ${PREFIX}/lib/znc/clientbuffer.so
+
+do-install-DOCS-on:
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README.md  ${FAKE_DESTDIR}${DOCSDIR}
+
+.include <bsd.port.mk>

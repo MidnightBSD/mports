@@ -1,0 +1,33 @@
+--- pr/include/md/_freebsd.cfg.orig	2023-01-03 05:22:29 UTC
++++ pr/include/md/_freebsd.cfg
+@@ -253,8 +253,13 @@
+ 
+ #elif defined(__powerpc64__)
+ 
++#ifdef __LITTLE_ENDIAN__
++#define IS_LITTLE_ENDIAN 1
++#undef  IS_BIG_ENDIAN
++#else
+ #undef  IS_LITTLE_ENDIAN
+ #define IS_BIG_ENDIAN    1
++#endif
+ #define IS_64
+ 
+ #define PR_BYTES_PER_BYTE   1
+--- pr/include/md/_freebsd.h.orig	2023-01-03 05:22:29 UTC
++++ pr/include/md/_freebsd.h
+@@ -63,6 +63,14 @@
+ #define _PR_HAVE_LARGE_OFF_T
+ 
+ #if defined(_PR_PTHREADS)
++#if __MidnightBSD_version >= 3000
++#define _PR_HAVE_GETPROTO_R
++#define _PR_HAVE_5_ARG_GETPROTO_R
++#endif
++#if __MidnightBSD_version >= 3000
++#define _PR_HAVE_GETHOST_R
++#define _PR_HAVE_GETHOST_R_INT
++#endif
+ #if __FreeBSD_version >= 400008
+ /*
+  * libc_r before this version of FreeBSD doesn't have poll().

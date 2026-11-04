@@ -1,0 +1,11 @@
+--- src/lib/dhcp/meson.build.orig	2025-08-20 08:14:44 UTC
++++ src/lib/dhcp/meson.build
+@@ -2,7 +2,7 @@ pkt_filter_cc = 'pkt_filter_bpf.cc'
+ if SYSTEM == 'linux'
+     iface_mgr = 'iface_mgr_linux.cc'
+     pkt_filter_cc = 'pkt_filter_lpf.cc'
+-elif SYSTEM == 'freebsd' or SYSTEM == 'netbsd' or SYSTEM == 'openbsd' or SYSTEM == 'darwin'
++elif SYSTEM == 'freebsd' or SYSTEM == 'midnightbsd' or SYSTEM == 'netbsd' or SYSTEM == 'openbsd' or SYSTEM == 'darwin'
+     iface_mgr = 'iface_mgr_bsd.cc'
+ elif SYSTEM == 'sun'
+     iface_mgr = 'iface_mgr_sun.cc'

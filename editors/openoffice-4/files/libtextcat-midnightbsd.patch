@@ -1,0 +1,18 @@
+diff -u misc/libtextcat-2.2/config.guess misc/build/libtextcat-2.2/config.guess
+--- misc/libtextcat-2.2/config.guess	2010-04-15 09:20:41.000000000 +0000
++++ misc/build/libtextcat-2.2/config.guess	2026-11-03 00:00:00.000000000 +0000
+@@ -792,6 +792,14 @@
+ 	case ${UNAME_MACHINE} in
+ 	    pc98)
+ 		echo i386-unknown-freebsd`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'` ;;
++	    amd64)
++		echo x86_64-unknown-freebsd`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'` ;;
++	    *)
++		echo ${UNAME_MACHINE}-unknown-freebsd`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'` ;;
++	esac
++	exit ;;
++    *:MidnightBSD:*:*)
++	case ${UNAME_MACHINE} in
+ 	    amd64)
+ 		echo x86_64-unknown-freebsd`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'` ;;
+ 	    *)

@@ -1,0 +1,9 @@
+--- src/lisp.h.orig	2025-05-15 18:36:15 UTC
++++ src/lisp.h
+@@ -836,7 +836,7 @@ typedef struct Lisp_X *Lisp_Word;
+     } s;
+     GCALIGNED_UNION_MEMBER
+   } u;
+-};
++} GCALIGNED_STRUCT;
+ static_assert (GCALIGNED (struct Lisp_Symbol));

@@ -1,0 +1,10 @@
+--- llvm/tools/llvm-shlib/CMakeLists.txt.orig	2023-12-18 09:11:49.424477000 -0500
++++ llvm/tools/llvm-shlib/CMakeLists.txt	2023-12-18 09:12:12.140518000 -0500
+@@ -35,6 +35,7 @@
+   list(REMOVE_DUPLICATES LIB_NAMES)
+   if(("${CMAKE_SYSTEM_NAME}" STREQUAL "Linux") OR (MINGW) OR (HAIKU)
+      OR ("${CMAKE_SYSTEM_NAME}" STREQUAL "FreeBSD")
++     OR ("${CMAKE_SYSTEM_NAME}" STREQUAL "MidnightBSD")
+      OR ("${CMAKE_SYSTEM_NAME}" STREQUAL "GNU")
+      OR ("${CMAKE_SYSTEM_NAME}" STREQUAL "OpenBSD")
+      OR ("${CMAKE_SYSTEM_NAME}" STREQUAL "Fuchsia")

@@ -1,0 +1,2 @@
+Croniter provides iteration over datetimes using cron expressions. It can
+calculate the next or previous matching time for a schedule.

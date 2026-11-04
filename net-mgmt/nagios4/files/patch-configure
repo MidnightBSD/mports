@@ -1,0 +1,18 @@
+--- configure.orig	2018-06-25 21:25:22 UTC
++++ configure
+@@ -6240,7 +6240,6 @@ cat >>confdefs.h <<_ACEOF
+ #define DEFAULT_NAGIOS_GROUP "$nagios_grp"
+ _ACEOF
+ 
+-INSTALL_OPTS="-o $nagios_user -g $nagios_grp"
+ 
+ 
+ 
+@@ -6267,7 +6266,6 @@ fi
+ 
+ 
+ 
+-COMMAND_OPTS="-o $command_user -g $command_grp"
+ 
+ 
+ MAIL_PROG=no

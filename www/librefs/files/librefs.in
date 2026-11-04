@@ -1,0 +1,114 @@
+#!/bin/sh
+
+# PROVIDE: librefs
+# REQUIRE: DAEMON
+# KEYWORD: shutdown
+
+#
+# Add the following lines to /etc/rc.conf to enable librefs:
+#
+# librefs_enable (bool):          Set to "NO" by default.
+#                                 Set it to "YES" to enable librefs
+# librefs_certs (path):           Set to "%%ETCDIR%%/certs" by default
+#                                 Set to directory to certs dir
+# librefs_disks (path):           Set to "%%DBDIR%%" by default.
+#                                 Set it to directory to store librefs data
+# librefs_address (str):          Set to ":9000" by default.
+#                                 Set it to address for librefs to listen on
+# librefs_console_address (str):  Not set by default
+#                                 Set it to address for the web console
+# librefs_user (str):             Set to "%%USER%%" by default.
+#                                 Set it to user to run librefs under
+# librefs_group (str):            Set to "%%GROUP%%" by default.
+#                                 Set it to group to run librefs under
+# librefs_root_user (str):        Set to "minioadmin" by default.
+#                                 Set root username
+# librefs_root_password (str):    Set to "minioadmin" by default.
+#                                 Set root's password
+# librefs_root_access (str):      Set to "on" by default.
+#                                 Set to "off" to disable root access
+# librefs_logfile (str):          Set to "/var/log/librefs.log" by default.
+#                                 Set it to file where stdout/stderr are logged.
+# librefs_syslog_enable (bool):   Set to YES by default
+#                                 Set it to NO to disable syslog output
+# librefs_syslog_tag (str):       Set to "librefs" by default.
+#                                 Set syslog tag if syslog enabled
+# librefs_syslog_priority (str):  Set to "info" by default.
+#                                 Set syslog priority if syslog enabled
+# librefs_syslog_facility (str):  Set to "daemon" by default.
+#                                 Set syslog facility if syslog enabled
+#
+
+. /etc/rc.subr
+
+name=librefs
+rcvar=librefs_enable
+
+load_rc_config ${name}
+
+: ${librefs_enable:="NO"}
+: ${librefs_certs="%%ETCDIR%%/certs"}
+: ${librefs_disks="%%DBDIR%%"}
+: ${librefs_address=":9000"}
+: ${librefs_console_address=""}
+: ${librefs_user:="%%USER%%"}
+: ${librefs_group:="%%GROUP%%"}
+: ${librefs_root_user:="minioadmin"}
+: ${librefs_root_password:="minioadmin"}
+: ${librefs_root_access:="on"}
+: ${librefs_syslog_enable:="YES"}
+: ${librefs_logfile:="/var/log/librefs.log"}
+
+export MINIO_ROOT_USER="${librefs_root_user}"
+export MINIO_ROOT_PASSWORD="${librefs_root_password}"
+export MINIO_API_ROOT_ACCESS="${librefs_root_access}"
+
+start_precmd="librefs_start_precmd"
+
+if checkyesno librefs_syslog_enable; then
+    if [ -n "${librefs_syslog_tag}" ]; then
+        librefs_syslog_output_flags="-T ${librefs_syslog_tag}"
+    else
+        librefs_syslog_output_flags="-T ${name}"
+    fi
+    if [ -n "${librefs_syslog_priority}" ]; then
+        librefs_syslog_output_flags="${librefs_syslog_output_flags} -s ${librefs_syslog_priority}"
+    fi
+    if [ -n "${librefs_syslog_facility}" ]; then
+        librefs_syslog_output_flags="${librefs_syslog_output_flags} -l ${librefs_syslog_facility}"
+    fi
+else
+    librefs_syslog_output_flags="-o ${librefs_logfile}"
+fi
+
+if [ ! -z "${librefs_console_address}" ]; then
+    librefs_console_address_arg="--console-address \"${librefs_console_address}\""
+else
+    librefs_console_address_arg=""
+fi
+
+pidfile="/var/run/${name}.pid"
+procname="%%PREFIX%%/bin/librefs"
+command="/usr/sbin/daemon"
+command_args="-f -t ${name} ${librefs_syslog_output_flags} -p ${pidfile} /usr/bin/env ${librefs_env} ${procname} -S \"${librefs_certs}\" --quiet server --address=\"${librefs_address}\" ${librefs_console_address_arg} ${librefs_disks} ${librefs_args}"
+
+librefs_start_precmd()
+{
+    if [ ! -e "${pidfile}" ]; then
+        install -m 0600 -o "${librefs_user}" -g "${librefs_group}" /dev/null "${pidfile}"
+    fi
+
+    if echo "${librefs_disks}" | egrep -q -v '^[^/]|\.{3}'; then
+        for disk in "${librefs_disks}"; do
+            if [ ! -d "${disk}" ]; then
+                install -d -m 0750 -o "${librefs_user}" -g "${librefs_group}" "${disk}"
+            fi
+        done
+    fi
+
+    if ! checkyesno librefs_syslog_enable && [ ! -e "${librefs_logfile}" ]; then
+        install -m 0640 -o "${librefs_user}" -g "${librefs_group}" /dev/null "${librefs_logfile}"
+    fi
+}
+
+run_rc_command "$1"

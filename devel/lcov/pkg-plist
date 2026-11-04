@@ -1,0 +1,6 @@
+bin/genhtml
+bin/geninfo
+bin/genpng
+bin/gendesc
+bin/lcov
+etc/lcovrc

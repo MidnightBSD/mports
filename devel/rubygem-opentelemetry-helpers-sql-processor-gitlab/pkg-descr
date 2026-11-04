@@ -1,0 +1,2 @@
+This gem provides SQL processing instrumentation helpers for the OpenTelemetry
+framework. It is used by Ruby database adapter instrumentation libraries.
