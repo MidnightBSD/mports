@@ -1,4 +1,4 @@
-    COMMENT = Electronic mail utilities
+COMMENT = Electronic mail utilities
 
     SUBDIR += abook
     SUBDIR += adcomplain
@@ -156,6 +156,7 @@
     SUBDIR += roundcube-thunderbird_labels
     SUBDIR += rspamd
     SUBDIR += rubygem-actionmailbox-gitlab
+    SUBDIR += rubygem-actionmailbox81
     SUBDIR += rubygem-actionmailer-gitlab
     SUBDIR += rubygem-actionmailer4
     SUBDIR += rubygem-email_reply_trimmer
