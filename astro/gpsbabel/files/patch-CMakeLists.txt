@@ -1,0 +1,14 @@
+--- CMakeLists.txt.orig	2026-10-22 19:28:16 UTC
++++ CMakeLists.txt
+@@ -11,7 +11,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
+ 
+ # Do this after we set up common variables but before creating other
+ # variables that will be inherited.
+-add_subdirectory(gui)
++option(GPSBABEL_WITH_GUI "build the gpsbabelfe Qt GUI." ON)
++if(GPSBABEL_WITH_GUI)
++  add_subdirectory(gui)
++endif()
+ 
+ # FIXME: When we rearrange the project directory structure everything
+ # below here should be in it's own CMakeList.txt

@@ -1,0 +1,16 @@
+--- testsuite/meson.build.orig	2026-09-11 00:00:00 UTC
++++ testsuite/meson.build	2026-09-11 00:00:00 UTC
+@@ -45,5 +45,5 @@
+-  { 'backend': 'x11', 'if': x11_enabled, },
+-  { 'backend': 'wayland', 'if': wayland_enabled, 'is_default': true, },
++  { 'backend': 'x11', 'if': x11_enabled, 'is_default': not os_linux, },
++  { 'backend': 'wayland', 'if': wayland_enabled, 'is_default': os_linux, },
+   { 'name': 'wayland_gl',
+     'backend': 'wayland', 'if': wayland_enabled,
+     'env': [ 'GDK_DISABLE=gles-api'
+@@ -103,4 +103,4 @@
+-  if wayland_enabled
++  if wayland_enabled and os_linux
+     subdir('headless')
+   endif
+ endif

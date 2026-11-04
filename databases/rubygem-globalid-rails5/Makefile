@@ -1,0 +1,26 @@
+PORTNAME=	globalid
+PORTVERSION=	1.1.0
+PORTREVISION=	1
+CATEGORIES=	databases rubygems
+MASTER_SITES=	RG
+PKGNAMESUFFIX=	-rails5
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	URIs for your models makes it easy to pass references around
+WWW=		https://github.com/rails/globalid
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
+
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	rubygem-activesupport5>=5.0:devel/rubygem-activesupport5
+
+USES=		gem
+USES+=	cpe
+CPE_VENDOR=	rubyonrails
+
+NO_ARCH=	yes
+
+PORTSCOUT=	limit:^1\.1\.
+
+.include <bsd.port.mk>

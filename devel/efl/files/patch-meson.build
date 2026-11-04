@@ -1,0 +1,25 @@
+--- meson.build.bak	2023-12-23 10:56:36.000000000 -0500
++++ meson.build	2024-05-31 20:02:59.172468000 -0400
+@@ -38,7 +38,7 @@
+ 
+ windows = ['windows', 'cygwin']
+ #bsd for meson 0.46 and 0.47
+-bsd = ['bsd', 'freebsd', 'dragonfly', 'netbsd', 'openbsd']
++bsd = ['bsd', 'freebsd', 'midnightbsd', 'netbsd', 'openbsd']
+ linux = ['linux']
+ osx = ['darwin']
+ sun = ['sunos']
+@@ -219,11 +219,11 @@
+   error('System ' + host_machine.system() + ' not known')
+ endif
+ 
+-if sys_linux or sys_bsd or sys_sun
++if sys_linux or sys_sun
+   config_h.set('_STAT_VER_LINUX', '1')
+ endif
+ 
+-if host_os == 'freebsd' or host_os == 'dragonfly'
++if host_os == 'freebsd' or host_os == 'midnightbsd'
+   # This is necessary. We MUST use OpenSSL in base as bringing in from ports
+   # can cause major issues (2 copies of the same library).
+   crypto = declare_dependency(link_args : [ '-lssl', '-lcrypto'])

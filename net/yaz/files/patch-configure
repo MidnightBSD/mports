@@ -1,0 +1,7 @@
+--- configure.orig	2021-10-12 11:16:18 UTC
++++ configure
+@@ -14265,2 +14265,2 @@
+-			  ICU_CFLAGS=`$pkgconfigpath --cflags icu-i18n`
+-			  ICU_LIBS=`$pkgconfigpath --libs icu-i18n`
++			  ICU_CFLAGS=`$pkgconfigpath --cflags icu-i18n icu-uc`
++			  ICU_LIBS=`$pkgconfigpath --libs icu-i18n icu-uc`

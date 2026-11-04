@@ -1,0 +1,14 @@
+DISTVERSION=	0.23.1
+PORTREVISION?=	0 # Leave this zero. Set in Makefile instead
+CATEGORIES=	devel
+MASTER_SITES=	GNU/gettext
+DISTNAME=	gettext-${PORTVERSION}
+
+MAINTAINER=	ports@MidnightBSD.org
+
+DISTINFO_FILE=	${.CURDIR}/../gettext/distinfo
+
+DATADIR=	${PREFIX}/share/gettext
+DOCSDIR=	${PREFIX}/share/doc/gettext
+
+LTO_UNSAFE=	yes

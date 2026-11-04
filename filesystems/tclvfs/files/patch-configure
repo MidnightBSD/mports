@@ -1,0 +1,8 @@
+--- configure.orig	2008-05-03 15:55:52 UTC
++++ configure
+@@ -8089 +8089 @@ echo "${ECHO_T}$tcl_cv_ld_elf" >&6
+-	FreeBSD-*)
++	MidnightBSD-*|FreeBSD-*)
+@@ -8783 +8783 @@
+-		NetBSD-*|FreeBSD-*)
++		NetBSD-*|MidnightBSD-*|FreeBSD-*)

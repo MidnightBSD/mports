@@ -1,0 +1,10 @@
+--- cmake-proxies/pffft/CMakeLists.txt.orig	2026-07-01 00:00:00 UTC
++++ cmake-proxies/pffft/CMakeLists.txt
+@@ -12,4 +12,7 @@ set(INCLUDES
+ set_target_properties( ${TARGET} PROPERTIES FOLDER "lib-src" )
+ target_sources( ${TARGET} PRIVATE ${SOURCES} )
+ target_include_directories( ${TARGET} PUBLIC ${INCLUDES} )
++if( SSE_FLAG )
++   target_compile_options( ${TARGET} PRIVATE ${SSE_FLAG} )
++endif()
+ set_property(TARGET ${TARGET} PROPERTY POSITION_INDEPENDENT_CODE ON)

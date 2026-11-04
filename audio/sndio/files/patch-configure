@@ -1,0 +1,11 @@
+--- configure.orig	2020-06-02 16:16:03.182878000 -0400
++++ configure	2020-06-02 16:16:20.404389000 -0400
+@@ -79,7 +79,7 @@
+ 		-DHAVE_STRLCAT -DHAVE_STRLCPY -DHAVE_STRTONUM \\\
+ 		-DHAVE_SOCK_CLOEXEC -DHAVE_CLOCK_GETTIME'
+ 		;;
+-	DragonFly|FreeBSD)
++	DragonFly|FreeBSD|MidnightBSD)
+ 		oss=yes
+ 		umidi=yes
+ 		user=_sndio

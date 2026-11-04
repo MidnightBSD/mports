@@ -1,0 +1,75 @@
+PORTNAME=	powerline-fonts
+PORTVERSION=	0.0.0.2020.08.28
+CATEGORIES=	x11-fonts
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Fixed width sans fonts for use with powerline
+WWW=		https://github.com/powerline/fonts
+
+LICENSE=	mit OFL10 OFL11 ubuntu publicdom Apache-2.0 bitstream
+LICENSE_NAME_ubuntu=	UBUNTU FONT LICENCE
+LICENSE_PERMS_ubuntu=	dist-mirror pkg-mirror auto-accept
+LICENSE_FILE_ubuntu=	${WRKSRC}/UbuntuMono/LICENCE.txt
+LICENSE_NAME_bitstream=   Bitstream Vera Fonts Copyright
+LICENSE_FILE_bitstream=   ${WRKSRC}/Hack/LICENSE.txt
+LICENSE_PERMS_bitstream=  dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+LICENSE_COMB=	multi
+
+USES=		fonts
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	powerline
+GH_PROJECT=	fonts
+GH_TAGNAME=	e80e3eb
+
+NO_ARCH=	yes
+NO_BUILD=	yes
+
+TTF_FONTS=	3270 AnonymousPro Arimo Cousine DejaVuSansMono \
+		DroidSansMonoDotted DroidSansMonoSlashed GoMono Hack \
+		Inconsolata LiberationMono Meslo\ Dotted Meslo\ Slashed Monofur \
+		NotoMono NovaMono ProFont RobotoMono SpaceMono SymbolNeu Tinos \
+		UbuntuMono
+OTF_FONTS=	DroidSansMono FiraMono Inconsolata Inconsolata-g InconsolataDz \
+		SourceCodePro
+PCF_FONTS=	Terminus
+DOCDIRS=	3270 AnonymousPro Arimo Cousine DejaVuSansMono DroidSansMono \
+		DroidSansMonoDotted DroidSansMonoSlashed FiraMono GoMono Hack \
+		Inconsolata Inconsolata-g InconsolataDz InputMono \
+		LiberationMono Meslo\ Dotted Meslo\ Slashed NotoMono NovaMono \
+		ProFont RobotoMono SourceCodePro SpaceMono SymbolNeu Terminus \
+		Tinos UbuntuMono
+LICDIRS=	AnonymousPro Arimo Cousine DejaVuSansMono DroidSansMono \
+		DroidSansMonoDotted DroidSansMonoSlashed FiraMono Hack \
+		Inconsolata Inconsolata-g InconsolataDz LiberationMono \
+		Meslo\ Dotted Meslo\ Slashed Monofur NovaMono RobotoMono \
+		SourceCodePro SpaceMono SymbolNeu Terminus Tinos
+
+SUB_FILES=	pkg-message
+
+OPTIONS_DEFINE=	DOCS
+
+do-install-DOCS-on:
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+.for dir in ${DOCDIRS}
+	${CP} ${WRKSRC}/${dir}/README.rst ${FAKE_DESTDIR}${DOCSDIR}/README_${dir}.rst
+.endfor
+.for dir in ${LICDIRS}
+	${CP} ${WRKSRC}/${dir}/LICENSE.txt ${FAKE_DESTDIR}${DOCSDIR}/LICENSE_${dir}.txt
+.endfor
+	${CP} ${WRKSRC}/NotoMono/LICENSE_OFL.txt ${FAKE_DESTDIR}${DOCSDIR}/LICENSE_NotoMono_OFL.txt
+	${CP} ${WRKSRC}/ProFont/LICENSE ${FAKE_DESTDIR}${DOCSDIR}/LICENSE_ProFont.txt
+
+do-install:
+	${MKDIR} ${FONTSDIR}
+.for font in ${OTF_FONTS}
+	${INSTALL_DATA} ${WRKSRC}/${font}/*.otf ${FONTSDIR}
+.endfor
+.for font in ${TTF_FONTS}
+	${INSTALL_DATA} ${WRKSRC}/${font}/*.ttf ${FONTSDIR}
+.endfor
+.for font in ${PCF_FONTS}
+	${INSTALL_DATA} ${WRKSRC}/${font}/PCF/*.pcf.gz ${FONTSDIR}
+.endfor
+
+.include <bsd.port.mk>

@@ -1,0 +1,10 @@
+bin/xmtoolbox
+bin/xmsm
+bin/xmsession
+etc/X11/toolboxrc
+etc/X11/app-defaults/XmToolbox
+etc/X11/app-defaults/XmSm
+man/man1/xmsm.1.gz
+man/man1/xmtoolbox.1.gz
+@dir etc/X11/app-defaults
+@dir etc/X11

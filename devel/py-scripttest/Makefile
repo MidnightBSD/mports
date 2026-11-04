@@ -1,0 +1,23 @@
+PORTNAME=	scripttest
+PORTVERSION=	1.3.0
+PORTREVISION=	1
+CATEGORIES=	devel python
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Helper to test command-line scripts
+WWW=		https://github.com/pypa/scripttest
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/docs/license.rst
+
+USES=		python
+USE_PYTHON=	autoplist distutils
+NO_ARCH=	yes
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	pypa
+
+NO_TEST=	yes
+
+.include <bsd.port.mk>
