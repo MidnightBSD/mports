@@ -1,0 +1,51 @@
+PORTNAME=	xorgxrdp
+DISTVERSIONPREFIX=	v
+DISTVERSION=	0.9.19
+# Be sure to bump PORTREVISION after xorg-server update to perform force rebuild
+PORTREVISION=	1
+CATEGORIES=	x11-drivers
+DIST_SUBDIR=	xrdp
+
+PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	X.Org driver enabling use through an RDP session with xrdp
+WWW=		http://www.xrdp.org/
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+RUN_DEPENDS=	xauth:x11/xauth
+BUILD_DEPENDS=	nasm:devel/nasm
+
+USES=		autoreconf libtool:build localbase pkgconfig xorg
+USE_XORG=	xorgproto xorg-server
+USE_LDCONFIG=	yes
+USE_GITHUB=	yes
+
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
+
+GH_ACCOUNT=	neutrinolabs
+GH_TUPLE=	neutrinolabs:xrdp:v0.9.23:xrdp
+GNU_CONFIGURE=	yes
+INSTALL_TARGET=	install-strip
+
+CONFIGURE_ENV=	XRDP_CFLAGS=-I${WRKSRC_xrdp}/common
+CONFLICTS=	xorgxrdp-devel
+
+OPTIONS_DEFINE=	DEBUG DRI3
+OPTIONS_DEFAULT=
+
+DRI3_DESC=	DRI3/Glamor OpenGL Support
+DRI3_CONFIGURE_ENABLE=	glamor
+DRI3_LIB_DEPENDS=	libepoxy.so:graphics/libepoxy
+DRI3_CFLAGS=		-I${LOCALBASE}/include/libdrm
+DRI3_SUB_FILES=		pkg-message
+
+post-patch-DEBUG-on:
+	${FIND} ${WRKSRC} -type f | ${XARGS} ${REINPLACE_CMD} -e 's|#define LOG_LEVEL [0-9]*|#define LOG_LEVEL 20|'
+
+pre-configure:
+	@cd ${WRKSRC} && ./bootstrap
+
+.include <bsd.port.mk>

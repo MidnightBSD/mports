@@ -1,0 +1,16 @@
+--- src/3rdparty/chromium/content/child/BUILD.gn.orig	2026-02-26 14:39:03 UTC
++++ src/3rdparty/chromium/content/child/BUILD.gn
+@@ -144,6 +144,13 @@ target(link_target_type, "child") {
+     ]
+   }
+ 
++  if (is_bsd) {
++    sources -= [
++      "sandboxed_process_thread_type_handler.cc",
++      "sandboxed_process_thread_type_handler.h",
++    ]
++  }
++
+   if (is_win) {
+     sources += [
+       "child_process_sandbox_support_impl_win.cc",

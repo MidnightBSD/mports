@@ -1,0 +1,21 @@
+PORTNAME=	rack-session
+PORTVERSION=	1.0.2
+CATEGORIES=	www rubygems
+MASTER_SITES=	RG
+PKGNAMESUFFIX=	-gitlab
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Session implementation for Rack
+WWW=		https://github.com/rack/rack-session
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/license.md
+
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	rubygem-rack-gitlab>=2<3:www/rubygem-rack-gitlab
+
+USES=		gem
+
+NO_ARCH=	yes
+
+.include <bsd.port.mk>

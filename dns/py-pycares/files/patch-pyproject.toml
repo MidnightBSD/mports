@@ -1,0 +1,11 @@
+--- pyproject.toml	2026-05-29 22:15:37.592647000 -0400
++++ pyproject.toml	2026-05-29 22:15:43.847760000 -0400
+@@ -13,7 +13,7 @@
+ description = "Python interface for c-ares"
+ readme = {file = "PYPIREADME.rst", content-type = "text/x-rst"}
+ requires-python = ">=3.9"
+-license = "MIT"
++license = {text = "MIT"}
+ authors = [
+     {name = "Saúl Ibarra Corretgé", email = "s@saghul.net"}
+ ]

@@ -1,0 +1,19 @@
+--- test/meson.build.orig
++++ test/meson.build
+@@ -19,0 +20,6 @@
++copy_test = executable('test-nemo-copy',
++  [ 'test-copy.c', 'test.c' ],
++  include_directories: [ rootInclude, ],
++  dependencies: [ gtk, nemo_private ],
++  c_args: nemo_definitions,
++)
+@@ -21,7 +27,2 @@ test('Copy test',
+-  executable('test-nemo-copy',
+-    [ 'test-copy.c', 'test.c' ],
+-    include_directories: [ rootInclude, ],
+-    dependencies: [ gtk, nemo_private ],
+-    c_args: nemo_definitions,
+-  ),
+-  args: []
++  find_program('test-copy-runner.sh'),
++  args: [copy_test.full_path()]

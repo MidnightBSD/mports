@@ -1,0 +1,18 @@
+--- pyproject.toml.orig	2026-02-16 12:13:17 UTC
++++ pyproject.toml
+@@ -2,6 +2,15 @@ requires = ["poetry-core"]
+ requires = ["poetry-core"]
+ build-backend = "poetry.core.masonry.api"
+
++[tool.poetry]
++name = "pycountry"
++version = "26.2.16"
++description = "ISO country, subdivision, language, currency and script definitions and their translations"
++authors = ["Christian Theune <ct@flyingcircus.io>"]
++license = "LGPL-2.1-only"
++readme = "README.rst"
++packages = [{include = "pycountry", from = "src"}]
++
+ [project]
+ name = "pycountry"
+ version = "26.2.16"

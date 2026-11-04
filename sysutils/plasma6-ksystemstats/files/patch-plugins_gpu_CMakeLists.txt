@@ -1,0 +1,20 @@
+--- plugins/gpu/CMakeLists.txt.orig	2026-05-06 12:50:32 UTC
++++ plugins/gpu/CMakeLists.txt
+@@ -4,7 +4,7 @@
+ add_library(ksystemstats_plugin_gpu MODULE GpuPlugin.cpp GpuBackend.cpp GpuDevice.cpp AllGpus.cpp)
+ target_link_libraries(ksystemstats_plugin_gpu Qt::Core KF6::CoreAddons KF6::I18n KSysGuard::SystemStats UDev::UDev)
+ 
+-if(CMAKE_SYSTEM_NAME STREQUAL "FreeBSD")
++if(CMAKE_SYSTEM_NAME MATCHES "FreeBSD|MidnightBSD")
+     target_link_libraries(ksystemstats_plugin_gpu ${DEVINFO_LIBRARIES})
+ endif()
+ 
+@@ -25,7 +25,7 @@
+     endif()
+ endif()
+ 
+-if(CMAKE_SYSTEM_NAME STREQUAL "FreeBSD")
++if(CMAKE_SYSTEM_NAME MATCHES "FreeBSD|MidnightBSD")
+     target_sources(ksystemstats_plugin_gpu PRIVATE FreeBSDBackend.cpp FreeBSDNvidiaGpu.cpp NvidiaGpu.cpp NvidiaSmiProcess.cpp)
+ endif()
+ 

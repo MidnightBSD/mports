@@ -1,0 +1,16 @@
+--- Makefile.in.orig	Sun Jan 21 15:20:56 2007
++++ Makefile.in	Tue Apr 10 16:13:00 2007
+@@ -20,11 +20,11 @@
+ LDFLAGS=@LDFLAGS@
+ LIBS=@LIBS@
+ exec_prefix=@exec_prefix@
+-prefix=@prefix@
++prefix=${PREFIX}
+ sysconfdir=@sysconfdir@
+ bindir=@bindir@
+ sbindir=@sbindir@
+-mandir=@mandir@
++mandir=${PREFIX}/man
+ install=@INSTALL@
+ correct_location= sed \
+ 	-e 's|@sysconfdir[@]|$(sysconfdir)|g'

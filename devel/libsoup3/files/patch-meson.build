@@ -1,0 +1,39 @@
+--- meson.build.orig	2025-06-27 12:11:48 UTC
++++ meson.build
+@@ -304,7 +304,9 @@ endif
+ # GSSAPI support #
+ ##################
+ gssapi_opt = get_option('gssapi')
+-if cc.get_id() == 'msvc'
++if gssapi_opt.disabled()
++  gssapi_dep = dependency('', required: false)
++elif cc.get_id() == 'msvc'
+   if host_machine.cpu_family() == 'x86'
+     gssapi_lib_type = '32'
+   else
+@@ -314,5 +316,24 @@ if cc.get_id() == 'msvc'
+     has_headers: 'gssapi/gssapi.h',
+     required: gssapi_opt)
+ else
+-  gssapi_dep = dependency('krb5-gssapi', required: gssapi_opt)
++  gssapi_dep = dependency('krb5-gssapi', required: false)
++  if not gssapi_dep.found() and host_machine.system() in ['freebsd', 'midnightbsd']
++    gssapi_deps = [
++      cc.find_library('krb5',
++        has_headers: 'krb5.h',
++        required: gssapi_opt),
++      cc.find_library('gssapi',
++        has_headers: 'gssapi/gssapi.h',
++        required: gssapi_opt),
++      cc.find_library('gssapi_krb5',
++        has_headers: 'gssapi/gssapi_krb5.h',
++        required: gssapi_opt),
++    ]
++    if gssapi_deps[0].found() and gssapi_deps[1].found() and gssapi_deps[2].found()
++      gssapi_dep = declare_dependency(dependencies: gssapi_deps)
++    endif
++  endif
++  if not gssapi_dep.found() and gssapi_opt.enabled()
++    error('GSSAPI support requested but krb5-gssapi was not found')
++  endif
+ endif

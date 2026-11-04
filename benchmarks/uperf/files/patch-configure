@@ -1,0 +1,11 @@
+--- configure.orig	2024-08-20 17:46:16 UTC
++++ configure
+@@ -4238,7 +4238,7 @@ cpc_default="yes"
+ 
+ good_os="yes"
+ case "$(uname -s)" in
+-	FreeBSD)
++	 FreeBSD | MidnightBSD)
+ 		{ $as_echo "$as_me:${as_lineno-$LINENO}: *** FreeBSD Machine ***" >&5
+ $as_echo "$as_me: *** FreeBSD Machine ***" >&6;}
+ 

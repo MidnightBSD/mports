@@ -1,0 +1,26 @@
+PORTNAME=	libdeflate
+DISTVERSION=	1.26
+CATEGORIES=	archivers
+MASTER_SITES=	https://github.com/ebiggers/${PORTNAME}/releases/download/v${DISTVERSION}/
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Fast, whole-buffer DEFLATE-based compression library
+WWW=		https://github.com/ebiggers/libdeflate
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+USES=		cmake:testing pathfix
+USE_LDCONFIG=	yes
+
+CMAKE_ON=	LIBDEFLATE_USE_SHARED_LIB
+CMAKE_ARGS=	-DLIBDEFLATE_USER_SET_RELEASE_FLAGS=ON
+CMAKE_TESTING_ON=	LIBDEFLATE_BUILD_TESTS
+
+OPTIONS_DEFINE=	DOCS
+
+post-install-DOCS-on:
+	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/*.md ${FAKE_DESTDIR}${DOCSDIR}
+
+.include <bsd.port.mk>

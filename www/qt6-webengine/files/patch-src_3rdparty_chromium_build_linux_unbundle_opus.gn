@@ -1,0 +1,9 @@
+--- src/3rdparty/chromium/build/linux/unbundle/opus.gn.orig	2025-11-06 16:28:09 UTC
++++ src/3rdparty/chromium/build/linux/unbundle/opus.gn
+@@ -11,5 +11,6 @@ pkg_config("opus_config") {
+ shim_headers("opus_shim") {
+   root_path = "src/include"
++  prefix = "opus/"
+   headers = [
+     "opus.h",
+     "opus_defines.h",

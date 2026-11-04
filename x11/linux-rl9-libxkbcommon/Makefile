@@ -1,0 +1,27 @@
+PORTNAME=	libxkbcommon
+PORTVERSION=	1.0.3
+DISTVERSIONSUFFIX=	-4.el9
+PORTREVISION=	3
+CATEGORIES=	x11 linux
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Keymap handling library (Rocky Linux ${LINUX_DIST_VER})
+WWW=		https://xkbcommon.org/
+
+LICENSE=	mit
+
+SKIP_FAKE_ALL=  yes
+
+USES=		cpe linux:rl9
+CPE_VENDOR=	xkbcommon
+CPE_PRODUCT=	libxkbcommon
+USE_LDCONFIG=	yes
+USE_LINUX_RPM=	yes
+WANT_LINUX32=	yes
+
+LIB_DISTNAMES=	${PORTNAME}-${DISTVERSIONFULL} \
+		${PORTNAME}-x11-${DISTVERSIONFULL}
+
+DESCR=		${PORTSDIR}/${PKGCATEGORY}/${PORTNAME}/pkg-descr
+
+.include <bsd.port.mk>

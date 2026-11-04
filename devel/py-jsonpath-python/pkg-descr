@@ -1,0 +1,2 @@
+jsonpath-python is a lightweight JSONPath implementation for selecting,
+filtering, sorting, and updating JSON-like Python data structures.

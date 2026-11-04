@@ -1,0 +1,64 @@
+You should get into the habit of checking this file for changes each time
+you update your ports collection, before attempting any port upgrades.
+
+20261024:
+	textproc/quickwit has been updated from 0.8.2 to 0.9.3. Before
+	starting 0.9, back up the metastore and stop all 0.8.x nodes;
+	mixed-version clusters are not supported. PostgreSQL metastore
+	migrations run on first start, and rollback requires restoring
+	the backup. File-backed metastores require a copy of indexes/.
+
+	Ingest V2 is now the default at /api/v1/{index}/ingest. The
+	/api/v1/{index}/ingest-v2 route has been removed. Review the
+	packaged get-started/upgrade.md guide before upgrading.
+
+20261021:
+	security/openssl updated from OpenSSL 3.0 (end-of-life) to 3.5 LTS;
+	the security/openssl35 port was renamed to security/openssl.
+
+	The shared library version changed from libcrypto.so.12 to
+	libcrypto.so.17. If you use OpenSSL from ports, rebuild all ports
+	that depend on it. Users of DEFAULT_VERSIONS+=ssl=openssl35 must
+	change it to ssl=openssl.
+
+20261015:
+	textproc/kibana8 now requires Node.js 24.21.0 or newer in major
+	version 24. Its license metadata is corrected to Elastic License
+	2.0, matching the upstream binary distribution. Reporting and
+	screenshotting are disabled because Chromium is unavailable.
+
+	Upgrade Elasticsearch to 8.19.23 first. Stop all Kibana instances
+	before upgrading and take an Elasticsearch snapshot including the
+	Kibana feature state before saved-object migration. Preserve the
+	existing configuration and data directory, review new samples, and
+	reinstall third-party plugins built for Kibana 8.19.23.
+
+	sysutils/logstash8 now uses the Apache-2.0 OSS distribution. X-Pack
+	features, including centralized pipeline management and X-Pack
+	monitoring, are no longer included. The elastic_integration filter
+	is also omitted. Review existing X-Pack settings and affected
+	pipelines before upgrading.
+
+	Logstash 8.19.23 requires Java 21 by default. Review logstash_java_home
+	in /etc/rc.conf and custom jvm.options. The service now honors
+	logstash_java_home and logstash_java_opts through LS_JAVA_HOME and
+	LS_JAVA_OPTS; previously ignored overrides will take effect.
+
+20260226:
+	PHP_DEFAULT updated to 8.3
+
+	The JAVA_DEFAULT is now bumped from 8 to 17. 
+
+	dns/ddclient updated to 4.0.  The config file moved from
+	/usr/local/etc/ to /usr/local/etc/ddclient
+
+	cython was recently updated.  lang/cython is now the current version.
+	if you need cython 0.x, use lang/cython0 aka USE_PYTHON=cython0
+
+	net-mgmt/librenms updated and installation of mysql-client is now 
+	a manual step.
+
+20260225:
+	nvidia-driver updated to 570 version.  You will need to update
+	graphics/nvidia-drm-510 as well as x11/linux-nvidia-libs and
+	x11/nvidia-driver

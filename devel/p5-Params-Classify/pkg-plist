@@ -1,0 +1,12 @@
+%%SITE_PERL%%/Params/Classify.pm
+%%SITE_PERL%%/man/man3/Params::Classify.3.gz
+%%SITE_PERL%%/auto/Params/Classify/Classify.so
+@dir %%SITE_PERL%%/Params
+@dir %%SITE_PERL%%/man/man3
+@dir %%SITE_PERL%%/man
+@dir %%SITE_PERL%%/auto/Params/Classify
+@dir %%SITE_PERL%%/auto/Params
+@dir %%SITE_PERL%%/auto
+@dir %%SITE_PERL%%
+@dir lib/perl5/site_perl
+@dir lib/perl5

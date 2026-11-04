@@ -1,0 +1,39 @@
+PORTNAME=	aom
+PORTVERSION=	3.13.1
+DISTVERSIONSUFFIX=	-1.el9
+CATEGORIES=	multimedia linux
+MASTER_SITES=	EPEL9
+PKGNAMESUFFIX=	-libs
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	AV1 reference encoder/decoder (Rocky Linux ${LINUX_DIST_VER})
+WWW=		https://aomedia.org/
+
+LICENSE=	bsd2
+
+SKIP_FAKE_ALL=	yes
+
+USES=		linux:rl9
+USE_LDCONFIG=	yes
+USE_LINUX=	highway libjxl
+USE_LINUX_RPM=	yes
+
+#BIN_DISTNAMES=	${PORTNAME}-${DISTVERSIONFULL}
+LIB_DISTNAMES=	lib${PORTNAME}-${DISTVERSIONFULL}
+SRC_DISTFILES=	${PORTNAME}-${DISTVERSIONFULL}${SRC_SUFX}:SOURCE
+
+CONFLICTS=	linux-c7-${PORTNAME}
+DESCR=		${PORTSDIR}/${PKGCATEGORY}/${PORTNAME}/pkg-descr
+DOCSDIR=	${PREFIX}/usr/share/doc/${PORTNAME}${PKGNAMESUFFIX}
+
+OPTIONS_DEFINE=	DOCS
+
+PLIST_SUB=	LIBVERSION=${PORTVERSION}
+
+.include <bsd.mport.options.mk>
+
+.if ${ARCH} == amd64
+USE_LINUX+=	vmaf
+.endif
+
+.include <bsd.port.mk>

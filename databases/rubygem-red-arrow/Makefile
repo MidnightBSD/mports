@@ -1,0 +1,27 @@
+PORTNAME=	red-arrow
+PORTVERSION=	19.0.1
+CATEGORIES=	databases rubygems
+MASTER_SITES=	RG
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Ruby bindings of Apache Arrow
+WWW=		https://arrow.apache.org/ \
+		https://github.com/apache/arrow/tree/main/ruby/red-arrow
+
+LICENSE=	Apache-2.0
+LICENSE_FILE=	${WRKSRC}/LICENSE.txt
+
+BUILD_DEPENDS=	arrow>=${PORTVERSION:R}<${PORTVERSION:R}.99_99:databases/arrow \
+		arrow-glib>=${PORTVERSION:R}<${PORTVERSION:R}.99_99:databases/arrow-glib
+LIB_DEPENDS=	libarrow.so:databases/arrow \
+		libarrow-glib.so:databases/arrow-glib
+RUN_DEPENDS=	rubygem-bigdecimal>=3.1.0:math/rubygem-bigdecimal \
+		rubygem-csv>=0:devel/rubygem-csv \
+		rubygem-extpp>=0.1.1:devel/rubygem-extpp \
+		rubygem-gio2>=4.2.3:devel/rubygem-gio2 \
+		rubygem-native-package-installer>=0:devel/rubygem-native-package-installer \
+		rubygem-pkg-config>=0:devel/rubygem-pkg-config \
+
+USES=		gem
+
+.include <bsd.port.mk>
