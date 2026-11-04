@@ -1,3 +1,0 @@
-# Package
-regexp=([^ 	]+)-\d[0-9-_\.A-Z-a-z]+\s
-colors=unchanged,yellow

@@ -1,3 +1,0 @@
-This port installs the module CAMD of SuiteSparse.
-
-CAMD is a set of routines for permuting sparse matrices prior to factorization.

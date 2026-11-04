@@ -1,2 +1,0 @@
-doctest-ignore-unicode is a plugin (currently only for Nose) that adds a flag
-to ignore unicode literal prefixes in doctests.

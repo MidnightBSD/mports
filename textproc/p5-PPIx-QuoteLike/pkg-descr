@@ -1,3 +1,0 @@
-PPIx::QuoteLike parses Perl string literals and things that are reasonably like
-string literals. Its real reason for being is to find interpolated variables for
-Perl::Critic policies and similar code.

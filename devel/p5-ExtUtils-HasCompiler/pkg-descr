@@ -1,3 +1,0 @@
-Check for the presence of a compiler.
-This module tries to check if the current system is capable of
-compiling, linking and loading an XS module.
