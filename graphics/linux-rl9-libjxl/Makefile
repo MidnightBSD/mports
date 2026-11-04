@@ -1,0 +1,28 @@
+PORTNAME=	libjxl
+PORTVERSION=	0.7.2
+DISTVERSIONSUFFIX=	-2.el9
+MASTER_SITES=	EPEL9
+CATEGORIES=	graphics linux
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	JPEG XL reference encoder/decoder
+WWW=		https://jpeg.org/jpegxl/
+
+LICENSE=	bsd2
+
+SKIP_FAKE_ALL=  yes
+
+USES=		linux:rl9
+USE_LDCONFIG=	yes
+USE_LINUX_RPM=	yes
+
+LIB_DISTNAMES=	${PORTNAME}-${DISTVERSIONFULL}
+SRC_DISTFILES=	jpegxl-${DISTVERSIONFULL}${SRC_SUFX}:SOURCE
+
+CONFLICTS=	linux-c7-${PORTNAME}
+DESCR=		${PORTSDIR}/${PKGCATEGORY}/${PORTNAME}/pkg-descr
+DOCSDIR=	${PREFIX}/usr/share/doc/${PORTNAME}${PKGNAMESUFFIX}
+
+OPTIONS_DEFINE=	DOCS
+
+.include <bsd.port.mk>

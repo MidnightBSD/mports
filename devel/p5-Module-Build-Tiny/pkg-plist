@@ -1,0 +1,11 @@
+%%SITE_PERL%%/Module/Build/Tiny.pm
+@dir %%SITE_ARCH%%/auto/Module/Build/Tiny
+@dir %%SITE_ARCH%%/auto/Module/Build
+@dir %%SITE_ARCH%%/auto/Module
+@dir %%SITE_ARCH%%/auto
+@dir %%SITE_ARCH%%
+@dir %%SITE_PERL%%/Module/Build
+@dir %%SITE_PERL%%/Module
+@dir %%SITE_PERL%%
+@dir lib/perl5/site_perl
+@dir lib/perl5

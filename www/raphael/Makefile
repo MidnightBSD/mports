@@ -1,0 +1,54 @@
+PORTNAME=	raphael
+PORTVERSION=	9.3
+PORTREVISION=	0
+CATEGORIES=	www
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Lightweight web browser using WebKit browser engine
+WWW=		https://github.com/midnightbsd/raphael
+
+LICENSE=	lgpl2.1 mit
+LICENSE_COMB=	multi
+
+CONFLICTS_INSTALL=	midori
+
+LIB_DEPENDS=	libjson-glib-1.0.so:devel/json-glib \
+		libsoup-3.0.so:devel/libsoup3 \
+		libp11-kit.so:security/p11-kit \
+		libgcr-base-3.so:security/gcr3 \
+		libpeas-1.0.so:devel/libpeas1 \
+		libwebkit2gtk-4.1.so:www/webkit2-gtk@41 \
+		libharfbuzz.so:print/harfbuzz
+RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
+
+USES=		cmake compiler:c++11-lang cpe desktop-file-utils gettext gnome \
+		libarchive localbase:ldflags pkgconfig sqlite tar:bzip2 vala:build
+USE_GNOME=	cairo glib20 gtk30 intltool introspection librsvg2:build
+
+CFLAGS+=	-Wno-int-conversion -Wno-return-type
+CMAKE_ARGS=	-DUSE_APIDOCS:BOOL=OFF
+
+INSTALLS_ICONS=	yes
+USE_LDCONFIG=	yes
+
+PLIST_SUB=	VERSION="${PORTVERSION:R}"
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	midnightbsd
+GH_PROJECT=	raphael
+
+OPTIONS_DEFINE=		ZEITGEIST
+OPTIONS_SUB=		yes
+
+ZEITGEIST_DESC=		User logs activities
+
+ZEITGEIST_LIB_DEPENDS=	libzeitgeist-2.0.so:sysutils/zeitgeist
+ZEITGEIST_CMAKE_OFF=	-DUSE_ZEITGEIST:BOOL=OFF
+
+post-patch:
+# Avoid errors with CMake
+.for dir in config extensions
+	-${RM} ${WRKSRC}/${dir}/*.orig
+.endfor
+
+.include <bsd.port.mk>

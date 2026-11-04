@@ -1,0 +1,22 @@
+PORTNAME=	node-semver # PyPI name
+DISTVERSION=	0.9.0
+PORTREVISION=	1
+CATEGORIES=	devel python
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Python version of node-semver
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+USES=		python
+USE_PYTHON=	distutils autoplist
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	podhmo
+GH_PROJECT=	python-node-semver # PyPI project node-semver points to this project
+
+NO_ARCH=	yes
+
+.include <bsd.port.mk>

@@ -1,0 +1,5 @@
+--- js/moz.configure.orig
++++ js/moz.configure
+@@ -1145 +1145 @@
+-    flags=["-lreadline"],
++    flags=["-lreadline", "-L%%LOCALBASE%%/lib"],

@@ -1,0 +1,2 @@
+@comment $MidnightBSD$
+@shell bin/cvs_server

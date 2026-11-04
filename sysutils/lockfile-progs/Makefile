@@ -1,0 +1,38 @@
+PORTNAME=	lockfile-progs
+DISTVERSION=	0.1.19
+CATEGORIES=	sysutils
+MASTER_SITES=	DEBIAN_POOL
+DISTNAME=	${PORTNAME}_${PORTVERSION}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Programs for locking and unlocking files and mailboxes
+WWW=		https://tracker.debian.org/pkg/lockfile-progs
+
+LICENSE=	gpl2
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+LIB_DEPENDS=	liblockfile.so:devel/liblockfile
+
+ALL_TARGET=	lockfile-create
+WRKSRC=		${WRKDIR}/${DISTNAME:S/_/-/}
+
+OPTIONS_DEFINE=	DOCS
+
+PORTDOCS=	TODO changelog
+
+do-install:
+	${INSTALL_PROGRAM} ${WRKSRC}/lockfile-create ${PREFIX}/bin
+	${INSTALL_DATA} ${WRKSRC}/lockfile-progs.1 ${PREFIX}/share/man/man1
+.for f in lockfile-remove lockfile-touch lockfile-check mail-lock mail-unlock mail-touchlock
+	${LN} ${PREFIX}/bin/lockfile-create ${PREFIX}/bin/${f}
+	${LN} -s lockfile-progs.1 ${PREFIX}/share/man/man1/${f}.1
+.endfor
+	${LN} -s lockfile-progs.1 ${PREFIX}/share/man/man1/lockfile-create.1
+
+do-install-DOCS-on:
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+.for f in TODO debian/changelog
+	${INSTALL_DATA} ${WRKSRC}/${f} ${FAKE_DESTDIR}${DOCSDIR}
+.endfor
+
+.include <bsd.port.mk>

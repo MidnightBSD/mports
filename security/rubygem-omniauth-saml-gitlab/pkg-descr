@@ -1,0 +1,2 @@
+omniauth-saml is a generic SAML strategy for OmniAuth. It lets Ruby
+applications authenticate users against SAML identity providers.

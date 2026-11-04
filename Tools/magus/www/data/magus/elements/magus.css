@@ -1,0 +1,138 @@
+:root {
+  /* Design Tokens */
+  --primary-color: #204a87;
+  --text-dark: #2e3436;
+  --text-muted: #555;
+  --border-color: #ddd;
+
+  /* WCAG AA Accessible Status Colors */
+  --color-pass: #2e7d32;
+  --color-fail: #c62828;
+  --color-warn: #b27a00;
+  --color-skip: #555753;
+  --color-untested: #75507b;
+  --color-info: #2e3436;
+  --color-internal: #0d47a1;
+
+  /* Legacy Stats Colors (Higher Contrast) */
+  --stats-pass: #388e3c;
+  --stats-fail: #d32f2f;
+  --stats-skip: #757575;
+}
+
+/* Base Elements */
+h1 a,
+h1 a:visited {
+  color: #fff;
+}
+
+h2,
+h3 {
+  color: var(--text-muted);
+}
+
+a {
+  color: var(--primary-color);
+}
+
+table th {
+  border-bottom: 1px solid #888;
+  text-align: left;
+  padding-left: 8px;
+}
+
+tr.details {
+  display: none;
+}
+
+/* Statuses */
+.fail { color: var(--color-fail); }
+.warn { color: var(--color-warn); }
+.internal { color: var(--color-internal); }
+.pass { color: var(--color-pass); }
+.skip { color: var(--color-skip); }
+.untested { color: var(--color-untested); }
+.info { color: var(--color-info); }
+
+.locks,
+.cats {
+  font-size: .8em;
+}
+
+div.full {
+  width: 100%;
+  max-width: 100%;
+}
+
+table.run-summary,
+table.result-list,
+table.port-results,
+table.event-list,
+table.machine-summary {
+  width: 100%;
+}
+
+pre.log {
+  border: 1px solid var(--border-color);
+  margin: 4px;
+  padding: 4px;
+  overflow: auto;
+}
+
+ul.depends {
+  padding: 0;
+}
+
+ul.depends li {
+  list-style: none;
+}
+
+#tophead {
+  background: var(--primary-color);
+  color: #fff;
+  margin: 0;
+  padding: 16px 24px;
+}
+
+#topsearch {
+  position: absolute;
+  top: 24px;
+  right: 16px;
+  color: #000;
+}
+
+ul.stats {
+  list-style: none;
+  margin: 0;
+}
+
+ul.stats li {
+  display: inline;
+  padding-right: 12px;
+}
+
+ul.stats a.pass {
+  color: var(--stats-pass);
+}
+
+ul.stats a.fail {
+  color: var(--stats-fail);
+}
+
+ul.stats a.skip {
+  color: var(--stats-skip);
+}
+
+/* stuff for the edit mojo */
+a.edit {
+  color: #777;
+  text-decoration: none;
+  padding-bottom: 0;
+  border-bottom: 1px dashed #777;
+}
+
+a.edit::after {
+  content: url(/magus/elements/pencil-icon.gif);
+  position: relative;
+  top: 3px;
+}

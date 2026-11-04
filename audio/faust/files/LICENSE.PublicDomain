@@ -1,0 +1,5 @@
+/*
+ SHA-1 in C (see: https://github.com/clibs/sha1/blob/master/sha1.h)
+ By Steve Reid <steve@edmweb.com>
+ 100% Public Domain
+ */

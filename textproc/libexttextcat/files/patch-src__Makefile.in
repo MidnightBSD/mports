@@ -1,0 +1,8 @@
+--- src/Makefile.in.orig	2026-05-16 19:54:17 UTC
++++ src/Makefile.in
+@@ -852 +852 @@ check:
+-		bash ./test-primary.sh $$primarylanguage; \
++		${SHELL} ./test-primary.sh $$primarylanguage; \
+@@ -861 +861 @@ check:
+-		bash ./test-secondary.sh $$secondarylanguage; \
++		$(SHELL) ./test-secondary.sh $$secondarylanguage; \

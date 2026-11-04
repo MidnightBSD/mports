@@ -1,0 +1,35 @@
+PORTNAME=	beautifulsoup
+PORTVERSION=	4.14.3
+PORTREVISION=	0
+CATEGORIES=	www python
+MASTER_SITES=	PYPI
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTNAME=	beautifulsoup4-${PORTVERSION}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	HTML/XML Parser for Python
+WWW=		https://www.crummy.com/software/BeautifulSoup/
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>0:devel/py-hatchling@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}soupsieve>=1.2:www/py-soupsieve@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}lxml>=0:devel/py-lxml@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}html5lib>=0:www/py-html5lib@${PY_FLAVOR}
+
+USES=		python
+USE_PYTHON=	allflavors concurrent pep517
+NO_ARCH=	yes
+NO_TEST=	yes
+
+PLIST_SUB=	BS_VER=${PORTVERSION}
+
+do-build:
+	@cd ${BUILD_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} -m build --wheel --no-isolation --outdir ${WRKDIR}
+
+do-install:
+	@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} -m installer ${WRKDIR}/*.whl --destdir ${FAKE_DESTDIR}
+
+.include <bsd.port.mk>

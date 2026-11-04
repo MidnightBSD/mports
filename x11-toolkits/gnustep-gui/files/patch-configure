@@ -1,0 +1,11 @@
+--- configure.orig	2020-04-05 16:04:40.000000000 -0400
++++ configure	2022-05-01 05:32:36.046737000 -0400
+@@ -3397,7 +3397,7 @@
+ CONFIG_SYSTEM_INCL="$CPPFLAGS"
+ CONFIG_SYSTEM_LIB_DIR="$LDFLAGS"
+ case "$target_os" in
+-  freebsd* | openbsd* )
++  midnightbsd* | freebsd* | openbsd* )
+ 	      CPPFLAGS="$CPPFLAGS -I/usr/local/include"
+               LDFLAGS="$LDFLAGS -L/usr/local/lib";;
+   netbsd*)    CPPFLAGS="$CPPFLAGS -I/usr/pkg/include"

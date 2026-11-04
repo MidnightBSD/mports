@@ -1,0 +1,32 @@
+--- SConscript.orig	2024-06-09 00:00:00 UTC
++++ SConscript
+@@ -1036,7 +1036,8 @@
+                         "-Wl,-compatibility_version,%s" % libgps_version,
+                         "-Wl,-install_name,%s/$TARGET.srcpath" %
+                         installdir('libdir', add_destdir=False)]
+-    elif config.env['target_platform'].startswith('freebsd'):
++    elif (config.env['target_platform'].startswith('freebsd') or
++          config.env['target_platform'].startswith('midnightbsd')):
+         # for isascii(), putenv(), nice(), strptime()
+         confdefs.append('#if !defined(_XOPEN_SOURCE)')
+         confdefs.append('#define _XOPEN_SOURCE 700')
+@@ -1122,7 +1123,8 @@
+             ncurseslibs = ['!ncurses5-config --libs --cflags']
+         elif WhereIs('ncursesw5-config'):
+             ncurseslibs = ['!ncursesw5-config --libs --cflags']
+-        elif config.env['target_platform'].startswith('freebsd'):
++        elif (config.env['target_platform'].startswith('freebsd') or
++              config.env['target_platform'].startswith('midnightbsd')):
+             ncurseslibs = ['-lncurses']
+         elif (config.env['target_platform'].startswith('darwin') or
+               config.env['target_platform'].startswith('openbsd') or
+@@ -1142,7 +1144,8 @@
+                 announce("pkg_config is confused about the state "
+                          "of libusb-1.0.")
+                 usbflags = []
+-        elif config.env['target_platform'].startswith('freebsd'):
++        elif (config.env['target_platform'].startswith('freebsd') or
++              config.env['target_platform'].startswith('midnightbsd')):
+             # FIXME: shold directly test for libusb existence.
+             confdefs.append("#define HAVE_LIBUSB 1\n")
+             usbflags = ["-lusb"]
