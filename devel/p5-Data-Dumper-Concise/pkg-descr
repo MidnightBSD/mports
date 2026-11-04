@@ -1,2 +1,0 @@
-Data::Dumper::Concise is a perl module for less indentation and
-newlines plus sub deparsing.

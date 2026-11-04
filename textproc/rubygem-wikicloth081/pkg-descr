@@ -1,8 +1,0 @@
-Ruby parser for the MediaWiki markup language, supporting:
-
-- Variables and templates
-- Links
-- Markup
-- Disabling of wiki markup
-- References
-- HTML sanitization

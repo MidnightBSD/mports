@@ -1,9 +1,0 @@
-[
-{ type: install
-  message: <<EOM
-************************************************************
-You should copy etc/ldapdiff.conf.sample to etc/ldapdiff.conf
-************************************************************
-EOM
-}
-]

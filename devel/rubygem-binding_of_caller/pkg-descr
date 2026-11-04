@@ -1,2 +1,0 @@
-Retrieve the binding of a method's caller. Can also retrieve bindings even
-further up the stack.

@@ -1,3 +1,0 @@
-These are the official NVidia binary drivers for hardware OpenGL rendering
-in X11, using the GLX extensions.
-This port is the kmods-only part.

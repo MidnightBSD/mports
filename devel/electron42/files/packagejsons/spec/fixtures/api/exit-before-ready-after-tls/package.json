@@ -1,4 +1,0 @@
-{
-  "name": "electron-test-exit-before-ready-after-tls",
-  "main": "main.js"
-}

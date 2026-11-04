@@ -1,8 +1,0 @@
-[
-{ type: install
-  message: <<EOM
-To enable htpdate please add htpdate_enable="YES" to
-/etc/rc.conf.
-EOM
-}
-]

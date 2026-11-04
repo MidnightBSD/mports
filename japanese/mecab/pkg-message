@@ -1,7 +1,0 @@
-[
-{ type: install
-  message: <<EOM
-  ipadic was split into japanese/mecab-ipadic port.
-EOM
-}
-]

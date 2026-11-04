@@ -1,2 +1,0 @@
-cython-test-exception-raiser provides a trivial extension that just raises an
-exception.
