@@ -1,3 +1,0 @@
-Python wrapper for the C library CRoaring.
-
-A bitmap can be used nearly as the classical Python set.

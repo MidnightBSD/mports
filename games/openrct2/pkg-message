@@ -1,8 +1,0 @@
-[
-{ type: install
-  message: <<EOM
-You need to follow https://openrct2.io/getting-started/index.html to finish
-installation.
-EOM
-}
-]

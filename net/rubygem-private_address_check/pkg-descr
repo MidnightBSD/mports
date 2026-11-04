@@ -1,3 +1,0 @@
-PrivateAddressCheck checks if a URL or hostname would cause a request to a
-private network (RFC 1918). This is useful in preventing attacks like Server
-Side Request Forgery.

@@ -1,5 +1,0 @@
-cocotb is an open source coroutine-based cosimulation testbench environment
-for verifying VHDL and SystemVerilog RTL using Python.
-
-cocotb lets you verify chips like software: productive, simulator-agnostic,
-in Python.

@@ -1,4 +1,0 @@
-langchain-groq is an integration package connecting Groq and LangChain.
-
-It provides chat model components that use the Groq API within the LangChain
-framework.
