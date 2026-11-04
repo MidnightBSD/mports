@@ -1,2 +1,0 @@
-Check if a remote computer is up. It can either just call the system ping
-command, or check a specified TCP port.

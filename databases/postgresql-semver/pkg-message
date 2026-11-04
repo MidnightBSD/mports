@@ -1,9 +1,0 @@
-[
-{ type: install
-  message: <<EOM
-Use the following sql script to create semver extension
-
-	psql -c 'CREATE EXTENSION semver'
-EOM
-}
-]

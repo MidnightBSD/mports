@@ -1,2 +1,0 @@
-This is a simple HTTP server written in Go, made to serve GitLab Pages with
-CNAMEs and SNI using HTTP/HTTP2.

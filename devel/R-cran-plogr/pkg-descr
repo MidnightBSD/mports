@@ -1,3 +1,0 @@
-A simple header-only logging library for C++. Add 'LinkingTo: plogr'
-to 'DESCRIPTION', and '#include <plogr.h>' in your C++ modules to use
-it.

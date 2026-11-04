@@ -1,2 +1,0 @@
-Python implementation of the "purl" (= package URL) specification. The library
-provides parsing and building of package URLs.
