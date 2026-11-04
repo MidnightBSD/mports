@@ -1,5 +1,6 @@
 PORTNAME=	activesupport
 PORTVERSION=	6.1.7.10
+PORTREVISION=	1
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	61
@@ -12,7 +13,7 @@ WWW=		https://github.com/rails/rails/tree/main/activesupport \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
-BUILD_DEPENDS=  ${RUN_DEPENDS}
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	rubygem-concurrent-ruby>=1.0.2<2:devel/rubygem-concurrent-ruby \
 		rubygem-i18n>=1.6,2<2,2:devel/rubygem-i18n \
 		rubygem-minitest>=5.1:devel/rubygem-minitest \
