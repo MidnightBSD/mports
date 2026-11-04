@@ -1,3 +1,0 @@
-A parallel file downloader using asyncio. parfive can handle downloading
-multiple files in parallel as well as downloading each file in a number
-of chunks.

@@ -1,3 +1,0 @@
-An implementation of interpreted string literals, inspired by
-Python's Literal String Interpolation and Docstrings and Julia's
-Triple-Quoted String Literals.

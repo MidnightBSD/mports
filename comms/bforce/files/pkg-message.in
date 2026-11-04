@@ -1,8 +1,0 @@
-[
-{ type: install
-  message: <<EOM
-Please don't forget to copy and edit configuration files found
-in %%PREFIX%%/etc/bforce.
-EOM
-}
-]

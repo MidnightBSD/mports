@@ -1,4 +1,0 @@
-bin/gpsbabel
-%%GUI%%bin/gpsbabelfe
-%%GUI%%share/applications/gpsbabel.desktop
-%%GUI%%share/pixmaps/gpsbabel.png

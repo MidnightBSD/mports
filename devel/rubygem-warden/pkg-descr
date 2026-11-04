@@ -1,2 +1,0 @@
-Warden is Rack middleware that provides authentication for Rack applications.
-It gives applications a common strategy-based authentication framework.
