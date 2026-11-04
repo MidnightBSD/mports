@@ -1,2 +1,0 @@
-Provides two convenience functions assert() and test_pkg() to facilitate
-testing R packages.

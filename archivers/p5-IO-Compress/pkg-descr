@@ -1,2 +1,0 @@
-This module contains the base, bzip2, deflate, gzip, zip and zlib classes for
-IO::Compress and IO::Uncompress modules and the Compress::Zlib module.

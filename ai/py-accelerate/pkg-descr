@@ -1,3 +1,0 @@
-The accelerate module was created for PyTorch users who like to write the
-training loop of PyTorch models but are reluctant to write and maintain the
-boilerplate code needed to use multi-GPUs/TPU/fp16.

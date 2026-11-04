@@ -1,2 +1,0 @@
-This package provides Requests and urllib3 transports for OpenTelemetry HTTP
-exporters.
