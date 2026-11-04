@@ -1,9 +1,0 @@
-bin/zimbench
-bin/zimcheck
-bin/zimdiff
-bin/zimdump
-bin/zimpatch
-bin/zimrecreate
-bin/zimsearch
-bin/zimsplit
-bin/zimwriterfs

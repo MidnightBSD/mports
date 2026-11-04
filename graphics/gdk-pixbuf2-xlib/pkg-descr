@@ -1,2 +1,0 @@
-GdkPixbuf-Xlib contains the deprecated API for integrating GdkPixbuf with
-Xlib data types.

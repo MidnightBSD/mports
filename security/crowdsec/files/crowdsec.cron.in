@@ -1,2 +1,0 @@
-#minute	hour	mday	month	wday	who	command
-0       3       *       *       *       root    %%PREFIX%%/libexec/crowdsec/upgrade-hub

@@ -1,1 +1,0 @@
-pytest-lazy-fixture helps to use fixtures in pytest.mark.parametrize.
