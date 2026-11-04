@@ -1,0 +1,28 @@
+--- configure.orig	2019-03-06 02:59:50.000000000 -0500
++++ configure	2019-10-05 14:02:26.120992000 -0400
+@@ -579,6 +579,9 @@
+             PLATFORM_NOTES="FreeBSD: freebsd-clang"
+         fi
+         ;;
++     MidnightBSD:*)
++	PLATFORM=midnightbsd-clang
++        ;;
+      OpenBSD:*)
+         PLATFORM=openbsd-g++
+         ;;
+@@ -716,6 +719,7 @@
+ }
+ 
+ # build qmake
++if [ '!' -f "$outpath/bin/qmake" ] ; then 
+     echo "Creating qmake..."
+     mkdir -p "$outpath/qmake" || exit
+ 
+@@ -813,6 +817,7 @@
+         fi
+         echo "Done."
+     fi
++fi # Creating qmake
+ 
+ #-------------------------------------------------------------------------------
+ # create a qt.conf for the Qt build tree itself

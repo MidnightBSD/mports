@@ -1,0 +1,11 @@
+--- cdk/foundation/CMakeLists.txt.orig	2024-12-28 22:11:28 UTC
++++ cdk/foundation/CMakeLists.txt
+@@ -67,7 +67,7 @@ target_link_libraries(cdk_foundation
+ 
+ IF(WIN32)
+   target_link_libraries(cdk_foundation PRIVATE dnsapi)
+-ELSEIF(NOT FREEBSD)
++ELSEIF(LINUX)
+   target_link_libraries(cdk_foundation PRIVATE resolv)
+ ENDIF()
+ 

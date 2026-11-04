@@ -1,0 +1,26 @@
+PORTNAME=	opus
+PORTVERSION=	1.3.1
+DISTVERSIONSUFFIX=	-10.el9
+PORTREVISION=	2
+CATEGORIES=	audio linux
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	IETF audio codec (Rocky Linux ${LINUX_DIST_VER})
+WWW=		https://opus-codec.org/
+
+SKIP_FAKE_ALL=  yes
+
+USES=		linux:rl9
+USES+=	cpe
+CPE_VENDOR=	opus-codec
+USE_LDCONFIG=	yes
+USE_LINUX_RPM=	yes
+WANT_LINUX32=	yes
+
+CONFLICTS=	linux-c7-${PORTNAME}
+DESCR=		${PORTSDIR}/${PKGCATEGORY}/${PORTNAME}/pkg-descr
+DOCSDIR=	${PREFIX}/usr/share/doc/${PORTNAME}${PKGNAMESUFFIX}
+
+OPTIONS_DEFINE=	DOCS
+
+.include <bsd.port.mk>

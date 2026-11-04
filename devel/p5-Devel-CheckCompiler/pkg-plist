@@ -1,0 +1,12 @@
+%%SITE_PERL%%/Devel/AssertC99.pm
+%%SITE_PERL%%/Devel/CheckCompiler.pm
+%%PERL5_MAN3%%/Devel::AssertC99.3.gz
+%%PERL5_MAN3%%/Devel::CheckCompiler.3.gz
+@dir %%SITE_PERL%%/Devel
+@dir %%SITE_ARCH%%/auto/Devel/CheckCompiler
+@dir %%SITE_ARCH%%/auto/Devel
+@dir %%SITE_ARCH%%/auto
+@dir %%SITE_ARCH%%
+@dir %%SITE_PERL%%
+@dir lib/perl5/site_perl
+@dir lib/perl5

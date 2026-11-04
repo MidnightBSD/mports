@@ -1,0 +1,38 @@
+PORTNAME=	claws-mail-plugins
+DISTVERSION=	${CLAWSVERSION}
+CATEGORIES=	mail news
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	claws-mail plugins meta-port
+WWW=		https://www.claws-mail.org/plugins.php
+
+LICENSE=	gpl3
+
+USES=		metaport
+
+.include "../claws-mail/Makefile.ver"
+.include "../claws-mail/Makefile.claws.plugins"
+
+# pgpcore, pgpinline, pgpmime, smime
+CLAWS_PLUGINS+=	pgp
+
+.for _addon in ${CLAWS_PLUGINS:O}
+. if exists(../claws-mail-${_addon})
+_IGNORE!=	${MAKE} -C ../claws-mail-${_addon} -V IGNORE
+.  if ${_IGNORE} == ""
+OPTIONS_DEFINE+=	${_addon:tu}
+${_addon:tu}_DESC!=	${MAKE} -C ../claws-mail-${_addon} -V COMMENT
+.  endif
+. endif
+.endfor
+OPTIONS_DEFAULT=	${OPTIONS_DEFINE}
+
+.include <bsd.mport.options.mk>
+
+.for _addon in ${CLAWS_PLUGINS}
+. if ${PORT_OPTIONS:M${_addon:tu}} != ""
+RUN_DEPENDS+=	claws-mail-${_addon}>=0:mail/claws-mail-${_addon}
+. endif
+.endfor
+
+.include <bsd.port.mk>

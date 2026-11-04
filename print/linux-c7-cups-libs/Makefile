@@ -1,0 +1,27 @@
+PORTNAME=	cups-libs
+PORTVERSION=	1.6.3
+DISTVERSIONSUFFIX=	-52.el7_9
+PORTREVISION=	11
+CATEGORIES=	print linux
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Common UNIX Printing System libraries
+WWW=		https://github.com/OpenPrinting/cups
+
+LICENSE=	gpl2
+
+USES=		cpe linux:c7
+CPE_VENDOR=	apple
+CPE_PRODUCT=	cups
+SKIP_FAKE_ALL=	yes
+USE_LDCONFIG=	yes
+USE_LINUX=	avahi-libs
+USE_LINUX_RPM=	yes
+
+SRC_DISTFILES=	cups-${DISTVERSIONFULL}${SRC_SUFX}:SOURCE
+
+DESCR=		${.CURDIR}/../cups/pkg-descr
+
+OPTIONS_DEFINE=	DOCS
+
+.include <bsd.port.mk>

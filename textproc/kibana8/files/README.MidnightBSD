@@ -1,0 +1,28 @@
+Kibana 8.19.23 for MidnightBSD
+
+This distribution is licensed under Elastic License 2.0. Read LICENSE.txt
+for its terms. This is a modified distribution, adapted by the MidnightBSD
+ports project; these changes are not endorsed by Elastic.
+
+MidnightBSD changes:
+- Use the system Node.js 24 runtime, version 24.21.0 or newer. Prereleases
+  and other Node.js major versions are rejected.
+- Remove the bundled Linux Node.js, Chromium, and optional Linux scheduling
+  addon. Upstream Piscina skips optional scheduling priority adjustment
+  when that addon is unavailable.
+- Disable reporting and screenshotting in the service launcher because the
+  bundled Chromium cannot run on MidnightBSD.
+- Keep configuration in /usr/local/etc/kibana and writable service data in
+  /usr/local/www/kibana8/data. The service uses the upstream launcher so
+  node.options and Node.js diagnostic options take effect.
+
+Before upgrading from an earlier 8.x release:
+1. Stop every Kibana instance. Mixed Kibana versions must not run together.
+2. Back up configuration and take an Elasticsearch snapshot that includes
+   the Kibana feature state before saved-object migration begins.
+3. Upgrade Elasticsearch to 8.19.23 first, then upgrade Kibana. Preserve the
+   existing Kibana data directory and its persistent instance UUID.
+4. Review the new configuration samples and reinstall third-party plugins
+   built for exactly Kibana 8.19.23.
+
+See https://www.elastic.co/docs/deploy-manage/upgrade/deployment-or-cluster/kibana

@@ -1,0 +1,13 @@
+--- readconf.c.orig	2023-12-19 17:09:41.366788000 -0800
++++ readconf.c	2023-12-19 17:10:24.155247000 -0800
+@@ -317,6 +317,12 @@
+ 	{ "enableescapecommandline", oEnableEscapeCommandline },
+ 	{ "obscurekeystroketiming", oObscureKeystrokeTiming },
+ 	{ "channeltimeout", oChannelTimeout },
++	{ "hpndisabled", oDeprecated },
++	{ "hpnbuffersize", oDeprecated },
++	{ "tcprcvbufpoll", oDeprecated },
++	{ "tcprcvbuf", oDeprecated },
++	{ "noneenabled", oUnsupported },
++	{ "noneswitch", oUnsupported },
+ 	{ "versionaddendum", oVersionAddendum },

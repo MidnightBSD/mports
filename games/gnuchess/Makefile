@@ -1,0 +1,57 @@
+PORTNAME=	gnuchess
+DISTVERSION=	6.3.0
+CATEGORIES=	games
+MASTER_SITES=	GNU/chess
+# The DISTFILES here is explicitly needed because it can be extended later.
+DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Classic Gnu Chess
+WWW=		https://savannah.gnu.org/projects/chess
+
+LICENSE=	gpl3+
+
+USE_GCC=	yes
+
+USES=		cpe shebangfix
+CPE_VENDOR=	gnu
+CPE_PRODUCT=	chess
+USE_CXXSTD=	c++14
+
+SHEBANG_FILES=	doc/quotes.rb
+
+GNU_CONFIGURE=	yes
+CONFIGURE_ENV=	MKDIR_P="${MKDIR}"
+
+LDFLAGS+=		-lpthread
+
+NO_TEST=	yes
+
+INFO=		gnuchess
+
+OPTIONS_DEFINE=		OPENING_BOOK DOCS NLS
+OPTIONS_DEFAULT=	OPENING_BOOK
+OPTIONS_SUB=		yes
+
+OPENING_BOOK_DESC=	Install opening book (25 MB download)
+
+NLS_USES=		gettext
+NLS_CONFIGURE_ENABLE=	nls
+OPENING_BOOK_DISTFILES=	book_1.02.pgn.gz
+OPENING_BOOK_EXTRACT_ONLY=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX}
+
+post-build-OPENING_BOOK-on:
+	zcat ${DISTDIR}/book_1.02.pgn.gz > ${WRKSRC}/src/book.pgn
+	cd ${WRKSRC}/src && ./gnuchess --addbook book.pgn < /dev/null
+	@${REINPLACE_CMD} -e '/Book =/s/false/true/' ${WRKSRC}/doc/gnuchess.ini
+
+post-install:
+	cd ${PREFIX}/bin && ${LN} -f gnuchess gnuchessx
+
+post-install-DOCS-on:
+	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/NEWS ${WRKSRC}/doc/* ${FAKE_DESTDIR}${DOCSDIR}
+	${RM} ${FAKE_DESTDIR}${DOCSDIR}/gnuchess.info
+	${RM} -f ${FAKE_DESTDIR}${DOCSDIR}/*.bak
+
+.include <bsd.port.mk>

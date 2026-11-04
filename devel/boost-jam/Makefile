@@ -1,0 +1,26 @@
+PORTNAME=	boost-jam
+COMMENT=	Build tool from the boost.org
+WWW=		https://www.boost.org/
+
+LICENSE=	mit
+
+PLIST_FILES=	bin/bjam
+
+EXTRACT_AFTER_ARGS=	--no-same-owner --no-same-permissions ${DISTNAME}/${WRKSRC_SUBDIR}
+MAKE_CMD=	./build.sh
+ALL_TARGET=	${CHOSEN_COMPILER_TYPE} ${WITH_DEBUG:D--debug}
+MAKE_FLAGS=	#
+_MAKE_JOBS=	#
+MAKEFILE=	--cxx="${CXX}" --cxxflags="${CXXFLAGS:N-O*}"
+
+USES=		compiler:c++11-lang
+
+WRKSRC_SUBDIR=	tools/build/src/engine
+
+.include "${.CURDIR}/../boost-all/common.mk"
+
+do-install:
+	${MKDIR} ${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/bjam ${PREFIX}/bin
+
+.include <bsd.port.mk>

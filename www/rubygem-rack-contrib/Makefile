@@ -1,0 +1,20 @@
+PORTNAME=	rack-contrib
+PORTVERSION=	2.5.0
+CATEGORIES=	www rubygems
+MASTER_SITES=	RG
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Contributed Rack Middleware and Utilities
+WWW=		https://github.com/rack/rack-contrib
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	rubygem-rack>=0,3<4,3:www/rubygem-rack
+
+USES=		gem
+
+NO_ARCH=	yes
+
+.include <bsd.port.mk>

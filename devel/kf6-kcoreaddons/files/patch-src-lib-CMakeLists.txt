@@ -1,0 +1,11 @@
+--- src/lib/CMakeLists.txt.orig	2025-05-02 10:16:38.000000000 -0400
++++ src/lib/CMakeLists.txt	2025-12-11 15:00:02.069222000 -0500
+@@ -260,7 +260,7 @@
+     target_link_libraries(KF6CoreAddons PRIVATE netapi32 userenv psapi)
+ endif()
+ 
+-if(CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
++if(CMAKE_SYSTEM_NAME MATCHES "MidnightBSD")
+     target_link_libraries(KF6CoreAddons PRIVATE kvm)
+ endif()
+ 

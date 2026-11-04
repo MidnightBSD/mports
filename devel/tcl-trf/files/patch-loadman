@@ -1,0 +1,31 @@
+--- generic/loadman.h.orig	2008-12-11 14:04:25 UTC
++++ generic/loadman.h
+@@ -43,15 +43,7 @@ extern "C" {
+ 
+ #include "transformInt.h"
+ 
+-#ifdef HAVE_MD2_H
+-#   ifdef OPENSSL_SUB
+-#       include <openssl/md2.h>
+-#   else
+-#       include <md2.h>
+-#   endif
+-#else
+-#   include "../compat/md2.h"
+-#endif
++#include "md2d.h"
+ 
+ #ifdef HAVE_SHA_H
+ #   ifdef OPENSSL_SUB
+@@ -102,9 +94,9 @@ typedef struct Md5Functions {
+   long loaded;
+   void (* init)   __P ((MD5_CTX* c));
+   void (* update) __P ((MD5_CTX* c, unsigned char* data,
+ 				unsigned long length));
+-  void* (* final)  __P ((unsigned char* digest, MD5_CTX* c));
++  void (* final)  __P ((unsigned char* digest, MD5_CTX* c));
+ 
+-  const char* (* crypt) _ANSI_ARGS_ ((const char* key, const char* salt));
++  char* (* crypt) _ANSI_ARGS_ ((const char* key, const char* salt));
+ 
+ } md5Functions;

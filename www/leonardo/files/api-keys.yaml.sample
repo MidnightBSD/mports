@@ -1,0 +1,20 @@
+# Copyright 2026 The Leonardo Authors.
+# Licensed under the Apache License, Version 2.0.
+#
+# Sample Leonardo API keys file.
+# Mode MUST be 0600 — the daemon refuses to start otherwise.
+# Owner MUST match the runtime user (default: leonardo).
+#
+# v1 stores secrets in plaintext. Later versions will support scrypt/argon2
+# hashing or an external secret manager. Do NOT consider this format stable.
+
+keys:
+  - access_key: AKIAEXAMPLE1234567890
+    secret_key: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+    identity: alice
+    enabled: true
+
+  - access_key: AKIABACKUPBOT12345678
+    secret_key: REPLACEMEsecretREPLACEMEsecretREPLACE12
+    identity: backup-bot
+    enabled: true
