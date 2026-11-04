@@ -1,0 +1,10 @@
+--- src/lisp.h.orig	2025-05-15 18:36:15 UTC
++++ src/lisp.h
+@@ -3185,7 +3185,7 @@ INLINE struct Lisp_Float *
+       double data;
+       struct Lisp_Float *chain;
+       GCALIGNED_UNION_MEMBER
+     } u;
+-  };
++  } GCALIGNED_STRUCT;
+ static_assert (GCALIGNED (struct Lisp_Float));

@@ -1,0 +1,45 @@
+PORTNAME=	leveldb
+PORTVERSION=	1.23
+CATEGORIES=	databases
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Fast and lightweight key/value database library by Google
+
+LICENSE=	bsd3
+
+OPTIONS_DEFINE=	GPERFTOOLS SNAPPY
+OPTIONS_DEFAULT=SNAPPY
+
+USES=		cmake compiler:c++11-lang localbase
+
+CMAKE_OFF=	LEVELDB_BUILD_TESTS LEVELDB_BUILD_BENCHMARKS
+CMAKE_ON=	BUILD_SHARED_LIBS LEVELDB_INSTALL
+USE_CXXSTD=	c++11
+USE_LDCONFIG=	yes
+
+PLIST_SUB=	SHLIB_MAJOR=${SHLIB_MAJOR} \
+		SHLIB_MINOR=${SHLIB_MINOR}
+
+SHLIB_MAJOR=	${PORTVERSION:R}
+SHLIB_MINOR=	${PORTVERSION:E}
+
+GH_ACCOUNT=	google
+USE_GITHUB=	yes
+
+GPERFTOOLS_LIB_DEPENDS=	libtcmalloc.so:devel/google-perftools
+SNAPPY_LIB_DEPENDS=	libsnappy.so:archivers/snappy
+SNAPPY_VARS=		SNAPPY=1 SNAPPY_CFLAGS=-DSNAPPY
+SNAPPY_VARS_OFF=	SNAPPY=0 SNAPPY_CFLAGS=
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|%%SHLIB_MAJOR%%|${SHLIB_MAJOR}|; s|%%SHLIB_MINOR%%|${SHLIB_MINOR}|' ${WRKSRC}/CMakeLists.txt
+
+post-install:
+	${AR} cq ${PREFIX}/lib/libleveldb.a ${BUILD_WRKSRC}/CMakeFiles/leveldb.dir/*/*.o
+# backward compatibility (for databases/p5-Tie-LevelDB)
+	${MKDIR} ${DATADIR}/
+	${ECHO_CMD} "PLATFORM_CFLAGS=-std=c++11 -D_REENTRANT -DOS_FREEBSD -DLEVELDB_PLATFORM_POSIX ${SNAPPY_CFLAGS}" > ${DATADIR}/build_config.mk
+	${ECHO_CMD} "PORT_CFLAGS=-std=c++11 -D_REENTRANT -DOS_FREEBSD -DLEVELDB_PLATFORM_POSIX ${SNAPPY_CFLAGS}" >> ${DATADIR}/build_config.mk
+	${ECHO_CMD} "SNAPPY=${SNAPPY}" >> ${DATADIR}/build_config.mk
+
+.include <bsd.port.mk>

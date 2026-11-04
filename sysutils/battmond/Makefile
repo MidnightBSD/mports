@@ -1,0 +1,18 @@
+PORTNAME=	battmond
+DISTVERSION=	0.4
+CATEGORIES=	sysutils
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Daemon monitoring the battery level of ACPI-enabled laptops
+
+LICENSE=	bsd2
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	ntarmos
+GH_TAGNAME=	0.4
+
+PLIST_FILES=	sbin/battmond \
+		etc/rc.d/battmond \
+		man/man1/battmond.1.gz
+
+.include <bsd.port.mk>

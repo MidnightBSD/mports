@@ -1,0 +1,5 @@
+--- rsvg/meson.build.orig	2025-03-29 19:19:55 UTC
++++ rsvg/meson.build
+@@ -174 +174 @@
+-  vflag = '-Wl,--version-script,@0@'.format(version_script)
++  vflag = '-Wl,--undefined-version,--version-script,@0@'.format(version_script)

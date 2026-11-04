@@ -1,0 +1,2 @@
+acme-client is a Ruby implementation of the ACMEv2 protocol. It can be used by
+applications that need to request or manage certificates through ACME services.

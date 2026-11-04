@@ -1,0 +1,32 @@
+PORTNAME=	restic
+DISTVERSIONPREFIX=	v
+DISTVERSION=	0.18.1
+PORTREVISION=	2
+CATEGORIES=	sysutils
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Fast, secure, efficient backup program
+WWW=		https://restic.net/
+
+LICENSE=	bsd2
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+USES=		go:modules
+GO_MODULE=	github.com/restic/restic
+GO_TARGET=	./cmd/${PORTNAME}
+
+PLIST_SUB=	PORTNAME=${PORTNAME}
+
+# disable tests.  most work, but seem to eat disk space on magus
+NO_TEST=	yes
+
+post-install:
+	${INSTALL_MAN} ${WRKSRC}/doc/man/* ${PREFIX}/share/man/man1
+	${INSTALL} -d ${PREFIX}/etc/bash_completion.d/
+	${INSTALL_SCRIPT} ${WRKSRC}/doc/bash-completion.sh \
+		${PREFIX}/etc/bash_completion.d/${PORTNAME}.sh
+	${INSTALL} -d ${PREFIX}/share/zsh/site-functions/
+	${INSTALL_DATA} ${WRKSRC}/doc/zsh-completion.zsh \
+		${PREFIX}/share/zsh/site-functions/_${PORTNAME}
+
+.include <bsd.port.mk>

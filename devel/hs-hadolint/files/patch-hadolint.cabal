@@ -1,0 +1,20 @@
+--- hadolint.cabal.orig	2001-09-09 01:46:40 UTC
++++ hadolint.cabal
+@@ -137,7 +137,7 @@ library
+     , base                  >=4.20.1   && <5
+     , base16-bytestring     >=1.0.2    && <1.1
+     , bytestring            >=0.12.2   && <0.13
+-    , Cabal                 >=3.12.1   && <3.13
++    , Cabal                 >=3.12.1   && <3.15
+     , colourista            >=0.1.0    && <0.2
+     , containers            >=0.7      && <0.8
+     , cryptohash-sha1       >=0.11.101 && <0.12
+@@ -162,7 +162,7 @@ library
+     , spdx                  >=1.1      && <1.2
+     , split                 >=0.2.5    && <0.3
+     , text                  >=2.1.2    && <2.2
+-    , time                  >=1.12.2   && <1.13
++    , time                  >=1.12.2   && <1.15
+     , timerep               >=2.1.0    && <2.2
+     , void                  >=0.7.3    && <0.8
+     , xml-conduit           >=1.10.0   && <1.11

@@ -1,0 +1,11 @@
+--- ec2_ephemeral_swap.orig	2023-11-16 15:57:54 UTC
++++ ec2_ephemeral_swap
+@@ -168,7 +168,7 @@ ec2_ephemeral_swap_run()
+ 
+ 		# Create the swap partition
+ 		gpart create -s GPT $SWAPDISK
+-		gpart add -t freebsd-swap -s ${SWAPSZ}M \
++		gpart add -t mnbsd-swap -s ${SWAPSZ}M \
+ 		    -l ephemeral_swap-$EC2DISK $SWAPDISK
+ 	done
+ 

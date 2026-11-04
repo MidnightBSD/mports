@@ -1,0 +1,105 @@
+@cwd %%LINUXBASE%%
+usr/lib64/libnvcuvid.so.%%SHLIB_VERSION%%
+usr/lib64/libEGL_nvidia.so.%%SHLIB_VERSION%%
+usr/lib64/libnvidia-glsi.so.%%SHLIB_VERSION%%
+usr/lib64/libnvidia-egl-wayland.so.1.1.7
+usr/lib64/libGLESv1_CM_nvidia.so.%%SHLIB_VERSION%%
+usr/lib64/libGLESv2_nvidia.so.%%SHLIB_VERSION%%
+usr/lib64/libnvidia-ptxjitcompiler.so.%%SHLIB_VERSION%%
+usr/lib64/libnvidia-opencl.so.%%SHLIB_VERSION%%
+usr/lib64/libnvidia-fbc.so.%%SHLIB_VERSION%%
+usr/lib64/libnvidia-gtk2.so.%%SHLIB_VERSION%%
+usr/lib64/libnvidia-gtk3.so.%%SHLIB_VERSION%%
+usr/lib64/libnvidia-cfg.so.%%SHLIB_VERSION%%
+usr/lib64/libcuda.so.%%SHLIB_VERSION%%
+usr/lib64/libnvidia-ifr.so.%%SHLIB_VERSION%%
+usr/lib64/libvdpau_nvidia.so.%%SHLIB_VERSION%%
+usr/lib64/libnvidia-eglcore.so.%%SHLIB_VERSION%%
+usr/lib64/libGLX_nvidia.so.%%SHLIB_VERSION%%
+usr/lib64/libnvidia-encode.so.%%SHLIB_VERSION%%
+usr/lib64/libnvidia-ml.so.%%SHLIB_VERSION%%
+usr/lib64/libnvidia-glcore.so.%%SHLIB_VERSION%%
+usr/lib64/libnvidia-compiler.so.%%SHLIB_VERSION%%
+usr/lib64/libnvidia-glvkspirv.so.%%SHLIB_VERSION%%
+usr/lib64/libnvidia-cbl.so.%%SHLIB_VERSION%%
+usr/lib64/libnvidia-tls.so.%%SHLIB_VERSION%%
+usr/lib64/libnvidia-rtcore.so.%%SHLIB_VERSION%%
+usr/share/man/man1/nvidia-xconfig.1.gz
+usr/share/man/man1/nvidia-settings.1.gz
+usr/share/man/man1/nvidia-cuda-mps-control.1.gz
+usr/share/man/man1/nvidia-persistenced.1.gz
+usr/share/man/man1/nvidia-smi.1.gz
+usr/share/glvnd/egl_vendor.d/10_nvidia.json
+usr/share/nvidia/nvidia-application-profiles-%%SHLIB_VERSION%%-key-documentation
+usr/share/nvidia/nvidia-application-profiles-%%SHLIB_VERSION%%-rc
+usr/share/egl/egl_external_platform.d/10_nvidia_wayland.json
+usr/lib/libnvidia-fbc.so.%%SHLIB_VERSION%%
+usr/lib/libnvcuvid.so.%%SHLIB_VERSION%%
+usr/lib/libnvcuvid.so.1
+usr/lib/libcuda.so
+usr/lib/libGLESv2_nvidia.so.%%SHLIB_VERSION%%
+usr/lib/libcuda.so.1
+usr/lib/libvdpau_nvidia.so.%%SHLIB_VERSION%%
+usr/lib/libnvidia-opencl.so.%%SHLIB_VERSION%%
+usr/lib/libEGL_nvidia.so.%%SHLIB_VERSION%%
+usr/lib/libnvidia-eglcore.so.%%SHLIB_VERSION%%
+usr/lib/libnvidia-ifr.so.1
+usr/lib/libGLX_nvidia.so.0
+usr/lib/libnvidia-ptxjitcompiler.so.%%SHLIB_VERSION%%
+usr/lib/libnvidia-glvkspirv.so.%%SHLIB_VERSION%%
+usr/lib/libnvidia-glsi.so.%%SHLIB_VERSION%%
+usr/lib/libnvidia-ml.so
+usr/lib/libnvidia-encode.so.1
+usr/lib/libnvidia-fbc.so
+usr/lib/libGLESv2_nvidia.so.2
+usr/lib/libGLX_indirect.so.0
+usr/lib/libGLESv1_CM_nvidia.so.%%SHLIB_VERSION%%
+usr/lib/libnvidia-opencl.so.1
+usr/lib/libcuda.so.%%SHLIB_VERSION%%
+usr/lib/libnvidia-ml.so.1
+usr/lib/libnvidia-tls.so.%%SHLIB_VERSION%%
+usr/lib/libnvidia-ifr.so
+usr/lib/libnvidia-ptxjitcompiler.so
+usr/lib/libnvidia-compiler.so.%%SHLIB_VERSION%%
+usr/lib/libnvidia-encode.so.%%SHLIB_VERSION%%
+usr/lib/libnvidia-fbc.so.1
+usr/lib/libnvidia-glcore.so.%%SHLIB_VERSION%%
+usr/lib/libEGL_nvidia.so.0
+usr/lib/libnvidia-ml.so.%%SHLIB_VERSION%%
+usr/lib/libnvidia-ifr.so.%%SHLIB_VERSION%%
+usr/lib/libGLESv1_CM_nvidia.so.1
+usr/lib/libGLX_nvidia.so.%%SHLIB_VERSION%%
+usr/lib/libnvidia-ptxjitcompiler.so.1
+usr/lib/libnvidia-encode.so
+usr/lib/libnvcuvid.so
+usr/bin/nvidia-xconfig
+usr/bin/nvidia-persistenced
+usr/bin/nvidia-cuda-mps-control
+usr/bin/nvidia-debugdump
+usr/bin/nvidia-settings
+usr/bin/nvidia-cuda-mps-server
+usr/bin/nvidia-bug-report.sh
+usr/bin/nvidia-smi
+etc/OpenCL/vendors/nvidia.icd
+etc/vulkan/icd.d/nvidia_icd.json
+@postexec %%LINUXBASE%%/sbin/ldconfig
+@postunexec %%LINUXBASE%%/sbin/ldconfig
+@dir %%LINUXBASE%%/etc/OpenCL/vendors
+@dir %%LINUXBASE%%/etc/OpenCL
+@dir %%LINUXBASE%%/etc/vulkan/icd.d
+@dir %%LINUXBASE%%/etc/vulkan
+@dir %%LINUXBASE%%/etc
+@dir %%LINUXBASE%%/usr/bin
+@dir %%LINUXBASE%%%%LINUX_LIBDIR%%/tls
+@dir %%LINUXBASE%%%%LINUX_LIBDIR%%/vdpau
+@dir %%LINUXBASE%%%%LINUX_LIBDIR%%
+@dir %%LINUXBASE%%/usr/share/egl/egl_external_platform.d
+@dir %%LINUXBASE%%/usr/share/egl
+@dir %%LINUXBASE%%/usr/share/glvnd/egl_vendor.d
+@dir %%LINUXBASE%%/usr/share/glvnd
+@dir %%LINUXBASE%%/usr/share/man/man1
+@dir %%LINUXBASE%%/usr/share/man
+@dir %%LINUXBASE%%/usr/share/nvidia
+@dir %%LINUXBASE%%/usr/share
+@dir %%LINUXBASE%%/usr
+@dir %%LINUXBASE%%

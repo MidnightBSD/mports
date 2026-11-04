@@ -1,0 +1,13 @@
+--- meson.build.orig	2024-03-05 18:09:52 UTC
++++ meson.build
+ # Paths
+ srcdir = meson.current_source_dir()
+@@ -134,7 +134,7 @@ configure_file(
+   output: 'gtk-doc.pc',
+   configuration: gtkdoc_pc,
+   install: true,
+-  install_dir: get_option('datadir') / 'pkgconfig',
++  install_dir: join_paths(get_option('prefix'), 'libdata', 'pkgconfig'),
+ )
+ 
+ subdir('help')

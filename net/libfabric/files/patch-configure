@@ -1,0 +1,12 @@
+--- configure.orig	2022-08-29 00:00:00 UTC
++++ configure
+@@ -4069,6 +4069,9 @@ case $host_os in
+ *freebsd*)
+ 	freebsd=1
+ 	;;
++*midnightbsd*)
++	freebsd=1
++	;;
+ *)
+ 	as_fn_error $? "libfabric only builds on Linux, OS X, and FreeBSD" "$LINENO" 5
+ 	;;

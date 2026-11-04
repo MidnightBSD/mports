@@ -1,0 +1,11 @@
+--- _cabal_deps/language-docker-15.0.0/language-docker.cabal.orig	2001-09-09 01:46:40 UTC
++++ _cabal_deps/language-docker-15.0.0/language-docker.cabal
+@@ -54,7 +54,7 @@ common deps
+     , prettyprinter       >=1.7.1  && <1.9
+     , split               >=0.2.5  && <0.4
+     , text                >=2.0.2  && <2.2
+-    , time                >=1.12.2 && <1.14
++    , time                >=1.12.2 && <1.15
+ 
+ library
+   import:             deps

@@ -1,0 +1,17 @@
+CADCraft bundled components
+
+acadrust 0.6.5 is used unmodified for DWG import and export under its supplied
+MPL 2.0 variant. Its Section 4 includes a named LEGAL file requirement that
+is absent from the standard MPL 2.0 text.
+Its corresponding source is available at:
+https://crates.io/api/v1/crates/acadrust/0.6.5/download
+https://github.com/hakanaktt/acadrust
+LICENSE-acadrust.txt contains its full license, with escaped line endings
+converted to ordinary line endings for readability.
+
+Krilla 0.8.2 embeds ICC color profiles dedicated under CC0 1.0.
+LICENSE-ICC-CC0.txt contains their full terms.
+
+Egui's default fonts include Hack, Ubuntu Light, Noto Emoji, and emoji-icon-font.
+Their full notices are installed alongside this file as Hack-Regular.txt,
+UFL.txt, OFL.txt, and emoji-icon-font-mit-license.txt.
