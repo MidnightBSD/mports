@@ -1,0 +1,24 @@
+--- Makefile.orig	Fri Apr  7 23:51:49 2000
++++ Makefile	Tue Oct 30 21:14:48 2007
+@@ -1,10 +1,8 @@
+ # Makefile for wmScoreBoard
+ 
+-CC      = gcc
+-CFLAGS  = -g -O2 -Wall
+-INCDIR  = -I/usr/X11R6/include/X11 -I/usr/X11R6/include
+-LIBDIR  = -L/usr/X11R6/lib
+-DESTDIR = /usr/X11R6
++CFLAGS  += -g -Wall
++INCDIR  = -I${LOCALBASE}/include/X11 -I${LOCALBASE}/include
++LIBDIR  = -L${LOCALBASE}/lib
+ 
+ # for linux
+ LIBS = -lXpm -lX11 -lXext
+@@ -33,5 +31,5 @@
+ 	rm -f wmScoreBoard
+ 
+ install:: wmScoreBoard
+-	install -c -s -m 0755 wmScoreBoard $(DESTDIR)/bin
+-	install -c    -m 0755 GrabScores.excite $(DESTDIR)/bin
++	install -c -s -m 0755 wmScoreBoard ${PREFIX}/bin
++	install -c    -m 0755 GrabScores.excite ${PREFIX}/bin

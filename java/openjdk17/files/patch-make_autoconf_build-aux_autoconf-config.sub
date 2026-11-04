@@ -1,0 +1,11 @@
+--- make/autoconf/build-aux/autoconf-config.sub.orig	2025-12-24 11:47:28.882799000 -0500
++++ make/autoconf/build-aux/autoconf-config.sub	2025-12-24 11:47:58.975775000 -0500
+@@ -1283,7 +1283,7 @@
+ 	      | -storm-chaos* | -tops10* | -tenex* | -tops20* | -its* \
+ 	      | -os2* | -vos* | -palmos* | -uclinux* | -nucleus* \
+ 	      | -morphos* | -superux* | -rtmk* | -rtmk-nova* | -windiss* \
+-	      | -powermax* | -dnix* | -nx6 | -nx7 | -sei* | -dragonfly* \
++	      | -powermax* | -dnix* | -nx6 | -nx7 | -sei* | -midnightbsd* \
+ 	      | -skyos* | -haiku* | -rdos* | -toppers* | -drops*)
+ 	# Remember, each alternative MUST END IN *, to match a version number.
+ 		;;

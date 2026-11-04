@@ -1,0 +1,12 @@
+--- configure.ac.orig	2023-03-18 15:40:57.669418000 -0400
++++ configure.ac	2023-03-18 15:41:09.753480000 -0400
+@@ -102,6 +102,9 @@
+ 	"FreeBSD")
+ 	  OS_VERSION=linux
+ 	  ;;
++	"MidnightBSD")
++	  OS_VERSION=linux
++	  ;;
+ 	"NetBSD")
+ 	  OS_VERSION=linux
+ 	  ;;

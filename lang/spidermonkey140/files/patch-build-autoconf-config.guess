@@ -1,0 +1,5 @@
+--- build/autoconf/config.guess.orig
++++ build/autoconf/config.guess
+@@ -293 +293 @@
+-	GUESS=$UNAME_MACHINE-unknown-midnightbsd$UNAME_RELEASE
++	GUESS=$UNAME_MACHINE-unknown-freebsd13.4

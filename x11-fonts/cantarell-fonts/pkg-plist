@@ -1,0 +1,4 @@
+%%FONTSDIR%%/Cantarell-VF.otf
+share/metainfo/org.gnome.cantarell.metainfo.xml
+@postexec %%LOCALBASE%%/bin/fc-cache -f -v %%FONTSDIR%% || /usr/bin/true
+@postunexec %%LOCALBASE%%/bin/fc-cache -f -v %%FONTSDIR%% || /usr/bin/true

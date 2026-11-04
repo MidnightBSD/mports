@@ -1,0 +1,10 @@
+--- third_party/dawn/src/utils/BUILD.gn.orig	2026-10-26 21:13:13 UTC
++++ third_party/dawn/src/utils/BUILD.gn
+@@ -212,7 +212,6 @@
+       # -Wlifetime-safety-lifetimebound-violation) are not yet mapped to
+       # toggleable warning flags, so we suppress the entire group and disable
+       # the analysis pass.
+-      "-Wno-lifetime-safety-all",
+     ]
+ 
+     # P3. Checks that could be nice but probably don't help with hardening.

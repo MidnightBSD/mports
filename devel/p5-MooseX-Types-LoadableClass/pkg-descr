@@ -1,0 +1,4 @@
+MooseX::Types::LoadableClass - ClassName type constraint with coercion to load
+the class.
+
+WWW: https://metacpan.org/pod/MooseX::Types::LoadableClass

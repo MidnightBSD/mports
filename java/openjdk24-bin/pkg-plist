@@ -1,0 +1,635 @@
+openjdk24/jmods/jdk.graal.compiler.jmod
+openjdk24/jmods/jdk.graal.compiler.management.jmod
+openjdk24/jmods/jdk.internal.md.jmod
+openjdk24/conf/jaxp-strict.properties.template
+openjdk24/legal/jdk.graal.compiler/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.graal.compiler/LICENSE
+openjdk24/legal/jdk.graal.compiler/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.graal.compiler.management/LICENSE
+openjdk24/legal/jdk.graal.compiler.management/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.graal.compiler.management/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/java.xml/xhtml10schema.md
+openjdk24/legal/java.xml/xhtml11schema.md
+openjdk24/legal/java.xml/xmlspec.md
+openjdk24/legal/java.xml/schema10part2.md
+openjdk24/legal/java.xml/schema10part1.md
+openjdk24/legal/java.xml/xmlxsd.md
+openjdk24/legal/java.xml/xhtml10.md
+openjdk24/legal/java.xml/xhtml11.md
+openjdk24/legal/jdk.internal.md/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.internal.md/commonmark.md
+openjdk24/legal/jdk.internal.md/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.internal.md/LICENSE
+openjdk24/legal/jdk.javadoc/dejavufonts.md
+openjdk24/lib/jexec
+openjdk24/lib/server/classes_nocoops_coh.jsa
+openjdk24/lib/server/classes_coh.jsa
+openjdk24/bin/jnativescan
+openjdk24/jmods/java.security.sasl.jmod
+openjdk24/jmods/jdk.editpad.jmod
+openjdk24/jmods/java.net.http.jmod
+openjdk24/jmods/jdk.unsupported.jmod
+openjdk24/jmods/jdk.jconsole.jmod
+openjdk24/jmods/jdk.jdi.jmod
+openjdk24/jmods/jdk.jdwp.agent.jmod
+openjdk24/jmods/jdk.compiler.jmod
+openjdk24/jmods/java.datatransfer.jmod
+openjdk24/jmods/java.xml.jmod
+openjdk24/jmods/java.management.rmi.jmod
+openjdk24/jmods/java.naming.jmod
+openjdk24/jmods/jdk.security.auth.jmod
+openjdk24/jmods/jdk.crypto.ec.jmod
+openjdk24/jmods/jdk.internal.vm.ci.jmod
+openjdk24/jmods/java.se.jmod
+openjdk24/jmods/jdk.security.jgss.jmod
+openjdk24/jmods/jdk.management.jmod
+openjdk24/jmods/jdk.internal.le.jmod
+openjdk24/jmods/jdk.management.agent.jmod
+openjdk24/jmods/java.smartcardio.jmod
+openjdk24/jmods/jdk.net.jmod
+openjdk24/jmods/jdk.naming.dns.jmod
+openjdk24/jmods/jdk.jfr.jmod
+openjdk24/jmods/java.management.jmod
+openjdk24/jmods/jdk.charsets.jmod
+openjdk24/jmods/jdk.jsobject.jmod
+openjdk24/jmods/jdk.jstatd.jmod
+openjdk24/jmods/jdk.unsupported.desktop.jmod
+openjdk24/jmods/jdk.javadoc.jmod
+openjdk24/jmods/jdk.httpserver.jmod
+openjdk24/jmods/jdk.hotspot.agent.jmod
+openjdk24/jmods/jdk.accessibility.jmod
+openjdk24/jmods/jdk.internal.ed.jmod
+openjdk24/jmods/jdk.naming.rmi.jmod
+openjdk24/jmods/java.xml.crypto.jmod
+openjdk24/jmods/java.instrument.jmod
+openjdk24/jmods/java.transaction.xa.jmod
+openjdk24/jmods/java.logging.jmod
+openjdk24/jmods/jdk.sctp.jmod
+openjdk24/jmods/jdk.nio.mapmode.jmod
+openjdk24/jmods/jdk.dynalink.jmod
+openjdk24/jmods/java.desktop.jmod
+openjdk24/jmods/jdk.incubator.vector.jmod
+openjdk24/jmods/jdk.attach.jmod
+openjdk24/jmods/jdk.internal.opt.jmod
+openjdk24/jmods/jdk.jcmd.jmod
+openjdk24/jmods/jdk.jdeps.jmod
+openjdk24/jmods/jdk.jlink.jmod
+openjdk24/jmods/jdk.jartool.jmod
+openjdk24/jmods/jdk.localedata.jmod
+openjdk24/jmods/jdk.internal.jvmstat.jmod
+openjdk24/jmods/java.security.jgss.jmod
+openjdk24/jmods/java.sql.jmod
+openjdk24/jmods/java.base.jmod
+openjdk24/jmods/java.prefs.jmod
+openjdk24/jmods/jdk.crypto.cryptoki.jmod
+openjdk24/jmods/jdk.zipfs.jmod
+openjdk24/jmods/java.compiler.jmod
+openjdk24/jmods/java.scripting.jmod
+openjdk24/jmods/jdk.jshell.jmod
+openjdk24/jmods/jdk.management.jfr.jmod
+openjdk24/jmods/jdk.xml.dom.jmod
+openjdk24/jmods/java.rmi.jmod
+openjdk24/jmods/java.sql.rowset.jmod
+openjdk24/demo/README
+openjdk24/demo/nbproject/project.xml
+openjdk24/demo/nbproject/README.txt
+openjdk24/demo/nbproject/jfc/TableExample/build.properties
+openjdk24/demo/nbproject/jfc/TableExample/build.xml
+openjdk24/demo/nbproject/jfc/TableExample/nbproject/netbeans-targets.xml
+openjdk24/demo/nbproject/jfc/TableExample/nbproject/file-targets.xml
+openjdk24/demo/nbproject/jfc/TableExample/nbproject/jdk.xml
+openjdk24/demo/nbproject/jfc/TableExample/nbproject/project.xml
+openjdk24/demo/nbproject/jfc/Metalworks/build.properties
+openjdk24/demo/nbproject/jfc/Metalworks/nbproject/project.xml
+openjdk24/demo/nbproject/jfc/Metalworks/nbproject/jdk.xml
+openjdk24/demo/nbproject/jfc/Metalworks/nbproject/netbeans-targets.xml
+openjdk24/demo/nbproject/jfc/Metalworks/nbproject/file-targets.xml
+openjdk24/demo/nbproject/jfc/Metalworks/build.xml
+openjdk24/demo/nbproject/jfc/FileChooserDemo/build.properties
+openjdk24/demo/nbproject/jfc/FileChooserDemo/nbproject/file-targets.xml
+openjdk24/demo/nbproject/jfc/FileChooserDemo/nbproject/project.xml
+openjdk24/demo/nbproject/jfc/FileChooserDemo/nbproject/jdk.xml
+openjdk24/demo/nbproject/jfc/FileChooserDemo/nbproject/netbeans-targets.xml
+openjdk24/demo/nbproject/jfc/FileChooserDemo/build.xml
+openjdk24/demo/nbproject/jfc/Notepad/build.xml
+openjdk24/demo/nbproject/jfc/Notepad/nbproject/project.xml
+openjdk24/demo/nbproject/jfc/Notepad/nbproject/file-targets.xml
+openjdk24/demo/nbproject/jfc/Notepad/nbproject/netbeans-targets.xml
+openjdk24/demo/nbproject/jfc/Notepad/nbproject/jdk.xml
+openjdk24/demo/nbproject/jfc/Notepad/build.properties
+openjdk24/demo/nbproject/jfc/SampleTree/nbproject/jdk.xml
+openjdk24/demo/nbproject/jfc/SampleTree/nbproject/project.xml
+openjdk24/demo/nbproject/jfc/SampleTree/nbproject/file-targets.xml
+openjdk24/demo/nbproject/jfc/SampleTree/nbproject/netbeans-targets.xml
+openjdk24/demo/nbproject/jfc/SampleTree/build.xml
+openjdk24/demo/nbproject/jfc/SampleTree/build.properties
+openjdk24/demo/nbproject/jfc/TransparentRuler/build.xml
+openjdk24/demo/nbproject/jfc/TransparentRuler/build.properties
+openjdk24/demo/nbproject/jfc/TransparentRuler/nbproject/netbeans-targets.xml
+openjdk24/demo/nbproject/jfc/TransparentRuler/nbproject/file-targets.xml
+openjdk24/demo/nbproject/jfc/TransparentRuler/nbproject/jdk.xml
+openjdk24/demo/nbproject/jfc/TransparentRuler/nbproject/project.xml
+openjdk24/demo/nbproject/jfc/Font2DTest/build.xml
+openjdk24/demo/nbproject/jfc/Font2DTest/nbproject/file-targets.xml
+openjdk24/demo/nbproject/jfc/Font2DTest/nbproject/jdk.xml
+openjdk24/demo/nbproject/jfc/Font2DTest/nbproject/netbeans-targets.xml
+openjdk24/demo/nbproject/jfc/Font2DTest/nbproject/project.xml
+openjdk24/demo/nbproject/jfc/Font2DTest/build.properties
+openjdk24/demo/jfc/Font2DTest/Font2DTest.jar
+openjdk24/demo/jfc/Font2DTest/README.txt
+openjdk24/demo/jfc/Font2DTest/src.zip
+openjdk24/demo/jfc/SampleTree/README.txt
+openjdk24/demo/jfc/SampleTree/src.zip
+openjdk24/demo/jfc/SampleTree/SampleTree.jar
+openjdk24/demo/jfc/CodePointIM/README_zh_CN.html
+openjdk24/demo/jfc/CodePointIM/README_ja.html
+openjdk24/demo/jfc/CodePointIM/CodePointIM.jar
+openjdk24/demo/jfc/CodePointIM/README.html
+openjdk24/demo/jfc/CodePointIM/src.zip
+openjdk24/demo/jfc/Metalworks/Metalworks.jar
+openjdk24/demo/jfc/Metalworks/README.txt
+openjdk24/demo/jfc/Metalworks/src.zip
+openjdk24/demo/jfc/TransparentRuler/src.zip
+openjdk24/demo/jfc/TransparentRuler/TransparentRuler.jar
+openjdk24/demo/jfc/TransparentRuler/README.txt
+openjdk24/demo/jfc/J2Ddemo/J2Ddemo.jar
+openjdk24/demo/jfc/J2Ddemo/README.txt
+openjdk24/demo/jfc/J2Ddemo/src.zip
+openjdk24/demo/jfc/Stylepad/README.txt
+openjdk24/demo/jfc/Stylepad/src.zip
+openjdk24/demo/jfc/Stylepad/Stylepad.jar
+openjdk24/demo/jfc/TableExample/README.txt
+openjdk24/demo/jfc/TableExample/TableExample.jar
+openjdk24/demo/jfc/TableExample/src.zip
+openjdk24/demo/jfc/FileChooserDemo/FileChooserDemo.jar
+openjdk24/demo/jfc/FileChooserDemo/src.zip
+openjdk24/demo/jfc/FileChooserDemo/README.txt
+openjdk24/demo/jfc/SwingSet2/README.txt
+openjdk24/demo/jfc/SwingSet2/src.zip
+openjdk24/demo/jfc/SwingSet2/SwingSet2.jar
+openjdk24/demo/jfc/Notepad/README.txt
+openjdk24/demo/jfc/Notepad/src.zip
+openjdk24/demo/jfc/Notepad/Notepad.jar
+openjdk24/include/jvmti.h
+openjdk24/include/jdwpTransport.h
+openjdk24/include/jvmticmlr.h
+openjdk24/include/jawt.h
+openjdk24/include/classfile_constants.h
+openjdk24/include/freebsd/jawt_md.h
+openjdk24/include/freebsd/jni_md.h
+openjdk24/include/jni.h
+openjdk24/release
+openjdk24/bin/jrunscript
+openjdk24/bin/jfr
+openjdk24/bin/jdeprscan
+openjdk24/bin/jmod
+openjdk24/bin/rmiregistry
+openjdk24/bin/jstack
+openjdk24/bin/jshell
+openjdk24/bin/java
+openjdk24/bin/javadoc
+openjdk24/bin/jar
+openjdk24/bin/jdeps
+openjdk24/bin/jcmd
+openjdk24/bin/serialver
+openjdk24/bin/jimage
+openjdk24/bin/jinfo
+openjdk24/bin/jmap
+openjdk24/bin/javap
+openjdk24/bin/keytool
+openjdk24/bin/jwebserver
+openjdk24/bin/jhsdb
+openjdk24/bin/javac
+openjdk24/bin/jconsole
+openjdk24/bin/jstatd
+openjdk24/bin/jdb
+openjdk24/bin/jlink
+openjdk24/bin/jarsigner
+openjdk24/bin/jstat
+openjdk24/bin/jps
+openjdk24/conf/management/management.properties
+openjdk24/conf/management/jmxremote.password.template
+openjdk24/conf/management/jmxremote.access
+openjdk24/conf/security/policy/README.txt
+openjdk24/conf/security/policy/unlimited/default_local.policy
+openjdk24/conf/security/policy/unlimited/default_US_export.policy
+openjdk24/conf/security/policy/limited/default_local.policy
+openjdk24/conf/security/policy/limited/default_US_export.policy
+openjdk24/conf/security/policy/limited/exempt_local.policy
+openjdk24/conf/security/java.security
+openjdk24/conf/jaxp.properties
+openjdk24/conf/net.properties
+openjdk24/conf/sound.properties
+openjdk24/conf/logging.properties
+openjdk24/lib/libj2pcsc.so
+openjdk24/lib/libsaproc.so
+openjdk24/lib/libsyslookup.so
+openjdk24/lib/classlist
+openjdk24/lib/libnet.so
+openjdk24/lib/libextnet.so
+openjdk24/lib/jfr/default.jfc
+openjdk24/lib/jfr/profile.jfc
+openjdk24/lib/libnio.so
+openjdk24/lib/libverify.so
+openjdk24/lib/libjaas.so
+openjdk24/lib/libfontmanager.so
+openjdk24/lib/libprefs.so
+openjdk24/lib/psfontj2d.properties
+openjdk24/lib/security/public_suffix_list.dat
+openjdk24/lib/security/cacerts
+openjdk24/lib/security/blocked.certs
+openjdk24/lib/modules
+openjdk24/lib/libj2gss.so
+openjdk24/lib/tzdb.dat
+openjdk24/lib/libinstrument.so
+openjdk24/lib/libawt_headless.so
+openjdk24/lib/libmanagement.so
+openjdk24/lib/src.zip
+openjdk24/lib/libjavajpeg.so
+openjdk24/lib/fontconfig.bfc
+openjdk24/lib/jspawnhelper
+openjdk24/lib/libdt_socket.so
+openjdk24/lib/liblcms.so
+openjdk24/lib/jrt-fs.jar
+openjdk24/lib/psfont.properties.ja
+openjdk24/lib/libawt.so
+openjdk24/lib/fontconfig.properties.src
+openjdk24/lib/libj2pkcs11.so
+openjdk24/lib/libjdwp.so
+openjdk24/lib/libzip.so
+openjdk24/lib/libjawt.so
+openjdk24/lib/jvm.cfg
+openjdk24/lib/ct.sym
+openjdk24/lib/libjimage.so
+openjdk24/lib/libjsound.so
+openjdk24/lib/libawt_xawt.so
+openjdk24/lib/libjsig.so
+openjdk24/lib/libjli.so
+openjdk24/lib/libmanagement_ext.so
+openjdk24/lib/libsplashscreen.so
+openjdk24/lib/libmlib_image.so
+openjdk24/lib/libjava.so
+openjdk24/lib/libattach.so
+openjdk24/lib/librmi.so
+openjdk24/lib/libsctp.so
+openjdk24/lib/libmanagement_agent.so
+openjdk24/lib/server/libjsig.so
+openjdk24/lib/server/classes_nocoops.jsa
+openjdk24/lib/server/libjvm.so
+openjdk24/lib/server/classes.jsa
+openjdk24/legal/jdk.crypto.ec/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.crypto.ec/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.crypto.ec/LICENSE
+openjdk24/legal/java.desktop/pipewire.md
+openjdk24/legal/java.base/siphash.md
+openjdk24/legal/jdk.management/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.management/LICENSE
+openjdk24/legal/jdk.management/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.httpserver/LICENSE
+openjdk24/legal/jdk.httpserver/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.httpserver/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.jconsole/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.jconsole/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.jconsole/LICENSE
+openjdk24/legal/java.net.http/ASSEMBLY_EXCEPTION
+openjdk24/legal/java.net.http/LICENSE
+openjdk24/legal/java.net.http/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/java.security.jgss/LICENSE
+openjdk24/legal/java.security.jgss/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/java.security.jgss/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.security.auth/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.security.auth/LICENSE
+openjdk24/legal/jdk.security.auth/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.unsupported/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.unsupported/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.unsupported/LICENSE
+openjdk24/legal/java.management/ASSEMBLY_EXCEPTION
+openjdk24/legal/java.management/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/java.management/LICENSE
+openjdk24/legal/jdk.naming.rmi/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.naming.rmi/LICENSE
+openjdk24/legal/jdk.naming.rmi/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.dynalink/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.dynalink/dynalink.md
+openjdk24/legal/jdk.dynalink/LICENSE
+openjdk24/legal/jdk.dynalink/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.zipfs/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.zipfs/LICENSE
+openjdk24/legal/jdk.zipfs/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.jshell/LICENSE
+openjdk24/legal/jdk.jshell/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.jshell/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.localedata/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.localedata/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.localedata/cldr.md
+openjdk24/legal/jdk.localedata/LICENSE
+openjdk24/legal/jdk.localedata/thaidict.md
+openjdk24/legal/jdk.jdeps/LICENSE
+openjdk24/legal/jdk.jdeps/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.jdeps/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/java.compiler/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/java.compiler/LICENSE
+openjdk24/legal/java.compiler/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.net/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.net/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.net/LICENSE
+openjdk24/legal/java.instrument/LICENSE
+openjdk24/legal/java.instrument/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/java.instrument/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.crypto.cryptoki/pkcs11wrapper.md
+openjdk24/legal/jdk.crypto.cryptoki/LICENSE
+openjdk24/legal/jdk.crypto.cryptoki/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.crypto.cryptoki/pkcs11cryptotoken.md
+openjdk24/legal/jdk.crypto.cryptoki/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.internal.ed/LICENSE
+openjdk24/legal/jdk.internal.ed/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.internal.ed/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.jartool/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.jartool/LICENSE
+openjdk24/legal/jdk.jartool/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/java.desktop/ASSEMBLY_EXCEPTION
+openjdk24/legal/java.desktop/mesa3d.md
+openjdk24/legal/java.desktop/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/java.desktop/LICENSE
+openjdk24/legal/java.desktop/colorimaging.md
+openjdk24/legal/java.desktop/xwd.md
+openjdk24/legal/jdk.sctp/LICENSE
+openjdk24/legal/jdk.sctp/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.sctp/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/java.sql.rowset/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/java.sql.rowset/LICENSE
+openjdk24/legal/java.sql.rowset/ASSEMBLY_EXCEPTION
+openjdk24/legal/java.transaction.xa/LICENSE
+openjdk24/legal/java.transaction.xa/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/java.transaction.xa/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.jsobject/LICENSE
+openjdk24/legal/jdk.jsobject/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.jsobject/ASSEMBLY_EXCEPTION
+openjdk24/legal/java.rmi/LICENSE
+openjdk24/legal/java.rmi/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/java.rmi/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.management.agent/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.management.agent/LICENSE
+openjdk24/legal/jdk.management.agent/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.accessibility/LICENSE
+openjdk24/legal/jdk.accessibility/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.accessibility/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.javadoc/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.javadoc/LICENSE
+openjdk24/legal/jdk.javadoc/jqueryUI.md
+openjdk24/legal/jdk.javadoc/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.javadoc/jquery.md
+openjdk24/legal/java.sql/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/java.sql/ASSEMBLY_EXCEPTION
+openjdk24/legal/java.sql/LICENSE
+openjdk24/legal/jdk.incubator.vector/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.incubator.vector/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.incubator.vector/LICENSE
+openjdk24/legal/java.base/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/java.base/unicode.md
+openjdk24/legal/java.base/public_suffix.md
+openjdk24/legal/java.base/asm.md
+openjdk24/legal/java.base/aes.md
+openjdk24/legal/java.base/icu.md
+openjdk24/legal/java.base/cldr.md
+openjdk24/legal/java.base/ASSEMBLY_EXCEPTION
+openjdk24/legal/java.base/c-libutl.md
+openjdk24/legal/java.base/LICENSE
+openjdk24/legal/jdk.internal.jvmstat/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.internal.jvmstat/LICENSE
+openjdk24/legal/jdk.internal.jvmstat/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.jcmd/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.jcmd/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.jcmd/LICENSE
+openjdk24/legal/jdk.hotspot.agent/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.hotspot.agent/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.hotspot.agent/LICENSE
+openjdk24/legal/java.logging/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/java.logging/LICENSE
+openjdk24/legal/java.logging/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.security.jgss/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.security.jgss/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.security.jgss/LICENSE
+openjdk24/legal/jdk.unsupported.desktop/LICENSE
+openjdk24/legal/jdk.unsupported.desktop/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.unsupported.desktop/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.internal.vm.ci/LICENSE
+openjdk24/legal/jdk.internal.vm.ci/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.internal.vm.ci/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.charsets/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.charsets/LICENSE
+openjdk24/legal/jdk.charsets/ASSEMBLY_EXCEPTION
+openjdk24/legal/java.security.sasl/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/java.security.sasl/ASSEMBLY_EXCEPTION
+openjdk24/legal/java.security.sasl/LICENSE
+openjdk24/legal/java.se/ASSEMBLY_EXCEPTION
+openjdk24/legal/java.se/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/java.se/LICENSE
+openjdk24/legal/jdk.nio.mapmode/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.nio.mapmode/LICENSE
+openjdk24/legal/jdk.nio.mapmode/ASSEMBLY_EXCEPTION
+openjdk24/legal/java.xml.crypto/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/java.xml.crypto/ASSEMBLY_EXCEPTION
+openjdk24/legal/java.xml.crypto/santuario.md
+openjdk24/legal/java.xml.crypto/LICENSE
+openjdk24/legal/jdk.internal.le/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.internal.le/LICENSE
+openjdk24/legal/jdk.internal.le/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.internal.le/jline.md
+openjdk24/legal/java.xml/LICENSE
+openjdk24/legal/java.xml/xerces.md
+openjdk24/legal/java.xml/bcel.md
+openjdk24/legal/java.xml/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/java.xml/ASSEMBLY_EXCEPTION
+openjdk24/legal/java.xml/xalan.md
+openjdk24/legal/java.xml/jcup.md
+openjdk24/legal/java.xml/dom.md
+openjdk24/legal/jdk.management.jfr/LICENSE
+openjdk24/legal/jdk.management.jfr/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.management.jfr/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.jdi/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.jdi/LICENSE
+openjdk24/legal/jdk.jdi/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.xml.dom/LICENSE
+openjdk24/legal/jdk.xml.dom/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.xml.dom/ASSEMBLY_EXCEPTION
+openjdk24/legal/java.management.rmi/ASSEMBLY_EXCEPTION
+openjdk24/legal/java.management.rmi/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/java.management.rmi/LICENSE
+openjdk24/legal/jdk.jdwp.agent/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.jdwp.agent/LICENSE
+openjdk24/legal/jdk.jdwp.agent/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/java.naming/ASSEMBLY_EXCEPTION
+openjdk24/legal/java.naming/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/java.naming/LICENSE
+openjdk24/legal/jdk.attach/LICENSE
+openjdk24/legal/jdk.attach/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.attach/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.jfr/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.jfr/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.jfr/LICENSE
+openjdk24/legal/jdk.jstatd/LICENSE
+openjdk24/legal/jdk.jstatd/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.jstatd/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.editpad/LICENSE
+openjdk24/legal/jdk.editpad/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.editpad/ASSEMBLY_EXCEPTION
+openjdk24/legal/java.datatransfer/LICENSE
+openjdk24/legal/java.datatransfer/ASSEMBLY_EXCEPTION
+openjdk24/legal/java.datatransfer/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.jlink/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.jlink/LICENSE
+openjdk24/legal/jdk.jlink/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/java.scripting/ASSEMBLY_EXCEPTION
+openjdk24/legal/java.scripting/LICENSE
+openjdk24/legal/java.scripting/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/java.prefs/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/java.prefs/LICENSE
+openjdk24/legal/java.prefs/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.internal.opt/jopt-simple.md
+openjdk24/legal/jdk.internal.opt/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.internal.opt/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.internal.opt/LICENSE
+openjdk24/legal/jdk.compiler/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.compiler/LICENSE
+openjdk24/legal/jdk.compiler/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/jdk.naming.dns/LICENSE
+openjdk24/legal/jdk.naming.dns/ASSEMBLY_EXCEPTION
+openjdk24/legal/jdk.naming.dns/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/java.smartcardio/ADDITIONAL_LICENSE_INFO
+openjdk24/legal/java.smartcardio/pcsclite.md
+openjdk24/legal/java.smartcardio/LICENSE
+openjdk24/legal/java.smartcardio/ASSEMBLY_EXCEPTION
+@dir openjdk24/jmods
+@dir openjdk24/demo/nbproject/management/JTop/nbproject
+@dir openjdk24/demo/nbproject/management/JTop
+@dir openjdk24/demo/nbproject/management/FullThreadDump/nbproject
+@dir openjdk24/demo/nbproject/management/FullThreadDump
+@dir openjdk24/demo/nbproject/management/MemoryMonitor/nbproject
+@dir openjdk24/demo/nbproject/management/MemoryMonitor
+@dir openjdk24/demo/nbproject/management/VerboseGC/nbproject
+@dir openjdk24/demo/nbproject/management/VerboseGC
+@dir openjdk24/demo/nbproject/management
+@dir openjdk24/demo/nbproject/jfc/SwingApplet/nbproject
+@dir openjdk24/demo/nbproject/jfc/SwingApplet
+@dir openjdk24/demo/nbproject/jfc/TableExample/nbproject
+@dir openjdk24/demo/nbproject/jfc/TableExample
+@dir openjdk24/demo/nbproject/jfc/Metalworks/nbproject
+@dir openjdk24/demo/nbproject/jfc/Metalworks
+@dir openjdk24/demo/nbproject/jfc/FileChooserDemo/nbproject
+@dir openjdk24/demo/nbproject/jfc/FileChooserDemo
+@dir openjdk24/demo/nbproject/jfc/Notepad/nbproject
+@dir openjdk24/demo/nbproject/jfc/Notepad
+@dir openjdk24/demo/nbproject/jfc/SampleTree/nbproject
+@dir openjdk24/demo/nbproject/jfc/SampleTree
+@dir openjdk24/demo/nbproject/jfc/TransparentRuler/nbproject
+@dir openjdk24/demo/nbproject/jfc/TransparentRuler
+@dir openjdk24/demo/nbproject/jfc/Font2DTest/nbproject
+@dir openjdk24/demo/nbproject/jfc/Font2DTest
+@dir openjdk24/demo/nbproject/jfc
+@dir openjdk24/demo/nbproject/scripting/jconsole-plugin/nbproject
+@dir openjdk24/demo/nbproject/scripting/jconsole-plugin
+@dir openjdk24/demo/nbproject/scripting
+@dir openjdk24/demo/nbproject
+@dir openjdk24/demo/jfc/Font2DTest
+@dir openjdk24/demo/jfc/SampleTree
+@dir openjdk24/demo/jfc/CodePointIM
+@dir openjdk24/demo/jfc/Metalworks
+@dir openjdk24/demo/jfc/TransparentRuler
+@dir openjdk24/demo/jfc/J2Ddemo
+@dir openjdk24/demo/jfc/Stylepad
+@dir openjdk24/demo/jfc/TableExample
+@dir openjdk24/demo/jfc/FileChooserDemo
+@dir openjdk24/demo/jfc/SwingSet2
+@dir openjdk24/demo/jfc/Notepad
+@dir openjdk24/demo/jfc
+@dir openjdk24/demo
+@dir openjdk24/include/midnightbsd
+@dir openjdk24/include/freebsd
+@dir openjdk24/include
+@dir openjdk24/man/man1
+@dir openjdk24/man
+@dir openjdk24/bin
+@dir openjdk24/conf/management
+@dir openjdk24/conf/security/policy/unlimited
+@dir openjdk24/conf/security/policy/limited
+@dir openjdk24/conf/security/policy
+@dir openjdk24/conf/security
+@dir openjdk24/conf
+@dir openjdk24/lib/jfr
+@dir openjdk24/lib/security
+@dir openjdk24/lib/server
+@dir openjdk24/lib
+@dir openjdk24/legal/jdk.crypto.ec
+@dir openjdk24/legal/jdk.management
+@dir openjdk24/legal/jdk.httpserver
+@dir openjdk24/legal/jdk.jconsole
+@dir openjdk24/legal/java.net.http
+@dir openjdk24/legal/java.security.jgss
+@dir openjdk24/legal/jdk.security.auth
+@dir openjdk24/legal/jdk.unsupported
+@dir openjdk24/legal/java.management
+@dir openjdk24/legal/jdk.naming.rmi
+@dir openjdk24/legal/jdk.dynalink
+@dir openjdk24/legal/jdk.internal.vm.compiler.management
+@dir openjdk24/legal/jdk.zipfs
+@dir openjdk24/legal/jdk.jshell
+@dir openjdk24/legal/jdk.localedata
+@dir openjdk24/legal/jdk.jdeps
+@dir openjdk24/legal/java.compiler
+@dir openjdk24/legal/jdk.net
+@dir openjdk24/legal/java.instrument
+@dir openjdk24/legal/jdk.crypto.cryptoki
+@dir openjdk24/legal/jdk.internal.ed
+@dir openjdk24/legal/jdk.jartool
+@dir openjdk24/legal/java.desktop
+@dir openjdk24/legal/jdk.sctp
+@dir openjdk24/legal/java.sql.rowset
+@dir openjdk24/legal/java.transaction.xa
+@dir openjdk24/legal/jdk.random
+@dir openjdk24/legal/jdk.jsobject
+@dir openjdk24/legal/java.rmi
+@dir openjdk24/legal/jdk.management.agent
+@dir openjdk24/legal/jdk.accessibility
+@dir openjdk24/legal/jdk.javadoc
+@dir openjdk24/legal/java.sql
+@dir openjdk24/legal/jdk.incubator.vector
+@dir openjdk24/legal/java.base
+@dir openjdk24/legal/jdk.internal.jvmstat
+@dir openjdk24/legal/jdk.jcmd
+@dir openjdk24/legal/jdk.hotspot.agent
+@dir openjdk24/legal/java.logging
+@dir openjdk24/legal/jdk.security.jgss
+@dir openjdk24/legal/jdk.unsupported.desktop
+@dir openjdk24/legal/jdk.internal.vm.ci
+@dir openjdk24/legal/jdk.charsets
+@dir openjdk24/legal/java.security.sasl
+@dir openjdk24/legal/java.se
+@dir openjdk24/legal/jdk.nio.mapmode
+@dir openjdk24/legal/java.xml.crypto
+@dir openjdk24/legal/jdk.internal.le
+@dir openjdk24/legal/java.xml
+@dir openjdk24/legal/jdk.management.jfr
+@dir openjdk24/legal/jdk.jdi
+@dir openjdk24/legal/jdk.xml.dom
+@dir openjdk24/legal/java.management.rmi
+@dir openjdk24/legal/jdk.jdwp.agent
+@dir openjdk24/legal/jdk.incubator.foreign
+@dir openjdk24/legal/java.naming
+@dir openjdk24/legal/jdk.attach
+@dir openjdk24/legal/jdk.jfr
+@dir openjdk24/legal/jdk.internal.vm.compiler
+@dir openjdk24/legal/jdk.jstatd
+@dir openjdk24/legal/jdk.editpad
+@dir openjdk24/legal/java.datatransfer
+@dir openjdk24/legal/jdk.jlink
+@dir openjdk24/legal/java.scripting
+@dir openjdk24/legal/java.prefs
+@dir openjdk24/legal/jdk.internal.opt
+@dir openjdk24/legal/jdk.compiler
+@dir openjdk24/legal/jdk.naming.dns
+@dir openjdk24/legal/java.smartcardio
+@dir openjdk24/legal
+@dir openjdk24
+@postexec /usr/local/bin/registervm '/usr/local/openjdk24/bin/java'
+@preunexec /usr/local/bin/unregistervm '/usr/local/openjdk24/bin/java'

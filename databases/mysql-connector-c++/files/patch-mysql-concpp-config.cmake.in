@@ -1,0 +1,10 @@
+--- mysql-concpp-config.cmake.in.orig	2026-07-29 00:00:00 UTC
++++ mysql-concpp-config.cmake.in
+@@ -208,1 +208,4 @@
+-  if(EXISTS "${CMAKE_CURRENT_LIST_DIR}/include/mysqlx/xdevapi.h")
++  get_filename_component(MYSQL_CONCPP_ROOT_DIR
++    "${CMAKE_CURRENT_LIST_DIR}/../.." ABSOLUTE)
++
++  if(EXISTS "${MYSQL_CONCPP_ROOT_DIR}/include/mysqlx/xdevapi.h")
+@@ -214,1 +217,0 @@
+-    set(MYSQL_CONCPP_ROOT_DIR "${CMAKE_CURRENT_LIST_DIR}")

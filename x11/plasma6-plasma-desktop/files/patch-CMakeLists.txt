@@ -1,0 +1,24 @@
+SCIM is located with pkg_check_modules, which CMAKE_DISABLE_FIND_PACKAGE_SCIM
+does not affect, so the port's SCIM option could never turn the backend off and
+an installed textproc/scim was always compiled in. The kimpanel SCIM backend
+does not build against libc++ (scim's ucs4_t is unsigned int and there is no
+std::char_traits for it), so the port failed whenever scim was installed.
+
+Honour CMAKE_DISABLE_FIND_PACKAGE_SCIM around the lookup.
+
+--- CMakeLists.txt.orig
++++ CMakeLists.txt
+@@ -272,7 +272,12 @@
+ # For kimpanel
+ pkg_check_modules(IBUS "ibus-1.0>=1.5.0" IMPORTED_TARGET)
+ pkg_check_modules(GOBJECT gobject-2.0 IMPORTED_TARGET)
+-pkg_check_modules(SCIM scim IMPORTED_TARGET)
++# SCIM is located with pkg_check_modules rather than find_package, so
++# CMAKE_DISABLE_FIND_PACKAGE_SCIM does not suppress it on its own. Honour it
++# here so the port's SCIM option can actually turn the backend off.
++if (NOT CMAKE_DISABLE_FIND_PACKAGE_SCIM)
++    pkg_check_modules(SCIM scim IMPORTED_TARGET)
++endif()
+ 
+ ecm_setup_version(${PROJECT_VERSION} VARIABLE_PREFIX PLASMA VERSION_HEADER plasma_version.h)
+ 

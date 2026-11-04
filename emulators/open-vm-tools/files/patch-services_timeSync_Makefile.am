@@ -1,0 +1,13 @@
+--- services/plugins/timeSync/Makefile.am.bak	2018-07-13 14:54:23.000000000 -0400
++++ services/plugins/timeSync/Makefile.am	2019-04-20 10:04:27.807796000 -0400
+@@ -39,6 +39,10 @@
+ libtimeSync_la_SOURCES += slewAdjtime.c
+ libtimeSync_la_SOURCES += pllNone.c
+ endif
++if MIDNIGHTBSD
++libtimeSync_la_SOURCES += slewAdjtime.c
++libtimeSync_la_SOURCES += pllNone.c
++endif
+ if LINUX
+ libtimeSync_la_SOURCES += slewLinux.c
+ libtimeSync_la_SOURCES += pllLinux.c

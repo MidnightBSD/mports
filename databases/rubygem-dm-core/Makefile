@@ -1,0 +1,20 @@
+PORTNAME=	dm-core
+PORTVERSION=	1.2.1
+PORTREVISION=	1
+CATEGORIES=	databases rubygems
+MASTER_SITES=	RG
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Object/Relational Mapper for Ruby
+WWW=		https://github.com/datamapper/dm-core
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	rubygem-addressable>=2.3:www/rubygem-addressable
+
+NO_ARCH=	yes
+USES=		gem
+
+.include <bsd.port.mk>
