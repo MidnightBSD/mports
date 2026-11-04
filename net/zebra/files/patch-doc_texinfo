@@ -1,0 +1,36 @@
+--- doc/basic.texi.orig	2002-06-30 13:26:52.000000000 -0400
++++ doc/basic.texi
+@@ -504 +504 @@ Use command line completion by typing @key{TAB}.
+-@item
++@item ?
+--- doc/filter.texi.orig	2002-07-03 02:00:30.000000000 -0400
++++ doc/filter.texi
+@@ -16 +16 @@ defined, it can be applied in any direction.
+-@subsection IP Access List
++@section IP Access List
+@@ -32 +32 @@ access-list filter permit 10.0.0.0/8
+-@subsection IP Prefix List
++@section IP Prefix List
+@@ -112 +112 @@ filters to arbitrary points of prefix-list using sequential number specification.
+-@subsubsection ip prefix-list description
++@subsection ip prefix-list description
+@@ -126 +126 @@ command without the full description.
+-@subsubsection ip prefix-list sequential number control
++@subsection ip prefix-list sequential number control
+@@ -140 +140 @@ If you don't specify sequential number, sequential number will be generated automatically.
+-@subsubsection Showing ip prefix-list
++@subsection Showing ip prefix-list
+@@ -180 +180 @@ first match will be shown.
+-@subsubsection Clear counter of ip prefix-list
++@subsection Clear counter of ip prefix-list
+--- doc/routemap.texi.orig	2004-04-27 13:33:10.000000000 -0400
++++ doc/routemap.texi
+@@ -27 +27 @@ local-preference value is set to 200.
+-@subsection Route Map Command
++@section Route Map Command
+@@ -34 +34 @@ local-preference value is set to 200.
+-@subsection Route Map Match Command
++@section Route Map Match Command
+@@ -58 +58 @@ Matches the specified  @var{community_list}
+-@subsection Route Map Set Command
++@section Route Map Set Command

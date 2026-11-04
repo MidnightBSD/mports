@@ -1,0 +1,4 @@
+--- js/src/Makefile.in.orig
++++ js/src/Makefile.in
+@@ -92 +91,0 @@
+-	$(MAKE) -C shell install

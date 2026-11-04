@@ -1,0 +1,49 @@
+PORTNAME=	grc
+PORTVERSION=	1.13
+PORTREVISION=	2
+DISTVERSIONPREFIX=	v
+CATEGORIES=	misc
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Generic Colouriser
+WWW=		http://kassiopeia.juls.savba.sk/~garabik/software/grc.html
+
+LICENSE=	gpl2+
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	garabik
+
+NO_BUILD=	yes
+
+NO_ARCH=	yes
+USES=		python:run shebangfix
+SHEBANG_FILES=	grc grcat
+
+post-patch:
+.for i in grc grcat
+	@${REINPLACE_CMD} -e \
+		's|"/etc/grc|"${PREFIX}/etc/grc|g ; \
+		 s|/usr/local/share/grc|${DATADIR}|g ; \
+		 s|#! /usr/bin/env python3|#!${PYTHON_CMD}| ; \
+		 s|, "/usr/share/grc/"||g' ${WRKSRC}/${i}
+	@${REINPLACE_CMD} -e \
+		's| /etc/grc| ${PREFIX}/etc/grc|g ; \
+		 s|/usr/local/share/grc|${DATADIR}|g ; \
+		 s|, /usr/share/grc/||g' ${WRKSRC}/${i}.1
+.endfor
+	(cd ${FILESDIR} && ${CP} colourfiles/conf.* ${WRKSRC}/colourfiles)
+
+do-install:
+.for i in grc grcat
+	(cd ${WRKSRC} && ${INSTALL_SCRIPT} ${i} ${PREFIX}/bin)
+	(cd ${WRKSRC} && ${INSTALL_MAN} ${i}.1 ${PREFIX}/share/man/man1)
+.endfor
+	(cd ${WRKSRC} && ${INSTALL_DATA} grc.conf ${PREFIX}/etc)
+.for s in grc.zsh grc.sh grc.fish
+	(cd ${WRKSRC} && ${INSTALL_SCRIPT} ${s} ${PREFIX}/etc/)
+.endfor
+	@${MKDIR} ${DATADIR}
+	(cd ${WRKSRC} && ${INSTALL_DATA} colourfiles/conf.* ${DATADIR})
+
+.include <bsd.port.mk>

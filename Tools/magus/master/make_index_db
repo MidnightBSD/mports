@@ -1,0 +1,10 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+use lib qw(/usr/mports/Tools/lib);
+use Magus;
+
+
+Magus::Index->build;	
+

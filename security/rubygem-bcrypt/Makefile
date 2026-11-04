@@ -1,0 +1,15 @@
+PORTNAME=	bcrypt
+PORTVERSION=	3.1.22
+CATEGORIES=	security rubygems
+MASTER_SITES=	RG
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	OpenBSD bcrypt password hashing algorithm
+WWW=		https://github.com/bcrypt-ruby/bcrypt-ruby
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+USES=		gem
+
+.include <bsd.port.mk>

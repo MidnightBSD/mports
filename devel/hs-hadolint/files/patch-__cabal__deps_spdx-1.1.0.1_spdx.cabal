@@ -1,0 +1,11 @@
+--- _cabal_deps/spdx-1.1.0.1/spdx.cabal.orig	2001-09-09 01:46:40 UTC
++++ _cabal_deps/spdx-1.1.0.1/spdx.cabal
+@@ -52,7 +52,7 @@ library
+   ghc-options:      -Wall
+   build-depends:
+     , base          >=4.18.2.1  && <4.23
+-    , Cabal-syntax  ^>=3.10.3.0 || ^>=3.12.1.0 || ^>=3.16.1.0
++    , Cabal-syntax  ^>=3.10.3.0 || ^>=3.12.1.0 || ^>=3.14.2.0 || ^>=3.16.1.0
+     , containers    >=0.6.7     && <0.9
+     , puresat       ^>=0.1
+     , transformers  >=0.6.1.0   && <0.7

@@ -1,0 +1,8 @@
+%%PERL5_MAN3%%/String::Clean::XSS.3.gz
+%%PERL5_MAN3%%/String::Clean.3.gz
+%%SITE_PERL%%/String/Clean/XSS.pm
+%%SITE_PERL%%/String/Clean.pm
+@dir %%SITE_PERL%%/String/Clean
+@dir %%SITE_PERL%%/String
+@dir %%SITE_ARCH%%/auto/String/Clean
+@dir %%SITE_ARCH%%/auto/String

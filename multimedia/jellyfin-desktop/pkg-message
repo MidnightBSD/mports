@@ -1,0 +1,13 @@
+[
+{ type: install
+  message: <<EOM
+Jellyfin Desktop replaces Jellyfin Media Player. The program is now
+called jellyfin-desktop (was jellyfinmediaplayer).
+
+Settings are not migrated: Jellyfin Desktop keeps its data in
+~/.local/share/jellyfin-desktop/ instead of
+~/.local/share/jellyfinmediaplayer/. Add your server and sign in again,
+then remove the old directory if you no longer need it.
+EOM
+}
+]

@@ -1,0 +1,2 @@
+%%LUA_MODLIBDIR%%/lxp.so
+%%LUA_MODSHAREDIR%%/lxp/lom.lua

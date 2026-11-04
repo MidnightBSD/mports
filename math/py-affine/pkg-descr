@@ -1,0 +1,2 @@
+Affine provides matrices describing affine transformation of the plane.
+It is derived from Casey Duncan's Planar package.

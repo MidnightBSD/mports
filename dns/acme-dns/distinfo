@@ -1,0 +1,5 @@
+TIMESTAMP = 1793027356
+SHA256 (go/dns_acme-dns/acme-dns-acme-dns-v2.0.2_GH0/go.mod) = 4a3c7bc4bb7009172f6a929d75b44dadacd16fa419f8febf525ae84ad4d30cef
+SIZE (go/dns_acme-dns/acme-dns-acme-dns-v2.0.2_GH0/go.mod) = 2871
+SHA256 (go/dns_acme-dns/acme-dns-acme-dns-v2.0.2_GH0/acme-dns-acme-dns-v2.0.2_GH0.tar.gz) = d556a7f3c8f307d732c97e283d2b322f816d486d5d91c4cf30108c5da8ee3065
+SIZE (go/dns_acme-dns/acme-dns-acme-dns-v2.0.2_GH0/acme-dns-acme-dns-v2.0.2_GH0.tar.gz) = 50015

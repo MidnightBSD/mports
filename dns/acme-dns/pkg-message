@@ -1,0 +1,21 @@
+[
+{ type: upgrade
+  message: <<EOM
+acme-dns 2.0 replaced the cgo SQLite driver with a pure Go one, which
+registers under the name "sqlite".  If your acme-dns config.cfg contains
+
+  engine = "sqlite3"
+
+change it to
+
+  engine = "sqlite"
+
+before restarting acme_dns; with the old value acme-dns 2.0 logs
+'sql: unknown driver "sqlite3"' and cannot use the database.  Existing
+database files can be kept as they are.
+
+Compare your config.cfg with config.cfg.sample for other changed
+defaults (for example logformat is now "json").
+EOM
+}
+]

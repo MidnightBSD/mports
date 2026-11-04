@@ -1,0 +1,2 @@
+EM-Socksify provides transparent SOCKS support for EventMachine protocols.
+It adds a shim to set up and negotiate a SOCKS5 connection for a destination.
