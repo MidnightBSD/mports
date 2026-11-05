@@ -13,3 +13,11 @@
  #if defined(OPENSSL_THREADS) && !defined(CRYPTO_TDEBUG) && !defined(OPENSSL_SYS_WINDOWS)
  
  # if defined(OPENSSL_SYS_UNIX)
+--- vendor/openssl-src-300.6.0+3.6.2/openssl/crypto/threads_pthread.c.orig
++++ vendor/openssl-src-300.6.0+3.6.2/openssl/crypto/threads_pthread.c
+@@ -51,1 +51,5 @@
+ #endif
++
++#if defined(__FreeBSD__) && (defined(__i386__) || (defined(__powerpc__) && defined(__ILP32__)))
++#define BROKEN_CLANG_ATOMICS
++#endif
