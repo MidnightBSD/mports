@@ -1,6 +1,6 @@
 PORTNAME=	activerecord-import
 PORTVERSION=	2.2.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 
@@ -12,7 +12,7 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
-RUN_DEPENDS=	rubygem-activerecord4>=4.2:databases/rubygem-activerecord4
+RUN_DEPENDS=	rubygem-activerecord81>=8.1.4.1:databases/rubygem-activerecord81
 
 USES=		gem
 

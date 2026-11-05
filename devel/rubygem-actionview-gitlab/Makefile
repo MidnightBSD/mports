@@ -1,6 +1,6 @@
 PORTNAME=	actionview
 PORTVERSION=	${RAILS_VERSION}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	-gitlab
@@ -18,6 +18,7 @@ RUN_DEPENDS=	rubygem-activesupport-gitlab>=${PORTVERSION}:devel/rubygem-activesu
 		rubygem-builder>=3.1<4:devel/rubygem-builder \
 		rubygem-cgi>=0:www/rubygem-cgi \
 		rubygem-erubi>=1.11<2:www/rubygem-erubi \
+		rubygem-nokogiri>=1.19.5:textproc/rubygem-nokogiri \
 		rubygem-rails-dom-testing-rails-gitlab>=2.2:textproc/rubygem-rails-dom-testing-rails-gitlab \
 		rubygem-rails-html-sanitizer-gitlab>=1.6:textproc/rubygem-rails-html-sanitizer-gitlab
 

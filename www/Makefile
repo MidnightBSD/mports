@@ -380,9 +380,11 @@
     SUBDIR += qt6-websockets
     SUBDIR += qt6-webview
     SUBDIR += raphael
+    SUBDIR += rubygem-action_text-trix81
     SUBDIR += rubygem-actioncable-gitlab
     SUBDIR += rubygem-actioncable72
     SUBDIR += rubygem-actioncable80
+    SUBDIR += rubygem-actioncable81
     SUBDIR += rubygem-actionpack-gitlab
     SUBDIR += rubygem-actionpack4
     SUBDIR += rubygem-actionpack5
@@ -516,10 +518,12 @@
     SUBDIR += rubygem-rackup10
     SUBDIR += rubygem-rails-gitlab
     SUBDIR += rubygem-rails4
+    SUBDIR += rubygem-rails81
     SUBDIR += rubygem-railties-gitlab
     SUBDIR += rubygem-railties4
     SUBDIR += rubygem-railties72
     SUBDIR += rubygem-railties80
+    SUBDIR += rubygem-railties81
     SUBDIR += rubygem-redcloth
     SUBDIR += rubygem-redis-rack
     SUBDIR += rubygem-redis-rack-gitlab

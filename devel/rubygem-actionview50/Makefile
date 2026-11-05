@@ -1,5 +1,6 @@
 PORTNAME=	actionview
 PORTVERSION=	5.0.7.2
+PORTREVISION=	1
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	50
@@ -12,7 +13,8 @@ WWW=		https://rubyonrails.org/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
-RUN_DEPENDS=	rubygem-activesupport50>=${PORTVERSION}:devel/rubygem-activesupport50 \
+RUN_DEPENDS=	rubygem-nokogiri>=1.19.5:textproc/rubygem-nokogiri \
+		rubygem-activesupport50>=${PORTVERSION}:devel/rubygem-activesupport50 \
 		rubygem-builder>=3.1<4:devel/rubygem-builder \
 		rubygem-erubis>=2.7.0<2.8:www/rubygem-erubis \
 		rubygem-rails-dom-testing-rails50>=2.0<3:textproc/rubygem-rails-dom-testing-rails50 \
