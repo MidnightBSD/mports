@@ -155,4 +155,6 @@ SUBDIR += spidermonkey78
 
     SUBDIR += py-lupa
 
+    SUBDIR += zig
+
 .include <bsd.port.subdir.mk>
