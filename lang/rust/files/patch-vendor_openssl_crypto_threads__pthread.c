@@ -15,9 +15,12 @@
  # if defined(OPENSSL_SYS_UNIX)
 --- vendor/openssl-src-300.6.0+3.6.2/openssl/crypto/threads_pthread.c.orig
 +++ vendor/openssl-src-300.6.0+3.6.2/openssl/crypto/threads_pthread.c
-@@ -51,1 +51,5 @@
- #endif
-+
-+#if defined(__FreeBSD__) && (defined(__i386__) || (defined(__powerpc__) && defined(__ILP32__)))
+@@ -79,4 +79,8 @@
+  * See: https://github.com/llvm/llvm-project/commit/a4c2602b714e6c6edb98164550a5ae829b2de760
+  */
 +#define BROKEN_CLANG_ATOMICS
 +#endif
++
++#if defined(__FreeBSD__) && defined(__i386__)
+ #define BROKEN_CLANG_ATOMICS
+ #endif
