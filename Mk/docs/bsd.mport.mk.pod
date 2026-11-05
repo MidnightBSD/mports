@@ -987,6 +987,12 @@ Component lists for USES=gl, sdl, xfce, wx, gnustep and gershwin.
 Python features (distutils, autoplist, concurrent, flavors, ...), with
 USES=python.
 
+=item PYNUMPY
+
+Dependency tuple for the selected Python flavor of NumPy, requiring at least
+version 1.16 with the NumPy port's epoch of 1.  The epoch preserves the source
+version minimum when comparing mports package versions.
+
 =item USE_PERL5
 
 Phases perl is needed in (build, run, configure, modbuild, ...), with
