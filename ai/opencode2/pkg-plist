@@ -1,0 +1,3 @@
+bin/opencode
+lib/opencode/watcher.node
+@dir lib/opencode
