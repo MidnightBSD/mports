@@ -130,6 +130,7 @@
     SUBDIR += ruby33
     SUBDIR += ruby34
     SUBDIR += rust
+    SUBDIR += rust-nightly-bun
     SUBDIR += rust-bootstrap
     SUBDIR += rust-nightly
     SUBDIR += rust188
