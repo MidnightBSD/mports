@@ -1,0 +1,10 @@
+--- llvm/include/llvm/TargetParser/TripleName.def.orig
++++ llvm/include/llvm/TargetParser/TripleName.def
+@@ -32,6 +32,7 @@
+ TRIPLE_OS(Darwin, "darwin")
+ TRIPLE_OS(DragonFly, "dragonfly")
+ TRIPLE_OS(FreeBSD, "freebsd")
++TRIPLE_OS_ALIAS(FreeBSD, "midnightbsd")
+ TRIPLE_OS(Fuchsia, "fuchsia")
+ TRIPLE_OS(IOS, "ios")
+ TRIPLE_OS(KFreeBSD, "kfreebsd")
