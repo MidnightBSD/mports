@@ -1,0 +1,21 @@
+--- lldb/source/Host/CMakeLists.txt.orig
++++ lldb/source/Host/CMakeLists.txt
+@@ -155,11 +155,17 @@
+         android/HostInfoAndroid.cpp
+         )
+     endif()
+-  elseif (CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
++  elseif (CMAKE_SYSTEM_NAME MATCHES "FreeBSD|MidnightBSD")
+     add_host_subdirectory(freebsd
+       freebsd/Host.cpp
+       freebsd/HostInfoFreeBSD.cpp
+       )
++    if (LLDB_ENABLE_PYTHON)
++      # The ELF library-name fallback is shared with Linux.
++      add_host_subdirectory(linux
++        linux/PythonRuntimeLoaderLinux.cpp
++        )
++    endif()
+ 
+   elseif (CMAKE_SYSTEM_NAME MATCHES "NetBSD")
+     add_host_subdirectory(netbsd

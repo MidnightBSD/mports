@@ -1,0 +1,11 @@
+--- lldb/source/Plugins/Process/FreeBSD-Kernel-Core/CMakeLists.txt.orig
++++ lldb/source/Plugins/Process/FreeBSD-Kernel-Core/CMakeLists.txt
+@@ -10,7 +10,7 @@
+   SOURCE ProcessFreeBSDKernelCoreProperties.td
+   TARGET LLDBPluginProcessFreeBSDKernelCorePropertiesJsonGen)
+ 
+-if (CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
++if (CMAKE_SYSTEM_NAME MATCHES "FreeBSD|MidnightBSD")
+   add_lldb_library(lldbPluginProcessFreeBSDKernelCore PLUGIN
+     ProcessFreeBSDKernelCore.cpp
+     RegisterContextFreeBSDKernelCore_arm.cpp

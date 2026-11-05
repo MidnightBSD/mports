@@ -1,0 +1,11 @@
+--- lldb/source/API/liblldb-private.exports.orig
++++ lldb/source/API/liblldb-private.exports
+@@ -3,6 +3,8 @@
+ _ZN12lldb_private*
+ _ZNK12lldb_private*
+ _ZTVN12lldb_private*
++_ZTIN12lldb_private*
++_ZTSN12lldb_private*
+ _ZN4llvm*
+ _ZNK4llvm*
+ _ZTVN4llvm*
