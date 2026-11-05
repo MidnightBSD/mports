@@ -14,6 +14,7 @@
     SUBDIR += llama-cpp
     SUBDIR += ollama
     SUBDIR += onnx
+    SUBDIR += opencode2
     SUBDIR += openclaw
     SUBDIR += py-anthropic
     SUBDIR += py-accelerate
