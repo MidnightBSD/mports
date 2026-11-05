@@ -1,5 +1,5 @@
 PORTNAME=	opencode
-DISTVERSION=	1.18.5
+DISTVERSION=	1.19.5
 CATEGORIES=	ai linux
 MASTER_SITES=	https://github.com/anomalyco/opencode/releases/download/v${DISTVERSION}/
 DISTNAME=	${PORTNAME}-linux-x64-baseline
