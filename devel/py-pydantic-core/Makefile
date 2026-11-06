@@ -1,6 +1,5 @@
 PORTNAME=	pydantic-core
-PORTVERSION=	2.46.4
-PORTREVISION=	1
+PORTVERSION=	2.46.5
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,7 +13,8 @@ WWW=		https://github.com/pydantic/pydantic/tree/main/pydantic-core \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}maturin>=1.10<2:devel/py-maturin@${PY_FLAVOR}
+BUILD_DEPENDS=	${RUST_DEFAULT}>=1.88:lang/${RUST_DEFAULT} \
+		${PYTHON_PKGNAMEPREFIX}maturin>=1.10<2:devel/py-maturin@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}typing-extensions>=4.14.1:devel/py-typing-extensions@${PY_FLAVOR}
 
 USES=		cargo python
@@ -24,5 +24,7 @@ BINARY_ALIAS=	python3=${PYTHON_CMD}
 CARGO_BUILD=	no
 CARGO_INSTALL=	no
 WRKSRC=		${WRKDIR}/pydantic_core-${PORTVERSION}
+
+MAKE_ENV+=	${CARGO_ENV}
 
 .include <bsd.port.mk>
