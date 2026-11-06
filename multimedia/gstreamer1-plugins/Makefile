@@ -1,7 +1,6 @@
 PORTNAME=	gstreamer
 PORTVERSION?=	${BASE_PORTVERSION}
 # plug-in port instead, like ${category}/gstreamer1-plugin-${PLUGIN}.
-PORTREVISION?=	0
 CATEGORIES?=	multimedia audio
 MASTER_SITES=	https://gstreamer.freedesktop.org/src/gst-plugins-base/:base \
 		https://gstreamer.freedesktop.org/src/gst-plugins-bad/:bad \
@@ -14,9 +13,13 @@ COMMENT?=	GStreamer written collection of plugins handling several media types
 WWW=		https://gstreamer.freedesktop.org/
 
 LICENSE=	lgpl
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS+=	iso-codes>=0:misc/iso-codes \
-		orc>=0.4.16:devel/orc
+		meson>=1.4,1:devel/meson
+BUILD_RUN_DEPENDS+=	glib>=2.64.0,2:devel/glib20 \
+		gstreamer1>=1.28.0:multimedia/gstreamer1 \
+		orc>=0.4.34:devel/orc
 LIB_DEPENDS+=	libfreetype.so:print/freetype2 \
 		liborc-0.4.so:devel/orc
 RUN_DEPENDS+=	iso-codes>=0:misc/iso-codes
@@ -113,6 +116,7 @@ PORTVERSION=	${BASE_PORTVERSION}
 DISTFILES+=	${BASE_DISTFILE}:base
 PATCHDIR=	${.CURDIR:H:H}/multimedia/gstreamer1-plugins/files
 LIB_DEPENDS+=	libdrm.so:graphics/libdrm
+BUILD_RUN_DEPENDS+=	libdrm>=2.4.98,1:graphics/libdrm
 .elif ${DIST} == "bad"
 EXTRACT_ONLY=	${BAD_DISTFILE}
 WRKSRC=		${WRKDIR}/${BAD_DISTNAME}
