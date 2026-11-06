@@ -1,6 +1,5 @@
 PORTNAME=	magic
-PORTVERSION=	5.45
-PORTREVISION=	2
+PORTVERSION=	5.48
 CATEGORIES=	devel python
 MASTER_SITES=	https://astron.com/pub/file/ \
 		ftp://ftp.astron.com/pub/file/ \
@@ -16,8 +15,7 @@ WWW=		https://www.darwinsys.com/file/
 
 LICENSE=	bsd2
 
-USES=		python
-USES+=	cpe
+USES=		cpe python
 CPE_PRODUCT=	file
 CPE_VENDOR=	file_project
 USE_PYTHON=	autoplist distutils
@@ -25,6 +23,6 @@ USE_PYTHON=	autoplist distutils
 # both install module as magic.py
 CONFLICTS=	${PYTHON_PKGNAMEPREFIX}python-magic
 
-WRKSRC=	${WRKDIR}/file-${PORTVERSION}/python
+WRKSRC=		${WRKDIR}/file-${PORTVERSION}/python
 
 .include <bsd.port.mk>
