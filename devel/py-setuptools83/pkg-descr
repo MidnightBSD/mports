@@ -1,0 +1,5 @@
+Setuptools 83.0.0 is a Python packaging build backend.
+
+This package preserves the canonical setuptools distribution in a private,
+Python-version-specific directory. It coexists with the default setuptools
+and does not activate its modules or .pth files on the global Python path.
