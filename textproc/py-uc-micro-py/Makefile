@@ -1,11 +1,11 @@
 PORTNAME=	uc-micro-py
-PORTVERSION=	1.0.3
-PORTREVISION=	1
+PORTVERSION=	2.0.0
 CATEGORIES=	textproc python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTNAME=	uc_micro_py-${PORTVERSION}
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Micro subset of Unicode data files for linkify-it-py projects
 WWW=		https://github.com/tsutsu3/uc.micro-py
 
