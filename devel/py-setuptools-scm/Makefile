@@ -1,6 +1,5 @@
 PORTNAME=	setuptools-scm
-PORTVERSION=	8.0.4
-PORTREVISION=	2
+PORTVERSION=	9.2.2
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,13 +12,12 @@ WWW=		https://setuptools-scm.readthedocs.io/en/latest/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=61:devel/py-setuptools@${PY_FLAVOR} \
-		${PY_TOMLI} \
+BUILD_DEPENDS=	${PY_TOMLI} \
+		${PYTHON_PKGNAMEPREFIX}setuptools>=61:devel/py-setuptools@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}packaging>=20:devel/py-packaging@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
-		${PY_TOMLI} \
-		${PYTHON_PKGNAMEPREFIX}typing-extensions>=0:devel/py-typing-extensions@${PY_FLAVOR}
+RUN_DEPENDS=	${PY_TOMLI} \
+		${PYTHON_PKGNAMEPREFIX}packaging>=20:devel/py-packaging@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR}
 
 USES=		python
 USE_PYTHON=	allflavors autoplist concurrent pep517
@@ -31,5 +29,9 @@ NO_TEST=	yes
 post-patch:
 	@${REINPLACE_CMD} -e '497,521s|"gpg|"gpg2|' ${WRKSRC}/testing/test_git.py
 	@${REINPLACE_CMD} -e 's/"GIT_SSH", "GIT_SSH_COMMAND"/"GIT_SSH", "GIT_SSH_COMMAND", "GIT_CEILING_DIRECTORIES"/' ${WRKSRC}/src/setuptools_scm/_run_cmd.py
+
+DISTVERSION=	9.2.2
+
+DISTNAME=	${PORTNAME:C/[-_.]+/_/g}-${DISTVERSION}
 
 .include <bsd.port.mk>
