@@ -1,5 +1,6 @@
 PORTNAME=	uuid-utils
 DISTVERSION=	1.2.0
+PORTREVISION=	1
 CATEGORIES=	misc python
 #MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,7 +14,7 @@ WWW=		https://aminalaee.github.io/uuid-utils/ \
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}maturin>=1:devel/py-maturin@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}maturin>=1<2:devel/py-maturin@${PY_FLAVOR}
 
 USES=		cargo python
 USE_PYTHON=	pep517 autoplist pytest
