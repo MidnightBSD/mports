@@ -11,7 +11,10 @@ WWW=		https://gstreamer.freedesktop.org/
 LICENSE=	lgpl+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	orc>=0.4.16:devel/orc
+BUILD_DEPENDS=	meson>=1.4,1:devel/meson \
+		orc>=0.4.16:devel/orc
+BUILD_RUN_DEPENDS=	ffmpeg>=4.0,1:multimedia/ffmpeg \
+		gstreamer1>=1.28.0:multimedia/gstreamer1
 LIB_DEPENDS=	liborc-0.4.so:devel/orc \
 		libavcodec.so:multimedia/ffmpeg
 
