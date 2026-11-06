@@ -289,6 +289,7 @@
     SUBDIR += py-django-requests-debug-toolbar
     SUBDIR += py-django42
     SUBDIR += py-django50
+    SUBDIR += py-django52
     SUBDIR += py-dropbox
     SUBDIR += py-falcon
     SUBDIR += py-fastapi
