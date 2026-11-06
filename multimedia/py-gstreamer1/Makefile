@@ -1,6 +1,5 @@
 PORTNAME=	gstreamer
 DISTVERSION=	${_GST_VERSION}
-PORTREVISION=	0
 CATEGORIES=	multimedia python
 MASTER_SITES=	http://gstreamer.freedesktop.org/src/gst-python/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,6 +12,10 @@ WWW=		https://gstreamer.freedesktop.org/
 
 LICENSE=	lgpl2.1
 LICENSE_FILE=	${WRKSRC}/COPYING
+
+BUILD_DEPENDS=	meson>=1.4,1:devel/meson
+BUILD_RUN_DEPENDS=	gstreamer1>=1.28.0:multimedia/gstreamer1 \
+		${PYTHON_PKGNAMEPREFIX}pygobject>=3.8:devel/py-pygobject@${PY_FLAVOR}
 
 PORTSCOUT=	limitw:1,even
 
