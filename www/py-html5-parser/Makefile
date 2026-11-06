@@ -1,6 +1,6 @@
 PORTNAME=	html5-parser
 PORTVERSION=	0.4.12
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,6 +12,8 @@ WWW=		https://html5-parser.readthedocs.io/
 LICENSE=	Apache-2.0
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}lxml>=4.9.2:devel/py-lxml@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}chardet>=0:textproc/py-chardet@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}lxml>=3.8.0:devel/py-lxml@${PY_FLAVOR}
 
 USES=		gnome pkgconfig python
 USE_PYTHON=	autoplist distutils
