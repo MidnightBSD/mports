@@ -12,12 +12,11 @@ WWW=		https://gdal.org/ \
 LICENSE=	mit
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=2.0.0,1:math/py-numpy@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}setuptools>=77.0.3:devel/py-setuptools@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 BUILD_RUN_DEPENDS=	gdal>=3.13.3:graphics/gdal
 LIB_DEPENDS=	libgdal.so:graphics/gdal
 
-USES=		compiler:c++17-lang cpe python
+USES=		compiler:c++17-lang cpe python python-setuptools:modern
 USE_PYTHON=	autoplist concurrent pep517
 
 CPE_VENDOR=	osgeo
