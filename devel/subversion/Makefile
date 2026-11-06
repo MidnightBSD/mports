@@ -31,8 +31,8 @@ TOOLS_DESC=		Install several tools
 # Patches required for use with the FreeBSD Project repository only
 SVNSERVE_WRAPPER_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-svnserve-wrapper
 
-USES+=			shebangfix python:2.7,env
-python_CMD=		${LOCALBASE}/bin/python2.7
+USES+=			shebangfix python:patch,test
+python_CMD=		${PYTHON_CMD}
 python_OLD_CMD+=	"/bin/env python"
 SHEBANG_REGEX=		./tools/.*
 
@@ -144,7 +144,7 @@ post-configure:
 # takes a long time, and will fail but gives maintainer a good oversight
 .if ${PORT_OPTIONS:MTEST}
 test: build
-	-@make check -C ${WRKSRC}
+	@${SETENV} ${MAKE_ENV} ${MAKE_CMD} check -C ${WRKSRC}
 .endif
 
 post-build:
@@ -216,10 +216,5 @@ _mkrepos:	.USE
 	done
 .endif
 .endif
-
-svn-build-outputs-hack:
-	(cd ${WRKSRC} && ${PATCH} ${PATCH_DIST_ARGS} -p0 < ${PATCHDIR}/extra-patch-build.conf)
-	(cd ${WRKSRC} && python2.7 gen-make.py --release --installed-libs libsvn_client,libsvn_delta,libsvn_diff,libsvn_fs,libsvn_fs_x,libsvn_ra,libsvn_repos,libsvn_subr,libsvn_wc)
-	${MV} ${WRKSRC}/build-outputs.mk ${FILESDIR}/build-outputs.mk.addons
 
 .include <bsd.port.post.mk>
