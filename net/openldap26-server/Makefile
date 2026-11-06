@@ -1,5 +1,11 @@
 PORTNAME=		openldap
 DISTVERSION=		2.6.13
+# Rebuild only the server for the libsodium ABI change.
+.if defined(CLIENT_ONLY)
+PORTREVISION=		${PORTREVISION_CLIENT}
+.else
+PORTREVISION=		${PORTREVISION_SERVER}
+.endif
 CATEGORIES=		net databases
 MASTER_SITES=		https://www.openldap.org/software/download/OpenLDAP/%SUBDIR%/ \
 			http://gpl.savoirfairelinux.net/pub/mirrors/openldap/%SUBDIR%/ \
