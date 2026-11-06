@@ -869,6 +869,12 @@ is an executable) and go into "dir" to do "make ${DEPENDS_TARGET}" if it's
 not found.  If the third field ("target") exists, it will be used instead
 of ${DEPENDS_TARGET}.  (Default: empty.)
 
+A package name followed by a version comparison checks installed package
+metadata instead of a file or executable.  Comparisons may be combined, for
+example C<py312-exampleE<gt>=1.0E<lt>2.0:devel/py-example@py312>; every bound
+must match the same installed package.  Include the provider's epoch in each
+bound when it has C<PORTEPOCH>, for example C<E<gt>=1.0,1E<lt>2.0,1>.
+
 =over 4
 
 =item PKG_DEPENDS
