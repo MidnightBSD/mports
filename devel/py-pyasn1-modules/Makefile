@@ -1,6 +1,5 @@
 PORTNAME=	pyasn1-modules
-PORTVERSION=	0.2.8
-PORTREVISION=	1
+PORTVERSION=	0.4.1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -11,14 +10,14 @@ COMMENT=	Collection of ASN.1 data structures for py-pyasn1
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pyasn1>=0.4.1:devel/py-pyasn1@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pyasn1>=0.4.6<0.7.0:devel/py-pyasn1@${PY_FLAVOR}
 
 OPTIONS_DEFINE=	DOCS
 
 NO_ARCH=	yes
 USES=		python shebangfix
 SHEBANG_FILES=	tools/*.py
-USE_PYTHON=	allflavors autoplist concurrent distutils
+USE_PYTHON=	allflavors autoplist concurrent pep517
 
 PORTDOCS=	CHANGES.txt README.md
 TOOLS=		cmcdump.py cmpdump.py crldump.py crmfdump.py ocspclient.py \
@@ -30,5 +29,12 @@ post-install:
 	${INSTALL_SCRIPT} ${TOOLS:S|^|${WRKSRC}/tools/|} ${PREFIX}/bin
 	@${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
+
+DISTVERSION=	0.4.1
+
+DISTNAME=	${PORTNAME:S/-/_/}-${DISTVERSION}
+
+BUILD_DEPENDS=	${PY_SETUPTOOLS} \
+		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 
 .include <bsd.port.mk>
