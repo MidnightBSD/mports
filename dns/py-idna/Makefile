@@ -1,5 +1,5 @@
 PORTNAME=	idna
-PORTVERSION=	3.19
+PORTVERSION=	3.20
 CATEGORIES=	dns python
 MASTER_SITES=	PYPI \
 		https://github.com/kjd/idna/releases/download/v${PORTVERSION}/
@@ -13,6 +13,8 @@ LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}flit-core>=3.11<5:devel/py-flit-core@${PY_FLAVOR}
+
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hypothesis>=6.141.1:devel/py-hypothesis@${PY_FLAVOR}
 
 USES=		python
 USE_PYTHON=	autoplist concurrent pep517 unittest
