@@ -1829,6 +1829,7 @@
     SUBDIR += py-setuptools-rust
     SUBDIR += py-setuptools-scm
     SUBDIR += py-setuptools44
+    SUBDIR += py-setuptools78
     SUBDIR += py-setuptools83
     SUBDIR += py-setuptools_git_ls_files
     SUBDIR += py-setuptools_hg
