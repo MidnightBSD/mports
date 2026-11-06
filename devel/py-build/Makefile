@@ -1,6 +1,5 @@
 PORTNAME=	build
-PORTVERSION=	1.4.0
-PORTREVISION=	1
+PORTVERSION=	1.6.1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,9 +12,9 @@ WWW=		https://build.pypa.io/en/stable/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}packaging>=19.1:devel/py-packaging@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pyproject-hooks>=0:devel/py-pyproject-hooks@${PY_FLAVOR} \
-		${PY_TOMLI}
+RUN_DEPENDS=	${PY_TOMLI} \
+		${PYTHON_PKGNAMEPREFIX}packaging>=24.0:devel/py-packaging@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pyproject-hooks>=0:devel/py-pyproject-hooks@${PY_FLAVOR}
 
 USES=		python
 USE_PYTHON=	allflavors autoplist concurrent pep517
