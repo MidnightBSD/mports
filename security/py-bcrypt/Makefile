@@ -1,9 +1,9 @@
 PORTNAME=	bcrypt
-PORTVERSION=	3.2.2
-PORTREVISION=	2
+PORTVERSION=	5.0.0
 CATEGORIES=	security python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Modern password hashing for your software and your servers
@@ -12,17 +12,23 @@ WWW=		https://github.com/pyca/bcrypt
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cffi>=1.1:devel/py-cffi@${PY_FLAVOR} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools-rust>=1.7.0:devel/py-setuptools-rust@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}setuptools>=42.0.0:devel/py-setuptools@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cffi>=1.1:devel/py-cffi@${PY_FLAVOR}
 
-USES=		python
+USES=		cargo python
 USE_PYTHON=	autoplist concurrent pep517 pytest
 
-TEST_ENV=	PYTHONPATH=${FAKE_DESTDIR}${PYTHON_SITELIBDIR}
+CARGO_BUILD=	no
+CARGO_CARGOLOCK=${WRKSRC}/src/_bcrypt/Cargo.lock
+CARGO_CARGOTOML=${WRKSRC}/src/_bcrypt/Cargo.toml
+CARGO_INSTALL=	no
+CARGO_TEST=	no
+TEST_ENV=	PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
 
 post-install:
-	${FIND} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
+	${FIND} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
+
+MAKE_ENV+=	${CARGO_ENV}
 
 .include <bsd.port.mk>
