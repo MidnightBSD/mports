@@ -1,0 +1,894 @@
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/_distutils_hack/__init__.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/_distutils_hack/__pycache__/__init__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/_distutils_hack/__pycache__/__init__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/_distutils_hack/__pycache__/override%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/_distutils_hack/__pycache__/override%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/_distutils_hack/override.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/distutils-precedence.pth
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools-84.2.1.dist-info/INSTALLER
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools-84.2.1.dist-info/METADATA
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools-84.2.1.dist-info/RECORD
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools-84.2.1.dist-info/WHEEL
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools-84.2.1.dist-info/entry_points.txt
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools-84.2.1.dist-info/licenses/LICENSE
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools-84.2.1.dist-info/top_level.txt
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__init__.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/__init__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/__init__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/_core_metadata%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/_core_metadata%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/_discovery%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/_discovery%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/_entry_points%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/_entry_points%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/_imp%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/_imp%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/_importlib%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/_importlib%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/_itertools%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/_itertools%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/_normalization%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/_normalization%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/_path%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/_path%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/_reqs%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/_reqs%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/_scripts%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/_scripts%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/_shutil%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/_shutil%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/_static%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/_static%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/archive_util%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/archive_util%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/build_meta%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/build_meta%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/depends%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/depends%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/discovery%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/discovery%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/dist%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/dist%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/errors%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/errors%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/extension%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/extension%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/glob%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/glob%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/installer%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/installer%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/launch%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/launch%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/logging%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/logging%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/modified%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/modified%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/monkey%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/monkey%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/msvc%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/msvc%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/namespaces%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/namespaces%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/unicode_utils%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/unicode_utils%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/version%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/version%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/warnings%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/warnings%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/wheel%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/wheel%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/windows_support%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__/windows_support%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_core_metadata.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_discovery.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__init__.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/__init__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/__init__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/_dataclass%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/_dataclass%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/_log%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/_log%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/_macos_compat%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/_macos_compat%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/_modified%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/_modified%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/_msvccompiler%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/_msvccompiler%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/archive_util%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/archive_util%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/ccompiler%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/ccompiler%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/cmd%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/cmd%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/core%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/core%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/cygwinccompiler%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/cygwinccompiler%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/debug%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/debug%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/dep_util%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/dep_util%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/dir_util%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/dir_util%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/dist%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/dist%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/errors%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/errors%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/extension%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/extension%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/fancy_getopt%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/fancy_getopt%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/file_util%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/file_util%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/filelist%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/filelist%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/log%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/log%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/spawn%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/spawn%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/sysconfig%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/sysconfig%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/text_file%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/text_file%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/unixccompiler%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/unixccompiler%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/util%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/util%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/version%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/version%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/versionpredicate%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/versionpredicate%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/zosccompiler%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__/zosccompiler%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/_dataclass.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/_log.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/_macos_compat.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/_modified.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/_msvccompiler.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/archive_util.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/ccompiler.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/cmd.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__init__.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/__init__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/__init__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/_framework_compat%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/_framework_compat%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/bdist%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/bdist%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/bdist_dumb%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/bdist_dumb%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/bdist_rpm%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/bdist_rpm%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/build%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/build%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/build_clib%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/build_clib%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/build_ext%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/build_ext%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/build_py%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/build_py%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/build_scripts%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/build_scripts%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/check%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/check%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/clean%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/clean%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/config%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/config%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/install%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/install%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/install_data%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/install_data%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/install_egg_info%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/install_egg_info%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/install_headers%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/install_headers%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/install_lib%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/install_lib%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/install_scripts%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/install_scripts%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/sdist%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__/sdist%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/_framework_compat.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/bdist.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/bdist_dumb.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/bdist_rpm.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/build.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/build_clib.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/build_ext.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/build_py.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/build_scripts.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/check.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/clean.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/config.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/install.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/install_data.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/install_egg_info.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/install_headers.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/install_lib.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/install_scripts.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/sdist.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compat/__init__.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compat/__pycache__/__init__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compat/__pycache__/__init__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compat/__pycache__/numpy%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compat/__pycache__/numpy%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compat/__pycache__/py310%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compat/__pycache__/py310%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compat/numpy.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compat/py310.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/C/__pycache__/base%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/C/__pycache__/base%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/C/__pycache__/cygwin%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/C/__pycache__/cygwin%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/C/__pycache__/errors%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/C/__pycache__/errors%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/C/__pycache__/msvc%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/C/__pycache__/msvc%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/C/__pycache__/unix%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/C/__pycache__/unix%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/C/__pycache__/zos%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/C/__pycache__/zos%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/C/base.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/C/cygwin.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/C/errors.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/C/msvc.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/C/py.typed
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/C/unix.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/C/zos.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/__pycache__/_modified%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/__pycache__/_modified%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/__pycache__/_util%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/__pycache__/_util%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/__pycache__/errors%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/__pycache__/errors%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/__pycache__/logging%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/__pycache__/logging%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/_modified.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/_util.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/errors.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/logging.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/platform/__pycache__/detect%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/platform/__pycache__/detect%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/platform/__pycache__/macos%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/platform/__pycache__/macos%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/platform/detect.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/platform/macos.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/core.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/cygwinccompiler.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/debug.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/dep_util.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/dir_util.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/dist.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/errors.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/extension.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/fancy_getopt.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/file_util.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/filelist.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/log.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/py.typed
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/spawn.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/sysconfig.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/text_file.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/unixccompiler.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/util.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/version.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/versionpredicate.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/zosccompiler.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_entry_points.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_imp.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_importlib.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_itertools.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_normalization.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_path.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_reqs.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_scripts.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_shutil.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_static.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/.lock
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/autocommand-2.2.2.dist-info/INSTALLER
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/autocommand-2.2.2.dist-info/LICENSE
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/autocommand-2.2.2.dist-info/METADATA
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/autocommand-2.2.2.dist-info/RECORD
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/autocommand-2.2.2.dist-info/REQUESTED
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/autocommand-2.2.2.dist-info/WHEEL
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/autocommand-2.2.2.dist-info/top_level.txt
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/autocommand/__init__.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/autocommand/__pycache__/__init__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/autocommand/__pycache__/__init__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/autocommand/__pycache__/autoasync%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/autocommand/__pycache__/autoasync%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/autocommand/__pycache__/autocommand%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/autocommand/__pycache__/autocommand%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/autocommand/__pycache__/automain%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/autocommand/__pycache__/automain%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/autocommand/__pycache__/autoparse%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/autocommand/__pycache__/autoparse%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/autocommand/__pycache__/errors%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/autocommand/__pycache__/errors%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/autocommand/autoasync.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/autocommand/autocommand.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/autocommand/automain.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/autocommand/autoparse.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/autocommand/errors.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/backports.tarfile-1.2.0.dist-info/INSTALLER
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/backports.tarfile-1.2.0.dist-info/LICENSE
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/backports.tarfile-1.2.0.dist-info/METADATA
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/backports.tarfile-1.2.0.dist-info/RECORD
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/backports.tarfile-1.2.0.dist-info/REQUESTED
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/backports.tarfile-1.2.0.dist-info/WHEEL
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/backports.tarfile-1.2.0.dist-info/top_level.txt
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/backports/__init__.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/backports/__pycache__/__init__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/backports/__pycache__/__init__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/backports/tarfile/__init__.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/backports/tarfile/__main__.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/backports/tarfile/__pycache__/__init__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/backports/tarfile/__pycache__/__init__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/backports/tarfile/__pycache__/__main__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/backports/tarfile/__pycache__/__main__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/backports/tarfile/compat/__init__.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/backports/tarfile/compat/__pycache__/__init__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/backports/tarfile/compat/__pycache__/__init__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/backports/tarfile/compat/__pycache__/py38%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/backports/tarfile/compat/__pycache__/py38%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/backports/tarfile/compat/py38.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata-8.7.1.dist-info/INSTALLER
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata-8.7.1.dist-info/METADATA
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata-8.7.1.dist-info/RECORD
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata-8.7.1.dist-info/REQUESTED
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata-8.7.1.dist-info/WHEEL
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata-8.7.1.dist-info/licenses/LICENSE
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata-8.7.1.dist-info/top_level.txt
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/__init__.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/__pycache__/__init__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/__pycache__/__init__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/__pycache__/_adapters%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/__pycache__/_adapters%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/__pycache__/_collections%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/__pycache__/_collections%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/__pycache__/_compat%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/__pycache__/_compat%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/__pycache__/_functools%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/__pycache__/_functools%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/__pycache__/_itertools%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/__pycache__/_itertools%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/__pycache__/_meta%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/__pycache__/_meta%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/__pycache__/_text%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/__pycache__/_text%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/__pycache__/_typing%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/__pycache__/_typing%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/__pycache__/diagnose%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/__pycache__/diagnose%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/_adapters.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/_collections.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/_compat.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/_functools.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/_itertools.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/_meta.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/_text.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/_typing.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/compat/__init__.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/compat/__pycache__/__init__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/compat/__pycache__/__init__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/compat/__pycache__/py311%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/compat/__pycache__/py311%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/compat/__pycache__/py39%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/compat/__pycache__/py39%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/compat/py311.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/compat/py39.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/diagnose.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/py.typed
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco.text-4.0.0.dist-info/INSTALLER
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco.text-4.0.0.dist-info/LICENSE
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco.text-4.0.0.dist-info/METADATA
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco.text-4.0.0.dist-info/RECORD
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco.text-4.0.0.dist-info/REQUESTED
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco.text-4.0.0.dist-info/WHEEL
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco.text-4.0.0.dist-info/top_level.txt
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco/context/__init__.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco/context/__pycache__/__init__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco/context/__pycache__/__init__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco/context/py.typed
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco/functools/__init__.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco/functools/__init__.pyi
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco/functools/__pycache__/__init__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco/functools/__pycache__/__init__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco/functools/py.typed
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco/text/Lorem ipsum.txt
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco/text/__init__.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco/text/__pycache__/__init__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco/text/__pycache__/__init__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco/text/__pycache__/layouts%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco/text/__pycache__/layouts%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco/text/__pycache__/show-newlines%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco/text/__pycache__/show-newlines%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco/text/__pycache__/strip-prefix%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco/text/__pycache__/strip-prefix%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco/text/__pycache__/to-dvorak%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco/text/__pycache__/to-dvorak%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco/text/__pycache__/to-qwerty%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco/text/__pycache__/to-qwerty%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco/text/layouts.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco/text/show-newlines.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco/text/strip-prefix.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco/text/to-dvorak.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco/text/to-qwerty.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco_context-6.1.0.dist-info/INSTALLER
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco_context-6.1.0.dist-info/METADATA
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco_context-6.1.0.dist-info/RECORD
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco_context-6.1.0.dist-info/REQUESTED
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco_context-6.1.0.dist-info/WHEEL
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco_context-6.1.0.dist-info/licenses/LICENSE
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco_context-6.1.0.dist-info/top_level.txt
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco_functools-4.4.0.dist-info/INSTALLER
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco_functools-4.4.0.dist-info/METADATA
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco_functools-4.4.0.dist-info/RECORD
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco_functools-4.4.0.dist-info/REQUESTED
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco_functools-4.4.0.dist-info/WHEEL
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco_functools-4.4.0.dist-info/licenses/LICENSE
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco_functools-4.4.0.dist-info/top_level.txt
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/more_itertools-10.8.0.dist-info/INSTALLER
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/more_itertools-10.8.0.dist-info/METADATA
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/more_itertools-10.8.0.dist-info/RECORD
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/more_itertools-10.8.0.dist-info/REQUESTED
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/more_itertools-10.8.0.dist-info/WHEEL
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/more_itertools-10.8.0.dist-info/licenses/LICENSE
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/more_itertools/__init__.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/more_itertools/__init__.pyi
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/more_itertools/__pycache__/__init__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/more_itertools/__pycache__/__init__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/more_itertools/__pycache__/more%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/more_itertools/__pycache__/more%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/more_itertools/__pycache__/recipes%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/more_itertools/__pycache__/recipes%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/more_itertools/more.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/more_itertools/more.pyi
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/more_itertools/py.typed
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/more_itertools/recipes.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/more_itertools/recipes.pyi
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging-26.3.dist-info/INSTALLER
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging-26.3.dist-info/METADATA
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging-26.3.dist-info/RECORD
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging-26.3.dist-info/REQUESTED
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging-26.3.dist-info/WHEEL
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging-26.3.dist-info/licenses/LICENSE
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging-26.3.dist-info/licenses/LICENSE.APACHE
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging-26.3.dist-info/licenses/LICENSE.BSD
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__init__.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/__init__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/__init__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/_elffile%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/_elffile%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/_manylinux%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/_manylinux%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/_musllinux%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/_musllinux%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/_parser%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/_parser%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/_ranges%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/_ranges%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/_structures%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/_structures%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/_tokenizer%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/_tokenizer%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/dependency_groups%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/dependency_groups%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/direct_url%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/direct_url%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/errors%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/errors%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/markers%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/markers%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/metadata%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/metadata%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/pylock%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/pylock%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/ranges%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/ranges%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/requirements%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/requirements%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/specifiers%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/specifiers%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/tags%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/tags%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/utils%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/utils%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/version%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__/version%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/_elffile.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/_manylinux.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/_musllinux.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/_parser.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/_ranges.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/_structures.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/_tokenizer.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/dependency_groups.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/direct_url.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/errors.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/licenses/__init__.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/licenses/__pycache__/__init__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/licenses/__pycache__/__init__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/licenses/__pycache__/_spdx%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/licenses/__pycache__/_spdx%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/licenses/_spdx.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/markers.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/metadata.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/py.typed
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/pylock.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/ranges.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/requirements.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/specifiers.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/tags.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/utils.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/version.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/platformdirs-4.4.0.dist-info/INSTALLER
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/platformdirs-4.4.0.dist-info/METADATA
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/platformdirs-4.4.0.dist-info/RECORD
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/platformdirs-4.4.0.dist-info/REQUESTED
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/platformdirs-4.4.0.dist-info/WHEEL
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/platformdirs-4.4.0.dist-info/licenses/LICENSE
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/platformdirs/__init__.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/platformdirs/__main__.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/platformdirs/__pycache__/__init__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/platformdirs/__pycache__/__init__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/platformdirs/__pycache__/__main__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/platformdirs/__pycache__/__main__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/platformdirs/__pycache__/android%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/platformdirs/__pycache__/android%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/platformdirs/__pycache__/api%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/platformdirs/__pycache__/api%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/platformdirs/__pycache__/macos%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/platformdirs/__pycache__/macos%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/platformdirs/__pycache__/unix%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/platformdirs/__pycache__/unix%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/platformdirs/__pycache__/version%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/platformdirs/__pycache__/version%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/platformdirs/__pycache__/windows%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/platformdirs/__pycache__/windows%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/platformdirs/android.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/platformdirs/api.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/platformdirs/macos.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/platformdirs/py.typed
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/platformdirs/unix.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/platformdirs/version.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/platformdirs/windows.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/tomli-2.4.0.dist-info/INSTALLER
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/tomli-2.4.0.dist-info/METADATA
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/tomli-2.4.0.dist-info/RECORD
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/tomli-2.4.0.dist-info/REQUESTED
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/tomli-2.4.0.dist-info/WHEEL
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/tomli-2.4.0.dist-info/licenses/LICENSE
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/tomli/__init__.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/tomli/__pycache__/__init__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/tomli/__pycache__/__init__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/tomli/__pycache__/_parser%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/tomli/__pycache__/_parser%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/tomli/__pycache__/_re%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/tomli/__pycache__/_re%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/tomli/__pycache__/_types%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/tomli/__pycache__/_types%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/tomli/_parser.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/tomli/_re.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/tomli/_types.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/tomli/py.typed
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel-0.46.3.dist-info/INSTALLER
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel-0.46.3.dist-info/METADATA
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel-0.46.3.dist-info/RECORD
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel-0.46.3.dist-info/REQUESTED
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel-0.46.3.dist-info/WHEEL
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel-0.46.3.dist-info/entry_points.txt
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel-0.46.3.dist-info/licenses/LICENSE.txt
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/__init__.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/__main__.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/__pycache__/__init__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/__pycache__/__init__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/__pycache__/__main__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/__pycache__/__main__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/__pycache__/_bdist_wheel%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/__pycache__/_bdist_wheel%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/__pycache__/_metadata%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/__pycache__/_metadata%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/__pycache__/_setuptools_logging%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/__pycache__/_setuptools_logging%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/__pycache__/bdist_wheel%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/__pycache__/bdist_wheel%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/__pycache__/macosx_libfile%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/__pycache__/macosx_libfile%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/__pycache__/metadata%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/__pycache__/metadata%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/__pycache__/wheelfile%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/__pycache__/wheelfile%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/_bdist_wheel.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/_commands/__init__.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/_commands/__pycache__/__init__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/_commands/__pycache__/__init__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/_commands/__pycache__/convert%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/_commands/__pycache__/convert%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/_commands/__pycache__/pack%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/_commands/__pycache__/pack%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/_commands/__pycache__/tags%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/_commands/__pycache__/tags%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/_commands/__pycache__/unpack%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/_commands/__pycache__/unpack%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/_commands/convert.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/_commands/pack.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/_commands/tags.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/_commands/unpack.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/_metadata.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/_setuptools_logging.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/bdist_wheel.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/macosx_libfile.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/metadata.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/wheelfile.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/zipp-3.23.0.dist-info/INSTALLER
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/zipp-3.23.0.dist-info/METADATA
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/zipp-3.23.0.dist-info/RECORD
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/zipp-3.23.0.dist-info/REQUESTED
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/zipp-3.23.0.dist-info/WHEEL
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/zipp-3.23.0.dist-info/licenses/LICENSE
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/zipp-3.23.0.dist-info/top_level.txt
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/zipp/__init__.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/zipp/__pycache__/__init__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/zipp/__pycache__/__init__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/zipp/__pycache__/_functools%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/zipp/__pycache__/_functools%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/zipp/__pycache__/glob%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/zipp/__pycache__/glob%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/zipp/_functools.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/zipp/compat/__init__.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/zipp/compat/__pycache__/__init__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/zipp/compat/__pycache__/__init__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/zipp/compat/__pycache__/overlay%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/zipp/compat/__pycache__/overlay%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/zipp/compat/__pycache__/py310%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/zipp/compat/__pycache__/py310%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/zipp/compat/__pycache__/py313%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/zipp/compat/__pycache__/py313%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/zipp/compat/overlay.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/zipp/compat/py310.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/zipp/compat/py313.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/zipp/glob.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/archive_util.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/build_meta.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/cli-32.exe
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/cli-64.exe
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/cli-arm64.exe
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/cli.exe
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__init__.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/__init__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/__init__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/_requirestxt%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/_requirestxt%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/alias%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/alias%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/bdist_egg%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/bdist_egg%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/bdist_rpm%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/bdist_rpm%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/bdist_wheel%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/bdist_wheel%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/build%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/build%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/build_clib%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/build_clib%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/build_ext%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/build_ext%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/build_py%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/build_py%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/develop%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/develop%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/dist_info%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/dist_info%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/easy_install%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/easy_install%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/editable_wheel%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/editable_wheel%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/egg_info%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/egg_info%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/install%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/install%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/install_egg_info%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/install_egg_info%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/install_lib%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/install_lib%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/install_scripts%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/install_scripts%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/rotate%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/rotate%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/saveopts%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/saveopts%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/sdist%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/sdist%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/setopt%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/setopt%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/test%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__/test%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/_requirestxt.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/alias.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/bdist_egg.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/bdist_rpm.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/bdist_wheel.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/build.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/build_clib.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/build_ext.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/build_py.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/develop.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/dist_info.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/easy_install.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/editable_wheel.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/egg_info.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/install.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/install_egg_info.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/install_lib.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/install_scripts.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/rotate.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/saveopts.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/sdist.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/setopt.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/test.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/compat/__init__.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/compat/__pycache__/__init__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/compat/__pycache__/__init__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/compat/__pycache__/py310%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/compat/__pycache__/py310%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/compat/__pycache__/py311%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/compat/__pycache__/py311%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/compat/__pycache__/py312%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/compat/__pycache__/py312%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/compat/__pycache__/py39%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/compat/__pycache__/py39%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/compat/py310.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/compat/py311.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/compat/py312.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/compat/py39.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/NOTICE
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/__init__.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/__pycache__/__init__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/__pycache__/__init__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/__pycache__/_apply_pyprojecttoml%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/__pycache__/_apply_pyprojecttoml%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/__pycache__/expand%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/__pycache__/expand%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/__pycache__/pyprojecttoml%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/__pycache__/pyprojecttoml%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/__pycache__/setupcfg%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/__pycache__/setupcfg%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/_apply_pyprojecttoml.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/_validate_pyproject/NOTICE
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/_validate_pyproject/__init__.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/_validate_pyproject/__pycache__/__init__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/_validate_pyproject/__pycache__/__init__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/_validate_pyproject/__pycache__/error_reporting%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/_validate_pyproject/__pycache__/error_reporting%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/_validate_pyproject/__pycache__/extra_validations%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/_validate_pyproject/__pycache__/extra_validations%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/_validate_pyproject/__pycache__/fastjsonschema_exceptions%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/_validate_pyproject/__pycache__/fastjsonschema_exceptions%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/_validate_pyproject/__pycache__/fastjsonschema_validations%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/_validate_pyproject/__pycache__/fastjsonschema_validations%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/_validate_pyproject/__pycache__/formats%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/_validate_pyproject/__pycache__/formats%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/_validate_pyproject/error_reporting.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/_validate_pyproject/extra_validations.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/_validate_pyproject/fastjsonschema_exceptions.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/_validate_pyproject/fastjsonschema_validations.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/_validate_pyproject/formats.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/distutils.schema.json
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/expand.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/pyprojecttoml.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/setupcfg.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/setuptools.schema.json
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/depends.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/discovery.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/dist.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/errors.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/extension.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/glob.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/gui-32.exe
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/gui-64.exe
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/gui-arm64.exe
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/gui.exe
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/installer.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/launch.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/launcher manifest.xml
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/logging.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/modified.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/monkey.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/msvc.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/namespaces.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/script (dev).tmpl
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/script.tmpl
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/unicode_utils.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/version.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/warnings.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/wheel.py
+%%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/windows_support.py
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/backports/tarfile/compat/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/C/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/platform/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/backports/tarfile/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/backports/tarfile/compat
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/compat/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco/context/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco/functools/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco/text/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/licenses/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/_commands/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/zipp/compat/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compat/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/C
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers/platform
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/autocommand/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/backports/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/backports/tarfile
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata-8.7.1.dist-info/licenses
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata/compat
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco/context
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco/functools
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco/text
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco_context-6.1.0.dist-info/licenses
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco_functools-4.4.0.dist-info/licenses
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/more_itertools-10.8.0.dist-info/licenses
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/more_itertools/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging-26.3.dist-info/licenses
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging/licenses
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/platformdirs-4.4.0.dist-info/licenses
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/platformdirs/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/tomli-2.4.0.dist-info/licenses
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/tomli/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel-0.46.3.dist-info/licenses
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel/_commands
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/zipp-3.23.0.dist-info/licenses
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/zipp/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/zipp/compat
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/_validate_pyproject/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/command
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compat
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils/compilers
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/autocommand
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/autocommand-2.2.2.dist-info
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/backports
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/backports.tarfile-1.2.0.dist-info
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/importlib_metadata-8.7.1.dist-info
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco.text-4.0.0.dist-info
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco_context-6.1.0.dist-info
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/jaraco_functools-4.4.0.dist-info
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/more_itertools
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/more_itertools-10.8.0.dist-info
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/packaging-26.3.dist-info
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/platformdirs
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/platformdirs-4.4.0.dist-info
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/tomli
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/tomli-2.4.0.dist-info
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/wheel-0.46.3.dist-info
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/zipp
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor/zipp-3.23.0.dist-info
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/compat/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config/_validate_pyproject
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/_distutils_hack/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools-84.2.1.dist-info/licenses
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_distutils
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/_vendor
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/command
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/compat
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools/config
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/_distutils_hack
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern/setuptools-84.2.1.dist-info
+@dir %%PYTHON_LIBDIR%%/mports-setuptools/modern
+@dir %%PYTHON_LIBDIR%%/mports-setuptools
