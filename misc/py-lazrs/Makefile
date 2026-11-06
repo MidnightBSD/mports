@@ -1,5 +1,6 @@
 PORTNAME=	lazrs
 DISTVERSION=	0.8.2
+PORTREVISION=	1
 CATEGORIES=	misc
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -10,7 +11,7 @@ WWW=		https://github.com/laz-rs/laz-rs-python
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}maturin>=1.0.0:devel/py-maturin@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}maturin>=1.0.0<2.0.0:devel/py-maturin@${PY_FLAVOR}
 
 USES=		cargo python
 USE_PYTHON=	pep517 autoplist
