@@ -1,6 +1,5 @@
 PORTNAME=	bottle
-PORTVERSION=	0.12.25
-PORTREVISION=	1
+PORTVERSION=	0.13.4
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,10 +12,9 @@ LICENSE=	mit
 
 USES=		cpe python
 
-NO_ARCH=	yes
-
+CPE_VENDOR=	bottlepy
 USE_PYTHON=	autoplist concurrent distutils
 
-CPE_VENDOR=	bottlepy
+NO_ARCH=	yes
 
 .include <bsd.port.mk>
