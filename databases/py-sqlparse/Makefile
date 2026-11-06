@@ -1,6 +1,5 @@
 PORTNAME=	sqlparse
-PORTVERSION=	0.4.4
-PORTREVISION=	2
+PORTVERSION=	0.6.0
 CATEGORIES=	databases python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,10 +11,9 @@ WWW=		https://github.com/andialbrecht/sqlparse
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}flit-core>=3.2<4:devel/py-flit-core@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>=0:devel/py-hatchling@${PY_FLAVOR}
 
-USES=		python shebangfix
-USES+=	cpe
+USES=		cpe python shebangfix
 CPE_VENDOR=	sqlparse_project
 USE_PYTHON=	autoplist concurrent pep517
 
