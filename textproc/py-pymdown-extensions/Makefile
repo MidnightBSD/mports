@@ -1,6 +1,5 @@
 PORTNAME=	pymdown-extensions
-DISTVERSION=	10.12
-PORTREVISION=	1
+DISTVERSION=	12.3
 CATEGORIES=	textproc python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,7 +12,8 @@ WWW=		https://github.com/facelessuser/pymdown-extensions
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>=0.21.1:devel/py-hatchling@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>=1.26:devel/py-hatchling@${PY_FLAVOR}
+
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}markdown>=3.6:textproc/py-markdown@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyyaml>=0:devel/py-pyyaml@${PY_FLAVOR}
 

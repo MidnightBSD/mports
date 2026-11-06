@@ -1,6 +1,5 @@
 PORTNAME=	incremental
-PORTVERSION=	21.3.0
-PORTREVISION=	1
+PORTVERSION=	24.11.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,6 +12,10 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 NO_ARCH=	yes
 USES=		python
-USE_PYTHON=	distutils autoplist
+USE_PYTHON=	autoplist pep517
+
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>=1.6.0:devel/py-hatchling@${PY_FLAVOR}
+
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}packaging>=17.0:devel/py-packaging@${PY_FLAVOR}
 
 .include <bsd.port.mk>

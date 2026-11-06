@@ -1,7 +1,5 @@
 PORTNAME=	rfc3986
-PORTVERSION=	1.5.0
-PORTREVISION=	1
-# 2.0 is broken
+DISTVERSION=	2.0.0
 CATEGORIES=	www python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -12,11 +10,11 @@ WWW=		https://github.com/python-hyper/rfc3986
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USE_GITHUB=	yes
-GH_ACCOUNT=	sigmavirus24
-
 USES=		python
 USE_PYTHON=	autoplist distutils
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	sigmavirus24
 
 NO_ARCH=	yes
 

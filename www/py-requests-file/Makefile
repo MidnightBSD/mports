@@ -1,13 +1,13 @@
 PORTNAME=	requests-file
-PORTVERSION=	2.0.0
-PORTREVISION=	1
+PORTVERSION=	3.0.1
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTNAME=	requests_file-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Transport adapter for use with the Requests Python library
-WWW=		https://github.com/dashea/requests-file
+WWW=		https://codeberg.org/dashea/requests-file
 
 LICENSE=	Apache-2.0
 

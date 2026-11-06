@@ -1,5 +1,6 @@
 PORTNAME=	minisign
 PORTVERSION=	0.12
+PORTREVISION=	1
 CATEGORIES=	security
 
 MAINTAINER=	ports@MidnightBSD.org

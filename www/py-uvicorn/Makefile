@@ -1,5 +1,5 @@
 PORTNAME=	uvicorn
-PORTVERSION=	0.47.0
+PORTVERSION=	0.54.0
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -26,17 +26,11 @@ CPE_VENDOR=	encode
 OPTIONS_DEFINE=	STANDARD
 STANDARD_DESC=	Standard extra requirements
 
-STANDARD_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}httptools>=0.6.3:www/py-httptools@${PY_FLAVOR} \
+STANDARD_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}httptools>=0.8.0:www/py-httptools@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}python-dotenv>=0.13:www/py-python-dotenv@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}pyyaml>=5.1:devel/py-pyyaml@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}uvloop>=0.15.1:devel/py-uvloop@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}watchfiles>=0.20:devel/py-watchfiles@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}websockets>=10.4:devel/py-websockets@${PY_FLAVOR}
+			${PYTHON_PKGNAMEPREFIX}websockets>=13.0:devel/py-websockets@${PY_FLAVOR}
 
-.include <bsd.port.pre.mk>
-
-.if ${PYTHON_REL} < 31100
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}typing-extensions>=4.0:devel/py-typing-extensions@${PY_FLAVOR}
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

@@ -1,5 +1,5 @@
 PORTNAME=	starlette
-PORTVERSION=	1.1.0
+PORTVERSION=	1.7.0
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,7 +13,7 @@ LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>=0:devel/py-hatchling@${PY_FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}anyio>=3.6.2<5:devel/py-anyio@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}anyio>=4.0.0<5:devel/py-anyio@${PY_FLAVOR}
 
 USES=		python
 USE_PYTHON=	allflavors autoplist concurrent pep517
@@ -24,8 +24,10 @@ OPTIONS_DEFINE=	FULL
 FULL_DESC=	Full dependencies
 
 FULL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}httpx>=0.27.0<0.29.0:www/py-httpx@${PY_FLAVOR} \
+			${PYTHON_PKGNAMEPREFIX}httpx2>=2.0.0:www/py-httpx2@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}itsdangerous>=0:security/py-itsdangerous@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}Jinja2>=0:devel/py-Jinja2@${PY_FLAVOR} \
+			${PYTHON_PKGNAMEPREFIX}opentelemetry-api>=0:devel/py-opentelemetry-api@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}python-multipart>=0.0.18:www/py-python-multipart@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}pyyaml>=0:devel/py-pyyaml@${PY_FLAVOR}
 

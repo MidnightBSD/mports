@@ -1,6 +1,6 @@
 PORTNAME=	dovecot24
 PORTVERSION=	2.4.5
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	mail
 MASTER_SITES=	https://dovecot.org/releases/2.4/
 DISTNAME=	dovecot-${PORTVERSION}

@@ -1,6 +1,5 @@
 PORTNAME=	click
-PORTVERSION=	8.3.3
-PORTREVISION=	1
+PORTVERSION=	8.5.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -17,15 +16,18 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}flit-core>=3.11<4:devel/py-flit-core@${PY_
 USES=		python
 USES+=	cpe
 CPE_VENDOR=	palletsprojects
-USE_PYTHON=	allflavors autoplist concurrent pep517
+USE_PYTHON=	allflavors 	autoplist concurrent pep517 pytest
 
 NO_ARCH=	yes
 NO_TEST=	yes
 
+TEST_ENV=	${MAKE_ENV} PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
+
+TEST_ARGS=	--disable-plugin-autoload
+
 .include <bsd.port.pre.mk>
 
 .if ${PYTHON_REL} < 31000
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}importlib-metadata>=3.6.0:devel/py-importlib-metadata@${PY_FLAVOR}
 .endif
 
 .include <bsd.port.post.mk>

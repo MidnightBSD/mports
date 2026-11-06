@@ -118,6 +118,7 @@
     SUBDIR += lemon
     SUBDIR += lib2geom
     SUBDIR += libccd
+    SUBDIR += libdivide
     SUBDIR += libqalculate
     SUBDIR += libtommath
     SUBDIR += lp_solve
