@@ -1,6 +1,5 @@
 PORTNAME=	beautifulsoup
-PORTVERSION=	4.14.3
-PORTREVISION=	0
+PORTVERSION=	4.15.0
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -15,7 +14,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>0:devel/py-hatchling@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}soupsieve>=1.2:www/py-soupsieve@${PY_FLAVOR} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}typing-extensions>=4.0.0:devel/py-typing-extensions@${PY_FLAVOR} \
+			${PYTHON_PKGNAMEPREFIX}soupsieve>=1.6.1:www/py-soupsieve@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}lxml>=0:devel/py-lxml@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}html5lib>=0:www/py-html5lib@${PY_FLAVOR}
 
@@ -30,6 +30,6 @@ do-build:
 	@cd ${BUILD_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} -m build --wheel --no-isolation --outdir ${WRKDIR}
 
 do-install:
-	@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} -m installer ${WRKDIR}/*.whl --destdir ${FAKE_DESTDIR}
+	@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} -m installer ${WRKDIR}/*.whl --destdir ${FAKE_DESTDIR} --prefix ${TRUE_PREFIX}
 
 .include <bsd.port.mk>
