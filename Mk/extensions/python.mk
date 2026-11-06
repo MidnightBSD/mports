@@ -153,6 +153,8 @@
 # PEP517_BUILD_CMD	- Command sequence for a PEP-517 build frontend that builds a wheel.
 #			  default: ${PYTHON_CMD} -m build --no-isolation --wheel ${PEP517_BUILD_CONFIG_SETTING}
 #
+#			  USES=python-setuptools selects PYTHON_SETUPTOOLS_CMD instead.
+#
 # PEP517_BUILD_DEPEND	- Port needed to execute ${PEP517_BUILD_CMD}.
 #			  default: ${PYTHON_PKGNAMEPREFIX}build>=0:devel/py-build@${PY_FLAVOR}
 #
@@ -750,7 +752,7 @@ PYDISTUTILS_EGGINFO?=	${PYDISTUTILS_PKGNAME:C/[^A-Za-z0-9.]+/_/g}-${PYDISTUTILS_
 PYDISTUTILS_EGGINFODIR?=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
 
 # PEP-517 support
-PEP517_BUILD_CMD?=	${PYTHON_CMD} -m build --no-isolation --wheel ${PEP517_BUILD_CONFIG_SETTING}
+PEP517_BUILD_CMD?=	${PYTHON_SETUPTOOLS_CMD:U${PYTHON_CMD}} -m build --no-isolation --wheel ${PEP517_BUILD_CONFIG_SETTING}
 PEP517_BUILD_DEPEND?=	${PYTHON_PKGNAMEPREFIX}build>=0:devel/py-build@${PY_FLAVOR}
 PEP517_INSTALL_CMD?=	${PYTHON_CMD} -m installer --destdir ${FAKE_DESTDIR} --prefix ${TRUE_PREFIX} ${BUILD_WRKSRC}/dist/${PORTNAME:C|[-_]+|_|g}-${DISTVERSION}*.whl
 PEP517_INSTALL_DEPEND?=	${PYTHON_PKGNAMEPREFIX}installer>=0:devel/py-installer@${PY_FLAVOR}
