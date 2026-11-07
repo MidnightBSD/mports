@@ -1747,6 +1747,7 @@
     SUBDIR += py-pytest-lazy-fixture
     SUBDIR += py-pytest-metadata
     SUBDIR += py-pytest-mock
+    SUBDIR += py-pytest-mypy-plugins
     SUBDIR += py-pytest-mypy
     SUBDIR += py-pytest-plus
     SUBDIR += py-pytest-pretty
