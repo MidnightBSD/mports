@@ -1,6 +1,6 @@
---- invoke/config.py.orig	2023-07-12 18:04:20 UTC
+--- invoke/config.py.orig
 +++ invoke/config.py
-@@ -440,16 +440,16 @@ class Config(DataProxy):
+@@ -440,16 +440,15 @@
  
          .. versionadded:: 1.0
          """
@@ -11,44 +11,34 @@
          if WINDOWS:
              shell = os.environ.get("COMSPEC", "cmd.exe")
 -        # Else, assume Unix, most distros of which have /bin/bash available.
+-        # TODO: consider an automatic fallback to /bin/sh for systems lacking
+-        # /bin/bash; however users may configure run.shell quite easily, so...
 +        # Else, assume Unix, most distros of which have /bin/sh available.
-         # TODO: consider an automatic fallback to /bin/sh for systems lacking
-         # /bin/bash; however users may configure run.shell quite easily, so...
++        # TODO: consider an automatic fallback for systems lacking /bin/sh; however users may configure run.shell quite easily, so...
          else:
--            shell = "/bin/bash"
+-            shell = "bash"
 +            shell = "/bin/sh"
  
          return {
              # TODO: we document 'debug' but it's not truly implemented outside
---- invoke/runners.py.orig	2023-05-23 15:52:36 UTC
-+++ invoke/runners.py
-@@ -335,7 +335,7 @@ class Runner:
-             Default: ``False``.
- 
-         :param str shell:
--            Which shell binary to use. Default: ``/bin/bash`` (on Unix;
-+            Which shell binary to use. Default: ``/bin/sh`` (on Unix;
-             ``COMSPEC`` or ``cmd.exe`` on Windows.)
- 
-         :param timeout:
---- tests/config.py.orig	2023-07-12 18:04:20 UTC
+--- tests/config.py.orig
 +++ tests/config.py
-@@ -107,7 +107,7 @@ class Config_:
+@@ -107,7 +107,7 @@
                      "out_stream": None,
                      "pty": False,
                      "replace_env": False,
--                    "shell": "/bin/bash",
+-                    "shell": "bash",
 +                    "shell": "/bin/sh",
                      "warn": False,
                      "watchers": [],
                  },
---- tests/runners.py.orig	2023-05-02 02:12:54 UTC
+--- tests/runners.py.orig
 +++ tests/runners.py
-@@ -81,7 +81,7 @@ def _expect_platform_shell(shell):
+@@ -80,7 +80,7 @@
      if WINDOWS:
          assert shell.endswith("cmd.exe")
      else:
--        assert shell == "/bin/bash"
+-        assert shell == "bash"
 +        assert shell == "/bin/sh"
  
  
