@@ -330,6 +330,7 @@
     SUBDIR += py-hypercorn
     SUBDIR += py-hyperframe
     SUBDIR += py-hyperlink
+    SUBDIR += py-legacy-cgi
     SUBDIR += py-libsass
     SUBDIR += py-mechanize
     SUBDIR += py-multidict
