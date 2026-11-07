@@ -437,6 +437,7 @@
     SUBDIR += py-snowballstemmer
     SUBDIR += py-sparqlwrapper
     SUBDIR += py-sphinx
+    SUBDIR += py-sphinxcontrib-apidoc
     SUBDIR += py-textual
     SUBDIR += py-textual-speedups
     SUBDIR += py-sphinx-argparse
