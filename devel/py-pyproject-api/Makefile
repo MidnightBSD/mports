@@ -1,6 +1,5 @@
 PORTNAME=	pyproject_api
-DISTVERSION=	1.6.1
-PORTREVISION=	1
+DISTVERSION=	1.11.2
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,13 +11,13 @@ WWW=		https://pyproject-api.readthedocs.io/
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>=0:devel/py-hatchling@${PY_FLAVOR}	\
-		${PYTHON_PKGNAMEPREFIX}hatch-vcs>=0:devel/py-hatch-vcs@${PY_FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}packaging>=0:devel/py-packaging@${PY_FLAVOR}	\
-		${PYTHON_PKGNAMEPREFIX}tomli>=0:textproc/py-tomli@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatch-vcs>=0.5:devel/py-hatch-vcs@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}hatchling>=1.28:devel/py-hatchling@${PY_FLAVOR}
+RUN_DEPENDS=	${PY_TOMLI} \
+		${PYTHON_PKGNAMEPREFIX}packaging>=25:devel/py-packaging@${PY_FLAVOR}
 
-USES=		python
-USE_PYTHON=	pep517
+USES=		python:3.10+
+USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
 NO_TEST=	yes
