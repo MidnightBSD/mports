@@ -1,5 +1,5 @@
 PORTNAME=	cffi
-PORTVERSION=	2.1.0
+PORTVERSION=	2.1.1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -9,15 +9,18 @@ COMMENT=	Foreign Function Interface for Python calling C code
 WWW=		https://cffi.readthedocs.io/en/latest/ \
 		https://github.com/python-cffi/cffi
 
-LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/LICENSE
+LICENSE=	MIT-0 mit
+LICENSE_COMB=	multi
+LICENSE_NAME_MIT-0=	MIT No Attribution
+LICENSE_FILE_MIT-0=	${WRKSRC}/LICENSE
+LICENSE_FILE_mit=	${WRKSRC}/src/c/libffi_x86_x64/ffi.h
+LICENSE_PERMS_MIT-0=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=61:devel/py-setuptools@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 LIB_DEPENDS=	libffi.so:devel/libffi
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pycparser>=0:devel/py-pycparser@${PY_FLAVOR}
 
-USES=		compiler:c11 localbase python
+USES=		compiler:c11 localbase python:3.10+ python-setuptools:78
 USE_PYTHON=	allflavors autoplist concurrent cython pep517
 
 # magus issues.
