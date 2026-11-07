@@ -1,6 +1,5 @@
 PORTNAME=	tblib
-PORTVERSION=	1.7.0
-PORTREVISION=	1
+PORTVERSION=	3.2.2
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,9 +11,11 @@ WWW=		https://pypi.org/project/tblib/
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		python
-USE_PYTHON=	autoplist distutils
+USES=		python:3.10+ python-setuptools:83
+USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
+
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 
 .include <bsd.port.mk>
