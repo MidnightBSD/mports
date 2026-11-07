@@ -1920,6 +1920,7 @@
     SUBDIR += py-uvloop
     SUBDIR += py-validators
     SUBDIR += py-vcrpy
+    SUBDIR += py-vcs-versioning
     SUBDIR += py-versioneer
     SUBDIR += py-versioningit
     SUBDIR += py-virtualenv
