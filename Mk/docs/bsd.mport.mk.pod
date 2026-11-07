@@ -1032,6 +1032,19 @@ Dependency tuple for the selected Python flavor of NumPy, requiring at least
 version 1.16 with the NumPy port's epoch of 1.  The epoch preserves the source
 version minimum when comparing mports package versions.
 
+=item PEP517_WHEEL_DISTNAME
+
+Distribution component used to locate a PEP 517 wheel and its installed
+F<.dist-info/RECORD>.  The default, C<${PORTNAME:C|[-_]+|_|g}>, retains
+legacy wheel spelling.  This affects artifact lookup only; it does not
+change the mport name, origin, or Python project metadata.
+
+If the selected backend normalizes dots and case in wheel filenames,
+set C<PEP517_WHEEL_DISTNAME=${PORTNAME:tl:C|[-_.]+|_|g}>.  For example,
+C<backports.zstd> can select C<backports_zstd> while preserving its
+released project name.  The wheel and installed metadata directory must
+use the selected spelling.
+
 =item USE_PERL5
 
 Phases perl is needed in (build, run, configure, modbuild, ...), with
