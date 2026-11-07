@@ -1680,6 +1680,7 @@
     SUBDIR += py-prance
     SUBDIR += py-pre-commit
     SUBDIR += py-pretend
+    SUBDIR += py-process-tests
     SUBDIR += py-prompt-toolkit
     SUBDIR += py-propcache
     SUBDIR += py-proto-plus
