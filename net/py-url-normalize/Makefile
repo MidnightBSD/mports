@@ -1,9 +1,9 @@
 PORTNAME=	url-normalize
-PORTVERSION=	1.4.3
-PORTREVISION=	1
+PORTVERSION=	3.0.1
 CATEGORIES=	net python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTNAME=	url_normalize-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	URL normalization for Python
@@ -12,10 +12,10 @@ WWW=		https://github.com/niksite/url-normalize
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}six>=0:devel/py-six@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}idna>=3.3:dns/py-idna@${PY_FLAVOR}
 
-USES=		python
-USE_PYTHON=	autoplist concurrent distutils
+USES=		python:3.10+ python-setuptools:78
+USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
 
