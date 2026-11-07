@@ -54,8 +54,3 @@ https://github.com/MidnightBSD/mports
 
 Feel free to create a pull request to update any mports in this repository.  
 All contributions must be provided under the same BSD 2-clause license we use.
-
-If you're looking for ways to contribute, try fixing problems listed in repology:
-https://repology.org/repository/mports/problems
-
-You can also submit bug reports about mports at https://bugreport.midnightbsd.org/
