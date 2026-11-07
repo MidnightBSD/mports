@@ -1896,6 +1896,7 @@
     SUBDIR += py-types-PyYAML
     SUBDIR += py-types-docutils
     SUBDIR += py-types-jsonschema
+    SUBDIR += py-types-mock
     SUBDIR += py-types-psutil
     SUBDIR += py-types-pytz
     SUBDIR += py-types-pyyaml
