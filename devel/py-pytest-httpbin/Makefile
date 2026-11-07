@@ -1,21 +1,22 @@
 PORTNAME=	pytest-httpbin
-PORTVERSION=	2.0.0
-PORTREVISION=	2
+PORTVERSION=	2.1.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTNAME=	pytest_httpbin-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Easily test your HTTP library against a local copy of httpbin.org
 WWW=		https://github.com/kevin1024/pytest-httpbin
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=61.2:devel/py-setuptools@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}httpbin>=0:www/py-httpbin@${PY_FLAVOR}
 
-USES=		python
+USES=		python:3.8+
 USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
