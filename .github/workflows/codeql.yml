@@ -33,7 +33,7 @@ jobs:
           queries: +security-and-quality
 
       - name: Autobuild
-        uses: github/codeql-action/autobuild@v5
+        uses: github/codeql-action/autobuild@v4
         if: ${{  matrix.language == 'go' || matrix.language == 'javascript' || matrix.language == 'python' || matrix.language == 'ruby' }}
 
       - name: Perform CodeQL Analysis
