@@ -1,5 +1,5 @@
 PORTNAME=	types-pytz
-DISTVERSION=	2025.2.0.20251108
+DISTVERSION=	2026.5.0.20261006
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,9 +12,11 @@ WWW=		https://github.com/python/typeshed
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		python
-USE_PYTHON=	autoplist distutils
+USES=		python:3.10+ python-setuptools:83
+USE_PYTHON=	autoplist pep517
 
 NO_ARCH=	yes
+
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 
 .include <bsd.port.mk>
