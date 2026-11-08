@@ -28,10 +28,13 @@ USES=		python:3.10+
 USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
-TEST_ENV+=	PYTHONPATH=${WRKSRC}:${PYTHONPATH} \
+TEST_ENV+=	HOME=${WRKDIR}/test-home \
+		XDG_CONFIG_HOME=${WRKDIR}/test-home/.config \
+		PYTHONPATH=${WRKSRC}:${PYTHONPATH} \
 		PYTHONUSERBASE=${FAKE_DESTDIR}${PREFIX}
 
 do-test:
+	@${MKDIR} ${WRKDIR}/test-home
 	cd ${WRKSRC} && ${SETENV} -u NO_COLOR ${TEST_ENV} TERM=xterm-256color TERMINAL_WIDTH=3000 \
 		_TYPER_FORCE_DISABLE_TERMINAL=1 _TYPER_RUN_INSTALL_COMPLETION_TESTS=1 \
 		${PYTHON_CMD} -m pytest --cov --cov-report=term-missing \
