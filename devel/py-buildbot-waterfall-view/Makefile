@@ -1,9 +1,9 @@
 PORTNAME=	buildbot-waterfall-view
-DISTVERSION=	3.11.1
-PORTREVISION=	1
+DISTVERSION=	4.3.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTNAME=	buildbot_waterfall_view-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Buildbot Waterfall View plugin
