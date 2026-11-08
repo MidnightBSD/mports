@@ -1,5 +1,6 @@
 PORTNAME=	nightsaver
 DISTVERSION=	0.1.0
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -28,6 +29,7 @@ post-install:
 		${WRKSRC}/etc/nightsaver-lock.desktop ${PREFIX}/share/applications
 	${INSTALL_DATA} ${WRKSRC}/etc/autostart/nightsaver.desktop \
 		${PREFIX}/etc/xdg/autostart
-	${INSTALL_DATA} ${WRKSRC}/etc/pam.d/nightsaver ${PREFIX}/etc/pam.d
+	${INSTALL_DATA} ${WRKSRC}/etc/pam.d/nightsaver \
+		${PREFIX}/etc/pam.d/nightsaver.sample
 
 .include <bsd.port.mk>
