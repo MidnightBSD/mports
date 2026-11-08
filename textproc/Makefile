@@ -346,6 +346,7 @@
     SUBDIR += py-chardet
     SUBDIR += py-charset-normalizer
     SUBDIR += py-cmarkgfm
+    SUBDIR += py-comrak
     SUBDIR += py-commonmark
     SUBDIR += py-cssselect2
     SUBDIR += py-cyclonedx-python-lib
