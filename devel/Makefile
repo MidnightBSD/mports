@@ -1830,6 +1830,7 @@
     SUBDIR += py-scikit-build
     SUBDIR += py-scikit-build-core
     SUBDIR += py-scripttest
+    SUBDIR += py-seedir
     SUBDIR += py-semantic-version
     SUBDIR += py-semver
     SUBDIR += py-sentry-sdk
