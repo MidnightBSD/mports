@@ -1,0 +1,4 @@
+PDM's build backend implements the PEP 517 interfaces. This
+coinstallable 2.3 provider serves projects whose released backend requirements
+exclude PDM 2.4. It lives outside global site-packages and is selected through
+an explicit PYTHONPATH during the build.

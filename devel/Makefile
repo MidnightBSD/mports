@@ -1659,6 +1659,7 @@
     SUBDIR += py-pathspec
     SUBDIR += py-pbr
     SUBDIR += py-pdm-backend
+    SUBDIR += py-pdm-backend23
     SUBDIR += py-pdm-pep517
     SUBDIR += py-pefile
     SUBDIR += py-pendulum
