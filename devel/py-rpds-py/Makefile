@@ -1,5 +1,5 @@
 PORTNAME=	rpds-py
-PORTVERSION=	0.30.0
+PORTVERSION=	2026.6.3
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI \
 		https://github.com/crate-py/rpds/releases/download/v${PORTVERSION}/
@@ -16,7 +16,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}maturin>=1.9<2.0:devel/py-maturin@${PY_FLAVOR}
 
-USES=		cargo python
+USES=		cargo python:3.11+
 USE_PYTHON=	allflavors autoplist concurrent pep517
 
 CARGO_BUILD=	no
@@ -24,6 +24,8 @@ CARGO_INSTALL=	no
 WRKSRC=		${WRKDIR}/rpds_py-${PORTVERSION}
 
 post-install:
-	${FIND} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
+	${FIND} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
+
+MAKE_ENV+=	${CARGO_ENV}
 
 .include <bsd.port.mk>

@@ -1,6 +1,6 @@
 PORTNAME=	uv
 DISTVERSION=	0.11.16
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -22,6 +22,8 @@ LIB_DEPENDS=	libgit2.so:devel/libgit2 \
 
 USES=		cargo gmake localbase perl5 pkgconfig
 USE_PERL5=	build
+
+BUILD_DEPENDS=	${RUST_DEFAULT}>=1.93.0:lang/${RUST_DEFAULT}
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	astral-sh
@@ -56,7 +58,7 @@ post-patch:
 
 do-install:
 # workaround for error: found a virtual manifest at `xx` instead of a package manifest
-	@${MKDIR} ${STAGEDIR}${PREFIX}/bin
+	@${MKDIR} ${PREFIX}/bin
 .for p in ${PROGS}
 	${INSTALL_PROGRAM} \
 		${CARGO_TARGET_DIR}/${CARGO_BUILD_TARGET}/release/${p} \

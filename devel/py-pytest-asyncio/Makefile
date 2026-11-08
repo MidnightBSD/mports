@@ -1,29 +1,36 @@
 PORTNAME=	pytest-asyncio
-DISTVERSION=	0.23.8
-PORTREVISION=	1
+PORTVERSION=	1.4.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-DISTNAME=	pytest_asyncio-${DISTVERSION}
+DISTNAME=	pytest_asyncio-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Py.test plugin providing fixtures and markers for asyncio
-WWW=		https://pypi.org/project/pytest-asyncio/
+COMMENT=	Pytest support for asyncio
+WWW=		https://pytest-asyncio.readthedocs.io/en/stable/ \
+		https://github.com/pytest-dev/pytest-asyncio
 
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}pytest4-asyncio
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>=6.1.0:devel/py-pytest@${PY_FLAVOR}
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>=6.1.0:devel/py-pytest@${PY_FLAVOR}
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hypothesis>=5.7.1:devel/py-hypothesis@${PY_FLAVOR} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}setuptools-scm>=6.2:devel/py-setuptools-scm@${PY_FLAVOR}
 
-USES=		python
-USE_PYTHON=	autoplist distutils pytest
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>=8.4,1<10,1:devel/py-pytest@${PY_FLAVOR}
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}coverage>=6.2:devel/py-coverage@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}hypothesis>=5.7.1:devel/py-hypothesis@${PY_FLAVOR}
+
+USES=		python:3.10+ python-setuptools:78
+USE_PYTHON=	autoplist concurrent pep517 pytest
+
 NO_ARCH=	yes
 
-post-patch:
-	@${ECHO_CMD} 'from setuptools import setup; setup()' > ${WRKSRC}/setup.py
+.include <bsd.port.pre.mk>
 
-.include <bsd.port.mk>
+.if ${PYTHON_REL} < 31300
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}typing-extensions>=4.12:devel/py-typing-extensions@${PY_FLAVOR}
+.endif
+
+.include <bsd.port.post.mk>

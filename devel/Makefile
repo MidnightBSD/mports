@@ -1530,6 +1530,7 @@
     SUBDIR += py-hatch-fancy-pypi-readme
     SUBDIR += py-hatch-nodejs-version
     SUBDIR += py-hatch-requirements-txt
+    SUBDIR += py-hatch-tryton
     SUBDIR += py-hatch-vcs
     SUBDIR += py-hatchling
     SUBDIR += py-humanize
@@ -1622,6 +1623,7 @@
     SUBDIR += py-mypy_extensions
     SUBDIR += py-natsort
     SUBDIR += py-nbformat
+    SUBDIR += py-nbmake
     SUBDIR += py-node-semver
     SUBDIR += py-nodeenv
     SUBDIR += py-nose
@@ -1680,12 +1682,14 @@
     SUBDIR += py-prance
     SUBDIR += py-pre-commit
     SUBDIR += py-pretend
+    SUBDIR += py-process-tests
     SUBDIR += py-prompt-toolkit
     SUBDIR += py-propcache
     SUBDIR += py-proto-plus
     SUBDIR += py-proselint
     SUBDIR += py-protobuf
     SUBDIR += py-pure-eval
+    SUBDIR += py-purl
     SUBDIR += py-py
     SUBDIR += py-py-partiql-parser
     SUBDIR += py-py-serializable
@@ -1745,6 +1749,7 @@
     SUBDIR += py-pytest-lazy-fixture
     SUBDIR += py-pytest-metadata
     SUBDIR += py-pytest-mock
+    SUBDIR += py-pytest-mypy-plugins
     SUBDIR += py-pytest-mypy
     SUBDIR += py-pytest-plus
     SUBDIR += py-pytest-pretty
@@ -1753,6 +1758,7 @@
     SUBDIR += py-pytest-recording
     SUBDIR += py-pytest-relaxed
     SUBDIR += py-pytest-rerunfailures
+    SUBDIR += py-pytest-ruff
     SUBDIR += py-pytest-runner
     SUBDIR += py-pytest-services
     SUBDIR += py-pytest-socket
@@ -1824,10 +1830,13 @@
     SUBDIR += py-setproctitle
     SUBDIR += py-setuptools
     SUBDIR += py-setuptools-git
+    SUBDIR += py-setuptools-modern
     SUBDIR += py-setuptools-pkg
     SUBDIR += py-setuptools-rust
     SUBDIR += py-setuptools-scm
     SUBDIR += py-setuptools44
+    SUBDIR += py-setuptools78
+    SUBDIR += py-setuptools83
     SUBDIR += py-setuptools_git_ls_files
     SUBDIR += py-setuptools_hg
     SUBDIR += py-setuptools_scm7
@@ -1891,6 +1900,7 @@
     SUBDIR += py-types-PyYAML
     SUBDIR += py-types-docutils
     SUBDIR += py-types-jsonschema
+    SUBDIR += py-types-mock
     SUBDIR += py-types-psutil
     SUBDIR += py-types-pytz
     SUBDIR += py-types-pyyaml
@@ -1912,10 +1922,12 @@
     SUBDIR += py-usb
     SUBDIR += py-uuid7
     SUBDIR += py-uv-build
+    SUBDIR += py-uv-build012
     SUBDIR += py-uv-dynamic-versioning
     SUBDIR += py-uvloop
     SUBDIR += py-validators
     SUBDIR += py-vcrpy
+    SUBDIR += py-vcs-versioning
     SUBDIR += py-versioneer
     SUBDIR += py-versioningit
     SUBDIR += py-virtualenv

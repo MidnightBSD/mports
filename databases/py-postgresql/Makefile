@@ -1,9 +1,7 @@
 PORTNAME=	postgresql
-PORTVERSION=	1.1.0
-PORTREVISION=	4
+PORTVERSION=	1.3.0
 CATEGORIES=	databases python
-MASTER_SITES=	PYPI \
-		http://python.projects.postgresql.org/files/
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	py-${PORTNAME}-${PORTVERSION}
 DIST_SUBDIR=	postgresql
@@ -14,7 +12,7 @@ WWW=		http://python.projects.postgresql.org/
 
 LICENSE=	bsd3
 
-USES=		pgsql python:3.3+ zip
-USE_PYTHON=	distutils autoplist
+USES=		pgsql python
+USE_PYTHON=	autoplist distutils
 
 .include <bsd.port.mk>

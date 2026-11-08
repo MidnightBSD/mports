@@ -8,7 +8,7 @@
 .if !defined(_INCLUDE_USES_PKGCONFIG_MK)
 _INCLUDE_USES_PKGCONFIG_MK=	yes
 
-_PKGCONFIG_DEPENDS=	pkgconf>=1.3.0_1:devel/pkgconf
+_PKGCONFIG_DEPENDS=	pkgconf>=1.3.0_1,1:devel/pkgconf
 
 .  if empty(pkgconfig_ARGS)
 pkgconfig_ARGS=	build

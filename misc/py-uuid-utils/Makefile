@@ -1,5 +1,6 @@
 PORTNAME=	uuid-utils
-DISTVERSION=	1.0.0
+DISTVERSION=	1.2.0
+PORTREVISION=	1
 CATEGORIES=	misc python
 #MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,7 +14,7 @@ WWW=		https://aminalaee.github.io/uuid-utils/ \
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}maturin>=1:devel/py-maturin@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}maturin>=1<2:devel/py-maturin@${PY_FLAVOR}
 
 USES=		cargo python
 USE_PYTHON=	pep517 autoplist pytest
@@ -68,7 +69,7 @@ CARGO_CRATES=	anyhow-1.0.102 \
 		pyo3-macros-backend-0.29.2 \
 		quote-1.0.45 \
 		r-efi-6.0.0 \
-		rand-0.10.2 \
+		rand-0.10.3 \
 		rand_core-0.10.1 \
 		rustversion-1.0.22 \
 		semver-1.0.28 \
@@ -83,7 +84,7 @@ CARGO_CRATES=	anyhow-1.0.102 \
 		typenum-1.20.1 \
 		unicode-ident-1.0.24 \
 		unicode-xid-0.2.6 \
-		uuid-1.26.0 \
+		uuid-1.28.0 \
 		version_check-0.9.5 \
 		wasip2-1.0.4+wasi-0.2.12 \
 		wasip3-0.4.0+wasi-0.3.0-rc-2026-01-06 \
@@ -113,5 +114,7 @@ CARGO_TARGET_DIR=	${WRKSRC}/target
 
 TEST_ENV=	${MAKE_ENV} PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
 TEST_ARGS=	tests/
+
+MAKE_ENV+=	${CARGO_ENV}
 
 .include <bsd.port.mk>

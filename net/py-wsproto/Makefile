@@ -1,25 +1,27 @@
 PORTNAME=	wsproto
-PORTVERSION=	1.2.0
-PORTREVISION=	1
+DISTVERSION=	1.3.2
 CATEGORIES=	net python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sans-IO WebSocket protocol implementation
-WWW=		https://pypi.org/project/wsproto/
+WWW=		https://pypi.org/project/wsproto/ \
+		https://github.com/python-hyper/wsproto/
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}h11>=0.9.0:net/py-h11@${PY_FLAVOR}
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>0:devel/py-pytest@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 
-USES=		python
-USE_PYTHON=	autoplist distutils
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}h11>=0.16.0<1:net/py-h11@${PY_FLAVOR}
+
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hypothesis>=6.119.4<7:devel/py-hypothesis@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pytest>=8.3.3,1:devel/py-pytest@${PY_FLAVOR}
+
+USES=		python:3.10+ python-setuptools:78
+USE_PYTHON=	autoplist pep517 pytest
 
 NO_ARCH=	yes
-
-do-test:
-	@cd ${WRKSRC} && ${PYTHON_CMD} -m pytest -v -rs
 
 .include <bsd.port.mk>

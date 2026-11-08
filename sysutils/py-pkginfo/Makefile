@@ -1,13 +1,12 @@
 PORTNAME=	pkginfo
-PORTVERSION=	1.12.1.2
-PORTREVISION=	1
+PORTVERSION=	1.13
 CATEGORIES=	sysutils python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Query metadatdata from sdists / bdists / installed packages
-WWW=		https://code.launchpad.net/~tseaver/pkginfo/trunk
+WWW=		https://code.launchpad.net/pkginfo
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
@@ -16,7 +15,7 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=40.8.0:devel/py-setuptools@${P
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	autoplist pep517
+USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
 

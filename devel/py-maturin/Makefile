@@ -1,6 +1,5 @@
 PORTNAME=	maturin
-DISTVERSION=	1.13.3
-PORTREVISION=	1
+DISTVERSION=	1.16.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -16,16 +15,22 @@ LICENSE_COMB=	dual
 LICENSE_FILE_Apache-2.0=	${WRKSRC}/license-apache
 LICENSE_FILE_mit=	${WRKSRC}/license-mit
 
-BUILD_DEPENDS=	${PY_SETUPTOOLS} \
-		${PYTHON_PKGNAMEPREFIX}setuptools-rust>=1.4.0:devel/py-setuptools-rust@${PY_FLAVOR} \
+BUILD_DEPENDS=	${RUST_DEFAULT}>=1.89:lang/${RUST_DEFAULT} \
+		${PYTHON_PKGNAMEPREFIX}setuptools-rust>=1.11.0:devel/py-setuptools-rust@${PY_FLAVOR} \
 		${PY_TOMLI} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0.36.2:devel/py-wheel@${PY_FLAVOR}
 LIB_DEPENDS=	libzstd.so:archivers/zstd
 RUN_DEPENDS=	${PY_TOMLI}
 
-USES=		cargo python
+USES=		cargo python python-setuptools:modern
 USE_PYTHON=	allflavors autoplist concurrent pep517
 
+# Matching release fixtures omitted from the PyPI source distribution.
+USE_GITHUB=	nodefault
+GH_TUPLE=	PyO3:maturin:3bec0a32ae2b67ad4fac0194f762f44141e51473:fixtures
+
+# Keep test fixture crate versions from updating the production lockfile.
+CARGO_UPDATE_ARGS=	--workspace
 CARGO_BUILD=	no
 CARGO_INSTALL=	no
 CARGO_TARGET_DIR=	${WRKSRC}/target
@@ -52,5 +57,8 @@ fake-post-install:
 		${MV} ${FAKE_DESTDIR}${PREFIX}/bin/maturin-${PYTHON_DEFAULT} \
 			${FAKE_DESTDIR}${PREFIX}/bin/maturin; \
 	fi
+
+post-extract:
+	${CP} -a ${WRKSRC_fixtures}/test-crates ${WRKSRC}/
 
 .include <bsd.port.mk>

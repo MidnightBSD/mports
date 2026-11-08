@@ -1,18 +1,19 @@
 PORTNAME=	hyperframe
-PORTVERSION=	6.0.0
-PORTREVISION=	1
+PORTVERSION=	6.1.0
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Python module that decodes binary streams into HTTP/2 frames
-WWW=		https://hyper.rtfd.org/
+COMMENT=	Pure-Python HTTP/2 framing
+WWW=		https://python-hyper.org/projects/hyperframe/en/stable/ \
+		https://github.com/python-hyper/hyperframe
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES?=		python
-USE_PYTHON=	allflavors autoplist concurrent distutils
+USES=		python:3.9+ python-setuptools:78
+USE_PYTHON=	allflavors autoplist concurrent pep517
 
 NO_ARCH=	yes
 

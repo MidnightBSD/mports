@@ -9,11 +9,12 @@
 #  -> #define LIBYUV_VERSION 1741
 
 PORTNAME=	libyuv
-DISTVERSION=	0.0.1789
-PORTREVISION=	2
+DISTVERSION=	0.0.1973
 CATEGORIES=	graphics
-MASTER_SITES=	FREEBSD_LOCAL/mikael/libyuv/:libyuv \
-		FREEBSD_LOCAL/tcberner/libyuv/:libyuv
+MASTER_SITES=	FREEBSD_LOCAL/rene/libyuv/:libyuv \
+		FREEBSD_LOCAL/mikael/libyuv/:libyuv \
+		FREEBSD_LOCAL/tcberner/libyuv/:libyuv \
+		FREEBSD_LOCAL/arrowd/libyuv/:libyuv
 DISTFILES=	libyuv-${LIBYUV_HASH}.tar.gz:libyuv
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -27,7 +28,7 @@ USE_LDCONFIG=	yes
 SUB_FILES=	libyuv.pc
 SUB_LIST=	DISTVERSION=${DISTVERSION}
 
-LIBYUV_HASH=	0896c34873e83ca3d1690286a94e278a81d0a760
+LIBYUV_HASH=	39445fa162afd60f7266f70ff6a0fba564c3acae
 
 OPTIONS_DEFINE=	JPEG
 OPTIONS_DEFAULT=JPEG

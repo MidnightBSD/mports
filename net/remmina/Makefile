@@ -1,5 +1,6 @@
 PORTNAME=	remmina
 DISTVERSION=	1.4.43
+PORTREVISION=	1
 CATEGORIES=	net gnome
 
 MAINTAINER=	ports@MidnightBSD.org

@@ -1,6 +1,5 @@
 PORTNAME=	pytest-recording
-DISTVERSION=	0.13.3
-PORTREVISION=	1
+DISTVERSION=	0.14.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -11,23 +10,22 @@ COMMENT=	Pytest plugin that allows to record network interactions via VCR.py
 WWW=		https://github.com/kiwicom/pytest-recording
 
 LICENSE=	mit
-
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>0:devel/py-hatchling@${PY_FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>0:devel/py-pytest@${PY_FLAVOR} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>=3.5.0,1:devel/py-pytest@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}vcrpy>=2.0.1:devel/py-vcrpy@${PY_FLAVOR}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest-httpbin>=0:devel/py-pytest-httpbin@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-mock>=0:devel/py-pytest-mock@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}requests>=0:www/py-requests@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}werkzeug>=3.1.3:www/py-werkzeug@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}werkzeug>=3.1.8:www/py-werkzeug@${PY_FLAVOR}
 
-USES=		python
-USE_PYTHON=	pep517 autoplist pytest
+USES=		python:3.10+
+USE_PYTHON=	autoplist pep517 pytest
 
-TEST_ENV=	${MAKE_ENV} PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
+TEST_ENV=	${MAKE_ENV} \
+		PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
 
 NO_ARCH=	yes
-
-# tests as of 0.13.2: 30 failed, 29 passed, 6 skipped in 42.49s, see https://github.com/kiwicom/pytest-recording/issues/154
 
 .include <bsd.port.mk>

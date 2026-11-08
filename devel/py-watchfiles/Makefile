@@ -1,5 +1,5 @@
 PORTNAME=	watchfiles
-PORTVERSION=	1.2.0
+PORTVERSION=	1.3.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -21,5 +21,7 @@ USE_PYTHON=	allflavors autoplist concurrent pep517
 
 CARGO_BUILD=	no
 CARGO_INSTALL=	no
+
+MAKE_ENV+=	${CARGO_ENV}
 
 .include <bsd.port.mk>
