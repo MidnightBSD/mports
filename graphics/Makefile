@@ -360,6 +360,7 @@
     SUBDIR += py-pycha
     SUBDIR += py-pycollada
     SUBDIR += py-pydot
+    SUBDIR += py-pygaljs
     SUBDIR += py-pyglet1
     SUBDIR += py-pygraphviz
     SUBDIR += py-pyproj
