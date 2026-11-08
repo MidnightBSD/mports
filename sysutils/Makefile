@@ -246,6 +246,7 @@
     SUBDIR += py-ptyprocess
     SUBDIR += py-puremagic
     SUBDIR += py-py-cpuinfo
+    SUBDIR += py-py-cpuinfo2
     SUBDIR += py-scandir
     SUBDIR += py-uptime
     SUBDIR += qt5-qtdiag
