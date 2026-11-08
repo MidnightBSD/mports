@@ -1919,6 +1919,7 @@
     SUBDIR += py-usb
     SUBDIR += py-uuid7
     SUBDIR += py-uv-build
+    SUBDIR += py-uv-build012
     SUBDIR += py-uv-dynamic-versioning
     SUBDIR += py-uvloop
     SUBDIR += py-validators
