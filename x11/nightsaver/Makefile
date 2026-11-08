@@ -1,5 +1,6 @@
 PORTNAME=	nightsaver
 DISTVERSION=	0.2.0
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -30,5 +31,7 @@ post-install:
 		${PREFIX}/etc/xdg/autostart
 	${INSTALL_DATA} ${WRKSRC}/etc/pam.d/nightsaver \
 		${PREFIX}/etc/pam.d/nightsaver.sample
+	${LN} -s nightsaver ${PREFIX}/bin/xscreensaver
+	${LN} -s nightsaver-command ${PREFIX}/bin/xscreensaver-command
 
 .include <bsd.port.mk>
