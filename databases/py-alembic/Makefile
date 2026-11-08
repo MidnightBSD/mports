@@ -1,6 +1,5 @@
 PORTNAME=	alembic
-PORTVERSION=	1.13.1
-PORTREVISION=	2
+DISTVERSION=	1.18.2
 CATEGORIES=	databases python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,19 +11,27 @@ WWW=		https://alembic.zzzcomputing.com/
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}python-dateutil>0:devel/py-python-dateutil@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}importlib-metadata>0:devel/py-importlib-metadata@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}importlib-resources>0:devel/py-importlib-resources@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}mako>=0:textproc/py-mako@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}sqlalchemy14>=1.3.0:databases/py-sqlalchemy14@${PY_FLAVOR}
+USES=		python:3.10+ python-setuptools:78
+USE_PYTHON=	autoplist concurrent pep517
+
+RUN_DEPENDS=	${PY_TOMLI} \
+		${PYTHON_PKGNAMEPREFIX}typing-extensions>=4.12:devel/py-typing-extensions@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}mako>=0:textproc/py-mako@${PY_FLAVOR}
 
 #TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>0:devel/py-pytest@${PY_FLAVOR} \
 #		${PYTHON_PKGNAMEPREFIX}tox>0:devel/py-tox@${PY_FLAVOR}
 
-USES=		python
-USE_PYTHON=	autoplist concurrent distutils
-
 CONFLICTS_INSTALL=	py*-alembic* # lib/python3.8/site-packages/alembic/__init__.py'
+
+OPTIONS_RADIO=	SQLALCHEMY
+OPTIONS_RADIO_SQLALCHEMY=	SQLALCHEMY14 SQLALCHEMY20
+OPTIONS_DEFAULT=	SQLALCHEMY20
+
+SQLALCHEMY_DESC=	SQLAlchemy version
+SQLALCHEMY14_DESC=	Use SQLAlchemy 1.4
+SQLALCHEMY20_DESC=	Use SQLAlchemy 2.0
+SQLALCHEMY14_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlalchemy14>=1.4.0:databases/py-sqlalchemy14@${PY_FLAVOR}
+SQLALCHEMY20_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlalchemy20>=2.0.0:databases/py-sqlalchemy20@${PY_FLAVOR}
 
 NO_ARCH=	yes
 NO_TEST=	yes

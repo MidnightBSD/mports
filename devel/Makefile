@@ -1412,6 +1412,7 @@
     SUBDIR += py-buildbot-pkg
     SUBDIR += py-buildbot-waterfall-view
     SUBDIR += py-buildbot-worker
+    SUBDIR += py-buildbot-wsgi-dashboards
     SUBDIR += py-buildbot-www
     SUBDIR += py-cachetools
     SUBDIR += py-calver
@@ -1658,6 +1659,7 @@
     SUBDIR += py-pathspec
     SUBDIR += py-pbr
     SUBDIR += py-pdm-backend
+    SUBDIR += py-pdm-backend23
     SUBDIR += py-pdm-pep517
     SUBDIR += py-pefile
     SUBDIR += py-pendulum
@@ -1830,6 +1832,7 @@
     SUBDIR += py-scikit-build
     SUBDIR += py-scikit-build-core
     SUBDIR += py-scripttest
+    SUBDIR += py-seedir
     SUBDIR += py-semantic-version
     SUBDIR += py-semver
     SUBDIR += py-sentry-sdk
@@ -1840,6 +1843,7 @@
     SUBDIR += py-setuptools-pkg
     SUBDIR += py-setuptools-rust
     SUBDIR += py-setuptools-scm
+    SUBDIR += py-setuptools-scm8
     SUBDIR += py-setuptools44
     SUBDIR += py-setuptools78
     SUBDIR += py-setuptools83
@@ -1870,6 +1874,7 @@
     SUBDIR += py-subprocess-tee
     SUBDIR += py-subversion
     SUBDIR += py-sure
+    SUBDIR += py-sybil
     SUBDIR += py-syrupy
     SUBDIR += py-tables
     SUBDIR += py-tabulate
