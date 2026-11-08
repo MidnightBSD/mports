@@ -1756,6 +1756,7 @@
     SUBDIR += py-pytest-recording
     SUBDIR += py-pytest-relaxed
     SUBDIR += py-pytest-rerunfailures
+    SUBDIR += py-pytest-ruff
     SUBDIR += py-pytest-runner
     SUBDIR += py-pytest-services
     SUBDIR += py-pytest-socket
