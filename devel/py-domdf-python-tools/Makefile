@@ -1,8 +1,8 @@
 PORTNAME=	domdf-python-tools
-PORTVERSION=	3.8.0.post2
-PORTREVISION=	1
+PORTVERSION=	3.10.0
 CATEGORIES=	devel python
-MASTER_SITES=	PYPI
+MASTER_SITES=	PYPI \
+		https://github.com/domdfcoding/domdf_python_tools/releases/download/v${PORTVERSION}/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	domdf_python_tools-${PORTVERSION}
 
@@ -14,20 +14,25 @@ WWW=		https://domdf-python-tools.readthedocs.io/en/latest/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=40.6.0:devel/py-setuptools@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}wheel>=0.34.2:devel/py-wheel@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatch-requirements-txt>=0:devel/py-hatch-requirements-txt@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}natsort>=7.0.1:devel/py-natsort@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}typing-extensions>=3.7.4.1:devel/py-typing-extensions@${PY_FLAVOR}
 
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
 
+OPTIONS_DEFINE=	DATES
+DATES_DESC=	Date/time support
+
+DATES_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytz>=2019.1,1:devel/py-pytz@${PY_FLAVOR}
+
 .include <bsd.port.pre.mk>
 
 .if ${PYTHON_REL} < 30900
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}importlib-metadata>=3.6.0:devel/py-importlib-metadata@${PY_FLAVOR}
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}importlib-metadata>=3.6.0:devel/py-importlib-metadata@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}importlib-resources>=3.0.0:devel/py-importlib-resources@${PY_FLAVOR}
 .endif
 
 .include <bsd.port.post.mk>
