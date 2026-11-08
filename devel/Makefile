@@ -1739,6 +1739,7 @@
     SUBDIR += py-pytest-enabler
     SUBDIR += py-pytest-env
     SUBDIR += py-pytest-examples
+    SUBDIR += py-pytest-fixture-classes
     SUBDIR += py-pytest-flake8
     SUBDIR += py-pytest-forked
     SUBDIR += py-pytest-freezer
