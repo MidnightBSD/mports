@@ -1753,6 +1753,7 @@
     SUBDIR += py-pytest-mypy
     SUBDIR += py-pytest-plus
     SUBDIR += py-pytest-pretty
+    SUBDIR += py-pytest-qt
     SUBDIR += py-pytest-randomly
     SUBDIR += py-pytest-retry
     SUBDIR += py-pytest-recording
