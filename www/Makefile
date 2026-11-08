@@ -366,6 +366,7 @@
     SUBDIR += py-treq
     SUBDIR += py-uvicorn
     SUBDIR += py-waitress
+    SUBDIR += py-wcag-contrast-ratio
     SUBDIR += py-webob
     SUBDIR += py-websocket-client
     SUBDIR += py-webtest
