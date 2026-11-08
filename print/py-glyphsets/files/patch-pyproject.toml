@@ -1,0 +1,11 @@
+--- pyproject.toml.orig	2026-06-29 09:58:29 UTC
++++ pyproject.toml
+@@ -11,6 +11,8 @@ glyphsets = [
+ [tool.setuptools.package-data]
+ glyphsets = [
+     "*.json",
++    "data/empty_font.glyphs",
++    "data/definitions/*/*.glyphs",
+     "definitions/*.yaml",
+     "results/nam/*.nam",
+     "results/txt/nice-names/*.txt",
