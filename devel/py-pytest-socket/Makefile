@@ -1,35 +1,35 @@
 PORTNAME=	pytest-socket
-DISTVERSION=	0.7.0
-PORTREVISION=	1
+DISTVERSION=	0.8.1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	${PORTNAME:S/-/_/}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Pytest plugin to disable socket calls during tests
+COMMENT=	Pytest Plugin to disable socket calls during tests
 WWW=		https://github.com/miketheman/pytest-socket
 
 LICENSE=	mit
-
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}poetry-core>=1.0.0:devel/py-poetry-core@${PY_FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>=6.2.5:devel/py-pytest@${PY_FLAVOR}
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}asynctest>=0.13.0:devel/py-asynctest@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}coverage>=7.3:devel/py-coverage@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}httpx>=0.26.0:www/py-httpx@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pytest-httpbin>=1.0:devel/py-pytest-httpbin@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pytest-randomly>=3.15.0:devel/py-pytest-randomly@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pytest>=7.0:devel/py-pytest@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}requests>=2.26.0:www/py-requests@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}starlette>=0.36.1:www/py-starlette@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}uv-build012>=0.12.1<0.13:devel/py-uv-build012@${PY_FLAVOR}
 
-USES=		python
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>=7.0,1:devel/py-pytest@${PY_FLAVOR}
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}coverage>=7.9:devel/py-coverage@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}httpx>=0.28.1:www/py-httpx@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pytest-codspeed>=5.0.2:devel/py-pytest-codspeed@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pytest-randomly>=3.15.0:devel/py-pytest-randomly@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}starlette>=0.47.1:www/py-starlette@${PY_FLAVOR}
+
+USES=		python:3.10+
 USE_PYTHON=	pep517 autoplist pytest
 
-NO_ARCH=	yes
+TEST_ENV=	${MAKE_ENV} PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
+TEST_ARGS=	--ignore=mutants
 
-# tests are broken because they use the pytest-httpbin package that is broken with last werkzeug versions for a very long time
+_UV_BUILD_PRIVATE?=	${PYTHONPREFIX_LIBDIR}/mports-uv-build/012
+MAKE_ENV+=	PYTHONPATH=${_UV_BUILD_PRIVATE} PATH=${_UV_BUILD_PRIVATE}/bin:${PATH}
+
+NO_ARCH=	yes
 
 .include <bsd.port.mk>
