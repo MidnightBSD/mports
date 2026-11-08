@@ -1,5 +1,7 @@
 bin/nightsaver
 bin/nightsaver-command
+bin/xscreensaver
+bin/xscreensaver-command
 @sample etc/nightsaver.toml.sample
 @sample etc/pam.d/nightsaver.sample
 etc/xdg/autostart/nightsaver.desktop
