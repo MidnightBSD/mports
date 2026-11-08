@@ -1616,6 +1616,7 @@
     SUBDIR += py-msal
     SUBDIR += py-msal-extensions
     SUBDIR += py-msgpack
+    SUBDIR += py-msgspec
     SUBDIR += py-multipart
     SUBDIR += py-multiprocess
     SUBDIR += py-munch
