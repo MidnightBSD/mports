@@ -1,0 +1,4 @@
+Setuptools-scm derives package versions from source control tags. This
+coinstallable 8.1 provider is kept outside the global Python import path for
+builds whose released backend requirements exclude newer setuptools-scm.
+Select it explicitly with PYTHONPATH when building those projects.
