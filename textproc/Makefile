@@ -431,6 +431,7 @@
     SUBDIR += py-regex
     SUBDIR += py-reno
     SUBDIR += py-rich
+    SUBDIR += py-roman-numerals
     SUBDIR += py-sentencepiece
     SUBDIR += py-rst2ansi
     SUBDIR += py-scour
