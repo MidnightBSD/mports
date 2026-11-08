@@ -1,0 +1,7 @@
+Obtained from: https://github.com/pylint-dev/pylint/commit/40817ce1a1b62a41486d81eff5b2db3bd9c23755
+
+--- tests/functional/o/overridden_final_method_regression.txt.orig	2026-09-29 15:47:37 UTC
++++ tests/functional/o/overridden_final_method_regression.txt	2026-11-08 07:32:07 UTC
+@@ -1 +1 @@
+-undefined-variable:4:1:4:18:crash_test:Undefined variable 'unknown_decorator':UNDEFINED
++undefined-variable:4:1:4:18::Undefined variable 'unknown_decorator':UNDEFINED

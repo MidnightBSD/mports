@@ -1,0 +1,7 @@
+Obtained from: https://github.com/pylint-dev/pylint/commit/40817ce1a1b62a41486d81eff5b2db3bd9c23755
+
+--- tests/functional/r/regression_02/regression_10334.txt.orig	2026-09-29 15:47:37 UTC
++++ tests/functional/r/regression_02/regression_10334.txt	2026-11-08 07:32:07 UTC
+@@ -1 +1 @@
+-not-callable:4:1:4:4:A:s is not callable:UNDEFINED
++not-callable:4:1:4:4::s is not callable:UNDEFINED
