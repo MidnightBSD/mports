@@ -1412,6 +1412,7 @@
     SUBDIR += py-buildbot-pkg
     SUBDIR += py-buildbot-waterfall-view
     SUBDIR += py-buildbot-worker
+    SUBDIR += py-buildbot-wsgi-dashboards
     SUBDIR += py-buildbot-www
     SUBDIR += py-cachetools
     SUBDIR += py-calver
