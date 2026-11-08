@@ -1,0 +1,2 @@
+nbmake is a pytest plugin that executes Jupyter notebooks as tests and reports
+cell errors alongside ordinary pytest results.
