@@ -1,6 +1,5 @@
 PORTNAME=	parso
-DISTVERSION=	0.8.3
-PORTREVISION=	1
+DISTVERSION=	0.8.7
 CATEGORIES=	textproc python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -9,14 +8,18 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python Parser
 WWW=		https://github.com/davidhalter/parso
 
-LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/LICENSE.txt
+LICENSE=	mit python
+LICENSE_COMB=	multi
+LICENSE_FILE_mit=	${WRKSRC}/LICENSE.txt
+LICENSE_FILE_python=	${WRKSRC}/LICENSE.txt
 
-USES=		cpe python
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}docopt>=0:devel/py-docopt@${PY_FLAVOR}
+
+USES=		cpe python:3.6+
 CPE_VENDOR=	${PORTNAME}_project
-USE_PYTHON=	autoplist distutils
+USE_PYTHON=	autoplist distutils pytest
 
 NO_ARCH=	yes
-NO_TEST=	yes
+TEST_ARGS=	--doctest-modules
 
 .include <bsd.port.mk>

@@ -1,18 +1,24 @@
-PORTNAME=       types-jsonschema
-PORTVERSION=    4.22.0.20240501
-PORTREVISION=   1
-CATEGORIES=     devel python
-MASTER_SITES=   PYPI
-PKGNAMEPREFIX=  ${PYTHON_PKGNAMEPREFIX}
+PORTNAME=	types-jsonschema
+PORTVERSION=	4.26.0.20261006
+CATEGORIES=	devel python
+MASTER_SITES=	PYPI
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=     ports@MidnightBSD.org
-COMMENT=        Typing stubs for jsonschema
-WWW=            https://pypi.org/project/types-jsonschema/
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Typing stubs for jsonschema
+WWW=		https://pypi.org/project/types-jsonschema/
 
-LICENSE=        Apache-2.0
+LICENSE=	Apache-2.0
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=           python
-USE_PYTHON=     autoplist distutils
-NO_ARCH=        yes
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}referencing>=0:devel/py-referencing@${PY_FLAVOR}
+
+USES=		python:3.10+ python-setuptools:83
+USE_PYTHON=	autoplist pep517
+NO_ARCH=	yes
+
+DISTNAME=	types_jsonschema-${PORTVERSION}
+
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 
 .include <bsd.port.mk>

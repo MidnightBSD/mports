@@ -1,6 +1,5 @@
 PORTNAME=	googleapis-common-protos
-PORTVERSION=	1.75.0
-PORTREVISION=	1
+PORTVERSION=	1.75.5
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,17 +13,16 @@ WWW=		https://github.com/googleapis/google-cloud-python/tree/main/packages/googl
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}protobuf>=4.25.8,1<8.0.0,1:devel/py-protobuf@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}protobuf>=6.33.5,1<8.0.0,1:devel/py-protobuf@${PY_FLAVOR}
 
-USES=		python
+USES=		python:3.10+ python-setuptools:78
 USE_PYTHON=	allflavors autoplist concurrent pep517
 
 NO_ARCH=	yes
 
 OPTIONS_DEFINE=	GRPC
 
-GRPC_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}grpcio>=1.44.0<2.0.0:devel/py-grpcio@${PY_FLAVOR}
+GRPC_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}grpcio>=1.59.0<2.0.0:devel/py-grpcio@${PY_FLAVOR}
 
 .include <bsd.port.mk>

@@ -671,6 +671,7 @@
     SUBDIR += llvm20
     SUBDIR += llvm21
     SUBDIR += llvm22
+    SUBDIR += llvm23
     SUBDIR += lndir
     SUBDIR += log4cplus
     SUBDIR += log4cxx
@@ -1679,6 +1680,7 @@
     SUBDIR += py-prance
     SUBDIR += py-pre-commit
     SUBDIR += py-pretend
+    SUBDIR += py-process-tests
     SUBDIR += py-prompt-toolkit
     SUBDIR += py-propcache
     SUBDIR += py-proto-plus
@@ -1823,10 +1825,13 @@
     SUBDIR += py-setproctitle
     SUBDIR += py-setuptools
     SUBDIR += py-setuptools-git
+    SUBDIR += py-setuptools-modern
     SUBDIR += py-setuptools-pkg
     SUBDIR += py-setuptools-rust
     SUBDIR += py-setuptools-scm
     SUBDIR += py-setuptools44
+    SUBDIR += py-setuptools78
+    SUBDIR += py-setuptools83
     SUBDIR += py-setuptools_git_ls_files
     SUBDIR += py-setuptools_hg
     SUBDIR += py-setuptools_scm7
@@ -1915,6 +1920,7 @@
     SUBDIR += py-uvloop
     SUBDIR += py-validators
     SUBDIR += py-vcrpy
+    SUBDIR += py-vcs-versioning
     SUBDIR += py-versioneer
     SUBDIR += py-versioningit
     SUBDIR += py-virtualenv

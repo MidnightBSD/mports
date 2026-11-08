@@ -1,6 +1,5 @@
 PORTNAME=	gstreamer1-editing-services
 PORTVERSION=	${_GST_VERSION}
-PORTREVISION=	0
 CATEGORIES=	multimedia
 MASTER_SITES=	https://gstreamer.freedesktop.org/src/gstreamer-editing-services/
 DISTNAME=	gst-editing-services-${PORTVERSION}
@@ -10,6 +9,11 @@ COMMENT=	GStreamer editing services
 WWW=		http://gstreamer.freedeskop.org
 
 LICENSE=	lgpl
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+BUILD_DEPENDS=	meson>=1.4,1:devel/meson
+BUILD_RUN_DEPENDS=	glib>=2.64.0,2:devel/glib20 \
+		gstreamer1>=1.28.0:multimedia/gstreamer1
 
 USES=		bison compiler:c11 gnome gstreamer meson ninja python pkgconfig tar:xz
 USE_GNOME=	glib20 introspection:build libxml2 pygobject3:build

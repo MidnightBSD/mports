@@ -1,6 +1,7 @@
 PORTNAME=	libavif
 PORTVERSION=	1.4.2
 DISTVERSIONPREFIX=	v
+PORTREVISION=	1
 CATEGORIES=	graphics
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,6 +11,7 @@ WWW=		https://github.com/AOMediaCodec/libavif
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_RUN_DEPENDS=	libyuv>=0.0.1973:graphics/libyuv
 LIB_DEPENDS=	libpng.so:graphics/png \
 		libyuv.so:graphics/libyuv
 TEST_DEPENDS=	bash:shells/bash \

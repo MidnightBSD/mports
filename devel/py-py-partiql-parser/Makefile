@@ -1,9 +1,10 @@
 PORTNAME=	py-partiql-parser
-PORTVERSION=	0.5.1
-PORTREVISION=	1
+PORTVERSION=	0.6.3
 CATEGORIES=	devel python
-MASTER_SITES=	PYPI
+MASTER_SITES=	PYPI \
+		https://github.com/getmoto/py-partiql-parser/releases/download/${PORTVERSION}/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTNAME=	py_partiql_parser-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Pure Python PartiQL Parser
@@ -12,9 +13,7 @@ WWW=		https://github.com/getmoto/py-partiql-parser
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=59.0.0:devel/py-setuptools@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR} \
-
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>=0:devel/py-hatchling@${PY_FLAVOR}
 USES=		python
 USE_PYTHON=	autoplist concurrent pep517
 

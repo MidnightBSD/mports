@@ -869,6 +869,12 @@ is an executable) and go into "dir" to do "make ${DEPENDS_TARGET}" if it's
 not found.  If the third field ("target") exists, it will be used instead
 of ${DEPENDS_TARGET}.  (Default: empty.)
 
+A package name followed by a version comparison checks installed package
+metadata instead of a file or executable.  Comparisons may be combined, for
+example C<py312-exampleE<gt>=1.0E<lt>2.0:devel/py-example@py312>; every bound
+must match the same installed package.  Include the provider's epoch in each
+bound when it has C<PORTEPOCH>, for example C<E<gt>=1.0,1E<lt>2.0,1>.
+
 =over 4
 
 =item PKG_DEPENDS
@@ -955,6 +961,39 @@ Arguments follow the keyword after a colon and are comma separated:
  USES=	cmake python:3.11+ ssl
  USES=	go:modules,1.21+
 
+The C<python-setuptools> extension selects a private, coinstallable setuptools
+backend for a PEP517 build.  It requires C<USES=python> and
+C<USE_PYTHON=pep517>, with exactly one argument:
+
+ USES=       python python-setuptools:modern
+ USE_PYTHON= pep517
+
+C<modern> selects setuptools 84.2.1 or later; C<83> selects exactly 83.0.0,
+and C<78> selects exactly 78.1.1.  The first two require Python 3.10 or later;
+78.1.1 requires Python 3.9 or later.  Select a provider that satisfies both
+the released source's backend requirement and its Python support.  The
+extension reports an incompatible interpreter; it does not silently change
+the port's supported Python versions.
+
+The provider preserves the canonical C<setuptools> distribution in
+C<${PYTHON_LIBDIR}/mports-setuptools/E<lt>selectorE<gt>>, outside normal
+C<sys.path>.  Its C<.pth> files are not activated globally.  Only a build
+dependency is added; the default setuptools and distutils behavior is unchanged.
+
+C<PYTHON_SETUPTOOLS_CMD> is a command that executes the selected interpreter
+in a C<WRKDIR> virtual environment without pip or system site packages.  The
+runner prepends the private backend to the inherited C<PYTHONPATH>, then
+appends the normal site directory as a plain import path.  This makes other
+build dependencies available without processing global C<.pth> files, and
+preserves custom C<MAKE_ENV> paths and Python command arguments.
+
+The default C<PEP517_BUILD_CMD> uses C<PYTHON_SETUPTOOLS_CMD> when present.
+Custom C<PEP517_BUILD_CMD> and C<do-build> commands are not rewritten: they
+must explicitly invoke C<${PYTHON_SETUPTOOLS_CMD}> instead of
+C<${PYTHON_CMD}> when the selected backend is required.  Do not treat this
+variable as an executable pathname; it includes a runner and arguments.
+Installation and runtime interpreter commands are unchanged.
+
 The header comment of each extension file documents what it does and which
 arguments it accepts.  The list of extensions is the contents of the
 extensions directory.  When an extension needs a list of components it
@@ -986,6 +1025,25 @@ Component lists for USES=gl, sdl, xfce, wx, gnustep and gershwin.
 
 Python features (distutils, autoplist, concurrent, flavors, ...), with
 USES=python.
+
+=item PYNUMPY
+
+Dependency tuple for the selected Python flavor of NumPy, requiring at least
+version 1.16 with the NumPy port's epoch of 1.  The epoch preserves the source
+version minimum when comparing mports package versions.
+
+=item PEP517_WHEEL_DISTNAME
+
+Distribution component used to locate a PEP 517 wheel and its installed
+F<.dist-info/RECORD>.  The default, C<${PORTNAME:C|[-_]+|_|g}>, retains
+legacy wheel spelling.  This affects artifact lookup only; it does not
+change the mport name, origin, or Python project metadata.
+
+If the selected backend normalizes dots and case in wheel filenames,
+set C<PEP517_WHEEL_DISTNAME=${PORTNAME:tl:C|[-_.]+|_|g}>.  For example,
+C<backports.zstd> can select C<backports_zstd> while preserving its
+released project name.  The wheel and installed metadata directory must
+use the selected spelling.
 
 =item USE_PERL5
 

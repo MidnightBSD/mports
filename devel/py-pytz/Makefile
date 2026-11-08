@@ -1,6 +1,5 @@
 PORTNAME=	pytz
-PORTVERSION=	2020.5
-PORTREVISION=	1
+PORTVERSION=	2026.5
 PORTEPOCH=	1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
@@ -12,7 +11,7 @@ COMMENT=	World Timezone Definitions for Python
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-USES=		python:2.7+
+USES=		python
 USE_PYTHON=	autoplist distutils
 
 NO_ARCH=	yes

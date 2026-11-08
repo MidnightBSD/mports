@@ -153,6 +153,8 @@
 # PEP517_BUILD_CMD	- Command sequence for a PEP-517 build frontend that builds a wheel.
 #			  default: ${PYTHON_CMD} -m build --no-isolation --wheel ${PEP517_BUILD_CONFIG_SETTING}
 #
+#			  USES=python-setuptools selects PYTHON_SETUPTOOLS_CMD instead.
+#
 # PEP517_BUILD_DEPEND	- Port needed to execute ${PEP517_BUILD_CMD}.
 #			  default: ${PYTHON_PKGNAMEPREFIX}build>=0:devel/py-build@${PY_FLAVOR}
 #
@@ -160,8 +162,12 @@
 #			- Options for the build backend. Must include -C or --config-setting per option.
 #			  default: <empty>
 #
+# PEP517_WHEEL_DISTNAME - Distribution component in the wheel filename and
+#                         installed .dist-info directory. Artifact lookup only;
+#                         default: ${PORTNAME:C|[-_]+|_|g} (legacy spelling).
+#
 # PEP517_INSTALL_CMD	- Command sequence for a PEP-517 install frontend that installs a wheel.
-#			  default: ${PYTHON_CMD} -m installer --destdir ${STAGEDIR} --prefix ${PREFIX} ${BUILD_WRKSRC}/dist/${PORTNAME:C|[-_]+|_|g}-${DISTVERSION}*.whl
+#			  default: ${PYTHON_CMD} -m installer --destdir ${FAKE_DESTDIR} --prefix ${TRUE_PREFIX} ${BUILD_WRKSRC}/dist/${PEP517_WHEEL_DISTNAME}-${DISTVERSION}*.whl
 #
 # PEP517_INSTALL_DEPEND	- Port needed to execute ${PEP517_INSTALL_CMD}.
 #			  default: ${PYTHON_PKGNAMEPREFIX}installer>=0:devel/py-installer@${PY_FLAVOR}
@@ -750,9 +756,10 @@ PYDISTUTILS_EGGINFO?=	${PYDISTUTILS_PKGNAME:C/[^A-Za-z0-9.]+/_/g}-${PYDISTUTILS_
 PYDISTUTILS_EGGINFODIR?=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
 
 # PEP-517 support
-PEP517_BUILD_CMD?=	${PYTHON_CMD} -m build --no-isolation --wheel ${PEP517_BUILD_CONFIG_SETTING}
+PEP517_BUILD_CMD?=	${PYTHON_SETUPTOOLS_CMD:U${PYTHON_CMD}} -m build --no-isolation --wheel ${PEP517_BUILD_CONFIG_SETTING}
 PEP517_BUILD_DEPEND?=	${PYTHON_PKGNAMEPREFIX}build>=0:devel/py-build@${PY_FLAVOR}
-PEP517_INSTALL_CMD?=	${PYTHON_CMD} -m installer --destdir ${FAKE_DESTDIR} --prefix ${TRUE_PREFIX} ${BUILD_WRKSRC}/dist/${PORTNAME:C|[-_]+|_|g}-${DISTVERSION}*.whl
+PEP517_WHEEL_DISTNAME?=	${PORTNAME:C|[-_]+|_|g}
+PEP517_INSTALL_CMD?=	${PYTHON_CMD} -m installer --destdir ${FAKE_DESTDIR} --prefix ${TRUE_PREFIX} ${BUILD_WRKSRC}/dist/${PEP517_WHEEL_DISTNAME}-${DISTVERSION}*.whl
 PEP517_INSTALL_DEPEND?=	${PYTHON_PKGNAMEPREFIX}installer>=0:devel/py-installer@${PY_FLAVOR}
 
 # nose support
@@ -849,7 +856,7 @@ CMAKE_ARGS+=	-DPython${PYTHON_MAJOR_VER}_EXECUTABLE:FILEPATH="${PYTHON_CMD}"
 
 # Python 3rd-party modules
 PYGAME=		${PYTHON_PKGNAMEPREFIX}game>0:devel/py-game@${PY_FLAVOR}
-PYNUMPY=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR}
+PYNUMPY=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16,1:math/py-numpy@${PY_FLAVOR}
 
 .  if defined(_PYTHON_FEATURE_DISTUTILS)
 .    if ${PYTHON_MAJOR_VER} < 3
@@ -988,7 +995,7 @@ do-install:
 	@${MKDIR} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
 	@cd ${INSTALL_WRKSRC} && ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${PEP517_INSTALL_CMD}
 	@${PYTHON_CMD} -B ${PORTSDIR}/Mk/scripts/strip_RECORD.py \
-		${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/${PORTNAME:C|[-_]+|_|g}-${DISTVERSION}*.dist-info/RECORD >> ${_PYTHONPKGLIST}
+		${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/${PEP517_WHEEL_DISTNAME}-${DISTVERSION}*.dist-info/RECORD >> ${_PYTHONPKGLIST}
 	@${REINPLACE_CMD} \
 		-e '/\.pyc$$/d' \
 		-e 's|^|${PYTHONPREFIX_SITELIBDIR}/|' \

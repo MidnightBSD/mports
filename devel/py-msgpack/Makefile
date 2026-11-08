@@ -1,6 +1,5 @@
 PORTNAME=	msgpack
-PORTVERSION=	1.1.2
-PORTREVISION=	1
+PORTVERSION=	1.2.3
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,10 +12,9 @@ WWW=		https://msgpack.org/ \
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=61:devel/py-setuptools@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 
-USES=		python
+USES=		python:3.10+ python-setuptools:78
 USE_PYTHON=	autoplist concurrent cython pep517
 
 post-install:

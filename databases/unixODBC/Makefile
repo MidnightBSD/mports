@@ -1,6 +1,6 @@
 PORTNAME=	unixODBC
 PORTVERSION=	2.3.12
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	databases
 MASTER_SITES=	http://www.unixodbc.org/ \
 		ftp://ftp.unixodbc.org/pub/unixODBC/
@@ -16,9 +16,10 @@ OPTIONS_DEFINE=	DOCS
 
 CONFLICTS=	libiodbc-[0-9]* virtuoso-*
 
-USES=		cpe iconv libtool:keepla
+USES=		cpe iconv libtool:keepla readline
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-static --enable-shared \
+		--with-included-ltdl \
 		--with-libiconv-prefix=${LOCALBASE}
 CONFIGURE_ENV=	ac_cv_header_msql_h=no
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4

@@ -1,6 +1,5 @@
 PORTNAME=	pillow
-PORTVERSION=	11.2.1
-PORTREVISION=	1
+PORTVERSION=	13.0.0
 CATEGORIES=	graphics python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,34 +13,37 @@ WWW=		https://python-pillow.github.io/ \
 LICENSE=	MIT-CMU
 LICENSE_NAME=	CMU License
 LICENSE_FILE=	${WRKSRC}/LICENSE
-LICENSE_PERMS=	auto-accept dist-mirror dist-sell pkg-mirror pkg-sell
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=61:devel/py-setuptools@${PY_FLAVOR} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pybind11>=0:devel/py-pybind11@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>=0,1:devel/py-pytest@${PY_FLAVOR}
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>=9.0,1:devel/py-pytest@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pytest-timeout>=0:devel/py-pytest-timeout@${PY_FLAVOR}
 
-USES=		cpe jpeg localbase python
-USE_PYTHON=	autoplist concurrent pep517
+USES=		cpe jpeg localbase python:3.11+ python-setuptools:modern
+USE_PYTHON=	autoplist concurrent pep517 pytest
 
-PEP517_BUILD_CONFIG_SETTING=	\
-		--config-setting jpeg=enable \
-		--config-setting zlib=enable
-TEST_ENV=	PYTHONPATH=${PYTHON_SITELIBDIR}
+PEP517_BUILD_CONFIG_SETTING=	--config-setting jpeg=enable --config-setting \
+				zlib=enable
 
 CPE_VENDOR=	python
 
-OPTIONS_DEFINE=	AVIF FREETYPE IMAGEQUANT JPEG2000 LCMS OLE RAQM TIFF TKINTER WEBP XCB
-OPTIONS_DEFAULT=AVIF FREETYPE IMAGEQUANT JPEG2000 LCMS OLE RAQM TIFF TKINTER WEBP XCB
-IMAGEQUANT_DESC=Image Quantization support
-LCMS_DESC=	Little Color Management System
-OLE_DESC=	Microsoft OLE2 file format support
-RAQM_DESC=	Complex text layout support
-TKINTER_DESC=	Tkinter (Tcl/Tk) BitmapImage & PhotoImage support
-XCB_DESC=	X11 screengrab support
+OPTIONS_DEFINE=		AVIF FREETYPE IMAGEQUANT JPEG2000 LCMS OLE RAQM TIFF \
+			TKINTER WEBP XCB
+OPTIONS_DEFAULT=	AVIF FREETYPE IMAGEQUANT JPEG2000 LCMS OLE RAQM TIFF \
+			TKINTER WEBP XCB
+IMAGEQUANT_DESC=	Image Quantization support
+LCMS_DESC=		Little Color Management System
+OLE_DESC=		Microsoft OLE2 file format support
+RAQM_DESC=		Complex text layout support
+TKINTER_DESC=		Tkinter (Tcl/Tk) BitmapImage & PhotoImage support
+XCB_DESC=		X11 screengrab support
 
+AVIF_BUILD_RUN_DEPENDS=	libavif>=1.4.2_1:graphics/libavif
 AVIF_LIB_DEPENDS=	libavif.so:graphics/libavif
 AVIF_VARS=		PEP517_BUILD_CONFIG_SETTING+="--config-setting avif=enable"
 AVIF_VARS_OFF=		PEP517_BUILD_CONFIG_SETTING+="--config-setting avif=disable"
+FREETYPE_BUILD_RUN_DEPENDS=	freetype2>=2.15.0_1:print/freetype2
 FREETYPE_LIB_DEPENDS=	libfreetype.so:print/freetype2
 FREETYPE_VARS=		PEP517_BUILD_CONFIG_SETTING+="--config-setting freetype=enable"
 FREETYPE_VARS_OFF=	PEP517_BUILD_CONFIG_SETTING+="--config-setting freetype=disable"

@@ -130,6 +130,7 @@
     SUBDIR += ruby33
     SUBDIR += ruby34
     SUBDIR += rust
+    SUBDIR += rust-nightly-bun
     SUBDIR += rust-bootstrap
     SUBDIR += rust-nightly
     SUBDIR += rust188
@@ -154,5 +155,7 @@ SUBDIR += spidermonkey78
     SUBDIR += yabasic
 
     SUBDIR += py-lupa
+
+    SUBDIR += zig
 
 .include <bsd.port.subdir.mk>

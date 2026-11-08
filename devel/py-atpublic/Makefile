@@ -1,6 +1,5 @@
 PORTNAME=	atpublic
-PORTVERSION=	5.0
-PORTREVISION=	1
+PORTVERSION=	6.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -11,11 +10,8 @@ COMMENT=	Very simple decorator and function of module's all
 LICENSE=	Apache-2.0
 
 USES=		python
-USE_PYTHON=	autoplist distutils
+USE_PYTHON=	autoplist pep517
 
-MAKE_ENV=	ATPUBLIC_BUILD_EXTENSION=1
-
-post-extract:
-	${CP} ${FILESDIR}/setup* ${WRKSRC}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>0:devel/py-hatchling@${PY_FLAVOR}
 
 .include <bsd.port.mk>

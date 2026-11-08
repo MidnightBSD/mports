@@ -1,7 +1,6 @@
 PORTNAME=	forbiddenfruit
-PORTVERSION=	0.1.4
+PORTVERSION=	0.1.5
 CATEGORIES=	devel python
-MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -18,8 +17,17 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLA
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	autoplist concurrent pep517
+USE_PYTHON=	autoplist concurrent pep517 pytest
 
 NO_ARCH=	yes
+
+USE_GITHUB=	yes
+
+GH_ACCOUNT=	clarete
+
+# Build upstream's C fixture only for the test suite, as in its CI.
+pre-test:
+	cd ${WRKSRC} && ${SETENVI} ${WRK_ENV} ${MAKE_ENV} FFRUIT_EXTENSION=true \
+		${PYTHON_CMD} setup.py build_ext --build-lib tests/unit
 
 .include <bsd.port.mk>
