@@ -1622,6 +1622,7 @@
     SUBDIR += py-mypy_extensions
     SUBDIR += py-natsort
     SUBDIR += py-nbformat
+    SUBDIR += py-nbmake
     SUBDIR += py-node-semver
     SUBDIR += py-nodeenv
     SUBDIR += py-nose
