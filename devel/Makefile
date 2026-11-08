@@ -1872,6 +1872,7 @@
     SUBDIR += py-subprocess-tee
     SUBDIR += py-subversion
     SUBDIR += py-sure
+    SUBDIR += py-sybil
     SUBDIR += py-syrupy
     SUBDIR += py-tables
     SUBDIR += py-tabulate
