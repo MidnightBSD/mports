@@ -1720,6 +1720,7 @@
     SUBDIR += py-pyproject-api
     SUBDIR += py-pyproject-hooks
     SUBDIR += py-pyproject-metadata
+    SUBDIR += py-pyquery
     SUBDIR += py-pyrfc3339
     SUBDIR += py-pyright
     SUBDIR += py-pyrsistent
