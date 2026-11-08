@@ -362,6 +362,7 @@
     SUBDIR += py-pydot
     SUBDIR += py-pyglet1
     SUBDIR += py-pygraphviz
+    SUBDIR += py-pygal
     SUBDIR += py-pyproj
     SUBDIR += py-pyrsgis
     SUBDIR += py-pyqrcode
