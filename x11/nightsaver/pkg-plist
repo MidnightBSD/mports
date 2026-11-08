@@ -1,0 +1,12 @@
+bin/nightsaver
+bin/nightsaver-command
+@sample etc/nightsaver.toml.sample
+etc/pam.d/nightsaver
+etc/xdg/autostart/nightsaver.desktop
+man/man1/nightsaver-command.1.gz
+man/man1/nightsaver.1.gz
+man/man5/nightsaver.toml.5.gz
+share/applications/nightsaver-lock.desktop
+share/applications/nightsaver.desktop
+@dir etc/xdg/autostart
+@dir etc/xdg
