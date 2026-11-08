@@ -1,0 +1,7 @@
+Obtained from: https://github.com/pylint-dev/pylint/commit/40817ce1a1b62a41486d81eff5b2db3bd9c23755
+
+--- tests/functional/d/deprecated/deprecated_decorators.txt.orig	2026-09-29 15:47:37 UTC
++++ tests/functional/d/deprecated/deprecated_decorators.txt	2026-11-08 07:32:07 UTC
+@@ -1 +1 @@
+-deprecated-decorator:7:4:7:28:MyClass.my_method:Using deprecated decorator abc.abstractclassmethod():UNDEFINED
++deprecated-decorator:7:4:7:28:MyClass:Using deprecated decorator abc.abstractclassmethod():UNDEFINED
