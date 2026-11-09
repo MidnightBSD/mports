@@ -1476,6 +1476,7 @@
     SUBDIR += py-dulwich
     SUBDIR += py-dunamai
     SUBDIR += py-editables
+    SUBDIR += py-encutils
     SUBDIR += py-entrypoints
     SUBDIR += py-enum34
     SUBDIR += py-eval-type-backport
