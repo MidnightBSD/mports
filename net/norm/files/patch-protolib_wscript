@@ -14,7 +14,7 @@
          ctx.env.USE_BUILD_PROTOLIB += ['RESOLV']
  
 -    if system == 'freebsd':
-+    if system in ('freebsd', 'midnihghtbsd'):
++    if system in ('freebsd', 'midnightbsd'):
          ctx.env.DEFINES_BUILD_PROTOLIB += ['HAVE_FLOCK']
  
      if system == 'windows':
