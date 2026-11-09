@@ -26,6 +26,7 @@
     SUBDIR += lirc
     SUBDIR += lrzsz
     SUBDIR += minicom
+    SUBDIR += mtkbt-firmware
     SUBDIR += p5-Device-Gsm
     SUBDIR += p5-Device-Modem
     SUBDIR += p5-Device-SerialPort
