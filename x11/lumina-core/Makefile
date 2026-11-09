@@ -1,7 +1,7 @@
 PORTNAME=	lumina-core
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.6.2
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/../../LICENSE
 
 RUN_DEPENDS=	fluxbox>=0:x11-wm/fluxbox \
 		fluxbox-tenr-styles-pack>=0:x11-themes/fluxbox-tenr-styles-pack \
-		xscreensaver>=0:x11/xscreensaver \
+		nightsaver>=0.2.0_1:x11/nightsaver \
 		xbrightness>=0:x11/xbrightness \
 		compton>=0:x11-wm/compton \
 		xrandr>=0:x11/xrandr \
