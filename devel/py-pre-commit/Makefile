@@ -1,6 +1,5 @@
 PORTNAME=	pre-commit
-DISTVERSION=	4.2.0
-PORTREVISION=	1
+DISTVERSION=	4.7.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,18 +12,22 @@ WWW=		https://pre-commit.com/
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cfgv>=2.0.0:devel/py-cfgv@${PY_FLAVOR} \
+RUN_DEPENDS=	bash:shells/bash \
+		${PYTHON_PKGNAMEPREFIX}cfgv>=2.0.0:devel/py-cfgv@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}identify>=1.0.0:devel/py-identify@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}nodeenv>=0.11.1:devel/py-nodeenv@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pyyaml>=5.1:devel/py-pyyaml@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}virtualenv>=20.10.0:devel/py-virtualenv@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pyyaml>=5.1:devel/py-pyyaml@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}virtualenv>=20.10.0:devel/py-virtualenv@${PY_FLAVOR}
 
-USES=		python shebangfix
-USE_PYTHON=	autoplist distutils
+USES=		python:3.11+ shebangfix
+USE_PYTHON=	autoplist pep517
 
 SHEBANG_FILES=	pre_commit/resources/hook-tmpl
 
 NO_ARCH=	yes
+
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>0:devel/py-setuptools@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 
 .include <bsd.port.mk>
