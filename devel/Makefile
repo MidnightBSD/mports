@@ -1369,6 +1369,7 @@
     SUBDIR += py-asn1crypto
     SUBDIR += py-aspectlib
     SUBDIR += py-ast-grep-cli
+    SUBDIR += py-ast-serialize
     SUBDIR += py-astor
     SUBDIR += py-astroid
     SUBDIR += py-astroid2
