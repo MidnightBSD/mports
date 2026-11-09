@@ -1596,6 +1596,7 @@
     SUBDIR += py-libevdev
     SUBDIR += py-libpeas
     SUBDIR += py-libpeas1
+    SUBDIR += py-librt
     SUBDIR += py-libvirt
     SUBDIR += py-linecache2
     SUBDIR += py-littleutils
