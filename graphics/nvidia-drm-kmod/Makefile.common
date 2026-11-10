@@ -31,7 +31,8 @@ PLIST_FILES=	${KMODDIR}/nvidia-drm.ko \
 		share/X11/xorg.conf.d/20-nvidia-drm-outputclass.conf
 
 MAKE_ENV+=	DEBUG_FLAGS=${DEBUG_FLAGS} \
-			DRMKMODDIR=${WRKDIR}/drm-kmod-${DRM_KMOD_GH_TAGNAME}/
+			DRMKMODDIR=${WRKDIR}/drm-kmod-${DRM_KMOD_GH_TAGNAME}/ \
+			BSDSRCTOP=${SRC_BASE}
 WRKSRC=		${WRKDIR}/NVIDIA-FreeBSD-${ARCH_SUFX}-${NVIDIA_DISTVERSION}/
 WRKSRC_SUBDIR=	src/nvidia-drm/
 
