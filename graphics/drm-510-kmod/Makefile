@@ -1,6 +1,6 @@
 PORTNAME=	drm-510-kmod
 PORTVERSION=	${DRM_KMOD_DISTVERSION}
-PORTREVISION=	9
+PORTREVISION=	10
 CATEGORIES=	graphics
 
 .include "Makefile.version"
@@ -31,6 +31,12 @@ GH_TAGNAME=	${DRM_KMOD_GH_TAGNAME}
 
 IGNORE_MidnightBSD_3.2=	Needs 4.x or higher
 IGNORE_MidnightBSD_3.1=	Needs 4.x or higher
+
+# LinuxKPI from FreeBSD stable/15 (402004) moved headers such as
+# linux/const.h to compat/linuxkpi/dummy/include.
+.if ${OSVERSION} >= 402004
+EXTRA_PATCHES+=	${FILESDIR}/extra-patch-lkpi15-dummy-include
+.endif
 
 .if ${ARCH} == "amd64"
 PLIST_SUB+=	AMDGPU=""
