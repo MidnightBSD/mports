@@ -12,7 +12,7 @@
 %%DATADIR%%/stopwords/stopwords_ru.txt
 %%DATADIR%%/stopwords/stopwords_sv.txt
 %%DATADIR%%/stopwords/stopwords_tr.txt
-%%ETCDIR%%/dovecot.conf
+@sample %%ETCDIR%%/dovecot.conf.sample
 %%FLATCURVE%%lib/dovecot/doveadm/libdoveadm_fts_flatcurve_plugin.a
 %%FLATCURVE%%lib/dovecot/doveadm/libdoveadm_fts_flatcurve_plugin.so
 %%FLATCURVE%%lib/dovecot/lib21_fts_flatcurve_plugin.a

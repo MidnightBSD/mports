@@ -66,7 +66,8 @@ for config in ${dovecot_config}; do
 			${command} ${command_args} -a
 			exit $?
 		fi
-		base_dir="$(echo "$doveconf_settings" | /usr/bin/awk -F '= ' '/^base_dir =/ { print $2 }')"
+		# dovecot 2.4 no longer lists base_dir in "dovecot -a" output
+		base_dir="$(%%PREFIX%%/bin/doveconf ${command_args} -h base_dir)"
 		pidfile="${base_dir}/master.pid"
 	else
 		echo "==Error=="
