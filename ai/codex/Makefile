@@ -1,8 +1,10 @@
 PORTNAME=	codex
 DISTVERSIONPREFIX=	rust-v
-DISTVERSION=	0.163.0
-PORTREVISION=	1
+DISTVERSION=	0.167.0
 CATEGORIES=	ai devel
+DIST_SUBDIR=	${PORTNAME}
+EXTRACT_ONLY=	${DISTFILE_DEFAULT} \
+		${DISTFILES:M*_cargo_*:C/:.*$//}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lightweight coding agent that runs in your terminal
@@ -25,8 +27,7 @@ RUN_DEPENDS=	bash:shells/bash \
 		rg:textproc/ripgrep
 TEST_DEPENDS=	bash:shells/bash
 
-USES=		cargo dos2unix gnome llvm:min=21 ninja:build python:test \
-		shebangfix ssl
+USES=		cargo gnome llvm:min=21 ninja:build python:test shebangfix ssl
 
 # The all-features workspace test suite exceeds practical time and memory limits.
 NO_TEST=	yes
@@ -39,13 +40,8 @@ GH_ACCOUNT=	openai
 
 USE_GNOME=	glib20
 
-# Several Cargo manifests in the MXC git dependency use CRLF endings.  The
-# cargo framework's package scanner requires Unix line endings to locate the
-# individual crates in that repository.
-DOS2UNIX_WRKSRC=	${WRKDIR}
-DOS2UNIX_REGEX=		${WRKDIR}/mxc-[^/]+/.*Cargo.toml
-
-SHEBANG_FILES=	codex-rs/app-server-protocol/scripts/write_schema_fixtures.py \
+SHEBANG_FILES=	\
+		codex-rs/app-server-protocol/scripts/write_schema_fixtures.py \
 		codex-rs/skills/src/assets/samples/imagegen/scripts/image_gen.py \
 		codex-rs/skills/src/assets/samples/imagegen/scripts/remove_chroma_key.py \
 		codex-rs/skills/src/assets/samples/skill-creator/scripts/generate_openai_yaml.py \
@@ -64,8 +60,8 @@ CARGO_CARGOTOML=	${BUILD_WRKSRC}/Cargo.toml
 CARGO_CARGOLOCK=	${BUILD_WRKSRC}/Cargo.lock
 CARGO_BUILD_ARGS=	--bin ${PORTNAME} \
 			--bin ${PORTNAME}-code-mode-host \
-			--bin ${PORTNAME}-responses-api-proxy \
-			--bin logs_client
+			--bin ${PORTNAME}-responses-api-proxy
+CARGO_TEST_ARGS=	--all-features --no-fail-fast
 CARGO_ENV=		OPENSSL_NO_VENDOR=1 \
 			CARGO_PROFILE_RELEASE_CODEGEN_UNITS=16 \
 			CARGO_PROFILE_RELEASE_LTO=false \
@@ -73,7 +69,8 @@ CARGO_ENV=		OPENSSL_NO_VENDOR=1 \
 			GN=${LOCALBASE}/bin/gn \
 			EXTRA_GN_ARGS="enable_pkeys=false use_allocator_shim=false" \
 			NINJA=${NINJA_CMD} \
-			CLANG_BASE_PATH=${LLVM_PREFIX}
+		CLANG_BASE_PATH=${LLVM_PREFIX} \
+		PATH=${LLVM_PREFIX}/bin:${PATH}
 
 # Reference the real tools under ${LLVM_PREFIX}/bin rather than the
 # ${LOCALBASE}/bin/<tool><ver> multi-call wrapper, which dispatches on $0 and
@@ -83,21 +80,18 @@ BINARY_ALIAS=	python3=${PYTHON_CMD} \
 		cc=${LLVM_PREFIX}/bin/clang \
 		c++=${LLVM_PREFIX}/bin/clang++ \
 		ar=${LLVM_PREFIX}/bin/llvm-ar \
+		llvm-ar=${LLVM_PREFIX}/bin/llvm-ar \
 		nm=${LLVM_PREFIX}/bin/llvm-nm \
 		ld=${LLVM_PREFIX}/bin/ld.lld \
 		readelf=${LLVM_PREFIX}/bin/llvm-readelf
+FETCH_CMD=	${SH} ${FILESDIR}/fetch-wrapper.sh
+PORTSCOUT=	limit:^rust-v[0-9]\.
 
 BUILD_WRKSRC=	${WRKSRC}/codex-rs
 
 PLIST_FILES=	bin/${PORTNAME} \
 		bin/${PORTNAME}-code-mode-host \
-		bin/${PORTNAME}-responses-api-proxy \
-		bin/logs_client \
-		libexec/${PORTNAME}/bin/${PORTNAME} \
-		libexec/${PORTNAME}/bin/${PORTNAME}-code-mode-host \
-		libexec/${PORTNAME}/codex-package.json \
-		libexec/${PORTNAME}/codex-path/rg
-PLIST_DIRS=	libexec/${PORTNAME}/codex-resources
+		bin/${PORTNAME}-responses-api-proxy
 PORTDOCS=	README.md config.md
 
 OPTIONS_DEFINE=		COMPLETIONS DOCS
@@ -109,16 +103,51 @@ COMPLETIONS_PLIST_FILES=etc/bash_completion.d/${PORTNAME} \
 			share/fish/completions/${PORTNAME}.fish \
 			share/zsh/site-functions/_${PORTNAME}
 
-.if defined(MAGUS)
-MAKE_JOBS_UNSAFE=	yes
-.endif
+V8_GH_ACCOUNT=		seanh-oai
+V8_GH_PROJECT=		rusty_v8
+V8_GH_TAGNAME=		350c5a859a9b3c84ab8701b3ad51e3b7699b30c0
+V8_SUBMODULES_TUPLE=	\
+		https://github.com/denoland/chromium_build 2c779f961da7f5632d6836113112179e67938868 build build-2c779f961da7f5632d6836113112179e67938868.tar.gz \
+		https://chromium.googlesource.com/chromium/src/buildtools 0d8a204ff274ee12fa9ace5e3ffd8e5fbcb54926 buildtools buildtools-0d8a204ff274ee12fa9ace5e3ffd8e5fbcb54926.tar.gz \
+		https://chromium.googlesource.com/chromium/src/third_party/abseil-cpp d16e32215c3ab90ba57c2e904a5344d85c7353e4 third_party/abseil-cpp third_party__abseil__cpp-d16e32215c3ab90ba57c2e904a5344d85c7353e4.tar.gz \
+		https://chromium.googlesource.com/external/github.com/jk-jeon/dragonbox beeeef91cf6fef89a4d4ba5e95d47ca64ccb3a44 third_party/dragonbox/src third_party__dragonbox__src-beeeef91cf6fef89a4d4ba5e95d47ca64ccb3a44.tar.gz \
+		https://chromium.googlesource.com/external/github.com/fastfloat/fast_float 34164f547b7df3f5d794ff67e9f885c36819ebfc third_party/fast_float/src third_party__fast_float__src-34164f547b7df3f5d794ff67e9f885c36819ebfc.tar.gz \
+		https://github.com/Maratyszcza/FP16 782eea126dc5c755827be751a099eb01826175cf third_party/fp16/src third_party__fp16__src-782eea126dc5c755827be751a099eb01826175cf.tar.gz \
+		https://chromium.googlesource.com/external/github.com/google/highway 2607d3b5b0113992fe84d3848859eae13b3b52c1 third_party/highway/src third_party__highway__src-2607d3b5b0113992fe84d3848859eae13b3b52c1.tar.gz \
+		https://chromium.googlesource.com/chromium/deps/icu d578f2e8b7bd5938e21cfb6bf15c079e0aa5b738 third_party/icu third_party__icu-d578f2e8b7bd5938e21cfb6bf15c079e0aa5b738.tar.gz \
+		https://chromium.googlesource.com/chromium/src/third_party/jinja2 c3027d884967773057bf74b957e3fea87e5df4d7 third_party/jinja2 third_party__jinja2-c3027d884967773057bf74b957e3fea87e5df4d7.tar.gz \
+		https://chromium.googlesource.com/external/github.com/llvm/llvm-project/libcxx b16984ce99c702355a5b2b4c52574e82cec41fb9 third_party/libc++/src third_party__libc______src-b16984ce99c702355a5b2b4c52574e82cec41fb9.tar.gz \
+		https://chromium.googlesource.com/external/github.com/llvm/llvm-project/libcxxabi 8f11bb1d4438d0239d0dfc1bd9456a9f31629dda third_party/libc++abi/src third_party__libc____abi__src-8f11bb1d4438d0239d0dfc1bd9456a9f31629dda.tar.gz \
+		https://chromium.googlesource.com/external/github.com/llvm/llvm-project/libunwind 1fd455816c724182cf8736811182bf0c37b03035 third_party/libunwind/src third_party__libunwind__src-1fd455816c724182cf8736811182bf0c37b03035.tar.gz \
+		https://chromium.googlesource.com/external/github.com/llvm/llvm-project/libc 75ae50cd48c8a9d70f552ccff040029968778da9 third_party/llvm-libc/src third_party__llvm__libc__src-75ae50cd48c8a9d70f552ccff040029968778da9.tar.gz \
+		https://chromium.googlesource.com/chromium/src/third_party/markupsafe 4256084ae14175d38a3ff7d739dca83ae49ccec6 third_party/markupsafe third_party__markupsafe-4256084ae14175d38a3ff7d739dca83ae49ccec6.tar.gz \
+		https://chromium.googlesource.com/chromium/src/base/allocator/partition_allocator ff3b8b885b8374cbd3902642d94dc737bda93d5d third_party/partition_alloc third_party__partition_alloc-ff3b8b885b8374cbd3902642d94dc737bda93d5d.tar.gz \
+		https://chromium.googlesource.com/chromium/src/third_party/rust afbc96607d0e659715d803cc099607dd1737fc41 third_party/rust third_party__rust-afbc96607d0e659715d803cc099607dd1737fc41.tar.gz \
+		https://chromium.googlesource.com/chromium/src/third_party/simdutf f7356eed293f8208c40b3c1b344a50bd70971983 third_party/simdutf third_party__simdutf-f7356eed293f8208c40b3c1b344a50bd70971983.tar.gz \
+		https://chromium.googlesource.com/chromium/src/tools/clang 56a7ab321b6840e949e3acf5f4528dadc6cb05bc tools/clang tools__clang-56a7ab321b6840e949e3acf5f4528dadc6cb05bc.tar.gz \
+		https://chromium.googlesource.com/chromium/src/tools/win faefd1b6fa9eeb033ad6fe60368ccb9bf908cbd0 tools/win tools__win-faefd1b6fa9eeb033ad6fe60368ccb9bf908cbd0.tar.gz \
+		https://github.com/denoland/v8 c4ca1eccb90c5464d826b7713dc27178a53b0cfe v8 v8-c4ca1eccb90c5464d826b7713dc27178a53b0cfe.tar.gz
+
+.for url commit_hash path archive in ${V8_SUBMODULES_TUPLE}
+.   if ${url:Mhttps\://github.com/*}
+MASTER_SITES+=	${url:S|$|/archive/${commit_hash}${EXTRACT_SUFX}?dummy=/|}:_v8_submodule_${path:C|[^a-zA-Z0-9_]|__|g}
+.   elif ${url:Mhttps\://*googlesource.com/*}
+MASTER_SITES+=	${url:S|$|/+archive/${commit_hash}${EXTRACT_SUFX}?dummy=/|}:_v8_submodule_${path:C|[^a-zA-Z0-9_]|__|g}
+.   endif
+DISTFILES+=	${archive}:_v8_submodule_${path:C|[^a-zA-Z0-9_]|__|g}
+.endfor
 
 post-extract:
-	@${MKDIR} ${WRKSRC_crate_v8}/third_party/icu/common
-	@${CP} ${WRKSRC_crate_deno_core_icudata}/src/icudtl.dat \
-		${WRKSRC_crate_v8}/third_party/icu/common
+.for _ _ path archive in ${V8_SUBMODULES_TUPLE}
+	@${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} ${DISTDIR}/${DIST_SUBDIR}/${archive} \
+		${EXTRACT_AFTER_ARGS} -C ${WRKSRC_crate_v8}/${path}
+.endfor
 
 post-patch:
+	@${BSDMAKE} PATCHDIR=${PATCHDIR}/mxc-sdk \
+		WRKSRC=${WRKSRC_crate_mxc-sdk} do-patch
+	@${BSDMAKE} PATCHDIR=${PATCHDIR}/rusty_v8 \
+		WRKSRC=${WRKSRC_crate_v8} do-patch
 	@${REINPLACE_CMD} -e 's|/bin/bash|${LOCALBASE}&|' \
 		${BUILD_WRKSRC}/app-server/tests/suite/v2/environment_info.rs \
 		${BUILD_WRKSRC}/cli/src/debug_sandbox/pid_tracker.rs \
@@ -138,9 +167,11 @@ post-patch:
 		${BUILD_WRKSRC}/core/src/tools/sandboxing_tests.rs \
 		${BUILD_WRKSRC}/core/src/unified_exec/process_manager_tests.rs \
 		${BUILD_WRKSRC}/core/tests/suite/exec.rs \
+		${BUILD_WRKSRC}/core/tests/suite/executor_discovery_v2.rs \
 		${BUILD_WRKSRC}/core/tests/suite/guardian_review.rs \
 		${BUILD_WRKSRC}/core/tests/suite/shell_snapshot.rs \
 		${BUILD_WRKSRC}/core/tests/suite/unified_exec.rs \
+		${BUILD_WRKSRC}/core/tests/suite/unified_exec_process_events.rs \
 		${BUILD_WRKSRC}/core/tests/suite/unified_exec_stdin_approval.rs \
 		${BUILD_WRKSRC}/core/tests/suite/unified_exec_stdin_review_size.rs \
 		${BUILD_WRKSRC}/core/tests/suite/user_notification.rs \
@@ -185,6 +216,7 @@ post-patch:
 		${BUILD_WRKSRC}/core/tests/suite/exec.rs \
 		${BUILD_WRKSRC}/core/tests/suite/guardian_mcp_elicitation.rs \
 		${BUILD_WRKSRC}/core/tests/suite/hooks.rs \
+		${BUILD_WRKSRC}/core/tests/suite/hooks_cwd_tests.rs \
 		${BUILD_WRKSRC}/core/tests/suite/hooks_mcp.rs \
 		${BUILD_WRKSRC}/core/tests/suite/interrupt_hooks.rs \
 		${BUILD_WRKSRC}/core/tests/suite/mcp_subagent_elicitation.rs \
@@ -232,43 +264,44 @@ post-build-COMPLETIONS-on:
 .endfor
 
 do-install:
-	@${MKDIR} ${PREFIX}/bin ${PREFIX}/libexec/${PORTNAME}/bin \
-		${PREFIX}/libexec/${PORTNAME}/codex-path \
-		${PREFIX}/libexec/${PORTNAME}/codex-resources
-.for prog in ${PORTNAME} ${PORTNAME}-code-mode-host
-	${INSTALL_PROGRAM} ${CARGO_TARGET_DIR}/${CARGO_BUILD_TARGET}/release/${prog} \
-		${PREFIX}/libexec/${PORTNAME}/bin
-	${LN} -s ../libexec/${PORTNAME}/bin/${prog} ${PREFIX}/bin/${prog}
-.endfor
-.for prog in ${PORTNAME}-responses-api-proxy logs_client
+	@${MKDIR} ${PREFIX}/bin
+.for prog in ${PLIST_FILES:Mbin/*:T}
 	${INSTALL_PROGRAM} ${CARGO_TARGET_DIR}/${CARGO_BUILD_TARGET}/release/${prog} \
 		${PREFIX}/bin
 .endfor
-	${INSTALL_PROGRAM} ${LOCALBASE}/bin/rg ${PREFIX}/libexec/${PORTNAME}/codex-path/rg
-	@${ECHO_CMD} '{"layoutVersion":1,"version":"${DISTVERSION}","target":"${CARGO_BUILD_TARGET}","variant":"codex","entrypoint":"bin/codex","resourcesDir":"codex-resources","pathDir":"codex-path"}' > ${PREFIX}/libexec/${PORTNAME}/codex-package.json
 
 post-install:
-	@${STRIP_CMD} ${PREFIX}/libexec/${PORTNAME}/bin/${PORTNAME} \
-		${PREFIX}/libexec/${PORTNAME}/bin/${PORTNAME}-code-mode-host \
-		${PREFIX}/libexec/${PORTNAME}/codex-path/rg
-.for prog in ${PORTNAME}-responses-api-proxy logs_client
-	@${STRIP_CMD} ${PREFIX}/bin/${prog}
-.endfor
+	@${STRIP_CMD} ${PLIST_FILES:Mbin/*:T:S|^|${PREFIX}/bin/|}
 
 post-install-COMPLETIONS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${PREFIX}/etc/bash_completion.d \
 		${FAKE_DESTDIR}${PREFIX}/share/fish/completions \
 		${FAKE_DESTDIR}${PREFIX}/share/zsh/site-functions
-	${INSTALL_DATA} ${WRKSRC}/completions/${PORTNAME}.bash \
-		${FAKE_DESTDIR}${PREFIX}/etc/bash_completion.d/${PORTNAME}
-	${INSTALL_DATA} ${WRKSRC}/completions/${PORTNAME}.fish \
-		${FAKE_DESTDIR}${PREFIX}/share/fish/completions/${PORTNAME}.fish
-	${INSTALL_DATA} ${WRKSRC}/completions/${PORTNAME}.zsh \
-		${FAKE_DESTDIR}${PREFIX}/share/zsh/site-functions/_${PORTNAME}
+.for sh in bash fish zsh
+	${INSTALL_DATA} ${WRKSRC}/completions/${PORTNAME}.${sh} \
+		${COMPLETIONS_PLIST_FILES:M*${sh}*:S|^|${FAKE_DESTDIR}${PREFIX}/|}
+.endfor
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
-	${INSTALL_MAN} ${PORTDOCS:S|^|${BUILD_WRKSRC}/|} \
-		${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_MAN} ${PORTDOCS:S|^|${BUILD_WRKSRC}/|} ${FAKE_DESTDIR}${DOCSDIR}
+
+# Use ThinLTO for test binaries while retaining the normal dependency cache.
+# Disabling LTO for the whole Cargo profile would rebuild every dependency.
+fast-build: configure
+.for crate bin in ${PORTNAME}-cli ${PORTNAME} \
+	${PORTNAME}-code-mode-host ${PORTNAME}-code-mode-host \
+	${PORTNAME}-responses-api-proxy ${PORTNAME}-responses-api-proxy
+	@${CARGO_CARGO_RUN} ${RUSTC} --manifest-path ${CARGO_CARGOTOML} \
+		--offline --release -p ${crate} --bin ${bin} -- \
+		-C lto=thin -C codegen-units=16
+.endfor
+
+#
+# target for port maintainer(s)
+#
+generate-v8-submodules-tuple:
+	@${SH} ${FILESDIR}/generate-submodules-tuple.sh \
+		${V8_GH_ACCOUNT} ${V8_GH_PROJECT} ${V8_GH_TAGNAME}
 
 .include <bsd.port.mk>
