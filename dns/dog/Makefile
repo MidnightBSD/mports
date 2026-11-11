@@ -1,7 +1,7 @@
 PORTNAME=	dog
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.1.0
-PORTREVISION=	9
+PORTREVISION=	10
 CATEGORIES=	dns net
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,9 +12,6 @@ LICENSE=	EUPL
 LICENSE_NAME=	European Union Public Licence V. 1.2
 LICENSE_FILE=	${WRKSRC}/LICENCE
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
-
-BROKEN_SSL=	openssl30 openssl31
-BROKEN_SSL_REASON=	Fails to detect OpenSSL 3.0.0 and later
 
 USES=		cargo ssl
 USE_GITHUB=	yes
@@ -29,13 +26,13 @@ CARGO_CRATES=	addr2line-0.14.0 \
 		atty-0.2.14 \
 		autocfg-1.0.1 \
 		backtrace-0.3.54 \
-		bitflags-1.2.1 \
+		bitflags-2.13.2 \
 		byteorder-1.3.4 \
 		cc-1.0.61 \
 		cfg-if-0.1.10 \
 		cfg-if-1.0.0 \
-		core-foundation-0.7.0 \
-		core-foundation-sys-0.7.0 \
+		core-foundation-0.9.4 \
+		core-foundation-sys-0.8.7 \
 		ctor-0.1.16 \
 		datetime-0.5.1 \
 		difference-2.0.0 \
@@ -52,14 +49,16 @@ CARGO_CRATES=	addr2line-0.14.0 \
 		itoa-0.4.6 \
 		json-0.12.4 \
 		lazy_static-1.4.0 \
-		libc-0.2.80 \
+		libc-0.2.191 \
 		log-0.4.11 \
 		miniz_oxide-0.4.3 \
-		native-tls-0.2.4 \
+		native-tls-0.2.12 \
 		object-0.22.0 \
-		openssl-0.10.30 \
+		once_cell-1.21.4 \
+		openssl-0.10.68 \
+		openssl-macros-0.1.0 \
 		openssl-probe-0.1.2 \
-		openssl-sys-0.9.58 \
+		openssl-sys-0.9.118 \
 		output_vt100-0.1.2 \
 		pkg-config-0.3.19 \
 		ppv-lite86-0.2.10 \
@@ -77,8 +76,8 @@ CARGO_CRATES=	addr2line-0.14.0 \
 		rustc-demangle-0.1.18 \
 		ryu-1.0.5 \
 		schannel-0.1.19 \
-		security-framework-0.4.4 \
-		security-framework-sys-0.4.3 \
+		security-framework-2.11.1 \
+		security-framework-sys-2.17.0 \
 		serde-1.0.117 \
 		serde_derive-1.0.117 \
 		serde_json-1.0.59 \
