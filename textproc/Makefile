@@ -343,6 +343,7 @@
     SUBDIR += py-alabaster
     SUBDIR += py-ansi2html
     SUBDIR += py-anyascii
+    SUBDIR += py-backrefs
     SUBDIR += py-bracex
     SUBDIR += py-chardet
     SUBDIR += py-charset-normalizer
