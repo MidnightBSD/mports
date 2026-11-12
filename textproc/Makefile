@@ -343,6 +343,7 @@
     SUBDIR += py-alabaster
     SUBDIR += py-ansi2html
     SUBDIR += py-anyascii
+    SUBDIR += py-backrefs
     SUBDIR += py-bracex
     SUBDIR += py-chardet
     SUBDIR += py-charset-normalizer
@@ -363,6 +364,9 @@
     SUBDIR += py-genshi
     SUBDIR += py-gi-docgen
     SUBDIR += py-griffe
+    SUBDIR += py-griffe-inherited-docstrings
+    SUBDIR += py-griffecli
+    SUBDIR += py-griffelib
     SUBDIR += py-hexdump
     SUBDIR += py-html2text
     SUBDIR += py-htmlmin2

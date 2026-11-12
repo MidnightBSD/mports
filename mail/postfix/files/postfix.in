@@ -43,6 +43,9 @@ postfix_start() {
 
 postfix_stop() {
 	%%PREFIX%%/sbin/postfix ${postfix_flags} stop
+	local _postfix_status=$?
+	[ ${_postfix_status} -eq 0 ] && wait_for_pids "${rc_pid}"
+	return ${_postfix_status}
 }
 
 postfix_reload() {

@@ -1703,6 +1703,7 @@
     SUBDIR += py-pyasn1
     SUBDIR += py-pyasn1-modules
     SUBDIR += py-pyasynchat
+    SUBDIR += py-pyasyncore
     SUBDIR += py-pybind11
     SUBDIR += py-pycodeexport
     SUBDIR += py-pycodestyle
@@ -1753,6 +1754,7 @@
     SUBDIR += py-pytest-flake8
     SUBDIR += py-pytest-forked
     SUBDIR += py-pytest-freezer
+    SUBDIR += py-pytest-gitconfig
     SUBDIR += py-pytest-html
     SUBDIR += py-pytest-httpbin
     SUBDIR += py-pytest-httpserver
@@ -1775,6 +1777,7 @@
     SUBDIR += py-pytest-runner
     SUBDIR += py-pytest-services
     SUBDIR += py-pytest-socket
+    SUBDIR += py-pytest-subprocess
     SUBDIR += py-pytest-subtests
     SUBDIR += py-pytest-sugar
     SUBDIR += py-pytest-timeout
@@ -1797,6 +1800,7 @@
     SUBDIR += py-python-subunit
     SUBDIR += py-pythran
     SUBDIR += py-pyTooling
+    SUBDIR += py-pytokens
     SUBDIR += py-pytrie
     SUBDIR += py-pytz
     SUBDIR += py-pytzdata
@@ -1911,6 +1915,7 @@
     SUBDIR += py-ty
     SUBDIR += py-typeguard
     SUBDIR += py-typer
+    SUBDIR += py-typer-slim
     SUBDIR += py-types-Jinja2
     SUBDIR += py-types-MarkupSafe
     SUBDIR += py-types-PyYAML
@@ -1942,6 +1947,7 @@
     SUBDIR += py-uv-build012
     SUBDIR += py-uv-dynamic-versioning
     SUBDIR += py-uvloop
+    SUBDIR += py-validate-pyproject-schema-store
     SUBDIR += py-validators
     SUBDIR += py-vcrpy
     SUBDIR += py-vcs-versioning
