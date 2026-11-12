@@ -14,6 +14,6 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 USES=		python:3.9+ python-setuptools:78
 USE_PYTHON=	autoplist concurrent pep517
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}versioneer=0.29:devel/py-versioneer@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}versioneer>=0.29<0.30:devel/py-versioneer@${PY_FLAVOR}
 
 .include <bsd.port.mk>
