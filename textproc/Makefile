@@ -339,6 +339,7 @@
     SUBDIR += pugixml
     SUBDIR += py-CommonMark
     SUBDIR += py-Tempita
+    SUBDIR += py-accessible-pygments
     SUBDIR += py-alabaster
     SUBDIR += py-ansi2html
     SUBDIR += py-anyascii
