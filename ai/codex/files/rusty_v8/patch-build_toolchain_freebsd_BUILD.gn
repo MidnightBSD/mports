@@ -1,6 +1,6 @@
 --- build/toolchain/freebsd/BUILD.gn.orig	2026-11-04 02:02:02 UTC
 +++ build/toolchain/freebsd/BUILD.gn
-@@ -0,0 +1,73 @@
+@@ -0,0 +1,77 @@
 +# Copyright 2013 The Chromium Authors. All rights reserved.
 +# Use of this source code is governed by a BSD-style license that can be
 +# found in the LICENSE file.
