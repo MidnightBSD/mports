@@ -362,6 +362,7 @@
     SUBDIR += py-genshi
     SUBDIR += py-gi-docgen
     SUBDIR += py-griffe
+    SUBDIR += py-griffe-inherited-docstrings
     SUBDIR += py-hexdump
     SUBDIR += py-html2text
     SUBDIR += py-htmlmin2
