@@ -34,6 +34,8 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}execnet>0:sysutils/py-execnet@${PY_FLAVOR} 
 USES=		cpe python:3.8-3.15
 USE_PYTHON=	autoplist concurrent pep517 pytest
 
+TEST_ARGS=	-rsfE --doctest-glob= -p no:legacypath
+
 DOCSDIR=	${PREFIX}/share/doc/${PYTHON_PKGNAMEPREFIX}${PORTNAME}
 
 PLIST_FILES=	share/man/man1/pyi-makespec.1.gz \
