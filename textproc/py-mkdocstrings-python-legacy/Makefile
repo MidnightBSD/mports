@@ -25,7 +25,7 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest-cov>=5.0:devel/py-pytest-cov@${PY_FL
 USES=		python:3.9+
 USE_PYTHON=	autoplist pep517 pytest
 
-TEST_ARGS=	-c config/pytest.ini --cov --cov-config config/coverage.ini
+TEST_ARGS=	-c config/pytest.ini --cov=mkdocstrings_handlers.python --cov=tests --cov-config config/coverage.ini
 TEST_ENV=	PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
 
 CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}mkdocstrings-python
