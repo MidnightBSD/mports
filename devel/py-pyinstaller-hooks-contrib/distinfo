@@ -1,3 +1,5 @@
-TIMESTAMP = 1772523662
-SHA256 (pyinstaller_hooks_contrib-2026.2.tar.gz) = cbd1eb00b5d13301b1cce602e1fffb17f0c531c0391f0a87a383d376be68a186
-SIZE (pyinstaller_hooks_contrib-2026.2.tar.gz) = 171884
+TIMESTAMP = 1794508139
+SHA256 (pyinstaller_hooks_contrib-2026.6.tar.gz) = bef5002c32f4f50bd55b005da12cff64eca8783e7eaf86a06a62410164bab725
+SIZE (pyinstaller_hooks_contrib-2026.6.tar.gz) = 173354
+SHA256 (pyinstaller-pyinstaller-hooks-contrib-791432e2a150b2282f8048df71c9ec3665aabb48_GH0.tar.gz) = 3111756633394f1160818d326bdac04239ad2fae89d6359cc58efe59c4afcf39
+SIZE (pyinstaller-pyinstaller-hooks-contrib-791432e2a150b2282f8048df71c9ec3665aabb48_GH0.tar.gz) = 193779
