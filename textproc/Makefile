@@ -364,6 +364,7 @@
     SUBDIR += py-genshi
     SUBDIR += py-gi-docgen
     SUBDIR += py-griffe
+    SUBDIR += py-griffecli
     SUBDIR += py-griffelib
     SUBDIR += py-hexdump
     SUBDIR += py-html2text
