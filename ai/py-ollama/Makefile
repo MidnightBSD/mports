@@ -1,6 +1,6 @@
 PORTNAME=	ollama
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.6.2
+DISTVERSION=	0.6.3
 CATEGORIES=	ai # machine-learning
 #MASTER_SITES=	PYPI # no tests
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -17,22 +17,24 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>=0:devel/py-hatchling@${PY_FLAVO
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}httpx>=0.27:www/py-httpx@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pydantic2>=2.9:devel/py-pydantic2@${PY_FLAVOR}
 TEST_DEPENDS=	${PY_PILLOW} \
+		${PYTHON_PKGNAMEPREFIX}anyio>=0:devel/py-anyio@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-asyncio>=0.23.2:devel/py-pytest-asyncio@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-cov>=4.1:devel/py-pytest-cov@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-httpserver>=0:devel/py-pytest-httpserver@${PY_FLAVOR}
 
-USES=		python
-USE_PYTHON=	pep517 concurrent autoplist pytest # tests fail because api_key needs to be set
+USES=		python:3.8+
+USE_PYTHON=	pep517 concurrent autoplist pytest
 
 USE_GITHUB=	yes
 GH_PROJECT=	ollama-python
 
-TEST_ENV=	${MAKE_ENV} PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
+TEST_ARGS=	--doctest-modules --import-mode=importlib \
+		${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/ollama tests
+
+TEST_ENV=	${MAKE_ENV} PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
+
+MAKE_ENV+=	SETUPTOOLS_SCM_PRETEND_VERSION=${DISTVERSION}
 
 NO_ARCH=	yes
-
-post-patch: # workaround: hatch-vcs can't detect version without git repo
-	@${REINPLACE_CMD} -e "s|dynamic = \[ 'version' \]|version = '${PORTVERSION}'|" ${WRKSRC}/pyproject.toml
-	@${REINPLACE_CMD} -e '/\[tool.hatch.version\]/,/^$$/d' ${WRKSRC}/pyproject.toml
 
 .include <bsd.port.mk>
