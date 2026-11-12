@@ -1,6 +1,6 @@
 PORTNAME=	clamav
 DISTVERSION=	1.4.6
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	security
 MASTER_SITES=	https://www.clamav.net/downloads/production/
@@ -30,6 +30,12 @@ CMAKE_ARGS=	-DDATABASE_DIRECTORY:STRING=${_DBDIR} \
 		-DOPENSSL_ROOT_DIR=${OPENSSLBASE} \
 		-DOPENSSL_SSL_LIBRARY=${OPENSSLLIB}/libssl.so
 CMAKE_ON=	ENABLE_EXTERNAL_MSPACK
+
+# Search the build directory first for the generated "clamav-config.h";
+# otherwise the copy installed in LOCALBASE/include (-isystem) wins.
+# -I would be ignored because the build directory is also -isystem.
+CFLAGS+=	-iquote ${BUILD_WRKSRC}
+CXXFLAGS+=	-iquote ${BUILD_WRKSRC}
 
 TEST_TARGET=	check
 
