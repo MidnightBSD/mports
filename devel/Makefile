@@ -1796,6 +1796,7 @@
     SUBDIR += py-python-subunit
     SUBDIR += py-pythran
     SUBDIR += py-pyTooling
+    SUBDIR += py-pytokens
     SUBDIR += py-pytrie
     SUBDIR += py-pytz
     SUBDIR += py-pytzdata
