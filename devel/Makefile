@@ -1910,6 +1910,7 @@
     SUBDIR += py-ty
     SUBDIR += py-typeguard
     SUBDIR += py-typer
+    SUBDIR += py-typer-slim
     SUBDIR += py-types-Jinja2
     SUBDIR += py-types-MarkupSafe
     SUBDIR += py-types-PyYAML
