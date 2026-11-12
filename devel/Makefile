@@ -1941,6 +1941,7 @@
     SUBDIR += py-uv-build012
     SUBDIR += py-uv-dynamic-versioning
     SUBDIR += py-uvloop
+    SUBDIR += py-validate-pyproject-schema-store
     SUBDIR += py-validators
     SUBDIR += py-vcrpy
     SUBDIR += py-vcs-versioning
