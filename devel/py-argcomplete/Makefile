@@ -1,6 +1,5 @@
 PORTNAME=	argcomplete
-PORTVERSION=	3.3.0
-PORTREVISION=	1
+PORTVERSION=	3.7.2
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,21 +12,22 @@ WWW=		https://kislyuk.github.io/argcomplete/ \
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE.rst
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=61:devel/py-setuptools@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}setuptools-scm>=6.2:devel/py-setuptools-scm@${PY_FLAVOR} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatch-vcs>=0:devel/py-hatch-vcs@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}hatchling>=0:devel/py-hatchling@${PY_FLAVOR}
+TEST_DEPENDS=	bash:shells/bash \
+		${PYTHON_PKGNAMEPREFIX}coverage>=0:devel/py-coverage@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}mypy>=0:devel/py-mypy@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pexpect>=0:misc/py-pexpect@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}ruff>=0:devel/py-ruff@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 
-USES=		python shebangfix
-USE_PYTHON=	autoplist concurrent pep517
+USES=		python:3.10+ shebangfix
+USE_PYTHON=	autoplist concurrent pep517 unittest
+TEST_ARGS=	test.test test.test_contrib_shells
 
 NO_ARCH=	yes
-# ruff isn't available
-NO_TEST=	yes
 
-SHEBANG_FILES=	scripts/* \
+SHEBANG_FILES=	argcomplete/scripts/*.py \
 		test/prog
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|%%PYTHON_CMD%%|${PYTHON_CMD}|' ${WRKSRC}/test/test.py
 
 .include <bsd.port.mk>

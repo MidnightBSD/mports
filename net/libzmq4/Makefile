@@ -1,6 +1,7 @@
 PORTNAME=	libzmq4
 DISTVERSIONPREFIX=	v
 DISTVERSION=	4.3.5
+PORTREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	https://github.com/zeromq/libzmq/releases/download/${DISTVERSIONFULL}/
 DISTNAME=	zeromq-${DISTVERSION}

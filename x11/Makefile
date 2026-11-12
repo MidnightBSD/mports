@@ -146,6 +146,7 @@
     SUBDIR += menulibre
     SUBDIR += mkcomposecache
     SUBDIR += mlogind
+    SUBDIR += nightsaver
     SUBDIR += numlockx
     SUBDIR += nvidia-driver
     SUBDIR += nvidia-driver-304

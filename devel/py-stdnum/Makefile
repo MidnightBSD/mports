@@ -1,6 +1,5 @@
 PORTNAME=	stdnum
-PORTVERSION=	1.13
-PORTREVISION=	1
+PORTVERSION=	1.20
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,5 +12,7 @@ LICENSE=	lgpl2.1
 
 USES=		python
 USE_PYTHON=	distutils autoplist
+
+NO_ARCH=	yes
 
 .include <bsd.port.mk>

@@ -1,6 +1,5 @@
 PORTNAME=	treelib
-DISTVERSION=	1.7.1
-PORTREVISION=	1
+DISTVERSION=	1.8.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,8 +12,10 @@ LICENSE=	Apache-2.0
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}six>=1.13.0:devel/py-six@${PY_FLAVOR}
 
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}poetry-core>0:devel/py-poetry-core@${PY_FLAVOR}
+
 USES=		python
-USE_PYTHON=	distutils autoplist
+USE_PYTHON=	pep517 autoplist
 
 NO_ARCH=	yes
 NO_TEST=	yes

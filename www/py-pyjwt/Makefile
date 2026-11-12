@@ -1,5 +1,5 @@
 PORTNAME=	pyjwt
-PORTVERSION=	2.13.0
+PORTVERSION=	2.15.1
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,21 +12,21 @@ WWW=		https://pyjwt.readthedocs.io/en/stable/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=61:devel/py-setuptools@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
-
-USES=		cpe python
+USES=		cpe python:3.9+ python-setuptools:78
 USE_PYTHON=	allflavors autoplist concurrent pep517
 
 NO_ARCH=	yes
-CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}-pyjwt1
+
+CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}pyjwt1 \
+			${PYTHON_PKGNAMEPREFIX}pyjwt1-[0-9]*
 
 CPE_VENDOR=	pyjwt_project
 
 OPTIONS_DEFINE=	CRYPTO
 OPTIONS_DEFAULT=CRYPTO
 
-CRYPTO_USE=	PYTHON=cryptography
+CRYPTO_DESC=	Cryptographic signing support
+CRYPTO_RUN_DEPENDS=	${CRYPTOGRAPHY_DEPENDS:S/>=0:/>=3.4.0,1:/}
 
 .include <bsd.port.pre.mk>
 

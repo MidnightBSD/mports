@@ -55,6 +55,7 @@
 %%PORTDOCS%%%%DOCSDIR%%/_modules/index.html
 %%PORTDOCS%%%%DOCSDIR%%/_static/_sphinx_javascript_frameworks_compat.js
 %%PORTDOCS%%%%DOCSDIR%%/_static/annotated.png
+%%PORTDOCS%%%%DOCSDIR%%/_static/base-stemmer.js
 %%PORTDOCS%%%%DOCSDIR%%/_static/basic.css
 %%PORTDOCS%%%%DOCSDIR%%/_static/changelog.css
 %%PORTDOCS%%%%DOCSDIR%%/_static/clipboard.min.js
@@ -68,6 +69,7 @@
 %%PORTDOCS%%%%DOCSDIR%%/_static/documentation_options.js
 %%PORTDOCS%%%%DOCSDIR%%/_static/dragons.png
 %%PORTDOCS%%%%DOCSDIR%%/_static/dragons_original.png
+%%PORTDOCS%%%%DOCSDIR%%/_static/english-stemmer.js
 %%PORTDOCS%%%%DOCSDIR%%/_static/file.png
 %%PORTDOCS%%%%DOCSDIR%%/_static/init.js
 %%PORTDOCS%%%%DOCSDIR%%/_static/jquery.js
@@ -117,9 +119,7 @@
 %%PORTDOCS%%%%DOCSDIR%%/build/changelog/unreleased_13/6589.rst
 %%PORTDOCS%%%%DOCSDIR%%/build/changelog/unreleased_13/7115.rst
 %%PORTDOCS%%%%DOCSDIR%%/build/changelog/unreleased_13/README.txt
-%%PORTDOCS%%%%DOCSDIR%%/build/changelog/unreleased_14/11471.rst
 %%PORTDOCS%%%%DOCSDIR%%/build/changelog/unreleased_14/README.txt
-%%PORTDOCS%%%%DOCSDIR%%/build/changelog/unreleased_14/greenlet_compat.rst
 %%PORTDOCS%%%%DOCSDIR%%/build/changelog/unreleased_20/README.txt
 %%PORTDOCS%%%%DOCSDIR%%/build/changelog/whatsnew_20.rst
 %%PORTDOCS%%%%DOCSDIR%%/build/conf.py
@@ -235,7 +235,6 @@
 %%PORTDOCS%%%%DOCSDIR%%/build/orm/nonstandard_mappings.rst
 %%PORTDOCS%%%%DOCSDIR%%/build/orm/persistence_techniques.rst
 %%PORTDOCS%%%%DOCSDIR%%/build/orm/query.rst
-%%PORTDOCS%%%%DOCSDIR%%/build/orm/queryguide.rst
 %%PORTDOCS%%%%DOCSDIR%%/build/orm/queryguide/_deferred_setup.rst
 %%PORTDOCS%%%%DOCSDIR%%/build/orm/queryguide/_dml_setup.rst
 %%PORTDOCS%%%%DOCSDIR%%/build/orm/queryguide/_end_doctest.rst
@@ -251,6 +250,7 @@
 %%PORTDOCS%%%%DOCSDIR%%/build/orm/queryguide/queryguide_nav_include.rst
 %%PORTDOCS%%%%DOCSDIR%%/build/orm/queryguide/relationships.rst
 %%PORTDOCS%%%%DOCSDIR%%/build/orm/queryguide/select.rst
+%%PORTDOCS%%%%DOCSDIR%%/build/orm/queryguide.rst
 %%PORTDOCS%%%%DOCSDIR%%/build/orm/quickstart.rst
 %%PORTDOCS%%%%DOCSDIR%%/build/orm/relationship_api.rst
 %%PORTDOCS%%%%DOCSDIR%%/build/orm/relationship_persistence.rst
@@ -423,7 +423,6 @@
 %%PORTDOCS%%%%DOCSDIR%%/orm/nonstandard_mappings.html
 %%PORTDOCS%%%%DOCSDIR%%/orm/persistence_techniques.html
 %%PORTDOCS%%%%DOCSDIR%%/orm/query.html
-%%PORTDOCS%%%%DOCSDIR%%/orm/queryguide.html
 %%PORTDOCS%%%%DOCSDIR%%/orm/queryguide/_deferred_setup.html
 %%PORTDOCS%%%%DOCSDIR%%/orm/queryguide/_dml_setup.html
 %%PORTDOCS%%%%DOCSDIR%%/orm/queryguide/_end_doctest.html
@@ -438,6 +437,7 @@
 %%PORTDOCS%%%%DOCSDIR%%/orm/queryguide/query.html
 %%PORTDOCS%%%%DOCSDIR%%/orm/queryguide/relationships.html
 %%PORTDOCS%%%%DOCSDIR%%/orm/queryguide/select.html
+%%PORTDOCS%%%%DOCSDIR%%/orm/queryguide.html
 %%PORTDOCS%%%%DOCSDIR%%/orm/quickstart.html
 %%PORTDOCS%%%%DOCSDIR%%/orm/relationship_api.html
 %%PORTDOCS%%%%DOCSDIR%%/orm/relationship_persistence.html

@@ -1,6 +1,5 @@
 PORTNAME=	mistune
-PORTVERSION=	3.2.0
-PORTREVISION=	1
+PORTVERSION=	3.3.4
 CATEGORIES=	textproc python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,14 +11,20 @@ WWW=		https://github.com/lepture/mistune
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
+
 USES=		cpe python
-USE_PYTHON=	autoplist concurrent distutils unittest
+USE_PYTHON=	autoplist concurrent pep517 unittest
 
 NO_ARCH=	yes
 
 CPE_VENDOR=	mistune_project
 
-post-patch:
-	@${CP} ${FILESDIR}/setup.py ${WRKSRC}/
+.include <bsd.port.pre.mk>
 
-.include <bsd.port.mk>
+.if ${PYTHON_REL} < 31100
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}typing-extensions>=0:devel/py-typing-extensions@${PY_FLAVOR}
+.endif
+
+.include <bsd.port.post.mk>

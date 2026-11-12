@@ -1,0 +1,13 @@
+TIMESTAMP = 1794261923
+SHA256 (linux-firmware/mtkbtfw/mediatek/BT_RAM_CODE_MT7902_1_1_hdr.bin?h=20261019) = 4f53b5e02fbd933172e18caf952bda410a877eaad00561781528cb4aff58dc38
+SIZE (linux-firmware/mtkbtfw/mediatek/BT_RAM_CODE_MT7902_1_1_hdr.bin?h=20261019) = 509320
+SHA256 (linux-firmware/mtkbtfw/mediatek/BT_RAM_CODE_MT7922_1_1_hdr.bin?h=20261019) = 299942dbec7d34af030670ea59f9f7b4fd5c64e738b9e0157d76f4dd3beb190f
+SIZE (linux-firmware/mtkbtfw/mediatek/BT_RAM_CODE_MT7922_1_1_hdr.bin?h=20261019) = 517398
+SHA256 (linux-firmware/mtkbtfw/mediatek/BT_RAM_CODE_MT7961_1_2_hdr.bin?h=20261019) = 7a440a0f7404c73a2f03d8cc0475ac9f7fdc931b494dce37705e7d578153dbae
+SIZE (linux-firmware/mtkbtfw/mediatek/BT_RAM_CODE_MT7961_1_2_hdr.bin?h=20261019) = 533870
+SHA256 (linux-firmware/mtkbtfw/mediatek/BT_RAM_CODE_MT7961_1a_2_hdr.bin?h=20261019) = 671d18fd594a73bc4747c1922b17271878c8bb26fa8fd122238e797d52e337e9
+SIZE (linux-firmware/mtkbtfw/mediatek/BT_RAM_CODE_MT7961_1a_2_hdr.bin?h=20261019) = 494705
+SHA256 (linux-firmware/mtkbtfw/mediatek/mt7925/BT_RAM_CODE_MT7925_1_1_hdr.bin?h=20261019) = be7c18e37221e277baaef853be3a0ba930138ee879f336ff7b185e79ab09a5c9
+SIZE (linux-firmware/mtkbtfw/mediatek/mt7925/BT_RAM_CODE_MT7925_1_1_hdr.bin?h=20261019) = 448367
+SHA256 (linux-firmware/mtkbtfw/LICENSES/LICENCE.mediatek?h=20261019) = a90d3f66704d85889945fec5525ea77622549da83aced1aac99828383f8f1805
+SIZE (linux-firmware/mtkbtfw/LICENSES/LICENCE.mediatek?h=20261019) = 561

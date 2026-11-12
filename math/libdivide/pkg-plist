@@ -1,0 +1,4 @@
+include/libdivide.h
+lib/cmake/libdivide/libdivideConfig.cmake
+lib/cmake/libdivide/libdivideConfigVersion.cmake
+@dir lib/cmake/libdivide

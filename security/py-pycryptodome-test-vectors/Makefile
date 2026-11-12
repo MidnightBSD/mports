@@ -1,9 +1,9 @@
 PORTNAME=	pycryptodome-test-vectors
-DISTVERSION=	1.0.20
-PORTREVISION=	1
+DISTVERSION=	1.0.22
 CATEGORIES=	security python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTNAME=	${PORTNAME:S/-/_/g}-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Optional test vectors for PyCryptodome and PyCryptodomeX
@@ -13,8 +13,7 @@ LICENSE=	bsd2 Apache-2.0
 LICENSE_COMB=	multi
 LICENSE_FILE=	${WRKSRC}/LICENSE.rst
 
-# Officially: 2.7, 3.5-3.12 (same as security/py-cryptodome)
-USES=		cpe python zip
+USES=		cpe python
 CPE_VENDOR=	python
 USE_PYTHON=	autoplist distutils
 

@@ -4,7 +4,7 @@
 
 PORTNAME=	windowmaker-desktop
 PORTVERSION=	1.7
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11 windowmaker
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -21,7 +21,7 @@ RUN_DEPENDS=	wmaker:x11-wm/windowmaker \
 		wmsmixer:audio/wmsmixer \
 		${LOCALBASE}/share/WindowMaker/Themes/LeetWM.themed/style:graphics/wmicons \
 		wmweather+:misc/wmweather+ \
-		XScreenSaver.App:x11/xscreensaver.app
+		nightsaver>=0.2.0_1:x11/nightsaver
 
 NO_WRKSUBDIR=	YES
 NO_BUILD=	YES

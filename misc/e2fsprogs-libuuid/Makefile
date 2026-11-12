@@ -11,7 +11,6 @@ CONFLICTS=	ossp-uuid-[0-9]*
 
 CONFIGURE_ARGS=	--enable-elf-shlibs --enable-libuuid
 
-WITHOUT_NLS=	yes
 OPTIONS_EXCLUDE=	NLS
 OPTIONSFILE=	# works around optionsNG trouble
 MASTERDIR=	${.CURDIR}/../../filesystems/e2fsprogs-core
@@ -32,14 +31,14 @@ post-patch::
 
 pre-build:
 	${MKDIR} ${WRKSRC}/lib/uuid/elfshared
-	cd ${WRKSRC}/util && ${MAKE_CMD} subst
+	cd ${WRKSRC}/util && ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${MAKE_CMD} subst
 
 # ulimit guards against runaway tests
 # failure to launch uuidd is fine (one might be running, or we may lack
 # privileges); if it works, it'll quit after 50 seconds
 post-build:
-	cd ${WRKSRC}/misc && ${MAKE_CMD} uuidgen uuidgen.1 uuidd uuidd.8
-	cd ${INSTALL_WRKSRC} && ( ulimit -t 5 && ${MAKE_CMD} check )
+	cd ${WRKSRC}/misc && ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${MAKE_CMD} uuidgen uuidgen.1 uuidd uuidd.8
+	cd ${INSTALL_WRKSRC} && ( ulimit -t 5 && ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${MAKE_CMD} check )
 
 post-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/misc/uuidgen ${PREFIX}/bin/

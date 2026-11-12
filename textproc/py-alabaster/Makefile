@@ -1,12 +1,13 @@
 PORTNAME=	alabaster
-PORTVERSION=	0.7.16
-PORTREVISION=	1
+PORTVERSION=	1.0.0
 CATEGORIES=	textproc python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Modified Kr Sphinx theme
+WWW=		https://alabaster.readthedocs.io/en/latest/ \
+		https://github.com/sphinx-doc/alabaster
 
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE.rst

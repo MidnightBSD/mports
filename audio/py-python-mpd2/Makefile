@@ -1,20 +1,24 @@
 PORTNAME=	python-mpd2
-PORTVERSION=	3.1.1
-PORTREVISION=	1
+PORTVERSION=	3.1.2
+DISTVERSIONPREFIX=	v
 CATEGORIES=	audio python
-MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python MPD client library
 
-LICENSE=	lgpl3
+LICENSE=	lgpl3+
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=61.0:devel/py-setuptools@${PY_FLAVOR}
+
 USES=		python
-USE_PYTHON=	autoplist concurrent distutils
+USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	Mic92
 
 OPTIONS_DEFINE=	DOCS TWISTED
 TWISTED_DESC=	Twisted support

@@ -1,19 +1,27 @@
 PORTNAME=	hpack
-PORTVERSION=	4.0.0
-PORTREVISION=	1
+PORTVERSION=	4.2.0
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	HTTP/2 header encoding (HPACK) logic implementation
-WWW=		https://hyper.rtfd.org/
+COMMENT=	Pure-Python HPACK header encoding
+WWW=		https://python-hyper.org/projects/hpack/en/stable/ \
+		https://github.com/python-hyper/hpack
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES?=		cpe python
-CPE_VENDOR=	python
-USE_PYTHON=	allflavors autoplist concurrent distutils
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}wheel>=0.46.3:devel/py-wheel@${PY_FLAVOR}
+
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hypothesis>=6.152.1<7:devel/py-hypothesis@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pytest>=9.0.3,1:devel/py-pytest@${PY_FLAVOR}
+
+USES=		cpe python:3.10+ python-setuptools:modern
+USE_PYTHON=	autoplist concurrent pep517 pytest
+
 NO_ARCH=	yes
+
+CPE_VENDOR=	python
 
 .include <bsd.port.mk>

@@ -1,6 +1,5 @@
 PORTNAME=	berkeleydb
-PORTVERSION=	18.1.5
-PORTREVISION=	1
+PORTVERSION=	18.1.17
 CATEGORIES=	databases python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,12 +11,10 @@ WWW=		https://www.jcea.es/programacion/pybsddb.htm
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-USES=		bdb python
-USE_PYTHON=	distutils autoplist
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 
-PYDISTUTILS_CONFIGUREARGS=--libs="-l${BDB_LIB_NAME}" --berkeley-db=${LOCALBASE}
-PYDISTUTILS_BUILDARGS=	--libs="-l${BDB_LIB_NAME}" --berkeley-db=${LOCALBASE}
-PYDISTUTILS_INSTALLARGS=-c -O1 --prefix=${TRUE_PREFIX} --berkeley-db=${LOCALBASE}
+USES=		bdb python:3.11+ python-setuptools:83
+USE_PYTHON=	autoplist pep517
 
 PORTDOCS=	*
 DOCSDIR=	${PREFIX}/share/doc/${PYTHON_PKGNAMEPREFIX}${PORTNAME}
@@ -26,25 +23,26 @@ NO_TEST=	yes
 
 OPTIONS_DEFINE=	DOCS
 
+MAKE_ENV+=	BERKELEYDB_INCDIR=${BDB_INCLUDE_DIR} \
+		BERKELEYDB_LIBDIR=${BDB_LIB_DIR}
+
 .include <bsd.port.pre.mk>
 
 .if ${BDB_VER} > 5
-MAKE_ENV=	YES_I_HAVE_THE_RIGHT_TO_USE_THIS_BERKELEY_DB_VERSION=yes
+MAKE_ENV+=	YES_I_HAVE_THE_RIGHT_TO_USE_THIS_BERKELEY_DB_VERSION=yes
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} 's|%%DBVERSION%%|${BDB_LIB_NAME}| ; \
-		s|%%BDB_INCLUDE_DIR%%|${BDB_INCLUDE_DIR}| ; \
-		s|%%BDB_LIB_NAME%%|${BDB_LIB_NAME}|' \
+	@${REINPLACE_CMD} 's|%%BDB_LIB_NAME%%|${BDB_LIB_NAME}|' \
 		${WRKSRC}/setup3.py
-	@${REINPLACE_CMD} 's|<db\.h>|<${BDB_INCLUDE_DIR}/db.h>|' ${WRKSRC}/src/Module/berkeleydb.h
+	@${REINPLACE_CMD} 's|<db\.h>|<${BDB_INCLUDE_DIR}/db.h>|' \
+		${WRKSRC}/src/Module/berkeleydb.h
 
 post-install:
-	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/${PORTNAME}/_${PORTNAME}.cpython-*.so
+	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/${PORTNAME}/_${PORTNAME}*.so
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	@(cd ${WRKSRC}/docs && ${COPYTREE_SHARE} \* ${FAKE_DESTDIR}${DOCSDIR})
-
 
 .include <bsd.port.post.mk>

@@ -1,8 +1,8 @@
 PORTNAME=	xxhash
-PORTVERSION=	3.4.1
-PORTREVISION=	1
+PORTVERSION=	4.0.1
 CATEGORIES=	devel python
-MASTER_SITES=	PYPI
+MASTER_SITES=	PYPI \
+		https://github.com/ifduyue/python-xxhash/releases/download/v${PORTVERSION}/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org

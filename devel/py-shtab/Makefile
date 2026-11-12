@@ -1,23 +1,22 @@
 PORTNAME=	shtab
-PORTVERSION=	1.7.1
-PORTREVISION=	1
+PORTVERSION=	1.12.1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI \
-		https://github.com/iterative/shtab/releases/download/v${PORTVERSION}/
+		https://github.com/tqdm/shtab/releases/download/v${PORTVERSION}/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Automagic shell tab completion for Python CLI applications
-WWW=		https://docs.iterative.ai/shtab/ \
-		https://github.com/iterative/shtab
+WWW=		https://tqdm.github.io/shtab/ \
+		https://github.com/tqdm/shtab
 
-LICENSE=	Apache-2.0
+LICENSE=	MPL20
+LICENSE_FILE=	${WRKSRC}/LICENCE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=42:devel/py-setuptools@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}setuptools-scm>=3.4:devel/py-setuptools-scm@${PY_FLAVOR} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools-scm>=3.4:devel/py-setuptools-scm@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 
-USES=		python
+USES=		python:3.9+ python-setuptools:78
 USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes

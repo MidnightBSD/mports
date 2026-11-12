@@ -1,8 +1,7 @@
 PORTNAME=	hstspreload
-PORTVERSION=	2024.3.1
-PORTREVISION=	1
+PORTVERSION=	2026.9.1
 CATEGORIES=	www python
-MASTER_SITES=	PYPI
+#MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,9 +11,15 @@ WWW=		https://github.com/sethmlarson/hstspreload
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
+
 USES=		python
-USE_PYTHON=	autoplist concurrent distutils
+USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	sethmlarson
 
 .include <bsd.port.mk>

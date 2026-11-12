@@ -1,6 +1,6 @@
 PORTNAME=	dovecot24
 PORTVERSION=	2.4.5
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	mail
 MASTER_SITES=	https://dovecot.org/releases/2.4/
 DISTNAME=	dovecot-${PORTVERSION}
@@ -159,6 +159,7 @@ post-install:
 	@${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	${MV} ${FAKE_DESTDIR}${DOCSDIR}/mkcert.sh ${FAKE_DESTDIR}${EXAMPLESDIR}
 	${MV} ${FAKE_DESTDIR}${DOCSDIR}/dovecot-openssl.cnf ${FAKE_DESTDIR}${EXAMPLESDIR}
+	${MV} ${FAKE_DESTDIR}${ETCDIR}/dovecot.conf ${FAKE_DESTDIR}${ETCDIR}/dovecot.conf.sample
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}

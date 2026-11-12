@@ -1,6 +1,5 @@
 PORTNAME=	edalize
-DISTVERSION=	0.6.0
-PORTREVISION=	1
+DISTVERSION=	0.6.8
 CATEGORIES=	cad python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,30 +11,36 @@ WWW=		https://github.com/olofk/edalize
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PY_SETUPTOOLS} \
-		${PYTHON_PKGNAMEPREFIX}setuptools-scm>0:devel/py-setuptools-scm@${PY_FLAVOR} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools-scm>=7.1:devel/py-setuptools-scm@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}Jinja2>=3:devel/py-Jinja2@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}types-Jinja2>0:devel/py-types-Jinja2@${PY_FLAVOR} \
 		gmake:devel/gmake \
 		yosys:cad/yosys
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}vunit-hdl>0:cad/py-vunit-hdl@${PY_FLAVOR}
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}vunit-hdl>0:cad/py-vunit-hdl@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pandas>0:math/py-pandas@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pyparsing>0:devel/py-pyparsing@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pytest>=8.4.2,1:devel/py-pytest@${PY_FLAVOR}
 
-USES=		python shebangfix
-USE_PYTHON=	pep517 autoplist pytest
+USES=		python:3.9+ python-setuptools:78 shebangfix
+USE_PYTHON=	autoplist pep517 pytest
 
-SHEBANG_FILES=	tests/mock_commands/* scripts/el_docker
+SHEBANG_FILES=	scripts/el_docker tests/mock_commands/*
 
 NO_ARCH=	yes
 
 post-patch:
-	@${GREP} -rl '"make"' ${WRKSRC} | ${XARGS} ${REINPLACE_CMD} -i '' -e 's|"make"|"${GMAKE}"|'
+	# Keep the build-runner name while substituting executable invocations.
+	@${GREP} -rl '"make"' ${WRKSRC}/edalize | ${GREP} -v '/flows/edaflow.py$$' | ${XARGS} ${REINPLACE_CMD} -i '' -e 's|"make"|"${GMAKE}"|'
+	@${REINPLACE_CMD} -i '' -e 's|) make -f|) ${GMAKE} -f|' ${WRKSRC}/tests/tools/verilator/Makefile ${WRKSRC}/tests/tools/verilator/minimal/Makefile ${WRKSRC}/tests/flows/sim/with_cocotb/Makefile
 	@${GREP} -rl '"python3"' ${WRKSRC} | ${XARGS} ${REINPLACE_CMD} -i '' -e 's|"python3"|"${PYTHON_CMD}"|'
 	@${GREP} -rl 'shell python3 ' ${WRKSRC} | ${XARGS} ${REINPLACE_CMD} -i '' -e 's|shell python3 |shell ${PYTHON_CMD} |'
 	@${GREP} -rl '$$(shell which python3)' ${WRKSRC} | ${XARGS} ${REINPLACE_CMD} -i '' -e 's|$$(shell which python3)|${PYTHON_CMD}|'
 	@${REINPLACE_CMD} -i '' -e 's|/usr/bin/env python3|${PYTHON_CMD}|' ${WRKSRC}/tests/mock_commands/vcs
 
-# testsuite has intermittent failures: in many runs many tests fail, but sometimes all tests but 1 succeed, see https://github.com/olofk/edalize/issues/368
-# 2 tests (test_modelsim,test_modelsim_common_compilation) always fail because it depends on Intel's modelsim
+.include <bsd.port.pre.mk>
 
-.include <bsd.port.mk>
+.if ${PYTHON_REL} < 31000
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}importlib-metadata>=1.4:devel/py-importlib-metadata@${PY_FLAVOR}
+.endif
+
+.include <bsd.port.post.mk>

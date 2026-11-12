@@ -1,0 +1,3 @@
+Cython 3.2.0 installed outside the global Python module and executable paths.
+This compiler supports consumers whose upstream build metadata caps Cython at
+3.2. Consumers must explicitly select its private module directory.

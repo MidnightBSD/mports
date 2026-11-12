@@ -1,0 +1,21 @@
+%%PYTHON_LIBDIR%%/mports-uv-build/012/uv_build/__init__.py
+%%PYTHON_LIBDIR%%/mports-uv-build/012/uv_build/py.typed
+%%PYTHON_LIBDIR%%/mports-uv-build/012/uv_build/__pycache__/__main__%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-uv-build/012/uv_build/__pycache__/__init__%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-uv-build/012/uv_build/__pycache__/__init__%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-uv-build/012/uv_build/__pycache__/__main__%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-uv-build/012/uv_build/__main__.py
+%%PYTHON_LIBDIR%%/mports-uv-build/012/uv_build-0.12.1.dist-info/RECORD
+%%PYTHON_LIBDIR%%/mports-uv-build/012/uv_build-0.12.1.dist-info/licenses/LICENSE-APACHE
+%%PYTHON_LIBDIR%%/mports-uv-build/012/uv_build-0.12.1.dist-info/licenses/LICENSE-MIT
+%%PYTHON_LIBDIR%%/mports-uv-build/012/uv_build-0.12.1.dist-info/WHEEL
+%%PYTHON_LIBDIR%%/mports-uv-build/012/uv_build-0.12.1.dist-info/INSTALLER
+%%PYTHON_LIBDIR%%/mports-uv-build/012/uv_build-0.12.1.dist-info/METADATA
+%%PYTHON_LIBDIR%%/mports-uv-build/012/bin/uv-build
+@dir %%PYTHON_LIBDIR%%/mports-uv-build/012/uv_build/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-uv-build/012/uv_build
+@dir %%PYTHON_LIBDIR%%/mports-uv-build/012/uv_build-0.12.1.dist-info/licenses
+@dir %%PYTHON_LIBDIR%%/mports-uv-build/012/uv_build-0.12.1.dist-info
+@dir %%PYTHON_LIBDIR%%/mports-uv-build/012/bin
+@dir %%PYTHON_LIBDIR%%/mports-uv-build/012
+@dir %%PYTHON_LIBDIR%%/mports-uv-build

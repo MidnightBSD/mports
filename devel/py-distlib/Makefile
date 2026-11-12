@@ -1,6 +1,5 @@
 PORTNAME=	distlib
-DISTVERSION=	0.3.8
-PORTREVISION=	1
+DISTVERSION=	0.4.4
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,11 +11,10 @@ WWW=		https://github.com/pypa/distlib
 LICENSE=	python
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-BUILD_DEPENDS=	${PY_SETUPTOOLS} \
-		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 
-USES=		python
-USE_PYTHON=	pep517 autoplist
+USES=		python:3.9+ python-setuptools:78
+USE_PYTHON=	autoplist pep517
 
 NO_ARCH=	yes
 NO_TEST=	yes

@@ -1,0 +1,15 @@
+--- i915/Makefile.orig	2026-11-10 05:00:00 UTC
++++ i915/Makefile
+@@ -251,6 +251,12 @@
+ 	vnode_if.h
+ 
+ .include <bsd.kmod.mk>
++
++# Clang 21 warns about the const typeof() temporaries in intel_ring.h.
++# See https://lkml.org/lkml/2025/5/6/1681.
++.if ${COMPILER_TYPE} == clang && ${COMPILER_VERSION} >= 210100
++CWARNFLAGS+=	-Wno-default-const-init-var-unsafe
++.endif
+ 
+ # Re-instate -Wno-cast-qual for all files
+ # Reason: More or less all files need it due to use of test_bit() macro

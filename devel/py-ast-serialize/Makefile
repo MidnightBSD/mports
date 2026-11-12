@@ -1,0 +1,27 @@
+PORTNAME=	ast-serialize
+PORTVERSION=	0.11.2
+PORTREVISION=	1
+CATEGORIES=	devel python
+MASTER_SITES=	PYPI
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTFILES=	ast_serialize-${PORTVERSION}${EXTRACT_SUFX}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Python bindings for mypy AST serialization
+WWW=		https://github.com/mypyc/ast_serialize
+
+LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BUILD_DEPENDS=	${RUST_DEFAULT}>=1.95:lang/${RUST_DEFAULT} \
+		${PYTHON_PKGNAMEPREFIX}maturin>=1.9<2.0:devel/py-maturin@${PY_FLAVOR}
+
+USES=		cargo python:3.9+
+USE_PYTHON=	autoplist concurrent pep517
+
+CARGO_BUILD=	no
+CARGO_INSTALL=	no
+CARGO_TEST=	no
+WRKSRC=		${WRKDIR}/ast_serialize-${PORTVERSION}
+
+.include <bsd.port.mk>

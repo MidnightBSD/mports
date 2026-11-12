@@ -1,6 +1,5 @@
 PORTNAME=	importlib-metadata
-DISTVERSION=	8.7.1
-PORTREVISION=	0
+DISTVERSION=	10.0.0
 CATEGORIES=	devel
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,20 +12,15 @@ WWW=		https://github.com/python/importlib_metadata
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PY_SETUPTOOLS} \
-		${PYTHON_PKGNAMEPREFIX}coherent.licensed>0:devel/py-coherent.licensed@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}setuptools-scm>0:devel/py-setuptools-scm@${PY_FLAVOR} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}coherent.licensed>=0:devel/py-coherent.licensed@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}setuptools-scm>=3.4.1:devel/py-setuptools-scm@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}zipp>=3.20:devel/py-zipp@${PY_FLAVOR}
 
-USES=		python
+USES=		python:3.11+ python-setuptools:78
 USE_PYTHON=	allflavors autoplist pep517
 
 NO_ARCH=	yes
 NO_TEST=	yes
-
-post-patch:
-	@${REINPLACE_CMD} '/license-files/d; s|^license = "Apache-2.0"|license = { text = "Apache-2.0" }|; s|77|63|g' \
-		${WRKSRC}/pyproject.toml
 
 .include <bsd.port.mk>

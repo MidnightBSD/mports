@@ -1,9 +1,9 @@
 PORTNAME=	buildbot-www
-DISTVERSION=	3.11.1
-PORTREVISION=	1
+DISTVERSION=	4.3.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTNAME=	buildbot_www-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Buildbot UI
@@ -17,6 +17,7 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}buildbot-pkg>=${PORTVERSION}:devel/py-buil
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}buildbot-console-view>=${PORTVERSION}:devel/py-buildbot-console-view@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}buildbot-grid-view>=${PORTVERSION}:devel/py-buildbot-grid-view@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}buildbot-waterfall-view>=${PORTVERSION}:devel/py-buildbot-waterfall-view@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}buildbot-wsgi-dashboards>=${PORTVERSION}:devel/py-buildbot-wsgi-dashboards@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}service-identity>=16.0.0:security/py-service-identity@${PY_FLAVOR}
 
 USES=		python

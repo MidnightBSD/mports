@@ -1,6 +1,5 @@
 PORTNAME=	types-pyyaml
-PORTVERSION=	6.0.12.20260510
-PORTREVISION=	1
+PORTVERSION=	6.0.12.20260906
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,10 +12,9 @@ WWW=		https://github.com/python/typeshed/tree/main/stubs/pyyaml
 LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 
-USES=		python
+USES=		python:3.10+ python-setuptools:83
 USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes

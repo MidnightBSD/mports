@@ -1,8 +1,8 @@
 PORTNAME=	id
-PORTVERSION=	1.5.0
-PORTREVISION=	1
+PORTVERSION=	1.6.1
 CATEGORIES=	devel python
-MASTER_SITES=	PYPI
+MASTER_SITES=	PYPI \
+		https://github.com/di/id/releases/download/v${PORTVERSION}/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,9 +13,9 @@ LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}flit-core>=3.2<4:devel/py-flit-core@${PY_FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}requests>=0:www/py-requests@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}urllib3>=2,1<3,1:net/py-urllib3@${PY_FLAVOR}
 
-USES=		python
+USES=		python:3.9+
 USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes

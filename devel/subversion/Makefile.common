@@ -1,15 +1,16 @@
 PORTNAME?=	subversion
-PORTVERSION=	1.14.5
+PORTVERSION=	1.15.0
 PORTREVISION?=	0
 CATEGORIES+=	devel
 MASTER_SITES=	APACHE/subversion
 
 GNU_CONFIGURE=	yes
-USES+=		cpe libtool pathfix pkgconfig shebangfix tar:bzip2
+USES+=		cpe libtool pathfix pkgconfig python:patch,test shebangfix tar:bzip2
 SHEBANG_FILES=	tools/server-side/svnpubsub/rc.d/svnpubsub.solaris \
 		tools/server-side/svnpubsub/rc.d/svnwcsub.solaris
 
 LICENSE=	Apache-2.0
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 CPE_VENDOR=	apache
 
@@ -82,10 +83,11 @@ pre-everything::
 .endif
 .endif
 
-pre-patch:
+# Generate rules from this release, linking addon bindings to installed libraries.
 .if defined(SVN_BUILD_ADDONS)
-	@${CP} ${FILESDIR}/build-outputs.mk.addons ${WRKSRC}/build-outputs.mk
+_SVN_INSTALLED_LIBS=	--installed-libs libsvn_client,libsvn_delta,libsvn_diff,libsvn_fs,libsvn_fs_x,libsvn_ra,libsvn_repos,libsvn_subr,libsvn_wc
 .endif
+
 
 post-patch:
 .if ${PREFIX} != "/usr"
@@ -102,4 +104,5 @@ post-patch:
 		-e '1s|#\!/usr/bin/p|#\!/usr/local/bin/p|'
 # remove all .bak files to clean the stage
 	@${FIND} ${WRKSRC} -name '*.bak' -delete
-
+	(cd ${WRKSRC} && ${PYTHON_CMD} gen-make.py --release ${_SVN_INSTALLED_LIBS})
+	${REINPLACE_CMD} -e 's|$$(toolsdir)/diff|$$(toolsdir)/svndiff|g' ${WRKSRC}/build-outputs.mk

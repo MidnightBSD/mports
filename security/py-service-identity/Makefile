@@ -1,6 +1,5 @@
 PORTNAME=	service-identity
-PORTVERSION=	24.1.0
-PORTREVISION=	1
+PORTVERSION=	26.1.0
 CATEGORIES=	security python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -18,11 +17,15 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatch-fancy-pypi-readme>=0:devel/py-hatch-
 		${PYTHON_PKGNAMEPREFIX}hatch-vcs>=0:devel/py-hatch-vcs@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}hatchling>=0:devel/py-hatchling@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}attrs>=19.1.0:devel/py-attrs@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pyasn1>=0:devel/py-pyasn1@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pyasn1-modules>=0:devel/py-pyasn1-modules@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}cryptography>=47,1:security/py-cryptography@${PY_FLAVOR}
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}idna>=0:dns/py-idna@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}openssl>=0:security/py-openssl@${PY_FLAVOR}
 
-USES=		python
-USE_PYTHON=	autoplist concurrent cryptography pep517
+USES=		python:3.8+
+USE_PYTHON=	autoplist concurrent pep517 pytest
+
+TEST_ARGS=	-ra --strict-markers --strict-config --doctest-modules \
+		--doctest-glob='*.rst' --import-mode=importlib
 
 NO_ARCH=	yes
 

@@ -1,33 +1,45 @@
 PORTNAME=	python-subunit
-DISTVERSION=	1.3.0
-PORTREVISION=	3
+DISTVERSION=	1.4.6
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTNAME=	python_subunit-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python implementation of subunit test streaming protocol
 
-LICENSE=	bsd3 Apache-2.0
+LICENSE=	Apache-2.0 bsd3
 LICENSE_COMB=	dual
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}extras>=0:devel/py-extras@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}testtools>=0.9.34:devel/py-testtools@${PY_FLAVOR}
+BUILD_DEPENDS=	${PY_SETUPTOOLS} \
+		${PYTHON_PKGNAMEPREFIX}iso8601>0:devel/py-iso8601@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}testtools>=2.7:devel/py-testtools@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}iso8601>0:devel/py-iso8601@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pyyaml>0:devel/py-pyyaml@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}testtools>=2.7:devel/py-testtools@${PY_FLAVOR}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}fixtures>=0:devel/py-fixtures@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}hypothesis>=0:devel/py-hypothesis@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}testscenarios>=0:devel/py-testscenarios@${PY_FLAVOR}
 
-USES=		python
-USE_PYTHON=	distutils concurrent autoplist
+USES=		python:3.10+
+USE_PYTHON=	autoplist concurrent pep517
+
+PYTHON_TEST_ENV?=	PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
+TEST_ENV+=	PYTHONDONTWRITEBYTECODE=1
 
 NO_ARCH=	yes
-PORTDOCS=	NEWS README.rst
+PORTDOCS=	NEWS README.md
 
 OPTIONS_DEFINE=	DOCS
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/NEWS ${FAKE_DESTDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/README.rst ${FAKE_DESTDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README.md ${FAKE_DESTDIR}${DOCSDIR}
+
+do-test:
+	cd ${WRKSRC} && ${SETENVI} ${WRK_ENV} ${PYTHON_TEST_ENV} ${TEST_ENV} \
+		${PYTHON_CMD} ${FILESDIR}/run-tests.py ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR} ${WRKSRC}
 
 .include <bsd.port.mk>

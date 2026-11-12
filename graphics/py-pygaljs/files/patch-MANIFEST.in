@@ -1,0 +1,8 @@
+--- MANIFEST.in.orig
++++ MANIFEST.in
+@@ -18,4 +18,4 @@
+ 
+ include tox.ini .travis.yml appveyor.yml
+ 
+-global-exclude *.py[cod] __pycache__ *.so *.dylib
++global-exclude *.py[cod] __pycache__ *.so *.dylib .git

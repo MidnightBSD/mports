@@ -1,6 +1,5 @@
 PORTNAME=	dropbox
-PORTVERSION=	11.36.0
-PORTREVISION=	2
+PORTVERSION=	12.2.2
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,14 +12,19 @@ WWW=		https://dropbox-sdk-python.readthedocs.io/en/latest/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}requests>=0:www/py-requests@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}six>=0:devel/py-six@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}stone>=2.0:devel/py-stone@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}setuptools-scm>=8<11:devel/py-setuptools-scm@${PY_FLAVOR}
 
-USES=		python
-USE_PYTHON=	autoplist concurrent pep517
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}requests>=2.16.2:www/py-requests@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}stone>=3.5.3<4:devel/py-stone@${PY_FLAVOR}
+
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}mock>=0:devel/py-mock@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pytest-mock>=0:devel/py-pytest-mock@${PY_FLAVOR}
+
+USES=		python:3.11+ python-setuptools:78
+USE_PYTHON=	autoplist concurrent pep517 pytest
+
+TEST_ARGS=	test/unit/
 
 NO_ARCH=	yes
 

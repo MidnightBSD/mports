@@ -1,6 +1,5 @@
 PORTNAME=	pycompilation
-DISTVERSION=	0.4.12
-PORTREVISION=	1
+DISTVERSION=	0.4.13
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,11 +11,14 @@ WWW=		https://github.com/bjodah/pycompilation
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	${PYNUMPY} \
+BUILD_DEPENDS=	${PY_SETUPTOOLS} \
+		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
+
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16,1:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}appdirs>0:devel/py-appdirs@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	distutils cython_run autoplist
+USE_PYTHON=	pep517 cython_run autoplist
 
 NO_ARCH=	yes
 

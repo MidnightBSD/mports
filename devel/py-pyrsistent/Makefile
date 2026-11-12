@@ -1,6 +1,5 @@
 PORTNAME=	pyrsistent
-PORTVERSION=	0.14.11
-PORTREVISION=	2
+PORTVERSION=	0.18.1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -9,12 +8,13 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Persistent/Functional/Immutable data structures
 
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/LICENCE.mit
+LICENSE_FILE=	${WRKSRC}/LICENSE.mit
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}six>0:devel/py-six@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=42:devel/py-setuptools@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 
-USES=		python
-USE_PYTHON=	autoplist concurrent distutils
+USES=		python:3.7+
+USE_PYTHON=	autoplist concurrent pep517
 
 NO_TEST=	yes
 
