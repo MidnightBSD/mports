@@ -1,0 +1,2 @@
+Pytest fixtures that isolate Git configuration in a temporary sandbox,
+allowing tests to change Git settings without modifying the user configuration.

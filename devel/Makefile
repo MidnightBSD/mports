@@ -1752,6 +1752,7 @@
     SUBDIR += py-pytest-flake8
     SUBDIR += py-pytest-forked
     SUBDIR += py-pytest-freezer
+    SUBDIR += py-pytest-gitconfig
     SUBDIR += py-pytest-html
     SUBDIR += py-pytest-httpbin
     SUBDIR += py-pytest-httpserver
