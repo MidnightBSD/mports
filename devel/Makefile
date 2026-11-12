@@ -1536,6 +1536,7 @@
     SUBDIR += py-hatch-tryton
     SUBDIR += py-hatch-vcs
     SUBDIR += py-hatchling
+    SUBDIR += py-hatchling126
     SUBDIR += py-humanize
     SUBDIR += py-hgtools
     SUBDIR += py-hypothesis
