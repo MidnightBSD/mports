@@ -268,7 +268,6 @@
     SUBDIR += py-ntlm-auth
     SUBDIR += py-oauth2client
     SUBDIR += py-oauthlib
-    SUBDIR += py-openssl
     SUBDIR += py-paramiko
     SUBDIR += py-passlib
     SUBDIR += py-potr
