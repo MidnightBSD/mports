@@ -1,6 +1,6 @@
 PORTNAME=	valkey
 DISTVERSION=	6.1.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	databases python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -24,7 +24,7 @@ LIBVALKEY_DESC=	Install valkey with libvalkey support
 OCSP_DESC=	Enable support for OCSP stapling
 
 LIBVALKEY_RUN_DEPENDS=	libvalkey>=0:databases/libvalkey
-OCSP_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pyopenssl>=0:security/py-pyopenssl@${PY_FLAVOR} \
+OCSP_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}openssl>=0:security/py-openssl@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}requests>=0:www/py-requests@${PY_FLAVOR}
 OCSP_USE=		PYTHON=cryptography
 
