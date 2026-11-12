@@ -697,3 +697,4 @@ lang/python310||2026-10-24|Has expired: Python 3.10 reached end of life in Octob
 sysutils/uefi-edk2-bhyve-devel|sysutils/edk2@bhyve|2026-11-02|Development firmware consolidated into the edk2 bhyve flavor
 sysutils/uefi-edk2-bhyve|sysutils/edk2@bhyve|2026-11-02|Use the bhyve flavor of sysutils/edk2
 sysutils/uefi-edk2-bhyve-csm||2026-11-02|Obsolete CSM firmware requires old edk2 and GCC 4.8; no replacement
+security/py-pyopenssl|security/py-openssl|2026-11-12|Duplicate of security/py-openssl
