@@ -39,7 +39,7 @@ CXXFLAGS+=	-iquote ${BUILD_WRKSRC}
 
 TEST_TARGET=	check
 
-CONFLICTS_INSTALL=	clamav-lts
+CONFLICTS_INSTALL=	clamav
 
 SUB_FILES=	pkg-message
 SUB_LIST+=	CHMOD=${CHMOD} \
