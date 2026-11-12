@@ -1,6 +1,6 @@
 PORTNAME=	Pg
 PORTVERSION=	2.1.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	databases perl5
 MASTER_SITES=	PGSQL/projects/gborg/pgperl/stable
 PKGNAMEPREFIX=	p5-
@@ -14,7 +14,6 @@ LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
 
 USES=		perl5 pgsql
-USE_PGSQL=	yes
 USE_PERL5=	configure
 
 NO_TEST=	yes
