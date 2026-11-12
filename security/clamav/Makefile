@@ -1,6 +1,6 @@
 PORTNAME=	clamav
 DISTVERSION=	1.5.4
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	security
 MASTER_SITES=	https://www.clamav.net/downloads/production/
@@ -25,6 +25,12 @@ USE_LDCONFIG=	yes
 USE_RC_SUBR=	clamav_clamd clamav_freshclam
 
 NO_TEST=	yes
+
+# Search the build directory first for the generated "clamav-config.h";
+# otherwise the copy installed in LOCALBASE/include (-isystem) wins.
+# -I would be ignored because the build directory is also -isystem.
+CFLAGS+=	-iquote ${BUILD_WRKSRC}
+CXXFLAGS+=	-iquote ${BUILD_WRKSRC}
 
 CMAKE_ARGS=	-DDATABASE_DIRECTORY:STRING=${_DBDIR} \
 		-DOPENSSL_CRYPTO_LIBRARY=${OPENSSLLIB}/libcrypto.so \
