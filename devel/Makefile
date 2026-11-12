@@ -1712,6 +1712,7 @@
     SUBDIR += py-pydantic-extra-types
     SUBDIR += py-pydantic-settings
     SUBDIR += py-pydantic2
+    SUBDIR += py-pydispatcher
     SUBDIR += py-pyelftools
     SUBDIR += py-pyflakes
     SUBDIR += py-pygdbmi
