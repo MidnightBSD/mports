@@ -1,24 +1,25 @@
-# Created by: Trevor Caira <trevor@bitba.se>
-
 PORTNAME=	stripe
-PORTVERSION=	2.29.4
-PORTREVISION=	1
+DISTVERSION=	7.11.0
 CATEGORIES=	finance python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Stripe Python bindings
+WWW=		https://github.com/stripe/stripe-python
 
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}requests>=2.20:www/py-requests@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}requests>=2.20:www/py-requests@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}typing-extensions>=4.5.0:devel/py-typing-extensions@${PY_FLAVOR}
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest-mock>=1.7:devel/py-pytest-mock@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pytest-xdist>=1.22,1:devel/py-pytest-xdist@${PY_FLAVOR}
 
-USES=		python
-USE_PYTHON=	autoplist distutils
+USES=		python:3.9+ python-setuptools:78
+USE_PYTHON=	autoplist pep517 pytest
 
 NO_ARCH=	yes
-NO_TEST=	yes
 
 .include <bsd.port.mk>
