@@ -1,0 +1,2 @@
+A private, coinstallable Hatchling build backend for projects that require
+version 1.26.3. Select it explicitly through PYTHONPATH when building.
