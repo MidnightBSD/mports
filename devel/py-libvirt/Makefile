@@ -1,6 +1,5 @@
 PORTNAME=	libvirt
-PORTVERSION=	9.10.0
-PORTREVISION=	1
+PORTVERSION=	11.3.0
 CATEGORIES=	devel
 MASTER_SITES=	http://libvirt.org/sources/python/ \
 		ftp://libvirt.org/libvirt/python/
@@ -11,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python bindings for Libvirt virtualization API
 WWW=		https://libvirt.org/python.html
 
-LICENSE=	gpl2
+LICENSE=	lgpl2.1+
 
 LIB_DEPENDS=	libvirt.so:devel/libvirt
 
