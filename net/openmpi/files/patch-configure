@@ -1,0 +1,64 @@
+--- configure.orig
++++ configure
+@@ -27852,7 +27852,29 @@
+ 
+         if test $opal_asm_check_func_happy -eq 1
+ then :
+-  sync_bool_compare_and_swap_128_result=1
++  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking if __sync 128-bit compare-and-swap is always lock-free" >&5
++printf %s "checking if __sync 128-bit compare-and-swap is always lock-free... " >&6; }
++  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
++/* end confdefs.h.  */
++int main(void)
++{
++    _Static_assert(__atomic_always_lock_free(16, 0), "128-bit CAS must be lock-free");
++    return 0;
++}
++_ACEOF
++  if ac_fn_c_try_compile "$LINENO"
++  then :
++    sync_bool_compare_and_swap_128_result=1
++    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++printf "%s\n" "yes" >&6; }
++  else $as_nop
++    sync_bool_compare_and_swap_128_result=0
++    CFLAGS=$opal_asm_check_func_CFLAGS_save
++    LIBS=$opal_asm_check_func_LIBS_save
++    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
++printf "%s\n" "no" >&6; }
++  fi
++  rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+ else $as_nop
+   sync_bool_compare_and_swap_128_result=0
+ fi
+@@ -28555,7 +28577,29 @@
+ 
+         if test $opal_asm_check_func_happy -eq 1
+ then :
+-  sync_bool_compare_and_swap_128_result=1
++  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking if __sync 128-bit compare-and-swap is always lock-free" >&5
++printf %s "checking if __sync 128-bit compare-and-swap is always lock-free... " >&6; }
++  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
++/* end confdefs.h.  */
++int main(void)
++{
++    _Static_assert(__atomic_always_lock_free(16, 0), "128-bit CAS must be lock-free");
++    return 0;
++}
++_ACEOF
++  if ac_fn_c_try_compile "$LINENO"
++  then :
++    sync_bool_compare_and_swap_128_result=1
++    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++printf "%s\n" "yes" >&6; }
++  else $as_nop
++    sync_bool_compare_and_swap_128_result=0
++    CFLAGS=$opal_asm_check_func_CFLAGS_save
++    LIBS=$opal_asm_check_func_LIBS_save
++    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
++printf "%s\n" "no" >&6; }
++  fi
++  rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+ else $as_nop
+   sync_bool_compare_and_swap_128_result=0
+ fi
