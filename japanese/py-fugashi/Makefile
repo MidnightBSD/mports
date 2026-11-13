@@ -1,6 +1,5 @@
 PORTNAME=	fugashi
-DISTVERSION=	1.4.0
-PORTREVISION=	2
+DISTVERSION=	1.5.2
 CATEGORIES=	japanese python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -9,23 +8,34 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cython MeCab wrapper for fast, pythonic Japanese tokenization
 WWW=		https://github.com/polm/fugashi
 
-LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/LICENSE
+LICENSE=	mit bsd3
+LICENSE_COMB=	multi
+LICENSE_FILE_mit=	${WRKSRC}/LICENSE
+LICENSE_FILE_bsd3=	${WRKSRC}/LICENSE.mecab
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools-scm>0:devel/py-setuptools-scm@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}cython31>=3.1.5<3.2:lang/cython31@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}setuptools-scm>=8:devel/py-setuptools-scm@${PY_FLAVOR}
+
 LIB_DEPENDS=	libmecab.so:japanese/mecab
 RUN_DEPENDS=	ja-mecab-ipadic>0:japanese/mecab-ipadic
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}ipadic>0:japanese/py-ipadic@${PY_FLAVOR}
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}ipadic>0:japanese/py-ipadic@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}unidic-lite>=1.0.8:japanese/py-unidic-lite@${PY_FLAVOR}
 
-USES=		python
-USE_PYTHON=	autoplist cython distutils pytest # many tests fail, see https://github.com/polm/fugashi/issues/102
+USES=		python:3.9+ python-setuptools:78
+USE_PYTHON=	autoplist concurrent pep517 pytest
 
-TEST_ENV=	${MAKE_ENV} PYTHONPATH=${PYTHONPREFIX_SITELIBDIR}
-TEST_WRKSRC=	${WRKSRC}/fugashi/tests
+TEST_ENV=	${MAKE_ENV} PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR} \
+		PYTHONDONTWRITEBYTECODE=1
+TEST_WRKSRC=	${WRKDIR}
+TEST_ARGS=	-c ${WRKSRC}/pyproject.toml ${WRKDIR}/tests --import-mode=importlib
 
-post-patch:
-	@${REINPLACE_CMD} -e 's/Cython~=3.0.11/Cython>=3.0.11/' ${WRKSRC}/setup.py
+PEP517_BUILD_CMD=	${SETENV} PYTHONPATH=${PYTHON_LIBDIR}/mports-cython/31 \
+		${PYTHON_SETUPTOOLS_CMD} -m build --no-isolation --wheel ${PEP517_BUILD_CONFIG_SETTING}
+
+pre-test:
+	${MKDIR} ${WRKDIR}/tests
+	${CP} -R ${WRKSRC}/fugashi/tests/. ${WRKDIR}/tests
 
 post-install:
 	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/fugashi/fugashi${PYTHON_TAG}.so
