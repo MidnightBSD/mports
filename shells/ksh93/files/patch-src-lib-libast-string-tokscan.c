@@ -1,14 +1,22 @@
 --- ./src/lib/libast/string/tokscan.c.orig	2013-12-28 22:16:20.000000000 +0100
 +++ ./src/lib/libast/string/tokscan.c	2013-12-28 22:43:28.000000000 +0100
-@@ -188,6 +188,7 @@
+@@ -188,6 +188,15 @@
  	char**		p_string;
  	char*		prv_f = 0;
  	va_list		prv_ap;
++#if defined(__i386__)
++	/* va_list is a plain pointer: va_listval() yields a va_list */
++	va_list		tmpval;
++#else
++	/* va_list is an array type and cannot be assigned; va_listarg
++	 * is the decayed pointer type
++	 */
 +	va_listarg	tmpval;
++#endif
  
  	va_start(ap, fmt);
  	if (!*s || *s == '\n')
-@@ -233,7 +234,8 @@
+@@ -233,7 +242,8 @@
  			prv_f = f;
  			f = va_arg(ap, char*);
  			va_copy(prv_ap, ap);
