@@ -1,0 +1,21 @@
+--- cairo/meson.build.orig
++++ cairo/meson.build
+@@ -58,2 +58 @@
+-if not for_wheel
+-  pkg = import('pkgconfig')
++pkg = import('pkgconfig')
+@@ -61,7 +60,7 @@
+-  pkg.generate(
+-    name: 'py3cairo',
+-    description: 'Python 3 bindings for cairo',
+-    subdirs: 'pycairo',
+-    requires: ['cairo'],
+-  )
+-endif
++pkg.generate(
++  name: 'py3cairo',
++  description: 'Python 3 bindings for cairo',
++  subdirs: 'pycairo',
++  requires: ['cairo'],
++  install_dir: '{datadir}/libdata/pkgconfig',
++)

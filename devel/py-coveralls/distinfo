@@ -1,3 +1,5 @@
-TIMESTAMP = 1664852664
-SHA256 (coveralls-3.3.1.tar.gz) = b32a8bb5d2df585207c119d6c01567b81fba690c9c10a753bfe27a335bfc43ea
-SIZE (coveralls-3.3.1.tar.gz) = 17964
+TIMESTAMP = 1794116638
+SHA256 (coveralls-4.1.0.tar.gz) = dab364025ba80cbb95ce56c6fc62cd9172d7fd637060ea235dde99d9b46a4494
+SIZE (coveralls-4.1.0.tar.gz) = 12736
+SHA256 (TheKevJames-coveralls-python-7dbb2c46709c1da3d730dfd926de5994f942e19d_GH0.tar.gz) = dc3573c28e904a55c6061decb68e7104ac0a68f30167f813e7e5bae89ec7093c
+SIZE (TheKevJames-coveralls-python-7dbb2c46709c1da3d730dfd926de5994f942e19d_GH0.tar.gz) = 68310

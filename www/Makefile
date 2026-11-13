@@ -289,6 +289,7 @@
     SUBDIR += py-django-requests-debug-toolbar
     SUBDIR += py-django42
     SUBDIR += py-django50
+    SUBDIR += py-django52
     SUBDIR += py-dropbox
     SUBDIR += py-falcon
     SUBDIR += py-fastapi
@@ -329,6 +330,7 @@
     SUBDIR += py-hypercorn
     SUBDIR += py-hyperframe
     SUBDIR += py-hyperlink
+    SUBDIR += py-legacy-cgi
     SUBDIR += py-libsass
     SUBDIR += py-mechanize
     SUBDIR += py-multidict
@@ -364,6 +366,7 @@
     SUBDIR += py-treq
     SUBDIR += py-uvicorn
     SUBDIR += py-waitress
+    SUBDIR += py-wcag-contrast-ratio
     SUBDIR += py-webob
     SUBDIR += py-websocket-client
     SUBDIR += py-webtest

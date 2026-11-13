@@ -1,0 +1,2 @@
+A Griffe extension that inherits documentation from base classes, allowing
+API documentation to include docstrings supplied by ancestor definitions.

@@ -1,6 +1,5 @@
 PORTNAME=	pytest
-PORTVERSION=	8.1.1
-PORTREVISION=	1
+PORTVERSION=	9.1.1
 PORTEPOCH=	1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
@@ -13,15 +12,16 @@ WWW=		https://docs.pytest.org/en/latest/
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=61:devel/py-setuptools@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}setuptools-scm>=6.2.3:devel/py-setuptools-scm@${PY_FLAVOR} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools-scm>=6.2.3:devel/py-setuptools-scm@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PY_EXCEPTIONGROUP} \
-		${PYTHON_PKGNAMEPREFIX}iniconfig>=0:devel/py-iniconfig@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}packaging>=0:devel/py-packaging@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pluggy>=1.4<2.0:devel/py-pluggy@${PY_FLAVOR} \
-		${PY_TOMLI}
-USES=		python
+		${PY_TOMLI} \
+		${PYTHON_PKGNAMEPREFIX}iniconfig>=1.0.1:devel/py-iniconfig@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}packaging>=22:devel/py-packaging@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pluggy>=1.5<2.0:devel/py-pluggy@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pygments>=2.7.2:textproc/py-pygments@${PY_FLAVOR}
+
+USES=		python:3.10+ python-setuptools:83
 USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes

@@ -1,6 +1,5 @@
 PORTNAME=	httplib2
-PORTVERSION=	0.22.0
-PORTREVISION=	1
+PORTVERSION=	0.32.0
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -11,7 +10,10 @@ WWW=		https://github.com/httplib2/httplib2
 
 LICENSE=	mit
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pyparsing>=2.4.2:devel/py-pyparsing@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pyparsing>=3.1<4:devel/py-pyparsing@${PY_FLAVOR}
+
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=40.8.0:devel/py-setuptools@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 
 USES=		cpe python
 CPE_VENDOR=	${PORTNAME}_project

@@ -1,3 +1,5 @@
-TIMESTAMP = 1706534319
-SHA256 (b2sdk-1.29.0.tar.gz) = 87fa572c6a50dbe10dc56a886fdcad7aba1ab9db12f07cfeb2b68e37eeb94ccc
-SIZE (b2sdk-1.29.0.tar.gz) = 357861
+TIMESTAMP = 1794121506
+SHA256 (b2sdk-2.12.0.tar.gz) = da7b65e1af4f59c7de7d079c1e25de6b033aa45090fded4caefe52ded9b13ee6
+SIZE (b2sdk-2.12.0.tar.gz) = 209696
+SHA256 (Backblaze-b2-sdk-python-9827cf3d378ff88841cf0ed6b619588fdb266fbf_GH0.tar.gz) = 6fc93005706364852842ea37a975497895a9c51d9f3cc6065702a06ae12b6e62
+SIZE (Backblaze-b2-sdk-python-9827cf3d378ff88841cf0ed6b619588fdb266fbf_GH0.tar.gz) = 491943

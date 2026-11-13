@@ -1,11 +1,9 @@
 PORTNAME=	sqlalchemy
-PORTVERSION=	1.4.49
-PORTREVISION=	1
+PORTVERSION=	1.4.54
 CATEGORIES=	databases python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 PKGNAMESUFFIX=	14
-DISTNAME=	SQLAlchemy-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python SQL toolkit and Object Relational Mapper 1.4.x
@@ -15,20 +13,23 @@ WWW=		https://www.sqlalchemy.org/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}greenlet>=0:devel/py-greenlet@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}greenlet>=0.4.18:devel/py-greenlet@${PY_FLAVOR}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}mock>=0:devel/py-mock@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pytest>=2.5.2:devel/py-pytest@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pytest-xdist>=0,1:devel/py-pytest-xdist@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}pytest-xdist>=0,1:devel/py-pytest-xdist@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pytest>=6.2,1<8,1:devel/py-pytest@${PY_FLAVOR}
 
 USES=		cpe python
-USE_PYTHON=	autoplist concurrent distutils
+USE_PYTHON=	autoplist concurrent pep517
+PEP517_WHEEL_DISTNAME=	SQLAlchemy
 
 CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}sqlalchemy[0-9][0-9]
 
-OPTIONS_DEFINE=	DOCS EXAMPLES
-OPTIONS_MULTI=	BACKEND
+OPTIONS_DEFINE=		DOCS EXAMPLES
+OPTIONS_MULTI=		BACKEND
 OPTIONS_MULTI_BACKEND=	MSSQL MYSQL PGSQL SQLITE
-OPTIONS_DEFAULT=SQLITE
+OPTIONS_DEFAULT=	SQLITE
 
 MSSQL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pymssql>=0:databases/py-pymssql@${PY_FLAVOR}
 MYSQL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pymysql>=0:databases/py-pymysql@${PY_FLAVOR}

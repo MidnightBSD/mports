@@ -1,26 +1,23 @@
 PORTNAME=	sphinxcontrib-svg2pdfconverter
-DISTVERSION=	1.2.3
-PORTREVISION=	1
+PORTVERSION=	2.1.0
 CATEGORIES=	textproc python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-DISTNAME=	${PORTNAME:C/-/_/}-${DISTVERSION}
+DISTNAME=	sphinxcontrib_svg2pdfconverter-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Sphinx extension for converting SVG to PDF
+COMMENT=	Sphinx SVG to PDF converter extension
 WWW=		https://github.com/missinglinkelectronics/sphinxcontrib-svg2pdfconverter
 
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>0:devel/py-setuptools@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>0:textproc/py-sphinx@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 
-USES=		python
-USE_GNOME=	librsvg2
-USE_PYTHON=	autoplist concurrent flavors pep517
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>=1.6.3,1:textproc/py-sphinx@${PY_FLAVOR}
+
+USES=		python:3.11+ python-setuptools:78
+USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
 

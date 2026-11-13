@@ -1,5 +1,5 @@
 PORTNAME=	python-rapidjson
-DISTVERSION=	1.21
+DISTVERSION=	1.25
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -10,20 +10,21 @@ COMMENT=	Python wrapper around rapidjson
 WWW=		https://github.com/python-rapidjson/python-rapidjson
 
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/LICENSE
+LICENSE_FILE=	${WRKDIR}/LICENSE
 
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytz>0:devel/py-pytz@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sphinx>0:textproc/py-sphinx@${PY_FLAVOR}
 
-USES=		python
+USES=		python:3.10+
 USE_PYTHON=	distutils autoplist pytest
 
-TEST_ENV=	${MAKE_ENV} PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
+TEST_ENV=	${MAKE_ENV} PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
 TEST_WRKSRC=	${WRKSRC}/tests
 
-post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PYTHON_SITELIBDIR}/rapidjson${PYTHON_TAG}.so
+post-extract:
+	@${CAT} ${WRKSRC}/LICENSE ${WRKSRC}/rapidjson/license.txt > ${LICENSE_FILE}
 
-# tests as of 1.21: 929 passed, 17 skipped, 2 xfailed in 18.02s
+post-install:
+	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}/rapidjson${PYTHON_TAG}.so
 
 .include <bsd.port.mk>

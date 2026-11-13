@@ -1,6 +1,5 @@
 PORTNAME=	prompt-toolkit
-PORTVERSION=	3.0.43
-PORTREVISION=	1
+PORTVERSION=	3.0.53
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,10 +13,12 @@ WWW=		https://python-prompt-toolkit.readthedocs.io/en/master/ \
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}wcwidth>=0:devel/py-wcwidth@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}wcwidth>=0.1.4:devel/py-wcwidth@${PY_FLAVOR}
 
-USES=		python
-USE_PYTHON=	autoplist concurrent distutils
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
+
+USES=		python:3.10+ python-setuptools:83
+USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
 

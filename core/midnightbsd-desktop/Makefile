@@ -1,6 +1,6 @@
 PORTNAME=	midnightbsd-desktop
 PORTVERSION=	2.6.7
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	core
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -37,7 +37,7 @@ RUN_DEPENDS=	${LOCALBASE}/bin/iconv:converters/libiconv \
 		ristretto:graphics/ristretto \
 		shared-mime-info>=0:misc/shared-mime-info \
 		wifimgr:net-mgmt/wifimgr \
-		xscreensaver:x11/xscreensaver \
+		nightsaver:x11/nightsaver \
 		update-desktop-database:devel/desktop-file-utils \
 		gconftool-2:devel/gconf2 \
 		dialog4ports:ports-mgmt/dialog4ports \

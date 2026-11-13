@@ -1,9 +1,9 @@
 PORTNAME=	buildbot-worker
-DISTVERSION=	3.11.1
-PORTREVISION=	2
+DISTVERSION=	4.3.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTNAME=	buildbot_worker-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Buildbot Worker Daemon
@@ -12,15 +12,17 @@ WWW=		https://buildbot.net
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}autobahn>=20.12.3:www/py-autobahn@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}future>=0:devel/py-future@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}msgpack>0.6.0:devel/py-msgpack@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}twisted>=17.9.0:devel/py-twisted@${PY_FLAVOR}
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}mock>0:devel/py-mock@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}autobahn>=0.16.0:www/py-autobahn@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}msgpack>=0.6.0:devel/py-msgpack@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}twisted>=21.2.0:devel/py-twisted@${PY_FLAVOR}
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}mock>0:devel/py-mock@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}psutil>0:sysutils/py-psutil@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	autoplist concurrent distutils
+USE_PYTHON=	autoplist concurrent pep517
 USE_RC_SUBR=	buildbot-worker
+
+PYTHON_TEST_ENV?=	PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
 
 NO_ARCH=	yes
 SUB_LIST+=	PYTHON_CMD=${PYTHON_CMD} \
@@ -40,10 +42,11 @@ fix-plist:
 	${REINPLACE_CMD} -e 's|^${BUILDBOT_REMOVE_ME}$$||' ${TMPPLIST}
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/docs/buildbot-worker.1 ${MANPREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/docs/buildbot-worker.1 ${PREFIX}/share/man/man1
 
 do-test:
 	${MKDIR} ${WRKDIR}/tmp
-	cd ${WRKDIR}/tmp && PYTHONPATH=${WRKSRC} ${PYTHON_CMD} -m twisted.trial buildbot_worker.test
+	cd ${WRKDIR}/tmp && ${SETENVI} ${WRK_ENV} ${PYTHON_TEST_ENV} ${TEST_ENV} \
+		${PYTHON_CMD} ${FILESDIR}/run-tests.py ${WRKSRC} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
 
 .include <bsd.port.mk>

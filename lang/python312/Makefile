@@ -8,9 +8,8 @@ DISTNAME=	Python-${DISTVERSION}
 DIST_SUBDIR=	python
 
 PATCH_SITES=	https://github.com/python/cpython/commit/
-PATCHFILES=	d849cf5fec76947865370a41baba8934c581cdb2.patch?full_index=1:-p1 \
-		9c9dda6625a2a90d2a06c657eee021d6be19842d.patch?full_index=1:-p1 \
-		14b1fdb0a94b96f86fc7b86671ea9582b8676628.patch?full_index=1:-p1
+PATCHFILES=	7f936694dbc0dc0dbb07d98fa668776c4e4ca595.patch:-p1 \
+		43e495d6f4e0efe6e7a54625d559f2f656f36916.patch:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Interpreted object-oriented programming language

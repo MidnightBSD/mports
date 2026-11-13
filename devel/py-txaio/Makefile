@@ -1,6 +1,5 @@
 PORTNAME=	txaio
-PORTVERSION=	22.2.1
-PORTREVISION=	1
+DISTVERSION=	26.6.1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,17 +11,24 @@ WWW=		https://github.com/crossbario/txaio
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		python
-USE_PYTHON=	autoplist distutils
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>=0:devel/py-hatchling@${PY_FLAVOR}
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>=8,1:devel/py-pytest@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}twisted>=22.10.0:devel/py-twisted@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}zope.interface>=5.2.0:devel/py-zope.interface@${PY_FLAVOR}
+
+USES=		python:3.11+
+USE_PYTHON=	autoplist pep517 pytest
+
+TEST_ARGS=	--strict-markers --strict-config
+
+NO_ARCH=	yes
 
 OPTIONS_DEFINE=		TWISTED
 OPTIONS_DEFAULT=	TWISTED
 
 TWISTED_DESC=	Twisted network backend support
 
-TWISTED_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}twisted>=20.3.0:devel/py-twisted@${PY_FLAVOR} \
+TWISTED_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}twisted>=22.10.0:devel/py-twisted@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}zope.interface>=5.2.0:devel/py-zope.interface@${PY_FLAVOR}
-
-NO_TEST=	yes
 
 .include <bsd.port.mk>

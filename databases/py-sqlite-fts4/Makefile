@@ -1,6 +1,5 @@
 PORTNAME=	sqlite-fts4
-PORTVERSION=	1.0.1
-PORTREVISION=	2
+PORTVERSION=	1.0.3
 CATEGORIES=	databases python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -16,8 +15,11 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR}
 USES=		python
 USE_GITHUB=	yes
 GH_ACCOUNT=	simonw
-USE_PYTHON=	autoplist distutils pytest
+USE_PYTHON=	autoplist pep517 pytest
 
 NO_ARCH=	yes
+
+BUILD_DEPENDS=	${PY_SETUPTOOLS} \
+		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 
 .include <bsd.port.mk>

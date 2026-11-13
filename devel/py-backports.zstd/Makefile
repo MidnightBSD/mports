@@ -1,5 +1,5 @@
 PORTNAME=	backports.zstd
-PORTVERSION=	1.5.0
+PORTVERSION=	1.7.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,12 +12,13 @@ WWW=		https://github.com/Rogdham/backports.zstd
 LICENSE=	python
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=61:devel/py-setuptools@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 LIB_DEPENDS=	libzstd.so:archivers/zstd
 
-USES=		localbase:ldflags python:3.10-3.13
+USES=		localbase:ldflags python:3.11-3.13 python-setuptools:83
 USE_PYTHON=	autoplist concurrent pep517
+
+PEP517_WHEEL_DISTNAME=	${PORTNAME:tl:C|[-_.]+|_|g}
 
 LDFLAGS+=	-lzstd
 
@@ -26,6 +27,6 @@ post-patch:
 	@${RM} -r ${WRKSRC}/src/c/zstd/lib/
 
 post-install:
-	${FIND} ${STAGEDIR}${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
+	${FIND} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
 
 .include <bsd.port.mk>

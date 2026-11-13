@@ -1,6 +1,5 @@
 PORTNAME?=	pycryptodome
-DISTVERSION=	3.21.0
-PORTREVISION=	1
+DISTVERSION=	3.24.1
 CATEGORIES=	security python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -9,7 +8,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cryptographic library for Python
 WWW=		https://www.pycryptodome.org/
 
-LICENSE=	publicdom bsd2 Apache-2.0
+LICENSE=	publicdom bsd2
 LICENSE_COMB=	multi
 LICENSE_FILE=	${WRKSRC}/LICENSE.rst
 
@@ -25,8 +24,6 @@ USE_PYTHON=	autoplist pep517
 
 CONFLICTS_INSTALL?=	${PYTHON_PKGNAMEPREFIX}pycrypto
 
-NO_TEST=	yes
-
 NAMESPACE?=	Crypto
 
 post-install:
@@ -37,7 +34,9 @@ post-install:
 	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/${NAMESPACE}/PublicKey/*.so
 	@${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/${NAMESPACE}/Util/*.so
 
-#do-test:
-#	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test
+PYTHON_TEST_ENV?=	PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
+
+do-test:
+	@cd ${TEST_WRKSRC} && ${SETENVI} ${WRK_ENV} ${TEST_ENV} ${PYTHON_TEST_ENV} ${PYTHON_CMD} -m ${NAMESPACE}.SelfTest
 
 .include <bsd.port.mk>

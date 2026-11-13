@@ -1,20 +1,24 @@
 PORTNAME=	python-docs-theme
-DISTVERSION=	2018.2
-PORTREVISION=	1
+DISTVERSION=	2026.9.1
 CATEGORIES=	textproc python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTNAME=	python_docs_theme-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sphinx theme for the CPython docs and related projects
+WWW=		https://github.com/python/python-docs-theme
 
 LICENSE=	python
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		python
-USE_PYTHON=	distutils autoplist
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>0:devel/py-hatchling@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}Babel>0:devel/py-babel@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>=7.3,1:textproc/py-sphinx@${PY_FLAVOR}
+
+USES=		python:3.12+
+USE_PYTHON=	autoplist pep517
 
 NO_ARCH=	yes
-NO_TEST=	yes
 
 .include <bsd.port.mk>

@@ -1,3 +1,5 @@
-TIMESTAMP = 1755640997
-SHA256 (omegaconf-2.3.0.tar.gz) = d5d4b6d29955cc50ad50c46dc269bcd92c6e00f5f90d23ab5fee7bfca4ba4cc7
-SIZE (omegaconf-2.3.0.tar.gz) = 3298120
+TIMESTAMP = 1794532846
+SHA256 (omegaconf-2.4.0.tar.gz) = 7e219a70bea371da250285b9c01c7db027bc421722799c2cc4ff14bc4a2a753b
+SIZE (omegaconf-2.4.0.tar.gz) = 3544508
+SHA256 (omegaconf-2.4.0-tests.tar.gz) = 607c676d17890efff7659c3bd3cff7cf40e8a2d58a49d2b7e8f160ace36512ea
+SIZE (omegaconf-2.4.0-tests.tar.gz) = 5123659

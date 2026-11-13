@@ -1,6 +1,5 @@
 PORTNAME=	tqdm
-PORTVERSION=	4.66.2
-PORTREVISION=	1
+PORTVERSION=	4.70.1
 CATEGORIES=	misc python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,8 +12,8 @@ WWW=		https://tqdm.github.io/ \
 LICENSE=	mit MPL20
 LICENSE_COMB=	multi
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=42:devel/py-setuptools@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}setuptools-scm>=3.4:devel/py-setuptools-scm@${PY_FLAVOR} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools-scm>=3.4:devel/py-setuptools-scm@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}setuptools>=42:devel/py-setuptools@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 
 USES=		cpe python
@@ -32,5 +31,7 @@ TELEGRAM_DESC=	Telegram support
 NOTEBOOK_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}ipywidgets>=6:devel/py-ipywidgets@${PY_FLAVOR}
 SLACK_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}slack-sdk>=0:net-im/py-slack-sdk@${PY_FLAVOR}
 TELEGRAM_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}requests>=0:www/py-requests@${PY_FLAVOR}
+
+LICENSE_FILE_mit=	${WRKSRC}/LICENCE
 
 .include <bsd.port.mk>

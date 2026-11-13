@@ -1,5 +1,6 @@
 PORTNAME=	norm
 PORTVERSION=	1.5r6
+PORTREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	http://downloads.pf.itd.nrl.navy.mil/norm/archive/:norm \
 		https://waf.io/:waf
@@ -15,6 +16,11 @@ PATCH_DIST_ARGS=	-d protolib
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	NACK-Oriented Reliable Multicast (NORM)
 WWW=		https://www.nrl.navy.mil/itd/ncs/products/norm
+
+LICENSE=	NRL
+LICENSE_NAME=	Naval Research Laboratory License
+LICENSE_FILE=	${WRKSRC}/LICENSE.TXT
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 WRKSRC=		${WRKDIR}/norm-${DISTVERSION}
 

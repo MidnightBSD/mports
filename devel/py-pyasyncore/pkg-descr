@@ -1,0 +1,2 @@
+Asyncore compatibility module for Python 3.12 and later. It preserves the standard-library implementation
+removed in Python 3.12 for existing applications that still import it.

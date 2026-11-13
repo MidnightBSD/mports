@@ -1,5 +1,5 @@
 PORTNAME=	cairosvg
-PORTVERSION=	2.9.0
+PORTVERSION=	2.9.1
 CATEGORIES=	graphics python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -9,7 +9,7 @@ COMMENT=	Simple SVG Converter based on Cairo
 WWW=		https://www.courtbouillon.org/cairosvg \
 		https://github.com/Kozea/CairoSVG
 
-LICENSE=	lgpl3
+LICENSE=	lgpl3+
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
@@ -22,14 +22,12 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cairocffi>=0:graphics/py-cairocffi@${PY_FLAV
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}isort>=0:devel/py-isort@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}flake8>=0:devel/py-flake8@${PY_FLAVOR}
 
-USES=		cpe python
+USES=		cpe python:3.10+
 USE_PYTHON=	autoplist concurrent pep517 pytest
+PEP517_WHEEL_DISTNAME=	CairoSVG
 
 NO_ARCH=	yes
 
 CPE_VENDOR=	courtbouillon
-
-post-patch:
-	@${REINPLACE_CMD} -e 's/^name = CairoSVG$$/name = cairosvg/' ${WRKSRC}/setup.cfg
 
 .include <bsd.port.mk>

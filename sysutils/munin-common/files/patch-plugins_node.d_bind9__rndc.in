@@ -1,18 +1,17 @@
---- plugins/node.d/bind9_rndc.in.orig	2018-03-25 14:01:24 UTC
+--- plugins/node.d/bind9_rndc.in.orig	2024-05-17 11:03:48 UTC
 +++ plugins/node.d/bind9_rndc.in
-@@ -13,6 +13,7 @@ The following environment variables are 
+@@ -13,6 +13,7 @@ The following environment variables are used by this p
      env.rndc		/usr/sbin/rndc
-     env.rndc_options	
+     env.rndc_options
      env.querystats      /var/run/named.stats
 +    env.rndckeyfile     /etc/namedb/rndc.key
  
  The user/group that runs the plugin must have read access to the stats
  file.  To change user or group (usually Munin plugins are run as
-@@ -62,9 +63,11 @@ License not documented.
- use strict;
+@@ -63,8 +64,11 @@ my $rndc_options = defined($ENV{rndc_options}) ? $ENV{
  
  my $rndc = defined($ENV{rndc}) ? $ENV{rndc} : '/usr/sbin/rndc';
--my $rndc_options = defined($ENV{rndc_options}) ? $ENV{rndc_options} : '';
+ my $rndc_options = defined($ENV{rndc_options}) ? $ENV{rndc_options} : '';
 +my $rndckeyfile = $ENV{rndckeyfile} ? $ENV{rndckeyfile} : '/etc/namedb/rndc.key';
  my $querystats = $ENV{querystats} || '/var/run/named.stats';
  my %IN;
@@ -21,4 +20,3 @@
  
  # attempt to create log file if it doesn't exist
  if ( ! -r $querystats ) {
-

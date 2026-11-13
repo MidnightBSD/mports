@@ -1,8 +1,8 @@
 PORTNAME=	pycups
-PORTVERSION=	2.0.1
-PORTREVISION=	1
+PORTVERSION=	2.0.4
 CATEGORIES=	print python
-MASTER_SITES=	PYPI
+MASTER_SITES=	PYPI \
+		https://github.com/OpenPrinting/pycups/releases/download/v${PORTVERSION}/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,7 +15,10 @@ LICENSE_COMB=	dual
 LIB_DEPENDS=	libcups.so:print/cups
 
 USES=		iconv localbase python
-USE_PYTHON=	autoplist concurrent distutils
+USE_PYTHON=	autoplist concurrent pep517
+
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 
 .include <bsd.port.pre.mk>
 

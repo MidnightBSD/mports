@@ -1,8 +1,6 @@
 PORTNAME=	phx-class-registry
-DISTVERSION=	3.0.5
-PORTREVISION=	1
+DISTVERSION=	5.1.1
 CATEGORIES=	devel python
-MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,16 +8,23 @@ COMMENT=	Factory+Registry pattern for Python classes
 WWW=		https://github.com/todofixthis/class-registry/
 
 LICENSE=	mit
-LICENSE_FILE=	${WRKSRC}/LICENSE
+LICENSE_FILE=	${WRKSRC}/LICENCE.txt
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}six>=1.13:devel/py-six@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}poetry-core>=1.8.0:devel/py-poetry-core@${PY_FLAVOR}
 
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}nose>0:devel/py-nose@${PY_FLAVOR}
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>=8.1,1<9,1:devel/py-pytest@${PY_FLAVOR}
 
-USES=		python
-USE_PYTHON=	distutils autoplist concurrent
+USES=		python:3.11+
+USE_PYTHON=	autoplist concurrent pep517 pytest
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	todofixthis
+GH_PROJECT=	class-registry
 
 NO_ARCH=	yes
-NO_TEST=	yes
+
+PYTHON_TEST_ENV?=	PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR} PYTHONSAFEPATH=1
+TEST_ENV+=	PYTHONDONTWRITEBYTECODE=1
+TEST_ARGS=	--import-mode=importlib
 
 .include <bsd.port.mk>

@@ -161,10 +161,8 @@ post-install:
 	-${RM} -r ${PREFIX}/libexec/installed-tests
 .if ${FLAVOR:U} == bootstrap
 	${MKDIR} ${PREFIX}/libdata/ldconfig
-#	-${CP} ${FAKE_DESTDIR}${LOCALBASE}/libdata/ldconfig/glib-bootstrap ${PREFIX}/libdata/ldconfig/glib-bootstrap
-	${LN} -sf ${FAKE_DESTDIR}${LOCALBASE}/libdata/ldconfig/glib-bootstrap ${PREFIX}/libdata/ldconfig/glib-bootstrap
+	${LN} -sf ${LOCALBASE}/libdata/ldconfig/glib-bootstrap ${PREFIX}/libdata/ldconfig/glib-bootstrap
 .endif
-
 
 pre-test:
 	${LOCALBASE}/bin/dbus-uuidgen > /var/lib/dbus/machine-id

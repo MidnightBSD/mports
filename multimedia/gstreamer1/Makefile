@@ -1,6 +1,5 @@
 PORTNAME=	gstreamer
 PORTVERSION=	${_GST_VERSION}
-PORTREVISION=	0
 CATEGORIES=	multimedia
 MASTER_SITES=	https://gstreamer.freedesktop.org/src/gstreamer/
 PKGNAMESUFFIX=	1
@@ -12,6 +11,8 @@ WWW=		https://gstreamer.freedesktop.org/
 LICENSE=	lgpl+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+BUILD_DEPENDS=	meson>=1.4,1:devel/meson
+BUILD_RUN_DEPENDS=	glib>=2.64.0,2:devel/glib20
 LIB_DEPENDS=	libunwind.so:devel/libunwind
 
 USES=		bison libtool gnome gstreamer:_internal meson ninja \
@@ -45,7 +46,7 @@ OPTIONS_DEFAULT=	BASH
 #.endfor
 OPTIONS_SUB=		yes
 
-BASH_BUILD_DEPENDS=	bash-completion>0:shells/bash-completion
+BASH_BUILD_DEPENDS=	bash-completion>=2.0,2:shells/bash-completion
 BASH_MESON_ENABLED=	bash-completion
 
 NLS_USES=		gettext

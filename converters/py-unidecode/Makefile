@@ -1,8 +1,7 @@
 # Created by: Douglas Thrift <douglas@douglasthrift.net>
 
 PORTNAME=	unidecode
-PORTVERSION=	1.1.1
-PORTREVISION=	1
+PORTVERSION=	1.3.7
 CATEGORIES=	converters python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -11,7 +10,7 @@ DISTNAME=	Unidecode-${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ASCII transliterations of Unicode text
 
-LICENSE=	gpl2
+LICENSE=	gpl2+
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		python

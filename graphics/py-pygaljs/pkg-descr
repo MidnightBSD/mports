@@ -1,0 +1,2 @@
+Pygaljs supplies local JavaScript assets used by pygal charts. It provides
+helpers to locate the assets as filesystem paths and file URIs.

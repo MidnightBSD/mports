@@ -1,3 +1,9 @@
-TIMESTAMP = 1696001376
-SHA256 (unicodedata2-15.1.0.tar.gz) = cb30f189ad66482f8529a45da71b2a8841e9bd2bb376cc2933003a4a55a07648
-SIZE (unicodedata2-15.1.0.tar.gz) = 592892
+TIMESTAMP = 1794116393
+SHA256 (unicodedata2-18.0.0/unicodedata2-18.0.0.tar.gz) = a9536291a5204caf6423ca7c56131d44f2aafc2fada35ff3a5eac82f7f8c62a7
+SIZE (unicodedata2-18.0.0/unicodedata2-18.0.0.tar.gz) = 700214
+SHA256 (unicodedata2-18.0.0/18.0.0/ucd/NormalizationTest.txt) = 25a50d816764b04abfb4a646d3eb2b2a803284c3873d9a06757b94fe4513dde3
+SIZE (unicodedata2-18.0.0/18.0.0/ucd/NormalizationTest.txt) = 2863708
+SHA256 (unicodedata2-18.0.0/18.0.0/ucd/extracted/DerivedName.txt) = ac6cf808ea4ee29323031d5ba9449de13da51398a3f5ce401546d8fceb976df7
+SIZE (unicodedata2-18.0.0/18.0.0/ucd/extracted/DerivedName.txt) = 1931286
+SHA256 (unicodedata2-18.0.0/3.2-Update/NormalizationTest-3.2.0.txt) = c4513869bb7098d19838be4a1fd5d760843c5804bfe03bd6bbb20623ceb6e57d
+SIZE (unicodedata2-18.0.0/3.2-Update/NormalizationTest-3.2.0.txt) = 2025975

@@ -1,5 +1,6 @@
 PORTNAME=	ca_root_nss
 PORTVERSION=	${VERSION_NSS}
+PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	MOZILLA/security/nss/releases/${DISTNAME:tu:C/[-.]/_/g}_RTM/src
 DISTNAME=	nss-${VERSION_NSS}${NSS_SUFFIX}
@@ -49,7 +50,7 @@ do-install:
 	${MKDIR} ${PREFIX}/${CERTDIR}
 	${INSTALL_DATA} ${WRKDIR}/ca-root-nss.crt ${PREFIX}/${CERTDIR}
 	${MKDIR} ${PREFIX}/etc/ssl
-	${LN} -sf ../../${CERTDIR}/ca-root-nss.crt ${PREFIX}/etc/ssl/cert.pem.sample
+	${INSTALL_DATA} ${WRKDIR}/ca-root-nss.crt ${PREFIX}/etc/ssl/cert.pem.sample
 
 do-install-ETCSYMLINK-on:
 	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/openssl

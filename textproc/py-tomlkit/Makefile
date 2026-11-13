@@ -1,6 +1,5 @@
 PORTNAME=	tomlkit
-PORTVERSION=	0.15.0
-PORTREVISION=	1
+PORTVERSION=	0.15.1
 CATEGORIES=	textproc python
 MASTER_SITES=	PYPI \
 		https://github.com/sdispater/tomlkit/releases/download/${PORTVERSION}/
@@ -15,16 +14,15 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}poetry-core>=1.0.0:devel/py-poetry-core@${PY_FLAVOR}
-#TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pyyaml>=0:devel/py-pyyaml@${PY_FLAVOR}
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pyyaml>=6.0:devel/py-pyyaml@${PY_FLAVOR}
 
-USES=		python shebangfix
-USE_PYTHON=	allflavors autoplist concurrent pep517
-#pytest
+USES=		python:3.9+ shebangfix
+USE_PYTHON=	allflavors autoplist concurrent pep517 pytest
 
 NO_ARCH=	yes
-NO_TEST=	yes
 
 SHEBANG_FILES=	tests/toml-test/gen.py
+PYTHON_TEST_ENV=	PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}:${WRKSRC}/tomlkit:${WRKSRC}
 
 post-patch:
 	@${MV} ${WRKSRC}/tests ${WRKSRC}/tomlkit

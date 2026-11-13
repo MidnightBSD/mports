@@ -1,6 +1,5 @@
 PORTNAME=	fixtures
-PORTVERSION=	4.0.1
-PORTREVISION=	1
+PORTVERSION=	4.3.2
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -11,14 +10,14 @@ WWW=		https://github.com/testing-cabal/fixtures
 
 LICENSE=	Apache-2.0 bsd3
 LICENSE_COMB=	dual
-LICENSE_FILE_apache2=	${WRKSRC}/Apache-2.0
-LICENSE_FILE_bsd3=${WRKSRC}/BSD
+LICENSE_FILE_Apache-2.0=	${WRKSRC}/Apache-2.0
+LICENSE_FILE_bsd3=	${WRKSRC}/BSD
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pbr>=5.7.0:devel/py-pbr@${PY_FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pbr>=5.7.0:devel/py-pbr@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatch-vcs>=0:devel/py-hatch-vcs@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}hatchling>=0:devel/py-hatchling@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	autoplist concurrent distutils
+USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
 

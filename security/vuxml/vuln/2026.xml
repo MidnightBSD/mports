@@ -1,3 +1,79 @@
+  <vuln vid="7a0b16ff-de1a-11f1-baea-10ffe06baa2a">
+    <topic>Apache httpd -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>apache24</name>
+	<range><lt>2.4.71</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Apache httpd project reports:</p>
+	<blockquote cite="https://httpd.apache.org/security/vulnerabilities_24.html">
+	  <ul>
+	    <li>CVE-2026-119618: mod_http2 heap corruption and RCE in assign_headers()</li>
+	    <li>CVE-2026-106023: mod_md NULL pointer dereference leads to child process crash</li>
+	    <li>CVE-2026-109163: mod_vhost_alias 1 byte stack buffer overwrite</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-119618</cvename>
+      <cvename>CVE-2026-106023</cvename>
+      <cvename>CVE-2026-109163</cvename>
+      <url>https://httpd.apache.org/security/vulnerabilities_24.html</url>
+    </references>
+    <dates>
+      <discovery>2026-11-11</discovery>
+      <entry>2026-11-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="7a0bc320-de1a-11f1-baea-10ffe06baa2a">
+    <topic>git -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>git</name>
+	<name>git-cvs</name>
+	<name>git-gui</name>
+	<name>git-lite</name>
+	<name>git-p4</name>
+	<name>git-svn</name>
+	<name>git-tiny</name>
+	<range><lt>2.56.1</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Git development team reports:</p>
+	<blockquote cite="https://github.blog/open-source/git/git-security-vulnerabilities-announced-7/">
+	  <ul>
+	    <li>CVE-2026-111760: code execution during recursive clones</li>
+	    <li>CVE-2026-113408: path traversal through a server's advertised HEAD</li>
+	    <li>CVE-2026-114466: filesystem access through fast-import streams</li>
+	    <li>CVE-2026-114467: stack corruption when removing signatures</li>
+	    <li>CVE-2026-114469: out-of-bounds reads when applying binary patches</li>
+	    <li>CVE-2026-105437: heap corruption during large merges</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-111760</cvename>
+      <cvename>CVE-2026-113408</cvename>
+      <cvename>CVE-2026-114466</cvename>
+      <cvename>CVE-2026-114467</cvename>
+      <cvename>CVE-2026-114469</cvename>
+      <cvename>CVE-2026-105437</cvename>
+      <url>https://github.blog/open-source/git/git-security-vulnerabilities-announced-7/</url>
+    </references>
+    <dates>
+      <discovery>2026-11-10</discovery>
+      <entry>2026-11-11</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="b755b277-cf12-11f1-bae2-3497f65b111b">
     <topic>ca_root_nss -- trusted root certificate from compromised CA eMudhra</topic>
     <affects>

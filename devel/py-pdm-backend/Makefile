@@ -1,6 +1,5 @@
 PORTNAME=	pdm-backend
-PORTVERSION=	2.4.3
-PORTREVISION=	1
+PORTVERSION=	2.4.10
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -15,7 +14,7 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		python
-USE_PYTHON=	allflavors autoplist concurrent pep517
+USE_PYTHON=	allflavors 	autoplist concurrent pep517
 
 MAKE_ENV=	PYTHONPATH=${WRKSRC}/src
 NO_ARCH=	yes

@@ -1,0 +1,10 @@
+--- tests/type-hinting/library/collection/test_empty.yml.orig
++++ tests/type-hinting/library/collection/test_empty.yml
+@@ -5,4 +5,4 @@
+     from hamcrest import assert_that, is_, empty
+ 
+     assert_that([], empty())
+-    assert_that(99, empty())  # E: Cannot infer type argument 1 of "assert_that"
+\ No newline at end of file
++    assert_that(99, empty())  # E: Cannot infer type argument 1 of "assert_that"  [misc]
+\ No newline at end of file

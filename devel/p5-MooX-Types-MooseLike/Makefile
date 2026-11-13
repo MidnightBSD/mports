@@ -1,5 +1,3 @@
-
-
 PORTNAME=	MooX-Types-MooseLike
 PORTVERSION=	0.29
 CATEGORIES=	devel perl5
@@ -8,6 +6,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Some Moosish types and a typer builder
+WWW=		https://metacpan.org/release/MooX-Types-MooseLike
 
 LICENSE=	artistic gpl
 LICENSE_COMB=	dual
@@ -19,8 +18,7 @@ TEST_DEPENDS=	p5-Moo>=1.004002:devel/p5-Moo \
 		p5-Test-Fatal>=0.003:devel/p5-Test-Fatal
 
 NO_ARCH=	yes
-USE_PERL5=	configure
 USES=		perl5
-PERL_CONFIGURE=	yes
+USE_PERL5=	configure
 
 .include <bsd.port.mk>

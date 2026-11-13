@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Standalone, extensible Perl module installer
+WWW=		https://metacpan.org/release/Module-Install
 
 LICENSE=	artistic gpl+
 LICENSE_COMB=	dual
@@ -20,6 +21,5 @@ RUN_DEPENDS:=	${BUILD_DEPENDS}
 USES=		perl5
 USE_PERL5=	configure
 CONFIGURE_ARGS=	--skip
-PERL_CONFIGURE=	yes
 
 .include <bsd.port.mk>

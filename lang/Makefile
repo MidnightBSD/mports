@@ -10,6 +10,8 @@
     SUBDIR += clover
     SUBDIR += cython
     SUBDIR += cython0
+    SUBDIR += cython31
+    SUBDIR += cython32
     SUBDIR += dotnet
     SUBDIR += dotnet-host 
     SUBDIR += dotnet8

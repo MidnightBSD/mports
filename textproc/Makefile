@@ -339,13 +339,16 @@
     SUBDIR += pugixml
     SUBDIR += py-CommonMark
     SUBDIR += py-Tempita
+    SUBDIR += py-accessible-pygments
     SUBDIR += py-alabaster
     SUBDIR += py-ansi2html
     SUBDIR += py-anyascii
+    SUBDIR += py-backrefs
     SUBDIR += py-bracex
     SUBDIR += py-chardet
     SUBDIR += py-charset-normalizer
     SUBDIR += py-cmarkgfm
+    SUBDIR += py-comrak
     SUBDIR += py-commonmark
     SUBDIR += py-cssselect2
     SUBDIR += py-cyclonedx-python-lib
@@ -361,6 +364,9 @@
     SUBDIR += py-genshi
     SUBDIR += py-gi-docgen
     SUBDIR += py-griffe
+    SUBDIR += py-griffe-inherited-docstrings
+    SUBDIR += py-griffecli
+    SUBDIR += py-griffelib
     SUBDIR += py-hexdump
     SUBDIR += py-html2text
     SUBDIR += py-htmlmin2
@@ -430,6 +436,7 @@
     SUBDIR += py-regex
     SUBDIR += py-reno
     SUBDIR += py-rich
+    SUBDIR += py-roman-numerals
     SUBDIR += py-sentencepiece
     SUBDIR += py-rst2ansi
     SUBDIR += py-scour
@@ -437,6 +444,7 @@
     SUBDIR += py-snowballstemmer
     SUBDIR += py-sparqlwrapper
     SUBDIR += py-sphinx
+    SUBDIR += py-sphinxcontrib-apidoc
     SUBDIR += py-textual
     SUBDIR += py-textual-speedups
     SUBDIR += py-sphinx-argparse

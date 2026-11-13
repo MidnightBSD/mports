@@ -1,6 +1,6 @@
 PORTNAME=	redis
 DISTVERSION=	8.10.2
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	databases
 MASTER_SITES=	https://download.redis.io/releases/
 
@@ -113,6 +113,6 @@ do-install:
 		${FAKE_DESTDIR}${REDIS_RUNDIR}
 
 do-test:
-	@cd ${WRKSRC} && ${TCLSH} tests/test_helper.tcl
+	@cd ${WRKSRC} && ${TCLSH} tests/test_helper.tcl ${TEST_ARGS:NDESTDIR=*}
 
 .include <bsd.port.post.mk>
