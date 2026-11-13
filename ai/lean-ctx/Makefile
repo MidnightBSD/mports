@@ -615,7 +615,17 @@ CARGO_CRATES=	adler2-2.0.1 \
 
 PLIST_FILES=	bin/${PORTNAME}
 
+# rustc exhausts the 32-bit address space compiling the lean-ctx crate
+# with whole-program LTO and a single codegen unit.
+.include <bsd.port.pre.mk>
+
+.if ${ARCH} == i386
+LTO_UNSAFE=	yes
+CARGO_ENV+=	CARGO_PROFILE_RELEASE_LTO=false \
+		CARGO_PROFILE_RELEASE_CODEGEN_UNITS=16
+.endif
+
 post-install:
 	@${STRIP_CMD} ${PREFIX}/bin/${PORTNAME}
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
