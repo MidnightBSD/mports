@@ -1,5 +1,5 @@
 PORTNAME=	xapian
-PORTVERSION=	2.0.0
+PORTVERSION=	2.1.0
 DISTVERSIONPREFIX=	bindings-
 CATEGORIES=	databases
 MASTER_SITES=	https://oligarchy.co.uk/xapian/${PORTVERSION}/ \
@@ -17,6 +17,7 @@ BUILD_DEPENDS=	xapian-core>=${PORTVERSION}:databases/xapian-core
 LIB_DEPENDS=	libxapian.so:databases/xapian-core
 
 USES=		compiler:c++17-lang libtool php:build,flavors tar:xz
+IGNORE_WITH_PHP=	86
 
 CONFIGURE_ARGS=	--datarootdir=${DATADIR} \
 		--docdir=${DOCSDIR} \
