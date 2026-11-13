@@ -19,6 +19,6 @@ GH_ACCOUNT=	EnterpriseDB
 MAKE_ENV=	USE_PGXS=1
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/postgresql/mysql_fdw.so
+	${STRIP_CMD} ${PREFIX}/lib/postgresql/mysql_fdw.so
 
 .include <bsd.port.mk>
