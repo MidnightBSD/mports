@@ -71,6 +71,18 @@ ZSTD_LIB_DEPENDS=	libzstd.so:archivers/zstd
 
 .include <bsd.port.pre.mk>
 
+.if ${PORT_OPTIONS:MDOCS} || ${PORT_OPTIONS:MMANPAGES}
+# fake exports PREFIX=${FAKE_DESTDIR}${TRUE_PREFIX} and ruby's rbconfig honors
+# ENV['PREFIX'], so the asciidoctor gem binstub cannot find its gem when the
+# docs are regenerated during fake.  Run it through a wrapper that drops PREFIX.
+CMAKE_ARGS+=	-DASCIIDOCTOR_EXECUTABLE:FILEPATH=${WRKDIR}/asciidoctor
+
+pre-configure:
+	@${PRINTF} '#!/bin/sh\nunset PREFIX\nexec ${LOCALBASE}/bin/asciidoctor "$$@"\n' \
+		> ${WRKDIR}/asciidoctor
+	@${CHMOD} 755 ${WRKDIR}/asciidoctor
+.endif
+
 post-patch:
 .if ${LOCALBASE} != "/usr/local"
 .  for f in src/core/CMakeLists.txt cmake/*.cmake
