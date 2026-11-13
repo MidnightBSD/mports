@@ -268,6 +268,7 @@
     SUBDIR += linux-rl9-spirv-tools
     SUBDIR += linux-rl9-vulkan
     SUBDIR += linux-rl9-wayland
+    SUBDIR += linux-slang
     SUBDIR += mesa-demos
     SUBDIR += mesa-dri
     SUBDIR += mesa-gallium-vdpau
