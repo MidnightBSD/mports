@@ -32,7 +32,7 @@ PLIST_FILES=	bin/ogr_fdw_info \
 		share/postgresql/extension/ogr_fdw.control
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/ogr_fdw_info
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/postgresql/ogr_fdw.so
+	@${STRIP_CMD} ${PREFIX}/bin/ogr_fdw_info
+	@${STRIP_CMD} ${PREFIX}/lib/postgresql/ogr_fdw.so
 
 .include <bsd.port.mk>
