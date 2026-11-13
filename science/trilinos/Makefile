@@ -96,6 +96,8 @@ post-install:
 
 # Tests fail to compile, see https://github.com/trilinos/Trilinos/issues/14748
 
+.include <bsd.mport.options.mk>
+
 # On 32-bit (i386), sizeof(size_t)=4 < sizeof(long long)=8, which trips a
 # static_assert in Tpetra_Distributor.hpp; disable long long ETI to work around it.
 .if "${ARCH}" == "i386"
