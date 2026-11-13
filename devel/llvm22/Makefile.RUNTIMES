@@ -50,6 +50,7 @@ LIBCLANG_RT_LIBS_aarch64= \
 RT_LIBS_aarch64= liborc_rt.a
 
 RT_ARCHES+=i386
+# MidnightBSD: fuzzer and profile are not built (see x86_64 below).
 LIBCLANG_RT_LIBS_i386= \
 	asan.a \
 	asan.so \
@@ -59,10 +60,6 @@ LIBCLANG_RT_LIBS_i386= \
 	builtins.a \
 	cfi.a \
 	cfi_diag.a \
-	fuzzer.a \
-	fuzzer_interceptors.a \
-	fuzzer_no_main.a \
-	profile.a \
 	safestack.a \
 	stats.a \
 	stats_client.a \
