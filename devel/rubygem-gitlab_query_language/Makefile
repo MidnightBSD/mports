@@ -11,7 +11,7 @@ WWW=		https://gitlab.com/gitlab-org/glql/-/tree/main/glql_rb
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	rubygem-rb_sys>=0.9.91<0.10:lang/rubygem-rb_sys
+BUILD_RUN_DEPENDS=	rubygem-rb_sys>=0.9.91<0.10:lang/rubygem-rb_sys
 
 USES=		cargo gem gmake llvm:build
 
@@ -32,6 +32,13 @@ GEM_ENV+=	MAKE=gmake \
 # make clean extract
 # make cargo-crates > Makefile.crates
 # make makesum
+
+# USES=gem replaces do-extract with 'gem unpack', so the cargo crates and
+# the glql tarball in EXTRACT_ONLY would never be unpacked for cargo-extract
+pre-extract:
+	@for f in ${EXTRACT_ONLY:N*.gem}; do \
+		(cd ${WRKDIR} && ${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} ${_DISTDIR}/$$f ${EXTRACT_AFTER_ARGS}) || exit 1; \
+	done
 
 post-extract:
 	# change the gitlab external cargo (glql) to use already vendored local path
