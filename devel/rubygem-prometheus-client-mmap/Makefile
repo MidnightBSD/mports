@@ -10,7 +10,7 @@ WWW=		https://gitlab.com/gitlab-org/prometheus-client-mmap
 
 LICENSE=	Apache-2.0
 
-RUN_DEPENDS=	rubygem-base64>=0:converters/rubygem-base64 \
+BUILD_RUN_DEPENDS=	rubygem-base64>=0:converters/rubygem-base64 \
 		rubygem-bigdecimal>=0:math/rubygem-bigdecimal \
 		rubygem-logger-gitlab>=0:devel/rubygem-logger-gitlab \
 		rubygem-rb_sys>=0.9.124<0.10:lang/rubygem-rb_sys
@@ -32,6 +32,13 @@ GEM_ENV+=	MAKE=gmake
 
 # The port installs files writeable
 # Is reported upstream: https://gitlab.com/gitlab-org/ruby/gems/prometheus-client-mmap/-/issues/60
+# USES=gem replaces do-extract with 'gem unpack', so the cargo crates in
+# EXTRACT_ONLY would never be unpacked for cargo-extract
+pre-extract:
+	@for f in ${EXTRACT_ONLY:N*.gem}; do \
+		(cd ${WRKDIR} && ${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} ${_DISTDIR}/$$f ${EXTRACT_AFTER_ARGS}) || exit 1; \
+	done
+
 post-extract:
 	${CHMOD} -R o-w ${WRKSRC}
 
