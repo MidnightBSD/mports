@@ -1,5 +1,6 @@
 PORTNAME=	cython-test-exception-raiser
 PORTVERSION=	26.4.1
+PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -17,6 +18,11 @@ BUILD_DEPENDS=	${PY_SETUPTOOLS} \
 
 USES=		python
 USE_PYTHON=	autoplist concurrent cython pep517
+
+# Cython 3.3 requires Py_LIMITED_API >= 3.9
+post-patch:
+	@${REINPLACE_CMD} -e 's|0x03080000|0x03090000|; s|"cp38"|"cp39"|' \
+		${WRKSRC}/setup.py
 
 post-install:
 	${FIND} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
