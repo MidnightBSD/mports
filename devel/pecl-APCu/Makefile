@@ -2,8 +2,12 @@
 
 PORTNAME=	APCu
 PORTVERSION=	5.1.28
+PORTREVISION=	1
 CATEGORIES=	devel
 DISTNAME=	${PORTNAME:tl}-${PORTVERSION}
+
+PATCH_SITES=	https://github.com/krakjoe/apcu/commit/
+PATCHFILES=	90899684be91c4f750512c2f840f487286ecb807.patch:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	APC User Caching
