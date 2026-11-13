@@ -1,5 +1,7 @@
-TIMESTAMP = 1781768419
-SHA256 (wjakob-nanobind-v2.13.0_GH0.tar.gz) = cb25a582ccade4b6067bc73c78b84ad9dbd0bbe0e537320711d18015ccafc4ef
-SIZE (wjakob-nanobind-v2.13.0_GH0.tar.gz) = 989569
+TIMESTAMP = 1793920899
+SHA256 (wjakob-nanobind-v3.1.0_GH0.tar.gz) = 39659890a112e84e7263e4a263c71dd2621f866f7a4386ce95ef410e6c0e5c2f
+SIZE (wjakob-nanobind-v3.1.0_GH0.tar.gz) = 1083479
 SHA256 (Tessil-robin-map-188c455_GH0.tar.gz) = c3f05ed8933a1f9aa57295c8ad17bd44756cf5cf030a95325c61aa862fa19680
 SIZE (Tessil-robin-map-188c455_GH0.tar.gz) = 70577
+SHA256 (942e75d927e3884e56d607e77c026bb4a72a4763.patch) = 1dd57359343caea4dae5cdb5d53a98b41f61b741f5f78a67fcc3ce2d5f01af95
+SIZE (942e75d927e3884e56d607e77c026bb4a72a4763.patch) = 632
