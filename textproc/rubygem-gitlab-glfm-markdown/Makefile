@@ -11,7 +11,7 @@ WWW=		https://gitlab.com/gitlab-org/ruby/gems/gitlab-glfm-markdown
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	rubygem-rb_sys>=0.9.124<0.10:lang/rubygem-rb_sys
+BUILD_RUN_DEPENDS=	rubygem-rb_sys>=0.9.124<0.10:lang/rubygem-rb_sys
 
 USES=		cargo gem gmake llvm:build
 
@@ -29,5 +29,12 @@ GEM_ENV+=	MAKE=gmake
 
 post-install:
 	@${ECHO_CMD} "${GEM_LIB_DIR}/ext/gitlab_glfm_markdown/Cargo.lock" >> ${TMPPLIST}
+
+# USES=gem replaces do-extract with 'gem unpack', so the cargo crates in
+# EXTRACT_ONLY would never be unpacked for cargo-extract
+pre-extract:
+	@for f in ${EXTRACT_ONLY:N*.gem}; do \
+		(cd ${WRKDIR} && ${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} ${_DISTDIR}/$$f ${EXTRACT_AFTER_ARGS}) || exit 1; \
+	done
 
 .include <bsd.port.mk>
