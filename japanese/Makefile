@@ -214,6 +214,7 @@
     SUBDIR += py-fugashi
     SUBDIR += py-ipadic
     SUBDIR += py-jaconv
+    SUBDIR += py-unidic-lite
     SUBDIR += qkc
     SUBDIR += qolibri
     SUBDIR += quit
