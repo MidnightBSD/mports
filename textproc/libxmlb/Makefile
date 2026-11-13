@@ -1,5 +1,6 @@
 PORTNAME=	libxmlb
 DISTVERSION=	0.3.27
+PORTREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	https://github.com/hughsie/${PORTNAME}/releases/download/${DISTVERSION}/
 
@@ -18,6 +19,7 @@ USE_GNOME=	glib20 introspection:build
 USE_LDCONFIG=	yes
 
 MESON_ARGS=	-Dstemmer=true
+HAS_SYMBOL_VERSION=	${PREFIX}/lib/libxmlb.so.2
 
 OPTIONS_DEFINE=	DOCS
 
