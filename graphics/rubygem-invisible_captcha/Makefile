@@ -9,7 +9,7 @@ WWW=		https://github.com/markets/invisible_captcha
 
 LICENSE=	mit
 
-RUN_DEPENDS=	rubygem-rails-gitlab>=5.2:www/rubygem-rails-gitlab
+BUILD_RUN_DEPENDS=	rubygem-rails-gitlab>=5.2:www/rubygem-rails-gitlab
 
 USES=		gem
 
