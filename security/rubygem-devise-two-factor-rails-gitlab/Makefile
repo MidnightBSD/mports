@@ -11,10 +11,10 @@ WWW=		https://github.com/tinfoil/devise-two-factor
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	rubygem-activesupport-gitlab>=7.0<8:devel/rubygem-activesupport-gitlab \
-		rubygem-devise-rails-gitlab>=4.0<5:devel/rubygem-devise-rails-gitlab \
-		rubygem-railties-gitlab>=7.0<8:www/rubygem-railties-gitlab \
-		rubygem-rotp>=6.0<7:devel/rubygem-rotp
+BUILD_RUN_DEPENDS=	rubygem-activesupport-gitlab>=7.0<8:devel/rubygem-activesupport-gitlab \
+			rubygem-devise-rails-gitlab>=4.0<5:devel/rubygem-devise-rails-gitlab \
+			rubygem-railties-gitlab>=7.0<8:www/rubygem-railties-gitlab \
+			rubygem-rotp>=6.0<7:devel/rubygem-rotp
 
 USES=		gem
 
