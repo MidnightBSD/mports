@@ -33,10 +33,10 @@ post-patch:
 		${BUILD_WRKSRC}/idn.c
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/lib/postgresql
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/postgresql/extension
-	${INSTALL_LIB} ${BUILD_WRKSRC}/idn.so ${STAGEDIR}${PREFIX}/lib/postgresql/idn.so
-	${INSTALL_DATA} ${BUILD_WRKSRC}/idn--0.2.sql ${STAGEDIR}${PREFIX}/share/postgresql/extension
-	${INSTALL_DATA} ${BUILD_WRKSRC}/idn.control ${STAGEDIR}${PREFIX}/share/postgresql/extension
+	${MKDIR} ${PREFIX}/lib/postgresql
+	${MKDIR} ${PREFIX}/share/postgresql/extension
+	${INSTALL_LIB} ${BUILD_WRKSRC}/idn.so ${PREFIX}/lib/postgresql/idn.so
+	${INSTALL_DATA} ${BUILD_WRKSRC}/idn--0.2.sql ${PREFIX}/share/postgresql/extension
+	${INSTALL_DATA} ${BUILD_WRKSRC}/idn.control ${PREFIX}/share/postgresql/extension
 
 .include <bsd.port.mk>
