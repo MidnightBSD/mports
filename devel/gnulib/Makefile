@@ -1,6 +1,6 @@
 PORTNAME=	gnulib
 PORTVERSION=	20140202
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	http://erislabs.net/ianb/projects/gnulib/
 DISTNAME=	${PORTNAME}-${PORTVERSION}-stable
@@ -33,6 +33,7 @@ post-patch:
 	@${REINPLACE_CMD} -e 's,date -u.*,stat -f %Sa -t "@set UPDATED %F %T" `${LS} -t $$^ | ${SED} 1q` > $$@,' \
 		-e 's: makeinfo$$: ${LOCALBASE}/bin/makeinfo:' \
 		${WRKSRC}/doc/Makefile
+	@${RM} ${WRKSRC}/doc/Makefile.bak
 
 do-install:
 	${MKDIR} ${DATADIR} ${PREFIX}/${INFO_PATH}
