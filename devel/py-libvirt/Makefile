@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python bindings for Libvirt virtualization API
 WWW=		https://libvirt.org/python.html
 
-LICENSE=	gpl2
+LICENSE=	lgpl2.1+
 
 LIB_DEPENDS=	libvirt.so:devel/libvirt
 
