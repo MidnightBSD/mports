@@ -700,3 +700,4 @@ sysutils/uefi-edk2-bhyve-csm||2026-11-02|Obsolete CSM firmware requires old edk2
 security/py-openssl|security/py-pyopenssl|2026-11-12|Duplicate of security/py-pyopenssl; follows FreeBSD, which moved it on 2025-11-11
 lang/spidermonkey78|lang/spidermonkey140|2026-11-13|Removed unused version; no ports depend on it
 lang/spidermonkey91|lang/spidermonkey140|2026-11-13|Removed unused version; no ports depend on it
+lang/spidermonkey102|lang/spidermonkey140|2026-11-13|Removed unused version; no ports depend on it
