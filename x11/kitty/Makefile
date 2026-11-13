@@ -1,7 +1,6 @@
 PORTNAME=	kitty
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.46.2
-PORTREVISION=	1
+DISTVERSION=	0.50.0
 CATEGORIES=	x11 wayland
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,9 +10,13 @@ WWW=		https://sw.kovidgoyal.net/kitty/
 LICENSE=	gpl3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+ONLY_FOR_ARCHS=	aarch64 amd64
+ONLY_FOR_ARCHS_REASON=	needs graphics/linux-slang (slangc) to compile shaders
+
 BUILD_DEPENDS=	roboto-fonts-ttf>=2.134:x11-fonts/roboto-fonts-ttf \
 		nerd-fonts-symbols>0:x11-fonts/nerd-fonts-symbols \
 		simde>=0.7.6:devel/simde \
+		slangc:graphics/linux-slang \
 		tic:devel/ncurses \
 		urw-base35-fonts>=20200910:x11-fonts/urw-base35-fonts \
 		wayland-protocols>=0:graphics/wayland-protocols
@@ -22,18 +25,16 @@ LIB_DEPENDS=	libcairo.so:graphics/cairo \
 		libdbus-1.so:devel/dbus \
 		libepoll-shim-interpose.so:devel/libepoll-shim \
 		libfontconfig.so:x11-fonts/fontconfig \
-		libfreetype.so:print/freetype2 \
 		libharfbuzz.so:print/harfbuzz \
 		liblcms2.so:graphics/lcms2 \
 		libpng.so:graphics/png \
-		librsync.so:net/librsync \
 		libwayland-client.so:graphics/wayland \
 		libwayland-cursor.so:graphics/wayland \
 		libxkbcommon.so:x11/libxkbcommon \
 		libxxhash.so:devel/xxhash
 
 USES=		compiler:c11 cpe desktop-file-utils gettext-runtime gl gmake \
-		go:modules,1.26 magick pkgconfig python shebangfix ssl tar:xz \
+		go:modules,1.26 pkgconfig python shebangfix ssl tar:xz \
 		terminfo xorg
 CPE_VENDOR=	kitty_project
 
@@ -48,6 +49,10 @@ GO_MODULE=	github.com/kovidgoyal/kitty
 MAKE_ENV=	PYTHONDONTWRITEBYTECODE=1
 TEST_ENV=	PATH="${FAKE_DESTDIR}${PREFIX}/bin:${PATH}"
 TEST_TARGET=	test
+# Go tests TestHintMarking, TestFileLock, TestSSHTarfile and
+# TestGettingLoginShell fail in the build environment (cannot exec helper
+# processes / look up the login shell)
+NO_TEST=	yes
 
 CPPFLAGS+=	`pkg-config --cflags epoll-shim-interpose`
 LDFLAGS+=	`pkg-config --libs epoll-shim-interpose`
@@ -65,8 +70,12 @@ _STRIP_TARGETS=	kitty/fast_data_types.so kitty/glfw-x11.so \
 
 _EMPTY_DIRS=	kittens/choose kittens/diff kittens/unicode_input kittens kitty
 
-OPTIONS_DEFINE=	DOCS
+OPTIONS_DEFINE=	CUSTOM_SHADERS DOCS
 OPTIONS_EXCLUDE=	DOCS
+
+CUSTOM_SHADERS_DESC=		Enable custom shaders
+CUSTOM_SHADERS_RUN_DEPENDS=	slangc:graphics/linux-slang
+
 DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}furo>0:textproc/py-furo@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}matplotlib>0:math/py-matplotlib@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}sphinx-copybutton>0:textproc/py-sphinx-copybutton@${PY_FLAVOR} \
@@ -110,7 +119,8 @@ post-patch:
 		-e "s:(dirs_exist_ok=True):\1, ignore=shutil.ignore_patterns('*.orig', '*.bak'):1" \
 		${WRKSRC}/setup.py
 	${REINPLACE_CMD} -e "s:%%DATADIR%%:${DATADIR}:1" \
-		${WRKSRC}/shell-integration/fish/vendor_conf.d/kitty-shell-integration.fish
+		${WRKSRC}/shell-integration/fish/vendor_conf.d/kitty-shell-integration.fish \
+		${WRKSRC}/kitty/shaders/custom/demo.py
 
 # For librsync, we need to set header and library path
 do-build:
