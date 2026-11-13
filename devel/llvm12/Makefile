@@ -141,7 +141,8 @@ GOLD_EXTRA_PATCHES_OFF=       ${PATCHDIR}/gold-off-llvm_tools_CMakeLists.txt
 LIT_DESC=		Install lit and FileCheck test tools
 LIT_VARS=		_USES_PYTHON=python
 LLD_DESC=		Install lld, the LLVM linker
-LLDB_BUILD_DEPENDS=	swig:devel/swig
+LLDB_BUILD_DEPENDS=	${PY_SETUPTOOLS} \
+			swig:devel/swig
 LLDB_CMAKE_ON=		-DLUA_INCLUDE_DIR=${LOCALBASE}/include/lua${LUA_VER_STR} \
 			-DLUA_LIBRARY=${LOCALBASE}/lib/liblua-${LUA_VER}.so \
 			-DCURSES_INCLUDE_PATH=/usr/include \
