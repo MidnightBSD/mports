@@ -19,7 +19,7 @@ GH_ACCOUNT=	dimitri
 OPTIONS_DEFINE=	DOCS
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/postgresql/prefix.so
+	${STRIP_CMD} ${PREFIX}/lib/postgresql/prefix.so
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
