@@ -41,9 +41,9 @@ do-install-DOCS-on:
 .endfor
 
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/repmgr.conf.sample ${STAGEDIR}${PREFIX}/etc
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/repmgr
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/repmgrd
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/postgresql/repmgr.so
+	${INSTALL_DATA} ${WRKSRC}/repmgr.conf.sample ${PREFIX}/etc
+	${STRIP_CMD} ${PREFIX}/bin/repmgr
+	${STRIP_CMD} ${PREFIX}/bin/repmgrd
+	${STRIP_CMD} ${PREFIX}/lib/postgresql/repmgr.so
 
 .include <bsd.port.mk>
