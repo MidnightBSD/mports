@@ -285,6 +285,7 @@
     SUBDIR += py-cssutils
     SUBDIR += py-django-allauth
     SUBDIR += py-django-debug-toolbar
+    SUBDIR += py-django-debug-toolbar44
     SUBDIR += py-django-gravatar2
     SUBDIR += py-django-requests-debug-toolbar
     SUBDIR += py-django42

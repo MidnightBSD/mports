@@ -1,0 +1,2 @@
+Django Debug Toolbar 4.4.6 in a private Python library directory.
+This compatibility provider supports tests requiring Django 4.2.
