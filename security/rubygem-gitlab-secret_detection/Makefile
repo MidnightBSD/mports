@@ -10,7 +10,7 @@ WWW=		https://gitlab.com/gitlab-org/security-products/secret-detection/secret-de
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	rubygem-grpc-gitlab>=1.63.0<2:net/rubygem-grpc-gitlab \
+BUILD_RUN_DEPENDS=	rubygem-grpc-gitlab>=1.63.0<2:net/rubygem-grpc-gitlab \
 		rubygem-grpc_reflection>=0.1<1:net/rubygem-grpc_reflection \
 		rubygem-parallel>=1<2:sysutils/rubygem-parallel \
 		rubygem-re2>=2.7<3:devel/rubygem-re2 \
