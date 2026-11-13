@@ -13,6 +13,8 @@ WWW=		https://spidermonkey.dev/
 LICENSE=	MPL20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BROKEN_i386=	static_assert: over-aligned GeneratorInfo vs 4-byte max_align_t
+
 BUILD_DEPENDS=	gm4:devel/m4 \
 		${RUST_DEFAULT}>=1.81:lang/${RUST_DEFAULT} \
 		rust-cbindgen>=0.26.0:devel/rust-cbindgen
