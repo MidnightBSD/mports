@@ -242,6 +242,7 @@
     SUBDIR += py-acme
     SUBDIR += py-argon2-cffi
     SUBDIR += py-argon2-cffi-bindings
+    SUBDIR += py-authlib
     SUBDIR += py-bcrypt
     SUBDIR += py-certbot
     SUBDIR += py-certbot-apache
