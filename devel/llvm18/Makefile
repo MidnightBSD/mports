@@ -1,6 +1,6 @@
 PORTNAME=	llvm
 DISTVERSION=	18.1.8
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	devel lang
 MASTER_SITES=	https://github.com/llvm/llvm-project/releases/download/llvmorg-${DISTVERSION:S/rc/-rc/}/
 PKGNAMESUFFIX=	${LLVM_SUFFIX}
@@ -379,8 +379,11 @@ NATIVE_BACKENDS+=	AMDGPU
 FREEBSD_BACKENDS+=	WebAssembly
 NATIVE_BACKENDS+=	WebAssembly
 .endif
+# BE_STANDARD builds every target, so the plist must include the backends
+# trimmed from _FREEBSD_BACKENDS; LLVMExports.cmake references them.
 STANDARD_BACKENDS=	${_FREEBSD_BACKENDS} AMDGPU AVR BPF Hexagon Lanai \
-			LoongArch MSP430 NVPTX SystemZ VE WebAssembly XCore
+			LoongArch Mips MSP430 NVPTX PowerPC Sparc SystemZ VE \
+			WebAssembly XCore
 _BE_LIBS_COMMON=	CodeGen Desc Info
 _BE_LIBS_AArch64=	AsmParser Disassembler Utils
 _BE_LIBS_BACKWARDS_AArch64=Exegesis
