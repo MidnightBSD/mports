@@ -138,7 +138,6 @@
     SUBDIR += rust188
     SUBDIR += scala
     SUBDIR += smalltalk
-    SUBDIR += spidermonkey102
     SUBDIR += spidermonkey128
     SUBDIR += spidermonkey140
     SUBDIR += swift510
