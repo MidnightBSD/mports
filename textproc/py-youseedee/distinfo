@@ -1,3 +1,5 @@
-TIMESTAMP = 1708449488
-SHA256 (youseedee-0.5.3.tar.gz) = 850908f2476ba292e23bce8b5c3cba79099adc5120e3c80b95d53b6c583d7732
-SIZE (youseedee-0.5.3.tar.gz) = 14724
+TIMESTAMP = 1794589678
+SHA256 (youseedee/youseedee-0.7.0.tar.gz) = 6f9831048aff9a8c33946e3f3740b6d92d574ead0d0064ead7ffa23147f10f5f
+SIZE (youseedee/youseedee-0.7.0.tar.gz) = 17805
+SHA256 (youseedee/LICENSE) = c07ac2a6613725bc36ce994a51a63415c28b1dd3bf3dded69c6d6e7d18c3debf
+SIZE (youseedee/LICENSE) = 11342

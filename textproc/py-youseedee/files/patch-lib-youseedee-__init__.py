@@ -1,11 +1,26 @@
---- lib/youseedee/__init__.py.orig	2023-12-13 13:22:08 UTC
+--- lib/youseedee/__init__.py.orig
 +++ lib/youseedee/__init__.py
-@@ -23,7 +23,7 @@ UCD_URL = "https://unicode.org/Public/UCD/latest/ucd/U
- 
+@@ -38,19 +38,14 @@
  
  def ucd_dir():
--    ucddir = os.path.expanduser("~/.youseedee")
-+    ucddir = "%%UCDDIR%%"
-     if not os.path.isdir(ucddir):
-         os.mkdir(ucddir)
-     return ucddir
+     """Return the directory where Unicode data is stored"""
+-    return Path(platformdirs.user_cache_dir("youseedee", ensure_exists=True))
++    return Path("%%UCDDIR%%")
+ 
+ 
+ def ensure_files():
+     """Ensure the Unicode data files are downloaded and up to date, and download them if not"""
+-    file_lock = FileLock(ucd_dir() / ".youseedee_ensure_files.lock")
+-    with file_lock:
+-        if not (ucd_dir() / "UnicodeData.txt").is_file():
+-            _download_files()
+-        if not _up_to_date():
+-            # Remove the zip if it exists
+-            (ucd_dir() / "UCD.zip").unlink(missing_ok=True)
+-            _download_files()
++    # The mport supplies the Unicode database as read-only system data.
++    return
++
+ 
+ 
+ def _up_to_date():
