@@ -139,9 +139,8 @@
     SUBDIR += scala
     SUBDIR += smalltalk
     SUBDIR += spidermonkey102
-SUBDIR += spidermonkey128
-SUBDIR += spidermonkey140
-SUBDIR += spidermonkey78
+    SUBDIR += spidermonkey128
+    SUBDIR += spidermonkey140
     SUBDIR += swift510
     SUBDIR += tcl-manual
     SUBDIR += tcl-wrapper

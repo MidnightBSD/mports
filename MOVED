@@ -698,4 +698,5 @@ sysutils/uefi-edk2-bhyve-devel|sysutils/edk2@bhyve|2026-11-02|Development firmwa
 sysutils/uefi-edk2-bhyve|sysutils/edk2@bhyve|2026-11-02|Use the bhyve flavor of sysutils/edk2
 sysutils/uefi-edk2-bhyve-csm||2026-11-02|Obsolete CSM firmware requires old edk2 and GCC 4.8; no replacement
 security/py-openssl|security/py-pyopenssl|2026-11-12|Duplicate of security/py-pyopenssl; follows FreeBSD, which moved it on 2025-11-11
+lang/spidermonkey78|lang/spidermonkey140|2026-11-13|Removed unused version; no ports depend on it
 lang/spidermonkey91|lang/spidermonkey140|2026-11-13|Removed unused version; no ports depend on it
