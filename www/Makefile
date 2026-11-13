@@ -287,6 +287,7 @@
     SUBDIR += py-django-debug-toolbar
     SUBDIR += py-django-gravatar2
     SUBDIR += py-django-requests-debug-toolbar
+    SUBDIR += py-django-requests-debug-toolbar007
     SUBDIR += py-django42
     SUBDIR += py-django50
     SUBDIR += py-django52

@@ -1,0 +1,23 @@
+%%PYTHON_LIBDIR%%/mports-django-requests-debug-toolbar/007/django_requests_debug_toolbar-0.0.7.dist-info/INSTALLER
+%%PYTHON_LIBDIR%%/mports-django-requests-debug-toolbar/007/django_requests_debug_toolbar-0.0.7.dist-info/LICENSE
+%%PYTHON_LIBDIR%%/mports-django-requests-debug-toolbar/007/django_requests_debug_toolbar-0.0.7.dist-info/METADATA
+%%PYTHON_LIBDIR%%/mports-django-requests-debug-toolbar/007/django_requests_debug_toolbar-0.0.7.dist-info/RECORD
+%%PYTHON_LIBDIR%%/mports-django-requests-debug-toolbar/007/django_requests_debug_toolbar-0.0.7.dist-info/WHEEL
+%%PYTHON_LIBDIR%%/mports-django-requests-debug-toolbar/007/django_requests_debug_toolbar-0.0.7.dist-info/top_level.txt
+%%PYTHON_LIBDIR%%/mports-django-requests-debug-toolbar/007/requests_panel/__init__.py
+%%PYTHON_LIBDIR%%/mports-django-requests-debug-toolbar/007/requests_panel/__pycache__/__init__%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-django-requests-debug-toolbar/007/requests_panel/__pycache__/__init__%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-django-requests-debug-toolbar/007/requests_panel/__pycache__/panel%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-django-requests-debug-toolbar/007/requests_panel/__pycache__/panel%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-django-requests-debug-toolbar/007/requests_panel/__pycache__/tracker%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-django-requests-debug-toolbar/007/requests_panel/__pycache__/tracker%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-django-requests-debug-toolbar/007/requests_panel/panel.py
+%%PYTHON_LIBDIR%%/mports-django-requests-debug-toolbar/007/requests_panel/templates/requests_panel/panel.html
+%%PYTHON_LIBDIR%%/mports-django-requests-debug-toolbar/007/requests_panel/tracker.py
+@dir %%PYTHON_LIBDIR%%/mports-django-requests-debug-toolbar/007/requests_panel/templates/requests_panel
+@dir %%PYTHON_LIBDIR%%/mports-django-requests-debug-toolbar/007/requests_panel/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-django-requests-debug-toolbar/007/requests_panel/templates
+@dir %%PYTHON_LIBDIR%%/mports-django-requests-debug-toolbar/007/django_requests_debug_toolbar-0.0.7.dist-info
+@dir %%PYTHON_LIBDIR%%/mports-django-requests-debug-toolbar/007/requests_panel
+@dir %%PYTHON_LIBDIR%%/mports-django-requests-debug-toolbar/007
+@dir %%PYTHON_LIBDIR%%/mports-django-requests-debug-toolbar
