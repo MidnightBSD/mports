@@ -1736,6 +1736,7 @@
     SUBDIR += py-pyright
     SUBDIR += py-pyrsistent
     SUBDIR += py-pytest
+    SUBDIR += py-pytest-django
     SUBDIR += py-pytest-asyncio
     SUBDIR += py-pytest-benchmark
     SUBDIR += py-pytest-black
