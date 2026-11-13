@@ -1,5 +1,5 @@
 PORTNAME=	narwhals
-PORTVERSION=	2.21.0
+PORTVERSION=	2.26.0
 CATEGORIES=	math python
 MASTER_SITES=	PYPI \
 		https://github.com/narwhals-dev/narwhals/releases/download/v${PORTVERSION}/
@@ -13,12 +13,15 @@ WWW=		https://narwhals-dev.github.io/narwhals/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>=0:devel/py-hatchling@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}uv-build012>=0.12.1<0.13:devel/py-uv-build012@${PY_FLAVOR}
 
-USES=		python
+USES=		python:3.10+
 USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
+
+_UV_BUILD_PRIVATE?=	${PYTHONPREFIX_LIBDIR}/mports-uv-build/012
+MAKE_ENV+=	PYTHONPATH=${_UV_BUILD_PRIVATE} PATH=${_UV_BUILD_PRIVATE}/bin:${PATH}
 
 OPTIONS_DEFINE=	DASK DUCKDB PANDAS MODIN POLARS PYARROW SQL SQLFRAME
 DASK_DESC=	Dask DataFrame support
@@ -32,12 +35,13 @@ SQL_IMPLIES=	DUCKDB
 SQLFRAME_DESC=	SQLFrame support
 
 DASK_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}dask>=2024.8:devel/py-dask@${PY_FLAVOR}
-DUCKDB_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}duckdb>=1.0:databases/py-duckdb@${PY_FLAVOR}
-PANDAS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pandas>=1.1.3,1:math/py-pandas@${PY_FLAVOR}
-MODIN_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}modin>=0:math/py-modin@${PY_FLAVOR}
+DUCKDB_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}duckdb>=1.1:databases/py-duckdb@${PY_FLAVOR}
+PANDAS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pandas>=1.3.4,1:math/py-pandas@${PY_FLAVOR}
+MODIN_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}modin>=0.22.0:math/py-modin@${PY_FLAVOR}
 POLARS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}polars>=0.20.4:misc/py-polars@${PY_FLAVOR}
 PYARROW_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pyarrow>=13.0.0:databases/py-pyarrow@${PY_FLAVOR}
-SQL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlparse>=0:databases/py-sqlparse@${PY_FLAVOR}
+SQL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlparse>=0.5.5:databases/py-sqlparse@${PY_FLAVOR}
 SQLFRAME_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlframe>=3.22.0:databases/py-sqlframe@${PY_FLAVOR}
+SQLFRAME_CONFLICTS_INSTALL=	py*-sqlframe-3.39.3
 
 .include <bsd.port.mk>
