@@ -1,0 +1,3 @@
+Pytest plugin that stores expected test failures and marks matching tests
+as expected failures in later runs. Expectation files can be distributed
+with test suites.
