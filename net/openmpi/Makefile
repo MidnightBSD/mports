@@ -1,5 +1,6 @@
 PORTNAME=	openmpi
 DISTVERSION=	5.0.6
+PORTREVISION=	1
 CATEGORIES=	net parallel
 MASTER_SITES=	https://download.open-mpi.org/release/open-mpi/v${PORTVERSION:R}/
 
@@ -15,9 +16,10 @@ NOT_FOR_ARCHS_REASON=	Not supported on 32-bits - see net/openmpi4
 
 LIB_DEPENDS=	libhwloc.so:devel/hwloc2 \
 		libevent.so:devel/libevent \
-		libmunge.so:security/munge
+		libmunge.so:security/munge \
+		libz-ng.so:archivers/zlib-ng
 
-CONFIGURE_TARGET=     ${ARCH}-portbld-freebsd13.4
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd13.4
 
 # :keepla because port uses lt_dlopen
 USES=		compiler:c11 fortran gmake libtool:keepla localbase perl5 \
@@ -102,6 +104,10 @@ PLIST_SUB+=	SHORTFLOAT="@comment "
 
 LIBDIR2FIX=	oshmem/tools/wrappers opal/tools/wrappers \
 		3rd-party/openpmix ompi/tools/wrappers
+
+# The matching generated configure is patched too; avoid maintainer regeneration.
+post-patch:
+	${TOUCH} -r ${WRKSRC}/aclocal.m4 ${WRKSRC}/config/opal_config_asm.m4
 
 pre-configure:
 .for d in ${LIBDIR2FIX}

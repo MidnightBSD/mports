@@ -271,6 +271,8 @@ libdata/pkgconfig/pmix.pc
 %%MPIDIR%%/lib/openmpi/libompi_dbg_msgq.so
 %%MPIDIR%%/lib/pmix/pmix_mca_pcompress_zlib.la
 %%MPIDIR%%/lib/pmix/pmix_mca_pcompress_zlib.so
+%%MPIDIR%%/lib/pmix/pmix_mca_pcompress_zlibng.la
+%%MPIDIR%%/lib/pmix/pmix_mca_pcompress_zlibng.so
 %%MPIDIR%%/lib/pmix/pmix_mca_prm_default.la
 %%MPIDIR%%/lib/pmix/pmix_mca_prm_default.so
 %%SLURM%%%%MPIDIR%%/lib/pmix/pmix_mca_prm_slurm.la
@@ -850,7 +852,7 @@ libdata/pkgconfig/pmix.pc
 %%MPIDIR%%/share/prte/help-oob-base.txt
 %%MPIDIR%%/share/prte/help-oob-tcp.txt
 %%MPIDIR%%/share/prte/help-plm-base.txt
-%%SLURM%%%%MPIDIR%%/share/prte/help-plm-slurm.txt
+%%MPIDIR%%/share/prte/help-plm-slurm.txt
 %%MPIDIR%%/share/prte/help-plm-ssh.txt
 %%MPIDIR%%/share/prte/help-prte-filem-raw.txt
 %%MPIDIR%%/share/prte/help-prte-hwloc-base.txt
@@ -874,7 +876,7 @@ libdata/pkgconfig/pmix.pc
 %%MPIDIR%%/share/prte/help-ras-base.txt
 %%MPIDIR%%/share/prte/help-ras-pbs.txt
 %%MPIDIR%%/share/prte/help-ras-simulator.txt
-%%SLURM%%%%MPIDIR%%/share/prte/help-ras-slurm.txt
+%%MPIDIR%%/share/prte/help-ras-slurm.txt
 %%MPIDIR%%/share/prte/help-rmaps_rank_file.txt
 %%MPIDIR%%/share/prte/help-schizo-base.txt
 %%MPIDIR%%/share/prte/help-schizo-ompi.txt
