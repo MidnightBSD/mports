@@ -1,0 +1,11 @@
+--- configure
++++ configure
+@@ -22732,7 +22732,7 @@
+ printf "%s\n" "Windows" >&6; }
+         hwloc_components="$hwloc_components windows"
+         ;;
+-      *-*-*freebsd*)
++      *-*-*freebsd*|*-*-*midnightbsd*)
+ 
+ printf "%s\n" "#define HWLOC_FREEBSD_SYS 1" >>confdefs.h
+ 

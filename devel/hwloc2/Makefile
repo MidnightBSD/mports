@@ -1,6 +1,6 @@
 PORTNAME=	hwloc
 DISTVERSION=	2.12.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel
 MASTER_SITES=	https://download.open-mpi.org/release/hwloc/v${DISTVERSION:R}/
 PKGNAMESUFFIX=	2
@@ -65,5 +65,9 @@ PLIST_SUB+=	X86=""
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/html
 	${INSTALL_DATA} ${WRKSRC}/doc/doxygen-doc/html/* ${FAKE_DESTDIR}${DOCSDIR}/html/
+
+# Both the macro and its generated configure are patched.
+post-patch:
+	${TOUCH} -r ${WRKSRC}/aclocal.m4 ${WRKSRC}/config/hwloc.m4
 
 .include <bsd.port.post.mk>
