@@ -1,24 +1,23 @@
 PORTNAME=	feedbackd
-DISTVERSIONPREFIX=	v
 DISTVERSION=	0.8.1
 PORTREVISION=	0
 CATEGORIES=	accessibility
+MASTER_SITES=	https://sources.phosh.mobi/releases/${PORTNAME}/
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Haptic/visual/audio feedback for GNOME
-WWW=		https://source.puri.sm/Librem5/feedbackd
+WWW=		https://gitlab.gnome.org/World/Phosh/feedbackd
 
 LICENSE=	gpl3+ lgpl2.1+
 LICENSE_COMB=	multi
 LICENSE_FILE_gpl3+ =	${WRKSRC}/COPYING
 LICENSE_FILE_lgpl2.1+ =	${WRKSRC}/COPYING.LIB
 
-USES=		compiler:c11 gnome meson pkgconfig python:build shebangfix
-USE_GITLAB=	yes
+USES=		compiler:c11 gnome meson pkgconfig python:build shebangfix tar:xz
+USE_GITLAB=	nodefault
 USE_GNOME=	glib20
 USE_LDCONFIG=	yes
-GL_SITE=	https://source.puri.sm
-GL_ACCOUNT=	Librem5
 GL_TUPLE=	https://gitlab.gnome.org:World/Phosh:gmobile:v0.1.0:gmobile/subprojects/gmobile
 SHEBANG_FILES=	build-aux/post_install.py
 MESON_FALSE=	tests
