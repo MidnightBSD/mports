@@ -1,0 +1,11 @@
+SentencePiece's public API returns absl::Status, so consumers need the
+Abseil status library when linking against the shared library too.
+
+--- sentencepiece.pc.in.orig
++++ sentencepiece.pc.in
+@@ -9,4 +9,5 @@
+ Version: @PROJECT_VERSION@
+ Libs: -L${libdir} -lsentencepiece -lsentencepiece_train
+ Cflags: -I${includedir}
++Requires: absl_status
+ Requires.private: @libprotobuf_lite@
