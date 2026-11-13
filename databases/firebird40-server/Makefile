@@ -67,6 +67,7 @@ LD=	${CC}
 STRIP=
 
 ONLY_FOR_ARCHS=	i386 amd64 powerpc64le
+BROKEN_i386=	gbak segfaults restoring help.gbak during the build
 
 INSTALL_FB=	${INSTALL} ${COPY}
 
