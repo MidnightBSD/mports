@@ -11,6 +11,9 @@ WWW=			https://www.pgaudit.org/
 LICENSE=		pgsql
 
 USES=			gmake pgsql:18
+# bsd.mport.mk loads pgsql.mk for WANT_PGSQL before USES arguments are
+# parsed, so the version in USES is otherwise ignored
+pgsql_ARGS=		18
 WANT_PGSQL=		server
 USE_GITHUB=		yes
 GH_ACCOUNT=		pgaudit
@@ -22,6 +25,6 @@ PLIST_FILES=	lib/postgresql/pgaudit.so \
 		share/postgresql/extension/pgaudit.control
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/postgresql/pgaudit.so
+	${STRIP_CMD} ${PREFIX}/lib/postgresql/pgaudit.so
 
 .include <bsd.port.mk>
