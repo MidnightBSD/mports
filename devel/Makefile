@@ -842,6 +842,7 @@
     SUBDIR += p5-Devel-Cycle
     SUBDIR += p5-Devel-Declare
     SUBDIR += p5-Devel-GlobalDestruction
+    SUBDIR += p5-Devel-Leak
     SUBDIR += p5-Devel-LexAlias
     SUBDIR += p5-Devel-MAT
     SUBDIR += p5-Devel-MAT-Dumper
