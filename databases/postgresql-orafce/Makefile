@@ -19,6 +19,6 @@ WANT_PGSQL=	server
 USE_GITHUB=	yes
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/postgresql/orafce.so
+	${STRIP_CMD} ${PREFIX}/lib/postgresql/orafce.so
 
 .include <bsd.port.mk>
