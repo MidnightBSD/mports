@@ -94,6 +94,7 @@
     SUBDIR += py-laspy
     SUBDIR += py-lazrs
     SUBDIR += py-mcp
+    SUBDIR += py-mcp-types
     SUBDIR += py-pexpect
     SUBDIR += py-polars
     SUBDIR += py-polars-runtime
