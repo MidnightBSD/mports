@@ -41,7 +41,7 @@ MAKE_ARGS+=	cxxstd="c++17"	\
 		cxxflags="${CXXFLAGS}"	\
 		libpath="/lib"	\
 		sharedlib=1	\
-		prefix="${STAGEDIR}${PREFIX}"	\
+		prefix="${PREFIX}"	\
 		compiler="${CHOSEN_COMPILER_TYPE:C/gcc/gnu/}"	\
 		disable_local="zlib bzip2 lz4 sqlite3 expat libevent re2 libyaml"
 # With boost in disable_local, libcbang-boost.a is not built
@@ -58,19 +58,22 @@ pre-configure:
 	${REINPLACE_CMD} -e 's|%%PYTHON_CMD%%|${PYTHON_CMD}|'	\
 		${TEST_WRKSRC}/testHarness
 
+do-install:
+	cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} ${INSTALL_TARGET}
+
 post-install:
-	cd ${STAGEDIR}${PREFIX}/lib &&	\
+	cd ${PREFIX}/lib &&	\
 		${LN} -sf libcbang0.so.${LIBVER} libcbang0.so	&&	\
 		${LN} -sf libcbang0.so.${LIBVER} libcbang0.so.1
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libcbang0.so.${LIBVER}
+	${STRIP_CMD} ${PREFIX}/lib/libcbang0.so.${LIBVER}
 	# Needed to build CAMotics
 	${INSTALL_DATA} ${WRKSRC}/include/cbang/config.h	\
-		${STAGEDIR}${PREFIX}/include/cbang/
+		${PREFIX}/include/cbang/
 	${INSTALL_DATA} ${WRKSRC}/lib/libcbang-boost.a	\
-		${STAGEDIR}${PREFIX}/lib
-	${MKDIR} ${STAGEDIR}${DATADIR}
-	cd ${WRKSRC} && ${COPYTREE_SHARE} config ${STAGEDIR}${DATADIR}
-	${RM} ${STAGEDIR}${DATADIR}/config/cbang/__init__.py.orig
+		${PREFIX}/lib
+	${MKDIR} ${DATADIR}
+	cd ${WRKSRC} && ${COPYTREE_SHARE} config ${DATADIR}
+	${RM} ${DATADIR}/config/cbang/__init__.py.orig
 
 do-test:
 	(cd ${TEST_WRKSRC} && ${DO_MAKE_TEST} && ./testHarness)
