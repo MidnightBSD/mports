@@ -1,6 +1,5 @@
 PORTNAME=	imageio
-PORTVERSION=	2.37.0
-PORTREVISION=	2
+PORTVERSION=	2.38.0
 CATEGORIES=	graphics python
 MASTER_SITES=	PYPI \
 		https://github.com/imageio/imageio/releases/download/v${PORTVERSION}/
@@ -14,13 +13,12 @@ WWW=		https://imageio.readthedocs.io/en/stable/ \
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 LIB_DEPENDS=	libfreeimage.so:graphics/freeimage
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=0,1:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pillow>=8.3.2:graphics/py-pillow@${PY_FLAVOR}
 
-USES=		python
+USES=		python:3.10+ python-setuptools:78
 USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
@@ -40,7 +38,7 @@ FFMPEG_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}imageio-ffmpeg>=0:graphics/py-imageio
 FITS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}astropy>=0,2:astro/py-astropy@${PY_FLAVOR}
 PILLOW_HEIF_RUN_DEPENDS=${PYTHON_PKGNAMEPREFIX}pillow-heif>=0:graphics/py-pillow-heif@${PY_FLAVOR}
 PYAV_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}av>=0:multimedia/py-av@${PY_FLAVOR}
-RAWPY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=0,1:math/py-numpy@${PY_FLAVOR} \
+RAWPY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>2,1:math/py-numpy@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}rawpy>=0:graphics/py-rawpy@${PY_FLAVOR}
 TIFFFILE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}tifffile>=0:graphics/py-tifffile@${PY_FLAVOR}
 
