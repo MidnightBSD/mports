@@ -1,6 +1,6 @@
 PORTNAME=	spidermonkey
 DISTVERSION=	78.15.0
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	lang
 MASTER_SITES=	MOZILLA/firefox/releases/${DISTVERSION}esr/source
 PKGNAMESUFFIX=	${SP_VER}
@@ -25,7 +25,7 @@ LIB_DEPENDS=	libffi.so:devel/libffi \
 		libicudata.so:devel/icu \
 		libnspr4.so:devel/nspr
 
-USES=		compiler:c++17-lang gmake localbase pathfix pkgconfig python:build \
+USES=		compiler:c++17-lang gmake localbase pathfix pkgconfig python:3.11,build \
 		readline tar:xz
 USE_LDCONFIG=	yes
 SP_VER=		78
