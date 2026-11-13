@@ -1,5 +1,6 @@
 PORTNAME=	croniter
 PORTVERSION=	6.2.4
+PORTREVISION=	1
 CATEGORIES=	sysutils python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -18,10 +19,12 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>=1.31.0:devel/py-hatchling@${PY_
 		${PYTHON_PKGNAMEPREFIX}trove-classifiers>=0:devel/py-trove-classifiers@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}python-dateutil>=1.5:devel/py-python-dateutil@${PY_FLAVOR}
 
-USES=		python
+USES=		python shebangfix
 USE_PYTHON=	pep517 autoplist
 
 NO_ARCH=	yes
+
+SHEBANG_FILES=	src/croniter/tests/*.py
 
 post-patch:
 	@${REINPLACE_CMD} -E 's/==[0-9][0-9.]*/>=0/g' \
