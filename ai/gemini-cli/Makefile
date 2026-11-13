@@ -58,7 +58,7 @@ do-fetch:
 do-build:
 	# Build native modules for node-pty
 	@cd ${WRKSRC}/lib/node_modules/${PACKAGE_NAME}/node_modules/node-pty && \
-		${SETENV} HOME=${WRKDIR} CFLAGS="-I${LOCALBASE}/include" CXXFLAGS="-I${LOCALBASE}/include" \
+		${SETENV} HOME=${WRKDIR} CFLAGS="-fPIC -I${LOCALBASE}/include" CXXFLAGS="-fPIC -I${LOCALBASE}/include" \
 		PYTHON=${PYTHON_CMD} npm rebuild --nodedir=${LOCALBASE}
 
 do-install:
