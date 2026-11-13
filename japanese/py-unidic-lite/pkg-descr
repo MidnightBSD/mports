@@ -1,0 +1,3 @@
+UniDic Lite packages the UniDic 2.1.2 Japanese morphological dictionary for
+Python. It includes the dictionary files, so no separate dictionary download
+is needed. It can be used with MeCab wrappers such as Fugashi.
