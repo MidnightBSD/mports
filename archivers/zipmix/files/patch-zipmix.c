@@ -1,9 +1,11 @@
 --- zipmix.c.orig	2016-07-26 12:48:42 UTC
 +++ zipmix.c
-@@ -4,6 +4,17 @@ zipmix.exe: zipmix.c; cl zipmix.c /O1 /G
+@@ -2,6 +2,17 @@
+ zipmix.exe: zipmix.c; cl zipmix.c /O1 /G6 /MD /link /opt:nowin98
+ 	del zipmix.obj
  !if 0
- #endif
- 
++#endif
++
 +#if (defined(__unix__) || defined(unix)) && !defined(USG)
 +#include <sys/param.h>
 +#endif
@@ -13,12 +15,19 @@
 +
 +#define min(a,b) MIN(a,b)
 +#define max(a,b) MAX(a,b)
-+#endif
-+
- #if defined(_WIN32)
+ #endif
  
- #include <windows.h>
-@@ -167,10 +178,11 @@ void showhelp ()
+ #if defined(_WIN32)
+@@ -17,6 +28,8 @@
+ #define stricmp strcasecmp
+ 
+ #include <term.h>
++#include <termios.h>
++#include <unistd.h>
+ int getch ()
+ {
+ 	struct termios getchnsets, getchosets;
+@@ -189,10 +202,11 @@
  }
  
  enum { BOOL_NONE=0,BOOL_OR,BOOL_AND,BOOL_SUB };
