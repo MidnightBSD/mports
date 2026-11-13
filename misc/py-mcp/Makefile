@@ -32,4 +32,7 @@ USE_PYTHON=	allflavors autoplist pep517
 
 NO_ARCH=	yes
 
+# misc/py-mcp2 (2.x) installs the same "mcp" Python package.
+CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}mcp2
+
 .include <bsd.port.mk>
