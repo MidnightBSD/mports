@@ -22,6 +22,6 @@ WANT_PGSQL=	server
 MAKE_ENV=	SCWS_HOME=${PREFIX}
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/postgresql/zhparser.so
+	${STRIP_CMD} ${PREFIX}/lib/postgresql/zhparser.so
 
 .include <bsd.port.mk>
