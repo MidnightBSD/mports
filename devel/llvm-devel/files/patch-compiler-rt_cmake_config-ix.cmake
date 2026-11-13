@@ -1,0 +1,46 @@
+--- compiler-rt/cmake/config-ix.cmake.orig	2026-10-13 10:01:55.000000000 -0400
++++ compiler-rt/cmake/config-ix.cmake	2026-11-13 00:23:47.629974000 -0500
+@@ -774,7 +774,7 @@
+ list_replace(COMPILER_RT_SANITIZERS_TO_BUILD all "${ALL_SANITIZERS}")
+ 
+ if (SANITIZER_COMMON_SUPPORTED_ARCH AND NOT LLVM_USE_SANITIZER AND
+-    (OS_NAME MATCHES "Android|Darwin|Linux|FreeBSD|NetBSD|Fuchsia|SunOS|Haiku" OR
++    (OS_NAME MATCHES "Android|Darwin|Linux|MidnightBSD|FreeBSD|NetBSD|Fuchsia|SunOS|Haiku" OR
+     (OS_NAME MATCHES "Windows" AND NOT CYGWIN AND
+         (NOT MINGW OR CMAKE_CXX_COMPILER_ID MATCHES "Clang"))))
+   set(COMPILER_RT_HAS_SANITIZER_COMMON TRUE)
+@@ -883,14 +883,14 @@
+   set(COMPILER_RT_HAS_TSAN FALSE)
+ endif()
+ 
+-if (OS_NAME MATCHES "Linux|FreeBSD|Windows|NetBSD|SunOS")
++if (OS_NAME MATCHES "Linux|MidnightBSD|FreeBSD|Windows|NetBSD|SunOS")
+   set(COMPILER_RT_TSAN_HAS_STATIC_RUNTIME TRUE)
+ else()
+   set(COMPILER_RT_TSAN_HAS_STATIC_RUNTIME FALSE)
+ endif()
+ 
+ if ((COMPILER_RT_HAS_SANITIZER_COMMON AND UBSAN_SUPPORTED_ARCH AND
+-     OS_NAME MATCHES "Darwin|Linux|FreeBSD|NetBSD|Windows|Android|Fuchsia|SunOS|Haiku")
++     OS_NAME MATCHES "Darwin|Linux|MidnightBSD|FreeBSD|NetBSD|Windows|Android|Fuchsia|SunOS|Haiku")
+     OR (COMPILER_RT_GPU_BUILD AND UBSAN_SUPPORTED_ARCH))
+   set(COMPILER_RT_HAS_UBSAN TRUE)
+ else()
+@@ -898,7 +898,7 @@
+ endif()
+ 
+ if (UBSAN_SUPPORTED_ARCH AND
+-    (OS_NAME MATCHES "Linux|FreeBSD|NetBSD|Android|Darwin|SunOS" OR
++    (OS_NAME MATCHES "Linux|MidnightBSD|FreeBSD|NetBSD|Android|Darwin|SunOS" OR
+      COMPILER_RT_GPU_BUILD))
+   set(COMPILER_RT_HAS_UBSAN_MINIMAL TRUE)
+ else()
+@@ -906,7 +906,7 @@
+ endif()
+ 
+ if (COMPILER_RT_HAS_SANITIZER_COMMON AND SAFESTACK_SUPPORTED_ARCH AND
+-    OS_NAME MATCHES "Linux|FreeBSD|NetBSD|SunOS")
++    OS_NAME MATCHES "Linux|MidnightBSD|FreeBSD|NetBSD|SunOS")
+   set(COMPILER_RT_HAS_SAFESTACK TRUE)
+ else()
+   set(COMPILER_RT_HAS_SAFESTACK FALSE)
