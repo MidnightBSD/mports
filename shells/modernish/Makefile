@@ -19,7 +19,7 @@ OPTIONS_DEFINE=	DOCS EXAMPLES
 
 do-install:
 	cd ${WRKSRC} && \
-	${SETENV} ${MAKE_ENV} GIT_CEILING_DIRECTORIES=${WRKDIR} \
+	${SETENV} ${MAKE_ENV} GIT_CEILING_DIRECTORIES=${WRKDIR} script -q /dev/stdout \
 		${SH} -x ./install.sh -d ${TRUE_PREFIX} -D ${FAKE_DESTDIR} -n -f -s ${SH}
 
 	${RM} ${DOCSDIR}/LICENSE
