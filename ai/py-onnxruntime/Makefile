@@ -13,6 +13,8 @@ WWW=		https://onnxruntime.ai/ \
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BROKEN_i386=	bundled protobuf 21.12 fails: requested alignment is less than minimum alignment of 8 (arena_impl.h); MLAS also needs SSE2
+
 BUILD_DEPENDS=	cmake:devel/cmake-core \
 		${PYTHON_PKGNAMEPREFIX}packaging>=0:devel/py-packaging@${PY_FLAVOR}
 
