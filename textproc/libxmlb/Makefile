@@ -19,6 +19,7 @@ USE_GNOME=	glib20 introspection:build
 USE_LDCONFIG=	yes
 
 MESON_ARGS=	-Dstemmer=true
+HAS_SYMBOL_VERSION=	${PREFIX}/lib/libxmlb.so.2
 
 OPTIONS_DEFINE=	DOCS
 

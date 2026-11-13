@@ -1,0 +1,16 @@
+Link with the version script unconditionally. get_supported_link_arguments()
+probes it by linking an executable, which fails on MidnightBSD because the
+map's "local: *;" hides environ/__progname from crt1.o, so the version
+nodes were silently dropped.
+
+--- src/meson.build.orig
++++ src/meson.build
+@@ -87,7 +87,7 @@
+   ],
+   dependencies : libxmlb_deps,
+   c_args : release_args,
+-  link_args : cc.get_supported_link_arguments([vflag]),
++  link_args : [vflag],
+   vs_module_defs: def_file_target,
+   link_depends : mapfile,
+   install : true
