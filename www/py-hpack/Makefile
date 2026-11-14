@@ -18,7 +18,7 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hypothesis>=6.152.1<7:devel/py-hypothesis@$
 		${PYTHON_PKGNAMEPREFIX}pytest>=9.0.3,1:devel/py-pytest@${PY_FLAVOR}
 
 USES=		cpe python:3.10+ python-setuptools:modern
-USE_PYTHON=	autoplist concurrent pep517 pytest
+USE_PYTHON=	autoplist concurrent pep517 pytest allflavors
 
 NO_ARCH=	yes
 
