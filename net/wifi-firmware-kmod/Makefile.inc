@@ -116,12 +116,15 @@ post-extract:
 	# Do we need to set a tunable?
 	# At the moment we consider these temporary hacks.
 	# Otherwise we need a better way to express this per-port/-flavor.
+	# The iwlwifi HT/VHT tunables need MidnightBSD 4.2 (402000) or later;
+	# older releases have the older iwlwifi and LinuxKPI code.
 .if defined(COMPAT_LINUXKPI_SKB_MEM_LIMIT) && ${COMPAT_LINUXKPI_SKB_MEM_LIMIT} > 0
 	@${MKDIR} ${WRKSRC}/${BOOT_LOADERCONFD}
 	@${ECHO_CMD} "compat.linuxkpi.skb.mem_limit=${COMPAT_LINUXKPI_SKB_MEM_LIMIT}" >> ${WRKSRC}/${BOOT_LOADERCONFD}/${FLAVOR}.conf
 	@${ECHO_CMD} "${BOOT_LOADERCONFD}/${FLAVOR}.conf" >> ${PLIST}
 .endif
-.if defined(COMPAT_LINUXKPI_IWL_HWCRYPTO_HT_VHT) && (${COMPAT_LINUXKPI_IWL_HWCRYPTO_HT_VHT:M${FLAVOR}} != "")
+.if defined(COMPAT_LINUXKPI_IWL_HWCRYPTO_HT_VHT) && (${COMPAT_LINUXKPI_IWL_HWCRYPTO_HT_VHT:M${FLAVOR}} != "") && \
+    ${OSVERSION} >= 402000
 	@${MKDIR} ${WRKSRC}/${BOOT_LOADERCONFD}
 	@${ECHO_CMD} "compat.linuxkpi.80211.hw_crypto=1" >> ${WRKSRC}/${BOOT_LOADERCONFD}/iwlwifi-${FLAVOR}.conf
 	@${ECHO_CMD} "compat.linuxkpi.iwlwifi_11n_disable=0" >> ${WRKSRC}/${BOOT_LOADERCONFD}/iwlwifi-${FLAVOR}.conf
@@ -187,7 +190,8 @@ post-install:
 	@${MKDIR} ${FAKE_DESTDIR}/${BOOT_LOADERCONFD}
 	@${INSTALL_DATA} ${WRKSRC}/${BOOT_LOADERCONFD}/${FLAVOR}.conf ${FAKE_DESTDIR}/${BOOT_LOADERCONFD}/${FLAVOR}.conf
 .endif
-.if defined(COMPAT_LINUXKPI_IWL_HWCRYPTO_HT_VHT) && (${COMPAT_LINUXKPI_IWL_HWCRYPTO_HT_VHT:M${FLAVOR}} != "")
+.if defined(COMPAT_LINUXKPI_IWL_HWCRYPTO_HT_VHT) && (${COMPAT_LINUXKPI_IWL_HWCRYPTO_HT_VHT:M${FLAVOR}} != "") && \
+    ${OSVERSION} >= 402000
 	@${MKDIR} ${FAKE_DESTDIR}/${BOOT_LOADERCONFD}
 	@${INSTALL_DATA} ${WRKSRC}/${BOOT_LOADERCONFD}/iwlwifi-${FLAVOR}.conf ${FAKE_DESTDIR}/${BOOT_LOADERCONFD}/iwlwifi-${FLAVOR}.conf
 .endif
