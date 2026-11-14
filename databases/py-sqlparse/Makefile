@@ -15,7 +15,7 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>=0:devel/py-hatchling@${PY_FLAVO
 
 USES=		cpe python shebangfix
 CPE_VENDOR=	sqlparse_project
-USE_PYTHON=	autoplist concurrent pep517
+USE_PYTHON=	autoplist concurrent pep517 allflavors
 
 NO_ARCH=	yes
 
