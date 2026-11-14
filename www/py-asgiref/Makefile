@@ -15,7 +15,7 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>=4.3.0,1:devel/py-pytest@${PY_FLAVOR
 		${PYTHON_PKGNAMEPREFIX}pytest-asyncio>=0.10.0:devel/py-pytest-asyncio@${PY_FLAVOR}
 
 USES=		python:3.11+
-USE_PYTHON=	distutils autoplist
+USE_PYTHON=	distutils autoplist allflavors
 
 NO_ARCH=	yes
 
