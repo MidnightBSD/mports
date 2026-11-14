@@ -1,0 +1,2 @@
+Python bindings for the libvalkey protocol parser and command packer.
+The extension includes the upstream libvalkey parser sources.
