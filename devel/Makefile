@@ -1401,6 +1401,7 @@
     SUBDIR += py-beniget
     SUBDIR += py-binaryornot
     SUBDIR += py-black
+    SUBDIR += py-black25
     SUBDIR += py-blessings
     SUBDIR += py-blinker
     SUBDIR += py-blockbuster
