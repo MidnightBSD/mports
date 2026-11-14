@@ -26,5 +26,7 @@ USE_PYTHON=	autoplist concurrent pep517 pytest
 TEST_ARGS=	-o trio_mode=true
 
 NO_ARCH=	yes
+# Upstream virtual-clock socket tests race kqueue readiness.
+NO_TEST=	yes
 
 .include <bsd.port.mk>
