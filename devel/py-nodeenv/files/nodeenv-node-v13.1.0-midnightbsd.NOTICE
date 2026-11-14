@@ -1,0 +1,23 @@
+The accompanying Node.js 13.1.0 compatibility patch modifies excerpts from
+Node.js, V8, GYP, and Jinja2 source. Node.js source is distributed under MIT;
+V8, GYP, and Jinja2 source is distributed under their respective BSD
+3-clause licenses. The applicable license texts and copyright notices are
+installed with this package in its license directory.
+
+Node.js 13.1.0 source:
+https://nodejs.org/download/release/v13.1.0/node-v13.1.0.tar.gz
+SHA256: df640a2f151f788d02dc25c91d80fffe06b4c3c72fbdee07ab9abd7c6879d6cd
+
+The inspector UTF-16 compatibility changes are adapted from V8 commit
+182d9c05e78b1ddb1cb8242cd3628a7855a0336f and its FreeBSD ports backport:
+https://chromium.googlesource.com/v8/v8/+/182d9c05e78b1ddb1cb8242cd3628a7855a0336f
+https://github.com/freebsd/freebsd-ports/commit/1617a29594f0a2f73ca741638e97e591a6618365
+Additional changes adapt this release to Python 3.11, current libc++, and
+MidnightBSD. The legacy uint16_t inspector constructor is retained.
+
+The patched source files carry these additional copyright notices:
+Copyright (c) 2012 Google Inc. All rights reserved. (GYP common.py)
+Copyright (c) 2017 by the Jinja Team. (both bundled Jinja2 copies)
+Copyright 2016 the V8 project authors. All rights reserved. (string-16)
+Copyright 2019 the V8 project authors. All rights reserved. (string conversions)
+Copyright 2012 the V8 project authors. All rights reserved. (utils.h)
