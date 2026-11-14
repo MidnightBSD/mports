@@ -1,0 +1,21 @@
+%%PYTHON_LIBDIR%%/mports-uv-build/07/bin/uv-build
+%%PYTHON_LIBDIR%%/mports-uv-build/07/uv_build-0.7.22.dist-info/INSTALLER
+%%PYTHON_LIBDIR%%/mports-uv-build/07/uv_build-0.7.22.dist-info/METADATA
+%%PYTHON_LIBDIR%%/mports-uv-build/07/uv_build-0.7.22.dist-info/RECORD
+%%PYTHON_LIBDIR%%/mports-uv-build/07/uv_build-0.7.22.dist-info/WHEEL
+%%PYTHON_LIBDIR%%/mports-uv-build/07/uv_build-0.7.22.dist-info/licenses/LICENSE-APACHE
+%%PYTHON_LIBDIR%%/mports-uv-build/07/uv_build-0.7.22.dist-info/licenses/LICENSE-MIT
+%%PYTHON_LIBDIR%%/mports-uv-build/07/uv_build/__init__.py
+%%PYTHON_LIBDIR%%/mports-uv-build/07/uv_build/__main__.py
+%%PYTHON_LIBDIR%%/mports-uv-build/07/uv_build/__pycache__/__init__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-uv-build/07/uv_build/__pycache__/__init__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-uv-build/07/uv_build/__pycache__/__main__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-uv-build/07/uv_build/__pycache__/__main__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-uv-build/07/uv_build/py.typed
+@dir %%PYTHON_LIBDIR%%/mports-uv-build/07/uv_build-0.7.22.dist-info/licenses
+@dir %%PYTHON_LIBDIR%%/mports-uv-build/07/uv_build/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-uv-build/07/bin
+@dir %%PYTHON_LIBDIR%%/mports-uv-build/07/uv_build
+@dir %%PYTHON_LIBDIR%%/mports-uv-build/07/uv_build-0.7.22.dist-info
+@dir %%PYTHON_LIBDIR%%/mports-uv-build/07
+@dir %%PYTHON_LIBDIR%%/mports-uv-build
