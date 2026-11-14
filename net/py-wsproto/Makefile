@@ -20,7 +20,7 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hypothesis>=6.119.4<7:devel/py-hypothesis@$
 		${PYTHON_PKGNAMEPREFIX}pytest>=8.3.3,1:devel/py-pytest@${PY_FLAVOR}
 
 USES=		python:3.10+ python-setuptools:78
-USE_PYTHON=	autoplist pep517 pytest
+USE_PYTHON=	autoplist pep517 pytest allflavors
 
 NO_ARCH=	yes
 
