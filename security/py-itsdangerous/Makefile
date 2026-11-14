@@ -13,7 +13,7 @@ LICENSE=	bsd3
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}flit-core>=3<4:devel/py-flit-core@${PY_FLAVOR}
 USES=		python
-USE_PYTHON=	pep517 autoplist
+USE_PYTHON=	pep517 autoplist allflavors
 
 NO_ARCH=	yes
 
