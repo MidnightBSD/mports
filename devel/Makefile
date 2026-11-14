@@ -1904,6 +1904,7 @@
     SUBDIR += py-tempora
     SUBDIR += py-tenacity
     SUBDIR += py-termcolor
+    SUBDIR += py-testcontainers
     SUBDIR += py-testfixtures
     SUBDIR += py-testpath
     SUBDIR += py-testrepository
