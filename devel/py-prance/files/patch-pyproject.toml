@@ -1,0 +1,11 @@
+--- pyproject.toml.orig
++++ pyproject.toml
+@@ -44,7 +44,7 @@
+ [project.optional-dependencies]
+ icu = ["PyICU~=2.14"]
+ ssv = ["swagger-spec-validator~=3.0.4"]
+-osv = ["openapi-spec-validator~=0.7.1"]
++osv = ["openapi-spec-validator~=0.9.0"]
+ flex = ["flex~=6.14.1"]
+ cli = ["click>=8.3.0"]
+ fast = ["orjson>=3.9"]
