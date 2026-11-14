@@ -1545,6 +1545,7 @@
     SUBDIR += py-humanize
     SUBDIR += py-hgtools
     SUBDIR += py-hypothesis
+    SUBDIR += py-hypothesmith
     SUBDIR += py-icecream
     SUBDIR += py-id
     SUBDIR += py-identify
