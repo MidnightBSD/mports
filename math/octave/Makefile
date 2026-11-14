@@ -20,7 +20,7 @@ RUN_DEPENDS=	${LOCALBASE}/bin/makeinfo:print/texinfo \
 		gnuplot:math/gnuplot \
 		gsed:textproc/gsed
 LIB_DEPENDS=	libamd.so:math/suitesparse-amd \
-		libarpack.so:math/arpack-ng@mpich \
+		libarpack.so:math/arpack-ng \
 		libcamd.so:math/suitesparse-camd \
 		libccolamd.so:math/suitesparse-ccolamd \
 		libcholmod.so:math/suitesparse-cholmod \
