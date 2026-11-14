@@ -1,11 +1,16 @@
-nightsaver is an OLED-friendly Xorg screensaver and PAM screen locker
-written in Rust. It is a drop-in replacement for the xscreensaver daemon
-and the xscreensaver-command control client: it accepts xscreensaver's
-daemon flags, speaks its control protocol, and reads the relevant subset
-of ~/.xscreensaver.
+nightsaver is an OLED-friendly Xorg and Wayland screensaver and PAM
+screen locker written in Rust. It is a drop-in replacement for the
+xscreensaver daemon and the xscreensaver-command control client: it
+accepts xscreensaver's daemon flags, speaks its control protocol, and
+reads the relevant subset of ~/.xscreensaver.
 
 Every frame passes through an OLED guard that caps brightness, slowly
 shifts pixels and periodically rests on a fully black screen. It ships
 built-in clock, starfield, matrix and blank patterns, manages DPMS and
 covers multiple monitors. Screen locking authenticates through OpenPAM
 using unix-selfauth-helper, so nightsaver itself is not setuid.
+
+Wayland support is experimental. On wlroots compositors such as sway
+and labwc it blanks through layer-shell and locks with
+ext-session-lock-v1; on KWin it can blank but not lock. GNOME Wayland
+is not supported.
