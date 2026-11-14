@@ -1532,6 +1532,7 @@
     SUBDIR += py-grpcio-tools
     SUBDIR += py-gyp
     SUBDIR += py-hatch-fancy-pypi-readme
+    SUBDIR += py-hatch-mypyc
     SUBDIR += py-hatch-nodejs-version
     SUBDIR += py-hatch-requirements-txt
     SUBDIR += py-hatch-tryton
