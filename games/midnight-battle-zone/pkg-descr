@@ -1,0 +1,12 @@
+Midnight Battle Zone is a cat-themed 3D real-time strategy game written
+in Rust, with a Vulkan renderer and Lua 5.4 scripting. Train Worker,
+Soldier and Sniper Cats, mine crystals, build bases, and fight a Lua AI
+at three difficulty levels on three battle maps, or play a two-player
+LAN game with mDNS discovery.
+
+It features fog of war, a minimap, AMD FidelityFX Super Resolution 1.0
+upscaling, and public-domain jazz and blues background music. Units,
+buildings and maps are defined in Lua and can be extended.
+
+A Vulkan driver is required. Gamepads are supported through SDL3, and
+sound plays through sndio's aucat (or PulseAudio's paplay).
