@@ -9,6 +9,7 @@ WWW=		https://pear.horde.org
 LICENSE=	NONE
 
 USES=	horde cpe
+IGNORE_WITH_PHP=	86
 USE_HORDE_RUN=	Horde_Exception \
 		Horde_Http \
 		Horde_Imap_Client \
