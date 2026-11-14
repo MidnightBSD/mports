@@ -3748,6 +3748,15 @@ install-missing-packages:
 # first to avoid gratuitous breakage.
 
 .    if !target(describe)
+.      if defined(BUILDING_INDEX)
+_EXTRACT_DEPENDS=${EXTRACT_DEPENDS_ALL:C/^[^ :]+:([^ :@]+)(@[^ :]+)?(:[^ :]+)?/\1\2/:O:u:C,(^[^/]),${PORTSDIR}/\1,}
+_PATCH_DEPENDS=${PATCH_DEPENDS_ALL:C/^[^ :]+:([^ :@]+)(@[^ :]+)?(:[^ :]+)?/\1\2/:O:u:C,(^[^/]),${PORTSDIR}/\1,}
+_FETCH_DEPENDS=${FETCH_DEPENDS_ALL:C/^[^ :]+:([^ :@]+)(@[^ :]+)?(:[^ :]+)?/\1\2/:O:u:C,(^[^/]),${PORTSDIR}/\1,}
+_LIB_DEPENDS=${LIB_DEPENDS_ALL:C/^[^ :]+:([^ :@]+)(@[^ :]+)?(:[^ :]+)?/\1\2/:O:u:C,(^[^/]),${PORTSDIR}/\1,}
+_BUILD_DEPENDS=${BUILD_DEPENDS_ALL:C/^[^ :]+:([^ :@]+)(@[^ :]+)?(:[^ :]+)?/\1\2/:O:u:C,(^[^/]),${PORTSDIR}/\1,} ${_LIB_DEPENDS}
+_RUN_DEPENDS=${RUN_DEPENDS_ALL:C/^[^ :]+:([^ :@]+)(@[^ :]+)?(:[^ :]+)?/\1\2/:O:u:C,(^[^/]),${PORTSDIR}/\1,} ${_LIB_DEPENDS}
+_TEST_DEPENDS=${TEST_DEPENDS:C/^[^ :]+:([^ :@]+)(@[^ :]+)?(:[^ :]+)?/\1\2/:O:u:C,(^[^/]),${PORTSDIR}/\1,}
+.      else
 _EXTRACT_DEPENDS=${EXTRACT_DEPENDS_ALL:C/^[^ :]+:([^ :@]+)(@[^ :]+)?(:[^ :]+)?/\1/:O:u:C,(^[^/]),${PORTSDIR}/\1,}
 _PATCH_DEPENDS=${PATCH_DEPENDS_ALL:C/^[^ :]+:([^ :@]+)(@[^ :]+)?(:[^ :]+)?/\1/:O:u:C,(^[^/]),${PORTSDIR}/\1,}
 _FETCH_DEPENDS=${FETCH_DEPENDS_ALL:C/^[^ :]+:([^ :@]+)(@[^ :]+)?(:[^ :]+)?/\1/:O:u:C,(^[^/]),${PORTSDIR}/\1,}
@@ -3755,6 +3764,7 @@ _LIB_DEPENDS=${LIB_DEPENDS_ALL:C/^[^ :]+:([^ :@]+)(@[^ :]+)?(:[^ :]+)?/\1/:O:u:C
 _BUILD_DEPENDS=${BUILD_DEPENDS_ALL:C/^[^ :]+:([^ :@]+)(@[^ :]+)?(:[^ :]+)?/\1/:O:u:C,(^[^/]),${PORTSDIR}/\1,} ${_LIB_DEPENDS}
 _RUN_DEPENDS=${RUN_DEPENDS_ALL:C/^[^ :]+:([^ :@]+)(@[^ :]+)?(:[^ :]+)?/\1/:O:u:C,(^[^/]),${PORTSDIR}/\1,} ${_LIB_DEPENDS}
 _TEST_DEPENDS=${TEST_DEPENDS:C/^[^ :]+:([^ :@]+)(@[^ :]+)?(:[^ :]+)?/\1/:O:u:C,(^[^/]),${PORTSDIR}/\1,}
+.      endif
 _WWW=${WWW}
 .      if exists(${DESCR})
 _DESCR=${DESCR}
@@ -3782,12 +3792,12 @@ describe:
 			break; \
 			;; \
 		esac; \
-	done < ${DESCR}; ${ECHO_CMD}) >>${INDEX_OUT}
+	done < ${DESCR}; ${ECHO_CMD} -n "${BUILDING_INDEX:D|${FLAVOR}|${_INDEX_DEFAULT_FLAVOR}}"; ${ECHO_CMD}) >>${INDEX_OUT}
 .      else # empty(FLAVORS)
 describe: ${FLAVORS:S/^/describe-/}
 .        for f in ${FLAVORS}
 describe-${f}:
-	@cd ${.CURDIR} && ${SETENV} FLAVOR=${f} ${MAKE} -B -D_DESCRIBE_WITH_FLAVOR describe
+	@cd ${.CURDIR} && ${SETENV} FLAVOR=${f} _INDEX_DEFAULT_FLAVOR=${FLAVOR} ${MAKE} -B -D_DESCRIBE_WITH_FLAVOR describe
 .        endfor
 .      endif # empty(FLAVORS)
 .    endif
