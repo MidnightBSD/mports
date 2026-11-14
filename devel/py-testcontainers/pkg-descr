@@ -1,0 +1,2 @@
+Testcontainers for Python provides lightweight, throwaway instances of
+services running in Docker containers for integration tests.
