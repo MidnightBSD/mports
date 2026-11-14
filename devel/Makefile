@@ -1523,6 +1523,7 @@
     SUBDIR += py-gitpython
     SUBDIR += py-giturlparse
     SUBDIR += py-google-i18n-address
+    SUBDIR += py-google-re2-stubs
     SUBDIR += py-googleapis-common-protos
     SUBDIR += py-gql
     SUBDIR += py-graphql-core
