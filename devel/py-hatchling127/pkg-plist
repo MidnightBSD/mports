@@ -1,0 +1,258 @@
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling-1.27.0.dist-info/WHEEL
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling-1.27.0.dist-info/entry_points.txt
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling-1.27.0.dist-info/INSTALLER
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling-1.27.0.dist-info/licenses/LICENSE.txt
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling-1.27.0.dist-info/RECORD
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling-1.27.0.dist-info/METADATA
+%%PYTHON_LIBDIR%%/mports-hatchling/127/bin/hatchling
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/build.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/utils/context.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/utils/constants.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/utils/__init__.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/utils/fs.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/utils/__pycache__/context%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/utils/__pycache__/__init__%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/utils/__pycache__/constants%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/utils/__pycache__/fs%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/utils/__pycache__/fs%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/utils/__pycache__/__init__%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/utils/__pycache__/constants%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/utils/__pycache__/context%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/ouroboros.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/__main__.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/cli/__pycache__/__init__%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/cli/__pycache__/__init__%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/cli/build/__init__.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/cli/build/__pycache__/__init__%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/cli/build/__pycache__/__init__%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/cli/__init__.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/cli/metadata/__init__.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/cli/metadata/__pycache__/__init__%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/cli/metadata/__pycache__/__init__%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/cli/version/__init__.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/cli/version/__pycache__/__init__%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/cli/version/__pycache__/__init__%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/cli/dep/__pycache__/__init__%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/cli/dep/__pycache__/__init__%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/cli/dep/__pycache__/core%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/cli/dep/__pycache__/core%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/cli/dep/core.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/cli/dep/__init__.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/__pycache__/ouroboros%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/__pycache__/__main__%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/__pycache__/__init__%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/__pycache__/build%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/__pycache__/__main__%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/__pycache__/__about__%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/__pycache__/__about__%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/__pycache__/ouroboros%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/__pycache__/build%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/__pycache__/__init__%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/py.typed
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/__about__.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/source/env.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/source/code.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/source/__pycache__/env%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/source/__pycache__/regex%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/source/__pycache__/__init__%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/source/__pycache__/env%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/source/__pycache__/code%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/source/__pycache__/__init__%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/source/__pycache__/regex%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/source/__pycache__/code%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/source/plugin/hooks.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/source/plugin/__pycache__/__init__%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/source/plugin/__pycache__/hooks%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/source/plugin/__pycache__/__init__%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/source/plugin/__pycache__/interface%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/source/plugin/__pycache__/interface%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/source/plugin/__pycache__/hooks%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/source/plugin/interface.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/source/plugin/__init__.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/source/regex.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/source/__init__.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/scheme/__pycache__/standard%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/scheme/__pycache__/standard%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/scheme/__pycache__/__init__%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/scheme/__pycache__/__init__%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/scheme/plugin/hooks.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/scheme/plugin/__pycache__/__init__%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/scheme/plugin/__pycache__/hooks%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/scheme/plugin/__pycache__/interface%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/scheme/plugin/__pycache__/interface%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/scheme/plugin/__pycache__/hooks%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/scheme/plugin/__pycache__/__init__%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/scheme/plugin/__init__.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/scheme/plugin/interface.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/scheme/standard.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/scheme/__init__.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/__init__.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/core.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/__pycache__/__init__%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/__pycache__/core%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/__pycache__/__init__%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/__pycache__/core%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/bridge/__init__.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/bridge/app.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/bridge/__pycache__/app%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/bridge/__pycache__/app%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/bridge/__pycache__/__init__%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/bridge/__pycache__/__init__%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/metadata/custom.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/metadata/plugin/__pycache__/interface%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/metadata/plugin/__pycache__/hooks%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/metadata/plugin/__pycache__/__init__%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/metadata/plugin/__pycache__/__init__%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/metadata/plugin/__pycache__/interface%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/metadata/plugin/__pycache__/hooks%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/metadata/plugin/__init__.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/metadata/plugin/interface.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/metadata/plugin/hooks.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/metadata/spec.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/metadata/utils.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/metadata/__init__.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/metadata/core.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/metadata/__pycache__/spec%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/metadata/__pycache__/custom%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/metadata/__pycache__/core%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/metadata/__pycache__/utils%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/metadata/__pycache__/custom%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/metadata/__pycache__/__init__%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/metadata/__pycache__/core%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/metadata/__pycache__/utils%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/metadata/__pycache__/__init__%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/metadata/__pycache__/spec%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/__init__.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/plugin/__pycache__/utils%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/plugin/__pycache__/manager%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/plugin/__pycache__/specs%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/plugin/__pycache__/exceptions%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/plugin/__pycache__/exceptions%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/plugin/__pycache__/manager%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/plugin/__pycache__/__init__%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/plugin/__pycache__/specs%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/plugin/__pycache__/utils%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/plugin/__pycache__/__init__%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/plugin/specs.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/plugin/__init__.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/plugin/manager.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/plugin/utils.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/plugin/exceptions.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/licenses/__init__.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/licenses/supported.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/licenses/__pycache__/supported%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/licenses/__pycache__/__init__%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/licenses/__pycache__/__init__%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/licenses/__pycache__/supported%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/dep/core.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/dep/__init__.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/dep/__pycache__/core%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/dep/__pycache__/core%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/dep/__pycache__/__init__%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/dep/__pycache__/__init__%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/constants.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/custom.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/__init__.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/utils.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/macos.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/plugin/__init__.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/plugin/hooks.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/plugin/__pycache__/__init__%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/plugin/__pycache__/interface%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/plugin/__pycache__/interface%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/plugin/__pycache__/hooks%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/plugin/__pycache__/__init__%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/plugin/__pycache__/hooks%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/plugin/interface.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/binary.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/app.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/hooks/__pycache__/version%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/hooks/__pycache__/custom%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/hooks/__pycache__/__init__%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/hooks/__pycache__/__init__%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/hooks/__pycache__/custom%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/hooks/__pycache__/version%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/hooks/custom.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/hooks/plugin/interface.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/hooks/plugin/hooks.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/hooks/plugin/__pycache__/hooks%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/hooks/plugin/__pycache__/__init__%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/hooks/plugin/__pycache__/interface%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/hooks/plugin/__pycache__/hooks%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/hooks/plugin/__pycache__/interface%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/hooks/plugin/__pycache__/__init__%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/hooks/plugin/__init__.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/hooks/version.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/hooks/__init__.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/config.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/sdist.py
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/__pycache__/macos%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/__pycache__/wheel%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/__pycache__/constants%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/__pycache__/sdist%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/__pycache__/sdist%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/__pycache__/app%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/__pycache__/macos%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/__pycache__/config%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/__pycache__/config%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/__pycache__/app%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/__pycache__/__init__%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/__pycache__/binary%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/__pycache__/custom%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/__pycache__/binary%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/__pycache__/__init__%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/__pycache__/utils%%PYTHON_SOABI%%.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/__pycache__/utils%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/__pycache__/constants%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/__pycache__/wheel%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/__pycache__/custom%%PYTHON_SOABI%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/wheel.py
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling-1.27.0.dist-info/licenses
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling-1.27.0.dist-info
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/bin
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/utils/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/utils
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/cli/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/cli/build/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/cli/build
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/cli/metadata/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/cli/metadata
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/cli/version/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/cli/version
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/cli/dep/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/cli/dep
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/cli
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/source/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/source/plugin/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/source/plugin
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/source
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/scheme/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/scheme/plugin/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/scheme/plugin
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/scheme
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/version
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/bridge/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/bridge
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/metadata/plugin/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/metadata/plugin
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/metadata/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/metadata
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/plugin/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/plugin
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/licenses/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/licenses
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/dep/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/dep
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/plugin/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/plugin
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/hooks/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/hooks/plugin/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/hooks/plugin
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/hooks
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling/builders
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127/hatchling
+@dir %%PYTHON_LIBDIR%%/mports-hatchling/127
+@dir %%PYTHON_LIBDIR%%/mports-hatchling
