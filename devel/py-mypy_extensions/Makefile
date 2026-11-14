@@ -11,8 +11,8 @@ WWW=		http://www.mypy-lang.org
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		python
-USE_PYTHON=	autoplist pep517
+USES=		python:3.8+
+USE_PYTHON=	allflavors autoplist pep517
 
 NO_ARCH=	yes
 
