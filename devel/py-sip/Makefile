@@ -1,6 +1,5 @@
 PORTNAME=	sip
 PORTVERSION=	${SIP_VERSION}
-PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITES_SIP}
@@ -16,11 +15,11 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 BUILD_DEPENDS=	${PY_SETUPTOOLS} \
 		${PYTHON_PKGNAMEPREFIX}setuptools-scm>=8:devel/py-setuptools-scm@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
-RUN_DEPENDS=	${PY_SETUPTOOLS} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=63.1.0:devel/py-setuptools@${PY_FLAVOR} \
 		${PY_TOMLI} \
-		${PYTHON_PKGNAMEPREFIX}packaging>0:devel/py-packaging@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}packaging>=24.2:devel/py-packaging@${PY_FLAVOR}
 
-USES=		python pyqt:sip
+USES=		python python-setuptools:78 pyqt:sip
 USE_PYTHON=	autoplist concurrent pep517
 USE_PYQT=	#
 
