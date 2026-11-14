@@ -24,7 +24,7 @@ RUN_DEPENDS=	${PY_EXCEPTIONGROUP} \
 		${PYTHON_PKGNAMEPREFIX}sortedcontainers>0:devel/py-sortedcontainers@${PY_FLAVOR}
 
 USES=		python:3.10+ python-setuptools:83
-USE_PYTHON=	autoplist pep517
+USE_PYTHON=	autoplist pep517 allflavors
 
 NO_ARCH=	yes
 NO_TEST=	yes
