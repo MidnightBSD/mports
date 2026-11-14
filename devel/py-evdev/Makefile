@@ -1,6 +1,5 @@
 PORTNAME=	evdev
-PORTVERSION=	1.3.0
-PORTREVISION=	1
+PORTVERSION=	1.9.1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,16 +12,18 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${LOCALBASE}/include/linux/input.h:devel/evdev-proto
 
-USES=		python
-USE_PYTHON=	autoplist distutils
+USES=		python:3.8+
+USE_PYTHON=	autoplist concurrent distutils pytest
+# Upstream Linux/proc assertions fail and test_write waits for unsupported POLLOUT.
+NO_TEST=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include # v4l_compat
 
 EVDEV_INCLUDES=	${LOCALBASE}/include
 
 PYDISTUTILS_BUILD_TARGET=	build_ecodes
-PYDISTUTILS_BUILDARGS+=		--evdev-headers ${EVDEV_INCLUDES}/linux/input.h:${EVDEV_INCLUDES}/linux/input-event-codes.h
-PYDISTUTILS_BUILDARGS+=		build_ext
-PYDISTUTILS_BUILDARGS+=		--include-dirs ${EVDEV_INCLUDES}
+PYDISTUTILS_BUILDARGS+=	--evdev-headers \
+			${EVDEV_INCLUDES}/linux/input.h:${EVDEV_INCLUDES}/linux/input-event-codes.h:${EVDEV_INCLUDES}/linux/uinput.h
+PYDISTUTILS_BUILDARGS+=	build_ext --include-dirs ${EVDEV_INCLUDES}
 
 # Supply install target with evdev headers path
 PYDISTUTILS_INSTALL_TARGET=	${PYDISTUTILS_BUILD_TARGET} \
