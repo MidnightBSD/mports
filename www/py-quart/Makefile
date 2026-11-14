@@ -24,7 +24,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}aiofiles>=0:devel/py-aiofiles@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}werkzeug>=3.0:www/py-werkzeug@${PY_FLAVOR}
 
 USES=		python:3.13+
-USE_PYTHON=	autoplist concurrent pep517
+USE_PYTHON=	autoplist concurrent pep517 allflavors
 
 NO_ARCH=	yes
 
