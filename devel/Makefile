@@ -1976,6 +1976,7 @@
     SUBDIR += py-wheel
     SUBDIR += py-wheel044
     SUBDIR += py-wrapt
+    SUBDIR += py-wurlitzer
     SUBDIR += py-xdg
     SUBDIR += py-xmltodict
     SUBDIR += py-xxhash
