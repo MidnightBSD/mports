@@ -8,6 +8,5 @@ It features fog of war, a minimap, AMD FidelityFX Super Resolution 1.0
 upscaling, and public-domain jazz and blues background music. Units,
 buildings and maps are defined in Lua and can be extended.
 
-A Vulkan driver is required. Gamepad support is enabled when SDL3
-(devel/sdl3) is installed, and sound plays through paplay or aucat
-when either is available.
+A Vulkan driver is required. Gamepads are supported through SDL3, and
+sound plays through sndio's aucat (or PulseAudio's paplay).

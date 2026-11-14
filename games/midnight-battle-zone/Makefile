@@ -10,7 +10,9 @@ WWW=		https://github.com/MidnightBSD/midnight-battle-zone
 LICENSE=	bsd2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	vulkan-loader>0:graphics/vulkan-loader
+RUN_DEPENDS=	aucat:audio/sndio \
+		sdl3>0:devel/sdl3 \
+		vulkan-loader>0:graphics/vulkan-loader
 
 USES=		cargo xorg
 USE_GITHUB=	yes
