@@ -1,0 +1,2 @@
+Python access to Skia path operations, including union, intersection,
+difference, simplification, and conversion between path representations.
