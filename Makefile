@@ -109,12 +109,6 @@ INDEX_SHELL=		/bin/sh
 INDEX_PORTS=.
 .endif
 
-.if exists(/usr/libexec/make_index)
-MAKE_INDEX=	/usr/libexec/make_index /dev/stdin
-.else
-MAKE_INDEX=	perl ${.CURDIR}/Tools/make_index
-.endif
-
 ${INDEXDIR}/${INDEXFILE}: .PHONY
 	@${INDEX_ECHO_1ST} "Generating ${INDEXFILE} - please wait.."; \
 	if [ "${INDEX_PRISTINE}" != "" ]; then \
@@ -122,6 +116,7 @@ ${INDEXDIR}/${INDEXFILE}: .PHONY
 	fi; \
 	tmpdir=`/usr/bin/mktemp -d -t index` || exit 1; \
 	trap "rm -rf $${tmpdir}; exit 1" 1 2 3 5 10 13 15; \
+	${CC} -O2 -o $${tmpdir}/make_index ${.CURDIR}/Tools/make_index.c || { rm -rf $${tmpdir}; exit 1; }; \
 	( cd ${.CURDIR}; for i in ${INDEX_PORTS}; do (cd $${i} && ${MAKE} -j${INDEX_JOBS} INDEX_TMPDIR=$${tmpdir} BUILDING_INDEX=1 \
 		__MAKE_SHELL=${INDEX_SHELL} \
 		ECHO_MSG="${INDEX_ECHO_MSG}" describe); done ) || \
@@ -140,8 +135,9 @@ ${INDEXDIR}/${INDEXFILE}: .PHONY
 		fi; \
 		exit 1); \
 	cat $${tmpdir}/${INDEXFILE}.desc.* | \
-		sed -e 's|${.CURDIR}|${PORTSDIR}|g' | \
-		(cd ${.CURDIR} ; ${MAKE_INDEX}) | \
+		sed -e 's|${.CURDIR}|${PORTSDIR}|g' > $${tmpdir}/describe || exit 1; \
+	$${tmpdir}/make_index $${tmpdir}/describe > $${tmpdir}/resolved || { rm -rf $${tmpdir}; exit 1; }; \
+	cat $${tmpdir}/resolved | \
 		sed -e 's/  */ /g' -e 's/|  */|/g' -e 's/  *|/|/g' -e 's./..g' | \
 		sort -t '|' -k 2,3 | \
 		sed -Ee 's../.g' -e ':a' -e 's|/[^/]+/\.\.||; ta' \

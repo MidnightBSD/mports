@@ -156,7 +156,12 @@ Remove the installation.
 =item describe
 
 Generate a one-line description for each port for use in INDEX files and the
-like.
+like.  The normal output retains the traditional 13 fields.  During an INDEX
+build, the framework uses an internal flavor-aware stream to resolve named
+dependencies and the port's default flavor; the resulting INDEX retains its
+traditional 13 fields and bare port paths.
+Missing named flavors, duplicate origins, and dependency cycles fail INDEX
+generation rather than selecting an arbitrary provider.
 
 =item describe-yaml
 
