@@ -1484,6 +1484,7 @@
     SUBDIR += py-enum34
     SUBDIR += py-eval-type-backport
     SUBDIR += py-evdev
+    SUBDIR += py-example-isort-sorting-plugin
     SUBDIR += py-exceptiongroup
     SUBDIR += py-executing
     SUBDIR += py-expandvars
