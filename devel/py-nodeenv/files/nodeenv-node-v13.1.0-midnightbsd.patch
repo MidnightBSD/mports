@@ -1,0 +1,280 @@
+--- a/configure
++++ b/configure
+@@ -7,6 +7,7 @@
+ # pyenv will alert which shims are available and then will fail the build.
+ _=[ 'exec' '/bin/sh' '-c' '''
+ test ${TRAVIS} && exec python "$0" "$@"  # workaround for pyenv on Travis CI
++which python3.11 >/dev/null && exec python3.11 "$0" "$@"
+ which python3.8 >/dev/null && exec python3.8 "$0" "$@"
+ which python3.7 >/dev/null && exec python3.7 "$0" "$@"
+ which python3.6 >/dev/null && exec python3.6 "$0" "$@"
+@@ -21,7 +22,7 @@
+ from distutils.spawn import find_executable
+
+ print('Node configure: Found Python {0}.{1}.{2}...'.format(*sys.version_info))
+-acceptable_pythons = ((3, 8), (3, 7), (3, 6), (3, 5), (2, 7))
++acceptable_pythons = ((3, 11), (3, 8), (3, 7), (3, 6), (3, 5), (2, 7))
+ if sys.version_info[:2] in acceptable_pythons:
+   import configure
+ else:
+--- a/tools/gyp/pylib/gyp/common.py
++++ b/tools/gyp/pylib/gyp/common.py
+@@ -3,6 +3,7 @@
+ # found in the LICENSE file.
+
+ import collections
++import collections.abc
+ import errno
+ import filecmp
+ import os.path
+@@ -493,7 +494,7 @@
+
+
+ # Based on http://code.activestate.com/recipes/576694/.
+-class OrderedSet(collections.MutableSet):
++class OrderedSet(collections.abc.MutableSet):
+   def __init__(self, iterable=None):
+     self.end = end = []
+     end += [None, end, end]         # sentinel node for doubly linked list
+--- a/tools/inspector_protocol/jinja2/sandbox.py
++++ b/tools/inspector_protocol/jinja2/sandbox.py
+@@ -14,7 +14,7 @@
+ """
+ import types
+ import operator
+-from collections import Mapping
++from collections.abc import Mapping
+ from jinja2.environment import Environment
+ from jinja2.exceptions import SecurityError
+ from jinja2._compat import string_types, PY2
+@@ -79,7 +79,7 @@
+     pass
+
+ #: register Python 2.6 abstract base classes
+-from collections import MutableSet, MutableMapping, MutableSequence
++from collections.abc import MutableSet, MutableMapping, MutableSequence
+ _mutable_set_types += (MutableSet,)
+ _mutable_mapping_types += (MutableMapping,)
+ _mutable_sequence_types += (MutableSequence,)
+--- a/tools/inspector_protocol/jinja2/utils.py
++++ b/tools/inspector_protocol/jinja2/utils.py
+@@ -482,7 +482,7 @@
+
+ # register the LRU cache as mutable mapping if possible
+ try:
+-    from collections import MutableMapping
++    from collections.abc import MutableMapping
+     MutableMapping.register(LRUCache)
+ except ImportError:
+     pass
+--- a/tools/inspector_protocol/jinja2/tests.py
++++ b/tools/inspector_protocol/jinja2/tests.py
+@@ -10,7 +10,7 @@
+ """
+ import operator
+ import re
+-from collections import Mapping
++from collections.abc import Mapping
+ from jinja2.runtime import Undefined
+ from jinja2._compat import text_type, string_types, integer_types
+ import decimal
+--- a/tools/inspector_protocol/jinja2/runtime.py
++++ b/tools/inspector_protocol/jinja2/runtime.py
+@@ -315,7 +315,7 @@
+
+ # register the context as mapping if possible
+ try:
+-    from collections import Mapping
++    from collections.abc import Mapping
+     Mapping.register(Context)
+ except ImportError:
+     pass
+--- a/deps/v8/third_party/jinja2/sandbox.py
++++ b/deps/v8/third_party/jinja2/sandbox.py
+@@ -14,7 +14,7 @@
+ """
+ import types
+ import operator
+-from collections import Mapping
++from collections.abc import Mapping
+ from jinja2.environment import Environment
+ from jinja2.exceptions import SecurityError
+ from jinja2._compat import string_types, PY2
+@@ -79,7 +79,7 @@
+     pass
+
+ #: register Python 2.6 abstract base classes
+-from collections import MutableSet, MutableMapping, MutableSequence
++from collections.abc import MutableSet, MutableMapping, MutableSequence
+ _mutable_set_types += (MutableSet,)
+ _mutable_mapping_types += (MutableMapping,)
+ _mutable_sequence_types += (MutableSequence,)
+--- a/deps/v8/third_party/jinja2/utils.py
++++ b/deps/v8/third_party/jinja2/utils.py
+@@ -482,7 +482,7 @@
+
+ # register the LRU cache as mutable mapping if possible
+ try:
+-    from collections import MutableMapping
++    from collections.abc import MutableMapping
+     MutableMapping.register(LRUCache)
+ except ImportError:
+     pass
+--- a/deps/v8/third_party/jinja2/tests.py
++++ b/deps/v8/third_party/jinja2/tests.py
+@@ -10,7 +10,7 @@
+ """
+ import operator
+ import re
+-from collections import Mapping
++from collections.abc import Mapping
+ from jinja2.runtime import Undefined
+ from jinja2._compat import text_type, string_types, integer_types
+ import decimal
+--- a/deps/v8/third_party/jinja2/runtime.py
++++ b/deps/v8/third_party/jinja2/runtime.py
+@@ -315,7 +315,7 @@
+
+ # register the context as mapping if possible
+ try:
+-    from collections import Mapping
++    from collections.abc import Mapping
+     Mapping.register(Context)
+ except ImportError:
+     pass
+--- a/deps/v8/src/inspector/string-16.cc
++++ b/deps/v8/src/inspector/string-16.cc
+@@ -26,7 +26,7 @@
+   return isASCII(c) && c <= ' ' && (c == ' ' || (c <= 0xD && c >= 0x9));
+ }
+
+-int64_t charactersToInteger(const UChar* characters, size_t length,
++int64_t charactersToInteger(const uint16_t* characters, size_t length,
+                             bool* ok = nullptr) {
+   std::vector<char> buffer;
+   buffer.reserve(length + 1);
+@@ -49,6 +49,11 @@
+
+ String16::String16(const UChar* characters, size_t size)
+     : m_impl(characters, size) {}
++String16::String16(const uint16_t* characters, size_t size)
++    : m_impl(reinterpret_cast<const UChar*>(characters), size) {}
++
++String16::String16(const uint16_t* characters)
++    : m_impl(reinterpret_cast<const UChar*>(characters)) {}
+
+ String16::String16(const UChar* characters) : m_impl(characters) {}
+
+@@ -217,6 +222,10 @@
+ #endif  // V8_TARGET_BIG_ENDIAN
+ }
+
++String16 String16::fromUTF16LE(const uint16_t* stringStart, size_t length) {
++  return fromUTF16LE(reinterpret_cast<const UChar*>(stringStart), length);
++}
++
+ std::string String16::utf8() const {
+   return UTF16ToUTF8(m_impl.data(), m_impl.size());
+ }
+--- a/deps/v8/src/inspector/string-16.h
++++ b/deps/v8/src/inspector/string-16.h
+@@ -16,7 +16,7 @@
+
+ namespace v8_inspector {
+
+-using UChar = uint16_t;
++using UChar = char16_t;
+
+ class String16 {
+  public:
+@@ -26,6 +26,8 @@
+   String16(const String16&) V8_NOEXCEPT = default;
+   String16(String16&&) V8_NOEXCEPT = default;
+   String16(const UChar* characters, size_t size);
++  String16(const uint16_t* characters, size_t size);
++  V8_EXPORT String16(const uint16_t* characters);
+   V8_EXPORT String16(const UChar* characters);  // NOLINT(runtime/explicit)
+   String16(const char* characters);   // NOLINT(runtime/explicit)
+   String16(const char* characters, size_t size);
+@@ -43,7 +45,9 @@
+   int64_t toInteger64(bool* ok = nullptr) const;
+   int toInteger(bool* ok = nullptr) const;
+   String16 stripWhiteSpace() const;
+-  const UChar* characters16() const { return m_impl.c_str(); }
++  const uint16_t* characters16() const {
++    return reinterpret_cast<const uint16_t*>(m_impl.c_str());
++  }
+   size_t length() const { return m_impl.length(); }
+   bool isEmpty() const { return !m_impl.length(); }
+   UChar operator[](size_t index) const { return m_impl[index]; }
+@@ -72,6 +76,8 @@
+   // Instantiates a String16 in native endianness from UTF16 LE.
+   // On Big endian architectures, byte order needs to be flipped.
+   V8_EXPORT static String16 fromUTF16LE(const UChar* stringStart,
++                                        size_t length);
++  V8_EXPORT static String16 fromUTF16LE(const uint16_t* stringStart,
+                                         size_t length);
+
+   std::size_t hash() const {
+--- a/deps/v8/src/inspector/v8-string-conversions.cc
++++ b/deps/v8/src/inspector/v8-string-conversions.cc
+@@ -12,7 +12,7 @@
+
+ namespace v8_inspector {
+ namespace {
+-using UChar = uint16_t;
++using UChar = char16_t;
+ using UChar32 = uint32_t;
+
+ bool isASCII(UChar c) { return !(c & ~0x7F); }
+@@ -389,7 +389,7 @@
+
+ std::basic_string<UChar> UTF8ToUTF16(const char* stringStart, size_t length) {
+   if (!stringStart || !length) return std::basic_string<UChar>();
+-  std::vector<uint16_t> buffer(length);
++  std::vector<UChar> buffer(length);
+   UChar* bufferStart = buffer.data();
+
+   UChar* bufferCurrent = bufferStart;
+@@ -398,7 +398,7 @@
+                          reinterpret_cast<const char*>(stringStart + length),
+                          &bufferCurrent, bufferCurrent + buffer.size(), nullptr,
+                          true) != conversionOK)
+-    return std::basic_string<uint16_t>();
++    return std::basic_string<UChar>();
+   size_t utf16Length = bufferCurrent - bufferStart;
+   return std::basic_string<UChar>(bufferStart, bufferStart + utf16Length);
+ }
+--- a/deps/v8/src/inspector/v8-string-conversions.h
++++ b/deps/v8/src/inspector/v8-string-conversions.h
+@@ -5,13 +5,15 @@
+ #ifndef V8_INSPECTOR_V8_STRING_CONVERSIONS_H_
+ #define V8_INSPECTOR_V8_STRING_CONVERSIONS_H_
+
++#include <uchar.h>
++
+ #include <string>
+
+ // Conversion routines between UT8 and UTF16, used by string-16.{h,cc}. You may
+ // want to use string-16.h directly rather than these.
+ namespace v8_inspector {
+-std::basic_string<uint16_t> UTF8ToUTF16(const char* stringStart, size_t length);
+-std::string UTF16ToUTF8(const uint16_t* stringStart, size_t length);
++std::basic_string<char16_t> UTF8ToUTF16(const char* stringStart, size_t length);
++std::string UTF16ToUTF8(const char16_t* stringStart, size_t length);
+ }  // namespace v8_inspector
+
+ #endif  // V8_INSPECTOR_V8_STRING_CONVERSIONS_H_
+--- a/deps/v8/src/utils/utils.h
++++ b/deps/v8/src/utils/utils.h
+@@ -330,7 +330,9 @@
+   static constexpr U kNumValues = U{1} << kSize;
+
+   // Value for the field with all bits set.
+-  static constexpr T kMax = static_cast<T>(kNumValues - 1);
++  using MaxType = typename std::conditional<
++      std::is_enum<T>::value && std::is_convertible<T, U>::value, U, T>::type;
++  static constexpr MaxType kMax = static_cast<MaxType>(kNumValues - 1);
+
+   template <class T2, int size2>
+   using Next = BitField<T2, kShift + kSize, size2, U>;
