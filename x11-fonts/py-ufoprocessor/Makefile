@@ -1,10 +1,8 @@
 PORTNAME=	ufoprocessor
-PORTVERSION=	1.9.0
-PORTREVISION=	1
+PORTVERSION=	1.14.1
 CATEGORIES=	x11-fonts python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-DISTNAME=	ufoProcessor-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Read, write and generate UFOs with designspace data
@@ -13,8 +11,7 @@ WWW=		https://github.com/LettError/ufoProcessor
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}setuptools-scm>=0:devel/py-setuptools-scm@${PY_FLAVOR} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools-scm>=0:devel/py-setuptools-scm@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}defcon>=0.6.0:x11-fonts/py-defcon@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}fontMath>=0.4.9:x11-fonts/py-fontMath@${PY_FLAVOR} \
@@ -22,9 +19,14 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}defcon>=0.6.0:x11-fonts/py-defcon@${PY_FLAVO
 		${PYTHON_PKGNAMEPREFIX}fonttools>=3.32.0:print/py-fonttools@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}MutatorMath>=2.1.2:math/py-MutatorMath@${PY_FLAVOR}
 
-USES=		python zip
+USES=		python:3.10+ python-setuptools:78
 USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
+
+TEST_ENV=	PYTHONSAFEPATH=1 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
+
+do-test:
+	cd ${WRKDIR} && ${SETENVI} ${WRK_ENV} ${TEST_ENV} ${PYTHON_CMD} ${WRKSRC}/Tests/tests.py
 
 .include <bsd.port.mk>
