@@ -1,0 +1,12 @@
+--- src/cpp/skia-builder/skia/BUILD.gn.orig
++++ src/cpp/skia-builder/skia/BUILD.gn
+@@ -1783,7 +1783,8 @@
+     ]
+   }
+
+-  if (is_linux || is_wasm) {
++  if (is_linux || is_wasm || current_os == "freebsd" ||
++      current_os == "midnightbsd") {
+     sources += [ "src/ports/SkDebug_stdio.cpp" ]
+     if (skia_use_egl) {
+       libs += [ "GLESv2" ]
