@@ -1,6 +1,5 @@
 PORTNAME=	compreffor
-DISTVERSION=	0.5.4
-PORTREVISION=	3
+DISTVERSION=	0.6.0
 CATEGORIES=	x11-fonts python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -18,8 +17,10 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cython>=0.29.30:lang/cython@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}fonttools>=4:print/py-fonttools@${PY_FLAVOR}
 
-USES=		compiler:c++11-lang python
-USE_PYTHON=	autoplist concurrent pep517
+USES=		compiler:c++11-lang python:3.10+
+USE_PYTHON=	autoplist concurrent pep517 pytest
+
+TEST_ARGS=	--pyargs compreffor --doctest-modules
 
 MAKE_ENV+=	CYTHON_FORCE_REGEN=1
 
