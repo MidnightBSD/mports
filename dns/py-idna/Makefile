@@ -16,8 +16,8 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}flit-core>=3.11<5:devel/py-flit-core@${PY_
 
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hypothesis>=6.141.1:devel/py-hypothesis@${PY_FLAVOR}
 
-USES=		python
-USE_PYTHON=	autoplist concurrent pep517 unittest
+USES=		python:3.9+
+USE_PYTHON=	allflavors autoplist concurrent pep517 unittest
 
 NO_ARCH=	yes
 
