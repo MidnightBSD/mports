@@ -13,6 +13,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 RUN_DEPENDS=	${PEARDIR}/HTTP/Request.php:www/pear-HTTP_Request@${PHP_FLAVOR}
 
 USES=		cpe tar:tgz php:web,flavors
+IGNORE_WITH_PHP=	86
 USE_PHP=	curl gd gettext hash iconv imap json mbstring mysqli pcre session xml zlib
 
 NO_BUILD=	yes
