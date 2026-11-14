@@ -15,7 +15,7 @@ WWW=		http://www.calculix.de/
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/gpl-2.0.txt
 
-LIB_DEPENDS=	libarpack.so:math/arpack-ng@mpich \
+LIB_DEPENDS=	libarpack.so:math/arpack-ng \
 		libspooles.so:math/spooles
 
 USES=		blaslapack fortran gmake perl5 tar:bzip2
