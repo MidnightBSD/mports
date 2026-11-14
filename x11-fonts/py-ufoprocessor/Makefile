@@ -17,6 +17,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}defcon>=0.6.0:x11-fonts/py-defcon@${PY_FLAVO
 		${PYTHON_PKGNAMEPREFIX}fontMath>=0.4.9:x11-fonts/py-fontMath@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}fontparts>=0.8.2:print/py-fontparts@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}fonttools>=3.32.0:print/py-fonttools@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}lxml>=0:devel/py-lxml@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}MutatorMath>=2.1.2:math/py-MutatorMath@${PY_FLAVOR}
 
 USES=		python:3.10+ python-setuptools:78
