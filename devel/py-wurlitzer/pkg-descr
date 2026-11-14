@@ -1,0 +1,2 @@
+Wurlitzer captures C-level stdout and stderr in Python context managers.
+It can redirect output into streams, files, or Python logging handlers.
