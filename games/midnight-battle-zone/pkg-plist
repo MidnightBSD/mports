@@ -1,0 +1,13 @@
+bin/midnight-battle-zone
+libexec/midnight-battle-zone
+%%DATADIR%%/assets/maps/midnight_valley.lua
+%%DATADIR%%/assets/maps/shattered_basin.lua
+%%DATADIR%%/assets/maps/twin_iron_ridge.lua
+%%DATADIR%%/assets/scripts/ai.lua
+%%DATADIR%%/assets/scripts/buildings.lua
+%%DATADIR%%/assets/scripts/gameplay.lua
+%%DATADIR%%/assets/scripts/units.lua
+@dir %%DATADIR%%/assets/maps
+@dir %%DATADIR%%/assets/scripts
+@dir %%DATADIR%%/assets
+@dir %%DATADIR%%

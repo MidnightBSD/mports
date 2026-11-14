@@ -124,6 +124,7 @@
     SUBDIR += linux-quake4-demo
     SUBDIR += lskat
     SUBDIR += luanti
+    SUBDIR += midnight-battle-zone
     SUBDIR += minetest_game
     SUBDIR += moon-buggy
     SUBDIR += nbsdgames
