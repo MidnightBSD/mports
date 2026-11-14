@@ -1,9 +1,9 @@
 PORTNAME=	nightsaver
-DISTVERSION=	0.5.0
+DISTVERSION=	0.6.0
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	OLED-friendly X11 screensaver and screen locker, xscreensaver drop-in
+COMMENT=	OLED-friendly X11/Wayland screensaver and locker, xscreensaver drop-in
 WWW=		https://github.com/MidnightBSD/nightsaver
 
 LICENSE=	bsd2
