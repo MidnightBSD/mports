@@ -1,0 +1,5 @@
+--- pyproject.toml.orig	2020-02-02 00:00:00 UTC
++++ pyproject.toml	2026-11-14 06:59:50 UTC
+@@ -70 +70 @@
+-  "pathspec>=0.9.0",
++  "pathspec>=1.0.1",

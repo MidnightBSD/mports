@@ -1,0 +1,154 @@
+%%PYTHON_LIBDIR%%/mports-black/25/__pycache__/_black_version%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/__pycache__/_black_version%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black-25.1.0.dist-info/RECORD
+%%PYTHON_LIBDIR%%/mports-black/25/black-25.1.0.dist-info/WHEEL
+%%PYTHON_LIBDIR%%/mports-black/25/black-25.1.0.dist-info/entry_points.txt
+%%PYTHON_LIBDIR%%/mports-black/25/black-25.1.0.dist-info/METADATA
+%%PYTHON_LIBDIR%%/mports-black/25/black-25.1.0.dist-info/INSTALLER
+%%PYTHON_LIBDIR%%/mports-black/25/black-25.1.0.dist-info/licenses/AUTHORS.md
+%%PYTHON_LIBDIR%%/mports-black/25/black-25.1.0.dist-info/licenses/LICENSE
+%%PYTHON_LIBDIR%%/mports-black/25/_black_version.py
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/README
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/pygram.py
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/PatternGrammar.txt
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/__init__.py
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/pgen2/__pycache__/conv%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/pgen2/__pycache__/driver%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/pgen2/__pycache__/token%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/pgen2/__pycache__/__init__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/pgen2/__pycache__/driver%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/pgen2/__pycache__/pgen%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/pgen2/__pycache__/grammar%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/pgen2/__pycache__/parse%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/pgen2/__pycache__/parse%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/pgen2/__pycache__/literals%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/pgen2/__pycache__/tokenize%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/pgen2/__pycache__/__init__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/pgen2/__pycache__/literals%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/pgen2/__pycache__/tokenize%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/pgen2/__pycache__/pgen%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/pgen2/__pycache__/token%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/pgen2/__pycache__/conv%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/pgen2/__pycache__/grammar%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/pgen2/pgen.py
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/pgen2/parse.py
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/pgen2/grammar.py
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/pgen2/token.py
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/pgen2/driver.py
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/pgen2/__init__.py
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/pgen2/tokenize.py
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/pgen2/literals.py
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/pgen2/conv.py
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/Grammar.txt
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/LICENSE
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/__pycache__/__init__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/__pycache__/pygram%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/__pycache__/pytree%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/__pycache__/pytree%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/__pycache__/pygram%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/__pycache__/__init__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/blib2to3/pytree.py
+%%PYTHON_LIBDIR%%/mports-black/25/black/brackets.py
+%%PYTHON_LIBDIR%%/mports-black/25/black/concurrency.py
+%%PYTHON_LIBDIR%%/mports-black/25/black/rusty.py
+%%PYTHON_LIBDIR%%/mports-black/25/black/output.py
+%%PYTHON_LIBDIR%%/mports-black/25/black/__init__.py
+%%PYTHON_LIBDIR%%/mports-black/25/black/py.typed
+%%PYTHON_LIBDIR%%/mports-black/25/black/const.py
+%%PYTHON_LIBDIR%%/mports-black/25/black/numerics.py
+%%PYTHON_LIBDIR%%/mports-black/25/black/_width_table.py
+%%PYTHON_LIBDIR%%/mports-black/25/black/schema.py
+%%PYTHON_LIBDIR%%/mports-black/25/black/strings.py
+%%PYTHON_LIBDIR%%/mports-black/25/black/mode.py
+%%PYTHON_LIBDIR%%/mports-black/25/black/trans.py
+%%PYTHON_LIBDIR%%/mports-black/25/black/report.py
+%%PYTHON_LIBDIR%%/mports-black/25/black/files.py
+%%PYTHON_LIBDIR%%/mports-black/25/black/lines.py
+%%PYTHON_LIBDIR%%/mports-black/25/black/nodes.py
+%%PYTHON_LIBDIR%%/mports-black/25/black/comments.py
+%%PYTHON_LIBDIR%%/mports-black/25/black/__main__.py
+%%PYTHON_LIBDIR%%/mports-black/25/black/handle_ipynb_magics.py
+%%PYTHON_LIBDIR%%/mports-black/25/black/parsing.py
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/parsing%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/brackets%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/numerics%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/handle_ipynb_magics%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/__main__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/_width_table%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/__init__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/output%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/brackets%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/strings%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/debug%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/trans%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/files%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/mode%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/cache%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/parsing%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/files%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/mode%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/nodes%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/rusty%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/report%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/trans%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/cache%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/ranges%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/strings%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/nodes%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/output%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/report%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/__init__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/concurrency%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/handle_ipynb_magics%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/linegen%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/__main__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/numerics%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/ranges%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/lines%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/comments%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/_width_table%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/comments%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/linegen%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/lines%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/concurrency%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/const%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/schema%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/rusty%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/const%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/debug%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__/schema%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/cache.py
+%%PYTHON_LIBDIR%%/mports-black/25/black/ranges.py
+%%PYTHON_LIBDIR%%/mports-black/25/black/linegen.py
+%%PYTHON_LIBDIR%%/mports-black/25/black/resources/black.schema.json
+%%PYTHON_LIBDIR%%/mports-black/25/black/resources/__pycache__/__init__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/resources/__pycache__/__init__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/black/resources/__init__.py
+%%PYTHON_LIBDIR%%/mports-black/25/black/debug.py
+%%PYTHON_LIBDIR%%/mports-black/25/bin/black
+%%PYTHON_LIBDIR%%/mports-black/25/bin/blackd
+%%PYTHON_LIBDIR%%/mports-black/25/blackd/__init__.py
+%%PYTHON_LIBDIR%%/mports-black/25/blackd/middlewares.py
+%%PYTHON_LIBDIR%%/mports-black/25/blackd/__pycache__/__init__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/blackd/__pycache__/__main__%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/blackd/__pycache__/middlewares%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/blackd/__pycache__/middlewares%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/blackd/__pycache__/__init__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/blackd/__pycache__/__main__%%PYTHON_TAG%%.pyc
+%%PYTHON_LIBDIR%%/mports-black/25/blackd/__main__.py
+@dir %%PYTHON_LIBDIR%%/mports-black/25/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-black/25/black-25.1.0.dist-info/licenses
+@dir %%PYTHON_LIBDIR%%/mports-black/25/black-25.1.0.dist-info
+@dir %%PYTHON_LIBDIR%%/mports-black/25/blib2to3/pgen2/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-black/25/blib2to3/pgen2
+@dir %%PYTHON_LIBDIR%%/mports-black/25/blib2to3/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-black/25/blib2to3
+@dir %%PYTHON_LIBDIR%%/mports-black/25/black/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-black/25/black/resources/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-black/25/black/resources
+@dir %%PYTHON_LIBDIR%%/mports-black/25/black
+@dir %%PYTHON_LIBDIR%%/mports-black/25/bin
+@dir %%PYTHON_LIBDIR%%/mports-black/25/blackd/__pycache__
+@dir %%PYTHON_LIBDIR%%/mports-black/25/blackd
+@dir %%PYTHON_LIBDIR%%/mports-black/25
+@dir %%PYTHON_LIBDIR%%/mports-black
