@@ -21,8 +21,8 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=40.8.0:devel/py-setuptools@${P
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}asgiref>=3.6.0:www/py-asgiref@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sqlparse>=0.3.1:databases/py-sqlparse@${PY_FLAVOR}
 
-USES=		cpe python shebangfix
-USE_PYTHON=	autoplist pep517
+USES=		cpe python:3.8-3.12 shebangfix
+USE_PYTHON=	allflavors autoplist pep517
 
 NO_ARCH=	yes
 NO_TEST=	yes
