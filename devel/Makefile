@@ -1541,6 +1541,7 @@
     SUBDIR += py-humanize
     SUBDIR += py-hgtools
     SUBDIR += py-hypothesis
+    SUBDIR += py-icecream
     SUBDIR += py-id
     SUBDIR += py-identify
     SUBDIR += py-importlib-metadata
