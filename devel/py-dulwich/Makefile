@@ -1,6 +1,5 @@
 PORTNAME=	dulwich
-PORTVERSION=	0.24.10
-PORTREVISION=	2
+PORTVERSION=	1.2.21
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -15,8 +14,7 @@ LICENSE=	Apache-2.0 gpl2+
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=61:devel/py-setuptools@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}setuptools-rust>=0:devel/py-setuptools-rust@${PY_FLAVOR} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools-rust>=0:devel/py-setuptools-rust@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}urllib3>=2.2.2,1:net/py-urllib3@${PY_FLAVOR}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}fastimport>=0:devel/py-fastimport@${PY_FLAVOR} \
@@ -24,11 +22,13 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}fastimport>=0:devel/py-fastimport@${PY_FLAV
 		${PYTHON_PKGNAMEPREFIX}geventhttpclient>=0:devel/py-geventhttpclient@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}setuptools>=17.1:devel/py-setuptools@${PY_FLAVOR}
 
-USES=		cargo cpe python shebangfix
+USES=		cargo cpe python:3.10+ python-setuptools:78 shebangfix
 USE_PYTHON=	autoplist concurrent pep517 unittest
 
 CARGO_BUILD=	no
 CARGO_INSTALL=	no
+
+MAKE_ENV=	${CARGO_ENV}
 
 CPE_VENDOR=	dulwich_project
 
@@ -48,7 +48,13 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}typing-extensions>=4.6.0:devel/py-typing-ex
 .endif
 
 post-install:
-	${FIND} ${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
+	@for module in _objects _pack _diff_tree; do \
+		${FIND} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/dulwich -type f \
+		    -name "$${module}*.so" -print | ${GREP} -q . || \
+		    { ${ECHO_MSG} "Missing native extension: $${module}"; exit 1; }; \
+	done
+	${FIND} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/dulwich -type f \
+	    -name '*.so' -exec ${STRIP_CMD} {} +
 
 post-install-DOCS-on:
 	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/
