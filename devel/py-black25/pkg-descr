@@ -1,0 +1,3 @@
+Black 25.1.0 is a Python code formatter. This package provides the
+canonical distribution in a private Python-version-specific directory for
+consumers that require its formatting style.

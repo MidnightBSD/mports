@@ -1401,6 +1401,7 @@
     SUBDIR += py-beniget
     SUBDIR += py-binaryornot
     SUBDIR += py-black
+    SUBDIR += py-black25
     SUBDIR += py-blessings
     SUBDIR += py-blinker
     SUBDIR += py-blockbuster
@@ -1484,6 +1485,7 @@
     SUBDIR += py-eval-type-backport
     SUBDIR += py-evdev
     SUBDIR += py-example-shared-isort-profile
+    SUBDIR += py-example-isort-sorting-plugin
     SUBDIR += py-exceptiongroup
     SUBDIR += py-executing
     SUBDIR += py-expandvars
@@ -1533,6 +1535,7 @@
     SUBDIR += py-grpcio-tools
     SUBDIR += py-gyp
     SUBDIR += py-hatch-fancy-pypi-readme
+    SUBDIR += py-hatch-mypyc
     SUBDIR += py-hatch-nodejs-version
     SUBDIR += py-hatch-requirements-txt
     SUBDIR += py-hatch-tryton
