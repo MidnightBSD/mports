@@ -15,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 OPTIONS_DEFINE=	DOCS
 
 USES=		python
-USE_PYTHON=	autoplist concurrent distutils
+USE_PYTHON=	autoplist concurrent distutils allflavors
 
 NO_ARCH=	yes
 NO_TEST=	yes
