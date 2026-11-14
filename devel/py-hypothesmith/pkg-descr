@@ -1,0 +1,2 @@
+Hypothesmith provides Hypothesis strategies for generating Python programs.
+It can generate programs from a grammar or a concrete syntax tree.
