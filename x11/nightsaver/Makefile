@@ -1,6 +1,5 @@
 PORTNAME=	nightsaver
-DISTVERSION=	0.2.0
-PORTREVISION=	1
+DISTVERSION=	0.4.0
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -18,7 +17,14 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	MidnightBSD
 USE_XORG=	xcb
 
+# build.rs bakes ${PREFIX}/libexec into the daemon as the nightsaver-auth
+# location; pin it so cargo install during fake does not rebuild with the
+# staging prefix.
+CARGO_ENV+=	PREFIX=${TRUE_PREFIX}
+
 post-install:
+	${MKDIR} ${PREFIX}/libexec
+	${MV} ${PREFIX}/bin/nightsaver-auth ${PREFIX}/libexec
 	${INSTALL_MAN} ${WRKSRC}/man/nightsaver.1 \
 		${WRKSRC}/man/nightsaver-command.1 ${PREFIX}/man/man1
 	${INSTALL_MAN} ${WRKSRC}/man/nightsaver.toml.5 ${PREFIX}/man/man5
