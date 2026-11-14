@@ -257,6 +257,7 @@
     SUBDIR += py-flask-sqlalchemy
     SUBDIR += py-gdbm
     SUBDIR += py-hiredis
+    SUBDIR += py-libvalkey
     SUBDIR += py-mongoengine
     SUBDIR += py-pg8000
     SUBDIR += py-postgresql
