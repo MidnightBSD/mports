@@ -1,0 +1,2 @@
+Provides an example shared isort profile.
+It configures import formatting through an entry point.
