@@ -7,6 +7,9 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Horde IMAP abstraction interface
 WWW=		https://pear.horde.org
 
+LICENSE=	lgpl2.1
+LICENSE_FILE=	${WRKSRC}/doc/Horde/Imap/Client/COPYING
+
 USES=		horde php cpe
 USE_HORDE_RUN=	Horde_Exception \
 		Horde_Mail \
@@ -21,6 +24,7 @@ MBSTRING_DESC=	Require PHP mbstring extension
 SASL_DESC=	Support SASL Authentication
 
 IMAP_USE=	PHP=imap
+IMAP_VARS=	IGNORE_WITH_PHP=86
 MBSTRING_USE=	PHP=mbstring
 SASL_RUN_DEPENDS=	${PEARDIR}/Auth/SASL.php:security/pear-Auth_SASL@${PHP_FLAVOR}
 
