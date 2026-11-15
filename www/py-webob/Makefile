@@ -1,5 +1,6 @@
 PORTNAME=	webob
 PORTVERSION=	1.8.11
+PORTREVISION=	1
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -32,8 +33,8 @@ PORTDOCS=	*
 
 OPTIONS_DEFINE=	DOCS
 
-DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pylons-sphinx-themes>=0:textproc/py-pylons-sphinx-themes@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}sphinx>=1.7.5,1:textproc/py-sphinx@${PY_FLAVOR}
+DOCS_BUILD_DEPENDS=	py312-pylons-sphinx-themes>=0:textproc/py-pylons-sphinx-themes@py312 \
+			py312-sphinx>=1.7.5,1:textproc/py-sphinx@py312
 
 post-extract-DOCS-on:
 	@(cd ${WRKSRC} && \
@@ -43,7 +44,7 @@ pre-configure:
 	[ ! -e ${WRKSRC}/pyproject.toml ] && cp ${WRKDIR}/pyproject.toml ${WRKSRC}
 
 post-build-DOCS-on:
-	${LOCALBASE}/bin/sphinx-build-${PYTHON_VER} -d ${WRKDIR} -b html -E ${WRKSRC}/docs ${WRKSRC}/build/sphinx/html
+	${SETENV} PYTHONPATH=${WRKSRC}/src ${LOCALBASE}/bin/sphinx-build-3.12 -d ${WRKDIR} -b html -E ${WRKSRC}/docs ${WRKSRC}/build/sphinx/html
 
 post-install-DOCS-on:
 	@(cd ${WRKSRC}/build/sphinx/html && \
