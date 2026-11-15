@@ -1,0 +1,18 @@
+--- CHOLMOD/CMakeLists.txt.orig
++++ CHOLMOD/CMakeLists.txt
+@@ -301,6 +301,15 @@
+ # configure files
+ #-------------------------------------------------------------------------------
+ 
++# Keep the installed structure layout consistent across all consumers.
++string ( TOUPPER "${CMAKE_BUILD_TYPE}" _cholmod_build_type )
++set ( _cholmod_debug_flags "${CMAKE_C_FLAGS} ${CMAKE_C_FLAGS_${_cholmod_build_type}}" )
++if ( _cholmod_debug_flags MATCHES "(^|[ \t])-DBLAS_DUMP([= \t]|$)" )
++    set ( CHOLMOD_HAS_BLAS_DUMP 1 )
++else ( )
++    set ( CHOLMOD_HAS_BLAS_DUMP 0 )
++endif ( )
++
+ configure_file ( "Config/cholmod.h.in"
+     "${PROJECT_SOURCE_DIR}/Include/cholmod.h"
+     NEWLINE_STYLE LF )

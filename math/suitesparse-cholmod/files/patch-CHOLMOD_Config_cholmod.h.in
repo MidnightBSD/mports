@@ -1,0 +1,24 @@
+--- CHOLMOD/Config/cholmod.h.in.orig
++++ CHOLMOD/Config/cholmod.h.in
+@@ -43,6 +43,11 @@
+ #ifndef CHOLMOD_H
+ #define CHOLMOD_H
+ 
++#cmakedefine01 CHOLMOD_HAS_BLAS_DUMP
++#if defined(BLAS_DUMP) && !CHOLMOD_HAS_BLAS_DUMP
++#error BLAS_DUMP must be enabled globally when configuring CHOLMOD
++#endif
++
+ //------------------------------------------------------------------------------
+ // CHOLMOD conventions
+ //------------------------------------------------------------------------------
+@@ -892,7 +897,9 @@
+     int nthreads_max ; // max # of OpenMP threads to use in CHOLMOD.
+         // Defaults to SUITESPARSE_OPENMP_MAX_THREADS.
+ 
++    #if CHOLMOD_HAS_BLAS_DUMP
+     FILE *blas_dump ;  // only used if CHOLMOD is compiled with -DBLAS_DUMP
++    #endif
+ 
+ } cholmod_common ;
+ 
