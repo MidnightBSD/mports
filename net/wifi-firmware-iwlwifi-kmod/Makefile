@@ -10,9 +10,12 @@ LICENSE_NAME=	Intel firmware license (${FWDRV})
 
 WHENCE_REGEX=	iwlwifi -.*
 
-# Temporary list of flavours which we believe work with HW_CRYPTO/HT/VHT.
-# TODO: confirm support
-#COMPAT_LINUXKPI_IWL_HWCRYPTO_HT_VHT=	22000 ax210 bz
+PORTREVISION=	2
+
+# Flavours which work with HW_CRYPTO/HT/VHT (enabled upstream in FreeBSD
+# ports).  Makefile.inc only acts on this on MidnightBSD 4.2 (402000) and
+# later, which have the FreeBSD stable/15 iwlwifi and LinuxKPI code.
+COMPAT_LINUXKPI_IWL_HWCRYPTO_HT_VHT=	22000 ax210 bz
 
 # Run iwlwifi-generate-fw-list.sh according to description.
 
