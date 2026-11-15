@@ -1,0 +1,17 @@
+[
+{ type: install
+  message: <<EOM
+The IGT tests and most of the tools must be run as root and need the
+Linux debugfs of the DRM driver mounted on /debug or /sys/kernel/debug.
+/sys is normally a symbolic link into the kernel source tree, so /debug
+is the better choice:
+
+  mkdir -p /debug
+  mount -t lindebugfs lindebugfs /debug
+
+The test programs are installed in /usr/local/libexec/igt-gpu-tools.
+Many tests change display modes or reset the GPU, so do not run them
+from a graphical session you care about.
+EOM
+}
+]
