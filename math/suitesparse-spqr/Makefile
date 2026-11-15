@@ -1,11 +1,19 @@
 PORTNAME=	${MPORTNAME:tl}
-PORTVERSION=	4.2.1
+PORTVERSION=	4.3.0
 CATEGORIES=	math
 
 COMMENT=	Sparse QR factorization
 WWW=		https://faculty.cse.tamu.edu/davis/suitesparse.html
 
 LICENSE=	gpl2+
+LICENSE_FILE=	${PORTSDIR}/Templates/Licenses/gpl2
+
+BUILD_RUN_DEPENDS=	suitesparse-config>=7.4.0:math/suitesparse-config \
+		suitesparse-amd>=3.3.0:math/suitesparse-amd \
+		suitesparse-camd>=3.3.0:math/suitesparse-camd \
+		suitesparse-ccolamd>=3.3.0:math/suitesparse-ccolamd \
+		suitesparse-colamd>=3.3.0:math/suitesparse-colamd \
+		suitesparse-cholmod>=5.1.0:math/suitesparse-cholmod
 
 LIB_DEPENDS=	libamd.so:math/suitesparse-amd		\
 		libcamd.so:math/suitesparse-camd	\
@@ -14,11 +22,26 @@ LIB_DEPENDS=	libamd.so:math/suitesparse-amd		\
 		libcholmod.so:math/suitesparse-cholmod
 
 USES=		localbase:ldflags
+CXXFLAGS+=	-D_POSIX_C_SOURCE=200809L
 
 MPORTNAME=	SPQR
 USE_LDCONFIG=	yes
 
+CMAKE_ARGS+=	-DSUITESPARSE_INCLUDEDIR_POSTFIX:STRING=
+
+SSPVERSION=	7.4.0
+DISTINFO_FILE=	${.CURDIR}/distinfo
+
 .include "${.CURDIR}/../../math/suitesparse/bsd.suitesparse.mk"
+
+OPENMP_CMAKE_BOOL=	SUITESPARSE_USE_OPENMP
+.undef OPENMP_CMAKE_BOOL_OFF
+
+PLIST_FILES+=	share/licenses/${PKGNAME}/UPSTREAM-NOTICE
+
+post-fake:
+	@${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/share/licenses/${PKGNAME}
+	${INSTALL_DATA} ${CONFIGURE_WRKSRC}/Doc/License.txt ${FAKE_DESTDIR}${TRUE_PREFIX}/share/licenses/${PKGNAME}/UPSTREAM-NOTICE
 
 post-fake-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
