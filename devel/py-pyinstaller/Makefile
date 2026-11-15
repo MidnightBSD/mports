@@ -1,5 +1,6 @@
 PORTNAME=	pyinstaller
 DISTVERSION=	6.22.2
+PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,17 +13,20 @@ LICENSE=	Apache-2.0 gpl2+ mit
 LICENSE_COMB=	multi
 LICENSE_FILE=	${WRKSRC}/COPYING.txt
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}altgraph>0:math/py-altgraph@${PY_FLAVOR} \
+BUILD_DEPENDS=	py312-altgraph>0:math/py-altgraph@py312 \
+		py312-packaging>0:devel/py-packaging@py312 \
+		py312-setuptools>0:devel/py-setuptools@py312 \
+		${PYTHON_PKGNAMEPREFIX}altgraph>0:math/py-altgraph@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}hatchling>0:devel/py-hatchling@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}packaging>0:devel/py-packaging@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}setuptools>0:devel/py-setuptools@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}sphinx-autodoc-typehints>0:textproc/py-sphinx-autodoc-typehints@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}sphinx-copybutton>0:textproc/py-sphinx-copybutton@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}sphinx-inline-tabs>0:textproc/py-sphinx-inline-tabs@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}sphinx-issues>0:textproc/py-sphinx-issues@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}sphinx>0,1:textproc/py-sphinx@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}sphinx_rtd_theme>0:textproc/py-sphinx_rtd_theme@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}sphinxcontrib-towncrier>0:textproc/py-sphinxcontrib-towncrier@${PY_FLAVOR} \
+		py312-sphinx-autodoc-typehints>0:textproc/py-sphinx-autodoc-typehints@py312 \
+		py312-sphinx-copybutton>0:textproc/py-sphinx-copybutton@py312 \
+		py312-sphinx-inline-tabs>0:textproc/py-sphinx-inline-tabs@py312 \
+		py312-sphinx-issues>0:textproc/py-sphinx-issues@py312 \
+		py312-sphinx>0,1:textproc/py-sphinx@py312 \
+		py312-sphinx_rtd_theme>0:textproc/py-sphinx_rtd_theme@py312 \
+		py312-sphinxcontrib-towncrier>0:textproc/py-sphinxcontrib-towncrier@py312 \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}altgraph>0:math/py-altgraph@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyinstaller-hooks-contrib>=2026.6:devel/py-pyinstaller-hooks-contrib@${PY_FLAVOR} \
@@ -51,11 +55,11 @@ pre-build:
 
 do-build-DOCS-on:
 	(cd ${WRKSRC}/doc && \
-		${SETENV} sphinx-build-${PYTHON_VER} -b html . _build/html)
+		${SETENV} ${LOCALBASE}/bin/sphinx-build-3.12 -b html . _build/html)
 
 post-build:
 	(cd ${WRKSRC}/doc && \
-		${SETENV} sphinx-build-${PYTHON_VER} -b man . _build/man)
+		${SETENV} ${LOCALBASE}/bin/sphinx-build-3.12 -b man . _build/man)
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
