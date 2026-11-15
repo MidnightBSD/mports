@@ -1,5 +1,6 @@
 PORTNAME=	cssselect
 PORTVERSION=	1.6.0
+PORTREVISION=	1
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -24,12 +25,12 @@ PORTDOCS=	*
 
 OPTIONS_DEFINE=	DOCS
 
-DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>=0,1:textproc/py-sphinx@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}sphinx_rtd_theme>=1.0.0:textproc/py-sphinx_rtd_theme@${PY_FLAVOR}
+DOCS_BUILD_DEPENDS=	py312-sphinx>=0,1:textproc/py-sphinx@py312 \
+			py312-sphinx_rtd_theme>=1.0.0:textproc/py-sphinx_rtd_theme@py312
 
 post-build-DOCS-on:
 	(cd ${WRKSRC} && \
-		PYTHONPATH=${WRKSRC} sphinx-build-${PYTHON_VER} -N -a docs docs.html)
+		PYTHONPATH=${WRKSRC} sphinx-build-3.12 -N -a docs docs.html)
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
