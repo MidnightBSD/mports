@@ -1803,6 +1803,7 @@
     SUBDIR += py-pytest4-flakes
     SUBDIR += py-python-dateutil
     SUBDIR += py-python-dbusmock
+    SUBDIR += py-python-discovery
     SUBDIR += py-python-distutils-extra
     SUBDIR += py-python-easyconfig
     SUBDIR += py-python-editor
