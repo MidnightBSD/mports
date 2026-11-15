@@ -1,0 +1,11 @@
+--- amdgpukmsfw/Makefile.orig	2026-11-15 03:25:32.222707000 -0500
++++ amdgpukmsfw/Makefile	2026-11-15 03:25:32.226587000 -0500
+@@ -83,7 +83,7 @@
+ 			vpe_6_1_0 \
+ 			yellow_carp
+ 
+-.if ${OSVERSION} >= 1301000
++.if ${OSVERSION} >= 402000
+ _VALID_AMDGPUKMODS+=	dimgrey_cavefish \
+ 			green_sardine \
+ 			sienna_cichlid \
