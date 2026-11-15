@@ -14,7 +14,8 @@ LICENSE_COMB=	multi
 FAKE_OPTS=	trueprefix
 
 CONFLICTS_INSTALL=	drm-510-kmod \
-			drm-515-kmod
+			drm-515-kmod \
+			drm-66-kmod
 
 USES=		kmod uidfix compiler:c++11-lang
 
