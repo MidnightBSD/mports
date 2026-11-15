@@ -701,3 +701,4 @@ security/py-openssl|security/py-pyopenssl|2026-11-12|Duplicate of security/py-py
 lang/spidermonkey78|lang/spidermonkey140|2026-11-13|Removed unused version; no ports depend on it
 lang/spidermonkey91|lang/spidermonkey140|2026-11-13|Removed unused version; no ports depend on it
 lang/spidermonkey102|lang/spidermonkey140|2026-11-13|Removed unused version; no ports depend on it
+x11-toolkits/wlroots|x11-toolkits/wlroots019|2026-11-15|Removed unversioned 0.14 series; no ports depend on it and its headers shadow the versioned wlroots ports
