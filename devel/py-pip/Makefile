@@ -1,5 +1,6 @@
 PORTNAME=	pip
 PORTVERSION=	26.2.2
+PORTREVISION=	1
 CATEGORIES=	devel python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DIST_SUBDIR=	${PORTNAME}
@@ -27,19 +28,20 @@ SHEBANG_FILES=	src/pip/__init__.py
 
 OPTIONS_DEFINE=	DOCS
 
-DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}furo>=0:textproc/py-furo@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}myst-parser>=0:textproc/py-myst-parser@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}sphinx>=7.0,1<8.0,1:textproc/py-sphinx@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}sphinx-copybutton>=0:textproc/py-sphinx-copybutton@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}sphinx-inline-tabs>=0:textproc/py-sphinx-inline-tabs@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}sphinx-issues>=4.0:textproc/py-sphinx-issues@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}sphinxcontrib-towncrier>=0.2.0a0:textproc/py-sphinxcontrib-towncrier@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}towncrier>=0:textproc/py-towncrier@${PY_FLAVOR}
+DOCS_BUILD_DEPENDS=	py312-furo>=0:textproc/py-furo@py312 \
+			py312-myst-parser>=5.1.0:textproc/py-myst-parser@py312 \
+			py312-sphinx>=9.1.1,1<10,1:textproc/py-sphinx@py312 \
+			py312-sphinx-copybutton>=0:textproc/py-sphinx-copybutton@py312 \
+			py312-sphinx-inline-tabs>=0:textproc/py-sphinx-inline-tabs@py312 \
+			py312-sphinx-issues>=4.0:textproc/py-sphinx-issues@py312 \
+			py312-sphinxcontrib-towncrier>=0.5.0a0:textproc/py-sphinxcontrib-towncrier@py312 \
+			py312-towncrier>=26.9.0:textproc/py-towncrier@py312
 DOCS_PORTDOCS=		*
 
 post-build-DOCS-on:
 	(cd ${WRKSRC} && ${SETENV} PYTHONPATH=${WRKSRC}/src \
-	${PYTHON_CMD} -m sphinx --tag html -c docs/html -b html \
+	${LOCALBASE}/bin/python3.12 -m sphinx --tag html -c docs/html -b html \
+	-d ${WRKDIR}/sphinx-doctrees \
 	docs/html docs/build/html)
 
 post-install-DOCS-on:
