@@ -18,7 +18,8 @@ ONLY_FOR_ARCHS_REASON=	the new KMS components are only supported on amd64, i386,
 FAKE_OPTS=	trueprefix
 
 CONFLICTS_INSTALL=	drm-515-kmod \
-			drm-61-kmod
+			drm-61-kmod \
+			drm-66-kmod
 
 USES=		kmod uidfix compiler:c++11-lang
 
