@@ -1,5 +1,6 @@
 PORTNAME=	boolean.py
 DISTVERSION=	5.0
+PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -20,13 +21,13 @@ NO_ARCH=	yes
 PORTDOCS=	*
 
 OPTIONS_DEFINE=		DOCS
-DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>=0,1:textproc/py-sphinx@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}sphinxcontrib-apidoc>=0.3.0:textproc/py-sphinxcontrib-apidoc@${PY_FLAVOR}
+DOCS_BUILD_DEPENDS=	py312-sphinx>=0,1:textproc/py-sphinx@py312 \
+			py312-sphinxcontrib-apidoc>=0.3.0:textproc/py-sphinxcontrib-apidoc@py312
 
 DOCS_USES=	gmake
 
 post-build-DOCS-on:
-	@${SETENV} ${MAKE_ENV} ${GMAKE} -C ${BUILD_WRKSRC}/docs html
+	@${SETENV} ${MAKE_ENV} ${GMAKE} -C ${BUILD_WRKSRC}/docs SPHINXBUILD=${LOCALBASE}/bin/sphinx-build-3.12 html
 
 post-fake-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
