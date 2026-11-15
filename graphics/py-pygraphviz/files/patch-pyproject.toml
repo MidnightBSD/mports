@@ -1,0 +1,6 @@
+# SWIG is supplied by the native devel/swig build dependency.
+--- pyproject.toml.orig	2026-06-25 18:10:10 UTC
++++ pyproject.toml
+@@ -3 +3 @@
+-requires = ['setuptools>=78', "swig>4.1.0"]
++requires = ['setuptools>=78']

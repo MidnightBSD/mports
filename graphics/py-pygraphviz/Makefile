@@ -1,6 +1,5 @@
 PORTNAME=	pygraphviz
-PORTVERSION=	1.6
-PORTREVISION=	2
+PORTVERSION=	2.0
 CATEGORIES=	graphics python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,20 +11,17 @@ WWW=		https://pygraphviz.github.io
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	swig>4.1.0:devel/swig
 LIB_DEPENDS=	libcgraph.so:graphics/graphviz
 
-USES=		pkgconfig python zip
-USE_PYTHON=	autoplist concurrent distutils
+USES=		pkgconfig python:3.10+ python-setuptools:83
+USE_PYTHON=	autoplist concurrent pep517 pytest
 
-NO_TEST=	yes
+TEST_WRKSRC=	${WRKDIR}
+TEST_ARGS=	--pyargs pygraphviz
 
-PYDISTUTILS_BUILD_TARGET=	build build_ext
-PYDISTUTILS_BUILDARGS=		--include-dirs=${LOCALBASE}/include \
-				--library-dirs=${LOCALBASE}/lib/graphviz
-
-post-patch:
-	@${REINPLACE_CMD} -e 's+%%LOCALBASE%%+${LOCALBASE}+; \
-		s+^docdirbase.*=.*+docdirbase = "${DOCSDIR:S/${PREFIX}\///}"+' ${WRKSRC}/setup.py
+MAKE_ENV=	GRAPHVIZ_PREFIX=${LOCALBASE}
+LDFLAGS+=	-Wl,-rpath,${LOCALBASE}/lib/graphviz
 
 post-install:
 	${STRIP_CMD} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/pygraphviz/_graphviz*.so

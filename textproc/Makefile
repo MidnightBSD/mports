@@ -445,6 +445,7 @@
     SUBDIR += py-sparqlwrapper
     SUBDIR += py-sphinx
     SUBDIR += py-sphinx-llm
+    SUBDIR += py-sphinx-markdown-builder
     SUBDIR += py-sphinxcontrib-apidoc
     SUBDIR += py-textual
     SUBDIR += py-textual-speedups
@@ -473,6 +474,7 @@
     SUBDIR += py-sphinxcontrib-jquery
     SUBDIR += py-sphinxcontrib-jsmath
     SUBDIR += py-sphinxcontrib-log-cabinet
+    SUBDIR += py-sphinxcontrib-mermaid
     SUBDIR += py-sphinxcontrib-napoleon
     SUBDIR += py-sphinxcontrib-newsfeed
     SUBDIR += py-sphinxcontrib-programoutput

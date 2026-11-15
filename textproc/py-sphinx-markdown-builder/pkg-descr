@@ -1,0 +1,4 @@
+Sphinx extension that adds Markdown generation support to Sphinx
+
+This extension adds a Markdown builder for generating Markdown output from
+Sphinx documentation projects.
