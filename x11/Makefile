@@ -210,6 +210,7 @@
     SUBDIR += windowmaker-desktop
     SUBDIR += wl-clipboard
     SUBDIR += wmctrl-fork
+    SUBDIR += wmenu
     SUBDIR += wofi
     SUBDIR += x11perf
     SUBDIR += xapp
