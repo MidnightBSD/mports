@@ -1,5 +1,6 @@
 PORTNAME=	gpu-firmware-kmod
 PORTVERSION=	20250109
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	graphics
 
@@ -152,6 +153,15 @@ RUN_DEPENDS+=	gpu-firmware-amd-kmod-aldebaran>0:graphics/gpu-firmware-amd-kmod@a
 		gpu-firmware-amd-kmod-vcn-4-0-3>0:graphics/gpu-firmware-amd-kmod@vcn_4_0_3 \
 		gpu-firmware-amd-kmod-vcn-4-0-4>0:graphics/gpu-firmware-amd-kmod@vcn_4_0_4 \
 		gpu-firmware-amd-kmod-vcn-4-0-5>0:graphics/gpu-firmware-amd-kmod@vcn_4_0_5 
+.endif
+
+# These flavors are only provided for MidnightBSD 4.2 or later.
+.if ${ARCH} != powerpc64 && ${OSVERSION} >= 402000
+RUN_DEPENDS+=	gpu-firmware-amd-kmod-dimgrey-cavefish>0:graphics/gpu-firmware-amd-kmod@dimgrey_cavefish \
+		gpu-firmware-amd-kmod-green-sardine>0:graphics/gpu-firmware-amd-kmod@green_sardine \
+		gpu-firmware-amd-kmod-navy-flounder>0:graphics/gpu-firmware-amd-kmod@navy_flounder \
+		gpu-firmware-amd-kmod-sienna-cichlid>0:graphics/gpu-firmware-amd-kmod@sienna_cichlid \
+		gpu-firmware-amd-kmod-vangogh>0:graphics/gpu-firmware-amd-kmod@vangogh
 .endif
 
 do-install:
