@@ -25,6 +25,7 @@ FLAVORS=	aldebaran \
 		dcn_3_2_0 \
 		dcn_3_2_1 \
 		dcn_3_5 \
+		dimgrey_cavefish \
 		fiji \
 		gc_9_4_3 \
 		gc_10_3_6 \
@@ -35,6 +36,7 @@ FLAVORS=	aldebaran \
 		gc_11_0_3 \
 		gc_11_0_4 \
 		gc_11_5_0 \
+		green_sardine \
 		hainan \
 		hawaii \
 		kabini \
@@ -43,6 +45,7 @@ FLAVORS=	aldebaran \
 		navi10 \
 		navi12 \
 		navi14 \
+		navy_flounder \
 		oland \
 		picasso \
 		pitcairn \
@@ -70,6 +73,7 @@ FLAVORS=	aldebaran \
 		sdma_6_0_3 \
 		sdma_6_1_0 \
 		si58 \
+		sienna_cichlid \
 		smu_13_0_0 \
 		smu_13_0_6 \
 		smu_13_0_7 \
@@ -79,6 +83,7 @@ FLAVORS=	aldebaran \
 		tahiti \
 		tonga \
 		topaz \
+		vangogh \
 		vcn_3_1_2 \
 		vcn_4_0_0 \
 		vcn_4_0_2 \
@@ -105,6 +110,15 @@ MAKE_ENV+=	AMDGPUKMODS="${FLAVOR}"
 FAKE_OPTS=	trueprefix
 
 .include <bsd.port.pre.mk>
+
+# Flavors for graphics/drm-515-kmod, which needs MidnightBSD 4.2 or later.
+# The remaining flavors cover what the older drm ports ask for.
+DRM515_FLAVORS=	dimgrey_cavefish green_sardine navy_flounder sienna_cichlid \
+		vangogh
+
+.if ${OSVERSION} < 402000 && !empty(DRM515_FLAVORS:M${FLAVOR})
+IGNORE=		flavor is only provided for MidnightBSD 4.2 or later
+.endif
 
 PLIST_SUB+=	${FLAVORS:N${FLAVOR}:@v@${v:tu}="\@comment "@}
 PLIST_SUB+=	${FLAVOR:tu}=""
