@@ -2,7 +2,7 @@
 
 PKGNAMEPREFIX=	suitesparse-
 SSPNAME=	suitesparse
-SSPVERSION=	7.3.1
+SSPVERSION?=	7.3.1
 DISTVERSIONPREFIX=	v
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -52,7 +52,7 @@ INSTALL_WRKSRC=	${BUILD_WRKSRC}
 PLIST_SUB+=	VER=${PORTVERSION}
 
 # FIXME: wont work if .CURDIR contains spaces
-DISTINFO_FILE=	${.CURDIR}/../../math/suitesparse/distinfo
+DISTINFO_FILE?=	${.CURDIR}/../../math/suitesparse/distinfo
 
 OPTIONS_DEFINE+=	DOCS OPTIMIZED_CFLAGS
 OPTIONS_DEFAULT+=	OPTIMIZED_CFLAGS
@@ -100,8 +100,8 @@ post-extract:
 
 post-install:
 .if ! ${MPORTNAME} == config
-	 -${RM} ${STAGEDIR}${DOCSDIR}/SUITESPARSECONFIG_README.txt	\
-		${STAGEDIR}${PREFIX}/include/suitesparse/SuiteSparse_config.h
+	 -${RM} ${FAKE_DESTDIR}${DOCSDIR}/SUITESPARSECONFIG_README.txt	\
+		${FAKE_DESTDIR}${TRUE_PREFIX}/include/suitesparse/SuiteSparse_config.h
 .endif
 
 .include <bsd.port.pre.mk>
