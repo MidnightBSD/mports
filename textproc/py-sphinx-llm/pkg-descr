@@ -1,0 +1,5 @@
+Collection of Sphinx extensions for working with LLMs
+
+The package can generate additional Sphinx output for consumption by language
+models and agents. Its optional generation extra enables content generation
+with external LLM APIs.
