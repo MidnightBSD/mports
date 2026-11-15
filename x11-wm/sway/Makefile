@@ -1,6 +1,5 @@
 PORTNAME=	sway
-DISTVERSION=	1.11
-PORTREVISION=	1
+DISTVERSION=	1.12
 CATEGORIES=	x11-wm wayland
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,14 +10,14 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	evdev-proto>0:devel/evdev-proto \
-		wayland-protocols>=1.24:graphics/wayland-protocols
+		wayland-protocols>=1.41:graphics/wayland-protocols
 LIB_DEPENDS=	libjson-c.so:devel/json-c \
 		libevdev.so:devel/libevdev \
 		libudev.so:devel/libudev-devd \
 		libpcre2-8.so:devel/pcre2 \
 		libdrm.so:graphics/libdrm \
 		libwayland-egl.so:graphics/wayland \
-		libwlroots-0.19.so:x11-toolkits/wlroots019 \
+		libwlroots-0.20.so:x11-toolkits/wlroots020 \
 		libinput.so:x11/libinput \
 		libxkbcommon.so:x11/libxkbcommon
 
@@ -53,10 +52,9 @@ X11_LIB_DEPENDS=	libxcb-icccm.so:x11/xcb-util-wm
 
 .include <bsd.mport.options.mk>
 
+# wordexp(3) fails when SIGCHLD is ignored; fixed in libc as of 401001
 # https://github.com/freebsd/freebsd-src/pull/1675
-.if ${OPSYS} == FreeBSD && (${OSVERSION} < 1305503 \
- || ${OSVERSION} >= 1400000 && ${OSVERSION} < 1403505 \
- || ${OSVERSION} >= 1500000 && ${OSVERSION} < 1500052)
+.if ${OSVERSION} < 401002
 EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-wordexp
 .endif
 
@@ -68,7 +66,7 @@ post-patch:
 	@${REINPLACE_CMD} -i .nogit -e 's/git.found()/false/' \
 		-e '/project_version/s/@0@/${DISTVERSIONFULL}/' \
 		${WRKSRC}/meson.build
-.if exists(${.CURDIR}/files/extra-patch-wordexp)
+.if ${OSVERSION} < 401002
 # https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=275328
 	@${REINPLACE_CMD} -e 's/_POSIX_C_SOURCE=200809L/_XOPEN_SOURCE=700/' \
 		${WRKSRC}/meson.build
