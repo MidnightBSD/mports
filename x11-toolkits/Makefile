@@ -157,6 +157,7 @@
     SUBDIR += wlroots016
     SUBDIR += wlroots018
     SUBDIR += wlroots019
+    SUBDIR += wlroots020
     SUBDIR += wxgtk30
     SUBDIR += wxgtk32
     SUBDIR += xbae
