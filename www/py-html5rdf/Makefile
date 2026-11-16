@@ -16,7 +16,7 @@ LICENSE_FILE_bsd3=	${FILESDIR}/LICENSE.webencodings
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 
-USES=		python:3.8+ python-setuptools:78
+USES=		python:3.9+ python-setuptools:78
 USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
