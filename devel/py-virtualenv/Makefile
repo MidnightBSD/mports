@@ -1,6 +1,5 @@
 PORTNAME=	virtualenv
-PORTVERSION=	20.26.0
-PORTREVISION=	1
+PORTVERSION=	21.14.13
 CATEGORIES=	devel python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -9,84 +8,65 @@ COMMENT=	Tool for creating isolated Python environments
 WWW=		https://virtualenv.pypa.io
 
 LICENSE=	mit
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}distlib>=0.3.7:devel/py-distlib@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}hatch-vcs>=0.3:devel/py-hatch-vcs@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}hatchling>=1.17.1:devel/py-hatchling@${PY_FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}distlib>=0.3.7:devel/py-distlib@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}filelock>=3.12.2:sysutils/py-filelock@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}platformdirs>=3.9.1:devel/py-platformdirs@${PY_FLAVOR}
-# tests: 299 passed, 27 skipped
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatch-vcs>=0.5:devel/py-hatch-vcs@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}hatchling>=1.28:devel/py-hatchling@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}distlib>=0.4.3<1:devel/py-distlib@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}filelock>=3.24.2<5:sysutils/py-filelock@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}packaging>=26.3:devel/py-packaging@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}platformdirs>=4.4<5:devel/py-platformdirs@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}python-discovery>=1.6.1:devel/py-python-discovery@${PY_FLAVOR}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}covdefaults>=2.3:devel/py-covdefaults@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}coverage>=7.3.2:devel/py-coverage@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}coverage>=7.10.7:devel/py-coverage@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}coverage_enable_subprocess>=1.0:devel/py-coverage_enable_subprocess@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}flaky>=3.7.0:devel/py-flaky@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}packaging>=23.1:devel/py-packaging@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pytest-env>=0.6.2:devel/py-pytest-env@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pytest-mock>=3.10:devel/py-pytest-mock@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pytest-randomly>=3.12:devel/py-pytest-randomly@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pytest-timeout>=2.1.0:devel/py-pytest-timeout@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}setuptools>=63:devel/py-setuptools@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}setuptools-scm>=8.0.4:devel/py-setuptools-scm@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}time-machine>=2.10.0:devel/py-time-machine@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}pytest>=8.4.2,1:devel/py-pytest@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pytest-env>=1.1.5:devel/py-pytest-env@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pytest-mock>=3.15.1:devel/py-pytest-mock@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pytest-randomly>=4.0.1:devel/py-pytest-randomly@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pytest-rerunfailures>=16.0.1:devel/py-pytest-rerunfailures@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pytest-timeout>=2.4:devel/py-pytest-timeout@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pytest-xdist>=3.8,1:devel/py-pytest-xdist@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}setuptools-modern>=84.2.1:devel/py-setuptools-modern@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}time-machine>=2.19:devel/py-time-machine@${PY_FLAVOR}
 
-USES=		cpe python
+USES=		cpe pytest python:3.12+
 USE_GITHUB=	yes
 GH_ACCOUNT=	pypa
 USE_PYTHON=	autoplist concurrent pep517 pytest
 
-# Fix the LookupError: setuptools-scm was unable to detect version (build target)
+PYTEST_ARGS=	--int -n auto --dist loadfile
 MAKE_ENV=	SETUPTOOLS_SCM_PRETEND_VERSION="${PORTVERSION}"
-
-.if make(test)
 TEST_ENV=	PYTHONIOENCODING=utf-8 \
-		PYTHONPATH="${FAKE_DESTDIRDIR}${PYTHON_SITELIBDIR}"
-.endif
+		SETUPTOOLS_SCM_PRETEND_VERSION="${PORTVERSION}" \
+		PYTHONPATH="${FAKE_DESTDIR}${PYTHON_SITELIBDIR}:${PYTHONPREFIX_LIBDIR}/mports-setuptools/modern"
 
 NO_ARCH=	yes
+# Existing test policy retained; tcsh GBK prompt failures are documented in the PR.
 NO_TEST=	yes
 
 OPTIONS_DEFINE=	DOCS
 
-DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}click-default-group>=1.2.4:devel/py-click-default-group@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}filelock>=3.12.2:sysutils/py-filelock@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}furo>=2023.7.26:textproc/py-furo@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}platformdirs>3.9.1:devel/py-platformdirs@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}proselint>=0.13:devel/py-proselint@${PY_FLAVOR} \
+DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}furo>=2025.12.19:textproc/py-furo@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}sphinx-argparse>=0.4:textproc/py-sphinx-argparse@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}sphinx>=5.3.0:textproc/py-sphinx@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}sphinxcontrib-towncrier>=0.3.2a0:textproc/py-sphinxcontrib-towncrier@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}towncrier>=22.12.0:textproc/py-towncrier@${PY_FLAVOR}
+			${PYTHON_PKGNAMEPREFIX}sphinx>=9.1.1,1:textproc/py-sphinx@${PY_FLAVOR} \
+			${PYTHON_PKGNAMEPREFIX}sphinx-autodoc-typehints>=3.6.2:textproc/py-sphinx-autodoc-typehints@${PY_FLAVOR} \
+			${PYTHON_PKGNAMEPREFIX}sphinx-copybutton>=0.5.2:textproc/py-sphinx-copybutton@${PY_FLAVOR} \
+			${PYTHON_PKGNAMEPREFIX}sphinx-inline-tabs>=2025.12.21.14:textproc/py-sphinx-inline-tabs@${PY_FLAVOR} \
+			${PYTHON_PKGNAMEPREFIX}sphinx-llm>=1.0.0<1.1:textproc/py-sphinx-llm@${PY_FLAVOR} \
+			${PYTHON_PKGNAMEPREFIX}sphinxcontrib-mermaid>=2.0.0:textproc/py-sphinxcontrib-mermaid@${PY_FLAVOR} \
+			${PYTHON_PKGNAMEPREFIX}sphinxcontrib-towncrier>=0.2.1a0:textproc/py-sphinxcontrib-towncrier@${PY_FLAVOR} \
+			${PYTHON_PKGNAMEPREFIX}towncrier>=26.9:textproc/py-towncrier@${PY_FLAVOR}
 DOCS_BINARY_ALIAS=	towncrier=towncrier-${PYTHON_VER}
 DOCS_PLIST_FILES=	share/man/man1/virtualenv.1.gz
-DOCS_PORTDOCS=		* .buildinfo
-
-# Fix the Exception:
-#
-# File "/build/lib/virtualenv/run/plugin/discovery.py", line 20, in get_discover
-#    default=next(iter(choices)),
-# StopIteration
-#
-# Apparently it doesn't work setting PYTHONPATH environment variable...
-VIRTUALENV_WHEEL=	${WRKSRC}/dist/${PORTNAME}-${PORTVERSION}-py${PYTHON_MAJOR_VER}-none-any.whl
-
-post-patch:
-	@${SED} -i.bak -e 's,%%VIRTUALENV_WHEEL%%,${VIRTUALENV_WHEEL},1' \
-	-e 's,%%PYTHON_VER%%,${PYTHON_VER},1' \
-	${WRKSRC}/docs/conf.py
-
-# Fix a few tests that fail with the error:
-#
-# E       AssertionError: assert  ... nerrn == errn
-# E         +                     WARNING  pyproject.toml does not contain a setuptools.py:119
-# E         +                              tool.setuptools_scm section
-#
-# See https://github.com/pypa/setuptools_scm/issues/1011
-pre-test:
-	@${PRINTF} "\n[tool.setuptools_scm]\nfallback_version = \"${PORTVERSION}\"" >> ${WRKSRC}/pyproject.toml
+DOCS_PORTDOCS=	* .buildinfo
 
 post-install-DOCS-on:
-	${LOCALBASE}/bin/sphinx-build-${PYTHON_VER} -d ${WRKDIR} -b html -n ${WRKSRC}/docs ${FAKE_DESTDIR}${DOCSDIR}
-	${LOCALBASE}/bin/sphinx-build-${PYTHON_VER} -d ${WRKDIR} -b man -n ${WRKSRC}/docs ${FAKE_DESTDIR}${PREFIX}/share/man/man1
+	${SETENV} ${MAKE_ENV} PYTHONPATH="${FAKE_DESTDIR}${PYTHON_SITELIBDIR}" \
+		${LOCALBASE}/bin/sphinx-build-${PYTHON_VER} \
+		-d ${WRKDIR} -b html -n ${WRKSRC}/docs ${FAKE_DESTDIR}${DOCSDIR}
+	${SETENV} ${MAKE_ENV} PYTHONPATH="${FAKE_DESTDIR}${PYTHON_SITELIBDIR}" \
+		${LOCALBASE}/bin/sphinx-build-${PYTHON_VER} \
+		-d ${WRKDIR} -b man -n ${WRKSRC}/docs ${FAKE_DESTDIR}${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>
