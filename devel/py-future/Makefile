@@ -1,6 +1,5 @@
 PORTNAME=	future
-PORTVERSION=	0.18.3
-PORTREVISION=	1
+PORTVERSION=	1.0.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,10 +11,11 @@ LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 USES=		python:2.7+
-USE_PYTHON=	autoplist concurrent distutils
+USE_PYTHON=	autoplist concurrent distutils pytest
 NO_ARCH=	yes
+TEST_ENV=	PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR} \
+		PYTHONDONTWRITEBYTECODE=1 HOME=${WRKDIR}
 
-regression-test: build
-	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test
+regression-test: test
 
 .include <bsd.port.mk>
