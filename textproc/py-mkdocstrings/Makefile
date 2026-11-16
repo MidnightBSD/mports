@@ -1,6 +1,5 @@
 PORTNAME=	mkdocstrings
-DISTVERSION=	1.0.0
-PORTREVISION=	1
+DISTVERSION=	1.0.8
 CATEGORIES=	textproc python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -25,7 +24,7 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}dirty-equals>0:devel/py-dirty-equals@${PY_F
 		${PYTHON_PKGNAMEPREFIX}mkdocstrings-python>0:textproc/py-mkdocstrings-python@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sphinx>0:textproc/py-sphinx@${PY_FLAVOR}
 
-USES=		python
+USES=		python:3.11+
 USE_PYTHON=	autoplist pep517 pytest
 # Skip "test_sphinx_load_mkdocstrings_inventory_file" as it requires
 # py-markdown-exec (not in Ports tree, yet).
@@ -44,6 +43,6 @@ PYTHON_DESC=		Python language handler
 
 CRYSTAL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}mkdocstrings-crystal>=0.3.4:textproc/py-mkdocstrings-crystal@${PY_FLAVOR}
 PYTHONLEGACY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}mkdocstrings-python-legacy>=0.2.1:textproc/py-mkdocstrings-python-legacy@${PY_FLAVOR}
-PYTHON_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}mkdocstrings-python>=0.16.2:textproc/py-mkdocstrings-python@${PY_FLAVOR}
+PYTHON_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}mkdocstrings-python>=1.16.2:textproc/py-mkdocstrings-python@${PY_FLAVOR}
 
 .include <bsd.port.mk>
