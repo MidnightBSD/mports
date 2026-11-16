@@ -360,6 +360,7 @@
     SUBDIR += py-imageio
     SUBDIR += py-imageio-ffmpeg
     SUBDIR += py-imagesize
+    SUBDIR += py-nokap
     SUBDIR += py-pillow
     SUBDIR += py-pivy
     SUBDIR += py-plotly
