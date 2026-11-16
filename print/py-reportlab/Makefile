@@ -1,6 +1,5 @@
 PORTNAME=	reportlab
-DISTVERSION=	4.4.3
-PORTREVISION=	2
+DISTVERSION=	5.0.1
 CATEGORIES=	print python
 MASTER_SITES=	PYPI:python \
 	FREEBSD_LOCAL/bofh/print/py-${PORTNAME}:pfbfer
@@ -14,12 +13,14 @@ COMMENT=	Library to create PDF documents using the Python language
 WWW=		https://www.reportlab.com/
 
 LICENSE=	bsd3
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
-RUN_DEPENDS=	${PY_PILLOW}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pillow>=9.0.0:graphics/py-pillow@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}charset-normalizer>=0:textproc/py-charset-normalizer@${PY_FLAVOR}
 
-USES=		cpe python
+USES=		cpe python:3.11+
 USE_PYTHON=	autoplist pep517
 
 PFBFER_VERSION=	20180109
@@ -37,6 +38,8 @@ OPTIONS_DEFINE=	CJK FREETYPE DOCS
 OPTIONS_DEFAULT=CJK FREETYPE
 
 CJK_DESC=	Adobe CMaps
+
+DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pillow>=9.0.0:graphics/py-pillow@${PY_FLAVOR}
 
 CJK_RUN_DEPENDS=	${LOCALBASE}/share/fonts/adobe-cmaps/ac15/cid2code.txt:print/adobe-cmaps
 FREETYPE_LIB_DEPENDS=	libfreetype.so:print/freetype2
