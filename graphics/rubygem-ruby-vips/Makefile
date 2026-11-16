@@ -1,6 +1,6 @@
 PORTNAME=	ruby-vips
 PORTVERSION=	2.3.0
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	graphics rubygems
 MASTER_SITES=	RG
 
@@ -11,9 +11,9 @@ WWW=		https://github.com/libvips/ruby-vips
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-LIB_DEPENDS=	libvips.so:graphics/vips@${FLAVOR}
+LIB_DEPENDS=	libvips.so:graphics/vips
 BUILD_DEPENDS=	${RUN_DEPENDS}
-RUN_DEPENDS=	rubygem-ffi>=1.12<2:devel/rubygem-ffi \
+RUN_DEPENDS=	rubygem-ffi>=1.17.4_1<2:devel/rubygem-ffi \
 		rubygem-logger>=0:devel/rubygem-logger
 
 USES=		gem gnome shebangfix
