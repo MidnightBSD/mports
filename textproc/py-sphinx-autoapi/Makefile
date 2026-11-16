@@ -1,5 +1,6 @@
 PORTNAME=	sphinx-autoapi
 DISTVERSION=	3.8.0
+PORTREVISION=	1
 CATEGORIES=	textproc python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -19,7 +20,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}astroid>=3.0:devel/py-astroid@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyyaml>=0:devel/py-pyyaml@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sphinx>=7.4.0,1:textproc/py-sphinx@${PY_FLAVOR}
 
-USES=		python:3.10+
+USES=		python:3.12+
 USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
