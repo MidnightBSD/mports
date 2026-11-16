@@ -1,9 +1,8 @@
 PORTNAME=	sqlite3
-DISTVERSION=	3.50.4
+DISTVERSION=	3.54.1
 # SECURITY WARNING: when updating this port, also file vuxml entry
 # for ports/databases/linux-c7-sqlite3 (but mind it has a different EPOCH)
 # and coordinate with ports/emulators/linux_base which also ships sqlite3.
-PORTREVISION=	3
 PORTEPOCH=	1
 CATEGORIES=	databases
 MASTER_SITES=	https://www.sqlite.org/${_YEAR}/ https://www2.sqlite.org/${_YEAR}/ https://www3.sqlite.org/${_YEAR}/
@@ -77,7 +76,7 @@ SUB_LIST+=	TEA="@comment " NO_TEA=""
 PLIST_SUB+=	TEA="@comment " NO_TEA=""
 .endif
 
-PLIST_SUB+=	TCLVER=tcl${TCL_VER} TCLSUF=tcl${TCL_VER:S/.//g} DISTVERSION=${DISTVERSION}
+PLIST_SUB+=	TCLVER=tcl${TCL_VER} TCLSUF=tcl${TCL_VER:S/.//g} TCL_LIBPREFIX="${TCL_PKG_LIB_PREFIX}" DISTVERSION=${DISTVERSION}
 
 # Compilation Options For SQLite https://www.sqlite.org/compile.html
 OPTIONS_DEFINE=		EXAMPLES STRIP TCL THREADS
@@ -210,7 +209,7 @@ STMT_CONFIGURE_ON=	--scanstatus
 TCL_USES=	tcl
 TCL_USES_OFF=	tcl:build
 TCL_CONFIGURE_OFF=	--disable-tcl
-TCL_CONFIGURE_ENV=	ac_cv_prog_TCLSH_CMD=${TCLSH}
+TCL_CONFIGURE_ON=	--with-tcl=${TCL_LIBDIR} --with-tclsh=${TCLSH}
 TCL_ALL_TARGET+=	sqlite3_analyzer
 THREADS_CONFIGURE_OFF=	--disable-threadsafe
 THREADS_VARS=	_OPTIONS+=-lpthread
@@ -229,7 +228,7 @@ URI_AUTHORITY_CPPFLAGS=	-DSQLITE_ALLOW_URI_AUTHORITY=1
 .include <bsd.mport.options.mk>
 
 # _YEAR=	${%Y:L:gmtime} - do not work with the version from the previous year
-_YEAR=	2025
+_YEAR=	2026
 
 # Recommended options
 # https://sqlite.org/compile.html#strict_subtype
@@ -297,13 +296,11 @@ post-install-STRIP-on:
 	${STRIP_CMD} "${FAKE_DESTDIR}${PREFIX}/bin/${PORTNAME}" "${FAKE_DESTDIR}${PREFIX}/lib/lib${PORTNAME}.so"
 .endif
 .if ${PORT_OPTIONS:MTCL}
-	${STRIP_CMD} "${FAKE_DESTDIR}${PREFIX}/lib/tcl${TCL_VER}/${PORTNAME}/libtcl${PORTNAME}.so"
+	${STRIP_CMD} "${FAKE_DESTDIR}${PREFIX}/lib/tcl${TCL_VER}/sqlite${DISTVERSION}/lib${TCL_PKG_LIB_PREFIX}sqlite${DISTVERSION}.so"
 .endif
 
 post-install-TCL-on:
 	${INSTALL_PROGRAM} "${WRKSRC}/${PORTNAME}_analyzer" "${FAKE_DESTDIR}${PREFIX}/bin"
-	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/man/mann
-	${INSTALL_MAN} "${WRKSRC}/autoconf/tea/doc/${PORTNAME}.n" "${FAKE_DESTDIR}${PREFIX}/share/man/mann/${PORTNAME}.tcl${TCL_VER:S/.//g}.n"
 .if ${PORT_OPTIONS:MEXAMPLES}
 	${MKDIR} "${FAKE_DESTDIR}${EXAMPLESDIR}"
 	${INSTALL_SCRIPT} "${WRKDIR}/${SUB_FILES}" "${WRKSRC}/contrib/sqlitecon.tcl" "${FAKE_DESTDIR}${EXAMPLESDIR}"
