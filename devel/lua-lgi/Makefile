@@ -1,11 +1,12 @@
 PORTNAME=	lgi
 PORTVERSION=	0.9.2
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	devel
 PKGNAMEPREFIX=	${LUA_PKGNAMEPREFIX}
 
 PATCH_SITES=	https://github.com/lgi-devs/lgi/commit/
-PATCHFILES=	5cfd42c386d3adae6d211fbb4011179c3c141b04.diff:-p1
+PATCHFILES=	5cfd42c386d3adae6d211fbb4011179c3c141b04.diff:-p1 \
+		64016a9.diff:-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lua bindings to libraries using GObject-Introspection
