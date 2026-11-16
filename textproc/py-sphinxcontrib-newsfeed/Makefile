@@ -1,6 +1,6 @@
 PORTNAME=	sphinxcontrib-newsfeed
 PORTVERSION=	0.1.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	textproc
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>=0,1:textproc/py-sphinx@${PY_FLAVOR}
 
-USES=		python
+USES=		python:3.12+
 USE_PYTHON=	distutils autoplist
 
 .include <bsd.port.mk>
