@@ -1,5 +1,6 @@
 PORTNAME=	shiboken6
 DISTVERSION=	${PYSIDE6_VERSION}
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	QT/official_releases/QtForPython/pyside6/PySide6-${DISTVERSION}-src
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -23,7 +24,7 @@ CMAKE_ARGS=	-DCMAKE_CXX_STANDARD_LIBRARIES=-lexecinfo \
 		-DUSE_PYTHON_VERSION=${PYTHON_VER} \
 		-DBUILD_TESTS:BOOL=false
 
-DOCS_BINARY_ALIAS=	sphinx-build=sphinx-build-${PYTHON_VER}
+DOCS_BINARY_ALIAS=	sphinx-build=sphinx-build-3.12
 
 WRKSRC_SUBDIR=	sources/shiboken6
 PLIST_SUB=	PYTHON_MAJOR_VER=${PYTHON_MAJOR_VER} \
@@ -33,11 +34,11 @@ PLIST_SUB=	PYTHON_MAJOR_VER=${PYTHON_MAJOR_VER} \
 OPTIONS_DEFINE=		DOCS NUMPY
 OPTIONS_DEFAULT=	NUMPY
 
-DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}furo>0:textproc/py-furo@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}myst-parser>0:textproc/py-myst-parser@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}sphinx>0:textproc/py-sphinx@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}sphinx-copybutton>0:textproc/py-sphinx-copybutton@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}sphinx-design>0:textproc/py-sphinx-design@${PY_FLAVOR}
+DOCS_BUILD_DEPENDS=	py312-furo>0:textproc/py-furo@py312 \
+			py312-myst-parser>0:textproc/py-myst-parser@py312 \
+			py312-sphinx>0:textproc/py-sphinx@py312 \
+			py312-sphinx-copybutton>0:textproc/py-sphinx-copybutton@py312 \
+			py312-sphinx-design>0:textproc/py-sphinx-design@py312
 DOCS_ALL_TARGET=	all doc
 DOCS_PORTDOCS=		*
 
