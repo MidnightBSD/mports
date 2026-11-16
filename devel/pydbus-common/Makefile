@@ -69,7 +69,7 @@ do-install-EXAMPLES-on:
 .else
 USES+=		python
 USE_GNOME=	glib20
-USE_PYTHON=	allflavors flavors
+USE_PYTHON=	flavors
 RUN_DEPENDS+=	pydbus-common>=1.4.0:devel/pydbus-common
 MESON_ARGS+=	-Ddoc=disabled
 
