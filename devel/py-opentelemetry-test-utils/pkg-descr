@@ -1,0 +1,2 @@
+OpenTelemetry test utilities provide helpers for OpenTelemetry Python tests.
+These internal helpers are intended only for testing OpenTelemetry projects.

@@ -1658,6 +1658,7 @@
     SUBDIR += py-opentelemetry-proto
     SUBDIR += py-opentelemetry-sdk
     SUBDIR += py-opentelemetry-semantic-conventions
+    SUBDIR += py-opentelemetry-test-utils
     SUBDIR += py-orderedmultidict
     SUBDIR += py-orjson
     SUBDIR += py-ormsgpack
