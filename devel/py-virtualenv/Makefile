@@ -20,13 +20,13 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}distlib>=0.4.3<1:devel/py-distlib@${PY_FLAVO
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}covdefaults>=2.3:devel/py-covdefaults@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}coverage>=7.10.7:devel/py-coverage@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}coverage_enable_subprocess>=1.0:devel/py-coverage_enable_subprocess@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pytest>=8.4.2:devel/py-pytest@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pytest>=8.4.2,1:devel/py-pytest@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-env>=1.1.5:devel/py-pytest-env@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-mock>=3.15.1:devel/py-pytest-mock@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-randomly>=4.0.1:devel/py-pytest-randomly@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-rerunfailures>=16.0.1:devel/py-pytest-rerunfailures@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-timeout>=2.4:devel/py-pytest-timeout@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pytest-xdist>=3.8:devel/py-pytest-xdist@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pytest-xdist>=3.8,1:devel/py-pytest-xdist@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}setuptools-modern>=84.2.1:devel/py-setuptools-modern@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}time-machine>=2.19:devel/py-time-machine@${PY_FLAVOR}
 
