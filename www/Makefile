@@ -321,6 +321,7 @@
     SUBDIR += py-hstspreload
     SUBDIR += py-html5-parser
     SUBDIR += py-html5lib
+    SUBDIR += py-html5rdf
     SUBDIR += py-htmltools
     SUBDIR += py-httpbin
     SUBDIR += py-httpcore
