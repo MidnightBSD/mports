@@ -1,5 +1,6 @@
 PORTNAME=	sphinxcontrib-apidoc
 DISTVERSION=	0.6.0
+PORTREVISION=	1
 CATEGORIES=	textproc python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -18,7 +19,7 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>0:devel/py-setuptools@${PY_FLAV
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>=5.0.0:textproc/py-sphinx@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pbr>=4.0:devel/py-pbr@${PY_FLAVOR}
 
-USES=		python
+USES=		python:3.12+
 USE_PYTHON=	autoplist pep517 pytest
 
 NO_ARCH=	yes
