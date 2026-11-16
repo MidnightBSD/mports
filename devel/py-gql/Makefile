@@ -42,13 +42,6 @@ AIOHTTP_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}aiohttp>=3.8.0<4:www/py-aiohttp@${PY
 
 BOTOCORE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}botocore>=1.21<2:devel/py-botocore@${PY_FLAVOR}
 
-DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}anyio>=3.0<5:devel/py-anyio@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}backoff>=1.11.1<3.0:devel/py-backoff@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}graphql-core>=3.2<3.3:devel/py-graphql-core@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}sphinx-argparse>0:textproc/py-sphinx-argparse@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}sphinx>=4.3.1,1:textproc/py-sphinx@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}sphinx_rtd_theme>0:textproc/py-sphinx_rtd_theme@${PY_FLAVOR}
-
 HTTPX_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}httpx>=0.23.1<1:www/py-httpx@${PY_FLAVOR}
 
 REQUESTS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}requests-toolbelt>=1.0.0<2:www/py-requests-toolbelt@${PY_FLAVOR} \
