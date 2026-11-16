@@ -1,6 +1,6 @@
 PORTNAME=	cmake
 DISTVERSION=	${_CMAKE_VERSION}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 PKGNAMESUFFIX=	-doc
 
@@ -11,7 +11,7 @@ WWW=		https://www.cmake.org
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/Copyright.txt
 
-BUILD_DEPENDS=	sphinx-build:textproc/py-sphinx@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>=9.1.1,1:textproc/py-sphinx@${PY_FLAVOR}
 
 USES=		cmake python:build qt:6
 USE_LOCALE=	en_US.UTF-8
