@@ -1,0 +1,23 @@
+Allow protobuf 7 after the full upstream suite passed with mports protobuf 7.36.2.
+Retain upstream security exclusions; the port dependency floor excludes those versions.
+
+--- pyproject.toml.orig	2026-10-10 04:34:09 UTC
++++ pyproject.toml
+@@ -26,7 +26,7 @@ dependencies = [
+     "google-auth~=2.0",
+     # Exclude vulnerable protobuf versions: [,4.25.8), [5.26.0rc1, 5.29.5), [6.30.0rc1, 6.31.1)
+     # https://security.snyk.io/vuln/SNYK-PYTHON-PROTOBUF-10364902
+-    "protobuf>=4.25.8,!=5.26.*,!=5.27.*,!=5.28.*,!=5.29.0,!=5.29.1,!=5.29.2,!=5.29.3,!=5.29.4,!=6.30.0,!=6.30.1,!=6.31.0,<7.0",
++    "protobuf>=4.25.8,!=5.26.*,!=5.27.*,!=5.28.*,!=5.29.0,!=5.29.1,!=5.29.2,!=5.29.3,!=5.29.4,!=6.30.0,!=6.30.1,!=6.31.0,<8.0",
+     # Imported directly (databricks/sdk/_base_client.py); declared
+     # explicitly rather than relied on transitively through requests.
+     "urllib3>=1.26,<3",
+@@ -75,7 +75,7 @@ sandbox = [
+     # sandbox_service_pb2_grpc.py validates grpcio >= 1.81.1 at import, so an
+     # older runtime that satisfied only the core protobuf floor / an unbounded
+     # grpcio would raise on import. `<2` caps grpcio's major to guard against a
+-    # breaking 2.x. protobuf's core dependency (above) supplies the `<7` cap and
++    # breaking 2.x. protobuf's core dependency (above) supplies the `<8` cap and
+     # the CVE exclusions.
+     "protobuf>=6.33.5",
+     "grpcio>=1.81.1,<2",
