@@ -1,6 +1,7 @@
 PORTNAME=	xapian
 PORTVERSION=	2.1.0
 DISTVERSIONPREFIX=	bindings-
+PORTREVISION=	1
 CATEGORIES=	databases python
 MASTER_SITES=	https://oligarchy.co.uk/xapian/${PORTVERSION}/ \
 		FREEBSD_LOCAL/sunpoet
@@ -16,7 +17,18 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 BUILD_DEPENDS=	xapian-core>=${PORTVERSION}:databases/xapian-core
 LIB_DEPENDS=	libxapian.so:databases/xapian-core
 
+OPTIONS_DEFINE=	DOCS
+
+DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>=0,1:textproc/py-sphinx@${PY_FLAVOR}
+DOCS_EXTRA_PATCHES_OFF=	${PATCHDIR}/extra-patch-python3-Makefile.in
+
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MDOCS}
+USES=		compiler:c++17-lang libtool python:3.12+ tar:xz
+.else
 USES=		compiler:c++17-lang libtool python tar:xz
+.endif
 USE_PYTHON=	flavors
 
 CONFIGURE_ARGS=	--datarootdir=${DATADIR} \
@@ -42,10 +54,5 @@ PORTDOCS=	*
 CONFLICTS_INSTALL=	xapian-bindings12
 
 PORTSCOUT=	limitw:1,even
-
-OPTIONS_DEFINE=	DOCS
-
-DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>=0,1:textproc/py-sphinx@${PY_FLAVOR}
-DOCS_EXTRA_PATCHES_OFF=	${PATCHDIR}/extra-patch-python3-Makefile.in
 
 .include <bsd.port.mk>
