@@ -25,7 +25,7 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}greenlet>=0:devel/py-greenlet@${PY_FLAVOR} 
 
 USES=		cpe python:3.9+
 CPE_VENDOR=	palletsprojects
-USE_PYTHON=	autoplist concurrent pep517
+USE_PYTHON=	allflavors autoplist concurrent pep517
 
 NO_ARCH=	yes
 NO_TEST=	yes
