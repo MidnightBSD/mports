@@ -1,5 +1,5 @@
 PORTNAME=	sphinx
-PORTVERSION=	9.0.4
+PORTVERSION=	9.1.1
 PORTEPOCH=	1
 CATEGORIES=	textproc python
 MASTER_SITES=	PYPI
@@ -21,7 +21,7 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}flit-core>=3.12:devel/py-flit-core@${PY_FL
 RUN_DEPENDS=	ca_root_nss>=0:security/ca_root_nss \
 		${PYTHON_PKGNAMEPREFIX}alabaster>=0.7.14:textproc/py-alabaster@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}Babel>=2.13:devel/py-babel@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}docutils>=0.20,1<0.23,1:textproc/py-docutils@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}docutils>=0.21,1<0.23,1:textproc/py-docutils@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}imagesize>=1.3:graphics/py-imagesize@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}Jinja2>=3.1:devel/py-Jinja2@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}packaging>=23.0:devel/py-packaging@${PY_FLAVOR} \
@@ -44,7 +44,7 @@ TEST_DEPENDS=	graphviz>=0:graphics/graphviz \
 		${PYTHON_PKGNAMEPREFIX}setuptools78>=78.1.1:devel/py-setuptools78@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}typing-extensions>=4.9:devel/py-typing-extensions@${PY_FLAVOR}
 
-USES=		magick:test python:3.11+
+USES=		magick:test python:3.12+
 USE_PYTHON=	autoplist concurrent pep517 pytest
 
 # Tests compile extensions with setuptools>=70, outside the global backend.
