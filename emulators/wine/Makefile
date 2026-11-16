@@ -1,12 +1,12 @@
 PORTNAME=	wine
-DISTVERSION=	9.0
-PORTREVISION=	4
+DISTVERSION=	11.0
 PORTEPOCH=	1
 CATEGORIES=	emulators
-MASTER_SITES=	https://dl.winehq.org/wine/source/9.0/
+MASTER_SITES=	https://dl.winehq.org/wine/source/11.0/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Microsoft Windows compatibility environment
+WWW=		https://www.winehq.org
 
 LICENSE=	lgpl2.1 lgpl3
 LICENSE_COMB=	dual
@@ -14,9 +14,12 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 ONLY_FOR_ARCHS=	amd64 i386
 
-BUILD_DEPENDS=	${LOCALBASE}/bin/flex:textproc/flex llvm${_LLVM_VERSION}>=0:devel/llvm${_LLVM_VERSION}
+BUILD_DEPENDS=	${LOCALBASE}/bin/flex:textproc/flex
+LIB_DEPENDS=	libhwloc.so:devel/hwloc2
 
-USES=		bison cpe desktop-file-utils gmake localbase \
+# Only devel/llvm17 and later come with necessary include files
+USES=		bison cpe desktop-file-utils gmake \
+		llvm:min=17,build,noexport localbase \
 		pkgconfig sdl shebangfix tar:xz
 USE_GCC=	yes
 USE_SDL=	sdl2
@@ -35,12 +38,12 @@ CONFIGURE_ARGS+=--verbose \
 		--without-gettext --without-gettextpo \
 		--without-gphoto \
 		--without-gssapi \
+		--with-hwloc \
 		--without-inotify \
 		--without-krb5 \
-		--with-mingw CROSSCC="clang" CROSSCFLAGS="-isystem ${FILESDIR}/clang" \
+		--with-mingw CROSSCC="clang" \
 		--without-netapi \
 		--without-opencl \
-		--without-osmesa \
 		--without-pcap \
 		--without-pcsclite \
 		--with-pthread \
@@ -50,7 +53,6 @@ CONFIGURE_ARGS+=--verbose \
 		--without-udev \
 		--without-unwind \
 		--without-usb \
-		--without-wayland \
 		--build=${ARCH}-portbld-freebsd12.4 --host=${ARCH}-portbld-freebsd12.4
 CONFIGURE_ENV=	CPPBIN="${CPP}" FLEX="${LOCALBASE}/bin/flex"
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd12.4
@@ -58,19 +60,21 @@ WINELIBDIR=	${PREFIX}/lib
 .if !defined(USE_LDCONFIG32)
 USE_LDCONFIG=	${WINELIBDIR} ${WINELIBDIR}/wine
 .endif
+PIE_UNSAFE=	yes
+
 SHEBANG_FILES=	tools/make_requests tools/winemaker/winemaker \
 		tools/winedump/function_grep.pl
 
-BINARY_ALIAS+=	clang=${LOCALBASE}/bin/clang${_LLVM_VERSION} \
-		lld-link=${LOCALBASE}/bin/lld-link${_LLVM_VERSION}
+BINARY_ALIAS+=	clang=${LLVM_PREFIX}/bin/clang \
+		lld-link=${LLVM_PREFIX}/bin/lld-link
 
 SUB_FILES=	pkg-message
 
 PORTDATA=	wine.inf
 MAKE_ENV+=	__MidnightBSD__=3 MTERASE=12
 
-OPTIONS_DEFINE=	CUPS DOCS DOSBOX GNUTLS V4L WINEMAKER X11 GECKO MONO
-OPTIONS_DEFAULT=ALSA GNUTLS X11
+OPTIONS_DEFINE=	CUPS DOCS DOSBOX FFMPEG GNUTLS V4L WAYLAND WINEMAKER X11 GECKO MONO
+OPTIONS_DEFAULT=ALSA GNUTLS WAYLAND X11
 OPTIONS_RADIO=	AUDIO
 OPTIONS_RADIO_AUDIO=	ALSA OSS
 OPTIONS_SUB=	yes
@@ -79,8 +83,9 @@ DOSBOX_DESC=	Use DOSBox to run MS-DOS programs
 WINEMAKER_DESC=	Fully support winemaker (requires Perl)
 GECKO_DESC=	Bundle Gecko MSI package for Wine
 MONO_DESC=	Bundle Mono MSI package for Wine
+WAYLAND_DESC=	Wayland support
 
-PORTSCOUT=	limit:^9\.0
+PORTSCOUT=	limit:^11\.0
 
 ALSA_CONFIGURE_WITH=	alsa
 ALSA_USES=		gnome gstreamer
@@ -92,6 +97,9 @@ CUPS_CONFIGURE_WITH=	cups
 CUPS_LIB_DEPENDS=	libcups.so:print/cups
 
 DOSBOX_RUN_DEPENDS=	dosbox:emulators/dosbox
+
+FFMPEG_CONFIGURE_WITH=	ffmpeg
+FFMPEG_LIB_DEPENDS=	libavutil.so:multimedia/ffmpeg
 
 GECKO_RUN_DEPENDS=	wine-gecko>0:emulators/wine-gecko
 
@@ -107,6 +115,11 @@ OSS_USE=		GNOME=glib20
 V4L_CONFIGURE_WITH=	v4l2
 V4L_BUILD_DEPENDS=	${LOCALBASE}/include/linux/videodev2.h:multimedia/v4l_compat
 V4L_LIB_DEPENDS=	libv4l2.so:multimedia/libv4l
+
+WAYLAND_CONFIGURE_WITH=	wayland
+WAYLAND_BUILD_DEPENDS=	${LOCALBASE}/include/linux/input.h:devel/evdev-proto
+WAYLAND_LIB_DEPENDS=	libwayland-client.so:graphics/wayland \
+			libxkbcommon.so:x11/libxkbcommon
 
 WINEMAKER_RUN_DEPENDS=	p5-XML-LibXML>0:textproc/p5-XML-LibXML
 
@@ -127,12 +140,6 @@ CONFIGURE_ARGS+=	--without-gstreamer
 PLIST_SUB+=		GSTREAMER="@comment "
 .endif
 
-.if ${LLVM_DEFAULT} == 11
-_LLVM_VERSION=	15
-.else
-_LLVM_VERSION=	${LLVM_DEFAULT}
-.endif
-
 .if ${ARCH} == amd64
 # Wine is composed of three parts:
 #  - wine (aka this port on MidnightBSD/i386) is the 32-bit component
@@ -144,7 +151,7 @@ _LLVM_VERSION=	${LLVM_DEFAULT}
 
 # --libdir is required since Wine defaults to "${PREFIX}/lib64" on amd64.
 CONFIGURE_ARGS+=	--enable-win64 --libdir=${PREFIX}/lib
-PLIST_SUB+=		WINE32="@comment " WINE64="" WINEARCH="x86_64" WINEIMPORTDIR="x86_64-unix"
+PLIST_SUB+=		WINE32="@comment " WINE64="" WINEARCH="x86_64"
 
 # Wine assumes a WoW64 package is available, which is not the case
 post-patch:
@@ -152,7 +159,7 @@ post-patch:
 
 .else
 EXTRA_PATCHES+=	files/extra-patch-tools-winebuild-res32
-PLIST_SUB+=		WINE32="" WINE64="@comment " WINEARCH="i386" WINEIMPORTDIR="i386-windows"
+PLIST_SUB+=		WINE32="" WINE64="@comment " WINEARCH="i386"
 .endif
 
 pre-build:
@@ -165,7 +172,7 @@ post-install:
 	-${ELFCTL} -e +noaslr				${PREFIX}/bin/wine.bin
 	${INSTALL_SCRIPT} ${FILESDIR}/wine.sh		${PREFIX}/bin/wine
 .else
-	${MV} ${PREFIX}/bin/wine64		${PREFIX}/bin/wine64.bin
+	${MV} ${PREFIX}/bin/wine		${PREFIX}/bin/wine64.bin
 	-${ELFCTL} -e +noaslr				${PREFIX}/bin/wine64.bin
 	${INSTALL_SCRIPT} ${FILESDIR}/wine.sh		${PREFIX}/bin/wine64
 	${INSTALL_SCRIPT} ${FILESDIR}/wine-wow64.sh	${PREFIX}/bin/wine

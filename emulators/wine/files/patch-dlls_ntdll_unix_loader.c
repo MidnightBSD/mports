@@ -1,10 +1,11 @@
---- UTC
---- dlls/ntdll/unix/loader.c.orig	2024-01-16 20:55:47
-+++ dlls/ntdll/unix/loader.c	2024-05-10 07:03:04
-@@ -480,6 +480,21 @@
+--- dlls/ntdll/unix/loader.c.orig	2025-02-21 21:19:31 UTC
++++ dlls/ntdll/unix/loader.c	2025-04-08 21:22:55 UTC
+@@ -503,6 +503,24 @@
+     BOOL force_wow64 = (arch = getenv( "WINEARCH" )) && !strcmp( arch, "wow64" );
+     char *ret = NULL;
  
-     if (machine == current_machine) return NULL;
- 
++    if (machine == current_machine) return NULL;
++
 +    char* wineserver_path = getenv("WINESERVER");
 +    if (wineserver_path != NULL && wineserver_path[0] == '/') {
 +        char* s = remove_tail(wineserver_path, "server");
@@ -20,6 +21,7 @@
 +        }
 +    }
 +
-     if (machine == IMAGE_FILE_MACHINE_AMD64)  /* try the 64-bit loader */
++
+     if (is_win64)
      {
-         size_t len = strlen(wineloader);
+         if (force_wow64) return NULL;
