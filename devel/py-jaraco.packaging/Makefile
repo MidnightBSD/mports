@@ -1,5 +1,6 @@
 PORTNAME=	jaraco.packaging
 PORTVERSION=	10.4.0
+PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -24,7 +25,7 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}virtualenv>=20.0.35:devel/py-virtualenv@${P
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>=6,1:devel/py-pytest@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}types-docutils>=0:devel/py-types-docutils@${PY_FLAVOR}
 
-USES=		python:3.9+ python-setuptools:78
+USES=		python:3.12+ python-setuptools:78
 USE_PYTHON=	autoplist concurrent pep517
 PEP517_WHEEL_DISTNAME=	${PORTNAME:S|.|_|g}
 
