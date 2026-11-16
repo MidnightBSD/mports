@@ -1,6 +1,6 @@
 PORTNAME=	qemu
 PORTVERSION=	7.2.11
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	emulators
 MASTER_SITES=	https://download.qemu.org/
 DIST_SUBDIR=	qemu/${PORTVERSION}
@@ -94,9 +94,10 @@ CURL_LIB_DEPENDS=		libcurl.so:ftp/curl
 CURL_USES=			ssl
 CURL_CONFIGURE_OFF=		--disable-curl
 DEBUG_CONFIGURE_ON=		--enable-debug
-DOCS_BUILD_DEPENDS=		${PYTHON_PKGNAMEPREFIX}sphinx_rtd_theme>0:textproc/py-sphinx_rtd_theme@${PY_FLAVOR} \
-				sphinx-build:textproc/py-sphinx@${PY_FLAVOR}
+DOCS_BUILD_DEPENDS=		py312-sphinx_rtd_theme>=0.4.3:textproc/py-sphinx_rtd_theme@py312 \
+				${LOCALBASE}/bin/sphinx-build-3.12:textproc/py-sphinx@py312
 DOCS_CONFIGURE_ENABLE=		docs
+DOCS_CONFIGURE_ON=		--sphinx-build=${LOCALBASE}/bin/sphinx-build-3.12
 GNUTLS_LIB_DEPENDS=		libgnutls.so:security/gnutls
 GNUTLS_CONFIGURE_OFF=		--disable-gnutls
 GTK3_LIB_DEPENDS=		libxkbcommon.so:x11/libxkbcommon
