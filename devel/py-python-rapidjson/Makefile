@@ -12,8 +12,7 @@ WWW=		https://github.com/python-rapidjson/python-rapidjson
 LICENSE=	mit
 LICENSE_FILE=	${WRKDIR}/LICENSE
 
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytz>0:devel/py-pytz@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}sphinx>0:textproc/py-sphinx@${PY_FLAVOR}
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytz>0:devel/py-pytz@${PY_FLAVOR}
 
 USES=		python:3.10+
 USE_PYTHON=	distutils autoplist pytest
