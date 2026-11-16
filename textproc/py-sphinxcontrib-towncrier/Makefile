@@ -1,6 +1,6 @@
 PORTNAME=	sphinxcontrib-towncrier
 PORTVERSION=	0.5.0a0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	textproc python
 MASTER_SITES=	PYPI \
 		https://github.com/sphinx-contrib/sphinxcontrib-towncrier/releases/download/v${PORTVERSION}/
@@ -21,7 +21,7 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=61:devel/py-setuptools@${PY_FL
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>=0,1:textproc/py-sphinx@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}towncrier>=23:textproc/py-towncrier@${PY_FLAVOR}
 
-USES=		python
+USES=		python:3.12+
 USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
