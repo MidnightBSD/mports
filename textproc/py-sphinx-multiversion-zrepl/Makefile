@@ -11,7 +11,8 @@ WWW=		https://github.com/zrepl/sphinx-multiversion
 
 LICENSE=	bsd2
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>=2.1:textproc/py-sphinx@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>0:devel/py-setuptools@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}sphinx>=2.1:textproc/py-sphinx@${PY_FLAVOR}
 
 USES=		python:3.12+
 
