@@ -1,6 +1,6 @@
 PORTNAME=	ansible-core
 DISTVERSION=	2.18.7
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -53,7 +53,7 @@ post-fake:
 	${FIND} ${FAKE_DESTDIR}${PREFIX}/bin -type l -name ansible-\* -lname ansible \
 		-execdir ${RLN} ansible-${PYTHON_VER} {} \;
 # USE_PYTHON=autoplist doesn't add this file to pkg-plist.
-	${RM} ${PYTHONPREFIX_SITELIBDIR}/ansible_test/_data/injector/ansible-inventory
+	${RM} ${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}/ansible_test/_data/injector/ansible-inventory
 
 .include <bsd.port.mk>
 
