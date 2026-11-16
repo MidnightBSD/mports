@@ -1,6 +1,6 @@
 PORTNAME=	sphinxcontrib-adadomain
 PORTVERSION=	0.2
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	textproc
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,7 +13,7 @@ LICENSE=	bsd2
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>=1.0,1:textproc/py-sphinx@${PY_FLAVOR}
 
-USES=		python
+USES=		python:3.12+
 USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes
