@@ -1,6 +1,6 @@
 PORTNAME=	sphinx-multiversion
 DISTVERSION=	g20230909
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	textproc python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 PKGNAMESUFFIX=	-zrepl
@@ -11,9 +11,10 @@ WWW=		https://github.com/zrepl/sphinx-multiversion
 
 LICENSE=	bsd2
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>=2.1:textproc/py-sphinx@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>0:devel/py-setuptools@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}sphinx>=2.1:textproc/py-sphinx@${PY_FLAVOR}
 
-USES=		python
+USES=		python:3.12+
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	zrepl
