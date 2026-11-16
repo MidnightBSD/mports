@@ -1,5 +1,6 @@
 PORTNAME=	sphinx_rtd_theme
 PORTVERSION=	3.1.0
+PORTREVISION=	1
 CATEGORIES=	textproc python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -16,7 +17,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>=6,1<10,1:textproc/py-sphinx@${PY_FLA
 		${PYTHON_PKGNAMEPREFIX}sphinxcontrib-jquery>=4.0<5.0:textproc/py-sphinxcontrib-jquery@${PY_FLAVOR}
 
 NO_ARCH=	yes
-USES=		python
+USES=		python:3.12+
 USE_PYTHON=	distutils autoplist
 
 .include <bsd.port.mk>
