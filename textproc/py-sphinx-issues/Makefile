@@ -19,7 +19,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>=8.1.0,1:textproc/py-sphinx@${PY_FLAV
 USES=		python:3.12+
 USE_PYTHON=	autoplist pep517 pytest
 
-# Sphinx 9 requires Python 3.11; test the staged extension.
+# Sphinx 9 requires Python 3.12; test the staged extension.
 PYTHON_TEST_ENV?=	PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
 TEST_ENV+=	PYTHONDONTWRITEBYTECODE=1
 TEST_ARGS=	--import-mode=importlib
