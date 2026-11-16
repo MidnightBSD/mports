@@ -20,7 +20,6 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}fixtures>=0:devel/py-fixtures@${PY_FLAVOR} 
 		${PYTHON_PKGNAMEPREFIX}purl>=1.6:devel/py-purl@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest>=0:devel/py-pytest@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}requests-futures>=0:www/py-requests-futures@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}sphinx>=0,1:textproc/py-sphinx@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}testrepository>=0.0.18:devel/py-testrepository@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}testtools>=0:devel/py-testtools@${PY_FLAVOR}
 
