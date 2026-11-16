@@ -404,6 +404,7 @@
     SUBDIR += py-mkdocstrings-crystal
     SUBDIR += py-mkdocstrings-python
     SUBDIR += py-mkdocstrings-python-legacy
+    SUBDIR += py-multimark
     SUBDIR += py-myst-parser
     SUBDIR += py-nltk
     SUBDIR += py-openstep-plist
