@@ -41,6 +41,8 @@ CONFIGURE_ENV+=	MOZ_REQUIRE_SIGNING=""
 
 FIREFOX_ICON=		${MOZILLA}.png
 FIREFOX_ICON_SRC=	${PREFIX}/lib/${MOZILLA}/browser/chrome/icons/default/default48.png
+FIREFOX_ICON_SIZES=	16 32 48 64 128
+MOZILLA_PLIST_DIRS=	bin lib share/applications share/icons share/pixmaps
 
 MOZILLA_CAP=	${MOZILLA:C/^(.).*/\1/:tu}${MOZILLA:C/^.//}
 
@@ -92,5 +94,17 @@ post-install:
 	${INSTALL_DATA} ${WRKDIR}/${MOZILLA_EXEC_NAME}.desktop ${DESKTOPDIR}
 	${MKDIR} ${PREFIX}/share/pixmaps
 	${LN} -sf ${FIREFOX_ICON_SRC} ${PREFIX}/share/pixmaps/${FIREFOX_ICON}
+.for s in ${FIREFOX_ICON_SIZES}
+	${MKDIR} ${PREFIX}/share/icons/hicolor/${s}x${s}/apps
+	${LN} -sf ../../../../../lib/${MOZILLA}/browser/chrome/icons/default/default${s}.png \
+		${PREFIX}/share/icons/hicolor/${s}x${s}/apps/${FIREFOX_ICON}
+.endfor
+
+# INSTALLS_ICONS runs before gecko-create-plist adds the icons, so refresh
+# the hicolor cache explicitly once the plist has been generated.
+post-install-script: waterfox-icon-cache
+waterfox-icon-cache: gecko-create-plist
+	@${ECHO_CMD} "@postexec ${LOCALBASE}/bin/gtk-update-icon-cache -q -f %D/share/icons/hicolor 2>/dev/null || /usr/bin/true" >> ${TMPPLIST}
+	@${ECHO_CMD} "@postunexec ${LOCALBASE}/bin/gtk-update-icon-cache -q -f %D/share/icons/hicolor 2>/dev/null || /usr/bin/true" >> ${TMPPLIST}
 
 .include <bsd.port.post.mk>
