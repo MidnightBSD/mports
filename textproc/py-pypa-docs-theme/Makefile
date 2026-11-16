@@ -1,6 +1,6 @@
 PORTNAME=	pypa-docs-theme
 DISTVERSION=	g20180622
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	textproc python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -12,7 +12,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}python-docs-theme>=0:textproc/py-python-docs-theme@${PY_FLAVOR}
 
-USES=		python
+USES=		python:3.12+
 USE_PYTHON=	distutils autoplist
 USE_GITHUB=	yes
 GH_ACCOUNT=	pypa
