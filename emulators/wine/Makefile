@@ -1,6 +1,6 @@
 PORTNAME=	wine
 DISTVERSION=	11.0
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	emulators
 MASTER_SITES=	https://dl.winehq.org/wine/source/11.0/
@@ -142,25 +142,17 @@ PLIST_SUB+=		GSTREAMER="@comment "
 .endif
 
 .if ${ARCH} == amd64
-# Wine is composed of three parts:
-#  - wine (aka this port on MidnightBSD/i386) is the 32-bit component
-#       and runs 32-bit programs.
-#  - wine64 (aka this part of this port on MidnightBSD/amd64) is the
-#       64-bit component and runs 64-bit programs.
-#  - wow64 (aka this port built on MidnightBSD/i386) is a part of the
-#       64-bit component [wine64] that runs 32-bit programs on MidnightBSD/amd64.
+# On amd64 Wine is built in "new WoW64" mode: the 64-bit Unix side also
+# runs 32-bit Windows programs (i386 PE DLLs are cross-built with clang),
+# so no separate 32-bit Wine installation is needed.
 
 # --libdir is required since Wine defaults to "${PREFIX}/lib64" on amd64.
-CONFIGURE_ARGS+=	--enable-win64 --libdir=${PREFIX}/lib
-PLIST_SUB+=		WINE32="@comment " WINE64="" WINEARCH="x86_64"
-
-# Wine assumes a WoW64 package is available, which is not the case
-post-patch:
-	${REINPLACE_CMD} '/Exec/s|wine|wine64|g' ${WRKSRC}/loader/wine.desktop
+CONFIGURE_ARGS+=	--enable-archs=i386,x86_64 --enable-win64 --libdir=${PREFIX}/lib
+PLIST_SUB+=		WINE32="@comment " WINE64="" WINEARCH="x86_64" WOW64=""
 
 .else
 EXTRA_PATCHES+=	files/extra-patch-tools-winebuild-res32
-PLIST_SUB+=		WINE32="" WINE64="@comment " WINEARCH="i386"
+PLIST_SUB+=		WINE32="" WINE64="@comment " WINEARCH="i386" WOW64="@comment "
 .endif
 
 pre-build:
@@ -173,11 +165,8 @@ post-install:
 	-${ELFCTL} -e +noaslr				${PREFIX}/bin/wine.bin
 	${INSTALL_SCRIPT} ${FILESDIR}/wine.sh		${PREFIX}/bin/wine
 .else
-	${MV} ${PREFIX}/bin/wine		${PREFIX}/bin/wine64.bin
-	-${ELFCTL} -e +noaslr				${PREFIX}/bin/wine64.bin
-	${INSTALL_SCRIPT} ${FILESDIR}/wine.sh		${PREFIX}/bin/wine64
-	${INSTALL_SCRIPT} ${FILESDIR}/wine-wow64.sh	${PREFIX}/bin/wine
-	${INSTALL_SCRIPT} ${FILESDIR}/pkg32.sh		${DATADIR}/pkg32.sh
+	-${ELFCTL} -e +noaslr				${PREFIX}/bin/wine
+	${RLN} ${PREFIX}/bin/wine			${PREFIX}/bin/wine64
 .endif
 
 	@${MKDIR} ${DOCSDIR}
