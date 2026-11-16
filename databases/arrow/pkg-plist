@@ -480,7 +480,6 @@ lib/cmake/Arrow/ArrowOptions.cmake
 lib/cmake/Arrow/ArrowTargets-%%CMAKE_BUILD_TYPE%%.cmake
 lib/cmake/Arrow/ArrowTargets.cmake
 %%S3%%lib/cmake/Arrow/FindAWSSDKAlt.cmake
-%%S3%%lib/cmake/Arrow/FindOpenSSLAlt.cmake
 %%BROTLI%%lib/cmake/Arrow/FindBrotliAlt.cmake
 %%SNAPPY%%lib/cmake/Arrow/FindSnappyAlt.cmake
 %%LZ4%%lib/cmake/Arrow/Findlz4Alt.cmake

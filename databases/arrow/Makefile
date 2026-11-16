@@ -1,6 +1,6 @@
 PORTNAME=	arrow
 DISTVERSION=	21.0.0
-PORTREVISION=	9
+PORTREVISION=	10
 CATEGORIES=	databases
 MASTER_SITES=	APACHE/${PORTNAME}/${PORTNAME}-${DISTVERSION} \
 		https://github.com/apache/orc/archive/rel/:orc
@@ -209,7 +209,11 @@ PLIST_FILES+=	bin/arrow-file-to-stream \
 .if !empty(PORT_OPTIONS:MGANDIVA) || !empty(PORT_OPTIONS:MCOMPUTE)
 PLIST_FILES+=	lib/cmake/Arrow/Findutf8proc.cmake
 .endif
-.if !empty(PORT_OPTIONS:MGANDIVA) || !empty(PORT_OPTIONS:MZSTD)
+.if !empty(PORT_OPTIONS:MPARQUET) || !empty(PORT_OPTIONS:MFLIGHT) || !empty(PORT_OPTIONS:MGANDIVA) || !empty(PORT_OPTIONS:MS3)
+PLIST_FILES+=	lib/cmake/Arrow/FindOpenSSLAlt.cmake
+.endif
+
+.if !empty(PORT_OPTIONS:MGANDIVA) && !empty(PORT_OPTIONS:MZSTD)
 PLIST_FILES+=	lib/cmake/Gandiva/FindzstdAlt.cmake
 .endif
 
@@ -230,7 +234,7 @@ post-install:
 	# other values confuse the R extension build, so we adjust these values to "ON" and "OFF" as a workaround
 	${REINPLACE_CMD} -i '' \
 		-e 's|"true"|"ON"|; s|"false"|"OFF"|' \
-		${STAGEDIR}${PREFIX}/lib/cmake/Arrow/ArrowOptions.cmake
+		${PREFIX}/lib/cmake/Arrow/ArrowOptions.cmake
 
 do-test:
 	@cd ${BUILD_WRKSRC} && \
