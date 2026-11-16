@@ -1,20 +1,21 @@
 PORTNAME=	libvirt
-PORTVERSION=	11.3.0
+PORTVERSION=	12.9.0
 CATEGORIES=	devel
 MASTER_SITES=	http://libvirt.org/sources/python/ \
 		ftp://libvirt.org/libvirt/python/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-DISTNAME=	${PORTNAME}-python-${PORTVERSION}
+DISTNAME=	${PORTNAME}_python-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python bindings for Libvirt virtualization API
 WWW=		https://libvirt.org/python.html
 
 LICENSE=	lgpl2.1+
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libvirt.so:devel/libvirt
 
-USES=		cpe pkgconfig python shebangfix
+USES=		cpe pkgconfig python:3.9+ shebangfix
 CPE_VENDOR=	redhat
 SHEBANG_FILES=	generator.py setup.py
 USE_PYTHON=	distutils autoplist
