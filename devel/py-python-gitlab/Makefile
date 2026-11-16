@@ -1,5 +1,6 @@
 PORTNAME=	python-gitlab
 DISTVERSION=	8.6.0
+PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -33,13 +34,13 @@ YAML_DESC=		YAML output
 
 AUTOCOMPLETE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}argcomplete>=1.10.0<4:devel/py-argcomplete@${PY_FLAVOR}
 
-DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}furo>0:textproc/py-furo@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}Jinja2>0:devel/py-Jinja2@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}myst-parser>0:textproc/py-myst-parser@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}requests-toolbelt>=0.10.1:www/py-requests-toolbelt@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}requests>=2.25.0:www/py-requests@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}sphinx>=4.3.1,1:textproc/py-sphinx@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}sphinxcontrib-autoprogram>0:textproc/py-sphinxcontrib-autoprogram@${PY_FLAVOR}
+DOCS_BUILD_DEPENDS=	py312-furo>0:textproc/py-furo@py312 \
+			py312-Jinja2>0:devel/py-Jinja2@py312 \
+			py312-myst-parser>0:textproc/py-myst-parser@py312 \
+			py312-requests-toolbelt>=0.10.1:www/py-requests-toolbelt@py312 \
+			py312-requests>=2.25.0:www/py-requests@py312 \
+			py312-sphinx>=4.3.1,1:textproc/py-sphinx@py312 \
+			py312-sphinxcontrib-autoprogram>0:textproc/py-sphinxcontrib-autoprogram@py312
 DOCS_PORTDOCS=		*
 
 GRAPHQL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gql>=3.5<5:devel/py-gql@${PY_FLAVOR} \
@@ -53,7 +54,7 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|/etc|${LOCALBASE}/etc|g' ${WRKSRC}/gitlab/config.py
 
 do-build-DOCS-on::
-	(cd ${WRKSRC} && sphinx-build -j auto -n -W --keep-going -b html docs build/sphinx/html)
+	(cd ${WRKSRC} && sphinx-build-3.12 -j auto -n -W --keep-going -b html docs build/sphinx/html)
 
 post-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
