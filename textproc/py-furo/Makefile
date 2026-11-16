@@ -1,5 +1,6 @@
 PORTNAME=	furo
 PORTVERSION=	2025.12.19
+PORTREVISION=	1
 CATEGORIES=	textproc python
 MASTER_SITES=	PYPI \
 		FREEBSD_LOCAL/sunpoet:static
@@ -23,7 +24,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}accessible-pygments>=0.0.5:textproc/py-acces
 		${PYTHON_PKGNAMEPREFIX}sphinx>=7.0,1<10.0,1:textproc/py-sphinx@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sphinx-basic-ng>=1.0.0b2:textproc/py-sphinx-basic-ng@${PY_FLAVOR}
 
-USES=		python:3.11+
+USES=		python:3.12+
 USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
