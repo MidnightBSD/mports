@@ -2,7 +2,7 @@ Obtained from:	https://bitbucket.org/tkoskine/sphinxcontrib-adadomain/commits/0a
 
 --- sphinxcontrib/adadomain.py.orig	2018-01-19 17:53:22 UTC
 +++ sphinxcontrib/adadomain.py
-@@ -18,13 +18,13 @@ import string
+@@ -18,13 +18,14 @@ import string
  
  from docutils import nodes
  from docutils.parsers.rst import directives
@@ -11,13 +11,28 @@ Obtained from:	https://bitbucket.org/tkoskine/sphinxcontrib-adadomain/commits/0a
 -from sphinx import addnodes
 +from sphinx import addnodes, version_info
  from sphinx.roles import XRefRole
- from sphinx.locale import l_, _
+-from sphinx.locale import l_, _
++from sphinx.locale import _
++l_ = _
  from sphinx.directives import ObjectDescription
  from sphinx.domains import Domain, ObjType, Index
 -from sphinx.util.compat import Directive
  from sphinx.util.nodes import make_refnode
  from sphinx.util.docfields import Field, TypedField
  
+@@ -116,2 +117,2 @@
+-        for token in string.split(arglist, ';'):
+-            pieces = string.split(token, ':')
++        for token in arglist.split(';'):
++            pieces = token.split(':')
+@@ -162,2 +163,2 @@
+-        for token in string.split(arglist, ';'):
+-            pieces = string.split(token, ':')
++        for token in arglist.split(';'):
++            pieces = token.split(':')
+@@ -218 +219 @@
+-        pieces = string.split(name, '.')
++        pieces = name.split('.')
 @@ -269,12 +269,12 @@ class AdaObject(ObjectDescription):
  
          indextext = self._get_index_text(name)
