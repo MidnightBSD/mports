@@ -1,0 +1,12 @@
+--- config_cmake.h.in.orig
++++ config_cmake.h.in
+@@ -182,7 +182,7 @@
+ #endif
+ 
+ #if __has_attribute(fallthrough)
+-#define __fallthrough__ __attribute__ ((fallthrough));
++#define FISH_FALLTHROUGH __attribute__ ((fallthrough));
+ #else
+-#define __fallthrough__
++#define FISH_FALLTHROUGH
+ #endif
