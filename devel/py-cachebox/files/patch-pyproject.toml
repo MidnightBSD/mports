@@ -1,0 +1,13 @@
+Use the tested Maturin version provided by mports.
+
+--- pyproject.toml.orig
++++ pyproject.toml
+@@ -68,7 +68,7 @@
+ zizmor = ["zizmor >= 1.29.0"]
+ 
+ [build-system]
+-requires = ["maturin == 1.15.0"]
++requires = ["maturin == 1.16.0"]
+ build-backend = "maturin"
+ 
+ [tool.maturin]
