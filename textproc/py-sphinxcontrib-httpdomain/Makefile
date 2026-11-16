@@ -1,5 +1,6 @@
 PORTNAME=	sphinxcontrib-httpdomain
 DISTVERSION=	2.2.1
+PORTREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -16,7 +17,7 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}uv-build>=0.12.22<0.14.0:devel/py-uv-build
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>=8.1.3,1:textproc/py-sphinx@${PY_FLAVOR}
 
-USES=		python:3.10+
+USES=		python:3.12+
 USE_PYTHON=	autoplist pep517
 
 NO_ARCH=	yes
