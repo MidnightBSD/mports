@@ -1,6 +1,6 @@
 PORTNAME=	llm
 DISTVERSION=	0.31
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	ai python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -17,16 +17,19 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLA
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}click-default-group>=1.2.3:devel/py-click-default-group@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}click>0:devel/py-click@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}condense-json>0:devel/py-condense-json@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}openai>=1.0.0:ai/py-openai@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}condense-json>=0.1.3:devel/py-condense-json@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}openai>=2.32.0:ai/py-openai@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pluggy>=1.0:devel/py-pluggy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}puremagic>0:sysutils/py-puremagic@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pip>0:devel/py-pip@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pyyaml>0:devel/py-pyyaml@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}setuptools>0:devel/py-setuptools@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pydantic2>=2.0:devel/py-pydantic2@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}python-ulid2>=1<3:textproc/py-python-ulid2@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}sqlite-migrate>0:databases/py-sqlite-migrate@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}types-pyyaml>=0:devel/py-types-pyyaml@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}sqlite-migrate>=0.1a2:databases/py-sqlite-migrate@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}sqlite-utils>=3.37:databases/py-sqlite-utils@${PY_FLAVOR}
 
-USES=		python shebangfix
+USES=		python:3.12+ shebangfix
 USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
