@@ -1,6 +1,5 @@
 PORTNAME=	rsyslog
-PORTVERSION=	8.2502.0
-PORTREVISION=	1
+PORTVERSION=	8.2610.0
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.rsyslog.com/files/download/rsyslog/
 
@@ -13,12 +12,15 @@ LICENSE_COMB=	multi
 
 LIB_DEPENDS=	libestr.so:devel/libestr \
 		libfastjson.so:devel/libfastjson \
+		libprotobuf-c.so:devel/protobuf-c \
+		libsnappy.so:archivers/snappy \
+		libyaml.so:textproc/libyaml \
 		liblogging-rfc3195.so:devel/liblogging \
 		libuuid.so:misc/e2fsprogs-libuuid \
 		libcurl.so:ftp/curl
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}docutils>0:textproc/py-docutils@${PY_FLAVOR}
 
-USES=		cpe libtool pkgconfig autoreconf python:env
+USES=		cpe gmake libtool pkgconfig autoreconf python:env
 
 PORTSCOUT=	limit:^8\.
 
@@ -147,7 +149,7 @@ CFLAGS+=	${CPPFLAGS}
 USE_RC_SUBR=	${PORTNAME}d
 SUB_FILES=	pkg-message
 
-CONFIGURE_ARGS+=	--enable-imdiag --enable-imfile --enable-impstats \
+CONFIGURE_ARGS+=	--enable-imdiag --enable-imfile --enable-impstats --enable-omkinesis \
 			--enable-mail --enable-omprog --enable-omstdout \
 			--enable-omuxsock --enable-rfc3195 --disable-testbench \
 			--enable-pmciscoios \
