@@ -1,6 +1,5 @@
 PORTNAME=	numba
-DISTVERSION=	0.65.0
-PORTREVISION=	1
+DISTVERSION=	0.68.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -18,14 +17,17 @@ BROKEN=		requires OpenMP support that is missing on this architecture
 
 # numpy version is checked at runtime
 # https://github.com/numba/numba/blob/main/numba/__init__.py#L13
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.22<2.5:math/py-numpy1@${PY_FLAVOR} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=2.0,1:math/py-numpy@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy<2.6,1:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 LIB_DEPENDS=	libtbb.so:devel/onetbb
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}llvmlite>=0.46.0:devel/py-llvmlite@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy1>=1.22<2.5:math/py-numpy1@${PY_FLAVOR} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}llvmlite>=0.50.0:devel/py-llvmlite@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}llvmlite<0.51:devel/py-llvmlite@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy>=1.22,1:math/py-numpy@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy<2.6,1:math/py-numpy@${PY_FLAVOR}
 
-USES=		compiler:c++11-lang python fortran localbase
+USES=		compiler:c++11-lang python:3.11-3.15 fortran localbase
 USE_PYTHON=	pep517 concurrent autoplist unittest
 
 TEST_ENV=	${MAKE_ENV} PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
@@ -35,6 +37,6 @@ post-install:
 	@${FIND} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR} -name "*.so" | ${XARGS} ${STRIP_CMD}
 
 do-test: # tests run for a very long time
-	@cd ${TEST_WRKSRC} && ${SETENV} ${TEST_ENV} ${PYTHON_CMD} -m numba.runtests
+	@cd ${TEST_WRKSRC} && ${SETENV} ${TEST_ENV} ${PYTHON_CMD} -m numba.runtests ${TEST_ARGS}
 
 .include <bsd.port.mk>
