@@ -168,6 +168,7 @@
     SUBDIR += svt-vp9
     SUBDIR += totem
     SUBDIR += totem-pl-parser
+    SUBDIR += uxplay
     SUBDIR += v4l-utils
     SUBDIR += v4l_compat
     SUBDIR += vapoursynth
