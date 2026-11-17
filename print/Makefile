@@ -72,6 +72,7 @@ SUBDIR += py-pollyreports
 SUBDIR += py-preppy
 SUBDIR += py-psautohint
 SUBDIR += py-pycups
+SUBDIR += py-pydyf
 SUBDIR += py-python-ly
 SUBDIR += py-relatorio
 SUBDIR += py-reportlab
