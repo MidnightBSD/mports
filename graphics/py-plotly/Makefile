@@ -15,7 +15,7 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>=1.26:devel/py-hatchling@${PY_FL
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}narwhals>=1.15.1:math/py-narwhals@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}packaging>=0:devel/py-packaging@${PY_FLAVOR}
 
-USES=		python:3.8+
+USES=		python:3.10+
 USE_PYTHON=	autoplist pep517
 
 NO_ARCH=	yes
