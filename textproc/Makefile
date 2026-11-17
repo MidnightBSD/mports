@@ -486,6 +486,7 @@
     SUBDIR += py-sphinxcontrib-websupport
     SUBDIR += py-texttable
     SUBDIR += py-tiktoken
+    SUBDIR += py-tinyhtml5
     SUBDIR += py-tokenizers
     SUBDIR += py-tinycss
     SUBDIR += py-tinycss2
