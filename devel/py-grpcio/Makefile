@@ -1,6 +1,5 @@
 PORTNAME=	grpcio
-PORTVERSION=	1.78.1
-PORTREVISION=	1
+PORTVERSION=	1.85.1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,12 +11,14 @@ WWW=		https://pypi.org/project/grpcio/
 LICENSE=	Apache-2.0
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}protobuf>=3:devel/py-protobuf@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}six>1:devel/py-six@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}six>1:devel/py-six@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}typing-extensions>=4.12<5:devel/py-typing-extensions@${PY_FLAVOR}
 LIB_DEPENDS=	libcares.so:dns/c-ares
 
-USES=		compiler:c++11-lib localbase:ldflags python ssl
+USES=		compiler:c++17-lang localbase:ldflags python:3.10+ ssl
 USE_PYTHON=	allflavors autoplist cython distutils
-MAKE_ENV+=	GRPC_PYTHON_BUILD_SYSTEM_CARES=true \
+MAKE_ENV+=	GRPC_PYTHON_CFLAGS="-std=c++17" \
+		GRPC_PYTHON_BUILD_SYSTEM_CARES=true \
 		GRPC_PYTHON_BUILD_SYSTEM_OPENSSL=true \
 		GRPC_PYTHON_BUILD_SYSTEM_ZLIB=true
 LDFLAGS+=	-lcares
