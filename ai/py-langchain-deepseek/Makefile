@@ -1,5 +1,5 @@
 PORTNAME=	langchain-deepseek
-DISTVERSION=	1.1.0
+DISTVERSION=	1.1.1
 CATEGORIES=	ai python # machine-learning
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -15,8 +15,10 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>0:devel/py-hatchling@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}langchain-core>=1.4.0:ai/py-langchain-core@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}langchain-openai>=1.1.0:ai/py-langchain-openai@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}langchain-core>=1.4.7:ai/py-langchain-core@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}langchain-core<2.0.0:ai/py-langchain-core@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}langchain-openai>=1.3.1:ai/py-langchain-openai@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}langchain-openai<2.0.0:ai/py-langchain-openai@${PY_FLAVOR}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}langchain-tests>=1.1.9:ai/py-langchain-tests@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-asyncio>=1.3.0:devel/py-pytest-asyncio@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-socket>=0.7.0:devel/py-pytest-socket@${PY_FLAVOR} \
@@ -33,6 +35,6 @@ NO_ARCH=	yes
 TEST_ENV=	${MAKE_ENV} PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
 TEST_WRKSRC=	${WRKSRC}/tests/unit_tests
 
-# tests as of 1.1.0: 27 passed, 1 skipped in 8.08s
+# tests as of 1.1.1: 39 passed, 1 skipped in 2.38s
 
 .include <bsd.port.mk>
