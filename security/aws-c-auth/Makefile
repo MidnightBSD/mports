@@ -1,6 +1,6 @@
 PORTNAME=	aws-c-auth
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.9.0
+DISTVERSION=	1.0.2
 CATEGORIES=	security
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -18,7 +18,7 @@ LIB_DEPENDS=	libaws-c-cal.so:security/aws-c-cal \
 		libaws-c-sdkutils.so:devel/aws-c-sdkutils \
 		libs2n.so:security/s2n-tls
 
-USES=		cmake:testing ssl
+USES=		cmake:testing localbase ssl
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	awslabs
@@ -27,6 +27,7 @@ USE_LDCONFIG=	yes
 CMAKE_ON=	BUILD_SHARED_LIBS
 CMAKE_OFF=	BUILD_TESTING
 
-NO_TEST=	yes
+PLIST_SUB=	SOVERSION=${DISTVERSION} \
+		SOVERSION_R=${DISTVERSION:R}
 
 .include <bsd.port.mk>
