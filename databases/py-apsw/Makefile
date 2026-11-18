@@ -1,6 +1,5 @@
 PORTNAME=	apsw
-PORTVERSION=	3.46.0.1
-PORTREVISION=	1
+PORTVERSION=	3.54.1.0
 CATEGORIES=	databases python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -16,7 +15,9 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 
-USES=		localbase python sqlite
+BUILD_RUN_DEPENDS=	sqlite3>=${PORTVERSION:R:R},1:databases/sqlite3
+
+USES=		localbase python sqlite:port
 USE_PYTHON=	autoplist concurrent pep517
 # unittest
 
