@@ -20,7 +20,7 @@ USES=		compiler:c++11-lib gl gmake tar:bzip2 xorg
 USE_GL=		gl glu glut
 USE_XORG=	ice sm x11 xext xi xmu xt
 
-CXXFLAGS+=	-std=c++98
+CXXFLAGS+=	-std=gnu++98
 
 DOCSDIR=	${PREFIX}/share/doc/CalculiX
 
@@ -68,7 +68,7 @@ do-build:
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/${CGX_VER}/src/cgx \
-	  ${STAGEDIR}${PREFIX}/bin/cgx
+	  ${PREFIX}/bin/cgx
 
 do-install-DOCS-on:
 	@${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}/cgx

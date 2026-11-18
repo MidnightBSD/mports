@@ -64,7 +64,7 @@
  
  cgx: $(OLIB) $(OUTIL) $(OULIB)
 -	g++  $(OULIB)  $(OLIB) $(OUTIL)  $(CFLAGS) $(LFLAGS) -o  $@
-+	${CXX}  $(OULIB)  $(OLIB) $(OUTIL)  $(CFLAGS) $(LFLAGS) -o  $@
++	${CXX} $(CXXFLAGS) $(OULIB) $(OLIB) $(OUTIL) $(CFLAGS) $(LFLAGS) -o $@
  
  
  
