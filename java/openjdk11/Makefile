@@ -176,7 +176,7 @@ CXXFLAGS+=	-Wl,-rpath=${LOCALBASE}/lib/gcc${GCC_DEFAULT}
 CFLAGS+=	-Wno-deprecated-builtins -Wno-inline-asm -Wno-unknown-attributes
 CFLAGS+=	-fno-delete-null-pointer-checks -Wno-register
 CXXFLAGS+=	-fno-delete-null-pointer-checks -Wno-register
-LDFLAGS+=	-Wl,--undefined-version -lthread_db
+LDFLAGS+=	-Wl,--undefined-version
 MAKE_ENV+=	USE_CLANG=true
 .endif
 
