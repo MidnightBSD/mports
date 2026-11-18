@@ -151,7 +151,12 @@ JDK_BUILD_JVM=	server
 MAKE_ENV+=		--with-toolchain-type=${COMPILER_TYPE}
 CONFIGURE_ARGS+=	--with-toolchain-type=${COMPILER_TYPE}
 CONFIGURE_ARGS+=	--disable-warnings-as-errors
-CONFIGURE_ARGS+=	--disable-precompiled-headers --with-boot-jdk-jvmargs='-Xint -XX:-UseCompressedOops -XX:-UseCompressedClassPointers'
+CONFIGURE_ARGS+=	--disable-precompiled-headers
+.if ${ARCH} == i386
+CONFIGURE_ARGS+=	--with-boot-jdk-jvmargs='-Xint'
+.else
+CONFIGURE_ARGS+=	--with-boot-jdk-jvmargs='-Xint -XX:-UseCompressedOops -XX:-UseCompressedClassPointers'
+.endif
 
 .if ${COMPILER_TYPE} == gcc
 USE_GCC=	yes
