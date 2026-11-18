@@ -1,6 +1,5 @@
 PORTNAME=	pythran
-PORTVERSION=	0.16.1
-PORTREVISION=	1
+PORTVERSION=	0.19.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,19 +11,23 @@ WWW=		https://github.com/serge-sans-paille/pythran
 LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
+LIB_DEPENDS=	libopenblas.so:math/openblas
+BUILD_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=62:devel/py-setuptools@${PY_FLAVOR}
 RUN_DEPENDS=	${PYNUMPY} \
 		${PYTHON_PKGNAMEPREFIX}ply>=3.4:devel/py-ply@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}gast>=0.5.0:devel/py-gast@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}beniget>=0.4.0:devel/py-beniget@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}gast>=0.7.0<0.8:devel/py-gast@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}beniget>=0.5.0<0.6:devel/py-beniget@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	autoplist concurrent distutils
+USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
 
-post-extract:
-	-${RM} ${WRKSRC}/third_party/xsimd/config/*.rej
-	-${RM} ${WRKSRC}/third_party/xsimd/*.rej
-	-${RM} ${WRKSRC}/third_party/xsimd/math/.xsimd_gamma.hpp.swp
+post-patch:
+	${REINPLACE_CMD} -e 's|^include_dirs=$$|include_dirs=${LOCALBASE}/include|' \
+		-e 's|^library_dirs=$$|library_dirs=${LOCALBASE}/lib|' \
+		-e 's|^blas=blas$$|blas=openblas|' \
+		${WRKSRC}/pythran/pythran-default.cfg
 
 .include <bsd.port.mk>
