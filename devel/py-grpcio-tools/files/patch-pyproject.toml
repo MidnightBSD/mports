@@ -1,0 +1,8 @@
+--- pyproject.toml.orig
++++ pyproject.toml
+@@ -17 +17 @@
+-    "setuptools>=77.0.1",
++    "setuptools>=63.1.0",
+@@ -25 +25 @@
+-license = "Apache-2.0"
++license = {text = "Apache-2.0"}
