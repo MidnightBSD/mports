@@ -33,7 +33,7 @@ PLIST_FILES=	%%JAVAJARDIR%%/${PORTNAME}.jar
 PORTDOCS=	*
 
 post-patch:
-	@${REINPLACE_CMD} 's/Ortwin Gl.*ck/Ortwin Glueck/' \
+	@LC_ALL=C ${REINPLACE_CMD} 's/Ortwin Gl.*ck/Ortwin Glueck/' \
 		${WRKSRC}/src/java/org/apache/commons/httpclient/*.java \
 		${WRKSRC}/src/java/org/apache/commons/httpclient/*/*.java
 
