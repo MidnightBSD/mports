@@ -11,7 +11,8 @@ WWW=		https://www.qemu.org/
 
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	bash:shells/bash
+BUILD_DEPENDS=	bash:shells/bash \
+		${PYTHON_PKGNAMEPREFIX}setuptools>0:devel/py-setuptools@${PY_FLAVOR}
 LIB_DEPENDS+=	libfdt.so:sysutils/dtc \
 		libzstd.so:archivers/zstd \
 		libslirp.so:net/libslirp
