@@ -23,6 +23,7 @@ USE_XORG=	ice sm x11 xext xi xmu xt
 CXXFLAGS+=	-std=gnu++98
 
 DOCSDIR=	${PREFIX}/share/doc/CalculiX
+SKIP_FAKE_CHECK=	share/(doc/CalculiX/cgx/images\.out|examples/calculix/map/pressure\.bak)
 
 WRKSRC=		${WRKDIR}/CalculiX
 
