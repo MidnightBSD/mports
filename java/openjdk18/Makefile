@@ -137,15 +137,15 @@ BOOTSTRAPJDKDIR=	${BJDK}
 .  endif
 .endfor
 
-# if no valid jdk found, set dependency
-.if !defined(BOOTSTRAPJDKDIR)
-.  if ${ARCH} == aarch64 || ${ARCH} == amd64 || ${ARCH} == i386 || ${ARCH:Mpowerpc64*}
+# Declare the bootstrap dependency for Magus even if a local JDK exists.
+.if ${ARCH} == aarch64 || ${ARCH} == amd64 || ${ARCH} == i386 || ${ARCH:Mpowerpc64*}
+.  if !defined(BOOTSTRAPJDKDIR) || defined(MAGUS)
 BOOTSTRAPJDKDIR?=	${LOCALBASE}/bootstrap-openjdk17
-BUILD_DEPENDS+=		${BOOTSTRAPJDKDIR}/bin/javac:java/bootstrap-openjdk17
-.  else
+BUILD_DEPENDS+=		${LOCALBASE}/bootstrap-openjdk17/bin/javac:java/bootstrap-openjdk17
+.  endif
+.elif !defined(BOOTSTRAPJDKDIR)
 BOOTSTRAPJDKDIR?=	${LOCALBASE}/openjdk17
 BUILD_DEPENDS+=		${BOOTSTRAPJDKDIR}/bin/javac:java/openjdk17
-.  endif
 .endif
 
 JDK_BUILD_JVM=	server
