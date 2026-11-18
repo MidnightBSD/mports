@@ -1,6 +1,5 @@
 PORTNAME=	langchain-openai
-DISTVERSION=	1.1.11
-PORTREVISION=	1
+DISTVERSION=	1.7.4
 CATEGORIES=	ai python # machine-learning
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -16,15 +15,35 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>0:devel/py-hatchling@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}langchain-core>=1.2.18:ai/py-langchain-core@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}openai>=2.26.0:ai/py-openai@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}tiktoken>=0.7.0:textproc/py-tiktoken@${PY_FLAVOR}
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}freezegun>=1.2.2:devel/py-freezegun@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}langchain>=1.4.0:ai/py-langchain@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}langchain-tests>=1.1.9:ai/py-langchain-tests@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy>=1.26.4:math/py-numpy@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pytest-asyncio>=1.3.0:devel/py-pytest-asyncio@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pytest-cov>=4.1.0:devel/py-pytest-cov@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pytest-mock>=3.10.0:devel/py-pytest-mock@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pytest-retry>=1.7.0:devel/py-pytest-retry@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pytest-socket>=0.6.0:devel/py-pytest-socket@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pytest-watcher>=0.3.4:devel/py-pytest-watcher@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pytest-xdist>=3.6.1:devel/py-pytest-xdist@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}syrupy>=5.0.0:devel/py-syrupy@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}vcrpy>=8.0.0:devel/py-vcrpy@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}certifi>=2024.6.2:security/py-certifi@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}langchain-core>=1.7.5:ai/py-langchain-core@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}langchain-core<2.0.0:ai/py-langchain-core@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}openai>=2.45.0:ai/py-openai@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}openai<4.0.0:ai/py-openai@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}tiktoken>=0.7.0:textproc/py-tiktoken@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}tiktoken<1.0.0:textproc/py-tiktoken@${PY_FLAVOR}
 
 USES=		python
 USE_PYTHON=	pep517 autoplist pytest
 
 NO_ARCH=	yes
 
-# tests as of 0.3.28: 233 failed, 262 passed, 11 skipped, 2 xfailed, 5 xpassed, 52 warnings, 131 errors, 8 rerun in 217.53s (0:03:37)
+# Integration tests require a live OpenAI API endpoint.
+TEST_ARGS=	--ignore=${WRKSRC}/tests/integration_tests
+
+# tests as of 1.7.4: 807 passed, 1 skipped, 5 xpassed
 
 .include <bsd.port.mk>
