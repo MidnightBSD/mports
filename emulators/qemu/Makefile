@@ -31,6 +31,10 @@ PKGMESSAGE=	${.CURDIR}/pkg-message.guest-agent
 
 FLAVORS=			default nox11 tools guestagent
 FLAVOR?=			${FLAVORS:[1]}
+.if ${FLAVOR:U} == default || ${FLAVOR:U} == nox11
+NOT_FOR_ARCHS=			i386
+NOT_FOR_ARCHS_REASON=		QEMU emulators require a 64-bit host
+.endif
 default_CONFLICTS_INSTALL=	qemu-devel qemu-nox11 qemu-tools qemu-utils \
 				qemu6* qemu7*
 nox11_PKGNAMESUFFIX=		-nox11
