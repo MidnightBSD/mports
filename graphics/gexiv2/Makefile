@@ -23,7 +23,7 @@ USE_CXXSTD=	c++17
 
 OPTIONS_DEFINE=		DOCS
 OPTIONS_SUB=		yes
-DOCS_BUILD_DEPENDS=	gtkdoc-scan:textproc/gtk-doc
+DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gi-docgen>0:textproc/py-gi-docgen@${PY_FLAVOR}
 DOCS_MESON_ON=	-Dgtk_doc=true
 
 .include <bsd.mport.options.mk>
