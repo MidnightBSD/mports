@@ -1,6 +1,6 @@
 PORTNAME=	aws-c-compression
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.3.1
+DISTVERSION=	1.0.0
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,7 +12,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libaws-c-common.so:devel/aws-c-common
 
-USES=		cmake:testing
+USES=		cmake:testing localbase
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	awslabs
