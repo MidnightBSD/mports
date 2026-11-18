@@ -1,0 +1,28 @@
+--- pyproject.toml.orig
++++ pyproject.toml
+@@ -17,7 +17,7 @@
+   "requests-toolbelt>=1.0.0",
+   "zstandard>=0.23.0",
+   "packaging>=23.2",
+-  "uuid-utils>=0.12.0,<1.0",
++  "uuid-utils>=0.12.0,<2.0",
+   "xxhash>=3.0.0",
+   "websockets>=15.0",
+   # generated (Stainless) client
+@@ -223,7 +223,7 @@
+ ]
+
+ [build-system]
+-requires = ["hatchling==1.26.3", "hatch-fancy-pypi-readme"]
++requires = ["hatchling>=1.26.3,<2", "hatch-fancy-pypi-readme"]
+ build-backend = "hatchling.build"
+
+ [tool.hatch.build]
+@@ -233,6 +233,7 @@
+
+ [tool.hatch.build.targets.wheel]
+ packages = ["src/langsmith"]
++exclude = ["**/*.orig"]
+
+ [tool.hatch.build.targets.sdist]
+ # Basically everything except hidden files/directories (such as .github, .devcontainers, .python-version, etc)
