@@ -1,20 +1,23 @@
 PORTNAME=	grpcio-tools
-PORTVERSION=	1.59.0
-PORTREVISION=	1
+DISTVERSION=	1.85.1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTNAME=	grpcio_tools-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Protobuf code generator for gRPC
 WWW=		https://pypi.org/project/grpcio-tools/
 
-LICENSE=	bsd3
+LICENSE=	Apache-2.0
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}grpcio>1:devel/py-grpcio@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}grpcio>=1.85.1:devel/py-grpcio@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}protobuf>=7.35.1,1:devel/py-protobuf@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}protobuf<8,1:devel/py-protobuf@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}setuptools>=63.1.0:devel/py-setuptools@${PY_FLAVOR}
 LIB_DEPENDS=	libcares.so:dns/c-ares
 
-USES=		compiler:c++11-lang localbase:ldflags python
+USES=		compiler:c++17-lang localbase:ldflags python:3.10+
 USE_PYTHON=	autoplist distutils
 CFLAGS+=	-DHAVE_PTHREAD=1
 LDFLAGS+=	-lcares
