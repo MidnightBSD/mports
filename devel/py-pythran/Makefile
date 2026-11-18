@@ -12,6 +12,7 @@ LICENSE=	bsd3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
+LIB_DEPENDS=	libopenblas.so:math/openblas
 BUILD_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=62:devel/py-setuptools@${PY_FLAVOR}
 RUN_DEPENDS=	${PYNUMPY} \
 		${PYTHON_PKGNAMEPREFIX}ply>=3.4:devel/py-ply@${PY_FLAVOR} \
@@ -22,5 +23,11 @@ USES=		python
 USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
+
+post-patch:
+	${REINPLACE_CMD} -e 's|^include_dirs=$$|include_dirs=${LOCALBASE}/include|' \
+		-e 's|^library_dirs=$$|library_dirs=${LOCALBASE}/lib|' \
+		-e 's|^blas=blas$$|blas=openblas|' \
+		${WRKSRC}/pythran/pythran-default.cfg
 
 .include <bsd.port.mk>
