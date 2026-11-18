@@ -1,6 +1,5 @@
 PORTNAME=	ty
-DISTVERSION=	0.0.56
-PORTREVISION=	1
+DISTVERSION=	0.0.100
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,7 +12,8 @@ WWW=		https://github.com/astral-sh/ty
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}maturin>=1.0<2.0:devel/py-maturin@${PY_FLAVOR}
+BUILD_DEPENDS=	${RUST_DEFAULT}>=1.97:lang/${RUST_DEFAULT} \
+		${PYTHON_PKGNAMEPREFIX}maturin>=1.0<2.0:devel/py-maturin@${PY_FLAVOR}
 LIB_DEPENDS=	libzstd.so:archivers/zstd
 
 USES=		cargo gmake python
