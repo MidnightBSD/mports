@@ -48,6 +48,9 @@ USE_PYTHON=	pep517 autoplist pytest
 
 NO_ARCH=	yes
 
+post-patch:
+	@${RM} ${WRKSRC}/langchain_core/utils/uuid.py.orig
+
 # Upstream excludes Tenacity 8.4.0; dependency tuples cannot express !=.
 # Match the upstream Makefile's default unit-test contract.
 TEST_ARGS=	--benchmark-disable --disable-socket --allow-unix-socket tests/unit_tests/
