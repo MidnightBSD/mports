@@ -1,0 +1,7 @@
+TIMESTAMP = 1795120651
+SHA256 (openjdk26-26.0.2+10.1.aarch64.tar.xz) = 7b99121085736fea4684c8d206fb8092cc6646714cb98cd86ac47531f696be94
+SIZE (openjdk26-26.0.2+10.1.aarch64.tar.xz) = 193206720
+SHA256 (openjdk26-26.0.2+10.1.x86_64.tar.xz) = 7ac6abf0c5629ff3e3969680b589269693169557254b26891c586ff3be38a165
+SIZE (openjdk26-26.0.2+10.1.x86_64.tar.xz) = 195287176
+SHA256 (freebsd-openjdk-jdk-27.0.1.1+4-1_GH0.tar.gz) = dc67c25ba604d264db165e49b489064474b17ae2573f9e514b1af2b0a3f3a086
+SIZE (freebsd-openjdk-jdk-27.0.1.1+4-1_GH0.tar.gz) = 121727428
