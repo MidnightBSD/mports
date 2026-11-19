@@ -1,10 +1,19 @@
---- pyTooling/Process/__init__.py.orig	2026-08-20 21:49:09 UTC
+--- pyTooling/Process/__init__.py.orig
 +++ pyTooling/Process/__init__.py
-@@ -299,4 +299,17 @@
- 				return MemoryInfo(processMemoryCounters.WorkingSetSize, processMemoryCounters.PagefileUsage)
- 
-+	elif CurrentPlatform.IsNativeFreeBSD:
-+		def GetMemoryUsage(self) -> MemoryInfo:
+@@ -190,13 +190,10 @@
+-			"""
+-			Get the memory usage of this Python process on a FreeBSD system.
+-
+-			``resource.getrusage`` provides the resident size portably on FreeBSD.
+-			Virtual memory usage is not exposed by the stdlib here, so report ``0``
+-			for the virtual component until upstream adds a native implementation.
+-
+-			:returns: Memory usage of the current process.
+-			"""
+-			from resource import RUSAGE_SELF, getrusage
+-
+-			rss = getrusage(RUSAGE_SELF).ru_maxrss * 1024
+-			return MemoryInfo(rss, 0)
 +			"""Read the current process' resident and virtual memory sizes using :program:`ps`."""
 +			from subprocess import CalledProcessError, check_output
 +
@@ -12,9 +21,6 @@
 +				output = check_output(["/bin/ps", "-p", str(getpid()), "-o", "rss=", "-o", "vsz="], text=True)
 +				rss, vms = map(int, output.split())
 +			except (OSError, CalledProcessError, ValueError) as ex:
-+				raise PlatformException("Failed to get current process' memory usage using /bin/ps.") from ex
++				raise PlatformError("Failed to get current process' memory usage using /bin/ps.") from ex
 +
 +			return MemoryInfo(rss * 1024, vms * 1024)
-+
- 	else:
- 		raise PlatformException(f"Unsupported platform: '{CurrentPlatform}'.")
