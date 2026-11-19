@@ -1,6 +1,5 @@
 PORTNAME=	awscrt
-PORTVERSION=	0.27.2
-PORTREVISION=	1
+PORTVERSION=	0.38.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -26,6 +25,7 @@ LIB_DEPENDS=	libaws-c-auth.so:security/aws-c-auth \
 		libaws-c-sdkutils.so:devel/aws-c-sdkutils \
 		libaws-checksums.so:devel/aws-checksums \
 		libs2n.so:security/s2n-tls
+RUN_DEPENDS=	aws-c-event-stream>=0.5.4_1,1:devel/aws-c-event-stream
 
 USES=		localbase:ldflags python ssl
 USE_PYTHON=	autoplist concurrent pep517
