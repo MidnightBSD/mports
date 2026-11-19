@@ -1,5 +1,5 @@
 PORTNAME=	imageio
-PORTVERSION=	2.38.0
+PORTVERSION=	2.38.1
 CATEGORIES=	graphics python
 MASTER_SITES=	PYPI \
 		https://github.com/imageio/imageio/releases/download/v${PORTVERSION}/
@@ -18,7 +18,7 @@ LIB_DEPENDS=	libfreeimage.so:graphics/freeimage
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=0,1:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pillow>=8.3.2:graphics/py-pillow@${PY_FLAVOR}
 
-USES=		python:3.10+ python-setuptools:78
+USES=		python:3.11+ python-setuptools:78
 USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
