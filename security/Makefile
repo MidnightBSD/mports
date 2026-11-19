@@ -1,6 +1,7 @@
     COMMENT = Security tools
 
     SUBDIR += 1password-client
+    SUBDIR += 1password-client2
     SUBDIR += R-cran-ROAuth
     SUBDIR += R-cran-askpass
     SUBDIR += R-cran-credentials
