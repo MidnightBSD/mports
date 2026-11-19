@@ -1,6 +1,5 @@
 PORTNAME=	langgraph-checkpoint
-DISTVERSION=	4.0.1
-PORTREVISION=	2
+DISTVERSION=	4.3.1
 CATEGORIES=	ai python # machine-learning
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -27,7 +26,7 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}dataclasses-json>0:devel/py-dataclasses-jso
 		${PYTHON_PKGNAMEPREFIX}pytest>0:devel/py-pytest@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}redis>0:databases/py-redis@${PY_FLAVOR} # math/py-pandas-stubs isn't ported yet
 
-USES=		python
+USES=		python:3.10+
 USE_PYTHON=	pep517 autoplist
 
 NO_ARCH=	yes
