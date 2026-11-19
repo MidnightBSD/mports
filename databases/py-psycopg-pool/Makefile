@@ -1,6 +1,5 @@
 PORTNAME=	psycopg-pool
-PORTVERSION=	3.2.4
-PORTREVISION=	1
+PORTVERSION=	3.3.3
 CATEGORIES=	databases python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,11 +13,10 @@ WWW=		https://www.psycopg.org/psycopg3/ \
 LICENSE=	lgpl3
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=49.2.0:devel/py-setuptools@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}wheel>=0.37:devel/py-wheel@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}wheel>=0.37:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}typing-extensions>=4.6:devel/py-typing-extensions@${PY_FLAVOR}
 
-USES=		python
+USES=		python:3.10+ python-setuptools:83
 USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
