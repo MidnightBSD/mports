@@ -1,6 +1,5 @@
 PORTNAME=	psycopg
-PORTVERSION=	3.2.4
-PORTREVISION=	1
+PORTVERSION=	3.3.8
 CATEGORIES=	databases python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,10 +12,9 @@ WWW=		https://www.psycopg.org/psycopg3/ \
 LICENSE=	lgpl3
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=49.2.0:devel/py-setuptools@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}wheel>=0.37:devel/py-wheel@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}wheel>=0.37:devel/py-wheel@${PY_FLAVOR}
 
-USES=		pgsql python
+USES=		pgsql python:3.10+ python-setuptools:83
 USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
@@ -26,14 +24,10 @@ OPTIONS_DEFAULT=C POOL
 C_DESC=		C extension support
 POOL_DESC=	Connection pool support
 
-C_RUN_DEPENDS=		${PYTHON_PKGNAMEPREFIX}psycopg-c>=${PORTVERSION}:databases/py-psycopg-c@${PY_FLAVOR}
+C_RUN_DEPENDS=		${PYTHON_PKGNAMEPREFIX}psycopg-c>=${PORTVERSION}<${PORTVERSION}_99:databases/py-psycopg-c@${PY_FLAVOR}
 POOL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}psycopg-pool>=0:databases/py-psycopg-pool@${PY_FLAVOR}
 
 .include <bsd.port.pre.mk>
-
-.if ${PYTHON_REL} < 30900
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}backports.zoneinfo>=0.2.0:devel/py-backports.zoneinfo@${PY_FLAVOR}
-.endif
 
 .if ${PYTHON_REL} < 31300
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}typing-extensions>=4.6:devel/py-typing-extensions@${PY_FLAVOR}
