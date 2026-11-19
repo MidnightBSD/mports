@@ -1,10 +1,8 @@
 PORTNAME=	php86
-DISTVERSION=	8.6.0RC3
+DISTVERSION=	8.6.0
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
-#MASTER_SITES=	PHP/distributions
-MASTER_SITES=	https://downloads.php.net/~mbeccati/ \
-		https://downloads.php.net/~svpernova09/
+MASTER_SITES=	PHP/distributions
 DISTNAME=	php-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
