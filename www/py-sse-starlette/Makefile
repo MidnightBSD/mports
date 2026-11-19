@@ -1,6 +1,6 @@
 PORTNAME=	sse-starlette
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.5.0
+DISTVERSION=	3.6.0
 CATEGORIES=	www python
 #MASTER_SITES=	PYPI # no tests
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -25,7 +25,7 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}asgi-lifespan>=2.1.0:devel/py-asgi-lifespan
 		${PYTHON_PKGNAMEPREFIX}tenacity>=9.0.0:devel/py-tenacity@${PY_FLAVOR}
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 
-USES=		python:3.10+ python-setuptools:83
+USES=		python:3.11+ python-setuptools:83
 USE_PYTHON=	allflavors pep517 autoplist pytest
 
 USE_GITHUB=	yes
@@ -43,16 +43,16 @@ do-test:
 	${CP} ${FILESDIR}/sse_starlette_coverage.py ${TEST_WRKSRC}/
 	${PYTHON_CMD} ${TEST_WRKSRC}/sse_starlette_coverage.py --prepare \
 		${WRKSRC}/pyproject.toml ${WRKDIR}/pyproject.test.toml
-	cd ${TEST_WRKSRC} && ${SETENVI} ${WRK_ENV} ${PYTHON_TEST_ENV} ${TEST_ENV} \
-		${PYTHON_CMD} -m pytest --ignore=tests/experimentation \
+	cd ${WRKDIR} && ${SETENVI} ${WRK_ENV} ${PYTHON_TEST_ENV} ${TEST_ENV} \
+		${PYTHON_CMD} -m pytest --import-mode=importlib --ignore=${TEST_WRKSRC}/tests/experimentation \
 		-m 'not (integration or experimentation)' \
 		--cov-config=${WRKDIR}/pyproject.test.toml --cov-report=html \
-		--cov-report=term --cov=${WRKSRC}/sse_starlette tests
+		--cov-report=term --cov=${WRKSRC}/sse_starlette ${TEST_WRKSRC}/tests
 	@if [ -S /var/run/docker.sock ]; then \
 		echo "Running Docker integration tests because /var/run/docker.sock exists..."; \
-		cd ${TEST_WRKSRC} && ${SETENVI} ${WRK_ENV} ${PYTHON_TEST_ENV} ${TEST_ENV} \
-			${PYTHON_CMD} -m pytest --ignore=tests/experimentation \
-			-m integration tests; \
+		cd ${WRKDIR} && ${SETENVI} ${WRK_ENV} ${PYTHON_TEST_ENV} ${TEST_ENV} \
+			${PYTHON_CMD} -m pytest --import-mode=importlib --ignore=${TEST_WRKSRC}/tests/experimentation \
+			-m integration ${TEST_WRKSRC}/tests; \
 	else \
 		echo "Skipping Docker integration tests: /var/run/docker.sock does not exist."; \
 	fi
