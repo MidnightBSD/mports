@@ -1,5 +1,5 @@
 PORTNAME=	sqlmodel
-DISTVERSION=	0.0.48
+DISTVERSION=	0.0.49
 CATEGORIES=	databases python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -45,6 +45,6 @@ post-install-DOCS-on:
 	${INSTALL_MAN} ${PORTDOCS:S|^|${WRKSRC}/|} ${FAKE_DESTDIR}${DOCSDIR}
 
 do-test:
-	cd ${WRKSRC} && ${SETENV} ${TEST_ENV} ./scripts/test.sh
+	cd ${WRKSRC} && ${SETENV} ${TEST_ENV} PYTHONPATH=${WRKSRC} ./scripts/test.sh
 
 .include <bsd.port.mk>
