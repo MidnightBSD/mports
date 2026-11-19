@@ -1,7 +1,6 @@
 PORTNAME=	networkx
-DISTVERSION=	3.4
-PORTREVISION=	1
-PORTEPOCH=	1
+DISTVERSION=	3.7
+PORTEPOCH=	2
 CATEGORIES=	math python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,11 +11,10 @@ WWW=		https://networkx.github.io/
 
 LICENSE=	bsd3
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 #RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}decorator>=4.3.0:devel/py-decorator@${PY_FLAVOR}
 
-USES=		cpe python shebangfix
+USES=		cpe python python-setuptools:83 shebangfix
 USE_PYTHON=	autoplist concurrent pep517 pytest
 
 SHEBANG_GLOB=	*.py
@@ -58,12 +56,6 @@ PYDOT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pydot>=0:graphics/py-pydot@${PY_FLAVOR
 
 YAML_DESC=	Reading and writing YAML files
 YAML_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pyyaml>=0:devel/py-pyyaml@${PY_FLAVOR}
-
-PORTEXAMPLES=	*
-
-post-install:
-	${MKDIR} ${FAKE_DESTDIR}${EXAMPLESDIR}
-	cd ${WRKSRC}/examples && ${COPYTREE_SHARE} . ${FAKE_DESTDIR}${EXAMPLESDIR}
 
 do-test: install
 	(cd ${WRKSRC} && py.test)
