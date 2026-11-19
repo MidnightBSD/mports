@@ -1,7 +1,6 @@
 PORTNAME=	openjdk
 DISTVERSIONPREFIX=	jdk-
 DISTVERSION=	${JDK_MAJOR_VERSION}.${JDK_MINOR_VERSION}.${JDK_PATCH_VERSION}+${JDK_BUILD_NUMBER}-${BSD_JDK_VERSION}
-PORTREVISION=	2
 CATEGORIES=	java devel
 PKGNAMESUFFIX?=	${JDK_MAJOR_VERSION}
 
@@ -65,8 +64,8 @@ NOPRECIOUSMAKEVARS=	yes
 
 JDK_MAJOR_VERSION=	21
 JDK_MINOR_VERSION=	0
-JDK_PATCH_VERSION=	9
-JDK_BUILD_NUMBER=	10
+JDK_PATCH_VERSION=	13.1
+JDK_BUILD_NUMBER=	2
 BSD_JDK_VERSION=	1
 
 JDK_BUG_URL=	https://bugs.freebsd.org/bugzilla/enter_bug.cgi?product=Ports%20%26%20Packages&component=Individual%20Port(s)&short_desc=java/${PORTNAME}${JDK_MAJOR_VERSION}%3A%20
@@ -130,9 +129,9 @@ BOOTSTRAPJDKDIR=	${BJDK}
 .endfor
 
 # if no valid jdk found, set dependency
-.if !defined(BOOTSTRAPJDKDIR)
+.if !defined(BOOTSTRAPJDKDIR) || defined(MAGUS)
 BOOTSTRAPJDKDIR?=	${LOCALBASE}/openjdk20
-BUILD_DEPENDS+=		${BOOTSTRAPJDKDIR}/bin/javac:java/openjdk20
+BUILD_DEPENDS+=		${LOCALBASE}/openjdk20/bin/javac:java/openjdk20
 .endif
 
 JDK_BUILD_JVM=	server
