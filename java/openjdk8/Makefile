@@ -50,10 +50,9 @@ INSTALLDIR=	${PREFIX}/${PKGBASE}
 NOPRECIOUSMAKEVARS=	yes
 
 JDK_MAJOR_VERSION=	8
-JDK_UPDATE_VERSION=	332
-JDK_BUILD_NUMBER=	09
+JDK_UPDATE_VERSION=	514
+JDK_BUILD_NUMBER=	01
 BSD_JDK_VERSION=	1
-PORTREVISION=	1
 JTREG_VERSION=		4.1
 JTREG_BUILD_NUMBER=	b08
 
@@ -72,13 +71,12 @@ CONFIGURE_ARGS+=	--with-vendor-name="OpenJDK BSD Porting Team" \
 .if defined(NO_CCACHE)
 CONFIGURE_ARGS+=	--disable-ccache
 .endif
-CONFIGURE_ARGS+=	--disable-freetype-bundling \
-			--disable-zip-debug-info \
-			--with-cacerts-file=${FILESDIR}/cacerts \
+CONFIGURE_ARGS+=	--disable-zip-debug-info \
 			--with-cups=${LOCALBASE} \
 			--with-debug-level=${JDK_BUILD_TYPE} \
-			--with-freetype=${LOCALBASE} \
+			--with-freetype=system \
 			--with-freetype-include=${LOCALBASE}/include/freetype2 \
+			--with-freetype-lib=${LOCALBASE}/lib \
 			--with-jobs=${MAKE_JOBS_NUMBER} \
 			--with-jvm-variants=${JDK_BUILD_JVM} \
 			--with-milestone=fcs \
