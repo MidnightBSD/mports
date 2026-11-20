@@ -1,5 +1,5 @@
 PORTNAME=	babl
-PORTVERSION=	0.1.126
+PORTVERSION=	0.1.128
 CATEGORIES=	x11
 MASTER_SITES=	GIMP
 
@@ -22,7 +22,7 @@ MESON_ARGS=	-Dgi-docgen=disabled -Dwith-docs=false -Drelocatable-bundle=no
 
 NO_TEST=	yes
 
-BABL_SHLIB=	0.225.1
+BABL_SHLIB=	0.227.1
 BABL_VER=	0.1
 PLIST_SUB+=	BABL_SHLIB=${BABL_SHLIB} BABL_VER=${BABL_VER}
 
