@@ -75,6 +75,414 @@ Notes:
   * Do not forget port variants (linux-f10-libxml2, libxml2, etc.)
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="711f33a5-0a11-4773-bace-1a1f04471831">
+    <topic>PHP -- bundled uriparser integer overflow</topic>
+    <affects>
+      <package>
+	<name>php85</name>
+	<range><ge>8.5.12</ge><lt>8.5.13</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>PHP 8.5.12 bundles uriparser code affected by an integer overflow
+	  in query composition. PHP 8.5.13 includes the upstream fix.
+	  Reachability through PHP has not been established.</p>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-48841</cvename>
+      <url>https://github.com/uriparser/uriparser/pull/313</url>
+    </references>
+    <dates>
+      <discovery>2026-05-20</discovery>
+      <entry>2026-11-19</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="ec12a6ba-6fff-459e-9046-00d02bf0fe4a">
+    <topic>OpenJDK 25 -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>openjdk25</name>
+	<name>openjdk25-headless</name>
+	<name>openjdk25-jre</name>
+	<name>openjdk25-jre-headless</name>
+	<range><eq>25.0.3+9.1</eq></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The November 2026 OpenJDK security update fixes multiple
+	  vulnerabilities affecting the 25.0.3 release.</p>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-114939</cvename>
+      <cvename>CVE-2026-114940</cvename>
+      <cvename>CVE-2026-114941</cvename>
+      <cvename>CVE-2026-114942</cvename>
+      <cvename>CVE-2026-114943</cvename>
+      <cvename>CVE-2026-114944</cvename>
+      <cvename>CVE-2026-114945</cvename>
+      <cvename>CVE-2026-114946</cvename>
+      <cvename>CVE-2026-114947</cvename>
+      <url>https://security-tracker.debian.org/tracker/CVE-2026-114939</url>
+      <url>https://security-tracker.debian.org/tracker/CVE-2026-114940</url>
+      <url>https://security-tracker.debian.org/tracker/CVE-2026-114941</url>
+      <url>https://security-tracker.debian.org/tracker/CVE-2026-114942</url>
+      <url>https://security-tracker.debian.org/tracker/CVE-2026-114943</url>
+      <url>https://security-tracker.debian.org/tracker/CVE-2026-114944</url>
+      <url>https://security-tracker.debian.org/tracker/CVE-2026-114945</url>
+      <url>https://security-tracker.debian.org/tracker/CVE-2026-114946</url>
+      <url>https://security-tracker.debian.org/tracker/CVE-2026-114947</url>
+    </references>
+    <dates>
+      <discovery>2026-11-17</discovery>
+      <entry>2026-11-19</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="f021e882-e63f-450c-a2ae-98138a6af1de">
+    <topic>PHP -- CGI, date, FPM, and HTTPS vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>php82</name>
+	<range><lt>8.2.36</lt></range>
+      </package>
+      <package>
+	<name>php83</name>
+	<range><ge>8.3.0</ge><lt>8.3.37</lt></range>
+      </package>
+      <package>
+	<name>php84</name>
+	<range><ge>8.4.0</ge><lt>8.4.28</lt></range>
+      </package>
+      <package>
+	<name>php85</name>
+	<range><ge>8.5.0</ge><lt>8.5.13</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The PHP project reports security vulnerabilities in CGI PATH_INFO handling, date parsing, PHP-FPM, and HTTPS/FTPS stream handling.</p>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-129538</cvename>
+      <cvename>CVE-2026-129496</cvename>
+      <cvename>CVE-2026-129289</cvename>
+      <cvename>CVE-2026-129292</cvename>
+      <cvename>CVE-2026-128064</cvename>
+      <url>https://github.com/php/php-src/security/advisories/GHSA-5j3f-64r7-f564</url>
+      <url>https://github.com/php/php-src/security/advisories/GHSA-gr4f-wgx5-jpfv</url>
+      <url>https://github.com/php/php-src/security/advisories/GHSA-qc49-hpvq-g2w6</url>
+      <url>https://github.com/php/php-src/security/advisories/GHSA-3mg3-cr28-46gc</url>
+      <url>https://github.com/php/php-src/security/advisories/GHSA-f6gg-rchx-xw8j</url>
+    </references>
+    <dates>
+      <discovery>2026-11-19</discovery>
+      <entry>2026-11-19</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="f58be7be-529c-4c79-bcd3-76b7e07f3836">
+    <topic>PHP -- HTTP response header denial of service</topic>
+    <affects>
+      <package>
+	<name>php82</name>
+	<range><ge>8.2.28</ge><lt>8.2.36</lt></range>
+      </package>
+      <package>
+	<name>php83</name>
+	<range><ge>8.3.18</ge><lt>8.3.37</lt></range>
+      </package>
+      <package>
+	<name>php84</name>
+	<range><ge>8.4.5</ge><lt>8.4.28</lt></range>
+      </package>
+      <package>
+	<name>php85</name>
+	<range><ge>8.5.0</ge><lt>8.5.13</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The PHP project reports a denial of service through folded HTTP response headers.</p>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-127960</cvename>
+      <url>https://github.com/php/php-src/security/advisories/GHSA-mmf9-xm3v-hg2x</url>
+    </references>
+    <dates>
+      <discovery>2026-11-19</discovery>
+      <entry>2026-11-19</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="0289bd7f-4099-4f15-8fab-1854b4619c28">
+    <topic>PHP session -- file and serializer vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>php82-session</name>
+	<range><lt>8.2.36</lt></range>
+      </package>
+      <package>
+	<name>php83-session</name>
+	<range><ge>8.3.0</ge><lt>8.3.37</lt></range>
+      </package>
+      <package>
+	<name>php84-session</name>
+	<range><ge>8.4.0</ge><lt>8.4.28</lt></range>
+      </package>
+      <package>
+	<name>php85-session</name>
+	<range><ge>8.5.0</ge><lt>8.5.13</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The PHP project reports session file handling and serializer vulnerabilities that can lead to remote code execution.</p>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-126714</cvename>
+      <cvename>CVE-2026-115560</cvename>
+      <url>https://github.com/php/php-src/security/advisories/GHSA-fm2m-fjf5-v3cp</url>
+      <url>https://github.com/php/php-src/security/advisories/GHSA-658j-r8rw-q6mx</url>
+    </references>
+    <dates>
+      <discovery>2026-10-23</discovery>
+      <entry>2026-11-19</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="29f14f29-4e91-4c33-bfe6-f07127664d54">
+    <topic>PHP session -- shutdown vulnerability</topic>
+    <affects>
+      <package>
+	<name>php83-session</name>
+	<range><ge>8.3.0</ge><lt>8.3.37</lt></range>
+      </package>
+      <package>
+	<name>php84-session</name>
+	<range><ge>8.4.0</ge><lt>8.4.28</lt></range>
+      </package>
+      <package>
+	<name>php85-session</name>
+	<range><ge>8.5.0</ge><lt>8.5.13</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The PHP project reports a session shutdown vulnerability in affected PHP session extensions.</p>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-129481</cvename>
+      <url>https://github.com/php/php-src/security/advisories/GHSA-g3vh-838c-65v7</url>
+    </references>
+    <dates>
+      <discovery>2026-11-19</discovery>
+      <entry>2026-11-19</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="2f17dff8-d4c1-4859-8bf5-2773e5bfa29d">
+    <topic>PHP PHAR -- vulnerability</topic>
+    <affects>
+      <package>
+	<name>php82-phar</name>
+	<range><lt>8.2.36</lt></range>
+      </package>
+      <package>
+	<name>php83-phar</name>
+	<range><ge>8.3.0</ge><lt>8.3.37</lt></range>
+      </package>
+      <package>
+	<name>php84-phar</name>
+	<range><ge>8.4.0</ge><lt>8.4.28</lt></range>
+      </package>
+      <package>
+	<name>php85-phar</name>
+	<range><ge>8.5.0</ge><lt>8.5.13</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The PHP project reports a vulnerability in the PHAR extension.</p>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-128090</cvename>
+      <url>https://github.com/php/php-src/security/advisories/GHSA-68fq-fh7h-f8gr</url>
+    </references>
+    <dates>
+      <discovery>2026-11-19</discovery>
+      <entry>2026-11-19</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="c6d8b59b-08be-4404-80a0-80d39bb419c6">
+    <topic>PHP SOAP -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>php82-soap</name>
+	<range><lt>8.2.36</lt></range>
+      </package>
+      <package>
+	<name>php83-soap</name>
+	<range><ge>8.3.0</ge><lt>8.3.37</lt></range>
+      </package>
+      <package>
+	<name>php84-soap</name>
+	<range><ge>8.4.0</ge><lt>8.4.28</lt></range>
+      </package>
+      <package>
+	<name>php85-soap</name>
+	<range><ge>8.5.0</ge><lt>8.5.13</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The PHP project reports vulnerabilities in the SOAP extension.</p>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-15353</cvename>
+      <cvename>CVE-2026-129506</cvename>
+      <url>https://github.com/php/php-src/security/advisories/GHSA-q23r-hr55-xmpg</url>
+      <url>https://github.com/php/php-src/security/advisories/GHSA-4646-p932-gw34</url>
+    </references>
+    <dates>
+      <discovery>2026-11-19</discovery>
+      <entry>2026-11-19</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="c8b00c4f-0fe9-4590-9cd0-246fdb87cf8c">
+    <topic>PHP DOM -- vulnerability</topic>
+    <affects>
+      <package>
+	<name>php84-dom</name>
+	<range><ge>8.4.0</ge><lt>8.4.28</lt></range>
+      </package>
+      <package>
+	<name>php85-dom</name>
+	<range><ge>8.5.0</ge><lt>8.5.13</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The PHP project reports a vulnerability in the DOM extension.</p>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-129501</cvename>
+      <url>https://github.com/php/php-src/security/advisories/GHSA-x8r7-mg3g-74hg</url>
+    </references>
+    <dates>
+      <discovery>2026-11-19</discovery>
+      <entry>2026-11-19</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="9a6c295c-9630-4d3f-98a1-0388cc43138b">
+    <topic>PHP -- engine and URI vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>php85</name>
+	<range><ge>8.5.0</ge><lt>8.5.13</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The PHP project reports vulnerabilities in the PHP engine and URI handling.</p>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-129474</cvename>
+      <cvename>CVE-2026-129182</cvename>
+      <cvename>CVE-2026-129438</cvename>
+      <url>https://github.com/php/php-src/security/advisories/GHSA-8mjj-2r7p-4hg2</url>
+      <url>https://github.com/php/php-src/security/advisories/GHSA-2fjv-p558-g82m</url>
+      <url>https://github.com/php/php-src/security/advisories/GHSA-mg3p-mxj9-g2mm</url>
+    </references>
+    <dates>
+      <discovery>2026-11-19</discovery>
+      <entry>2026-11-19</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="5bfee94b-0058-4eb7-8a3b-63a9b2874e1d">
+    <topic>OpenJDK -- Base64 decoder memory corruption</topic>
+    <affects>
+      <package>
+	<name>openjdk17</name>
+	<name>openjdk17-jre</name>
+	<range><ge>17.0.6</ge><lt>17.0.21.1+2.1</lt></range>
+      </package>
+      <package>
+	<name>openjdk21</name>
+	<name>openjdk21-jre</name>
+	<range><ge>21.0.0</ge><lt>21.0.13.1+2.1</lt></range>
+      </package>
+      <package>
+	<name>openjdk25</name>
+	<name>openjdk25-headless</name>
+	<name>openjdk25-jre</name>
+	<name>openjdk25-jre-headless</name>
+	<range><ge>25.0.0</ge><lt>25.0.5.1+2.f.1</lt></range>
+      </package>
+      <package>
+	<name>openjdk27</name>
+	<name>openjdk27-headless</name>
+	<name>openjdk27-jre</name>
+	<name>openjdk27-jre-headless</name>
+	<range><ge>27.0.0</ge><lt>27.0.1.1+4.1</lt></range>
+      </package>
+      <package>
+	<name>openjdk18</name>
+	<range><eq>18.0.2+9.1_5</eq></range>
+      </package>
+      <package>
+	<name>openjdk19</name>
+	<range><eq>19.0.2+7.1_4</eq></range>
+      </package>
+      <package>
+	<name>openjdk20</name>
+	<range><eq>20.0.2+9.1_4</eq></range>
+      </package>
+      <package>
+	<name>openjdk22</name>
+	<range><eq>22.0.2+9.1_3</eq></range>
+      </package>
+      <package>
+	<name>openjdk23</name>
+	<range><eq>23.0.2+7.1</eq></range>
+      </package>
+      <package>
+	<name>openjdk24</name>
+	<range><eq>24.0.2+12.2</eq></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>OpenJDK reports a memory corruption vulnerability in the HotSpot Base64 decoder on x86-64 systems using the affected AVX-512 intrinsic. Applications processing untrusted input can be affected.</p>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-114938</cvename>
+      <url>https://openjdk.org/groups/vulnerability/advisories/2026-11-17</url>
+      <url>https://access.redhat.com/security/cve/cve-2026-114938</url>
+    </references>
+    <dates>
+      <discovery>2026-11-17</discovery>
+      <entry>2026-11-19</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="7a0b16ff-de1a-11f1-baea-10ffe06baa2a">
     <topic>Apache httpd -- multiple vulnerabilities</topic>
     <affects>
