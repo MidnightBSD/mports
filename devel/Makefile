@@ -1527,6 +1527,7 @@
     SUBDIR += py-googleapis-common-protos
     SUBDIR += py-gql
     SUBDIR += py-graphql-core
+    SUBDIR += py-graphql-core32
     SUBDIR += py-great-tables
     SUBDIR += py-greenlet
     SUBDIR += py-grpcio
