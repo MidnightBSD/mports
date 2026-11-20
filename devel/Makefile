@@ -1987,6 +1987,7 @@
     SUBDIR += py-xxhash
     SUBDIR += py-yamllint
     SUBDIR += py-zclockfile
+    SUBDIR += py-zipremove
     SUBDIR += py-zipp
     SUBDIR += py-zope.component
     SUBDIR += py-zope.configuration
