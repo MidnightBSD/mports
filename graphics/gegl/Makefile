@@ -1,6 +1,5 @@
 PORTNAME=	gegl
-DISTVERSION=	0.4.70
-PORTREVISION=	1
+DISTVERSION=	0.4.72
 CATEGORIES=	graphics
 MASTER_SITES=	GIMP
 
@@ -34,6 +33,7 @@ MESON_ARGS=	-Ddocs=false \
 		-Dmaxflow=disabled \
 		-Dmrg=disabled \
 		-Dpygobject=disabled \
+		-Dsdl3=disabled \
 		-Dlua=disabled
 # relocatable does not mean ELF relocation
 MESON_ARGS+=	-Drelocatable-bundle=no
@@ -41,7 +41,7 @@ MESON_ARGS+=	-Drelocatable-bundle=no
 MESON_ARGS+=	-Dopenmp=disabled
 .endif
 
-GEGL_SHLIB=	0.469.1
+GEGL_SHLIB=	0.471.1
 GEGL_VER=	0.4
 PLIST_SUB+=	GEGL_SHLIB=${GEGL_SHLIB} GEGL_VER=${GEGL_VER}
 
