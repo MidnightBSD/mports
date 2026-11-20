@@ -12,6 +12,7 @@ LICENSE_COMB=		dual
 LICENSE_FILE_mit=	${WRKSRC}/LICENSES/MIT.txt
 LICENSE_FILE_lgpl+ =	${WRKSRC}/LICENSES/LGPL-2.0-or-later.txt
 
+BUILD_DEPENDS=	dbus-run-session:devel/dbus
 LIB_DEPENDS=	libffi.so:devel/libffi \
 		libmozjs-128.so:lang/spidermonkey128
 TEST_DEPENDS=	dbus-run-session:devel/dbus \
