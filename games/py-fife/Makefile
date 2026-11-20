@@ -1,6 +1,5 @@
 PORTNAME=	fife
-PORTVERSION=	0.4.2
-PORTREVISION=	3
+PORTVERSION=	0.4.3
 CATEGORIES=	games
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -46,7 +45,7 @@ PYTHON_DESC=		Build python extension module (need for unknown-horizons)
 LIBRARY_DESC=		Build and install files for directly develop with C++
 
 FIFECHAN_CMAKE_BOOL=	fifechan
-FIFECHAN_LIB_DEPENDS=	libfifechan_sdl.so:devel/fifechan
+FIFECHAN_LIB_DEPENDS=	libfifechan.so:devel/fifechan
 
 CEGUI_CMAKE_BOOL=	cegui
 CEGUI_LIB_DEPENDS=	libCEGUIBase-0.so:graphics/cegui
@@ -56,12 +55,18 @@ LOGGING_CMAKE_BOOL=	logging
 PYTHON_CMAKE_BOOL=	build-python
 PYTHON_USES=		python
 PYTHON_USE=		python=flavors
-PYTHON_BUILD_DEPENDS=	${LOCALBASE}/bin/swig:devel/swig
-PYTHON_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}future>0:devel/py-future@${PY_FLAVOR}
+PYTHON_BUILD_DEPENDS=	swig:devel/swig ${PY_SETUPTOOLS}
 
 LIBRARY_CMAKE_BOOL=	build-library
 # For static library build
 # LIBRARY_CMAKE_ON=	-Dbuild-library=ON -DBUILD_SHARED_LIBS=OFF
 # LIBRARY_CMAKE_OFF=	-Dbuild-library=OFF
+
+post-patch:
+	@${REINPLACE_CMD} -e 's,bfs::extension,GetExtension,g' \
+		${WRKSRC}/engine/core/loaders/native/map/atlasloader.cpp \
+		${WRKSRC}/engine/core/loaders/native/map/maploader.cpp \
+		${WRKSRC}/engine/core/loaders/native/map/objectloader.cpp \
+		${WRKSRC}/engine/core/gui/fifechan/fifechanmanager.cpp
 
 .include <bsd.port.mk>
