@@ -1,6 +1,5 @@
 PORTNAME=	pycurl
-PORTVERSION=	7.45.3
-PORTREVISION=	1
+PORTVERSION=	7.49.0
 CATEGORIES=	ftp python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,12 +11,13 @@ WWW=		http://pycurl.io/ \
 
 LICENSE=	lgpl2.1 mit
 LICENSE_COMB=	dual
+LICENSE_FILE_lgpl2.1=	${WRKSRC}/COPYING-LGPL
+LICENSE_FILE_mit=	${WRKSRC}/COPYING-MIT
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 LIB_DEPENDS=	libcurl.so:ftp/curl
 
-USES=		python ssl
+USES=		python:3.10+ python-setuptools:83 ssl
 USE_PYTHON=	autoplist concurrent pep517
 
 post-install:
