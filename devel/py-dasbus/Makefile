@@ -4,14 +4,15 @@ CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	D-Bus library written in Python and based on GLib
+MAINTAINER=	python@FreeBSD.org
+COMMENT=	DBus library written in Python and based on GLib
 WWW=		https://github.com/dasbus-project/dasbus
 
 LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=\t${PYTHON_PKGNAMEPREFIX}hatchling>=0:devel/py-hatchling@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>0:devel/py-setuptools@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 
 USES=		gnome python
 USE_GNOME=	glib20 pygobject3
