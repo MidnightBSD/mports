@@ -1,0 +1,5 @@
+--- meson.build.orig
++++ meson.build
+@@ -157,1 +157,1 @@
+-gexiv_dep = dependency('gexiv2', version: '>= 0.14.0')
++gexiv_dep = dependency('gexiv2-0.16', version: '>= 0.16.0')
