@@ -1,0 +1,2 @@
+A compatibility layer for static typing features across NumPy versions.
+This release targets NumPy 2.4.

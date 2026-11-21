@@ -2862,6 +2862,7 @@
     SUBDIR += py-json5
     SUBDIR += py-mmh3
     SUBDIR += py-mypy-protobuf
+    SUBDIR += py-numpy-typing-compat
     SUBDIR += py-nvidia-ml-py
     SUBDIR += py-optype
     SUBDIR += py-orderly-set
