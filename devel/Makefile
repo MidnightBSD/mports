@@ -1848,6 +1848,7 @@
     SUBDIR += py-resource
     SUBDIR += py-responses
     SUBDIR += py-retry2
+    SUBDIR += py-retrying
     SUBDIR += py-rfc3339-validator
     SUBDIR += py-rfc8785
     SUBDIR += py-rpds-py
