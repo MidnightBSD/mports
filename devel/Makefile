@@ -1814,6 +1814,7 @@
     SUBDIR += py-python-gitlab
     SUBDIR += py-python-magic
     SUBDIR += py-python-mimeparse
+    SUBDIR += py-python-sbom
     SUBDIR += py-python-subunit
     SUBDIR += py-pythran
     SUBDIR += py-pyTooling
