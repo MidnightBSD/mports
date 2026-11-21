@@ -1591,6 +1591,7 @@
     SUBDIR += py-jsonref
     SUBDIR += py-jsonschema
     SUBDIR += py-jsonschema-path
+    SUBDIR += py-jsonschema-rs
     SUBDIR += py-jsonschema-specifications
     SUBDIR += py-jsonsir
     SUBDIR += py-jupyter-core
