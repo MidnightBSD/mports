@@ -11,14 +11,14 @@ private = Path(sys.argv[1]).resolve()
 work = Path(sys.argv[2]).resolve()
 import uv_build
 assert Path(uv_build.__file__).resolve().is_relative_to(private)
-assert importlib.metadata.version('uv-build') == '0.12.1'
+assert importlib.metadata.version('uv-build') == '0.12.22'
 helper = private / 'bin' / 'uv-build'
 assert helper.is_file()
 work.mkdir(parents=True, exist_ok=True)
 (work / 'src' / 'probe').mkdir(parents=True, exist_ok=True)
 (work / 'src' / 'probe' / '__init__.py').write_text('value = 42\n')
 (work / 'pyproject.toml').write_text('''[build-system]
-requires = ["uv-build>=0.12.1,<0.13"]
+requires = ["uv-build>=0.12.22,<0.13"]
 build-backend = "uv_build"
 [project]
 name = "probe"
