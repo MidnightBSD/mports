@@ -1,0 +1,8 @@
+--- .git_archival.txt.orig
++++ .git_archival.txt
+@@ -1,4 +1,4 @@
+ node: e85fae957d5c93894740b164ea9cc6567015b954
+ node-date: 2026-08-30T22:23:52+02:00
+-describe-name: tag: v2.1.0
++describe-name: v2.1.0
+ ref-names: tag: v2.1.0
