@@ -1,5 +1,5 @@
 PORTNAME=	cryptography
-PORTVERSION=	50.0.1
+PORTVERSION=	50.0.2
 PORTEPOCH=	1
 CATEGORIES=	security python
 MASTER_SITES=	PYPI
@@ -15,13 +15,13 @@ LICENSE_COMB=			dual
 LICENSE_FILE_Apache-2.0=		${WRKSRC}/LICENSE.APACHE
 LICENSE_FILE_bsd3=	${WRKSRC}/LICENSE.BSD
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cffi>=2.0.0:devel/py-cffi@${PY_FLAVOR} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cffi>=2.1:devel/py-cffi@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}maturin>=1.14.1<2:devel/py-maturin@${PY_FLAVOR} \
 		${PY_SETUPTOOLS}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cffi>=2.0.0:devel/py-cffi@${PY_FLAVOR}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}bcrypt>=3.1.5:security/py-bcrypt@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}certifi>=2024:security/py-certifi@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}cryptography-vectors=50.0.1:security/py-cryptography-vectors@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}cryptography-vectors>=${PORTVERSION}<${PORTVERSION}_99:security/py-cryptography-vectors@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pretend>=0.7:devel/py-pretend@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest>=7.4.0,1:devel/py-pytest@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-benchmark>=4.0:devel/py-pytest-benchmark@${PY_FLAVOR} \
