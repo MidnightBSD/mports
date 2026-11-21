@@ -283,6 +283,7 @@
     SUBDIR += py-csscompressor
     SUBDIR += py-cssselect
     SUBDIR += py-cssutils
+    SUBDIR += py-dash
     SUBDIR += py-django-allauth
     SUBDIR += py-django-debug-toolbar
     SUBDIR += py-django-debug-toolbar44
