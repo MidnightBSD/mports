@@ -1499,6 +1499,7 @@
     SUBDIR += py-fastuuid
     SUBDIR += py-filetype
     SUBDIR += py-find-libpython
+    SUBDIR += py-fire
     SUBDIR += py-fixtures
     SUBDIR += py-flake8
     SUBDIR += py-flaky
