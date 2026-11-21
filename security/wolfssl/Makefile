@@ -38,7 +38,13 @@ CONFIGURE_ARGS=	--disable-dependency-tracking \
 		--enable-static \
 		--enable-tls13 \
 		--enable-tls13-draft18 \
-		--enable-keying-material
+		--enable-keying-material \
+		--enable-all-asm
+
+.if "${ARCH}" == "amd64"
+CONFIGURE_ARGS+=	--enable-aesni-with-avx
+.endif
+
 TEST_TARGET=	check
 CFLAGS+=	-DWOLFSSL_ALT_NAMES -DWOLFSSL_GETRANDOM=1 -DWOLFSSL_TLS13_MIDDLEBOX_COMPAT
 CFLAGS_i386=	-DWOLFSSL_SHA224
@@ -52,6 +58,14 @@ DEBUG_CONFIGURE_ON=	--enable-debug
 
 # magus
 NO_TEST=	yes
+
+.include <bsd.mport.options.mk>
+
+.if "${ARCH}" == "i386" || ${ARCH:Marmv?}
+PLIST_SUB+=	SP_H="@comment "
+.else
+PLIST_SUB+=	SP_H=""
+.endif
 
 post-configure:
 	@${REINPLACE_CMD} \
