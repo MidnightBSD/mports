@@ -1567,6 +1567,7 @@
     SUBDIR += py-isodate
     SUBDIR += py-isort
     SUBDIR += py-itertree
+    SUBDIR += py-janus
     SUBDIR += py-jaraco
     SUBDIR += py-jaraco.classes
     SUBDIR += py-jaraco.collections
