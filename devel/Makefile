@@ -1605,6 +1605,7 @@
     SUBDIR += py-lazr.delegates
     SUBDIR += py-lazr.restfulclient
     SUBDIR += py-lazr.uri
+    SUBDIR += py-levenshtein
     SUBDIR += py-libcst
     SUBDIR += py-libevdev
     SUBDIR += py-libpeas
