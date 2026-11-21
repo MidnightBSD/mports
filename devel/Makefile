@@ -2862,6 +2862,7 @@
     SUBDIR += py-mmh3
     SUBDIR += py-mypy-protobuf
     SUBDIR += py-nvidia-ml-py
+    SUBDIR += py-optype
     SUBDIR += py-orderly-set
     SUBDIR += py-pyroaring
     SUBDIR += py-nbconvert
