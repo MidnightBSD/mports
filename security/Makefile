@@ -155,6 +155,7 @@
     SUBDIR += openssh-portable
     SUBDIR += openssl
     SUBDIR += openssl36
+    SUBDIR += openssl40
     SUBDIR += openvas
     SUBDIR += openvpn
     SUBDIR += osv-scanner
