@@ -28,7 +28,7 @@ include/faiss/utils/simd_impl/fp16_kernels.h
 include/faiss/utils/simd_impl/super_kmeans_kernels.h
 include/faiss/utils/simd_impl/masked_sum-avx2.h
 include/faiss/utils/simd_impl/masked_sum.h
-include/faiss/utils/simd_impl/distances_simd%%LIB32DIR%%256.h
+include/faiss/utils/simd_impl/distances_simdlib256.h
 include/faiss/utils/simd_impl/super_kmeans_dispatch.h
 include/faiss/utils/simd_impl/masked_sum-avx512.h
 include/faiss/utils/simd_impl/distances_sse-inl.h
@@ -43,7 +43,7 @@ include/faiss/utils/simd_levels.h
 include/faiss/utils/partitioning.h
 include/faiss/utils/bf16.h
 include/faiss/utils/distances_fused/distances_fused.h
-include/faiss/utils/distances_fused/simd%%LIB32DIR%%_kernel-inl.h
+include/faiss/utils/distances_fused/simdlib_kernel-inl.h
 include/faiss/utils/utils.h
 include/faiss/utils/quantize_lut.h
 include/faiss/utils/extra_distances.h
@@ -149,13 +149,13 @@ include/faiss/impl/pq_code_distance/pq_code_distance-avx2.h
 include/faiss/impl/pq_code_distance/pq_code_distance-avx512.h
 include/faiss/impl/RaBitQuantizerMultiBit.h
 include/faiss/impl/ThreadedIndex-inl.h
-include/faiss/impl/simd%%LIB32DIR%%/simd%%LIB32DIR%%.h
-include/faiss/impl/simd%%LIB32DIR%%/simd%%LIB32DIR%%_avx2.h
-include/faiss/impl/simd%%LIB32DIR%%/simd%%LIB32DIR%%_dispatch.h
-include/faiss/impl/simd%%LIB32DIR%%/simd%%LIB32DIR%%_emulated.h
-include/faiss/impl/simd%%LIB32DIR%%/simd%%LIB32DIR%%_avx512.h
-include/faiss/impl/simd%%LIB32DIR%%/simd%%LIB32DIR%%_ppc6%%OSREL%%.h
-include/faiss/impl/simd%%LIB32DIR%%/simd%%LIB32DIR%%_neon.h
+include/faiss/impl/simdlib/simdlib.h
+include/faiss/impl/simdlib/simdlib_avx2.h
+include/faiss/impl/simdlib/simdlib_dispatch.h
+include/faiss/impl/simdlib/simdlib_emulated.h
+include/faiss/impl/simdlib/simdlib_avx512.h
+include/faiss/impl/simdlib/simdlib_ppc64.h
+include/faiss/impl/simdlib/simdlib_neon.h
 include/faiss/impl/polysemous_training/dispatch.h
 include/faiss/impl/NNDescent.h
 include/faiss/impl/FaissAssert.h
@@ -169,7 +169,7 @@ include/faiss/impl/approx_topk/generic.h
 include/faiss/impl/approx_topk/approx_topk.h
 include/faiss/impl/approx_topk/rq_beam_search_tab.h
 include/faiss/impl/approx_topk/rq_beam_search_tab-inl.h
-include/faiss/impl/approx_topk/simd%%LIB32DIR%%256-inl.h
+include/faiss/impl/approx_topk/simdlib256-inl.h
 include/faiss/impl/ProductQuantizer-inl.h
 include/faiss/impl/maybe_owned_vector.h
 include/faiss/impl/hnsw/LockVector.h
@@ -235,7 +235,7 @@ include/faiss/IndexSQFastScan.h
 include/faiss/IndexIVFPQFastScan.h
 include/faiss/VectorTransform.h
 include/faiss/IndexRaBitQFastScan.h
-include/faiss/IVF%%LIB32DIR%%.h
+include/faiss/IVFlib.h
 include/faiss/IndexLattice.h
 lib/libfaiss.so
 lib/libfaiss_c.so
@@ -255,7 +255,7 @@ lib/libfaiss_c.so
 @dir include/faiss/c_api/impl
 @dir include/faiss/c_api
 @dir include/faiss/impl/pq_code_distance
-@dir include/faiss/impl/simd%%LIB32DIR%%
+@dir include/faiss/impl/simdlib
 @dir include/faiss/impl/polysemous_training
 @dir include/faiss/impl/approx_topk
 @dir include/faiss/impl/hnsw
