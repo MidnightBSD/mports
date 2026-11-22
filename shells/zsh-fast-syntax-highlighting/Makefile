@@ -1,6 +1,6 @@
 PORTNAME=	zsh-fast-syntax-highlighting
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.55
+DISTVERSION=	1.56
 CATEGORIES=	shells
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -23,6 +23,7 @@ SUB_FILES=	pkg-message
 
 do-install:
 	@${MKDIR} ${DATADIR}
-	cd ${WRKSRC} && ${COPYTREE_SHARE} . ${DATADIR} "! -path \./\.* ! -name *\.bak ! -name *\.orig"
+	cd ${WRKSRC} && ${COPYTREE_SHARE} . ${DATADIR}
+	cd ${DATADIR} && ${RM} -r .github .gitignore .zunit.yml images test tests
 
 .include <bsd.port.mk>
