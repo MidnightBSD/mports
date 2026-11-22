@@ -373,6 +373,7 @@
     SUBDIR += py-pygraphviz
     SUBDIR += py-pygal
     SUBDIR += py-pyproj
+    SUBDIR += py-pyogrio
     SUBDIR += py-pyrsgis
     SUBDIR += py-pyqrcode
     SUBDIR += py-rasterio
