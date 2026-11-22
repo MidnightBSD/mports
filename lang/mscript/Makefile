@@ -1,6 +1,6 @@
 PORTNAME=	mscript
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.1
+DISTVERSION=	0.2
 CATEGORIES=	lang
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -17,7 +17,7 @@ GH_ACCOUNT=	laffer1
 ALL_TARGET=	mscript
 TEST_TARGET=	test
 MAKE_ARGS=	CXX="${CXX}" CXXFLAGS="${CXXFLAGS} -std=c++23" \
-		LDLIBS="${LDFLAGS} -lbsdxml"
+		LDLIBS="${LDFLAGS} -lbsdxml -lsqlite3 -lfetch"
 
 PLIST_FILES=	bin/mscript share/man/man1/mscript.1.gz
 
