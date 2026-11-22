@@ -3,7 +3,7 @@ PORTVERSION=	26.9.0
 CATEGORIES=	sysutils python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-DISTFILES=	ansible_lint-${PORTVERSION}${EXTRACT_SUFX}
+DISTNAME=	ansible_lint-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Checks playbooks for sub-optimal practices and behaviour
@@ -47,8 +47,6 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}coverage_enable_subprocess>=0:devel/py-cove
 
 USES=		python:3.10+ python-setuptools:78
 USE_PYTHON=	autoplist concurrent pep517 pytest
-
-WRKSRC=		${WRKDIR}/ansible_lint-${PORTVERSION}
 
 TEST_ENV=	PYTHONPATH=${WRKSRC}/src TMPDIR=${WRKDIR}/
 
