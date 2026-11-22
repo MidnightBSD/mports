@@ -355,6 +355,7 @@
     SUBDIR += py-docstring-parser
     SUBDIR += py-docstring_parser
     SUBDIR += py-docutils
+    SUBDIR += py-elastic-transport
     SUBDIR += py-elasticsearch
     SUBDIR += py-elementpath
     SUBDIR += py-enchant
