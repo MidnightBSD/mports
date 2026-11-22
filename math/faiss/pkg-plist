@@ -237,8 +237,8 @@ include/faiss/VectorTransform.h
 include/faiss/IndexRaBitQFastScan.h
 include/faiss/IVF%%LIB32DIR%%.h
 include/faiss/IndexLattice.h
-%%LIB32DIR%%/%%LIB32DIR%%faiss.so
-%%LIB32DIR%%/%%LIB32DIR%%faiss_c.so
+lib/libfaiss.so
+lib/libfaiss_c.so
 %%DATADIR%%/faiss-config.cmake
 %%DATADIR%%/faiss-targets.cmake
 %%DATADIR%%/faiss-config-version.cmake
