@@ -1,5 +1,6 @@
 PORTNAME=	mksh
 DISTVERSION=	R59c
+PORTREVISION=	1
 CATEGORIES=	shells
 MASTER_SITES=	http://www.mirbsd.org/MirOS/dist/mir/mksh/ \
 		https://pub.allbsd.org/MirOS/dist/mir/mksh/
@@ -9,7 +10,12 @@ DISTFILES=	${PORTNAME}-${DISTVERSION}.tgz
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	MirBSD enhanced shell based on pdksh
 
-LICENSE=	agg
+LICENSE=	iscl ML
+LICENSE_COMB=	multi
+LICENSE_GROUPS_ML=	OSI
+LICENSE_NAME_ML=	MirOS
+LICENSE_TEXT_ML=	Please, read its contents from http://www.mirbsd.org/TaC-mksh.txt
+LICENSE_PERMS_ML=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
