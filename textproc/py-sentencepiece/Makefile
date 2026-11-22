@@ -23,7 +23,7 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>0:devel/py-pytest@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}numpy>0:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}protobuf>0:devel/py-protobuf@${PY_FLAVOR}
 
-USES=		compiler:c++17-lang pkgconfig python:3.10+ python-setuptools:78
+USES=		compiler:c++20-lang pkgconfig python:3.10+ python-setuptools:78
 USE_PYTHON=	autoplist pep517
 
 USE_GITHUB=	yes
