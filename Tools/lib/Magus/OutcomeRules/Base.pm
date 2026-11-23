@@ -66,6 +66,7 @@ sub error :ATTR(CODE) {
   
   my $rules = $class->error_rules;
   (my $phase = $class) =~ s/^.*:://;
+  $phase =~ tr/_/-/;  # run_depends rules belong to the run-depends target
   
   my $entry = {
     name  => *$sym{NAME}, # evil grin :->
@@ -83,6 +84,7 @@ sub warning :ATTR(CODE) {
   
   my $rules = $class->warning_rules;
   (my $phase = $class) =~ s/^.*:://;
+  $phase =~ tr/_/-/;  # run_depends rules belong to the run-depends target
   
   my $entry = {
     name  => *$sym{NAME}, # evil grin :->
