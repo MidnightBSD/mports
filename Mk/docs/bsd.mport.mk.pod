@@ -908,6 +908,10 @@ inclusive).
 Dependencies needed to run.  Checked during the "install" stage and recorded
 in the package.
 
+With USES=gem, every tuple whose origin is a F<rubygem-*> port is also added
+to BUILD_DEPENDS: fake-qa's gemdeps check needs the runtime gems installed
+when the port is faked, and native extensions often load them at build time.
+
 =item BUILD_RUN_DEPENDS
 
 Dependencies needed both to build and to run.  Each tuple is added to
