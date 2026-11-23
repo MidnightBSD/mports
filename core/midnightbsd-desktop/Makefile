@@ -1,6 +1,6 @@
 PORTNAME=	midnightbsd-desktop
 PORTVERSION=	2.6.7
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	core
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -22,7 +22,6 @@ RUN_DEPENDS=	${LOCALBASE}/bin/iconv:converters/libiconv \
 		${LOCALBASE}/etc/rc.d/bsdstats:sysutils/bsdstats \
 		${LOCALBASE}/share/backgrounds/midnightbsd/mnbsd_bg_gray.png:x11-themes/midnightbsd-backgrounds \
 		evince:graphics/evince \
-		firefox:www/firefox \
 		raphael:www/raphael \
 		common-services>=1.0:core/common-services \
 		${LOCALBASE}/bin/Xorg:x11-servers/xorg-server@xorg \
@@ -52,6 +51,13 @@ USE_GSTREAMER1=	ogg theora vorbis
 
 NO_WRKSUBDIR=	YES
 NO_BUILD=	YES
+
+.include <bsd.mport.options.mk>
+
+# www/firefox is ONLY_FOR_ARCHS=amd64; i386 is no longer supported.
+.if ${ARCH} == amd64
+RUN_DEPENDS+=	firefox:www/firefox
+.endif
 
 do-install:
 	${MKDIR} ${PREFIX}/etc/xdg/xfce4/xfconf/xfce-perchannel-xml/
