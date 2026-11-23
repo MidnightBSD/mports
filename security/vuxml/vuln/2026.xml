@@ -1,3 +1,64 @@
+  <vuln vid="c97163eb-e782-11f1-a976-bcfce7e895b1">
+    <topic>Roundcube -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>roundcube-php82</name>
+	<name>roundcube-php83</name>
+	<name>roundcube-php84</name>
+	<name>roundcube-php85</name>
+	<range><ge>1.6.0,1</ge><lt>1.6.22,1</lt></range>
+	<range><ge>1.7.0,1</ge><lt>1.7.7,1</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Roundcube reports multiple security fixes, including HTTP request
+	  injection in the spellchecker, CSS and HTML sanitization bypasses,
+	  Sieve script injection, denial of service in the TNEF decoder,
+	  XML injection in a password plugin driver, and insecure connection
+	  fallback when TLS is configured.</p>
+	</body>
+    </description>
+    <references>
+      <url>https://roundcube.net/news/2026/11/23/security-updates-1.6.22-and-1.7.7</url>
+    </references>
+    <dates>
+      <discovery>2026-11-23</discovery>
+      <entry>2026-11-23</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="c97184a4-e782-11f1-a976-bcfce7e895b1">
+    <topic>Roundcube -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>roundcube-php82</name>
+	<name>roundcube-php83</name>
+	<name>roundcube-php84</name>
+	<name>roundcube-php85</name>
+	<range><lt>1.6.21,1</lt></range>
+	<range><ge>1.7.0,1</ge><lt>1.7.6,1</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Roundcube reports multiple security fixes, including IMAP command
+	  injection when message caching is enabled, cross-site request
+	  forgery bypasses, Sieve script injection, server-side request
+	  forgery, and unsafe attachment processing.</p>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-126813</cvename>
+      <url>https://roundcube.net/news/2026/11/09/security-updates-1.6.21-and-1.7.6</url>
+      <url>https://security-tracker.debian.org/tracker/CVE-2026-126813</url>
+    </references>
+    <dates>
+      <discovery>2026-11-09</discovery>
+      <entry>2026-11-23</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="711f33a5-0a11-4773-bace-1a1f04471831">
     <topic>PHP -- bundled uriparser integer overflow</topic>
     <affects>
