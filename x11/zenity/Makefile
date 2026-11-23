@@ -11,7 +11,8 @@ WWW=		https://gitlab.gnome.org/GNOME/zenity
 
 LICENSE=	lgpl2.1+
 
-BUILD_DEPENDS=	itstool:textproc/itstool
+BUILD_DEPENDS=	help2man:misc/help2man \
+		itstool:textproc/itstool
 
 USES=		gettext gnome localbase meson pkgconfig \
 		perl5 tar:xz
