@@ -18,5 +18,6 @@ TEST_DEPENDS=	R-cran-abind>0:devel/R-cran-abind \
 		R-cran-testthat>0:devel/R-cran-testthat
 
 USES=		cran:auto-plist,compiles
+MAKE_ENV+=	PKG_LIBS=-lexecinfo
 
 .include <bsd.port.mk>

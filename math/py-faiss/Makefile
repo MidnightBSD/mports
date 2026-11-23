@@ -1,6 +1,6 @@
 PORTNAME=	faiss
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.14.3
+DISTVERSION=	1.16.0
 CATEGORIES=	math
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -19,10 +19,12 @@ BUILD_DEPENDS=	swig:devel/swig \
 		${PY_DEPENDS}
 LIB_DEPENDS=	libfaiss.so:math/faiss
 RUN_DEPENDS=	${PY_DEPENDS}
+BUILD_RUN_DEPENDS=	faiss>=1.16.0:math/faiss
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytorch>0:ai/py-pytorch@${PY_FLAVOR}
 
 USES=		cmake compiler:c++11-lang localbase python
 USE_PYTHON=	flavors pytest # tests fail to run, see https://github.com/facebookresearch/faiss/issues/3914
+CMAKE_ON=	FAISS_ENABLE_PYTHON
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	facebookresearch
@@ -30,9 +32,13 @@ GH_ACCOUNT=	facebookresearch
 WRKSRC_SUBDIR=	faiss/python
 
 CMAKE_ARGS=	-DPython_EXECUTABLE:STRING=${PYTHON_CMD}
+FAISS_CMAKE_DIR?=	${LOCALBASE}/share/faiss
+CMAKE_ARGS+=	-Dfaiss_DIR=${FAISS_CMAKE_DIR}
 
 TEST_WRKSRC=	${WRKSRC}/../../tests
 TEST_ENV=	${MAKE_ENV} PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
+TEST_ARGS=	--disable-plugin-autoload \
+		--ignore=external_module_test.py
 
 post-patch: # remove GPU testcases
 	@${RM} -r ${WRKSRC}/../../faiss/gpu
@@ -40,6 +46,7 @@ post-patch: # remove GPU testcases
 do-install: # see https://github.com/facebookresearch/faiss/issues/2194
 	${MKDIR} ${STAGEDIR}${PYTHON_SITELIBDIR}/${PORTNAME}
 	${INSTALL_LIB} ${BUILD_WRKSRC}/_swigfaiss.so ${STAGEDIR}${PYTHON_SITELIBDIR}/${PORTNAME}
+	${INSTALL_LIB} ${BUILD_WRKSRC}/_faiss_example_external_module.so ${STAGEDIR}${PYTHON_SITELIBDIR}/${PORTNAME}
 .for f in __init__.py array_conversions.py class_wrappers.py extra_wrappers.py gpu_wrappers.py loader.py swigfaiss.py
 	${INSTALL_DATA} ${BUILD_WRKSRC}/${f} ${STAGEDIR}${PYTHON_SITELIBDIR}/${PORTNAME}
 .endfor

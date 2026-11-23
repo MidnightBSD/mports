@@ -1,9 +1,9 @@
 PORTNAME=	ansible-lint
-PORTVERSION=	6.17.1
-PORTREVISION=	2
+PORTVERSION=	26.9.0
 CATEGORIES=	sysutils python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTNAME=	ansible_lint-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Checks playbooks for sub-optimal practices and behaviour
@@ -25,8 +25,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}ansible-core>=2.12.0:sysutils/py-ansible-cor
 		${PYTHON_PKGNAMEPREFIX}wcmatch>=8.1.2:textproc/py-wcmatch@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyyaml>=5.4.1:devel/py-pyyaml@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}yamllint>=1.30.0:devel/py-yamllint@${PY_FLAVOR}
-BUILD_DEPENDS=	${PY_SETUPTOOLS} \
-		${PYTHON_PKGNAMEPREFIX}setuptools-scm>=7.0.5:devel/py-setuptools-scm@${PY_FLAVOR} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools-scm9>=9.2.2:devel/py-setuptools-scm9@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}coverage_enable_subprocess>=0:devel/py-coverage_enable_subprocess@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}coverage>=6.4.4:devel/py-coverage@${PY_FLAVOR} \
@@ -46,10 +45,13 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}coverage_enable_subprocess>=0:devel/py-cove
 		${PYTHON_PKGNAMEPREFIX}types-PyYAML>=0:devel/py-types-PyYAML@${PY_FLAVOR} \
 		bash:shells/bash
 
-USES=		python
-USE_PYTHON=	autoplist concurrent pep517
+USES=		python:3.10+ python-setuptools:78
+USE_PYTHON=	autoplist concurrent pep517 pytest
+
+TEST_ENV=	PYTHONPATH=${WRKSRC}/src TMPDIR=${WRKDIR}/
+
+MAKE_ENV+=	PYTHONPATH=${PYTHONPREFIX_LIBDIR}/mports-setuptools-scm/9
 
 NO_ARCH=	yes
-NO_TEST=	yes
 
 .include <bsd.port.mk>

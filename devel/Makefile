@@ -171,6 +171,7 @@
     SUBDIR += antlr
     SUBDIR += antlr3
     SUBDIR += antlr4
+    SUBDIR += antlr4-cpp-runtime
     SUBDIR += apache-ant
     SUBDIR += apache-commons-daemon
     SUBDIR += apache-log4j2
@@ -1498,6 +1499,7 @@
     SUBDIR += py-fastuuid
     SUBDIR += py-filetype
     SUBDIR += py-find-libpython
+    SUBDIR += py-fire
     SUBDIR += py-fixtures
     SUBDIR += py-flake8
     SUBDIR += py-flaky
@@ -1527,6 +1529,7 @@
     SUBDIR += py-googleapis-common-protos
     SUBDIR += py-gql
     SUBDIR += py-graphql-core
+    SUBDIR += py-graphql-core32
     SUBDIR += py-great-tables
     SUBDIR += py-greenlet
     SUBDIR += py-grpcio
@@ -1565,6 +1568,7 @@
     SUBDIR += py-isodate
     SUBDIR += py-isort
     SUBDIR += py-itertree
+    SUBDIR += py-janus
     SUBDIR += py-jaraco
     SUBDIR += py-jaraco.classes
     SUBDIR += py-jaraco.collections
@@ -1590,6 +1594,7 @@
     SUBDIR += py-jsonref
     SUBDIR += py-jsonschema
     SUBDIR += py-jsonschema-path
+    SUBDIR += py-jsonschema-rs
     SUBDIR += py-jsonschema-specifications
     SUBDIR += py-jsonsir
     SUBDIR += py-jupyter-core
@@ -1602,6 +1607,7 @@
     SUBDIR += py-lazr.delegates
     SUBDIR += py-lazr.restfulclient
     SUBDIR += py-lazr.uri
+    SUBDIR += py-levenshtein
     SUBDIR += py-libcst
     SUBDIR += py-libevdev
     SUBDIR += py-libpeas
@@ -1812,6 +1818,7 @@
     SUBDIR += py-python-gitlab
     SUBDIR += py-python-magic
     SUBDIR += py-python-mimeparse
+    SUBDIR += py-python-sbom
     SUBDIR += py-python-subunit
     SUBDIR += py-pythran
     SUBDIR += py-pyTooling
@@ -1844,6 +1851,7 @@
     SUBDIR += py-resource
     SUBDIR += py-responses
     SUBDIR += py-retry2
+    SUBDIR += py-retrying
     SUBDIR += py-rfc3339-validator
     SUBDIR += py-rfc8785
     SUBDIR += py-rpds-py
@@ -1863,6 +1871,7 @@
     SUBDIR += py-setproctitle
     SUBDIR += py-setuptools
     SUBDIR += py-setuptools-git
+    SUBDIR += py-setuptools-git-versioning
     SUBDIR += py-setuptools-modern
     SUBDIR += py-setuptools-pkg
     SUBDIR += py-setuptools-rust
@@ -1986,6 +1995,7 @@
     SUBDIR += py-xxhash
     SUBDIR += py-yamllint
     SUBDIR += py-zclockfile
+    SUBDIR += py-zipremove
     SUBDIR += py-zipp
     SUBDIR += py-zope.component
     SUBDIR += py-zope.configuration
@@ -2856,7 +2866,9 @@
     SUBDIR += py-json5
     SUBDIR += py-mmh3
     SUBDIR += py-mypy-protobuf
+    SUBDIR += py-numpy-typing-compat
     SUBDIR += py-nvidia-ml-py
+    SUBDIR += py-optype
     SUBDIR += py-orderly-set
     SUBDIR += py-pyroaring
     SUBDIR += py-nbconvert

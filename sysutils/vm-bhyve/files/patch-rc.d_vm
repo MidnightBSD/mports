@@ -1,0 +1,11 @@
+--- rc.d/vm.orig	2026-11-22 18:07:00 UTC
++++ rc.d/vm
+@@ -4,7 +4,7 @@
+ 
+ # PROVIDE: vm
+ # REQUIRE: NETWORKING SERVERS dmesg
+-# BEFORE: dnsmasq ipfw pf
++# BEFORE: dnsmasq
+ # KEYWORD: shutdown nojail
+ 
+ . /etc/rc.subr

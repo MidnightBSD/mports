@@ -3,8 +3,8 @@
 @@ -37,7 +37,6 @@ requires-python = ">=3.10"
  
  [project.scripts]
- pip = "pip._internal.cli.main:main"
--pip3 = "pip._internal.cli.main:main"
+ pip = "pip._internal.cli.main:cli"
+-pip3 = "pip._internal.cli.main:cli"
  
  [project.urls]
  Homepage = "https://pip.pypa.io/"

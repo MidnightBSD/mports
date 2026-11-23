@@ -103,3 +103,6 @@ share/locale/uk/LC_MESSAGES/kcalendarcore6_qt.qm
 share/locale/zh_CN/LC_MESSAGES/kcalendarcore6_qt.qm
 share/qlogging-categories6/kcalendarcore.categories
 share/qlogging-categories6/kcalendarcore.renamecategories
+include/PySide6/KCalendarCore/kcalendarcore_python.h
+%%PYTHON_SITELIBDIR%%/KCalendarCore%%PYTHON_SOABI%%.so
+share/PySide6/typesystems/typesystem_kcalendarcore.xml

@@ -1,0 +1,6 @@
+--- examples/Makefile.orig
++++ examples/Makefile
+@@ -7,1 +7,3 @@
++TOPLEVEL_LANG ?= verilog
++
+ EXAMPLES := adder/tests \

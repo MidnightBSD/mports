@@ -65,7 +65,7 @@ For review, debugging, or analysis requests, do not force code changes once find
 
 ## Subagents
 
-Use 2+ subagents or none. NEVER launch exactly 1 subagent.
+Use sub agents whenever possible.  Avoid using premium models for simple coding tasks.  For example, Fable or Astra should be avoided in favor of sonnet, opus, luna or terra when possible. 
 
 The main agent is a builder, not a dispatcher. Work first, delegate second. Use subagents proactively, but only after scoping has split the work into tracks ready for parallel execution.
 

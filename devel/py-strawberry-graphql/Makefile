@@ -1,6 +1,5 @@
 PORTNAME=	strawberry-graphql
-DISTVERSION=	0.320.0
-PORTREVISION=	1
+DISTVERSION=	0.341.2
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,12 +12,12 @@ WWW=		https://github.com/strawberry-graphql/strawberry
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}uv-build>=0.11<0.12:devel/py-uv-build@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}uv-build>=0.11:devel/py-uv-build@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cross-web>=0.6.0:www/py-cross-web@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}graphql-core>=3.2.0<3.4.0:devel/py-graphql-core@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}graphql-core>=3.3.0<3.4.0:devel/py-graphql-core@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}packaging>=23:devel/py-packaging@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}python-dateutil>=2.7.0:devel/py-python-dateutil@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}typing-extensions>=4.5.0:devel/py-typing-extensions@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}typing-extensions>=4.14.0:devel/py-typing-extensions@${PY_FLAVOR}
 
 USES=		python
 USE_PYTHON=	autoplist concurrent pep517
@@ -50,8 +49,12 @@ CHANNELS_RUN_DEPENDS=		${PYTHON_PKGNAMEPREFIX}asgiref>=3.2:www/py-asgiref@${PY_F
 				${PYTHON_PKGNAMEPREFIX}channels>=3.0.5:www/py-channels@${PY_FLAVOR}
 CLI_RUN_DEPENDS=		${PYTHON_PKGNAMEPREFIX}libcst>0:devel/py-libcst@${PY_FLAVOR} \
 				${PYTHON_PKGNAMEPREFIX}pygments>=2.3:textproc/py-pygments@${PY_FLAVOR} \
+				${PYTHON_PKGNAMEPREFIX}multipart>=0.0.7:devel/py-multipart@${PY_FLAVOR} \
 				${PYTHON_PKGNAMEPREFIX}rich>=12.0.0:textproc/py-rich@${PY_FLAVOR} \
-				${PYTHON_PKGNAMEPREFIX}typer>=0.12.4:devel/py-typer@${PY_FLAVOR}
+				${PYTHON_PKGNAMEPREFIX}starlette>=0.18.0:www/py-starlette@${PY_FLAVOR} \
+				${PYTHON_PKGNAMEPREFIX}typer>=0.12.4:devel/py-typer@${PY_FLAVOR} \
+				${PYTHON_PKGNAMEPREFIX}uvicorn>=0.11.6:www/py-uvicorn@${PY_FLAVOR} \
+				${PYTHON_PKGNAMEPREFIX}websockets>=15.0.1<17:devel/py-websockets@${PY_FLAVOR}
 DEBUG_RUN_DEPENDS=		${PYTHON_PKGNAMEPREFIX}libcst>0:devel/py-libcst@${PY_FLAVOR} \
 				${PYTHON_PKGNAMEPREFIX}rich>=12.0.0:textproc/py-rich@${PY_FLAVOR}
 # NB: www/py-channels (via CHANNELS) options depends on www/py-djangoXX, which
@@ -66,5 +69,10 @@ OPENTELEMETRY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}opentelemetry-api<2:devel/py-o
 				${PYTHON_PKGNAMEPREFIX}opentelemetry-sdk<2:devel/py-opentelemetry-sdk@${PY_FLAVOR}
 # NB: Switch to devel/py-pydantic once www/py-fastapi uses it
 PYDANTIC_RUN_DEPENDS=		${PYTHON_PKGNAMEPREFIX}pydantic2>1.6.1:devel/py-pydantic2@${PY_FLAVOR}
+
+# The strawberry command needs the CLI option dependencies
+post-install-CLI-off:
+	@${RM} ${STAGEDIR}${PREFIX}/bin/strawberry
+	@${REINPLACE_CMD} -e '/^bin\/strawberry$$/d' ${_PYTHONPKGLIST}
 
 .include <bsd.port.mk>

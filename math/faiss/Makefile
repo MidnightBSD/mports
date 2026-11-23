@@ -1,6 +1,6 @@
 PORTNAME=	faiss
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.14.3
+DISTVERSION=	1.16.0
 CATEGORIES=	math
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -21,15 +21,13 @@ TEST_DEPENDS=	benchmark>0:devel/benchmark \
 		googletest>0:devel/googletest
 
 USES=		cmake:testing compiler:c++11-lang localbase:ldflags # tests fail to compile, see https://github.com/facebookresearch/faiss/issues/3913
+USE_LDCONFIG=	yes
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	facebookresearch
 
-CMAKE_ON=	BUILD_SHARED_LIBS
+CMAKE_ON=	BUILD_SHARED_LIBS FAISS_ENABLE_C_API
 CMAKE_OFF=	BUILD_TESTING FAISS_ENABLE_GPU FAISS_ENABLE_PYTHON
-
-post-extract: # workaround for https://github.com/facebookresearch/faiss/issues/3913
-	@${LN} -s ${WRKSRC} ${WRKDIR}/faiss
 
 # tests as of 1.13.1: 100% tests passed, 0 tests failed out of 138
 

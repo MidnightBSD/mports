@@ -17,7 +17,7 @@
 +    sandbox: Option<&'a FileSystemSandboxContext>,
 +) -> Option<&'a FileSystemSandboxContext> {
 +    if cfg!(any(target_os = "openbsd", target_os = "freebsd"))
-+        && !environment.environment.is_remote()
++        && !environment.environment().is_remote()
 +        && environment
 +            .permission_profile_with_workspace_roots()
 +            .file_system_sandbox_policy()

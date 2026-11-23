@@ -155,6 +155,7 @@
     SUBDIR += openssh-portable
     SUBDIR += openssl
     SUBDIR += openssl36
+    SUBDIR += openssl40
     SUBDIR += openvas
     SUBDIR += openvpn
     SUBDIR += osv-scanner
@@ -245,6 +246,7 @@
     SUBDIR += py-argon2-cffi
     SUBDIR += py-argon2-cffi-bindings
     SUBDIR += py-authlib
+    SUBDIR += py-base58
     SUBDIR += py-bcrypt
     SUBDIR += py-certbot
     SUBDIR += py-certbot-apache

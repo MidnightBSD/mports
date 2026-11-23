@@ -87,6 +87,7 @@
     SUBDIR += facile
     SUBDIR += faiss
     SUBDIR += fast_float
+    SUBDIR += fcl
     SUBDIR += fcl05
     SUBDIR += fftw
     SUBDIR += fftw3

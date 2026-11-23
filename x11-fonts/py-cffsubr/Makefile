@@ -1,6 +1,6 @@
 PORTNAME=	cffsubr
 PORTVERSION=	0.4.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-fonts python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -17,8 +17,7 @@ SKIP_FAKE_CHECK=	.*\/cffsubr/tx$
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}setuptools-scm>=0:devel/py-setuptools-scm@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
-RUN_DEPENDS=	tx:x11-fonts/afdko \
-		${PYTHON_PKGNAMEPREFIX}afdko>=0:x11-fonts/py-afdko@${PY_FLAVOR} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}afdko>=5.0.1:x11-fonts/py-afdko@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}fonttools>=4.10.2:print/py-fonttools@${PY_FLAVOR}
 
 USES=		python
@@ -32,6 +31,6 @@ post-patch:
 	@${RM} -r ${WRKSRC}/external/
 
 post-install:
-	cd ${FAKE_DESTDIR}${PYTHON_SITELIBDIR} && ${LN} -s ${LOCALBASE}/bin/tx cffsubr/tx
+	cd ${FAKE_DESTDIR}${PYTHON_SITELIBDIR} && ${LN} -s ${LOCALBASE}/bin/tx-${PYTHON_VER} cffsubr/tx
 
 .include <bsd.port.mk>

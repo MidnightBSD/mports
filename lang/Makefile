@@ -157,5 +157,6 @@
     SUBDIR += py-lupa
 
     SUBDIR += zig
+    SUBDIR += zig017
 
 .include <bsd.port.subdir.mk>

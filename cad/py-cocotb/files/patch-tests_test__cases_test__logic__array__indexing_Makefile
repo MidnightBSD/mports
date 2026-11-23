@@ -1,0 +1,6 @@
+--- tests/test_cases/test_logic_array_indexing/Makefile.orig
++++ tests/test_cases/test_logic_array_indexing/Makefile
+@@ -5,1 +5,3 @@
++TOPLEVEL_LANG ?= verilog
++
+ ifeq ($(TOPLEVEL_LANG),vhdl)

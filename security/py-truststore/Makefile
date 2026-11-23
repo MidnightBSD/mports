@@ -1,6 +1,5 @@
 PORTNAME=	truststore
-PORTVERSION=	0.10.4
-PORTREVISION=	1
+PORTVERSION=	0.10.5
 CATEGORIES=	security python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -15,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}flit-core>=3.11<4:devel/py-flit-core@${PY_FLAVOR}
 
-USES=		python ssl
+USES=		python:3.10+ ssl
 USE_PYTHON=	allflavors autoplist concurrent pep517
 
 NO_ARCH=	yes
