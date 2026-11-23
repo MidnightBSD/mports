@@ -14,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING.LIB
 BUILD_DEPENDS=	rubygem-native-package-installer>=1.0.3:devel/rubygem-native-package-installer \
 		rubygem-pkg-config>=1.3.5:devel/rubygem-pkg-config \
 		rubygem-rake>=0:devel/rubygem-rake
-RUN_DEPENDS=	rubygem-gio2>=${PORTVERSION}<${PORTVERSION:R}.99:devel/rubygem-gio2
+BUILD_RUN_DEPENDS=	rubygem-gio2>=${PORTVERSION}<${PORTVERSION:R}.99:devel/rubygem-gio2
 
 USES=		gem gnome
 USE_GNOME=	gdkpixbuf
