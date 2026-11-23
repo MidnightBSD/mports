@@ -12,9 +12,10 @@ WWW=		https://ruby-gnome.github.io/ \
 LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/COPYING.LIB
 
-BUILD_DEPENDS=	rubygem-rake>=0:devel/rubygem-rake
+BUILD_DEPENDS=	rubygem-native-package-installer>=1.0.3:devel/rubygem-native-package-installer \
+		rubygem-pkg-config>=1.3.5:devel/rubygem-pkg-config
 LIB_DEPENDS=	libclutter-gtk-1.0.so:graphics/clutter-gtk3
-RUN_DEPENDS=	rubygem-clutter>=${PORTVERSION}<${PORTVERSION:R}.99:graphics/rubygem-clutter \
+BUILD_RUN_DEPENDS=	rubygem-clutter>=${PORTVERSION}<${PORTVERSION:R}.99:graphics/rubygem-clutter \
 		rubygem-clutter-gdk>=${PORTVERSION}<${PORTVERSION:R}.99:graphics/rubygem-clutter-gdk \
 		rubygem-gtk3>=${PORTVERSION}<${PORTVERSION:R}.99:x11-toolkits/rubygem-gtk3 \
 		rubygem-rake>=0:devel/rubygem-rake
