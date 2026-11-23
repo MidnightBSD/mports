@@ -75,6 +75,36 @@ Notes:
   * Do not forget port variants (linux-f10-libxml2, libxml2, etc.)
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="aa75f0d0-e785-11f1-a976-bcfce7e895b1">
+    <topic>expat -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>expat</name>
+	<range><lt>2.11.0</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Expat 2.11.0 fixes an out-of-bounds read when an application
+	  registers an unknown encoding handler, a symlink attack in xmlwf
+	  when writing to a directory writable by another user, and a
+	  Unicode handling flaw that can pass isolated UTF-16 high
+	  surrogates to application handlers.</p>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-124317</cvename>
+      <cvename>CVE-2026-128241</cvename>
+      <cvename>CVE-2026-134703</cvename>
+      <url>https://github.com/libexpat/libexpat/releases/tag/R_2_11_0</url>
+      <url>https://seclists.org/oss-sec/2026/q4/840</url>
+    </references>
+    <dates>
+      <discovery>2026-11-07</discovery>
+      <entry>2026-11-23</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="c97163eb-e782-11f1-a976-bcfce7e895b1">
     <topic>Roundcube -- multiple vulnerabilities</topic>
     <affects>
