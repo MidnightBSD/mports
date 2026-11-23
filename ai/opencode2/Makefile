@@ -1,6 +1,6 @@
 PORTNAME=	opencode
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.2.5
+DISTVERSION=	2.2.6
 CATEGORIES=	ai
 MASTER_SITES=	https://registry.npmjs.org/@ff-labs/fff-bun/-/:fffbun
 PKGNAMESUFFIX=	2
@@ -23,6 +23,7 @@ ONLY_FOR_ARCHS_REASON=	Bun is currently available only for amd64 on MidnightBSD
 BUILD_DEPENDS=	bun>=1.4.4:lang/bun \
 		${LOCALBASE}/bin/node:www/node24 \
 		zig>=0.16.0:lang/zig \
+		zig017:lang/zig017 \
 		gmake:devel/gmake \
 		npm-node24>0:www/npm-node24
 # post-fetch warms the offline bun and Ghostty Zig caches, so both are needed.
@@ -53,10 +54,13 @@ GH_TUPLE=	anomalyco:opentui:v${OPENTUI_VERSION}:opentui \
 # embeds everything into a single `bun --compile` executable.  See
 # files/setup-*-freebsd.py, files/*.patch and files/webui-wasm-package.json.
 #
+# OpenTUI 0.8.1 only builds with Zig 0.17.0 (lang/zig017), while the pinned
+# Ghostty revision used by opencode-pty still targets Zig 0.16 (lang/zig).
+#
 # OPENTUI_VERSION and FFF_VERSION must match the pinned @opentui/core and
 # @ff-labs/fff-bun releases (the root package.json catalog and
 # packages/core/package.json) or the native FFI ABI breaks.
-OPENTUI_VERSION=	0.8.0
+OPENTUI_VERSION=	0.8.1
 FFF_VERSION=		0.10.5
 BUN_PTY_VERSION=	0.4.11
 #
@@ -84,6 +88,7 @@ FFF_SO=			${CARGO_TARGET_DIR}/${CARGO_BUILD_TARGET}/release/libfff_c.so
 
 BUN=			${LOCALBASE}/bin/bun
 ZIG=			${LOCALBASE}/bin/zig
+ZIG017=			${LOCALBASE}/bin/zig017
 NODE=			${LOCALBASE}/bin/node
 NODE_GYP=		${LOCALBASE}/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js
 BUN_INSTALL_CACHE_DIR=	${WRKDIR}/bun-cache
@@ -196,7 +201,7 @@ do-build:
 		${SETENV} HOME=${WRKDIR} \
 			ZIG_GLOBAL_CACHE_DIR=${WRKDIR}/zig-cache \
 			ZIG_LOCAL_CACHE_DIR=${WRKDIR}/zig-cache-local \
-			${ZIG} build -j${MAKE_JOBS_NUMBER} -Doptimize=ReleaseFast
+			${ZIG017} build -j${MAKE_JOBS_NUMBER} -Doptimize=ReleaseFast
 	@${ECHO_MSG} "===> Wiring OpenTUI for FreeBSD"
 	@cd ${WRKSRC} && ${PYTHON_CMD} ${FILESDIR}/setup-opentui-freebsd.py \
 		"${WRKSRC}" "${OPENTUI_SO}" "${OPENTUI_VERSION}" "${OPENTUI_ARCH}"
