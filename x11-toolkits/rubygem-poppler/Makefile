@@ -13,10 +13,9 @@ LICENSE=	lgpl2.1+
 LICENSE_FILE=	${WRKSRC}/COPYING.LIB
 
 BUILD_DEPENDS=	rubygem-native-package-installer>=1.0.3:devel/rubygem-native-package-installer \
-		rubygem-pkg-config>=1.3.5:devel/rubygem-pkg-config \
-		rubygem-rake>=0:devel/rubygem-rake
+		rubygem-pkg-config>=1.3.5:devel/rubygem-pkg-config
 LIB_DEPENDS=	libpoppler-glib.so:graphics/poppler-glib
-RUN_DEPENDS=	rubygem-cairo-gobject>=${PORTVERSION}<${PORTVERSION:R}.99:devel/rubygem-cairo-gobject \
+BUILD_RUN_DEPENDS=	rubygem-cairo-gobject>=${PORTVERSION}<${PORTVERSION:R}.99:devel/rubygem-cairo-gobject \
 		rubygem-gio2>=${PORTVERSION}<${PORTVERSION:R}.99:devel/rubygem-gio2 \
 		rubygem-rake>=0:devel/rubygem-rake
 
