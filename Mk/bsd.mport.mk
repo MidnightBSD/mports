@@ -3254,11 +3254,11 @@ _CHECKSUM_INIT_ENV= \
 # As we're fetching new distfiles, that are not in the distinfo file, disable
 # checksum and sizes checks.
 makesum: check-sanity
+# Do not pass DISTFILES, MASTER_SITES and the like on the command line: they
+# propagate through MAKEFLAGS into FETCH_DEPENDS builds, which then try to
+# fetch this port's distfiles instead of their own.
 	@cd ${.CURDIR} && ${MAKE} fetch NO_CHECKSUM=yes \
-			DISABLE_SIZE=yes DISTFILES="${DISTFILES}" \
-			MASTER_SITES="${MASTER_SITES}" \
-			MASTER_SITE_SUBDIR="${MASTER_SITE_SUBDIR}" \
-			PATCH_SITES="${PATCH_SITES}"
+			DISABLE_SIZE=yes
 	@${SETENV} \
 			${_CHECKSUM_INIT_ENV} \
 			dp_CHECKSUM_ALGORITHMS='${CHECKSUM_ALGORITHMS:tu}' \
