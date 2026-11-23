@@ -1,0 +1,11 @@
+--- CMakeLists.txt.orig
++++ CMakeLists.txt
+@@ -550,6 +550,8 @@
+ if(ZIG_HOST_TARGET_OS STREQUAL "android")
+   set(ZIG_HOST_TARGET_OS "linux")
+   set(ZIG_HOST_TARGET_IS_ANDROID TRUE)
++elseif(ZIG_HOST_TARGET_OS STREQUAL "midnightbsd")
++  set(ZIG_HOST_TARGET_OS "freebsd")
+ elseif(ZIG_HOST_TARGET_OS STREQUAL "darwin")
+   set(ZIG_HOST_TARGET_OS "macos")
+ elseif(ZIG_HOST_TARGET_OS STREQUAL "gnu")
