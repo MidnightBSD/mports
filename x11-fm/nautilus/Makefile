@@ -12,7 +12,8 @@ WWW=		https://apps.gnome.org/Nautilus/
 LICENSE=	gpl3+
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-LIB_DEPENDS=	libgexiv2-0.16.so:graphics/gexiv2 \
+LIB_DEPENDS=	libglycin-2.so:graphics/glycin2 \
+		libgexiv2-0.16.so:graphics/gexiv2 \
 		libgnome-autoar-0.so:archivers/gnome-autoar \
 		libportal.so:deskutils/libportal \
 		libportal-gtk4.so:deskutils/libportal-gtk4 \
