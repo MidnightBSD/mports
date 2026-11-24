@@ -1,0 +1,6 @@
+Out-of-tree HPE iLO management controller driver for MidnightBSD 4.2.
+The driver uses the FreeBSD 13 LinuxKPI compatibility layer and exposes
+the iLO channel character devices used by HPE management software.
+
+This port targets MidnightBSD 4.2 only. Loading the module requires
+compatible HPE iLO hardware and is not performed by package installation.
