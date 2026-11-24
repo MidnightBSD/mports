@@ -24,6 +24,7 @@ LIB_DEPENDS=	libcmark.so:textproc/cmark \
 		libdex-1.so:devel/libdex \
 		libpanel-1.so:x11-toolkits/libpanel \
 		libspelling-1.so:x11-toolkits/libspelling \
+		libyaml.so:textproc/libyaml \
 		libeditorconfig.so:editors/editorconfig-core-c
 RUN_DEPENDS=	d-spy:devel/d-spy
 
