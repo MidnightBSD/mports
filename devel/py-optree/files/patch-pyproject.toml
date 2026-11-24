@@ -1,0 +1,8 @@
+--- pyproject.toml.orig	2025-05-28 07:15:37 UTC
++++ pyproject.toml
+@@ -4 +4 @@
+-requires = ["setuptools >= 77.0", "pybind11 >= 2.12"]
++requires = ["setuptools", "pybind11 >= 2.12"]
+@@ -13 +13 @@
+-license = "Apache-2.0"
++license = { text = "Apache-2.0" }
