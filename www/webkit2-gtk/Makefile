@@ -54,10 +54,6 @@ USE_LDCONFIG=	yes
 USE_PERL5=	build
 USE_XORG=	x11
 
-.if ${ARCH} == i386
-MAKE_JOBS_NUMBER=	1
-.endif
-
 CPE_VENDOR=	webkitgtk
 CPE_PRODUCT=	webkitgtk
 
@@ -119,6 +115,10 @@ WAYLAND_BUILD_DEPENDS=	wayland-protocols>=1.12:graphics/wayland-protocols
 WAYLAND_LIB_DEPENDS=	libwayland-egl.so:graphics/wayland
 
 .include <bsd.mport.options.mk>
+
+.if ${ARCH} == i386
+MAKE_JOBS_NUMBER=	1
+.endif
 
 .ifdef WITH_DEBUG
 DEBUG_FLAGS=	-g1 # resulting package otherwise is huge
