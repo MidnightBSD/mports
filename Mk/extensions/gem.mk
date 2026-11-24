@@ -29,6 +29,12 @@ EXTRACT_SUFX=	.gem
 BUILD_DEPENDS+=	${RUBYGEMBIN}:devel/ruby-gems
 EXTRACT_DEPENDS+=	${RUBYGEMBIN}:devel/ruby-gems
 RUN_DEPENDS+=	${RUBYGEMBIN}:devel/ruby-gems
+# fake-qa's gemdeps check (Mk/scripts/qa.sh) needs every runtime gem
+# dependency installed when the port is faked, and gems that build native
+# extensions often load their runtime gems from extconf.rb or a Rakefile.
+# Build-depend on the rubygem run dependencies too.  The reference stays
+# unexpanded, so run dependencies added later (options, flavors) are covered.
+BUILD_DEPENDS+=	${RUN_DEPENDS:M*/rubygem-*}
 GEMS_BASE_DIR=	lib/ruby/gems/${RUBY_VER}
 CACHE_DIR=	${GEMS_BASE_DIR}/cache
 DOC_DIR=	${GEMS_BASE_DIR}/doc

@@ -150,7 +150,7 @@ sub run {
       close($fh) || die "Couldn't close $self->{logdir}/$target: $!\n";
     }
     
-    my $testclass = "Magus::OutcomeRules::$target";
+    my $testclass = $self->rules_class_for($target);
     
     my $presults = $testclass->execute(\$log);
     
@@ -189,10 +189,22 @@ sub targets_for_phase {
   my ($self, $phase) = @_;
 
   return qw(fetch) if $phase eq 'fetch';
-  return qw(fetch extract patch configure build fake package) if $phase eq 'build';
+  # Install the run dependencies before fake, as poudriere does before stage:
+  # fake-qa (e.g. the rubygem gemdeps check) and some install scripts expect
+  # them to be present.  Their packages are already injected, because the
+  # build closure includes run dependencies.
+  return qw(fetch extract patch configure build run-depends fake package) if $phase eq 'build';
   return qw(test) if $phase eq 'test';
 
   die "Unknown Magus phase: $phase\n";
+}
+
+# Make targets may contain '-' (run-depends); Perl package names cannot.
+sub rules_class_for {
+  my ($self, $target) = @_;
+
+  (my $name = $target) =~ tr/-/_/;
+  return "Magus::OutcomeRules::$name";
 }
 
 

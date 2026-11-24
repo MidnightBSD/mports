@@ -127,6 +127,20 @@ package Magus::OutcomeRules::build;
 use base qw(Magus::OutcomeRules::Base);
 
 
+=head1 run-depends rules
+
+=cut
+
+package Magus::OutcomeRules::run_depends;
+
+use base qw(Magus::OutcomeRules::Base);
+
+sub MissingDependencyPackage :error {
+  m/^Missing dependency package file: (\S+)/m
+    && return "A run dependency package was not available to install: $1";
+}
+
+
 =head1 fake rules
 
 =cut
