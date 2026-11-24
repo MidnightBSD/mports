@@ -14,7 +14,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		desktop-file-utils gettext gnome localbase meson pkgconfig tar:xz vala:build
 
-BUILD_DEPENDS=	blueprint-compiler:devel/blueprint-compiler
+BUILD_DEPENDS=	blueprint-compiler:devel/blueprint-compiler \
+		evdev-proto>0:devel/evdev-proto
 LIB_DEPENDS=	libmanette-0.2.so:games/libmanette \
 		libopenal.so:audio/openal-soft \
 		libsndfile.so:audio/libsndfile
