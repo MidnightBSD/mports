@@ -1,0 +1,8 @@
+--- Makefile.orig
++++ Makefile
+@@ -3 +3 @@
+-.PATH:	${SRCTOP}/sys/dev/hpilo
++.PATH:	${WRKSRC}
+@@ -10 +10 @@
+-CFLAGS+= -I${SRCTOP}/sys/compat/linuxkpi/common/include
++CFLAGS+= ${LINUXKPI_INCLUDES}

@@ -101,6 +101,7 @@
     SUBDIR += graylog
     SUBDIR += grub2-bhyve
     SUBDIR += gstreamer1-plugins-cdio
+    SUBDIR += hpilo
     SUBDIR += htop
     SUBDIR += hw-probe
     SUBDIR += hwstat
