@@ -1,0 +1,12 @@
+--- requirements.txt.orig
++++ requirements.txt
+@@ -4,7 +4,7 @@
+ # - pip reads this file via 'setup.py', filtering
+ #   out comments and 'nose'
+ # This file is specified in the project settings 
+ # at ReadTheDocs.org and in .travis.yml
+ #-------------------------------------------------
+-numpy < 2.0
++numpy
+ scipy >= 1.2.0
+ matplotlib >= 3.3
