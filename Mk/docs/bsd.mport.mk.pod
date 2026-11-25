@@ -970,6 +970,14 @@ Arguments follow the keyword after a colon and are comma separated:
  USES=	cmake python:3.11+ ssl
  USES=	go:modules,1.21+
 
+The C<java> extension accepts C<JAVA_VERSION> values 8, 11, 13 and 17
+through 27, optionally followed by C<+> to allow later versions.  A version
+constraint does not imply that a port exists for every accepted version;
+there is currently no native OpenJDK 26 port.  Unless overridden by
+C<JAVA_PREFERRED_PORTS>, compatible native JDKs are preferred over FreeBSD
+binary JDKs, followed by Linux JDKs.  An installed compatible JDK is selected
+before an uninstalled one, except during Magus indexing.
+
 The C<python-setuptools> extension selects a private, coinstallable setuptools
 backend for a PEP517 build.  It requires C<USES=python> and
 C<USE_PYTHON=pep517>, with exactly one argument:
