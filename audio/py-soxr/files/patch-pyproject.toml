@@ -1,5 +1,8 @@
 --- pyproject.toml.orig	2026-07-03 17:56:56 UTC
 +++ pyproject.toml
+@@ -4 +4 @@
+-    "nanobind >=2, <3",
++    "nanobind >=2, <4",
 @@ -57,6 +57,7 @@ Source = "https://github.com/dofuuz/python-soxr"
  "Bug Tracker" = "https://github.com/dofuuz/python-soxr/issues"
  

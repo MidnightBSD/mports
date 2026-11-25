@@ -1,5 +1,6 @@
 PORTNAME=	soxr
 DISTVERSION=	1.1.0
+PORTREVISION=	1
 CATEGORIES=	audio python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,7 +14,7 @@ LICENSE_COMB=	multi
 
 BROKEN_i386=	fails to compile: ...requires target feature 'sse', but would be inlined into function 'h8' that is compiled without support for 'sse'
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}nanobind>0:devel/py-nanobind@${PY_FLAVOR} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}nanobind>=2<4:devel/py-nanobind@${PY_FLAVOR} \
 		${PY_SETUPTOOLS} \
 		${PYTHON_PKGNAMEPREFIX}setuptools-scm>0:devel/py-setuptools-scm@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scikit-build-core>=0.11:devel/py-scikit-build-core@${PY_FLAVOR} \
