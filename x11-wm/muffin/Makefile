@@ -14,7 +14,7 @@ WWW=		https://github.com/linuxmint/muffin
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xkeyboard-config.pc:x11/xkeyboard-config \
+BUILD_DEPENDS=	${LOCALBASE}/share/pkgconfig/xkeyboard-config.pc:x11/xkeyboard-config \
 		${LOCALBASE}/include/EGL/eglmesaext.h:graphics/mesa-dri \
 		${LOCALBASE}/include/linux/input.h:devel/evdev-proto
 LIB_DEPENDS=	libgraphene-1.0.so:graphics/graphene \
