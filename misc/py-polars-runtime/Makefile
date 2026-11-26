@@ -18,9 +18,26 @@ LIB_DEPENDS=	libzstd.so:archivers/zstd
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}altair>=5.4.0:graphics/py-altair@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}matplotlib>0:math/py-matplotlib@${PY_FLAVOR}
 
-FLAVORS=	compat 32 64 # runtime values; it might look hackish to define different types of flavors in this Python port, but Polars needs all of them to be installed and there should be no problems as long as files are installed into proper locations
+_POLARS_SUPPORTED_PYTHON_VERSIONS=	3.11 3.12 3.13 3.13t 3.14 3.15
+_POLARS_DEFAULT_PYTHON_VERSION:=	${PYTHON_DEFAULT:U3.12}
+.if empty(_POLARS_SUPPORTED_PYTHON_VERSIONS:M${_POLARS_DEFAULT_PYTHON_VERSION})
+_POLARS_DEFAULT_PYTHON_VERSION=	${_POLARS_SUPPORTED_PYTHON_VERSIONS:[1]}
+.endif
+.if defined(BUILD_ALL_PYTHON_FLAVORS)
+_POLARS_PYTHON_VERSIONS=	${_POLARS_SUPPORTED_PYTHON_VERSIONS}
+.else
+_POLARS_PYTHON_VERSIONS=	${_POLARS_DEFAULT_PYTHON_VERSION}
+.if defined(FLAVOR) && !empty(FLAVOR:Mpy*_*)
+_POLARS_FLAVOR_PYTHON_VERSION=	${FLAVOR:C/_.*$//:S/py//:C/(.)/\1./}
+.if ${_POLARS_FLAVOR_PYTHON_VERSION} != ${_POLARS_DEFAULT_PYTHON_VERSION}
+_POLARS_PYTHON_VERSIONS+=	${_POLARS_FLAVOR_PYTHON_VERSION}
+.endif
+.endif
+.endif
+FLAVORS=	${_POLARS_PYTHON_VERSIONS:S/.//:@v@py${v}_compat py${v}_32 py${v}_64@}
 FLAVOR?=	${FLAVORS:[1]}
-${FLAVOR}_PKGNAMESUFFIX=	-${FLAVOR} # there's no default runtime for Polars, all of them are needed
+_POLARS_RUNTIME=	${FLAVOR:C/^py[0-9]+t?_//}
+PKGNAMESUFFIX=	-${_POLARS_RUNTIME}
 
 USES=		cargo pkgconfig python:3.11+
 USE_PYTHON=	autoplist noflavors pep517
@@ -581,8 +598,8 @@ CARGO_BUILD=	no
 CARGO_INSTALL=	no
 MAKE_ENV+=	${CARGO_ENV} CARGO=${CARGO}
 
-BUILD_WRKSRC=	${WRKSRC}/py-polars/runtime/${PORTNAME}-${FLAVOR} # for Python build
-INSTALL_WRKSRC=	${WRKSRC}/py-polars/runtime/${PORTNAME}-${FLAVOR} # for Python install
+BUILD_WRKSRC=	${WRKSRC}/py-polars/runtime/${PORTNAME}-${_POLARS_RUNTIME} # for Python build
+INSTALL_WRKSRC=	${WRKSRC}/py-polars/runtime/${PORTNAME}-${_POLARS_RUNTIME} # for Python install
 
 TEST_ENV=	${MAKE_ENV} PYTHONPATH=${FAKE_DESTDIR}${PYTHONPREFIX_SITELIBDIR}
 TEST_WRKSRC=	${CARGO_WRKSRC}/tests
@@ -590,10 +607,10 @@ TEST_WRKSRC=	${CARGO_WRKSRC}/tests
 xpost-patch:
 	@${REINPLACE_CMD} -e 's|ethnum-1.5.2|ethnum-1.5.3|' ${WRKSRC}/Cargo.lock
 
-PLIST_SUB+=	FLAVOR=${FLAVOR} \
+PLIST_SUB+=	FLAVOR=${_POLARS_RUNTIME} \
 		PORTVERSION=${PORTVERSION}
 
-PYWHEEL_NAME=	${PORTNAME:C|[-_]+|_|g}_${FLAVOR}
+PYWHEEL_NAME=	${PORTNAME:C|[-_]+|_|g}_${_POLARS_RUNTIME}
 
 PEP517_BUILD_CONFIG_SETTING=	-C "maturin.build-args=--locked --strip"
 
