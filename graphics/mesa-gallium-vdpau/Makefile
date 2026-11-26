@@ -59,4 +59,14 @@ MESON_ARGS+=	-Dglx=disabled \
 		-Dplatforms=""
 .endif
 
+# Since mesa 24.2 the lib/vdpau/*.so drivers are symlinks to
+# libgallium-${MESAVERSION}.so, which graphics/mesa-libs builds with the
+# VDPAU frontend and owns.
+.if ${PORT_OPTIONS:MX11}
+LIB_DEPENDS+=	libgallium-${MESAVERSION}.so:graphics/mesa-libs
+
+post-install:
+	${RM} ${PREFIX}/lib/libgallium-${MESAVERSION}.so
+.endif
+
 .include <bsd.port.post.mk>

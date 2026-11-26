@@ -1,6 +1,5 @@
 PORTNAME=	mesa-dri
 PORTVERSION=	${MESAVERSION}
-PORTREVISION=	2
 CATEGORIES=	graphics
 
 COMMENT=	OpenGL hardware acceleration drivers for DRI2+
@@ -9,7 +8,8 @@ WWW=		https://www.mesa3d.org/
 BUILD_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}ply>0:devel/py-ply@${PY_FLAVOR}
 RUN_DEPENDS+=	gcc14:lang/gcc14
 
-LIB_DEPENDS+=	libglapi.so:graphics/mesa-libs
+LIB_DEPENDS+=	libglapi.so:graphics/mesa-libs \
+		libgallium-${MESAVERSION}.so:graphics/mesa-libs
 
 USES+=		llvm:lib,noexport
 
@@ -138,6 +138,9 @@ PLIST_SUB+=	${_vd}="@comment "
 
 post-install:
 	-${RM} -r ${FAKE_DESTDIR}/etc/OpenCL
+# libgallium-${MESAVERSION}.so is owned by graphics/mesa-libs; the
+# lib/dri/*_dri.so shims installed here load it at runtime.
+	${RM} ${PREFIX}/lib/libgallium-${MESAVERSION}.so
 	${INSTALL_DATA} ${FILESDIR}/01-freebsd.conf \
 		${PREFIX}/share/drirc.d
 

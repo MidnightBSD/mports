@@ -1,6 +1,5 @@
 PORTNAME=	mesa-libs
 PORTVERSION=	${MESAVERSION}
-PORTREVISION=	1
 CATEGORIES=	graphics
 
 COMMENT=	OpenGL libraries that support GLX and EGL clients
@@ -9,9 +8,10 @@ WWW=		https://www.mesa3d.org/
 LICENSE=	mit
 LICENSE_FILE=	${WRKSRC}/docs/license.rst
 
-USES=		llvm:noexport
+USES=		llvm:lib,noexport
 
-BUILD_DEPENDS=	libglvnd>=0:graphics/libglvnd
+BUILD_DEPENDS=	libglvnd>=0:graphics/libglvnd \
+		${PYTHON_PKGNAMEPREFIX}ply>0:devel/py-ply@${PY_FLAVOR}
 
 OPTIONS_GROUP=		PLATFORM
 OPTIONS_GROUP_PLATFORM=	X11 WAYLAND
@@ -34,7 +34,6 @@ USE_LDCONFIG=		yes
 .include "${.CURDIR:H:H}/graphics/mesa-dri/Makefile.common"
 
 MESON_ARGS+=	-Dandroid-libbacktrace=disabled \
-		-Dgallium-vdpau=disabled \
 		-Dgallium-omx=disabled \
 		-Dgallium-va=disabled \
 		-Dgallium-xa=disabled \
@@ -48,8 +47,41 @@ MESON_ARGS+=	-Dandroid-libbacktrace=disabled \
 		-Dgbm=enabled \
 		-Dvulkan-drivers="" \
 		-Dglvnd=enabled
-# Building EGL and GBM requires a driver so add r300
-MESON_ARGS+=	-Dgallium-drivers="r300"
+
+# Since mesa 24.2 the gallium drivers are linked into a single
+# libgallium-${MESAVERSION}.so which libEGL_mesa, libGLX_mesa and libgbm
+# link directly, so this port owns it and must build the full driver set.
+# graphics/mesa-dri installs the lib/dri/*_dri.so loader shims on top.
+# Keep this list in sync with OPTIONS_GROUP_GALLIUM in graphics/mesa-dri.
+GALLIUM_DRIVERS=	crocus i915 iris panfrost r300 r600 radeonsi svga swrast zink
+.if ${ARCH} != aarch64
+GALLIUM_DRIVERS:=	${GALLIUM_DRIVERS:Npanfrost}
+.endif
+.if ${ARCH} != amd64 && ${ARCH} != i386
+GALLIUM_DRIVERS:=	${GALLIUM_DRIVERS:Ncrocus:Ni915:Niris:Nsvga}
+.endif
+.if ${ARCH} == armv7
+GALLIUM_DRIVERS=	swrast
+.endif
+MESON_ARGS+=	-Dgallium-drivers=${GALLIUM_DRIVERS:ts,}
+
+.if ${GALLIUM_DRIVERS:Miris}
+BUILD_DEPENDS+=	libclc-${LLVM_PORT:T}>0:devel/libclc@${LLVM_PORT:T} \
+		spirv-tools>0:graphics/spirv-tools \
+		spirv-llvm-translator-${LLVM_PORT:T}>0:devel/spirv-llvm-translator@${LLVM_PORT:T}
+CONFIGURE_ENV+=	PKG_CONFIG_PATH="${LLVM_PREFIX}/libdata/pkgconfig"
+.endif
+
+# The VDPAU frontend is linked into libgallium too; the lib/vdpau/*.so
+# symlinks pointing at it are packaged by graphics/mesa-gallium-vdpau.
+.if ${PORT_OPTIONS:MX11} && (${GALLIUM_DRIVERS:Mr600} || ${GALLIUM_DRIVERS:Mradeonsi})
+BUILD_DEPENDS+=	libvdpau>=0:multimedia/libvdpau
+MESON_ARGS+=	-Dgallium-vdpau=enabled
+.else
+MESON_ARGS+=	-Dgallium-vdpau=disabled
+.endif
+
+PLIST_SUB+=	MESAVERSION=${MESAVERSION}
 
 .if ${PORT_OPTIONS:MX11}
 MESA_PLATFORMS+=	x11
@@ -80,5 +112,8 @@ post-install:
 # Fallback if GLX_EXT_libglvnd is missing or vendor library doesn't exist
 	@${ECHO_CMD} "libGLX_indirect.so.0 libGLX_mesa.so.0" \
 		>${PREFIX}/etc/libmap.d/mesa.conf
+# The lib/dri/*_dri.so shims, dri.pc and dri_interface.h belong to
+# graphics/mesa-dri.
+	${RM} -r ${PREFIX}/lib/dri ${PREFIX}/lib/vdpau
 
 .include <bsd.port.post.mk>
