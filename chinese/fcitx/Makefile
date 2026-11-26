@@ -21,7 +21,7 @@ LICENSE=	gpl2
 
 BUILD_DEPENDS=	iso-codes>=0:misc/iso-codes \
 		bash:shells/bash \
-		${LOCALBASE}/libdata/pkgconfig/xkeyboard-config.pc:x11/xkeyboard-config
+		${LOCALBASE}/share/pkgconfig/xkeyboard-config.pc:x11/xkeyboard-config
 LIB_DEPENDS=	libcairo.so:graphics/cairo \
 		libdbus-1.so:devel/dbus \
 		libenchant-2.so:textproc/enchant2 \
