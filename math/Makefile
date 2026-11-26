@@ -182,6 +182,7 @@
     SUBDIR += py-matplotlib-inline
     SUBDIR += py-matplotlib-scalebar
     SUBDIR += py-ml-dtypes
+    SUBDIR += py-mplcursors
     SUBDIR += py-mpmath
     SUBDIR += py-munkres
     SUBDIR += py-MutatorMath
