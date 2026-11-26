@@ -12,6 +12,7 @@ WWW=		https://apps.gnome.org/Nautilus/
 LICENSE=	gpl3+
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	blueprint-compiler>0:devel/blueprint-compiler
 LIB_DEPENDS=	libglycin-2.so:graphics/glycin2 \
 		libgexiv2-0.16.so:graphics/gexiv2 \
 		libgnome-autoar-0.so:archivers/gnome-autoar \
