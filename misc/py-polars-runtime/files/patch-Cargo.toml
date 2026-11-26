@@ -1,0 +1,8 @@
+-- The port removes the jemalloc dependencies from polars-ooc, so drop the
+-- now-unused Cargo source override as well. Cargo rejects it with --locked.
+
+--- Cargo.toml.orig
++++ Cargo.toml
+@@ -198 +198 @@
+-tikv-jemalloc-sys = { git = "https://github.com/pola-rs/jemallocator", rev = "0d683dfb157097e2075d5e0eaf25f71f514a7552" }
++# tikv-jemalloc-sys is disabled by the MidnightBSD port.
