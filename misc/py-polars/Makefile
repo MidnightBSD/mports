@@ -15,7 +15,8 @@ LICENSE_FILE=	${WRKSRC}/../LICENSE
 BUILD_DEPENDS=	${PY_SETUPTOOLS} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 .for runtime in compat 32 64 # same as flavors in misc/py-polars-runtime
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}polars-runtime-${runtime}${_POLARS_RUNTIME_VERSION}:misc/py-polars-runtime@${runtime}
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}polars-runtime-${runtime}>=${DISTVERSION}:misc/py-polars-runtime@${PY_FLAVOR}_${runtime} \
+		${PYTHON_PKGNAMEPREFIX}polars-runtime-${runtime}<${_POLARS_RUNTIME_NEXT_VERSION}:misc/py-polars-runtime@${PY_FLAVOR}_${runtime}
 .endfor
 # optional dependencies
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}altair>=5.4.0:graphics/py-altair@${PY_FLAVOR} \
@@ -41,11 +42,8 @@ NO_ARCH=	yes
 
 .include <bsd.port.pre.mk>
 
-# Older mport versions retain only one bound in package metadata.
-.if ${OSVERSION} >= 401000
-_POLARS_RUNTIME_VERSION=	>=${DISTVERSION}<2.1.1
-.else
-_POLARS_RUNTIME_VERSION=	>=${DISTVERSION}
-.endif
+# The Rust runtime must exactly match the Python frontend. Keep the two
+# bounds separate because stable/4.0 package metadata stores only one bound.
+_POLARS_RUNTIME_NEXT_VERSION=	2.1.1
 
 .include <bsd.port.post.mk>
