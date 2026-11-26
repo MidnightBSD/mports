@@ -539,7 +539,9 @@ FLAVOR=	${FLAVORS:[1]}
 .    endif
 .  endif
 
-.  if ${FLAVOR:Mpy[23][0-9]}${FLAVOR:Mpy[23][1-9][0-9]}${FLAVOR:Mpy31[3-9]t}
+.  if !empty(FLAVOR:Mpy*_*)
+_PYTHON_VERSION=	${FLAVOR:C/_.*$//:S/py//:C/(.)/\1./}
+.  elif ${FLAVOR:Mpy[23][0-9]}${FLAVOR:Mpy[23][1-9][0-9]}${FLAVOR:Mpy31[3-9]t}
 _PYTHON_VERSION=	${FLAVOR:S/py//:C/(.)/\1./}
 .  endif
 
