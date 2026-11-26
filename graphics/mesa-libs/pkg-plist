@@ -11,6 +11,7 @@ lib/libEGL_mesa.so.0.0.0
 %%GLX%%lib/libGLX_mesa.so
 %%GLX%%lib/libGLX_mesa.so.0
 %%GLX%%lib/libGLX_mesa.so.0.0.0
+lib/libgallium-%%MESAVERSION%%.so
 lib/libgbm.so
 lib/libgbm.so.1
 lib/libgbm.so.1.0.0

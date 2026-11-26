@@ -21,18 +21,19 @@ include/GL/internal/dri_interface.h
 @comment include/GLES3/gl3platform.h
 @comment include/KHR/khrplatform.h
 @comment include/gbm.h
-%%crocus%%lib/dri/crocus_dri.so
-%%i915%%lib/dri/i915_dri.so
-%%iris%%lib/dri/iris_dri.so
-%%panfrost%%lib/dri/panfrost_dri.so
-%%panfrost%%lib/dri/rockchip_dri.so
-%%r300%%lib/dri/r300_dri.so
-%%r600%%lib/dri/r600_dri.so
-%%radeonsi%%lib/dri/radeonsi_dri.so
-%%svga%%lib/dri/vmwgfx_dri.so
-%%swrast%%lib/dri/kms_swrast_dri.so
-%%swrast%%lib/dri/swrast_dri.so
-%%zink%%lib/dri/zink_dri.so
+%%X11%%%%crocus%%lib/dri/crocus_dri.so
+%%X11%%lib/dri/libdril_dri.so
+%%X11%%%%i915%%lib/dri/i915_dri.so
+%%X11%%%%iris%%lib/dri/iris_dri.so
+%%X11%%%%panfrost%%lib/dri/panfrost_dri.so
+%%X11%%%%panfrost%%lib/dri/rockchip_dri.so
+%%X11%%%%r300%%lib/dri/r300_dri.so
+%%X11%%%%r600%%lib/dri/r600_dri.so
+%%X11%%%%radeonsi%%lib/dri/radeonsi_dri.so
+%%X11%%%%svga%%lib/dri/vmwgfx_dri.so
+%%X11%%%%swrast%%lib/dri/kms_swrast_dri.so
+%%X11%%%%swrast%%lib/dri/swrast_dri.so
+%%X11%%%%zink%%lib/dri/zink_dri.so
 @comment lib/libEGL.so
 @comment lib/libEGL.so.1
 @comment lib/libEGL.so.1.0.0
