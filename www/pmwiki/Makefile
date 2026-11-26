@@ -1,5 +1,6 @@
 PORTNAME=	pmwiki
-PORTVERSION=	2.4.1
+DISTVERSION=	2.7.3
+PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	www
 MASTER_SITES=	http://www.pmwiki.org/pub/pmwiki/
@@ -11,18 +12,17 @@ WWW=		https://www.pmwiki.org
 LICENSE=	gpl2
 LICENSE_FILE=	${WRKSRC}/docs/COPYING.txt
 
-USES=		cpe tar:tgz php:web
+USES=		cpe php:web tar:tgz
 USE_PHP=	mbstring session
 
-NO_BUILD=	yes
 NO_ARCH=	yes
-
+NO_BUILD=	yes
+SUB_FILES=	pkg-message
+SUB_LIST=	PMWIKIDIR=${PMWIKIDIR}
+PLIST_SUB=	PMWIKIDIR=${PMWIKIDIR} WWWGRP=${WWWGRP} WWWOWN=${WWWOWN}
 PORTDOCS=	*
 
-FETCH_ARGS=	-pRr
-PLIST_SUB+=	PMWIKIDIR=${PMWIKIDIR} WWWGRP=${WWWGRP} WWWOWN=${WWWOWN}
-SUB_LIST+=	PMWIKIDIR=${PMWIKIDIR}
-SUB_FILES=	pkg-message
+OPTIONS_DEFINE=	DOCS
 
 pre-fetch:
 .if !defined(PMWIKIDIR)
@@ -45,10 +45,10 @@ do-install:
 	@cd ${WRKSRC} && ${FIND} . ! \( -name docs -prune \) | \
 		${CPIO} ${CPIOFLAGS} ${PREFIX}/${PMWIKIDIR}
 	@${CHOWN} ${WWWOWN}:${WWWGRP} ${PREFIX}/${PMWIKIDIR}
-.if !defined(NOPORTDOCS)
-	@${INSTALL} -o ${DOCOWN} -g ${DOCGRP} -m 555 -d ${DOCSDIR}
-	@${INSTALL_MAN} ${WRKSRC}/docs/* ${DOCSDIR}
-.endif
+
+do-install-DOCS-on:
+	@${INSTALL} -o ${DOCOWN} -g ${DOCGRP} -m 555 -d ${FAKE_DESTDIR}${DOCSDIR}
+	@${INSTALL_MAN} ${WRKSRC}/docs/* ${FAKE_DESTDIR}${DOCSDIR}
 
 post-install:
 	@${MKDIR} -m 775 ${PREFIX}/${PMWIKIDIR}/wiki.d
