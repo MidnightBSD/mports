@@ -1,0 +1,5 @@
+Midnight Terminal (mterm) is a GTK4 terminal emulator for MidnightBSD,
+written in Rust. It provides tabs, color themes, selectable ANSI palettes,
+256-color and 24-bit color, Unicode support including wide and combining
+characters, configurable scrollback, and OSC 52 remote copy/paste so
+programs running over ssh or inside tmux can use the local clipboard.
