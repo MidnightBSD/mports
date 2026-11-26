@@ -1,0 +1,17 @@
+--- third_party/tensorpipe/third_party/libuv/CMakeLists.txt.orig	2026-07-08 17:44:27 UTC
++++ third_party/tensorpipe/third_party/libuv/CMakeLists.txt
+@@ -286 +286 @@
+-if(CMAKE_SYSTEM_NAME MATCHES "DragonFly|FreeBSD")
++if(CMAKE_SYSTEM_NAME MATCHES "DragonFly|FreeBSD|MidnightBSD")
+@@ -290 +290 @@
+-if(CMAKE_SYSTEM_NAME MATCHES "DragonFly|FreeBSD|NetBSD|OpenBSD")
++if(CMAKE_SYSTEM_NAME MATCHES "DragonFly|FreeBSD|MidnightBSD|NetBSD|OpenBSD")
+@@ -294 +294 @@
+-if(APPLE OR CMAKE_SYSTEM_NAME MATCHES "DragonFly|FreeBSD|NetBSD|OpenBSD")
++if(APPLE OR CMAKE_SYSTEM_NAME MATCHES "DragonFly|FreeBSD|MidnightBSD|NetBSD|OpenBSD")
+@@ -298 +298 @@
+-if(CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
++if(CMAKE_SYSTEM_NAME MATCHES "FreeBSD|MidnightBSD")
+@@ -435 +435 @@
+-if(APPLE OR CMAKE_SYSTEM_NAME MATCHES "DragonFly|FreeBSD|Linux|NetBSD|OpenBSD")
++if(APPLE OR CMAKE_SYSTEM_NAME MATCHES "DragonFly|FreeBSD|MidnightBSD|Linux|NetBSD|OpenBSD")
