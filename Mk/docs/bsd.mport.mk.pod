@@ -434,6 +434,10 @@ The flavor being built.  Set on the command line ("make FLAVOR=qt5") or by
 the framework.  A dependency on a specific flavor is written as
 "path:dir@flavor".
 
+When a port combines a Python version with another flavor dimension, name
+the flavor C<py312_variant>.  C<USES=python> uses the C<py312> prefix to
+select Python 3.12 and leaves C<variant> available to the port.
+
 =item flavor_VARIABLE
 
 For each flavor, flavor_DESCR, flavor_PLIST, flavor_PKGNAMEPREFIX and

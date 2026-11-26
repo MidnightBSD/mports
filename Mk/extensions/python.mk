@@ -473,6 +473,24 @@ IGNORE=	uses unknown USES=python arguments: ${_PYTHON_ARGS}
 # Pattern to convert python versions (X.Y or X.YY) to comparable format X.YY
 _VC=		C/^([1-9]\.)([0-9])$$/\10\2/
 
+# Resolve manually declared Python flavors before checking the allowed range.
+# Composite flavors keep the Python version in their prefix, e.g. py312_variant.
+.  if empty(FLAVOR) && !empty(FLAVORS:Mpy*_*)
+FLAVOR=	${FLAVORS:[1]}
+.  endif
+.  if !empty(FLAVOR)
+_PYTHON_FLAVOR_PREFIX=	${FLAVOR:C/_.*$//}
+.    if ${_PYTHON_FLAVOR_PREFIX:Mpy[23][0-9]}${_PYTHON_FLAVOR_PREFIX:Mpy[23][1-9][0-9]}${_PYTHON_FLAVOR_PREFIX:Mpy31[3-9]t}
+_PYTHON_FLAVOR_VERSION=	${_PYTHON_FLAVOR_PREFIX:S/py//:C/(.)/\1./}
+.      if empty(_PYTHON_VERSIONS:M${_PYTHON_FLAVOR_VERSION})
+IGNORE=		${PORTNAME} uses unsupported Python flavor ${FLAVOR}
+.      else
+_PYTHON_VERSION=	${_PYTHON_FLAVOR_VERSION}
+_PYTHON_VERSION_FROM_FLAVOR=	yes
+.      endif
+.    endif
+.  endif
+
 .undef _PYTHON_VERSION_NONSUPPORTED
 .  if !empty(_PYTHON_VERSION_MINIMUM) && (${_PYTHON_VERSION:${_VC}:S/t$//} < ${_PYTHON_VERSION_MINIMUM:${_VC}:S/t$//})
 _PYTHON_VERSION_NONSUPPORTED=	${_PYTHON_VERSION_MINIMUM} at least
@@ -480,8 +498,12 @@ _PYTHON_VERSION_NONSUPPORTED=	${_PYTHON_VERSION_MINIMUM} at least
 _PYTHON_VERSION_NONSUPPORTED=	${_PYTHON_VERSION_MAXIMUM} at most
 .  endif
 
-# If we have an unsupported version of Python, try another.
+# If the default Python version is unsupported, try another. An explicit
+# Python flavor is a request for a specific interpreter and must not fall back.
 .  if defined(_PYTHON_VERSION_NONSUPPORTED)
+.    if defined(_PYTHON_VERSION_FROM_FLAVOR)
+IGNORE=		${PORTNAME} flavor ${FLAVOR} requires unsupported Python ${_PYTHON_VERSION}
+.    else
 .undef _PYTHON_VERSION
 .    for ver in ${PYTHON_DEFAULT} ${PYTHON2_DEFAULT} ${_PYTHON_VERSIONS}
 __VER=		${ver}
@@ -495,6 +517,7 @@ _PYTHON_VERSION=	${ver}
 .    endfor
 .    if !defined(_PYTHON_VERSION)
 IGNORE=		needs an unsupported version of Python
+.    endif
 .    endif
 .  endif	# defined(_PYTHON_VERSION_NONSUPPORTED)
 
@@ -537,10 +560,6 @@ FLAVORS:=	${_f}
 .    if !empty(FLAVORS) && empty(FLAVOR)
 FLAVOR=	${FLAVORS:[1]}
 .    endif
-.  endif
-
-.  if ${FLAVOR:Mpy[23][0-9]}${FLAVOR:Mpy[23][1-9][0-9]}${FLAVOR:Mpy31[3-9]t}
-_PYTHON_VERSION=	${FLAVOR:S/py//:C/(.)/\1./}
 .  endif
 
 .  if !empty(FLAVOR) && ${_PYTHON_VERSION} != ${PYTHON_DEFAULT}
