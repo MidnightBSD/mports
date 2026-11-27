@@ -1,10 +1,9 @@
 PORTNAME=	gmsh
-DISTVERSION=	4.14.0
-PORTREVISION=	3
+DISTVERSION=	5.0.0-git
 CATEGORIES=	cad python
-MASTER_SITES=	https://gmsh.info/src/
+MASTER_SITES=	https://distcache.FreeBSD.org/local-distfiles/thierry/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-DISTNAME=	${PORTNAME}-${DISTVERSION}-source
+DISTNAME=	${PORTNAME}-master-23c47b0e6a91f2f67afcbe3bf9ad1b5c253e96e2
 DIST_SUBDIR=	gmsh
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,6 +14,7 @@ LICENSE=	AGPLv3plus Apache-2.0 gpl3+ gpl2+ lgpl2.1
 LICENSE_COMB=	multi
 LICENSE_NAME_AGPLv3plus=	GNU Affero General Public License version 3 or later
 LICENSE_TEXT_AGPLv3plus=	GNU Affero General Public License version 3 or later
+LICENSE_FILE_gpl2+ =	${WRKSRC}/LICENSE.txt
 LICENSE_PERMS_AGPLv3plus=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 BUILD_DEPENDS=	swig:devel/swig
@@ -23,11 +23,13 @@ LIB_DEPENDS=	libcgns.so:science/cgnslib \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \
 		libgmp.so:math/gmp \
-		libhdf5.so:science/hdf5 \
+		libhdf5-110.so:science/hdf5-110 \
+		libmmg.so:science/mmg \
 		libmedC.so:french/med \
 		libpng16.so:graphics/png \
 		libsz.so:science/libaec \
 		libTKV3d.so:cad/opencascade
+LIB_DEPENDS_amd64=	libmesquite.so:math/mesquite
 
 USES=		cmake compiler:c++17-lang gl gnome jpeg python tar:tgz xorg
 USE_PYTHON=	flavors
@@ -36,34 +38,35 @@ USE_GL=		gl glu
 USE_XORG=	ice sm x11 xcursor xext xfixes xft xinerama xrender
 USE_LDCONFIG=	${PYTHON_SITELIBDIR}
 
-PATCHDIR=	${PORTSDIR}/cad/gmsh/files
+WRKSRC=		${WRKDIR}/gmsh-master
 
 CMAKE_ON=	ENABLE_WRAP_PYTHON ENABLE_PRIVATE_API ENABLE_OCC
-CMAKE_ARGS=	-DOCC_INC=${LOCALBASE}/include/OpenCASCADE
-
-CXXFLAGS_powerpc64=	-mvsx
+CMAKE_OFF=	${CMAKE_OFF_${ARCH}}
+CMAKE_OFF_i386=	ENABLE_MESQUITE
+CMAKE_ARGS=	-DOCC_INC=${LOCALBASE}/include/OpenCASCADE \
+		-DGMSHPY_INSTALL_DIRECTORY=${PYTHON_SITELIBDIR}/gmshpy \
+		-DHDF5_C_COMPILER_EXECUTABLE:FILEPATH=${LOCALBASE}/bin/h5cc-110 \
+		-DHDF5_C_LIBRARY:FILEPATH=${LOCALBASE}/lib/libhdf5-110.so \
+		-DHDF5_NO_FIND_PACKAGE_CONFIG_FILE:BOOL=TRUE \
+		-DPYTHON_EXECUTABLE:FILEPATH=${PYTHON_CMD} \
+		-DPYTHON_INCLUDE_DIR:PATH=${PYTHON_INCLUDEDIR} \
+		-DPYTHON_LIBRARY:FILEPATH=${PYTHONBASE}/lib/libpython${PYTHON_VER}.so
 
 post-install: # remove all except for the python binding
-	@cd ${STAGEDIR}${PREFIX} && \
+	@cd ${PREFIX} && \
 		${RM} -r \
 			bin/* \
 			include/gmsh* \
 			lib/gmsh.jl \
 			share/doc/gmsh \
 			share/man/man1/gmsh.1
+	@${RM} -r ${FAKE_DESTDIR}${DATADIR}
 	# move "private API" libs to the python folder
-	@cd ${STAGEDIR} && \
+	@${MKDIR} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}
+	@cd ${PREFIX} && \
 		${MV} \
-			${STAGEDIR}${PREFIX}/lib/gmsh* \
-			${STAGEDIR}${PREFIX}/lib/lib* \
-			${STAGEDIR}${PYTHON_SITELIBDIR}
-
-post-patch:
-# OpenCASCADE 8 headers require C++17
-	@${REINPLACE_CMD} -e 's|set(CMAKE_CXX_STANDARD 14)|set(CMAKE_CXX_STANDARD 17)|' \
-		${WRKSRC}/CMakeLists.txt
-# OpenCASCADE 8 dropped the legacy Handle_Foo typedefs; use the Handle() macro
-	@${REINPLACE_CMD} -E -e 's|Handle_([A-Za-z0-9_]+)|Handle(\1)|g' \
-		${WRKSRC}/src/geo/GModelIO_OCC.cpp
+			lib/gmsh* \
+			lib/lib* \
+			${FAKE_DESTDIR}${PYTHON_SITELIBDIR}
 
 .include <bsd.port.mk>
