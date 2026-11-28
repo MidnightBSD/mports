@@ -1,9 +1,8 @@
 PORTNAME=	libarchive
-DISTVERSION=	3.8.8
+DISTVERSION=	3.8.11
 PORTEPOCH=	1
 CATEGORIES=	archivers
-MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/v${DISTVERSION}/ \
-		https://libarchive.org/downloads/
+MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/v${DISTVERSION}/
 
 #PATCH_SITES=	https://github.com/libarchive/libarchive/commit/
 #PATCHFILES=	627ba5bbbf80fe25dbf5015ef304a905a2820f17.patch:-p1
@@ -16,9 +15,8 @@ LICENSE=	bsd2 bsd3 publicdom
 LICENSE_COMB=	multi
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libexpat.so:textproc/expat2
-
-USES=		cpe iconv libtool localbase:ldflags pathfix pkgconfig ssl tar:xz
+USES=		cpe gnome iconv:wchar_t libtool localbase:ldflags pathfix pkgconfig tar:xz
+USE_GNOME=	libxml2
 USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=	yes
@@ -27,13 +25,16 @@ INSTALL_TARGET=	install-strip
 #TEST_TARGET=	check
 NO_TEST=	yes
 
-CONFIGURE_ARGS=	--disable-static --without-libb2 --without-xml2
+CONFIGURE_ARGS=	--disable-static \
+		--without-libb2 \
+		--without-bsdxml \
+		--without-expat
 
 OPTIONS_DEFINE=	LZ4 LZO ZSTD
 OPTIONS_DEFAULT=LZ4 ZSTD OPENSSL
 
 OPTIONS_RADIO=	CRYPTO
-OPTIONS_RADIO_CRYPTO=	OPENSSL MBEDTLS NETTLE
+OPTIONS_RADIO_CRYPTO=	OPENSSL NETTLE
 
 CRYPTO_DESC=	Crypto and hashing support
 NETTLE_DESC=	Crypto support via Nettle
@@ -54,15 +55,17 @@ OPENSSL_USES=		ssl
 OPENSSL_CONFIGURE_WITH=	openssl
 OPENSSL_CONFIGURE_OFF=	--without-openssl
 
-MBEDTLS_LIB_DEPENDS=	libmbedtls.so:security/mbedtls2
-MBEDTLS_CONFIGURE_WITH=	mbedtls
-
 .include <bsd.port.pre.mk>
 
 .if empty(ICONV_LIB)
 CONFIGURE_ENV+=	ac_cv_header_localcharset_h=no \
 		ac_cv_func_locale_charset=no \
 		ac_cv_lib_charset_locale_charset=no
+.endif
+
+.if ${UID} == 0
+do-test:
+	@${ECHO_MSG} "Test suite cannot run and will fail when executed as root, skipping."
 .endif
 
 .include <bsd.port.post.mk>
