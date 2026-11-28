@@ -92,11 +92,14 @@ include/evolution-data-server/camel/camel-sasl-xoauth2-yahoo.h
 include/evolution-data-server/camel/camel-sasl-xoauth2.h
 include/evolution-data-server/camel/camel-sasl.h
 include/evolution-data-server/camel/camel-search-private.h
+include/evolution-data-server/camel/camel-search-utils.h
 include/evolution-data-server/camel/camel-service.h
 include/evolution-data-server/camel/camel-session.h
 include/evolution-data-server/camel/camel-settings.h
 include/evolution-data-server/camel/camel-sexp.h
 include/evolution-data-server/camel/camel-smime-context.h
+include/evolution-data-server/camel/camel-store-db.h
+include/evolution-data-server/camel/camel-store-search.h
 include/evolution-data-server/camel/camel-store-settings.h
 include/evolution-data-server/camel/camel-store-summary.h
 include/evolution-data-server/camel/camel-store.h
@@ -184,6 +187,7 @@ include/evolution-data-server/libecal/e-cal-component-alarm-trigger.h
 include/evolution-data-server/libecal/e-cal-component-alarm.h
 include/evolution-data-server/libecal/e-cal-component-alarms.h
 include/evolution-data-server/libecal/e-cal-component-attendee.h
+include/evolution-data-server/libecal/e-cal-component-bag.h
 include/evolution-data-server/libecal/e-cal-component-datetime.h
 include/evolution-data-server/libecal/e-cal-component-id.h
 include/evolution-data-server/libecal/e-cal-component-organizer.h
@@ -283,6 +287,7 @@ include/evolution-data-server/libedataserver/e-source-backend.h
 include/evolution-data-server/libedataserver/e-source-calendar.h
 include/evolution-data-server/libedataserver/e-source-camel.h
 include/evolution-data-server/libedataserver/e-source-collection.h
+include/evolution-data-server/libedataserver/e-source-conflict-search.h
 include/evolution-data-server/libedataserver/e-source-contacts.h
 include/evolution-data-server/libedataserver/e-source-credentials-provider-impl-oauth2.h
 include/evolution-data-server/libedataserver/e-source-credentials-provider-impl-password.h
